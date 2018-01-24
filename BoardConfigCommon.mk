@@ -86,6 +86,9 @@ BOARD_HAS_DOWNLOAD_MODE := true
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_universal7904
 TARGET_RELEASETOOLS_EXTENSIONS := $(COMMON_PATH)
 
+# RIL
+ENABLE_VENDOR_RIL_SERVICE := true
+
 # Sepolicy
 include device/lineage/sepolicy/exynos/sepolicy.mk
 include device/samsung_slsi/sepolicy/sepolicy.mk
