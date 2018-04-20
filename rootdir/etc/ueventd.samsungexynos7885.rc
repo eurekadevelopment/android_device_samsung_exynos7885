@@ -212,3 +212,19 @@
 /dev/mx_client_test_0     0660   system     system
 /dev/mx_0_debug_sampler   0660   system     system
 /dev/mx140_usb_clk_test_0 0660   system     system
+
+/dev/ovr*                 0664   root       system
+/dev/tvr*                 0664   root       system
+/dev/power_on_alarm       0660   system     radio
+
+# MobiCore
+/dev/mobicore             0700   system     system
+/dev/mobicore-user        0666   radio     system
+
+# Secure MEM driver
+/dev/s5p-smem             0660   system     system
+
+# Fingerprint Sensor
+/dev/vfsspi               0660   system     system
+/dev/esfp0                0660   system     system
+/dev/goodix_fp            0660   system     system
