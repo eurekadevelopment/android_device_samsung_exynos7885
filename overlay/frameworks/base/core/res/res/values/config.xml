@@ -42,8 +42,8 @@
     <bool name="config_dozeAfterScreenOffByDefault">true</bool>
     <bool name="config_dozeAlwaysOnDisplayAvailable">false</bool>
     <bool name="config_displayBlanksAfterDoze">false</bool>
-    <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">false</bool>
-    <bool name="config_powerDecoupleInteractiveModeFromDisplay">false</bool>
+    <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">true</bool>
+    <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
     <bool name="config_enableBurnInProtection">false</bool>
     <integer name="config_screenBrightnessDoze">1</integer>
     <bool name="config_freeformWindowManagement">false</bool>
