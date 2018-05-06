@@ -85,6 +85,6 @@
     <string name="db_default_journal_mode" translatable="false">MEMORY</string>
     <string name="db_default_sync_mode" translatable="false">OFF</string>
     <string name="db_wal_sync_mode" translatable="false">OFF</string>
-    <bool name="config_suspendWhenScreenOffDueToProximity">false</bool>
+    <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
     <bool name="config_showNavigationBar">true</bool>	
 </resources>
