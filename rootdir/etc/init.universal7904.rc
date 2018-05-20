@@ -1,0 +1,15 @@
+on init
+    # Disable vendor overlay
+    mount none /vendor/lost+found /vendor/overlay bind
+
+service argos-daemon /system/bin/true
+    oneshot
+    disabled
+
+service ExynosHWCServiceTW /system/bin/true
+    oneshot
+    disabled
+
+service vaultkeeper /system/bin/true
+    oneshot
+    disabled

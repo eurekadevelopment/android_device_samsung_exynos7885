@@ -13,6 +13,10 @@ PRODUCT_PACKAGES += \
 TARGET_SCREEN_HEIGHT := 2340
 TARGET_SCREEN_WIDTH := 1080
 
+# Init
+PRODUCT_PACKAGES += \
+    init.universal7904.rc
+
 # Net
 PRODUCT_PACKAGES += \
     netutils-wrapper-1.0
