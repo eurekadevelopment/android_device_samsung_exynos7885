@@ -26,10 +26,14 @@ on init
 
 on late-fs
     # Start services for Boot Animation
-    start hwservicemanager
     start servicemanager
     start surfaceflinger
     start bootanim
+    # Make sure HW service manager started and start required HAL services
+    wait_for_prop hwservicemanager.ready true
+    start vendor.configstore-hal
+    start vendor.gralloc-2-0
+
     # Mount RW partitions which need run fsck
     mount_all /vendor/etc/fstab.${ro.hardware} --late
 
@@ -422,6 +426,9 @@ on fs
 
     mkdir /mnt/vendor/persist/data/sfs 0700 system system
     mkdir /mnt/vendor/persist/data/tz 0700 system system
+
+    # Start HW service manager early
+    start hwservicemanager
 
     chown radio system /mnt/vendor/efs
     chmod 0771 /mnt/vendor/efs
