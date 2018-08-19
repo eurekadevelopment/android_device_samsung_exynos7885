@@ -12,14 +12,6 @@
     <string-array translatable="false" name="config_tether_bluetooth_regexs">
         <item>"bt-pan"</item>
     </string-array>
-    <integer-array translatable="false" name="config_tether_upstream_types">
-        <item>0</item>
-        <item>1</item>
-        <item>4</item>
-        <item>5</item>
-        <item>7</item>
-        <item>9</item>
-    </integer-array>
     <string-array name="config_mobile_tcp_buffers">
         <item>lte:1048576,3145728,4194304,524288,1572864,2097152</item>
     </string-array>
