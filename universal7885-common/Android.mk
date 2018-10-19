@@ -2,7 +2,8 @@ LOCAL_PATH := $(call my-dir)
 
 ifneq ($(filter a10 a20 a20e a30 a40, $(TARGET_DEVICE)),)
 
-include $(call all-makefiles-under,$(LOCAL_PATH))
+  subdir_makefiles=$(call first-makefiles-under,$(LOCAL_PATH))
+  $(foreach mk,$(subdir_makefiles),$(info including $(mk) ...)$(eval include $(mk)))
 
 include $(CLEAR_VARS)
 
