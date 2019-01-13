@@ -60,3 +60,7 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # System properties
 -include $(LOCAL_PATH)/product_prop.mk
+
+# Trust HAL
+PRODUCT_PACKAGES += \
+    lineage.trust@1.0-service

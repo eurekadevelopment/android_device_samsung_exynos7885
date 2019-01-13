@@ -51,6 +51,9 @@ TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/samsung/universal7904
 TARGET_CUSTOM_DTBTOOL := dtbhtoolExynos
 
+# HIDL
+DEVICE_FRAMEWORK_MANIFEST_FILE := $(COMMON_PATH)/framework_manifest.xml
+
 # LMKD stats logging
 TARGET_LMKD_STATS_LOG := true
 
