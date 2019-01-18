@@ -2,9 +2,6 @@
 # Disable invocation of oem_lock
 ro.frp.pst=/dev/block/persistent
 
-## Display
-ro.sf.lcd_density=420
-
 # fastbootd
 ro.fastbootd.available=true
 
