@@ -12,7 +12,6 @@
 -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-
     <color name="disabled_text_color">#66000000</color>
     <color name="homepage_parts_background">#FFFF6700</color>
     <color name="red">#FF0000</color>
