@@ -14,3 +14,6 @@ persist.sys.fflag.override.settings_provider_model=false
 
 # IORap
 persist.device_config.runtime_native_boot.iorap_readahead_enable=true
+
+# Graphics
+debug.cpurend.vsync=false
