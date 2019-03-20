@@ -1,0 +1,6 @@
+[
+    {
+        "repository": "android_hardware_samsung",
+        "target_path": "hardware/samsung"
+    }
+]
