@@ -79,7 +79,10 @@
 
     <!-- Shutdown if the battery temperature exceeds (this value * 0.1) Celsius. -->
      <integer name="config_shutdownBatteryTemperature">600</integer>
-
+     
+    <!-- Enable Zram writeback feature to allow unused pages in zram be written to flash. -->
+    <bool name="config_zramWriteback">true</bool>
+    
     <!-- From Stock framework-res.apk: -->
     <bool name="config_setColorTransformAccelerated">true</bool>
     <bool name="config_enableNightMode">true</bool>

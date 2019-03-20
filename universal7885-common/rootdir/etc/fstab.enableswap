@@ -1,1 +1,2 @@
-/dev/block/zram0                                    none               swap        defaults                                              zramsize=100%,max_comp_streams=8
+/dev/block/zram0                                    none               swap        defaults                                              zramsize=100%,max_comp_streams=8,zram_loopback_path=/data/unencrypted/zram_swap,zram_loopback_size=512M
+
