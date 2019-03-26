@@ -44,6 +44,7 @@ write_headers
 
 # The standard blobs
 write_makefiles "$MY_DIR"/proprietary-files-vndk.txt true
+write_makefiles "$MY_DIR"/proprietary-files.txt true
 
 # We are done!
 write_footers
