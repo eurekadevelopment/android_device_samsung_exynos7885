@@ -1,0 +1,2 @@
+# CP Boot Daemon
+-sbin/cbd;rootfs
