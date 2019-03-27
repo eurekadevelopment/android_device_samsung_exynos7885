@@ -247,6 +247,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     RemovePkgs
     
+# Notch
+PRODUCT_PACKAGES += \
+    NotchBarKiller
+
 # RIL
 PRODUCT_PACKAGES += \
     android.hardware.radio@1.2.vendor \
