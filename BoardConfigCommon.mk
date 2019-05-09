@@ -45,6 +45,9 @@ TARGET_USES_64_BIT_BINDER := true
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USES_MKE2FS := true
 
+# Include
+TARGET_SPECIFIC_HEADER_PATH := $(COMMON_PATH)/include
+
 # Kernel
 BOARD_CUSTOM_BOOTIMG_MK := hardware/samsung/mkbootimg.mk
 BOARD_KERNEL_IMAGE_NAME := Image
