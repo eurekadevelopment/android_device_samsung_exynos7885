@@ -1,14 +1,12 @@
-
 # Android fstab file.
 #<src>                  <mnt_point>         <type>    <mnt_flags and options>                               <fs_mgr_flags>
 # The filesystem that contains the filesystem checker binary (typically /system) cannot
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 # system and vendor partition will be early-mounted by kernel
-/dev/block/platform/13500000.dwmmc0/by-name/SYSTEM	/system		ext4	ro,errors=panic		wait
 /dev/block/platform/13500000.dwmmc0/by-name/VENDOR	/vendor		ext4	ro,errors=panic		wait
 /dev/block/platform/13500000.dwmmc0/by-name/CACHE	/cache		ext4	noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic		wait,check
-/dev/block/platform/13500000.dwmmc0/by-name/USERDATA	/data   	f2fs	noatime,nosuid,nodev,discard,reserve_root=12800,reserve_core=10240,resgid=5555,usrquota,grpquota,fsync_mode=nobarrier    wait,check,encryptable=footer
+/dev/block/platform/13500000.dwmmc0/by-name/USERDATA	/data           f2fs	noatime,nosuid,nodev,discard,reserve_root=12800,reserve_core=10240,resgid=5555,usrquota,grpquota,fsync_mode=nobarrier    wait,check,encryptable=footer
 /dev/block/platform/13500000.dwmmc0/by-name/EFS		/efs		ext4	noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic		wait,check
 /dev/block/platform/13500000.dwmmc0/by-name/CPEFS	/cpefs		ext4	noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic		wait,check,nofail
 /dev/block/platform/13500000.dwmmc0/by-name/MISC	/misc	        emmc    defaults  defaults
