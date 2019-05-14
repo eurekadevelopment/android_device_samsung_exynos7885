@@ -49,7 +49,15 @@
                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                             samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
                 </devicePort>
-                <devicePort tagName="Bt Sco All" role="sink" type="AUDIO_DEVICE_OUT_BLUETOOTH_SCO_HEADSET">
+                <devicePort tagName="Bt Sco" role="sink" type="AUDIO_DEVICE_OUT_BLUETOOTH_SCO">
+                   <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                            samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
+                </devicePort>
+                <devicePort tagName="Bt Sco Headset" role="sink" type="AUDIO_DEVICE_OUT_BLUETOOTH_SCO_HEADSET">
+                   <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                            samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
+                </devicePort>
+                <devicePort tagName="Bt Sco Car Kit" role="sink" type="AUDIO_DEVICE_OUT_BLUETOOTH_SCO_CARKIT">
                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                             samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
                 </devicePort>
@@ -105,7 +113,11 @@
                        sources="primary-out,fast"/>
                 <route type="mix" sink="Wired Headphone"
                        sources="primary-out,fast"/>
-                <route type="mix" sink="Bt Sco All"
+                <route type="mix" sink="Bt Sco"
+                       sources="primary-out,fast"/>
+                <route type="mix" sink="Bt Sco Headset"
+                       sources="primary-out,fast"/>
+                <route type="mix" sink="Bt Sco Car Kit"
                        sources="primary-out,fast"/>
                 <route type="mix" sink="primary-in"
                        sources="Built-In Mic,Built-In Back Mic,Wired Headset Mic,Bt Sco Headset Mic,Aux Device In,Voice Call Mic,FM Mic"/>
