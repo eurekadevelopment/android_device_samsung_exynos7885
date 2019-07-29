@@ -41,10 +41,10 @@ on fs
 
 
 # Modem boot daemon
-service cpboot-daemon /sbin/cbd -d -tss310 -bm -mm -P platform/13500000.dwmmc0/by-name/RADIO -c platform/13500000.dwmmc0/by-name/CP_DEBUG
+service cpboot-daemon /vendor/bin/cbd -d -tss310 -bm -mm -P platform/13500000.dwmmc0/by-name/RADIO -n /efs
     class main
     user root
-    group radio cache inet misc audio sdcard_rw log sdcard_r shell
+    group radio cache inet misc audio sdcard_rw log sdcard_r shell system
     seclabel u:r:cbd:s0
 
 on property:ril.clatd.v4-rmnet0=up
