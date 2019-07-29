@@ -43,7 +43,6 @@ setup_vendor "$DEVICE" "$VENDOR" "$LINEAGE_ROOT"
 write_headers
 
 # The standard blobs
-write_makefiles "$MY_DIR"/proprietary-files-vndk.txt true
 write_makefiles "$MY_DIR"/proprietary-files.txt true
 write_makefiles "$MY_DIR"/proprietary-files-lpm.txt true
 
