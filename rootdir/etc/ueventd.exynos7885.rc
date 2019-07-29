@@ -49,7 +49,7 @@
 /dev/video31              0660   media      graphics
 
 # mscalers
-/dev/video50              0660   media      graphics
+/dev/video50              0660   mediacodec      drmrpc
 /dev/m2m1shot_scaler0     0660   mediacodec      drmrpc
 
 /dev/video55              0666   system     graphics
@@ -130,27 +130,18 @@
 # audio
 /dev/seiren               0660   system     audio
 
-#temporary
-/data/modem.bin           0400   radio      system
-
-# DM tools
-/dev/umts_dm0             0660   radio      radio
-/dev/umts_router          0660   radio      radio
-
-# SIPC RIL
-/dev/umts_boot0           0660   radio      radio
-/dev/umts_ipc0            0660   radio      radio
-/dev/umts_ipc1            0660   radio      radio
-/dev/umts_rfs0            0660   radio      radio
+#cbd
+/dev/umts_ramdump0        0660   radio      radio
 
 # Modem Interface
- /dev/block/platform/13500000.dwmmc0/by-name/RADIO    0660   system     radio
- /dev/block/platform/13500000.dwmmc0/by-name/CP_DEBUG    0660    radio    system
- /dev/umts*                0660   system     radio
- /dev/umts_csd             0660   system     loop_radio
- /dev/smd4                 0660   system     radio
- /dev/ramdump_memshare     0660   system     radio
- 
+/dev/block/platform/13500000.dwmmc0/by-name/RADIO	0660   system     radio
+/dev/block/platform/13500000.dwmmc0/by-name/CP_DEBUG   0660	radio	system
+/dev/umts*            0660   system      radio
+/dev/umts_csd         0660   system      loop_radio
+/dev/smd4               0660   system     radio
+/dev/ramdump_memshare               0660   system     radio
+/dev/umts_ciq*            0660   system     bridge_rw
+
 # interactive governor parameters
 /sys/devices/system/cpu/cpu*	cpufreq/interactive/timer_rate			0660	system	system
 /sys/devices/system/cpu/cpu*	cpufreq/interactive/timer_slack			0660	system	system
@@ -165,14 +156,6 @@
 /sys/devices/system/cpu/cpu*	cpufreq/interactive/boostpulse_duration		0660	system	system
 /sys/devices/system/cpu/cpu*	cpufreq/interactive/io_is_busy			0660	system	system
 
-# TEEGris
-/dev/tzdev		0660	system		system
-/dev/ionfd2phys		0660	system		system
-/dev/tuihw		0660	system		system
-/dev/tzirs		0660	system		system
-/dev/tz_shmem_validator	0666	system		system
-/dev/tz_wormhole	0666	system		system
-
 # Vision (VPU, SCORE)
 /dev/vertex0             0660   media      media
 /dev/vertex1             0660   media      media
@@ -180,19 +163,29 @@
 #SCSC Bluetooth
 /dev/scsc_h4_0           0660   bluetooth  bluetooth
 
-# SCSC ANT
-/dev/scsc_ant_0 0660 system system
+#SCSC ANT
+/dev/scsc_ant_0          0660   system     system
 
-# sensor sysfs properties
-/sys/devices/virtual/input/input*    poll_delay    0660    system    radio
-/sys/devices/virtual/input/input*    enable        0660    system    radio
-/dev/input/event*	  0660   system		input
+#SCSC WLAN
+/dev/mx_0_r4_gdb          0660   wifi     wifi
+/dev/mx_0_m4_gdb          0660   wifi     wifi
+/dev/mx_0_mmap            0660   wifi     wifi
+/dev/mx_client_test_0     0660   wifi     wifi
+/dev/mx_0_debug_sampler   0660   wifi     wifi
+/dev/mx140_usb_clk_test_0 0660   wifi     wifi
+/dev/scsc_log_collector_0 0660   wifi     wifi
 
 # Google FRP solution
 /dev/block/platform/13500000.dwmmc0/by-name/PERSISTENT    0660    system    system
 
 # Reactivation Lock solution
 /dev/block/platform/13500000.dwmmc0/by-name/STEADY    0660    system    system
+
+# Google FRP solution
+/dev/block/platform/13500000.dwmmc0/by-name/persistent    0660    system    system
+
+# Reactivation Lock solution
+/dev/block/platform/13500000.dwmmc0/by-name/steady    0660    system    system
 
 # sensorhub
 /dev/ssp_sensorhub        0660   system     system
@@ -205,17 +198,22 @@
 /sys/devices/platform/13980000.spi/spi_master/spi4/spi4.0/iio:device*    buffer/length       0660    system    system
 /sys/bus/iio/devices/iio:device*    0664   system     radio
 
-# SCSC WLAN
-/dev/mx_0_r4_gdb   0660  system     system
-/dev/mx_0_m4_gdb   0660  system     system
-/dev/mx_0_mmap    0660   system     system
-/dev/mx_client_test_0     0660   system     system
-/dev/mx_0_debug_sampler   0660   system     system
-/dev/mx140_usb_clk_test_0 0660   system     system
+# TEEGRIS
+/dev/tzdev		0666	system		system
+/dev/tziwsock		0666	system		system
+/dev/ionfd2phys		0660	system		system
+/dev/tuihw		0660	system		system
+/dev/tzirs		0660	system		system
+/dev/nwfsdev		0660	system		system
+/dev/tz_shmem_validator	0666	system		system
+/dev/tz_wormhole	0666	system		system
 
 /dev/ovr*                 0664   root       system
 /dev/tvr*                 0664   root       system
 /dev/power_on_alarm       0660   system     radio
+/dev/ttySAC0              0660   root       radio
+
+/dev/input/event*         0660   system     input
 
 # MobiCore
 /dev/mobicore             0700   system     system
@@ -228,3 +226,12 @@
 /dev/vfsspi               0660   system     system
 /dev/esfp0                0660   system     system
 /dev/goodix_fp            0660   system     system
+/dev/qbt2000_fd           0660   system     system
+/dev/qbt2000_ipc          0660   system     system
+/dev/qbtspi               0660   system     system
+
+# USB 
+/dev/ttyGS*                 0660   system       system
+
+# MPSD
+/dev/mpsd    0660    system    system

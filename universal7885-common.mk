@@ -15,13 +15,12 @@ TARGET_SCREEN_WIDTH := 1080
 
 # Init
 PRODUCT_PACKAGES += \
-    fstab.samsungexynos7885 \
-    init.samsungexynos7885.rc \
-    init.samsungexynos7885.usb.rc \
+    fstab.exynos7885 \
+    init.samsung.rc \
+    init.exynos7885.rc \
+    init.exynos7885.usb.rc \
     init.baseband.rc \
-    init.carrier.rc \
-    init.wifi.rc \
-    ueventd.samsungexynos7885.rc
+    ueventd.exynos7885.rc
 
 # Net
 PRODUCT_PACKAGES += \
