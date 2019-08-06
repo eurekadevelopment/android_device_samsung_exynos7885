@@ -152,7 +152,8 @@ PRODUCT_COPY_FILES += \
 
 # Shims
 PRODUCT_PACKAGES += \
-    libshim_stagefright_foundation
+    libshim_stagefright_foundation \
+    libcamera_metadata_helper
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \

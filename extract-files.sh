@@ -33,6 +33,13 @@ function blob_fixup {
         vendor/lib*/libsec-ril-dsds.so)
             "$PATCHELF" --replace-needed "libcutils.so" "libcutils-v29.so" "$2"
             ;;
+        vendor/lib*/hw/camera.exynos7904.so)
+            ;&
+        vendor/lib*/libexynoscamera.so)
+            ;&
+        vendor/lib*/libexynoscamera3.so)
+            "$PATCHELF" --replace-needed "libcamera_client.so" "libcamera_metadata_helper.so" "$2"
+            ;;
     esac
 }
 
