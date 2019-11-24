@@ -11,7 +11,8 @@
         <item>restart</item>
         <item>restart_recovery</item>
         <item>restart_download</item>
-    </string-array>
+        <item>restart_fastboot</item>
+     </string-array>
 
     <!-- Whether device has a notch -->
     <bool name="config_haveNotch">true</bool>
