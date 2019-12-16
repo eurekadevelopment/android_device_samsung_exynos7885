@@ -3,6 +3,9 @@ ro.surface_flinger.supports_background_blur=1
 persist.sys.sf.disable_blurs=1
 
 # LMKD
+ro.lmk.critical_upgrade=true
+ro.lmk.downgrade_pressure=60
+ro.lmk.kill_heaviest_task=false
 ro.lmk.log_stats=true
-ro.lmk.use_minfree_levels=true
+ro.lmk.upgrade_pressure=40
 ro.lmk.use_psi=false
