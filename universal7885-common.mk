@@ -13,15 +13,6 @@ PRODUCT_PACKAGES += \
 TARGET_SCREEN_HEIGHT := 2340
 TARGET_SCREEN_WIDTH := 1080
 
-# Init
-PRODUCT_PACKAGES += \
-    fstab.exynos7885 \
-    init.samsung.rc \
-    init.exynos7885.rc \
-    init.exynos7885.usb.rc \
-    init.baseband.rc \
-    ueventd.exynos7885.rc
-
 # Net
 PRODUCT_PACKAGES += \
     netutils-wrapper-1.0
