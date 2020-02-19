@@ -1,0 +1,2 @@
+# Allow hal audio to use wakelock
+wakelock_use(hal_audio)
