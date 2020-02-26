@@ -2,6 +2,10 @@
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.surface_flinger.max_frame_buffer_acquired_buffers=3
 
+# fastbootd
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.fastbootd.available=true
+
 # Graphics
 PRODUCT_PRODUCT_PROPERTIES += \
     debug.sf.latch_unsignaled=1
