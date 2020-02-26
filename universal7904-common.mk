@@ -35,6 +35,10 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml
 
+# Recovery
+PRODUCT_PACKAGES += \
+    fastbootd
+
 # SamsungDoze
 PRODUCT_PACKAGES += \
     SamsungDoze
