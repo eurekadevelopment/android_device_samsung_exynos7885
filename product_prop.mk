@@ -1,6 +1,7 @@
 # Blurs
 PRODUCT_PRODUCT_PROPERTIES += \
-    ro.surface_flinger.supports_background_blur=1
+    ro.surface_flinger.supports_background_blur=1 \
+    persist.sys.sf.disable_blurs=1
 
 # Configstore
 PRODUCT_PRODUCT_PROPERTIES += \
