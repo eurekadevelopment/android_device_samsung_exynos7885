@@ -40,6 +40,9 @@ function blob_fixup {
             "$PATCHELF" --remove-needed "libcamera_client.so" "$2"
             "$PATCHELF" --remove-needed "libgui.so" "$2"
             ;;
+        vendor/lib*/libsensorlistener.so)
+            "$PATCHELF" --add-needed "libshim_sensorndkbridge.so" "$2"
+            ;;
     esac
 }
 
