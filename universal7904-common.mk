@@ -167,7 +167,8 @@ PRODUCT_COPY_FILES += \
 
 # Shims
 PRODUCT_PACKAGES += \
-    libcamera_metadata_helper
+    libcamera_metadata_helper \
+    libshim_sensorndkbridge
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
