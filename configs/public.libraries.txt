@@ -25,3 +25,5 @@ libsmart_cropping.camera.samsung.so
 libsurfaceutil.so
 libswldc_capture_core.camera.samsung.so
 libxcv.camera.samsung.so
+libprotobuf-cpp-full.so
+libprotobuf-cpp-lite.so
