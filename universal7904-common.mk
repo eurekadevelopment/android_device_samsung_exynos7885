@@ -23,6 +23,16 @@ PRODUCT_PACKAGES += \
     init.usb_accessory.rc \
     fstab.enableswap
 
+# NFC
+PRODUCT_PACKAGES += \
+    libnfc-nci \
+    libnfc_nci_jni \
+    NfcNci \
+    Tag
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/libnfc-nci.conf:system/etc/libnfc-nci.conf
+
 # Net
 PRODUCT_PACKAGES += \
     netutils-wrapper-1.0
