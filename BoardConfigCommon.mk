@@ -25,16 +25,7 @@ TARGET_2ND_CPU_VARIANT := cortex-a53
 # Audio
 USE_XML_AUDIO_POLICY_CONF := 1
 
-# Dexpreopt
-ifeq ($(HOST_OS),linux)
-  ifneq ($(TARGET_BUILD_VARIANT),eng)
-    WITH_DEXPREOPT := true
-  endif
-endif
-WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
-
 # Display
-TARGET_USES_HWC2 := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 
 # Enable 64-bits binder
@@ -43,7 +34,6 @@ TARGET_USES_64_BIT_BINDER := true
 # Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
-TARGET_USES_MKE2FS := true
 
 # Include
 TARGET_SPECIFIC_HEADER_PATH := $(COMMON_PATH)/include
