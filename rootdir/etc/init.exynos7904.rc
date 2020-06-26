@@ -25,6 +25,13 @@ on init
     chown bluetooth bluetooth /sys/module/scsc_bt/parameters/bluetooth_address
 
 on late-fs
+    # Start services for Boot Animation
+    start servicemanager
+    start surfaceflinger
+    start bootanim
+    # Mount RW partitions which need run fsck
+    mount_all /vendor/etc/fstab.${ro.hardware} --late
+
 #    start mobicore
 
 on post-fs
@@ -402,7 +409,7 @@ on boot
     chmod 0644 /proc/cmdline
 
 on fs
-    mount_all /vendor/etc/fstab.${ro.hardware}
+    mount_all /vendor/etc/fstab.${ro.hardware} --early
     # We need to seperate mounting SEC_EFS partition from fstab file due to GSI image loading case
     wait /dev/block/platform/13500000.dwmmc0/by-name/sec_efs
     mount ext4 /dev/block/platform/13500000.dwmmc0/by-name/sec_efs /efs nosuid nodev noatime noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic
