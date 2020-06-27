@@ -18,7 +18,7 @@
 
 set -e
 
-DEVICE=universal7885-common
+DEVICE=universal7904-common
 VENDOR=samsung
 
 INITIAL_COPYRIGHT_YEAR=2016

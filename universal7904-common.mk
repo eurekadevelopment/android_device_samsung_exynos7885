@@ -1,5 +1,5 @@
 # Call proprietary blob setup
-$(call inherit-product-if-exists, vendor/samsung/universal7885-common/universal7885-common-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/universal7904-common/universal7904-common-vendor.mk)
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
