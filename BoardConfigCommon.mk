@@ -58,6 +58,9 @@ TARGET_KERNEL_CLANG_COMPILE := true
 DEVICE_MANIFEST_FILE := $(COMMON_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := $(COMMON_PATH)/compatibility_matrix.xml
 
+ODM_MANIFEST_SKUS += NFC
+ODM_MANIFEST_NFC_FILES := $(COMMON_PATH)/manifest_nfc.xml
+
 # LMKD stats logging
 TARGET_LMKD_STATS_LOG := true
 
