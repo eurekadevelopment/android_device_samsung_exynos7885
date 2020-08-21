@@ -73,6 +73,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     lineage.touch@1.0-service.samsung
 
+# Wifi
+PRODUCT_PACKAGES += \
+    TetheringConfigOverlay
+
 # VNDK
 PRODUCT_EXTRA_VNDK_VERSIONS := 29
 
