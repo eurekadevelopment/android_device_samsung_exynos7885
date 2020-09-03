@@ -116,6 +116,9 @@
         <!-- A2dp Audio HAL -->
         <xi:include href="a2dp_audio_policy_configuration.xml"/>
 
+        <!-- Usb Audio HAL -->
+        <xi:include href="usb_audio_policy_configuration.xml"/>
+
         <!-- Remote Submix Audio HAL -->
         <xi:include href="r_submix_audio_policy_configuration.xml"/>
 
