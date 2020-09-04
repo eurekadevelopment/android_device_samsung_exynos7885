@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <bool name="config_automatic_brightness_available">true</bool>
-    <integer name="config_autoBrightnessBrighteningLightDebounce">4000</integer>
-    <integer name="config_autoBrightnessDarkeningLightDebounce">8000</integer>
-    <integer name="config_screenBrightnessSettingMinimum">3</integer>
-    <integer name="config_screenBrightnessSettingMaximum">255</integer>
+    <integer name="config_screenBrightnessSettingMinimum">10</integer>
     <integer name="config_screenBrightnessSettingDefault">128</integer>
-    <integer name="config_screenBrightnessDim">13</integer>
-    <bool name="config_hotswapCapable">false</bool>
+    <integer name="config_screenBrightnessDim">10</integer>
     <string-array translatable="false" name="config_tether_usb_regexs">
         <item>"rndis\\d"</item>
     </string-array>
@@ -28,26 +24,11 @@
     <string-array name="config_mobile_tcp_buffers">
         <item>lte:1048576,3145728,4194304,524288,1572864,2097152</item>
     </string-array>
-    <bool translatable="false" name="config_wifi_dual_band_support">true</bool>
-    <bool translatable="false" name="config_wifi_batched_scan_supported">false</bool>
-    <bool translatable="false" name="config_wifi_background_scan_support">false</bool>
-    <bool name="config_enableWifiDisplay">true</bool>
-    <integer name="config_wifi_idle_receive_cur_ma">0</integer>
-    <integer name="config_wifi_active_rx_cur_ma">0</integer>
-    <integer name="config_wifi_tx_cur_ma">0</integer>
-    <integer name="config_wifi_operating_voltage_mv">0</integer>
-    <bool name="config_intrusiveNotificationLed">false</bool>
     <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
     <bool name="config_enableAutoPowerModes">true</bool>
-    <bool name="config_dozeAfterScreenOffByDefault">true</bool>
-    <bool name="config_dozeAlwaysOnDisplayAvailable">false</bool>
-    <bool name="config_displayBlanksAfterDoze">false</bool>
     <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">true</bool>
     <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
-    <bool name="config_enableBurnInProtection">false</bool>
     <integer name="config_screenBrightnessDoze">1</integer>
-    <bool name="config_freeformWindowManagement">false</bool>
-    <bool name="config_useDevInputEventForAudioJack">false</bool>
     <string-array translatable="false" name="config_defaultPinnerServiceFiles">
         <item>"/system/framework/arm64/boot-framework.oat"</item>
         <item>"/system/framework/boot-framework.vdex"</item>
@@ -59,10 +40,7 @@
         <item>"/system/framework/boot-core-libart.vdex"</item>
     </string-array>
     <bool name="config_pinnerCameraApp">true</bool>
-    <bool name="config_sustainedPerformanceModeSupported">false</bool>
-    <bool name="config_cellBroadcastAppLinks">false</bool>
     <string name="config_radio_access_family">GSM|CDMA|EVDO|WCDMA|LTE</string>
-    <bool name="config_animateScreenLights">false</bool>
     <integer name="config_fingerprintMaxTemplatesPerUser">4</integer>
     <integer-array name="config_longPressVibePattern">
         <item>0</item>
@@ -80,7 +58,6 @@
         <item>40</item>
     </integer-array>
     <bool name="config_setColorTransformAccelerated">true</bool>
-    <bool name="config_allowAutoBrightnessWhileDozing">false</bool>
     <fraction name="config_screenAutoBrightnessDozeScaleFactor">100.0%</fraction>
     <string name="db_default_journal_mode" translatable="false">MEMORY</string>
     <string name="db_default_sync_mode" translatable="false">OFF</string>
