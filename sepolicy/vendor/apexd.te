@@ -1,0 +1,1 @@
+allow apexd sysfs_virtual:file rw_file_perms;

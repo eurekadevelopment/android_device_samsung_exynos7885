@@ -1,0 +1,8 @@
+r_dir_file(hal_health_default, sysfs_charger)
+
+allow hal_health_default sysfs_charger:file rw_file_perms;
+allow hal_health_default sysfs_battery:dir r_dir_perms;
+allow hal_health_default sysfs_battery:file r_file_perms;
+allow hal_health_default sysfs_battery_writable:dir search;
+allow hal_health_default sysfs_battery_writable:file r_file_perms;
+allow hal_health_default sysfs_batteryinfo_charger_writable:dir search;

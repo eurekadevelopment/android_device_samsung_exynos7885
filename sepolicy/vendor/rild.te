@@ -1,0 +1,30 @@
+allow rild proc_net:file write;
+allow rild vendor_data_file:file create_file_perms;
+
+# /dev/umts_ipc0
+allow rild radio_device:chr_file ioctl;
+
+allow rild bin_nv_data_efs_file:file create_file_perms;
+
+allow rild radio_vendor_data_file:file create_file_perms;
+allow rild radio_vendor_data_file:dir rw_dir_perms;
+allow rild radio_data_file:file rw_file_perms;
+allow rild radio_data_file:dir search;
+
+allow rild proc_qtaguid_stat:file read;
+
+allow rild factoryprop_efs_file:file rw_file_perms;
+
+allow rild init:file getattr;
+
+# binder
+allow rild hal_radio_default:binder call;
+
+# audio
+allow rild hal_audio_default:dir search;
+allow rild hal_audio_default:file r_file_perms;
+
+# hwservice
+allow rild hal_sec_radio_hwservice:hwservice_manager add;
+allow rild hal_sec_radio_bridge_hwservice:hwservice_manager add;
+allow rild hal_sec_radio_channel_hwservice:hwservice_manager add;

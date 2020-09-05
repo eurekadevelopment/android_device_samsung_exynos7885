@@ -1,0 +1,7 @@
+# Allow LiveDisplay to store files under /data/vendor/display and access them
+allow hal_lineage_livedisplay_sysfs display_vendor_data_file:dir rw_dir_perms;
+allow hal_lineage_livedisplay_sysfs display_vendor_data_file:file create_file_perms;
+
+# Allow LiveDisplay to read and write to files in sysfs_graphics, sysfs_mdnie
+allow hal_lineage_livedisplay_sysfs sysfs_mdnie:dir search;
+allow hal_lineage_livedisplay_sysfs sysfs_mdnie:file rw_file_perms;

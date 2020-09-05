@@ -1,0 +1,7 @@
+allow hal_power_default sysfs_graphics:file r_file_perms;
+allow hal_power_default sysfs_input:file r_file_perms;
+allow hal_power_default sysfs_virtual:dir r_dir_perms;
+allow hal_power_default sysfs_virtual:file r_file_perms;
+allow hal_power_default sysfs_spi_writeable:dir r_dir_perms;
+allow hal_power_default sysfs_spi_writeable:file rw_file_perms;
+allow hal_power_default sysfs_touchscreen_writable:dir r_dir_perms;

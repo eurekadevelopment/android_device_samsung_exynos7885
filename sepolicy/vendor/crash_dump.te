@@ -1,0 +1,4 @@
+get_prop(crash_dump, hwservicemanager_prop)
+get_prop(crash_dump, exported_camera_prop)
+
+allow crash_dump app_data_file:file read;

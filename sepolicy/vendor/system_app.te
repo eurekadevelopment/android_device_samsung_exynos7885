@@ -1,0 +1,5 @@
+# /dev/mali0
+allow system_app gpu_device:chr_file rw_file_perms;
+
+allow system_app proc_pagetypeinfo:file r_file_perms;
+allow system_app sysfs_virtual:dir search;

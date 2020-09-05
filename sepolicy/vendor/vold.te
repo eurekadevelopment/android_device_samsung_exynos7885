@@ -1,0 +1,6 @@
+# /efs
+allow vold efs_file:dir r_dir_perms;
+
+allow vold sysfs_mmc_host_writable:file write;
+allow vold sysfs_scsi_host_writable:file write;
+allow vold sysfs_virtual:file write;

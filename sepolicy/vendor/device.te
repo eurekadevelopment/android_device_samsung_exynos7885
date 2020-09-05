@@ -1,0 +1,14 @@
+# /dev/vfsspi
+type fingerprint_device, dev_type;
+
+# /dev/batch_io
+type sensor_device, dev_type;
+
+# /dev/s5p-smem
+type secmem_device, dev_type;
+
+# /dev/m2m1shot_scaler0
+type m2m1shot_device, dev_type;
+
+# gps
+type gps_device, dev_type;

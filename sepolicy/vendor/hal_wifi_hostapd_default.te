@@ -1,0 +1,2 @@
+allow hal_wifi_hostapd_default sysfs_virtual:dir search;
+allow hal_wifi_hostapd_default sysfs_virtual:lnk_file r_file_perms;

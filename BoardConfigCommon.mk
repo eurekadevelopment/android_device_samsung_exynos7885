@@ -76,6 +76,7 @@ BOARD_HAS_DOWNLOAD_MODE := true
 # Sepolicy
 include device/lineage/sepolicy/exynos/sepolicy.mk
 include device/samsung_slsi/sepolicy/sepolicy.mk
+BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 
 # Vendor
 TARGET_COPY_OUT_VENDOR := vendor
