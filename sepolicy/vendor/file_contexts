@@ -1,0 +1,160 @@
+####################################
+# Devices
+/cpefs(/.*)?                u:object_r:efs_file:s0
+/dev/mali[0-9]*             u:object_r:gpu_device:s0
+/dev/umts_ipc0              u:object_r:radio_device:s0
+/dev/fimg2d                 u:object_r:video_device:s0
+/dev/vfsspi                 u:object_r:fingerprint_device:s0
+/dev/sec-nfc                u:object_r:nfc_device:s0
+
+/dev/cpuset(/.*)?           u:object_r:cgroup:s0
+
+# camera
+/dev/m2m1shot_scaler0       u:object_r:m2m1shot_device:s0
+
+# usb
+/dev/android_ssusbcon(/.*)? u:object_r:usb_device:s0
+/dev/mtp_usb*               u:object_r:mtp_device:s0
+/dev/usb(/.*)?              u:object_r:usb_device:s0
+
+# adbroot and storaged
+/dev/stune(/.*)?            u:object_r:cgroup:s0
+
+# zram
+/dev/block/zram0            u:object_r:swap_block_device:s0
+
+/dev/block/platform/11120000\.ufs/by-name/CACHE         u:object_r:cache_block_device:s0
+/dev/block/platform/11120000\.ufs/by-name/CPEFS         u:object_r:efs_block_device:s0
+/dev/block/platform/11120000\.ufs/by-name/EFS           u:object_r:efs_block_device:s0
+/dev/block/platform/11120000\.ufs/by-name/KEYREFUGE     u:object_r:keyrefuge_block_device:s0
+/dev/block/platform/11120000\.ufs/by-name/MISC          u:object_r:misc_block_device:s0
+/dev/block/platform/11120000\.ufs/by-name/OMR           u:object_r:omr_block_device:s0
+/dev/block/platform/11120000\.ufs/by-name/PERSISTENT    u:object_r:frp_block_device:s0
+/dev/block/platform/11120000\.ufs/by-name/RADIO         u:object_r:radio_block_device:s0
+/dev/block/platform/11120000\.ufs/by-name/SYSTEM        u:object_r:system_block_device:s0
+/dev/block/platform/11120000\.ufs/by-name/USERDATA      u:object_r:userdata_block_device:s0
+
+####################################
+# efs files
+/efs/FactoryApp(/.*)?          u:object_r:app_efs_file:s0
+/efs/FactoryApp/baro_delta     u:object_r:baro_delta_factoryapp_efs_file:s0
+/efs/FactoryApp/factorymode    u:object_r:factorymode_factoryapp_efs_file:s0
+/efs/FactoryApp/fdata          u:object_r:radio_factoryapp_efs_file:s0
+/efs/FactoryApp/hist_nv        u:object_r:radio_factoryapp_efs_file:s0
+/efs/FactoryApp/test_nv        u:object_r:radio_factoryapp_efs_file:s0
+/efs/FactoryApp/gyro_cal_data  u:object_r:sensor_factoryapp_efs_file:s0
+
+/efs/nv_data.bin(.*)           u:object_r:bin_nv_data_efs_file:s0
+/efs/nv.log                    u:object_r:bin_nv_data_efs_file:s0
+/efs/\.nv_core\.bak(.*)        u:object_r:bin_nv_data_efs_file:s0
+/efs/wv\.keys                  u:object_r:cpk_efs_file:s0
+/efs/factory\.prop             u:object_r:factoryprop_efs_file:s0
+/efs/TEE(/.*)?                 u:object_r:gatekeeper_efs_file:s0
+/efs/TEE/Store_1.tf            u:object_r:gatekeeper_efs_file:s0
+
+####################################
+# data files
+/data/nfc(/.*)?                    u:object_r:nfc_data_file:s0
+
+/data/misc/radio(/.*)?             u:object_r:radio_data_file:s0
+
+# livedisplay
+/data/vendor/display(/.*)?         u:object_r:display_vendor_data_file:s0
+
+# drm
+/data/vendor/mediadrm(/.*)?        u:object_r:mediadrm_data_file:s0
+
+# mobicore
+/data/misc/mcRegistry(/.*)?        u:object_r:mobicore_data_file:s0
+/data/vendor/mcRegistry(/.*)?      u:object_r:mobicore_vendor_data_file:s0
+
+# camera
+/data/camera(/.*)?                 u:object_r:camera_data_file:s0
+
+####################################
+# sysfs files
+/sys/class/power_supply/battery/music         -- u:object_r:sysfs:s0
+/sys/class/devfreq/17000010.devfreq_mif(/.*)? -- u:object_r:sysfs:s0
+
+# gps
+/sys/class/sec/gps/GPS_PWR_EN/value              u:object_r:sysfs_gps:s0
+
+# charger
+/sys/devices/battery/power_supply(/.*)           u:object_r:sysfs_charger:s0
+/sys/class/power_supply/max77865-charger(/.*)    u:object_r:sysfs_charger:s0
+/sys/devices/platform/10940000\.hsi2c/i2c-11/11-003b/power_supply/mfc-charger(/.*) u:object_r:sysfs_charger:s0
+/sys/devices/platform/10970000\.hsi2c/i2c-13/13-0066/max77865-charger/power_supply/otg(/.*)?                  u:object_r:sysfs_charger:s0
+/sys/devices/platform/10970000\.hsi2c/i2c-13/13-0066/max77865-charger/power_supply/max77865-charger(/.*)?     u:object_r:sysfs_charger:s0
+/sys/devices/platform/10970000\.hsi2c/i2c-13/13-0066/max77865-fuelgauge/power_supply/max77865-fuelgauge(/.*)? u:object_r:sysfs_charger:s0
+
+# sec
+/sys/class/sec(/.*)?                          -- u:object_r:sysfs_sec:s0
+
+# virtual
+/sys/devices/virtual(/.*)?                       u:object_r:sysfs_virtual:s0
+
+# iio
+/sys/devices/platform/15b70000\.adc/iio:device[0-9](/.*)?                                       u:object_r:sysfs_iio:s0
+/sys/bus/iio/devices(/.*)?                                                                      u:object_r:sysfs_iio:s0
+
+# Backlight/Notification LED control
+/sys/devices/platform/panel_drv@001/backlight/panel/brightness                                  u:object_r:sysfs_graphics:s0
+/sys/devices/platform/panel_drv@001/backlight/panel/max_brightness                              u:object_r:sysfs_graphics:s0
+
+# camera
+/sys/devices/virtual/camera(/.*)?                                                               u:object_r:sysfs_camera:s0
+
+# rild
+/sys/devices/virtual/misc/multipdp(/.*)                                                         u:object_r:sysfs_multipdp:s0
+
+# mDNIe
+/sys/devices/platform/panel_drv@001/lcd/panel/mdnie/mode                                        u:object_r:sysfs_mdnie:s0
+/sys/devices/platform/panel_drv@001/lcd/panel/mdnie/scenario                                    u:object_r:sysfs_mdnie:s0
+/sys/devices/platform/panel_drv@001/lcd/panel/mdnie/lux                                         u:object_r:sysfs_mdnie:s0
+/sys/devices/platform/panel_drv@001/lcd/panel/mdnie/sensorRGB                                   u:object_r:sysfs_mdnie:s0
+/sys/devices/platform/panel_drv@001/lcd/panel/mdnie/accessibility                               u:object_r:sysfs_mdnie:s0
+/sys/devices/platform/panel_drv@001/lcd/panel/mdnie/night_mode                                  u:object_r:sysfs_mdnie:s0
+/sys/devices/platform/panel_drv@001/lcd/panel/mdnie/mdnie_ldu                                   u:object_r:sysfs_mdnie:s0
+/sys/devices/platform/panel_drv@001/lcd/panel/mdnie/whiteRGB                                    u:object_r:sysfs_mdnie:s0
+
+# input
+/sys/devices/platform/gpio_keys/input/input6(/.*)?                                              u:object_r:sysfs_input:s0
+/sys/devices/platform/hall/input/input7(/.*)?                                                   u:object_r:sysfs_input:s0
+/sys/devices/platform/certify_hall/input/input8(/.*)?                                           u:object_r:sysfs_input:s0
+
+# lcd
+/sys/devices/platform/panel_drv@001/lcd/panel/adaptive_control                                  u:object_r:sysfs_lcd:s0
+/sys/devices/platform/panel_drv@001/lcd/panel/alpm                                              u:object_r:sysfs_lcd:s0
+/sys/devices/platform/panel_drv@001/lcd/panel/dpui                                              u:object_r:sysfs_lcd:s0
+/sys/devices/platform/panel_drv@001/lcd/panel/dpui_dbg                                          u:object_r:sysfs_lcd:s0
+/sys/devices/platform/panel_drv@001/lcd/panel/lcd_type                                          u:object_r:sysfs_lcd:s0
+/sys/devices/platform/panel_drv@001/lcd/panel/lux                                               u:object_r:sysfs_lcd:s0
+/sys/devices/platform/panel_drv@001/lcd/panel/manufacture_code                                  u:object_r:sysfs_lcd:s0
+/sys/devices/platform/panel_drv@001/lcd/panel/temperature                                       u:object_r:sysfs_lcd:s0
+/sys/devices/platform/panel_drv@001/lcd/panel/window_type                                       u:object_r:sysfs_lcd:s0
+
+# modem
+/sys/module/modem_ctrl_ss310ap/parameters/ds_detect                                             u:object_r:sysfs_modem:s0
+
+# ZRAM
+/sys/devices/virtual/block/zram0/mm_stat                                                        u:object_r:sysfs_zram:s0
+
+
+# Lineage hals
+/(vendor|system/vendor)/bin/hw/vendor\.lineage\.livedisplay@[0-9]\.[0-9]-service\.universal8895         u:object_r:hal_lineage_livedisplay_sysfs_exec:s0
+
+### VENDOR
+/(vendor|system/vendor)/bin/vendor\.samsung\.hardware\.security\.widevine\.keyprovisioning@[0-9]\.[0-9]-service    u:object_r:hal_drm_widevine_exec:s0
+
+/(vendor|system/vendor)/bin/hw/gpsd          u:object_r:gpsd_exec:s0
+/(vendor|system/vendor)/bin/hw/lhd           u:object_r:lhd_exec:s0
+/(vendor|system/vendor)/bin/hw/macloader     u:object_r:macloader_exec:s0
+/(vendor|system/vendor)/bin/mcDriverDaemon   u:object_r:tee_exec:s0
+
+/(vendor|system/vendor)/bin/hw/android\.hardware\.drm@[0-9]\.[0-9]-service\.clearkey    u:object_r:hal_drm_clearkey_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.drm@[0-9]\.[0-9]-service\.widevine    u:object_r:hal_drm_widevine_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.keymaster@[0-9]\.[0-9]-service\.samsung    u:object_r:hal_keymaster_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.usb@[0-9]\.[0-9]-service\.basic    u:object_r:hal_usb_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.camera\.provider@[0-9]\.[0-9]-service    u:object_r:hal_camera_default_exec:s0
+/(vendor|system/vendor)/bin/hw/sec\.android\.hardware\.nfc@[0-9]\.[0-9]-service    u:object_r:hal_nfc_default_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.samsung\.hardware\.gnss@[0-9]\.[0-9]-service    u:object_r:hal_gnss_default_exec:s0

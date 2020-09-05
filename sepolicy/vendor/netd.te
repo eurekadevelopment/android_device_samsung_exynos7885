@@ -1,0 +1,5 @@
+allow netd self:capability sys_module;
+allow netd init:tcp_socket rw_socket_perms_no_ioctl;
+
+allow netd sysfs_virtual:dir search;
+allow netd sysfs_virtual:file w_file_perms;

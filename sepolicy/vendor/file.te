@@ -1,0 +1,53 @@
+### efs types
+type radio_factoryapp_efs_file, file_type;
+type factoryprop_efs_file, file_type;
+type sensor_factoryapp_efs_file, file_type;
+type factorymode_factoryapp_efs_file, file_type;
+type baro_delta_factoryapp_efs_file, file_type;
+
+# gps
+type gps_socket, file_type;
+
+# debugfs types
+type debugfs_mali, fs_type, debugfs_type;
+type debugfs_mali_mem, fs_type, debugfs_type;
+type debugfs_ion, fs_type, debugfs_type;
+type debugfs_ion_dma, fs_type, debugfs_type;
+
+# proc
+type proc_extra, fs_type, proc_type;
+type proc_reset_reason, fs_type, proc_type;
+type proc_swapiness, fs_type, proc_type;
+
+# data types
+type display_vendor_data_file, file_type, data_file_type;
+type fingerprintd_vendor_data_file, data_file_type, file_type;
+type mediadrm_data_file, file_type, data_file_type;
+
+# sysfs types
+type sysfs_batteryinfo_charger_writable, sysfs_type, rw_fs_type, fs_type;
+type sysfs_camera_writable, sysfs_type, rw_fs_type, fs_type;
+type sysfs_decon, sysfs_type, r_fs_type, fs_type;
+type sysfs_gpu, sysfs_type, r_fs_type, fs_type;
+type sysfs_sec_switch, sysfs_type, r_fs_type, fs_type;
+type sysfs_socinfo, sysfs_type, r_fs_type, fs_type;
+type sysfs_v4l, sysfs_type, r_fs_type, fs_type;
+type sysfs_v4l_mfc, sysfs_type, r_fs_type, fs_type;
+type sysfs_v4l_smfc, sysfs_type, r_fs_type, fs_type;
+type sysfs_v4l_fimc, sysfs_type, r_fs_type, fs_type;
+type sysfs_graphics, fs_type, sysfs_type;
+type sysfs_mdnie, fs_type, sysfs_type, mlstrustedobject;
+type sysfs_multipdp, fs_type, sysfs_type, mlstrustedobject;
+type sysfs_sec, fs_type, sysfs_type, mlstrustedobject;
+type sysfs_gps, fs_type, sysfs_type, mlstrustedobject;
+type sysfs_brightness, fs_type, sysfs_type, mlstrustedobject;
+type sysfs_virtual, fs_type, sysfs_type, mlstrustedobject;
+type sysfs_charger, fs_type, sysfs_type, mlstrustedobject;
+type sysfs_modem, fs_type, sysfs_type, mlstrustedobject;
+type sysfs_lcd, fs_type, sysfs_type, mlstrustedobject;
+type sysfs_camera, fs_type, sysfs_type, mlstrustedobject;
+type sysfs_mmc_host_writable, sysfs_type, rw_fs_type, fs_type;
+type sysfs_ss_writable, sysfs_type, rw_fs_type, fs_type;
+type sysfs_usb_writable, sysfs_type, rw_fs_type, fs_type;
+type sysfs_gpu_writable, sysfs_type, rw_fs_type, fs_type;
+type sysfs_info, sysfs_type, r_fs_type, fs_type;

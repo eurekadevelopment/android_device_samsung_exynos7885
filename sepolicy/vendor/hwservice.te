@@ -1,0 +1,7 @@
+type hal_sec_radio_hwservice, hwservice_manager_type;
+type hal_sec_radio_bridge_hwservice, hwservice_manager_type;
+type hal_sec_radio_channel_hwservice, hwservice_manager_type;
+
+type hal_vendor_eden_runtime_hwservice, hwservice_manager_type;
+type hal_vendor_multiframeprocessing_hwservice, hwservice_manager_type;
+type hal_vendor_iva_hwservice, hwservice_manager_type;

@@ -1,0 +1,1 @@
+allow hal_wifi_default conn_vendor_data_file:dir search;

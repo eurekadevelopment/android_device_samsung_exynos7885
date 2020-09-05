@@ -1,0 +1,16 @@
+# cgroups tasks
+allow hal_gnss_default cgroup:file getattr;
+
+# /data/vendor/gps
+allow hal_gnss_default gps_vendor_data_file:dir rw_dir_perms;
+allow hal_gnss_default gps_vendor_data_file:file create_file_perms;
+allow hal_gnss_default gps_vendor_data_file:fifo_file create_file_perms;
+
+# /mnt/vendor
+allow hal_gnss_default mnt_vendor_file:dir search;
+
+# vndbinder
+allow hal_gnss_default vndbinder_device:chr_file rw_file_perms;
+
+# Connect to socket
+allow hal_gnss_default gpsd:unix_stream_socket connectto;
