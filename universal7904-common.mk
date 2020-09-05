@@ -50,7 +50,8 @@ PRODUCT_COPY_FILES += \
 
 # Recovery
 PRODUCT_PACKAGES += \
-    fastbootd
+    fastbootd \
+    init.recovery.exynos7904.rc
 
 # SamsungDoze
 PRODUCT_PACKAGES += \
