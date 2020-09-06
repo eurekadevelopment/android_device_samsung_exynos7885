@@ -11,15 +11,39 @@ on init
 on fs
     swapon_all /system/etc/fstab.enableswap
 
-service argos-daemon /system/bin/true
-    oneshot
-    disabled
-
 service ExynosHWCServiceTW /system/bin/true
     oneshot
     disabled
 
+service ExynosHWCConfigs /system/bin/true
+    oneshot
+    disabled
+
+service argos-daemon /system/bin/true
+    oneshot
+    disabled
+
+service sec-miscpower-2-0 /system/bin/true
+    oneshot
+    disabled
+
+service snapserv /system/bin/true
+    oneshot
+    disabled
+
+service snap_utility_32 /system/bin/true
+    oneshot
+    disabled
+
+service snap_utility_64 /system/bin/true
+    oneshot
+    disabled
+
 service vaultkeeper /system/bin/true
+    oneshot
+    disabled
+
+service vaultkeeper_hal /system/bin/true
     oneshot
     disabled
 
