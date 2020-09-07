@@ -1,6 +1,4 @@
 on init
-    mount none /system/etc/audio_policy_configuration.xml /vendor/etc/audio_policy_configuration.xml bind
-
     # Disable vendor overlay
     mount none /vendor/lost+found /vendor/overlay bind
 
