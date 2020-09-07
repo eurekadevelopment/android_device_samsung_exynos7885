@@ -20,6 +20,7 @@ TARGET_SCREEN_WIDTH := 1080
 # Init
 PRODUCT_PACKAGES += \
     init.universal7904.rc \
+    init.usb_accessory.rc \
     fstab.enableswap
 
 # Net
