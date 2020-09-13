@@ -42,7 +42,6 @@ vendor/etc/a2dp_audio_policy_configuration.xml
 vendor/etc/audio_board_info.xml
 vendor/etc/audio_policy_volumes.xml
 vendor/etc/audio_policy_volumes_sec.xml
-vendor/etc/bluetooth/bt_did.conf
 vendor/etc/default_volume_tables.xml
 vendor/etc/floating_feature.xml
 vendor/etc/fstab.exynos7904
@@ -182,7 +181,6 @@ vendor/lib/libaudio_soundtrigger.so
 vendor/lib/libaudioroute.so
 vendor/lib/libbauthserver.so
 vendor/lib/libbauthtzcommon.so
-vendor/lib/libbt-vendor.so
 vendor/lib/libcsc.so
 vendor/lib/libegis_fp_normal_sensor_test.so
 vendor/lib/libexynoscamera.so
@@ -282,7 +280,6 @@ vendor/lib64/lib_soundaliveresampler.so
 vendor/lib64/libacryl.so
 vendor/lib64/libbauthserver.so
 vendor/lib64/libbauthtzcommon.so
-vendor/lib64/libbt-vendor.so
 vendor/lib64/libcsc.so
 vendor/lib64/libegis_fp_normal_sensor_test.so
 vendor/lib64/libexynoscamera.so
