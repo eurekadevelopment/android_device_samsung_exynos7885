@@ -26,6 +26,13 @@ TARGET_SCREEN_WIDTH := 1080
 PRODUCT_PACKAGES += \
     lineage.fastcharge@1.0-service.samsung
 
+# HIDL
+PRODUCT_PACKAGES += \
+    libhidltransport \
+    libhidltransport.vendor \
+    libhwbinder \
+    libhwbinder.vendor
+
 # Init
 PRODUCT_PACKAGES += \
     init.universal7904.rc \
