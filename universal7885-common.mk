@@ -13,3 +13,8 @@ TARGET_SCREEN_WIDTH := 1080
 # Net
 PRODUCT_PACKAGES += \
     netutils-wrapper-1.0
+
+# Permissions
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
+    frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml
