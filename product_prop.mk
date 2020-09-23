@@ -15,3 +15,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.lmk.log_stats=true \
     ro.lmk.use_minfree_levels=true \
     ro.lmk.use_psi=false
+
+# VNDK
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.vndk.lite=false
