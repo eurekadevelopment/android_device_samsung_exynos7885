@@ -67,3 +67,6 @@ PRODUCT_SOONG_NAMESPACES += \
 # Trust HAL
 PRODUCT_PACKAGES += \
     lineage.trust@1.0-service
+
+# VNDK
+PRODUCT_EXTRA_VNDK_VERSIONS := 29
