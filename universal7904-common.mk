@@ -21,7 +21,8 @@ TARGET_SCREEN_WIDTH := 1080
 PRODUCT_PACKAGES += \
     init.universal7904.rc \
     init.usb_accessory.rc \
-    fstab.enableswap
+    fstab.enableswap \
+    sys.sh
 
 # NFC
 PRODUCT_PACKAGES += \
