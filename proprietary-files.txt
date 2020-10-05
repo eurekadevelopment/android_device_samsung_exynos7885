@@ -1,0 +1,2 @@
+# Camera
+lib/libcamera_client.so:system_ext/apex/com.android.vndk.v29/lib/libcamera_client.so
