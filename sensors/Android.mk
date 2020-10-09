@@ -20,12 +20,12 @@ LOCAL_SHARED_LIBRARIES := \
     liblog \
     libcutils \
     libhardware \
-    libbase \
-    libutils \
     libhidlbase \
     android.hardware.sensors@1.0
 
 LOCAL_STATIC_LIBRARIES := \
+    libbase \
+    libutils \
     android.hardware.sensors@1.0-convert \
     multihal
 
