@@ -1,6 +1,5 @@
 vendor_internal_prop(modemloader_prop)
 vendor_internal_prop(camera_prop)
-vendor_internal_prop(modemloader_prop)
 vendor_internal_prop(persist_rmnet_prop)
 vendor_internal_prop(persist_data_df_prop)
 vendor_internal_prop(persist_data_wda_prop)
