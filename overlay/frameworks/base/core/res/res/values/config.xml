@@ -3,15 +3,6 @@
     <integer name="config_screenBrightnessSettingMinimum">10</integer>
     <integer name="config_screenBrightnessSettingDefault">128</integer>
     <integer name="config_screenBrightnessDim">10</integer>
-    <string-array translatable="false" name="config_tether_usb_regexs">
-        <item>"rndis\\d"</item>
-    </string-array>
-    <string-array translatable="false" name="config_tether_wifi_regexs">
-        <item>"wlan0"</item>
-    </string-array>
-    <string-array translatable="false" name="config_tether_bluetooth_regexs">
-        <item>"bt-pan"</item>
-    </string-array>
     <string-array name="config_mobile_tcp_buffers">
         <item>lte:1048576,3145728,4194304,524288,1572864,2097152</item>
     </string-array>
