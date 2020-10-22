@@ -1,5 +1,8 @@
 # Block device for ZRAM
 /dev/block/zram0 u:object_r:swap_block_device:s0
 
+# HALs
+/system/bin/hw/lineage\.touch@1\.0-service\.samsung	  u:object_r:hal_touch_samsung_exec:s0
+
 # Vendor overlay
 /(product|system/product)/vendor_overlay/[0-9]+/etc(/.*)?	u:object_r:vendor_configs_file:s0

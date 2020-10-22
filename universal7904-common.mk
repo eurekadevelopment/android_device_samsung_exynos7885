@@ -69,5 +69,9 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_PACKAGES += \
     lineage.trust@1.0-service
 
+# Touch
+PRODUCT_PACKAGES += \
+    lineage.touch@1.0-service.samsung
+
 # VNDK
 PRODUCT_EXTRA_VNDK_VERSIONS := 29
