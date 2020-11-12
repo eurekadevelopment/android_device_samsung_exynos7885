@@ -45,5 +45,8 @@
     <string name="db_default_sync_mode" translatable="false">OFF</string>
     <string name="db_wal_sync_mode" translatable="false">OFF</string>
     <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
-    <bool name="config_showNavigationBar">true</bool>	
+    <bool name="config_showNavigationBar">true</bool>
+    <string-array name="config_biometric_sensors" translatable="false" >
+        <item>0:2:15</item> <!-- ID0:Fingerprint:Strong -->
+    </string-array>
 </resources>
