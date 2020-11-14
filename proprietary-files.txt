@@ -202,8 +202,6 @@ vendor/etc/plmn_delta_hktw.bin
 vendor/etc/plmn_delta_usacdma.bin
 vendor/etc/plmn_delta_usagsm.bin
 vendor/etc/plmn_se13.bin
-vendor/etc/public.libraries.txt
-vendor/etc/public.libraries.txt.backup
 vendor/etc/r_submix_audio_policy_configuration.xml
 vendor/etc/saiv/fd/fast_face_detect_model_full_angle_16_CHAR.dat
 vendor/etc/saiv/gae/MeanFea.bin
