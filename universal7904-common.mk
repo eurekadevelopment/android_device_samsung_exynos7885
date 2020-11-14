@@ -40,6 +40,13 @@ PRODUCT_PACKAGES += \
     fstab.enableswap \
     init.exynos7904.rc
 
+# Keymaster
+PRODUCT_COPY_FILES += \
+    prebuilts/vndk/v29/arm64/arch-arm64-armv8-a/shared/vndk-core/libkeymaster_portable.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libkeymaster_portable-v29.so \
+    prebuilts/vndk/v29/arm64/arch-arm-armv8-a/shared/vndk-core/libkeymaster_portable.so:$(TARGET_COPY_OUT_VENDOR)/lib/libkeymaster_portable-v29.so \
+    prebuilts/vndk/v29/arm64/arch-arm64-armv8-a/shared/vndk-core/libpuresoftkeymasterdevice.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libpuresoftkeymasterdevice-v29.so \
+    prebuilts/vndk/v29/arm64/arch-arm-armv8-a/shared/vndk-core/libpuresoftkeymasterdevice.so:$(TARGET_COPY_OUT_VENDOR)/lib/libpuresoftkeymasterdevice-v29.so
+
 # NFC
 PRODUCT_PACKAGES += \
     libnfc-nci \
