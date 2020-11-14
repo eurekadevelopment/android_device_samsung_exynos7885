@@ -105,6 +105,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     build/target/product/gsi/gsi_skip_mount.cfg:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/config/skip_mount.cfg
 
+# Shims
+PRODUCT_PACKAGES += \
+    libshim_stagefright_foundation
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
