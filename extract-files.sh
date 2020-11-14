@@ -64,4 +64,11 @@ if [ -s "${MY_DIR}/../${DEVICE}/proprietary-files.txt" ]; then
             "${KANG}" --section "${SECTION}"
 fi
 
+BLOB_ROOT="${LINEAGE_ROOT}/vendor/${VENDOR}/${DEVICE_COMMON}/proprietary"
+
+patchelf --replace-needed "libkeymaster_portable.so" "libkeymaster_portable-v29.so" "${BLOB_ROOT}/vendor/lib64/libkeymaster3device.so"
+patchelf --replace-needed "libkeymaster_portable.so" "libkeymaster_portable-v29.so" "${BLOB_ROOT}/vendor/lib/libkeymaster3device.so"
+patchelf --replace-needed "libpuresoftkeymasterdevice.so" "libpuresoftkeymasterdevice-v29.so" "${BLOB_ROOT}/vendor/lib64/libkeymaster3device.so"
+patchelf --replace-needed "libpuresoftkeymasterdevice.so" "libpuresoftkeymasterdevice-v29.so" "${BLOB_ROOT}/vendor/lib/libkeymaster3device.so"
+
 "${MY_DIR}/setup-makefiles.sh"
