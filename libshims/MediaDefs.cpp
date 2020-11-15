@@ -16,4 +16,11 @@
 
 namespace android {
     const char *MEDIA_MIMETYPE_AUDIO_IMA = "audio/x-ima";
+    const char *MEDIA_MIMETYPE_AUDIO_EVRC = "audio/evrc";
+    const char *MEDIA_MIMETYPE_AUDIO_APE = "audio/x-ape";
+    const char *MEDIA_MIMETYPE_VIDEO_MP43 = "video/mp43";
+    const char *MEDIA_MIMETYPE_VIDEO_WMV1 = "video/x-ms-wmv7";
+    const char *MEDIA_MIMETYPE_VIDEO_WMV2 = "video/x-ms-wmv8";
+    const char *MEDIA_MIMETYPE_VIDEO_WMV3 = "video/x-ms-wmv";
+    const char *MEDIA_MIMETYPE_VIDEO_WVC1 = "video/wvc1";
 } // namespece android
