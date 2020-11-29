@@ -21,8 +21,7 @@ TARGET_SCREEN_WIDTH := 1080
 PRODUCT_PACKAGES += \
     init.universal7904.rc \
     init.usb_accessory.rc \
-    fstab.enableswap \
-    sys.sh
+    fstab.enableswap
 
 # NFC
 PRODUCT_PACKAGES += \
@@ -76,3 +75,8 @@ PRODUCT_PACKAGES += \
 
 # VNDK
 PRODUCT_EXTRA_VNDK_VERSIONS := 29
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/vndkcore.libraries.29.txt:system/system_ext/apex/com.android.vndk.v29/etc/vndkcore.libraries.29.txt \
+    $(LOCAL_PATH)/configs/vndkprivate.libraries.29.txt:system/system_ext/apex/com.android.vndk.v29/etc/vndkprivate.libraries.29.txt \
+    $(LOCAL_PATH)/configs/placeholder:system/system_ext/apex/com.android.vndk.v29/lib/libstagefright_foundation.so  
