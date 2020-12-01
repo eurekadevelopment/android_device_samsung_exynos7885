@@ -23,13 +23,11 @@ vendor/lib/libfloatingfeature.so
 vendor/lib/librecordalive.so
 vendor/lib/libsamsungDiamondVoice.so
 vendor/lib/libsecaudioinfo.so
-vendor/lib/libvndsecril-client.so
 vendor/lib/soundfx/libaudioeffectoffload.so
 vendor/lib/vndk/libaudioroute.so
 vendor/lib/vndk/libtinyalsa.so
 vendor/lib64/libfloatingfeature.so
 vendor/lib64/libsecaudioinfo.so
-vendor/lib64/libvndsecril-client.so
 vendor/lib64/soundfx/libaudioeffectoffload.so
 
 # DRM
@@ -134,40 +132,43 @@ vendor/lib64/omx/libOMX.Exynos.VP8.Encoder.so
 vendor/lib64/omx/libOMX.Exynos.VP9.Decoder.so
 vendor/lib64/omx/libOMX.Exynos.WMV.Decoder.so
 
-# RIL
-vendor/bin/cbd
-vendor/bin/hw/rild
-vendor/bin/secril_config_svc
-vendor/etc/init/init.vendor.onebinary.rc
-vendor/etc/init/init.vendor.rilchip.rc
-vendor/etc/init/init.vendor.rilcommon.rc
-vendor/etc/plmn_delta.bin
-vendor/etc/plmn_delta_attaio.bin
-vendor/etc/plmn_delta_hktw.bin
-vendor/etc/plmn_delta_usacdma.bin
-vendor/etc/plmn_delta_usagsm.bin
-vendor/etc/plmn_se13.bin
-vendor/lib/libaudio-ril.so
-vendor/lib/libreference-ril.so
-vendor/lib/libril.so
-vendor/lib/librilutils.so
-vendor/lib/libsecnativefeature.so
-vendor/lib/libsec-ril-dsds.so
-vendor/lib/libsec-ril.so
-vendor/lib/libvkmanager_vendor.so
-vendor/lib/vendor.samsung.hardware.radio.bridge@2.0.so
-vendor/lib/vendor.samsung.hardware.radio.channel@2.0.so
-vendor/lib/vendor.samsung.hardware.radio@2.0.so
-vendor/lib64/libreference-ril.so
-vendor/lib64/libril.so
-vendor/lib64/librilutils.so
-vendor/lib64/libsecnativefeature.so
-vendor/lib64/libsec-ril-dsds.so
-vendor/lib64/libsec-ril.so
-vendor/lib64/libvkmanager_vendor.so
-vendor/lib64/vendor.samsung.hardware.radio.bridge@2.0.so
-vendor/lib64/vendor.samsung.hardware.radio.channel@2.0.so
-vendor/lib64/vendor.samsung.hardware.radio@2.0.so
+# RIL - from a40ser-user-11-RP1A.200720.012-A405FMPUU3CUC2-release-keys
+vendor/bin/cbd|3501bc4a474ad9cf970fba283591dc7a10e60413
+vendor/bin/hw/rild|2982c9628c9f8f82ff579cdb1273baed47112dfc
+vendor/bin/secril_config_svc|645539748afd362867ebdcce702b73b1ee7480c6
+vendor/etc/init/init.vendor.onebinary.rc|b3fab964774039b1f2f6eabf821556919b26369f
+vendor/etc/init/init.vendor.rilchip.rc|83d57882dfaefaaa21c5dd636bafd655dfaf0b10
+vendor/etc/init/init.vendor.rilcommon.rc|5a669667301c678eb825abb41531ae1e19897886
+vendor/etc/plmn_delta.bin|6a826cb6a8a1d460403ab2ebccf4f0d7be546ce6
+vendor/etc/plmn_delta_attaio.bin|751a1c7105f1c03fc196689c2a71e2c69aa14e1f
+vendor/etc/plmn_delta_hktw.bin|4602b2e5c84d6cd4d6836a94784987a76e7830ce
+vendor/etc/plmn_delta_usagsm.bin|9a25ec9e9da16ed2f8a9db07f037fe08283b24e5
+vendor/etc/plmn_se13.bin|21c3b2be869b92c24d3d58710a9fde6826b4677e
+vendor/lib/libaudio-ril.so|2fee16ec35bcaccac0092b27b5ea434617877c3f
+vendor/lib/libreference-ril.so|46374a18b4a2cff2bbcd7eb4706421ac404dd924
+vendor/lib/libril.so|d60c374b2fae7302d5e2ea469d01ff100bb7dd0a
+vendor/lib/librilutils.so|6af19cf1ab9ec150213d61552870277a6f49096b
+vendor/lib/libsecnativefeature.so|268dfdbb80196ac0d16abcce9109f87518753361
+vendor/lib/libsemnativecarrierfeature.so|ac27187c27eba2b96eaa4812b8e9b60193ca18d6
+vendor/lib/libsecril-client.so|af77c32b35ab1a2b7ee5f38e529e7eb8dee0a195
+vendor/lib/vendor.samsung.hardware.radio.bridge@2.0.so|c130cf05828ee1e415cf5823f2a67e023508f710
+vendor/lib/vendor.samsung.hardware.radio@2.0.so|1c976df4082e7829578a9cb48c040706e1753a6d
+vendor/lib/vendor.samsung.hardware.radio@2.1.so|6ce633e09b82f54aabd789ca23a5f1833a232f68
+vendor/lib64/libengmode_client.so|f1fd7b5eccc02374794dad37052595ca67e1402a
+vendor/lib64/libreference-ril.so|88d198da07ea1a67245beb1da4c48da9d627ef32
+vendor/lib64/libril.so|ae21d2979f849435331f7e5c224dd1ce61615eba
+vendor/lib64/librilutils.so|c929ab09b9335b404cb6aab859d5cc20a986d2ca
+vendor/lib64/libsecnativefeature.so|beba21a227a43849d565982c7c3850bdc52552b9
+vendor/lib64/libsemnativecarrierfeature.so|ca44453cf7cca968606b56936be7de0d214d74be
+vendor/lib64/libsecril-client.so|3f9bed28e5370e59ec481628290034295b9d401f
+vendor/lib64/libvkmanager_vendor.so|d145e14dbf59f85ce8c35b410c14d2749cc2f2e7
+vendor/lib64/vendor.samsung.hardware.radio.bridge@2.0.so|be8b1643c70fcb9c31e062bfc7ac771097770b05
+vendor/lib64/vendor.samsung.hardware.radio.channel@2.0.so|8cc8d203c16e7239820eecc53de23bcf69da8cdd
+vendor/lib64/vendor.samsung.hardware.radio@2.0.so|feab767661ded387449bd8c08d0d76e43d40c6f9
+vendor/lib64/vendor.samsung.hardware.radio@2.1.so|809c63ba36b1223e2f976b5a52adaf03f31ca948
+# patchelf --replace-needed libcutils.so libcutils-v29.so vendor/lib*/libsec-ril*.so
+vendor/lib64/libsec-ril-dsds.so|8c8387002f24d291eabca8a552d55c407024ab13
+vendor/lib64/libsec-ril.so|d4782fdcaba4261db4dd7f4aa8f8039ee6499c51
 
 # Sensors
 vendor/etc/yas_set.cfg

@@ -25,11 +25,6 @@ function blob_fixup {
         vendor/lib*/libhifills.so)
             "$PATCHELF" --add-needed "libunwindstack.so" "$2"
             ;;
-        vendor/lib*/libsec-ril.so)
-            ;&
-        vendor/lib*/libsec-ril-dsds.so)
-            "$PATCHELF" --replace-needed "libcutils.so" "libcutils-v29.so" "$2"
-            ;;
         vendor/lib*/hw/camera.exynos7904.so)
             "$PATCHELF" --replace-needed "libcamera_client.so" "libcamera_metadata_helper.so" "$2"
             "$PATCHELF" --replace-needed "libgui.so" "libgui_vendor.so" "$2"
@@ -42,6 +37,11 @@ function blob_fixup {
             ;;
         vendor/lib*/libsensorlistener.so)
             "$PATCHELF" --add-needed "libshim_sensorndkbridge.so" "$2"
+            ;;
+        vendor/lib*/libwrappergps.so)
+            ;&
+        vendor/lib/hw/audio.primary.exynos7904.so)
+            "$PATCHELF" --replace-needed "libvndsecril-client.so" "libsecril-client.so" "$2"
             ;;
     esac
 }
