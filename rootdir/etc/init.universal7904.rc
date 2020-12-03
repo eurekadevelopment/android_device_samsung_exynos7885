@@ -24,7 +24,27 @@ service argos-daemon /system/bin/true
     oneshot
     disabled
 
+service atnserv /system/bin/true
+    oneshot
+    disabled
+
+service icccserv /system/bin/true
+    oneshot
+    disabled
+
+service proca /system/bin/true
+    oneshot
+    disabled
+
+service secure_storage /system/bin/true
+    oneshot
+    disabled
+
 service sec-miscpower-2-0 /system/bin/true
+    oneshot
+    disabled
+
+service sec_wsm_service /system/bin/true
     oneshot
     disabled
 
@@ -37,6 +57,14 @@ service snap_utility_32 /system/bin/true
     disabled
 
 service snap_utility_64 /system/bin/true
+    oneshot
+    disabled
+
+service timaserv /system/bin/true
+    oneshot
+    disabled
+
+service ucmtlc-hal-service /system/bin/true
     oneshot
     disabled
 
