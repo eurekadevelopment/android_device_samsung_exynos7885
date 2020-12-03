@@ -115,6 +115,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libsuspend
 
+# ConfigStore
+PRODUCT_PACKAGES += \
+    disable_configstore
+
 # Debug
 $(call inherit-product, hardware/samsung-ext/interfaces/debug-tools/debug.mk)
 
