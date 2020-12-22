@@ -20,6 +20,11 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.lmk.use_minfree_levels=true \
     ro.lmk.use_psi=false
 
+# RIL
+# LTE, GSM and WCDMA
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.telephony.default_network=9,9
+
 # VNDK
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.vndk.lite=false
