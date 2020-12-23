@@ -1,16 +1,20 @@
+#
+# Copyright (C) 2020 The LineageOS Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
 LOCAL_PATH := $(call my-dir)
-
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := android.hardware.power@1.0-service.exynos.rc
-LOCAL_MODULE_TAGS  := optional
-LOCAL_MODULE_CLASS := ETC
-LOCAL_MODULE_PATH := $(TARGET_OUT_ETC)/init
-LOCAL_SRC_FILES := $(LOCAL_MODULE)
-
-include $(BUILD_PREBUILT)
-
-LOCAL_PATH := hardware/samsung/hidl/power
 
 include $(CLEAR_VARS)
 
@@ -34,7 +38,7 @@ LOCAL_STATIC_LIBRARIES := libc++fs
 
 LOCAL_MODULE := android.hardware.power@1.0-service.universal7904
 LOCAL_MODULE_STEM := android.hardware.power@1.0-service.exynos
-LOCAL_REQUIRED_MODULES := $(LOCAL_MODULE_STEM).rc
+LOCAL_INIT_RC := $(LOCAL_MODULE_STEM).rc
 LOCAL_MODULE_RELATIVE_PATH := hw
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_OWNER := samsung
