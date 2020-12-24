@@ -1,2 +1,3 @@
 type sysfs_battery, sysfs_type, fs_type;
 type sysfs_sec_tsp, fs_type, sysfs_type;
+type sysfs_sec_switch, fs_type, sysfs_type;
