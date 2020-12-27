@@ -137,11 +137,9 @@ Return<void> Power::setFeature(Feature feature __unused, bool activate __unused)
         initialize();
     }
 
-#ifdef TAP_TO_WAKE_NODE
     if (feature == Feature::POWER_FEATURE_DOUBLE_TAP_TO_WAKE) {
-        set(TAP_TO_WAKE_NODE, activate ? "1" : "0");
+        set("/sys/class/sec/tsp/cmd", activate ? "aot_enable,1" : "aot_enable,0");
     }
-#endif
 
     return Void();
 }
