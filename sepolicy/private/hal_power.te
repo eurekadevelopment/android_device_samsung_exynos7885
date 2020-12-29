@@ -1,0 +1,2 @@
+r_dir_file(hal_power, sysfs_sec_tsp)
+allow hal_power sysfs_sec_tsp:file write;
