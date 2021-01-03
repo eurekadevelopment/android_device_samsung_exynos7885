@@ -66,7 +66,8 @@ PRODUCT_PACKAGES += \
     libhidltransport \
     libhidltransport.vendor \
     libhwbinder \
-    libhwbinder.vendor
+    libhwbinder.vendor \
+    libunwindstack.vendor
 
 # Init
 PRODUCT_PACKAGES += \
