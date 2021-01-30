@@ -602,3 +602,14 @@ service charger /system/bin/charger
     group system graphics input
     capabilities SYS_BOOT
     seclabel u:r:charger:s0
+
+# Start NFC on supported variants
+service nfc_hal_service /vendor/bin/hw/android.hardware.nfc@1.2-service.samsung
+    override
+    class hal
+    user nfc
+    group nfc
+    disabled
+
+on property:ro.boot.product.hardware.sku=NFC
+    start nfc_hal_service
