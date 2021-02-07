@@ -24,9 +24,6 @@ TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := generic
 TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a53
 
-# Audio
-TARGET_EXCLUDES_AUDIOFX := true
-
 # Build system
 BUILD_BROKEN_DUP_RULES := true
 
