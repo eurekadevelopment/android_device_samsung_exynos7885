@@ -13,3 +13,7 @@ persist.device_config.runtime_native_boot.iorap_readahead_enable=true
 
 # Graphics
 debug.cpurend.vsync=false
+
+# RCS
+persist.rcs.supported=1
+
