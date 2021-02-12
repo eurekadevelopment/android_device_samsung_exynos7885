@@ -24,17 +24,19 @@ PRODUCT_PACKAGES += \
     libtinycompress \
     audio.r_submix.default \
     audio.usb.default \
-    audio.a2dp.default \
     libaudioroute \
     libtinyalsa \
     libtinycompress \
-    libldacBT_bco
+    libldacBT_bco \
+    audio.hearing_aid.default
 
 # Audio (BT)
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth.audio@2.1-impl \
     audio.bluetooth.default \
-    android.hardware.bluetooth.a2dp@1.0
+    audio.a2dp.default \
+    android.hardware.bluetooth.audio@2.1.vendor \
+    android.hardware.bluetooth.a2dp@1.0-impl.mock \
 
 # Aptx    
 PRODUCT_COPY_FILES += \
