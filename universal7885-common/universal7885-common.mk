@@ -178,6 +178,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/nfc/libnfc-sec-vendor.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-sec-vendor.conf
 
+# Now Playing 
+PRODUCT_PACKAGES += \
+    NowPlayingOverlay
+    
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 # DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
