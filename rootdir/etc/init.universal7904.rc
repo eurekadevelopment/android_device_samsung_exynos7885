@@ -12,6 +12,9 @@ on init
 on property:sys.boot_completed=1
     swapon_all /system/etc/fstab.enableswap
 
+    # Disable sw watchdog
+    write /dev/watchdog1 "V"
+
 service ExynosHWCServiceTW /system/bin/true
     oneshot
     disabled
