@@ -13,9 +13,12 @@ ro.vendor.cscsupported=1
 ## OpenGLES
 ro.opengles.version=196610
 
-## Graphics 
+## HW Graphics
 debug.egl.hw=0
 debug.sf.hw=0
+
+## Low ram device
+ro.config.avoid_gfx_accel=true
 
 ### Vulkan
 ro.hwui.use_vulkan=true
