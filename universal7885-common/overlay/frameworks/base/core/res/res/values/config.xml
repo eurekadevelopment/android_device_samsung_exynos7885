@@ -55,8 +55,14 @@
     <string name="db_default_journal_mode" translatable="false">MEMORY</string>
     <string name="db_default_sync_mode" translatable="false">OFF</string>
     <string name="db_wal_sync_mode" translatable="false">OFF</string>
+    
     <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
+    
     <bool name="config_showNavigationBar">true</bool>
+    
+    <!-- The max scale for the wallpaper when it's zoomed in -->
+    <item name="config_wallpaperMaxScale" format="float" type="dimen">1.00</item>
+
     <!-- Enable system navigation keys. -->
     <bool name="config_supportSystemNavigationKeys">true</bool>
     <!-- If this is true, the screen will come on when you unplug usb/power/whatever. -->
