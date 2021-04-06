@@ -5,6 +5,7 @@ cc_library_shared {
     shared_libs: [
         "libbase",
         "libsensorndkbridge",
+        "libutils",
     ],
 
     vendor: true,
