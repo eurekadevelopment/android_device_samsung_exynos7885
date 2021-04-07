@@ -33,8 +33,7 @@ TARGET_SCREEN_WIDTH := 1080
 
 # Camera
 PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.4-legacy \
-    android.hardware.camera.provider@2.5-legacy
+    android.hardware.camera.provider@2.5-service
 
 # DRM
 PRODUCT_PACKAGES += \
