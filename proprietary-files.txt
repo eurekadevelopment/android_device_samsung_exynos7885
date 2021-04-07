@@ -31,7 +31,6 @@ vendor/bin/hw/macloader
 vendor/bin/hw/mfgloader
 vendor/bin/hw/rild
 vendor/bin/hw/vendor.samsung.hardware.biometrics.fingerprint@3.0-service
-vendor/bin/hw/vendor.samsung.hardware.camera.provider@3.0-service
 vendor/bin/hw/vendor.samsung.hardware.gnss@2.0-service
 vendor/bin/hw/vendor.samsung.hardware.light@3.0-service
 vendor/bin/hw/vendor.samsung.hardware.vibrator@2.0-service
@@ -84,7 +83,6 @@ vendor/etc/init/init.vendor.rilchip.rc
 vendor/etc/init/init.vendor.rilcommon.rc
 vendor/etc/init/mobicore.rc
 vendor/etc/init/vendor.samsung.hardware.biometrics.fingerprint@3.0-service.rc
-vendor/etc/init/vendor.samsung.hardware.camera.provider@3.0-service.rc
 vendor/etc/init/vendor.samsung.hardware.gnss@2.0-service.rc
 vendor/etc/init/vendor.samsung.hardware.light@3.0-service.rc
 vendor/etc/init/vendor.samsung.hardware.vibrator@2.0-service.rc
@@ -268,7 +266,6 @@ vendor/lib/hw/power.universal7904.so
 vendor/lib/hw/sensors.universal7904.so
 vendor/lib/hw/thermal.universal7904.so
 vendor/lib/hw/vendor.samsung.hardware.audio@1.0-impl.so
-vendor/lib/hw/vendor.samsung.hardware.camera.provider@3.0-impl.so
 vendor/lib/hw/vendor.samsung.hardware.light@3.0-impl.so
 vendor/lib/hw/vendor.samsung.hardware.snap@1.1-impl.so
 vendor/lib/libDLInterface.camera.samsung.so
@@ -381,7 +378,6 @@ vendor/lib/vendor.samsung.hardware.bluetooth.a2dp@1.0.so
 vendor/lib/vendor.samsung.hardware.bluetooth@2.0.so
 vendor/lib/vendor.samsung.hardware.camera.device@1.0.so
 vendor/lib/vendor.samsung.hardware.camera.device@4.0.so
-vendor/lib/vendor.samsung.hardware.camera.provider@3.0.so
 vendor/lib/vendor.samsung.hardware.gnss@2.0.so
 vendor/lib/vendor.samsung.hardware.health@1.0.so
 vendor/lib/vendor.samsung.hardware.light@3.0.so
@@ -419,7 +415,6 @@ vendor/lib64/hw/power.universal7904.so
 vendor/lib64/hw/sensors.universal7904.so
 vendor/lib64/hw/thermal.universal7904.so
 vendor/lib64/hw/vendor.samsung.hardware.audio@1.0-impl.so
-vendor/lib64/hw/vendor.samsung.hardware.camera.provider@3.0-impl.so
 vendor/lib64/hw/vendor.samsung.hardware.gnss@2.0-impl.so
 vendor/lib64/hw/vendor.samsung.hardware.light@3.0-impl.so
 vendor/lib64/hw/vendor.samsung.hardware.snap@1.1-impl.so
@@ -524,7 +519,6 @@ vendor/lib64/vendor.samsung.hardware.bluetooth.a2dp@1.0.so
 vendor/lib64/vendor.samsung.hardware.bluetooth@2.0.so
 vendor/lib64/vendor.samsung.hardware.camera.device@1.0.so
 vendor/lib64/vendor.samsung.hardware.camera.device@4.0.so
-vendor/lib64/vendor.samsung.hardware.camera.provider@3.0.so
 vendor/lib64/vendor.samsung.hardware.gnss@2.0.so
 vendor/lib64/vendor.samsung.hardware.health@1.0.so
 vendor/lib64/vendor.samsung.hardware.light@3.0.so
