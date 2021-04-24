@@ -23,6 +23,7 @@ type proc_swapiness, fs_type, proc_type;
 type display_vendor_data_file, file_type, data_file_type;
 type fingerprintd_vendor_data_file, data_file_type, file_type;
 type mediadrm_data_file, file_type, data_file_type;
+type nfc_vendor_data_file, file_type, data_file_type;
 
 # sysfs types
 type sysfs_abox_writable, sysfs_type, rw_fs_type, fs_type;
