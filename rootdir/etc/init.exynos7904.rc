@@ -34,6 +34,9 @@ on post-fs
     setrlimit 8 67108864 67108864
 
 on post-fs-data
+# NFC
+    mkdir /data/vendor/nfc 0770 nfc nfc
+
 # TEEGRIS service
     mkdir /data/vendor/tee 0700 system system
 
