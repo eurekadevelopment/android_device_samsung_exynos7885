@@ -1,1 +1,1 @@
-type sec_fastcharge_prop, property_type;
+system_internal_prop(sec_fastcharge_prop)
