@@ -1,2 +1,7 @@
+# Allow power HAL to write /sys/class/sec/tsp
 r_dir_file(hal_power, sysfs_sec_tsp)
 allow hal_power sysfs_sec_tsp:file write;
+
+# Allow power HAL to write /sys/devices/system/cpu
+r_dir_file(hal_power, sysfs_devices_system_cpu)
+allow hal_power sysfs_devices_system_cpu:file write;
