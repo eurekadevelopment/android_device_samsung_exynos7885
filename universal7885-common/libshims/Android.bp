@@ -3,15 +3,14 @@ cc_library_shared {
 
     srcs: ["ASensorManager.cpp"],
     shared_libs: [
-        "libbase",
         "libsensorndkbridge",
         "libutils",
     ],
-
+    whole_static_libs: ["libbase"],
+    header_libs: ["libbase_headers"],
     vendor: true,
 
     include_dirs: [
-        "system/core/base/include",
         "system/core/libutils/include",
         "frameworks/hardware/interfaces/sensorservice/libsensorndkbridge",
     ],
