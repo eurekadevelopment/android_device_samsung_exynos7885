@@ -128,7 +128,6 @@ vendor/etc/init/android.hardware.usb@1.1-service.exynos7885.rc
 vendor/etc/init/android.hardware.wifi@1.0-service.rc
 vendor/etc/init/hostapd.android.rc
 vendor/etc/init/init.baseband.rc
-vendor/etc/init/init.exynos7904.rc
 vendor/etc/init/init.exynos7904.usb.rc
 vendor/etc/init/init.gps.rc
 vendor/etc/init/init.samsung.bsp.rc
