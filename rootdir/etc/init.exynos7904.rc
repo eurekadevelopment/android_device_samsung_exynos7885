@@ -215,11 +215,8 @@ on post-fs-data
 
     write /sys/module/scsc_mx/parameters/disable_recovery_handling 0
 
-# Samsung Pay
-    mkdir /mnt/vendor/efs/pfw_data 0760 vendor_spay vendor_spay
-
 # MST/NFC Switch
-    chown vendor_spay system /dev/mst_ctrl
+    chown system /dev/mst_ctrl
     chmod 0660 /dev/mst_ctrl
 
 # setup cgroup freezer for freecess
@@ -754,4 +751,4 @@ service swapon /sbin/sswap -s -f 2048
 #service remosaic_daemon /vendor/bin/remosaic_daemon
 #    class late_start
 #    user cameraserver
-#    group cameraserver 
+#    group cameraserver
