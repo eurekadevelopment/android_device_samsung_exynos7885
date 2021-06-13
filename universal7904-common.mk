@@ -30,7 +30,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     init.universal7904.rc \
     init.usb_accessory.rc \
-    fstab.enableswap
+    fstab.enableswap \
+    init.exynos7904.rc
 
 # NFC
 PRODUCT_PACKAGES += \
