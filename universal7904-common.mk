@@ -37,9 +37,9 @@ PRODUCT_PACKAGES += \
     Tag
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/libnfc-nci.conf:system/etc/libnfc-nci.conf \
-    $(LOCAL_PATH)/configs/nfc_key:system/etc/nfc_key \
-    $(LOCAL_PATH)/configs/nfcee_access.xml:system/etc/nfcee_access.xml
+    $(LOCAL_PATH)/configs/libnfc-nci.conf:$(TARGET_COPY_OUT_SYSTEM)/etc/libnfc-nci.conf \
+    $(LOCAL_PATH)/configs/nfc_key:$(TARGET_COPY_OUT_SYSTEM)/etc/nfc_key \
+    $(LOCAL_PATH)/configs/nfcee_access.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/nfcee_access.xml
 
 # Net
 PRODUCT_PACKAGES += \
@@ -51,10 +51,10 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
 
 # Permissions
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
-    frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml \
-    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-    frameworks/native/data/etc/android.software.controls.xml:system/etc/permissions/android.software.controls.xml
+    frameworks/native/data/etc/android.hardware.ethernet.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.hardware.ethernet.xml \
+    frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.hardware.fingerprint.xml \
+    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.hardware.sensor.proximity.xml \
+    frameworks/native/data/etc/android.software.controls.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.controls.xml
 
 # Power
 PRODUCT_PACKAGES += \
@@ -75,7 +75,7 @@ PRODUCT_PACKAGES += \
 
 # Skip Mount
 PRODUCT_COPY_FILES += \
-    build/target/product/gsi/gsi_skip_mount.cfg:system/system_ext/etc/init/config/skip_mount.cfg
+    build/target/product/gsi/gsi_skip_mount.cfg:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/config/skip_mount.cfg
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
@@ -100,6 +100,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_EXTRA_VNDK_VERSIONS := 29
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/vndkcore.libraries.29.txt:system/system_ext/apex/com.android.vndk.v29/etc/vndkcore.libraries.29.txt \
-    $(LOCAL_PATH)/configs/vndkprivate.libraries.29.txt:system/system_ext/apex/com.android.vndk.v29/etc/vndkprivate.libraries.29.txt \
-    $(LOCAL_PATH)/configs/placeholder:system/system_ext/apex/com.android.vndk.v29/lib/libstagefright_foundation.so  
+    $(LOCAL_PATH)/configs/vndkcore.libraries.29.txt:$(TARGET_COPY_OUT_SYSTEM_EXT)/apex/com.android.vndk.v29/etc/vndkcore.libraries.29.txt \
+    $(LOCAL_PATH)/configs/vndkprivate.libraries.29.txt:$(TARGET_COPY_OUT_SYSTEM_EXT)/apex/com.android.vndk.v29/etc/vndkprivate.libraries.29.txt \
+    $(LOCAL_PATH)/configs/placeholder:$(TARGET_COPY_OUT_SYSTEM_EXT)/apex/com.android.vndk.v29/lib/libstagefright_foundation.so  
