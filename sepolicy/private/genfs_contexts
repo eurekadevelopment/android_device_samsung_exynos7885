@@ -1,1 +1,3 @@
 genfscon sysfs /devices/virtual/sec/tsp     u:object_r:sysfs_sec_tsp:s0
+genfscon sysfs /devices/platform/13840000.i2c/i2c-10/10-003d/s2mu004-charger/power_supply/s2mu004-charger     u:object_r:sysfs_battery:s0
+genfscon sysfs /devices/platform/13830000.i2c/i2c-9/9-003b/power_supply/s2mu004-fuelgauge     u:object_r:sysfs_battery:s0
