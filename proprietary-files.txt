@@ -1,3 +1,5 @@
+# All blobs below are extracted from m20ltedd-user-10-QP1A.190711.020-M205FDDU6CTK1-release-keys
+
 # Audio
 lib/libHMT.so:product/vendor_overlay/29/lib/libHMT.so
 lib/lib_SoundAlive_3DPosition_ver202.so:product/vendor_overlay/29/lib/lib_SoundAlive_3DPosition_ver202.so
