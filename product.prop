@@ -1,0 +1,11 @@
+# Blurs
+ro.surface_flinger.supports_background_blur=1
+persist.sys.sf.disable_blurs=1
+
+# LMKD
+ro.lmk.log_stats=true
+ro.lmk.use_minfree_levels=true
+ro.lmk.use_psi=false
+
+# VNDK
+ro.vndk.lite=false
