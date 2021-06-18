@@ -7,6 +7,16 @@ ro.fastbootd.available=true
 # Graphics
 debug.sf.latch_unsignaled=1
 
+# Set csc support in OMX
+# If not set or set to 0, OMX will only use BT.601 colorspace.
+ro.vendor.cscsupported=1
+
 # RIL
 # LTE, GSM and WCDMA
 ro.telephony.default_network=9,9
+
+# Samsung Specific Properties
+ro.product_ship=true
+
+# RILD debug level setting
+ro.debug_level=0x494d
