@@ -240,9 +240,6 @@ vendor/etc/somxreg.conf
 vendor/etc/str/str_preference_data.dat
 vendor/etc/tms_audio_policy_configuration.xml
 vendor/etc/usb_audio_policy_configuration.xml
-vendor/etc/vintf/compatibility_matrix.xml
-vendor/etc/vintf/manifest.xml
-vendor/etc/vintf/manifest/android.hardware.cas@1.1-service.xml
 vendor/etc/wifi/hydra_config.sdb
 vendor/etc/wifi/indoorchannel.info
 vendor/etc/wifi/mx
@@ -707,5 +704,4 @@ vendor/lib64/vendor.samsung_slsi.hardware.configstore-utils.so
 vendor/lib64/vendor.samsung_slsi.hardware.configstore@1.0.so
 vendor/lib64/vendor.trustonic.tee@1.0.so
 vendor/lib64/vendor.trustonic.teeregistry@1.0.so
-vendor/manifest.xml
 vendor/ueventd.rc
