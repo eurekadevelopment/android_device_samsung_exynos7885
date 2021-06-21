@@ -66,10 +66,6 @@ fi
 
 BLOB_ROOT="${LINEAGE_ROOT}/vendor/${VENDOR}/${DEVICE_COMMON}/proprietary"
 
-patchelf --replace-needed "libkeymaster_portable.so" "libkeymaster_portable-v29.so" "${BLOB_ROOT}/vendor/lib64/libkeymaster3device.so"
-patchelf --replace-needed "libkeymaster_portable.so" "libkeymaster_portable-v29.so" "${BLOB_ROOT}/vendor/lib/libkeymaster3device.so"
-patchelf --replace-needed "libpuresoftkeymasterdevice.so" "libpuresoftkeymasterdevice-v29.so" "${BLOB_ROOT}/vendor/lib64/libkeymaster3device.so"
-patchelf --replace-needed "libpuresoftkeymasterdevice.so" "libpuresoftkeymasterdevice-v29.so" "${BLOB_ROOT}/vendor/lib/libkeymaster3device.so"
 patchelf --add-needed "libshim_stagefright_foundation.so" "${BLOB_ROOT}/vendor/lib/libstagefright_omx_utils.so"
 
 "${MY_DIR}/setup-makefiles.sh"
