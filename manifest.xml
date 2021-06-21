@@ -313,16 +313,6 @@
         <fqname>@1.2::ISupplicant/default</fqname>
     </hal>
     <hal format="hidl">
-        <name>vendor.samsung.hardware.audio</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ISehDevicesFactory</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.0::ISehDevicesFactory/default</fqname>
-    </hal>
-    <hal format="hidl">
         <name>vendor.samsung.hardware.biometrics.fingerprint</name>
         <transport>hwbinder</transport>
         <version>3.0</version>
