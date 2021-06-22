@@ -11,6 +11,7 @@ cc_library_shared {
     defaults: ["hidl_defaults"],
     srcs: [
         "CameraMetadata.cpp",
+        "CameraParameters.cpp",
     ],
     cflags: [
         "-Werror",
