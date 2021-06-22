@@ -20,6 +20,22 @@ if [ ! -f "${HELPER}" ]; then
 fi
 source "${HELPER}"
 
+function blob_fixup {
+    case "$1" in
+        vendor/lib/libstagefright_omx_utils.so)
+            "$PATCHELF" --add-needed "libshim_stagefright_foundation.so" "$2"
+            ;;
+        vendor/lib*/libhifills.so)
+            "$PATCHELF" --add-needed "libunwindstack.so" "$2"
+            ;;
+        vendor/lib*/libsec-ril.so)
+            ;&
+        vendor/lib*/libsec-ril-dsds.so)
+            "$PATCHELF" --replace-needed "libcutils.so" "libcutils-v29.so" "$2"
+            ;;
+    esac
+}
+
 # Default to sanitizing the vendor folder before extraction
 CLEAN_VENDOR=true
 
@@ -63,15 +79,5 @@ if [ -s "${MY_DIR}/../${DEVICE}/proprietary-files.txt" ]; then
     extract "${MY_DIR}/../${DEVICE}/proprietary-files.txt" "${SRC}" \
             "${KANG}" --section "${SECTION}"
 fi
-
-BLOB_ROOT="${LINEAGE_ROOT}/vendor/${VENDOR}/${DEVICE_COMMON}/proprietary"
-
-patchelf --replace-needed "libcutils.so" "libcutils-v29.so" "${BLOB_ROOT}/vendor/lib64/libsec-ril-dsds.so"
-patchelf --replace-needed "libcutils.so" "libcutils-v29.so" "${BLOB_ROOT}/vendor/lib/libsec-ril-dsds.so"
-patchelf --replace-needed "libcutils.so" "libcutils-v29.so" "${BLOB_ROOT}/vendor/lib64/libsec-ril.so"
-patchelf --replace-needed "libcutils.so" "libcutils-v29.so" "${BLOB_ROOT}/vendor/lib/libsec-ril.so"
-patchelf --add-needed "libshim_stagefright_foundation.so" "${BLOB_ROOT}/vendor/lib/libstagefright_omx_utils.so"
-patchelf --add-needed "libunwindstack.so" "${BLOB_ROOT}/vendor/lib64/libhifills.so"
-patchelf --add-needed "libunwindstack.so" "${BLOB_ROOT}/vendor/lib/libhifills.so"
 
 "${MY_DIR}/setup-makefiles.sh"
