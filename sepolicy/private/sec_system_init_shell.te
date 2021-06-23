@@ -1,0 +1,3 @@
+type sec_system_init_shell, domain;
+
+dontaudit sec_system_init_shell domain:file { getattr open };
