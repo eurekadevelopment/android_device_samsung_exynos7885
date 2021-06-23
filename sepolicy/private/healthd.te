@@ -1,2 +1,1 @@
-allow healthd sysfs_battery:file rw_file_perms;
-allow healthd sysfs_battery:dir r_dir_perms;
+r_dir_file(healthd, sysfs_battery)
