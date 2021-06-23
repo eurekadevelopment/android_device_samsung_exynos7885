@@ -1,8 +1,5 @@
 # All blobs below are extracted from m20ltedd-user-10-QP1A.190711.020-M205FDDU6CTK1-release-keys
 
-# Camera
-lib/libcamera_client.so:system_ext/apex/com.android.vndk.v29/lib/libcamera_client.so
-
 # Vendor-m20lte
 vendor/app/mcRegistry/00060308060501020000000000000000.tlbin
 vendor/app/mcRegistry/07010000000000000000000000000000.tlbin
@@ -24,8 +21,6 @@ vendor/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
 vendor/app/mcRegistry/ffffffffd0000000000000000000000e.tlbin
 vendor/app/mcRegistry/ffffffffd00000000000000000000016.tlbin
 vendor/app/mcRegistry/ffffffffd00000000000000000000045.drbin
-vendor/bin/argosd
-vendor/bin/cass
 vendor/bin/cbd
 vendor/bin/hw/android.hardware.drm@1.2-service.widevine
 vendor/bin/hw/android.hardware.health@2.0-service.samsung
@@ -39,12 +34,8 @@ vendor/bin/hw/vendor.samsung.hardware.biometrics.fingerprint@3.0-service
 vendor/bin/hw/vendor.samsung.hardware.camera.provider@3.0-service
 vendor/bin/hw/vendor.samsung.hardware.gnss@2.0-service
 vendor/bin/hw/vendor.samsung.hardware.light@3.0-service
-vendor/bin/hw/vendor.samsung.hardware.miscpower@2.0-service
-vendor/bin/hw/vendor.samsung.hardware.snap@1.1-service
 vendor/bin/hw/vendor.samsung.hardware.vibrator@2.0-service
 vendor/bin/hw/vendor.samsung.hardware.wifi@2.0-service
-vendor/bin/hw/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0-service
-vendor/bin/hw/vendor.samsung_slsi.hardware.configstore@1.0-service
 vendor/bin/hw/vendor.trustonic.tee@1.0-service
 vendor/bin/hw/vendor.trustonic.teeregistry@1.0-service
 vendor/bin/hw/wpa_supplicant
@@ -55,22 +46,12 @@ vendor/bin/moredump.bin
 vendor/bin/secril_config_svc
 vendor/bin/slsi_wlan_udi_log
 vendor/bin/slsi_wlan_udi_log_decode
-vendor/bin/snap_utility_32
-vendor/bin/snap_utility_64
 vendor/bin/test_model.json
-vendor/bin/vaultkeeperd
-vendor/bin/vendor.samsung.hardware.security.vaultkeeper@1.0-service
-vendor/bin/vendor.samsung.hardware.security.widevine.keyprovisioning@1.0-service
 vendor/bin/wlbtd
 vendor/bin/wvkprov
 vendor/etc/SoundBoosterParam.txt
 vendor/etc/a2dp_audio_policy_configuration.xml
 vendor/etc/audio_board_info.xml
-vendor/etc/audio_effects.xml
-vendor/etc/audio_effects_common.conf
-vendor/etc/audio_effects_sec.xml
-vendor/etc/audio_policy_configuration.xml
-vendor/etc/audio_policy_configuration_sec.xml
 vendor/etc/audio_policy_volumes.xml
 vendor/etc/audio_policy_volumes_sec.xml
 vendor/etc/bluetooth/bt_did.conf
@@ -98,26 +79,18 @@ vendor/etc/init/hostapd.android.rc
 vendor/etc/init/init.baseband.rc
 vendor/etc/init/init.exynos7904.usb.rc
 vendor/etc/init/init.gps.rc
-vendor/etc/init/init.samsung.bsp.rc
 vendor/etc/init/init.vendor.onebinary.rc
 vendor/etc/init/init.vendor.rilchip.rc
 vendor/etc/init/init.vendor.rilcommon.rc
 vendor/etc/init/mobicore.rc
-vendor/etc/init/snap_utility.rc
 vendor/etc/init/vendor.samsung.hardware.biometrics.fingerprint@3.0-service.rc
 vendor/etc/init/vendor.samsung.hardware.camera.provider@3.0-service.rc
 vendor/etc/init/vendor.samsung.hardware.gnss@2.0-service.rc
 vendor/etc/init/vendor.samsung.hardware.light@3.0-service.rc
-vendor/etc/init/vendor.samsung.hardware.miscpower@2.0-service.rc
-vendor/etc/init/vendor.samsung.hardware.security.widevine.keyprovisioning@1.0-service.rc
-vendor/etc/init/vendor.samsung.hardware.snap@1.1-service.rc
 vendor/etc/init/vendor.samsung.hardware.vibrator@2.0-service.rc
 vendor/etc/init/vendor.samsung.hardware.wifi@2.0-service.rc
-vendor/etc/init/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0-service.rc
-vendor/etc/init/vendor.samsung_slsi.hardware.configstore@1.0-service.rc
 vendor/etc/init/vendor.trustonic.tee@1.0-service.rc
 vendor/etc/init/vendor.trustonic.teeregistry@1.0-service.rc
-vendor/etc/init/vk_kinibi.rc
 vendor/etc/init/wifi.rc
 vendor/etc/init/wifi_slsi.rc
 vendor/etc/media_codecs.xml
@@ -412,7 +385,6 @@ vendor/lib/vendor.samsung.hardware.camera.provider@3.0.so
 vendor/lib/vendor.samsung.hardware.gnss@2.0.so
 vendor/lib/vendor.samsung.hardware.health@1.0.so
 vendor/lib/vendor.samsung.hardware.light@3.0.so
-vendor/lib/vendor.samsung.hardware.miscpower@2.0.so
 vendor/lib/vendor.samsung.hardware.nfc@2.0.so
 vendor/lib/vendor.samsung.hardware.radio.bridge@2.0.so
 vendor/lib/vendor.samsung.hardware.radio.bridge@2.0_vendor.so
@@ -425,9 +397,6 @@ vendor/lib/vendor.samsung.hardware.vibrator@2.0.so
 vendor/lib/vendor.samsung.hardware.wifi.hostapd@2.0.so
 vendor/lib/vendor.samsung.hardware.wifi.supplicant@2.0.so
 vendor/lib/vendor.samsung.hardware.wifi@2.0.so
-vendor/lib/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0.so
-vendor/lib/vendor.samsung_slsi.hardware.configstore-utils.so
-vendor/lib/vendor.samsung_slsi.hardware.configstore@1.0.so
 vendor/lib/vendor.trustonic.tee@1.0.so
 vendor/lib/vendor.trustonic.teeregistry@1.0.so
 vendor/lib64/camera.device@1.0-impl.so
@@ -559,7 +528,6 @@ vendor/lib64/vendor.samsung.hardware.camera.provider@3.0.so
 vendor/lib64/vendor.samsung.hardware.gnss@2.0.so
 vendor/lib64/vendor.samsung.hardware.health@1.0.so
 vendor/lib64/vendor.samsung.hardware.light@3.0.so
-vendor/lib64/vendor.samsung.hardware.miscpower@2.0.so
 vendor/lib64/vendor.samsung.hardware.nfc@2.0.so
 vendor/lib64/vendor.samsung.hardware.radio.bridge@2.0.so
 vendor/lib64/vendor.samsung.hardware.radio.bridge@2.0_vendor.so
@@ -572,9 +540,6 @@ vendor/lib64/vendor.samsung.hardware.vibrator@2.0.so
 vendor/lib64/vendor.samsung.hardware.wifi.hostapd@2.0.so
 vendor/lib64/vendor.samsung.hardware.wifi.supplicant@2.0.so
 vendor/lib64/vendor.samsung.hardware.wifi@2.0.so
-vendor/lib64/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0.so
-vendor/lib64/vendor.samsung_slsi.hardware.configstore-utils.so
-vendor/lib64/vendor.samsung_slsi.hardware.configstore@1.0.so
 vendor/lib64/vendor.trustonic.tee@1.0.so
 vendor/lib64/vendor.trustonic.teeregistry@1.0.so
 vendor/ueventd.rc

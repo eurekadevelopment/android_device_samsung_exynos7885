@@ -359,16 +359,6 @@
         <fqname>@3.0::ISehLight/default</fqname>
     </hal>
     <hal format="hidl">
-        <name>vendor.samsung.hardware.miscpower</name>
-        <transport>hwbinder</transport>
-        <version>2.0</version>
-        <interface>
-            <name>ISehMiscPower</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@2.0::ISehMiscPower/default</fqname>
-    </hal>
-    <hal format="hidl">
         <name>vendor.samsung.hardware.radio</name>
         <transport>hwbinder</transport>
         <version>2.0</version>
@@ -407,36 +397,6 @@
         <fqname>@2.0::ISehChannel/epdgd2</fqname>
         <fqname>@2.0::ISehChannel/imsd</fqname>
         <fqname>@2.0::ISehChannel/imsd2</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.samsung.hardware.security.vaultkeeper</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ISehVaultKeeper</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.0::ISehVaultKeeper/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.samsung.hardware.security.widevine.keyprovisioning</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ISehWidevineKeyProvisioning</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.0::ISehWidevineKeyProvisioning/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.samsung.hardware.snap</name>
-        <transport>hwbinder</transport>
-        <version>1.1</version>
-        <interface>
-            <name>ISehSnap</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.1::ISehSnap/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.samsung.hardware.vibrator</name>
@@ -478,26 +438,6 @@
         </interface>
         <fqname>@2.0::ISehSupplicant/default</fqname>
     </hal>
-    <hal format="hidl">
-        <name>vendor.samsung_slsi.hardware.ExynosHWCServiceTW</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IExynosHWCServiceTW</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.0::IExynosHWCServiceTW/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.samsung_slsi.hardware.configstore</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IExynosHWCConfigs</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.0::IExynosHWCConfigs/default</fqname>
-    </hal>
     <hal format="hidl" override="true">
         <name>vendor.samsung_slsi.hardware.radio</name>
         <transport>hwbinder</transport>
@@ -521,5 +461,23 @@
             <instance>default</instance>
         </interface>
         <fqname>@1.0::ITeeRegistry/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.lineage.power</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>ILineagePower</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.lineage.touch</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IGloveMode</name>
+            <instance>default</instance>
+        </interface>
     </hal>
 </manifest>

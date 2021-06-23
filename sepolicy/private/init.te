@@ -1,2 +1,0 @@
-allow init vendor_overlay_file:dir mounton;
-allow init watchdog_device:file rw_file_perms;

@@ -18,10 +18,8 @@ PRODUCT_PACKAGES += \
     audio.usb.default
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio_policy_configuration.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/29/etc/audio_policy_configuration.xml \
-    $(LOCAL_PATH)/configs/audio_policy_configuration.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/30/etc/audio_policy_configuration.xml \
-    $(LOCAL_PATH)/configs/audio_effects.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/29/etc/audio_effects_sec.xml \
-    $(LOCAL_PATH)/configs/audio_effects.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/30/etc/audio_effects_sec.xml
+    $(LOCAL_PATH)/configs/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
+    $(LOCAL_PATH)/configs/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml
 
 # Bluetooth
 PRODUCT_PACKAGES += \
@@ -46,7 +44,7 @@ PRODUCT_PACKAGES += \
 
 # FastCharge
 PRODUCT_PACKAGES += \
-    lineage.fastcharge@1.0-service.samsung
+    vendor.lineage.fastcharge@1.0-service.samsung
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
@@ -72,7 +70,6 @@ PRODUCT_PACKAGES += \
 
 # Init
 PRODUCT_PACKAGES += \
-    init.universal7904.rc \
     init.usb_accessory.rc \
     fstab.enableswap \
     init.exynos7904.rc
@@ -171,23 +168,18 @@ PRODUCT_PACKAGES += \
 
 # Trust HAL
 PRODUCT_PACKAGES += \
-    lineage.trust@1.0-service
+    vendor.lineage.trust@1.0-service
 
 # Touch
 PRODUCT_PACKAGES += \
-    lineage.touch@1.0-service.samsung
+    vendor.lineage.touch@1.0-service.samsung
 
 # USB
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.1-service.typec
 
 # VNDK
-PRODUCT_EXTRA_VNDK_VERSIONS := 29
-
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/vndkcore.libraries.29.txt:$(TARGET_COPY_OUT_SYSTEM_EXT)/apex/com.android.vndk.v29/etc/vndkcore.libraries.29.txt \
-    $(LOCAL_PATH)/configs/vndkprivate.libraries.29.txt:$(TARGET_COPY_OUT_SYSTEM_EXT)/apex/com.android.vndk.v29/etc/vndkprivate.libraries.29.txt \
-    $(LOCAL_PATH)/configs/placeholder:$(TARGET_COPY_OUT_SYSTEM_EXT)/apex/com.android.vndk.v29/lib/libstagefright_foundation.so  \
     prebuilts/vndk/v29/arm64/arch-arm64-armv8-a/shared/vndk-sp/libcutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libcutils-v29.so \
     prebuilts/vndk/v29/arm64/arch-arm-armv8-a/shared/vndk-sp/libcutils.so:$(TARGET_COPY_OUT_VENDOR)/lib/libcutils-v29.so
 

@@ -5,6 +5,13 @@ on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
 on init
+    # Fastcharge
+    chown system radio /sys/class/sec/switch/afc_disable
+
+    # ZRAM parameters
+    write /proc/sys/vm/page-cluster 0
+    write /proc/sys/vm/swappiness 100
+
 	start watchdogd
 	mkdir /preload 0771 system system
 	
@@ -41,6 +48,9 @@ on late-fs
 #    start mobicore
 
 on post-fs
+    # Allow writing to the kernel trace log.
+    chmod 0222 /sys/kernel/debug/tracing/trace_marker
+
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
 
@@ -255,9 +265,6 @@ on post-fs-data
 
 on boot
 
-# SSWAP
-    write /proc/sys/vm/swappiness 145
-
 	setprop wifi.interface wlan0
 
     # Allow to access debugfs for system:system
@@ -399,24 +406,9 @@ on boot
     write /dev/cpuset/foreground/selective_boost 1
     write /dev/cpuset/cameraserver/selective_boost 1
 
-# Support DM logging
-#    chmod 0770 /system/bin/dmd
-
-# Support Virtual Com
-    chmod 0770 /system/bin/vcd
-
-# Support AP/CP log dump
-#    chmod 0770 /system/bin/sced
-
 # Permission for UART SWITCH
     chmod 0660 /sys/class/sec/switch/uart_sel
     chown system system /sys/class/sec/switch/uart_sel
-
-#on nonencrypted
-#    mkdir /data/misc/mcRegistry 0775 system drmrpc
-
-#on property:vold.decrypt=trigger_restart_framework
-#    mkdir /data/misc/mcRegistry 0775 system drmrpc
 
 on fs
     mount_all /vendor/etc/fstab.${ro.hardware}
@@ -561,20 +553,16 @@ on fs
     chown system radio /sys/class/fingerprint/fingerprint/adm
     chown system radio /sys/class/fingerprint/fingerprint/bfs_values
 
-# Copy DRM Key
-#    copy /system/app/wv.keys /factory/wv.keys
-
-# Permission for DRM Key
-#    chmod 0644 /factory/wv.keys
-
 # Permissions for System LSI NFC
 # NFC : Permissions for NFC
-		chmod 0660 /dev/sec-nfc
-		chown nfc nfc /dev/sec-nfc
+        chmod 0660 /dev/sec-nfc
+        chown nfc nfc /dev/sec-nfc
 # Permissions for S.LSI ESE
-		chmod 0660 /dev/p3
-		chown system system /dev/p3
+        chmod 0660 /dev/p3
+        chown system system /dev/p3
 
+on property:sys.boot_completed=1
+    swapon_all /vendor/etc/fstab.enableswap
 
 # Permission for flashlight control for HAL3.3
 # The Istor espresso board does not have the flash led h/w, So the below permission line are blocked.
@@ -587,15 +575,6 @@ on fs
 #load ecd firmware
     write /proc/ecd/load_firmware 1
 
-# ARGOSD network_throughput
-    chown system system /dev/network_throughput
-
-# ARGOSD
-service argos-daemon /vendor/bin/argosd
-    class main
-    user system
-    group system radio
-
 # faced
 service faced /system/bin/faced
     class late_start
@@ -607,19 +586,6 @@ service cp_vername /vendor/bin/cp_vername.sh /sys/class/nfc_test/test
     user system
     group system
     oneshot
-
-# MobiCore startup
-#service mobicore /vendor/bin/mcDriverDaemon -r /vendor/app/mcRegistry/020a0000000000000000000000000000.drbin -r /vendor/app/mcRegistry/FFFFFFFFD00000000000000000000016.tlbin
-#    user drmrpc
-#    group drmrpc
-#    class core
-#    seclabel u:r:tee:s0
-
-#service trustonic-proxy /system/bin/trustonic_tee_proxy
-#    class core
-#    user system
-#    group system drmrpc
-#    seclabel u:r:tee:s0
 
 service fuse_sdcard /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard /storage/sdcard
     class late_start
@@ -636,13 +602,6 @@ service abox /vendor/bin/main_abox 14a50000.abox /data/log/abox
    class late_start
    user audioserver
    group system
-
-# LPM
-on property:ro.bootmode=charger
-    wait /dev/block/platform/13500000.dwmmc0/by-name/EFS
-    mount ext4 /dev/block/platform/13500000.dwmmc0/by-name/EFS /mnt/vendor/efs nosuid nodev noatime noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic
-    mkdir /mnt/vendor/efs/lpm 0775 system system
-    class_start sec-charger
 
 # Set watchdog timer to 30 seconds and pet it every 10 seconds to get a 20 second margin
 service watchdogd /system/bin/watchdogd 10 20
@@ -739,16 +698,9 @@ service tzts_service /vendor/bin/tzts_daemon
     group system
     disabled
 
-# SSWAP
-service swapon /sbin/sswap -s -f 2048
-    class core
-    user root
-    group root
-    seclabel u:r:sswap:s0
-    oneshot
-
-# Remosaic daemon of Camera
-#service remosaic_daemon /vendor/bin/remosaic_daemon
-#    class late_start
-#    user cameraserver
-#    group cameraserver
+service charger /system/bin/charger
+    class charger
+    user system
+    group system graphics input
+    capabilities SYS_BOOT
+    seclabel u:r:charger:s0
