@@ -1,2 +1,18 @@
+# Audio
+lib/libHMT.so:product/vendor_overlay/29/lib/libHMT.so
+lib/lib_SoundAlive_3DPosition_ver202.so:product/vendor_overlay/29/lib/lib_SoundAlive_3DPosition_ver202.so
+lib/lib_SoundAlive_AlbumArt_ver105.so:product/vendor_overlay/29/lib/lib_SoundAlive_AlbumArt_ver105.so
+lib/lib_SoundAlive_play_plus_ver210.so:product/vendor_overlay/29/lib/lib_SoundAlive_play_plus_ver210.so
+lib/lib_SoundBooster_ver950.so:product/vendor_overlay/29/lib/lib_SoundBooster_ver950.so
+lib/libprofileparamstorage.so:product/vendor_overlay/29/lib/libprofileparamstorage.so
+lib/libsecaudiocoreutils.so:product/vendor_overlay/29/lib/libsecaudiocoreutils.so
+lib64/libHMT.so:product/vendor_overlay/29/lib64/libHMT.so
+lib64/lib_SoundAlive_3DPosition_ver202.so:product/vendor_overlay/29/lib64/lib_SoundAlive_3DPosition_ver202.so
+lib64/lib_SoundAlive_AlbumArt_ver105.so:product/vendor_overlay/29/lib64/lib_SoundAlive_AlbumArt_ver105.so
+lib64/lib_SoundAlive_play_plus_ver210.so:product/vendor_overlay/29/lib64/lib_SoundAlive_play_plus_ver210.so
+lib64/lib_SoundBooster_ver950.so:product/vendor_overlay/29/lib64/lib_SoundBooster_ver950.so
+lib64/libprofileparamstorage.so:product/vendor_overlay/29/lib64/libprofileparamstorage.so
+lib64/libsecaudiocoreutils.so:product/vendor_overlay/29/lib64/libsecaudiocoreutils.so
+
 # Camera
 lib/libcamera_client.so:system_ext/apex/com.android.vndk.v29/lib/libcamera_client.so
