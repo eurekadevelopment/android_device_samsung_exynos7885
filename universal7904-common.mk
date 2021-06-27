@@ -84,6 +84,10 @@ PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-impl \
     libkeymaster3device
 
+# Light
+PRODUCT_PACKAGES += \
+    android.hardware.light@2.0-service.samsung
+
 # Memtrack
 PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-impl \

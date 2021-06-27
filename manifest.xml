@@ -329,16 +329,6 @@
         <fqname>@2.0::ISehGnss/default</fqname>
     </hal>
     <hal format="hidl">
-        <name>vendor.samsung.hardware.light</name>
-        <transport>hwbinder</transport>
-        <version>3.0</version>
-        <interface>
-            <name>ISehLight</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@3.0::ISehLight/default</fqname>
-    </hal>
-    <hal format="hidl">
         <name>vendor.samsung.hardware.radio</name>
         <transport>hwbinder</transport>
         <version>2.0</version>
