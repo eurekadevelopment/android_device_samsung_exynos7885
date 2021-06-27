@@ -329,16 +329,6 @@
         <fqname>@2.0::ISehGnss/default</fqname>
     </hal>
     <hal format="hidl">
-        <name>vendor.samsung.hardware.health</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ISehHealth</name>
-            <instance>sehhealth</instance>
-        </interface>
-        <fqname>@1.0::ISehHealth/sehhealth</fqname>
-    </hal>
-    <hal format="hidl">
         <name>vendor.samsung.hardware.light</name>
         <transport>hwbinder</transport>
         <version>3.0</version>

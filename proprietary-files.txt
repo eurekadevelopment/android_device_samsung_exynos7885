@@ -23,7 +23,6 @@ vendor/app/mcRegistry/ffffffffd00000000000000000000016.tlbin
 vendor/app/mcRegistry/ffffffffd00000000000000000000045.drbin
 vendor/bin/cbd
 vendor/bin/hw/android.hardware.drm@1.2-service.widevine
-vendor/bin/hw/android.hardware.health@2.0-service.samsung
 vendor/bin/hw/android.hardware.wifi@1.0-service
 vendor/bin/hw/gpsd
 vendor/bin/hw/hostapd
@@ -72,7 +71,6 @@ vendor/etc/gnss/ca.pem
 vendor/etc/gnss/gps.cfg
 vendor/etc/hearing_aid_audio_policy_configuration.xml
 vendor/etc/init/android.hardware.drm@1.2-service.widevine.rc
-vendor/etc/init/android.hardware.health@2.0-service.samsung.rc
 vendor/etc/init/android.hardware.wifi@1.0-service.rc
 vendor/etc/init/hostapd.android.rc
 vendor/etc/init/init.baseband.rc
