@@ -22,9 +22,6 @@ source "${HELPER}"
 
 function blob_fixup {
     case "$1" in
-        vendor/lib/libstagefright_omx_utils.so)
-            "$PATCHELF" --add-needed "libshim_stagefright_foundation.so" "$2"
-            ;;
         vendor/lib*/libhifills.so)
             "$PATCHELF" --add-needed "libunwindstack.so" "$2"
             ;;
