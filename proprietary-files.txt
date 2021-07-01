@@ -177,7 +177,6 @@ vendor/lib/lib_SamsungRec_06006.so
 vendor/lib/lib_SoundAlive_SRC384_ver320.so
 vendor/lib/lib_soundaliveresampler.so
 vendor/lib/libacryl.so
-vendor/lib/libalsautils.so
 vendor/lib/libaudio-ril.so
 vendor/lib/libaudio_soundtrigger.so
 vendor/lib/libaudioroute.so
@@ -199,13 +198,10 @@ vendor/lib/libgiantmscl.so
 vendor/lib/libhifills.so
 vendor/lib/libhifills_interface.so
 vendor/lib/libhigh_dynamic_range.so
-vendor/lib/libhwc2on1adapter.so
-vendor/lib/libhwc2onfbadapter.so
 vendor/lib/libhwjpeg.so
 vendor/lib/libion_exynos.so
 vendor/lib/libmfhdr_interface.so
 vendor/lib/libmpbase.so
-vendor/lib/libnbaio_mono.so
 vendor/lib/liboemcrypto.so
 vendor/lib/libqfp_sensortest.so
 vendor/lib/librecordalive.so
@@ -219,7 +215,6 @@ vendor/lib/libsec-ril.so
 vendor/lib/libsecaudioinfo.so
 vendor/lib/libsecnativefeature.so
 vendor/lib/libsensorlistener.so
-vendor/lib/libsensorndkbridge.so
 vendor/lib/libskeymaster3device.so
 vendor/lib/libstagefright_omx_vendor.so
 vendor/lib/libstagefright_soft_ac4dec.so
@@ -285,7 +280,6 @@ vendor/lib64/libOpenCv.camera.samsung.so
 vendor/lib64/lib_SoundAlive_SRC384_ver320.so
 vendor/lib64/lib_soundaliveresampler.so
 vendor/lib64/libacryl.so
-vendor/lib64/libalsautils.so
 vendor/lib64/libbauthserver.so
 vendor/lib64/libbauthtzcommon.so
 vendor/lib64/libbt-vendor.so
@@ -304,8 +298,6 @@ vendor/lib64/libgiantmscl.so
 vendor/lib64/libhifills.so
 vendor/lib64/libhifills_interface.so
 vendor/lib64/libhigh_dynamic_range.so
-vendor/lib64/libhwc2on1adapter.so
-vendor/lib64/libhwc2onfbadapter.so
 vendor/lib64/libhwjpeg.so
 vendor/lib64/libion_exynos.so
 vendor/lib64/libkeymaster2_mdfpp.so
@@ -315,7 +307,6 @@ vendor/lib64/libkeystore-wifi-hidl.so
 vendor/lib64/libmfhdr_interface.so
 vendor/lib64/libmpbase.so
 vendor/lib64/libmpp.so
-vendor/lib64/libnbaio_mono.so
 vendor/lib64/libqfp_sensortest.so
 vendor/lib64/libreference-ril.so
 vendor/lib64/libril.so
@@ -326,7 +317,6 @@ vendor/lib64/libsec-ril.so
 vendor/lib64/libsecaudioinfo.so
 vendor/lib64/libsecnativefeature.so
 vendor/lib64/libsensorlistener.so
-vendor/lib64/libsensorndkbridge.so
 vendor/lib64/libskeymaster3device.so
 vendor/lib64/libstagefrighthw.so
 vendor/lib64/libsynaFpSensorTestNwd.so

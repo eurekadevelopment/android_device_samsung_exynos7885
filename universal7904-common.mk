@@ -12,7 +12,9 @@ PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-impl \
     android.hardware.audio.service \
     android.hardware.audio.effect@2.0-impl \
+    libalsautils \
     libeffects \
+    libnbaio_mono \
     libtinycompress \
     audio.r_submix.default \
     audio.usb.default
@@ -61,7 +63,9 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.1-impl \
     android.hardware.graphics.composer@2.1-service \
     android.hardware.graphics.mapper@2.0-impl \
-    libgui_vendor
+    libgui_vendor \
+    libhwc2on1adapter \
+    libhwc2onfbadapter
 
 # Health
 PRODUCT_PACKAGES += \
@@ -154,7 +158,8 @@ PRODUCT_PACKAGES += \
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl.samsung \
-    android.hardware.sensors@1.0-service
+    android.hardware.sensors@1.0-service \
+    libsensorndkbridge
 
 # Skip Mount
 PRODUCT_COPY_FILES += \
