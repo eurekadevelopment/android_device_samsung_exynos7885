@@ -51,7 +51,6 @@ vendor/etc/init/android.hardware.drm@1.2-service.widevine.rc
 vendor/etc/init/android.hardware.wifi@1.0-service.rc
 vendor/etc/init/hostapd.android.rc
 vendor/etc/init/init.baseband.rc
-vendor/etc/init/init.exynos7904.usb.rc
 vendor/etc/init/init.gps.rc
 vendor/etc/init/init.vendor.onebinary.rc
 vendor/etc/init/init.vendor.rilchip.rc
