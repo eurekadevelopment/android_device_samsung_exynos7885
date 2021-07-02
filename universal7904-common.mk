@@ -89,7 +89,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     init.usb_accessory.rc \
     fstab.enableswap \
-    init.exynos7904.rc
+    init.exynos7904.rc \
+    ueventd.exynos7904.rc
 
 # Keymaster
 PRODUCT_PACKAGES += \
