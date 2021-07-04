@@ -71,9 +71,6 @@ vendor/etc/plmn_delta_hktw.bin
 vendor/etc/plmn_delta_usacdma.bin
 vendor/etc/plmn_delta_usagsm.bin
 vendor/etc/plmn_se13.bin
-vendor/etc/seccomp_policy/configstore@1.1.policy
-vendor/etc/seccomp_policy/mediacodec.policy
-vendor/etc/seccomp_policy/mediaextractor.policy
 vendor/etc/selinux/plat_pub_versioned.cil
 vendor/etc/selinux/plat_sepolicy_vers.txt
 vendor/etc/selinux/precompiled_sepolicy
