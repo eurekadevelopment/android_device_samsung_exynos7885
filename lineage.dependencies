@@ -10,5 +10,13 @@
     {
         "repository": "android_hardware_samsung_slsi_libbt",
         "target_path": "hardware/samsung_slsi/libbt"
+    },
+    {
+        "repository": "android_hardware_samsung_slsi_scsc_wifibt_wifi_hal",
+        "target_path": "hardware/samsung_slsi/scsc_wifibt/wifi_hal"
+    },
+    {
+        "repository": "android_hardware_samsung_slsi_scsc_wifibt_wpa_supplicant_lib"
+        "target_path": "hardware/samsung_slsi/scsc_wifibt/wpa_supplicant_lib"
     }
 ]

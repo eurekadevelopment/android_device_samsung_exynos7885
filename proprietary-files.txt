@@ -196,15 +196,8 @@ vendor/lib/hw/thermal.universal7904.so
 vendor/lib64/hw/thermal.universal7904.so
 
 # WIFI
-vendor/bin/hw/android.hardware.wifi@1.0-service
-vendor/bin/hw/hostapd
 vendor/bin/hw/macloader
-vendor/bin/hw/vendor.samsung.hardware.wifi@2.0-service
-vendor/bin/hw/wpa_supplicant
 vendor/bin/wlbtd
-vendor/etc/init/android.hardware.wifi@1.0-service.rc
-vendor/etc/init/hostapd.android.rc
-vendor/etc/init/vendor.samsung.hardware.wifi@2.0-service.rc
 vendor/etc/init/wifi_slsi.rc
 vendor/etc/wifi/hydra_config.sdb
 vendor/etc/wifi/indoorchannel.info
@@ -220,14 +213,3 @@ vendor/etc/wifi/p2p_supplicant_overlay.conf
 vendor/etc/wifi/platform.txt
 vendor/etc/wifi/wpa_supplicant.conf
 vendor/etc/wifi/wpa_supplicant_overlay.conf
-vendor/lib/libwifi-hal.so
-vendor/lib/libwpa_client.so
-vendor/lib64/libkeystore-engine-wifi-hidl.so
-vendor/lib64/libkeystore-wifi-hidl.so
-vendor/lib64/libucsengine.so
-vendor/lib64/libwifi-hal.so
-vendor/lib64/libwpa_client.so
-vendor/lib64/vendor.samsung.frameworks.security.ucm.crypto@1.0.so
-vendor/lib64/vendor.samsung.hardware.wifi.hostapd@2.0.so
-vendor/lib64/vendor.samsung.hardware.wifi.supplicant@2.0.so
-vendor/lib64/vendor.samsung.hardware.wifi@2.0.so
