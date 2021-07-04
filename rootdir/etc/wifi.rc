@@ -49,27 +49,11 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     oneshot
 
 # start for WiFi MFG (TestMode)
-service mfgloader /system/vendor/bin/hw/mfgloader
-    class main
-    user wifi
-    group wifi inet net_raw net_admin
-    capabilities NET_ADMIN NET_RAW SYS_MODULE
-    disabled
-    oneshot
-
 service macloader /system/vendor/bin/hw/macloader
     class main
     user wifi
     group wifi inet net_raw net_admin
     capabilities NET_ADMIN NET_RAW SYS_MODULE
-    oneshot
-
-service wlandutservice /system/bin/wlandutservice
-    class main
-    user system
-    group system wifi net_raw net_admin inet
-    capabilities NET_ADMIN NET_RAW
-    disabled
     oneshot
 
 # end of WiFi MFG (TestMode)

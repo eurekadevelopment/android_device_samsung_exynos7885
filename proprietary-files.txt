@@ -199,7 +199,6 @@ vendor/lib64/hw/thermal.universal7904.so
 vendor/bin/hw/android.hardware.wifi@1.0-service
 vendor/bin/hw/hostapd
 vendor/bin/hw/macloader
-vendor/bin/hw/mfgloader
 vendor/bin/hw/vendor.samsung.hardware.wifi@2.0-service
 vendor/bin/hw/wpa_supplicant
 vendor/bin/wlbtd
