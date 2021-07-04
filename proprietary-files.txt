@@ -206,7 +206,6 @@ vendor/bin/wlbtd
 vendor/etc/init/android.hardware.wifi@1.0-service.rc
 vendor/etc/init/hostapd.android.rc
 vendor/etc/init/vendor.samsung.hardware.wifi@2.0-service.rc
-vendor/etc/init/wifi.rc
 vendor/etc/init/wifi_slsi.rc
 vendor/etc/wifi/hydra_config.sdb
 vendor/etc/wifi/indoorchannel.info
