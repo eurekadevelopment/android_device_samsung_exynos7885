@@ -247,36 +247,6 @@
         <fqname>@1.1::IUsb/default</fqname>
     </hal>
     <hal format="hidl">
-        <name>android.hardware.wifi</name>
-        <transport>hwbinder</transport>
-        <version>1.3</version>
-        <interface>
-            <name>IWifi</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.3::IWifi/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.wifi.hostapd</name>
-        <transport>hwbinder</transport>
-        <version>1.1</version>
-        <interface>
-            <name>IHostapd</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.1::IHostapd/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.wifi.supplicant</name>
-        <transport>hwbinder</transport>
-        <version>1.2</version>
-        <interface>
-            <name>ISupplicant</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.2::ISupplicant/default</fqname>
-    </hal>
-    <hal format="hidl">
         <name>vendor.samsung.hardware.gnss</name>
         <transport>hwbinder</transport>
         <version>2.0</version>
@@ -325,40 +295,6 @@
         <fqname>@2.0::ISehChannel/epdgd2</fqname>
         <fqname>@2.0::ISehChannel/imsd</fqname>
         <fqname>@2.0::ISehChannel/imsd2</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.samsung.hardware.wifi</name>
-        <transport>hwbinder</transport>
-        <version>2.0</version>
-        <interface>
-            <name>ISehWifi</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@2.0::ISehWifi/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.samsung.hardware.wifi.hostapd</name>
-        <transport>hwbinder</transport>
-        <version>2.0</version>
-        <interface>
-            <name>ISehHostapd</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@2.0::ISehHostapd/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.samsung.hardware.wifi.supplicant</name>
-        <transport>hwbinder</transport>
-        <version>2.0</version>
-        <interface>
-            <name>ISehSupplicant</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@2.0::ISehSupplicant/default</fqname>
-    </hal>
-    <hal format="hidl" override="true">
-        <name>vendor.samsung_slsi.hardware.radio</name>
-        <transport>hwbinder</transport>
     </hal>
     <hal format="hidl">
         <name>vendor.trustonic.tee</name>
