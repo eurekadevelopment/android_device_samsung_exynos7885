@@ -1,4 +1,4 @@
-# All blobs below are extracted from m20ltedd-user-10-QP1A.190711.020-M205FDDU6CTK1-release-keys
+# All blobs below are extracted from a30ub-user-10-QP1A.190711.020-A305GUBS7BTL1-release-keys
 
 # Audio
 vendor/bin/main_abox
@@ -17,74 +17,23 @@ vendor/firmware/calliope_sram.bin
 vendor/lib/hw/audio.primary.exynos7904.so
 vendor/lib/hw/audio.sec_primary.default.so
 vendor/lib/libSamsungPostProcessConvertor.so
-vendor/lib/lib_SamsungRec_06006.so
+vendor/lib/lib_SamsungRec_07001.so
 vendor/lib/lib_SoundAlive_SRC384_ver320.so
 vendor/lib/lib_soundaliveresampler.so
 vendor/lib/libaudio_soundtrigger.so
-vendor/lib/libaudioroute.so
 vendor/lib/libfloatingfeature.so
 vendor/lib/librecordalive.so
 vendor/lib/libsamsungDiamondVoice.so
 vendor/lib/libsecaudioinfo.so
-vendor/lib/libtinyalsa.so
 vendor/lib/libvndsecril-client.so
 vendor/lib/soundfx/libaudioeffectoffload.so
+vendor/lib/vndk/libaudioroute.so
+vendor/lib/vndk/libtinyalsa.so
 vendor/lib64/hw/audio.sec_primary.default.so
-vendor/lib64/lib_SoundAlive_SRC384_ver320.so
-vendor/lib64/lib_soundaliveresampler.so
 vendor/lib64/libfloatingfeature.so
 vendor/lib64/libsecaudioinfo.so
 vendor/lib64/libvndsecril-client.so
 vendor/lib64/soundfx/libaudioeffectoffload.so
-
-# Camera
-vendor/firmware/setfile_3l6.bin
-vendor/firmware/setfile_4ha.bin
-vendor/firmware/setfile_5e9.bin
-vendor/lib/camera.device@1.0-impl.so
-vendor/lib/camera.device@3.2-impl.so
-vendor/lib/camera.device@3.3-impl.so
-vendor/lib/camera.device@3.4-impl.so
-vendor/lib/camera.device@3.5-impl.so
-vendor/lib/hw/camera.exynos7904.so
-vendor/lib/libOpenCv.camera.samsung.so
-vendor/lib/libcsc.so
-vendor/lib/libexynoscamera.so
-vendor/lib/libexynoscamera3.so
-vendor/lib/libgiantmscl.so
-vendor/lib/libhifills.so
-vendor/lib/libhifills_interface.so
-vendor/lib/libhigh_dynamic_range.so
-vendor/lib/libhwjpeg.so
-vendor/lib/libmfhdr_interface.so
-vendor/lib/libmpbase.so
-vendor/lib/libsaiv_BeautySolutionVideo.so
-vendor/lib/libsensorlistener.so
-vendor/lib/libuniapi.so
-vendor/lib/libuniplugin.so
-vendor/lib/libvideobeauty_interface.so
-vendor/lib64/camera.device@1.0-impl.so
-vendor/lib64/camera.device@3.2-impl.so
-vendor/lib64/camera.device@3.3-impl.so
-vendor/lib64/camera.device@3.4-impl.so
-vendor/lib64/camera.device@3.5-impl.so
-vendor/lib64/hw/camera.exynos7904.so
-vendor/lib64/libOpenCv.camera.samsung.so
-vendor/lib64/libcsc.so
-vendor/lib64/libexynoscamera.so
-vendor/lib64/libexynoscamera3.so
-vendor/lib64/libgiantmscl.so
-vendor/lib64/libhifills.so
-vendor/lib64/libhifills_interface.so
-vendor/lib64/libhigh_dynamic_range.so
-vendor/lib64/libhwjpeg.so
-vendor/lib64/libmfhdr_interface.so
-vendor/lib64/libmpbase.so
-vendor/lib64/libsaiv_BeautySolutionVideo.so
-vendor/lib64/libsensorlistener.so
-vendor/lib64/libuniapi.so
-vendor/lib64/libuniplugin.so
-vendor/lib64/libvideobeauty_interface.so
 
 # DRM
 vendor/bin/hw/android.hardware.drm@1.2-service.widevine
@@ -92,10 +41,6 @@ vendor/etc/init/android.hardware.drm@1.2-service.widevine.rc
 vendor/lib/liboemcrypto.so
 vendor/lib/libwvhidl.so
 vendor/lib/mediadrm/libwvdrmengine.so
-
-# Gatekeeper
-vendor/lib/hw/gatekeeper.exynos7904.so
-vendor/lib64/hw/gatekeeper.exynos7904.so
 
 # GPS
 vendor/bin/hw/gpsd
@@ -105,7 +50,6 @@ vendor/etc/gnss/gps.cfg
 vendor/etc/init/init.gps.rc
 vendor/etc/init/vendor.samsung.hardware.gnss@2.0-service.rc
 vendor/lib/libwrappergps.so
-vendor/lib/vendor.samsung.hardware.gnss@2.0.so
 vendor/lib64/hw/android.hardware.gnss@2.0-impl.so
 vendor/lib64/hw/vendor.samsung.hardware.gnss@2.0-impl.so
 vendor/lib64/libwrappergps.so
@@ -139,25 +83,14 @@ vendor/lib64/libion_exynos.so
 vendor/lib64/libmpp.so
 
 # Fingerprint
-vendor/lib/libbauthserver.so
-vendor/lib/libbauthtzcommon.so
 vendor/lib/libegis_fp_normal_sensor_test.so
 vendor/lib/libgf_in_system_lib.so
 vendor/lib/libqfp_sensortest.so
 vendor/lib/libsynaFpSensorTestNwd.so
-vendor/lib64/libbauthserver.so
-vendor/lib64/libbauthtzcommon.so
 vendor/lib64/libegis_fp_normal_sensor_test.so
 vendor/lib64/libgf_in_system_lib.so
 vendor/lib64/libqfp_sensortest.so
 vendor/lib64/libsynaFpSensorTestNwd.so
-
-# Keymaster
-vendor/lib/libskeymaster3device.so
-vendor/lib64/hw/keystore.mdfpp.so
-vendor/lib64/libkeymaster2_mdfpp.so
-vendor/lib64/libkeymaster_helper_vendor.so
-vendor/lib64/libskeymaster3device.so
 
 # Lights
 vendor/lib/hw/lights.universal7904.so
@@ -167,9 +100,6 @@ vendor/lib64/hw/lights.universal7904.so
 vendor/etc/media_codecs.xml
 vendor/etc/media_codecs_performance.xml
 vendor/etc/media_profiles_V1_0.xml
-vendor/firmware/fimc_is_lib.bin
-vendor/firmware/fimc_is_rta.bin
-vendor/firmware/mfc_fw.bin
 
 # Memtrack
 vendor/lib/hw/memtrack.exynos7904.so
@@ -194,7 +124,6 @@ vendor/lib/omx/libOMX.Exynos.VP9.Decoder.so
 vendor/lib/omx/libOMX.Exynos.WMV.Decoder.so
 vendor/lib64/libExynosOMX_Core.so
 vendor/lib64/libExynosOMX_Resourcemanager.so
-vendor/lib64/libFrucSSMLib.so
 vendor/lib64/libstagefrighthw.so
 vendor/lib64/omx/libOMX.Exynos.AVC.Decoder.so
 vendor/lib64/omx/libOMX.Exynos.AVC.Encoder.so
@@ -229,9 +158,8 @@ vendor/lib/libsecnativefeature.so
 vendor/lib/libsec-ril-dsds.so
 vendor/lib/libsec-ril.so
 vendor/lib/vendor.samsung.hardware.radio.bridge@2.0.so
-vendor/lib/vendor.samsung.hardware.radio.bridge@2.0_vendor.so
-vendor/lib/vendor.samsung.hardware.radio.channel@2.0_vendor.so
-vendor/lib/vendor.samsung.hardware.radio@2.0_vendor.so
+vendor/lib/vendor.samsung.hardware.radio.channel@2.0.so
+vendor/lib/vendor.samsung.hardware.radio@2.0.so
 vendor/lib64/libreference-ril.so
 vendor/lib64/libril.so
 vendor/lib64/librilutils.so
@@ -239,9 +167,8 @@ vendor/lib64/libsecnativefeature.so
 vendor/lib64/libsec-ril-dsds.so
 vendor/lib64/libsec-ril.so
 vendor/lib64/vendor.samsung.hardware.radio.bridge@2.0.so
-vendor/lib64/vendor.samsung.hardware.radio.bridge@2.0_vendor.so
-vendor/lib64/vendor.samsung.hardware.radio.channel@2.0_vendor.so
-vendor/lib64/vendor.samsung.hardware.radio@2.0_vendor.so
+vendor/lib64/vendor.samsung.hardware.radio.channel@2.0.so
+vendor/lib64/vendor.samsung.hardware.radio@2.0.so
 
 # Selinux
 vendor/etc/selinux/plat_pub_versioned.cil
@@ -261,44 +188,8 @@ vendor/etc/selinux/vndservice_contexts
 
 # Sensors
 vendor/etc/yas_set.cfg
-vendor/lib/hw/sensors.universal7904.so
 vendor/lib/libyasalgo.so
-vendor/lib64/hw/sensors.universal7904.so
 vendor/lib64/libyasalgo.so
-
-# TEE
-vendor/app/mcRegistry/00060308060501020000000000000000.tlbin
-vendor/app/mcRegistry/07010000000000000000000000000000.tlbin
-vendor/app/mcRegistry/0706000000000000000000000000004d.tlbin
-vendor/app/mcRegistry/08130000000000000000000000000000.tlbin
-vendor/app/mcRegistry/FFFFFFFF000000000000000000000001.drbin
-vendor/app/mcRegistry/ffffffff000000000000000000000005.tlbin
-vendor/app/mcRegistry/ffffffff00000000000000000000000c.tlbin
-vendor/app/mcRegistry/ffffffff000000000000000000000016.tlbin
-vendor/app/mcRegistry/ffffffff000000000000000000000017.tlbin
-vendor/app/mcRegistry/ffffffff000000000000000000000019.tlbin
-vendor/app/mcRegistry/ffffffff00000000000000000000002e.tlbin
-vendor/app/mcRegistry/ffffffff00000000000000000000002f.tlbin
-vendor/app/mcRegistry/ffffffff00000000000000000000003e.tlbin
-vendor/app/mcRegistry/ffffffff000000000000000000000045.tlbin
-vendor/app/mcRegistry/ffffffff000000000000000000000059.tlbin
-vendor/app/mcRegistry/ffffffff000000000000000000000060.tlbin
-vendor/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
-vendor/app/mcRegistry/ffffffffd0000000000000000000000e.tlbin
-vendor/app/mcRegistry/ffffffffd00000000000000000000016.tlbin
-vendor/app/mcRegistry/ffffffffd00000000000000000000045.drbin
-vendor/bin/hw/vendor.trustonic.tee@1.0-service
-vendor/bin/hw/vendor.trustonic.teeregistry@1.0-service
-vendor/bin/mcDriverDaemon
-vendor/etc/init/mobicore.rc
-vendor/etc/init/vendor.trustonic.tee@1.0-service.rc
-vendor/etc/init/vendor.trustonic.teeregistry@1.0-service.rc
-vendor/lib/libMcClient.so
-vendor/lib/vendor.trustonic.tee@1.0.so
-vendor/lib/vendor.trustonic.teeregistry@1.0.so
-vendor/lib64/libMcClient.so
-vendor/lib64/vendor.trustonic.tee@1.0.so
-vendor/lib64/vendor.trustonic.teeregistry@1.0.so
 
 # Thermal
 vendor/lib/hw/thermal.universal7904.so
@@ -333,12 +224,12 @@ vendor/etc/wifi/wpa_supplicant.conf
 vendor/etc/wifi/wpa_supplicant_overlay.conf
 vendor/lib/libwifi-hal.so
 vendor/lib/libwpa_client.so
-vendor/lib/vendor.samsung.hardware.wifi.supplicant@2.0.so
-vendor/lib/vendor.samsung.hardware.wifi@2.0.so
 vendor/lib64/libkeystore-engine-wifi-hidl.so
 vendor/lib64/libkeystore-wifi-hidl.so
+vendor/lib64/libucsengine.so
 vendor/lib64/libwifi-hal.so
 vendor/lib64/libwpa_client.so
+vendor/lib64/vendor.samsung.frameworks.security.ucm.crypto@1.0.so
 vendor/lib64/vendor.samsung.hardware.wifi.hostapd@2.0.so
 vendor/lib64/vendor.samsung.hardware.wifi.supplicant@2.0.so
 vendor/lib64/vendor.samsung.hardware.wifi@2.0.so
