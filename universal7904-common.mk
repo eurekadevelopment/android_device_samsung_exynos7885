@@ -95,7 +95,7 @@ PRODUCT_PACKAGES += \
     init.exynos7904.rc \
     init.exynos7904.usb.rc \
     ueventd.exynos7904.rc \
-    wifi.rc
+    wifi_sec.rc
 
 # Light
 PRODUCT_PACKAGES += \
