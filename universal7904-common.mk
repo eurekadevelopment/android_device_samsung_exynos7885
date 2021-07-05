@@ -1,6 +1,9 @@
 # Call proprietary blob setup
 $(call inherit-product, vendor/samsung/universal7904-common/universal7904-common-vendor.mk)
 
+# Dalvik
+$(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
+
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
