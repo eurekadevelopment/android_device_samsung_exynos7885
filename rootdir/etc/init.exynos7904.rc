@@ -1,4 +1,5 @@
 on early-init
+    mkdir /efs 0771 radio system
     mkdir /mnt/vendor/efs 0771 radio system
     mkdir /mnt/vendor/cpefs 0771 radio system
     mkdir /mnt/vendor/persist 0771 system system
@@ -75,6 +76,12 @@ on post-fs-data
     chown system audio /mnt/vendor/efs/nxp/temp_cal
     chmod 0660 /mnt/vendor/efs/nxp/rdc_cal
     chmod 0660 /mnt/vendor/efs/nxp/temp_cal
+
+    mkdir /efs/nxp 0770 system audio
+    chown system audio /efs/nxp/rdc_cal
+    chown system audio /efs/nxp/temp_cal
+    chmod 0660 /efs/nxp/rdc_cal
+    chmod 0660 /efs/nxp/temp_cal
 
     chown system audio /sys/class/nxp/tfa_log/data_maxx
     chown system audio /sys/class/nxp/tfa_log/count_overxmax
@@ -389,6 +396,9 @@ on boot
 
 on fs
     mount_all /vendor/etc/fstab.${ro.hardware}
+    # We need to seperate mounting SEC_EFS partition from fstab file due to GSI image loading case
+    wait /dev/block/platform/13500000.dwmmc0/by-name/sec_efs
+    mount ext4 /dev/block/platform/13500000.dwmmc0/by-name/sec_efs /efs nosuid nodev noatime noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic
 
     mount none /mnt/vendor/cpefs /cpefs bind
     restorecon_recursive /mnt/vendor/efs
