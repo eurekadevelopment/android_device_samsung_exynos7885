@@ -5,6 +5,8 @@ on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
 on init
+    start watchdogd
+
     # Fastcharge
     chown system radio /sys/class/sec/switch/afc_disable
 
@@ -12,9 +14,6 @@ on init
     write /proc/sys/vm/page-cluster 0
     write /proc/sys/vm/swappiness 100
 
-    start watchdogd
-    mkdir /preload 0771 system system
-    
     # See storage config details at http://source.android.com/tech/storage/
     mkdir /storage/sdcard 0000 root root
     mkdir /storage/usb1 0000 root root
@@ -600,20 +599,6 @@ service watchdogd /system/bin/watchdogd 10 20
 on property:ro.debuggable=1
     write /sys/module/kgdboc/parameters/kgdboc ttyFIQ1
     write /sys/module/fiq_debugger/parameters/kgdb_enable 1
-
-# umount service
-service umount_service /system/bin/umount -D /preload
-    disabled
-    seclabel u:r:umount_service:s0
-    oneshot
-
-# Support Preload install apks
-on property:persist.sys.storage_preload=1
-    mount ext4 /dev/block/platform/13500000.dwmmc0/by-name/HIDDEN /preload nosuid nodev ro barrier=1
-    setprop storage.preload.complete 1
-
-on property:persist.sys.storage_preload=0
-    start umount_service
 
 # TEEGRIS daemon
 service tz_service /vendor/bin/tzdaemon
