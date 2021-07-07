@@ -138,7 +138,6 @@ vendor/lib64/omx/libOMX.Exynos.WMV.Decoder.so
 vendor/bin/cbd
 vendor/bin/hw/rild
 vendor/bin/secril_config_svc
-vendor/etc/init/init.baseband.rc
 vendor/etc/init/init.vendor.onebinary.rc
 vendor/etc/init/init.vendor.rilchip.rc
 vendor/etc/init/init.vendor.rilcommon.rc
