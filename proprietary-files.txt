@@ -157,6 +157,7 @@ vendor/lib/librilutils.so
 vendor/lib/libsecnativefeature.so
 vendor/lib/libsec-ril-dsds.so
 vendor/lib/libsec-ril.so
+vendor/lib/libvkmanager_vendor.so
 vendor/lib/vendor.samsung.hardware.radio.bridge@2.0.so
 vendor/lib/vendor.samsung.hardware.radio.channel@2.0.so
 vendor/lib/vendor.samsung.hardware.radio@2.0.so
@@ -166,6 +167,7 @@ vendor/lib64/librilutils.so
 vendor/lib64/libsecnativefeature.so
 vendor/lib64/libsec-ril-dsds.so
 vendor/lib64/libsec-ril.so
+vendor/lib64/libvkmanager_vendor.so
 vendor/lib64/vendor.samsung.hardware.radio.bridge@2.0.so
 vendor/lib64/vendor.samsung.hardware.radio.channel@2.0.so
 vendor/lib64/vendor.samsung.hardware.radio@2.0.so
