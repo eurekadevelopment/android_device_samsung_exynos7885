@@ -184,16 +184,16 @@ on post-fs-data
     chown system camera /sys/class/camera/flash/rear_flash
 
 # permissions for bluetooth.
-    setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
+    setprop ro.bt.bdaddr_path "/mnt/vendor/efs/bluetooth/bt_addr"
     chown bluetooth bluetooth ro.bt.bdaddr_path
 
 # for BT MAC address
-    mkdir /efs/bluetooth 0770 system bluetooth
+    mkdir /mnt/vendor/efs/bluetooth 0770 system bluetooth
 # if already exist
-    chown system bluetooth /efs/bluetooth
-    chown system bluetooth /efs/bluetooth/bt_addr
-    chmod 0770 /efs/bluetooth
-    chmod 0660 /efs/bluetooth/bt_addr
+    chown system bluetooth /mnt/vendor/efs/bluetooth
+    chown system bluetooth /mnt/vendor/efs/bluetooth/bt_addr
+    chmod 0770 /mnt/vendor/efs/bluetooth
+    chmod 0660 /mnt/vendor/efs/bluetooth/bt_addr
 
 # Magnetic sensor YAS537 lib
     mkdir /data/vendor/yas_lib 0770 system system
@@ -390,7 +390,6 @@ on boot
 on fs
     mount_all /vendor/etc/fstab.${ro.hardware}
 
-    mount none /mnt/vendor/efs /efs bind
     mount none /mnt/vendor/cpefs /cpefs bind
     restorecon_recursive /mnt/vendor/efs
     restorecon_recursive /mnt/vendor/cpefs
