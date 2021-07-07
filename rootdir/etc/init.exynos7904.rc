@@ -12,9 +12,9 @@ on init
     write /proc/sys/vm/page-cluster 0
     write /proc/sys/vm/swappiness 100
 
-	start watchdogd
-	mkdir /preload 0771 system system
-	
+    start watchdogd
+    mkdir /preload 0771 system system
+    
     # See storage config details at http://source.android.com/tech/storage/
     mkdir /storage/sdcard 0000 root root
     mkdir /storage/usb1 0000 root root
@@ -575,18 +575,6 @@ on property:sys.boot_completed=1
 #load ecd firmware
     write /proc/ecd/load_firmware 1
 
-# faced
-service faced /system/bin/faced
-    class late_start
-    user system
-    group system
-
-service cp_vername /vendor/bin/cp_vername.sh /sys/class/nfc_test/test
-    class core
-    user system
-    group system
-    oneshot
-
 service fuse_sdcard /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard /storage/sdcard
     class late_start
     disabled
@@ -608,19 +596,6 @@ service watchdogd /system/bin/watchdogd 10 20
     class core
     seclabel u:r:watchdogd:s0
 
-service watchdog_break /system/bin/watchdog_break.sh
-    oneshot
-    class core
-    seclabel u:r:watchdogd:s0
-
-# Make symlink to param partition
-service prepare_param /system/bin/prepare_param.sh /dev/block/platform/13500000.dwmmc0/by-name/PARAM
-    class core
-    user root
-    group root
-    seclabel u:r:prepare_param:s0
-    oneshot
-
 # on userdebug and eng builds, enable kgdb on the serial console
 on property:ro.debuggable=1
     write /sys/module/kgdboc/parameters/kgdboc ttyFIQ1
@@ -639,43 +614,6 @@ on property:persist.sys.storage_preload=1
 
 on property:persist.sys.storage_preload=0
     start umount_service
-
-service dhcpcd_wlan0 /vendor/bin/dhcpcd -aABDKL
-        class main
-        disabled
-        oneshot
-
-service iprenew_wlan0 /vendor/bin/dhcpcd -n
-        class main
-        disabled
-        oneshot
-
-service dhcpcd_p2p /vendor/bin/dhcpcd -aABKL
-        class main
-        disabled
-        oneshot
-
-service iprenew_p2p /vendor/bin/dhcpcd -n
-        class main
-        disabled
-        oneshot
-
-# SPE-1748: PANU DHCP Client not launched
-service dhcpcd_bt-pan /vendor/bin/dhcpcd -ABKL
-        class main
-        disabled
-        oneshot
-
-service iprenew_bt-pan /vendor/bin/dhcpcd -n
-        class main
-        disabled
-        oneshot
-
-# FINGERPRINT FRAMEWORK : starts goodixfingerprintd
-service goodixd /system/bin/goodixfingerprintd
-    class late_start
-    user system
-    group media_rw system
 
 # TEEGRIS daemon
 service tz_service /vendor/bin/tzdaemon
