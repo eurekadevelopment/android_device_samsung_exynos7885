@@ -14,7 +14,6 @@ vendor/firmware/Tfa9896.cnt
 vendor/firmware/calliope_dram.bin
 vendor/firmware/calliope_sram.bin
 vendor/lib/hw/audio.primary.exynos7904.so
-vendor/lib/hw/audio.sec_primary.default.so
 vendor/lib/libSamsungPostProcessConvertor.so
 vendor/lib/lib_SamsungRec_07001.so
 vendor/lib/lib_SoundAlive_SRC384_ver320.so
@@ -28,7 +27,6 @@ vendor/lib/libvndsecril-client.so
 vendor/lib/soundfx/libaudioeffectoffload.so
 vendor/lib/vndk/libaudioroute.so
 vendor/lib/vndk/libtinyalsa.so
-vendor/lib64/hw/audio.sec_primary.default.so
 vendor/lib64/libfloatingfeature.so
 vendor/lib64/libsecaudioinfo.so
 vendor/lib64/libvndsecril-client.so
