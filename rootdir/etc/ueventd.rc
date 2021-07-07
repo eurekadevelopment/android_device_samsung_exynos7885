@@ -138,11 +138,20 @@
 /dev/s5p-smem             0660   system     system
 
 #cbd
+/dev/block/mmcblk0p5      0400   radio      radio
 /dev/umts_ramdump0        0660   radio      radio
+
+# DM tools
+/dev/umts_dm0             0660   radio      radio
+/dev/umts_router          0660   radio      radio
+/dev/ttyGS0               0660   system     system
+/dev/ttyGS1               0660   system     system
 
 # Modem Interface
 /dev/block/platform/13500000.dwmmc0/by-name/RADIO	0660   system     radio
+/dev/block/platform/13500000.dwmmc0/by-name/radio	0660   system     radio
 /dev/block/platform/13500000.dwmmc0/by-name/CP_DEBUG   0660	radio	system
+/dev/block/platform/13500000.dwmmc0/by-name/cp_debug   0660	radio	system
 /sys/devices/platform/10000.mif_pdata	sim/ds_detect	0660	radio	system
 /dev/umts*            0660   system      radio
 /dev/umts_csd         0660   system      loop_radio
