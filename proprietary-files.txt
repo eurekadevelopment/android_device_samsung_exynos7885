@@ -55,32 +55,33 @@ vendor/lib64/hw/vendor.samsung.hardware.gnss@2.0-impl.so
 vendor/lib64/libwrappergps.so
 vendor/lib64/vendor.samsung.hardware.gnss@2.0.so
 
-# Graphics
-vendor/lib/egl/libGLES_mali.so
-vendor/lib/hw/gralloc.exynos7904.so
-vendor/lib/hw/hwcomposer.exynos7904.so
-vendor/lib/libExynosHWCService.so
-vendor/lib/libGrallocWrapper.so
-vendor/lib/libacryl.so
-vendor/lib/libexynosdisplay.so
-vendor/lib/libexynosgscaler.so
-vendor/lib/libexynosscaler.so
-vendor/lib/libexynosutils.so
-vendor/lib/libexynosv4l2.so
-vendor/lib/libion_exynos.so
-vendor/lib64/egl/libGLES_mali.so
-vendor/lib64/hw/gralloc.exynos7904.so
-vendor/lib64/hw/hwcomposer.exynos7904.so
-vendor/lib64/libExynosHWCService.so
-vendor/lib64/libGrallocWrapper.so
-vendor/lib64/libacryl.so
-vendor/lib64/libexynosdisplay.so
-vendor/lib64/libexynosgscaler.so
-vendor/lib64/libexynosscaler.so
-vendor/lib64/libexynosutils.so
-vendor/lib64/libexynosv4l2.so
-vendor/lib64/libion_exynos.so
-vendor/lib64/libmpp.so
+# Graphics - from a40ser-user-11-RP1A.200720.012-A405FMPUU3CUC2-release-keys
+vendor/lib/egl/libGLES_mali.so|e896a3569f8bea7b9a90ce1f1e950a1b867ba231
+vendor/lib/hw/gralloc.exynos7904.so|97b13d67846e02cde1ae30a2038fbec98af7b2ae
+vendor/lib/hw/hwcomposer.exynos7904.so|9b640bcd9c0979b1ec789b529c2a95c0a279227b
+vendor/lib/libExynosHWCService.so|50a1b9595633329e4c0624e397e1b216d0456559
+vendor/lib/libGrallocWrapper.so|4eff4bbab8c50d0279d8d9145c6973857a16ce0e
+vendor/lib/libacryl.so|4a8f4231e8410d8b8c2832e4979c7f48043ceb21
+vendor/lib/libexynosgraphicbuffer.so|7bcd71bf6e2c59bbde4c19e8a78324332c61b2a1
+vendor/lib/libexynosdisplay.so|494230ba1ad1a38eb847cc2de317a0c6ff3606a4
+vendor/lib/libexynosgscaler.so|4c58aa4bc570a6618807e107f31a2a12dbe90fa1
+vendor/lib/libexynosscaler.so|63e5b08a9274a0a5df8ad7b5e9eefcc99b91292f
+vendor/lib/libexynosutils.so|a90530792e1770ece7fa44f93e93718b793e684e
+vendor/lib/libexynosv4l2.so|57d0db2e3507a38afab238cfee0e44ec003426ef
+vendor/lib/libion_exynos.so|f28943bc24020fb65dd495e21f733630fff57c38
+vendor/lib64/egl/libGLES_mali.so|53f913b5e7246e52a578fe98aa813cb49ac81d83
+vendor/lib64/hw/gralloc.exynos7904.so|19e91edba29f573deb26806c9b441386f9784fdd
+vendor/lib64/hw/hwcomposer.exynos7904.so|3e7f45dc2f672d00b245e396a3072414aabfc61b
+vendor/lib64/libExynosHWCService.so|415ef33aa77b5cb9ad15b424ab3e0a4b3f300b83
+vendor/lib64/libGrallocWrapper.so|4a8a89ac339f23f14fcb22e0188f22299cb9c618
+vendor/lib64/libexynosgraphicbuffer.so|2580755e3d276c158c1f08deeeae2eec7467a58c
+vendor/lib64/libacryl.so|e0d248104e5a5a3f6836c2c457f525afd52edf2c
+vendor/lib64/libexynosdisplay.so|7e36f1f73e5a5bcc596f5c91140b5eb3081b2f28
+vendor/lib64/libexynosgscaler.so|dd93cddf7102a75ad7e0fcb935d6a6bc32bdac2b
+vendor/lib64/libexynosscaler.so|9d45ea397e6ecd453d4cb40a5a260f6421f9e566
+vendor/lib64/libexynosutils.so|cb42b6ded8fb488c74a6b40c428de36778e96d63
+vendor/lib64/libexynosv4l2.so|fb66b93ad867a47d48da44a804d6c4514cbb5713
+vendor/lib64/libion_exynos.so|bff127f0d989e6c756dd8cff40847ee5b7560447
 
 # Fingerprint
 vendor/lib/libegis_fp_normal_sensor_test.so
