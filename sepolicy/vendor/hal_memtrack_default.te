@@ -1,0 +1,4 @@
+r_dir_file(hal_memtrack_default, debugfs_mali);
+r_dir_file(hal_memtrack_default, debugfs_mali_mem);
+r_dir_file(hal_memtrack_default, debugfs_ion);
+r_dir_file(hal_memtrack_default, debugfs_ion_dma); 

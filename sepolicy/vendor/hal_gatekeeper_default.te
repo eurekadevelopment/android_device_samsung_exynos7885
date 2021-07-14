@@ -1,3 +1,7 @@
 allow hal_gatekeeper_default gatekeeper_efs_file:file rw_file_perms;
 allow hal_gatekeeper_default gatekeeper_efs_file:dir search;
 allow hal_gatekeeper_default efs_file:dir search;
+allow hal_gatekeeper_default efs_file:file rw_file_perms;
+allow hal_gatekeeper_default mobicore_vendor_file:dir search;
+allow hal_gatekeeper_default mobicore_vendor_file:file rw_file_perms;
+allow hal_gatekeeper_default mnt_vendor_file:dir search;

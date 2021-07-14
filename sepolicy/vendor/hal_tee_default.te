@@ -1,0 +1,17 @@
+type hal_tee_default, domain;
+type hal_tee_default_exec, exec_type, vendor_file_type, file_type;
+
+binder_call(hal_tee_client, hal_tee_server)
+binder_call(hal_tee_server, hal_tee_client)
+
+add_hwservice(hal_tee_server, hal_tee_hwservice)
+allow hal_tee_client hal_tee_hwservice:hwservice_manager find;
+
+init_daemon_domain(hal_tee_default);
+
+hal_server_domain(hal_tee_default, hal_tee)
+
+hal_client_domain(hal_tee_default, hal_allocator)
+allow hal_tee_default hidl_memory_hwservice:hwservice_manager find;
+
+allow hal_tee_default tee_device:chr_file rw_file_perms;

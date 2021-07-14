@@ -1,2 +1,5 @@
 # /dev/mali0
 allow surfaceflinger gpu_device:chr_file rw_file_perms;
+
+# libion_exynos
+allow surfaceflinger same_process_hal_file:file rx_file_perms;

@@ -12,3 +12,5 @@ type m2m1shot_device, dev_type;
 
 # gps
 type gps_device, dev_type;
+
+type mobicore_vendor_file, dev_type;

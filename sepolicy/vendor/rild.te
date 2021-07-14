@@ -25,6 +25,6 @@ allow rild hal_audio_default:dir search;
 allow rild hal_audio_default:file r_file_perms;
 
 # hwservice
-allow rild hal_sec_radio_hwservice:hwservice_manager add;
-allow rild hal_sec_radio_bridge_hwservice:hwservice_manager add;
-allow rild hal_sec_radio_channel_hwservice:hwservice_manager add;
+add_hwservice(rild, hal_sec_radio_hwservice)
+add_hwservice(rild, hal_sec_radio_bridge_hwservice)
+add_hwservice(rild, hal_sec_radio_channel_hwservice)

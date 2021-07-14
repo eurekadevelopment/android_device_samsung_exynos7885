@@ -1,0 +1,12 @@
+r_dir_file(gpsd, sysfs_sec_gps);
+
+allow gpsd sysfs_gps_writable:file rw_file_perms;
+allow gpsd sysfs_wake_lock:file rw_file_perms;
+
+allow gpsd self:capability net_raw;
+allow gpsd self:capability2 block_suspend;
+
+allow gpsd bt_device:chr_file rw_file_perms;
+allow gpsd gps_device:chr_file rw_file_perms;
+
+allow gpsd gpsd_exec:file execute_no_trans;

@@ -2,3 +2,8 @@
 allow mediacodec sysfs_v4l:dir r_dir_perms;
 allow mediacodec sysfs_v4l_mfc:dir search;
 allow mediacodec sysfs_v4l_mfc:file r_file_perms;
+
+binder_call(mediacodec, hal_power_default)
+binder_call(hal_power_default, mediacodec)
+
+add_hwservice(mediacodec, hal_power_hwservice)

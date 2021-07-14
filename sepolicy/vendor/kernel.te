@@ -5,4 +5,7 @@ allow kernel efs_file:dir search;
 
 allow kernel device:chr_file { getattr setattr unlink create };
 allow kernel device:dir create_dir_perms;
-allow kernel self:capability { mknod };
+allow kernel self:capability { sys_rawio mknod };
+
+allow kernel sysfs_virtual:dir search;
+allow kernel block_device:dir search;

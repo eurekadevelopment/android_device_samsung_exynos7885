@@ -18,38 +18,24 @@ genfscon sysfs /class/camera                      u:object_r:sysfs_camera:s0
 genfscon sysfs /class/input/input4                u:object_r:sysfs_sensors:s0
 genfscon sysfs /class/input/input6                u:object_r:sysfs_sensors:s0
 genfscon sysfs /class/video4linux                 u:object_r:sysfs_v4l:s0
+genfscon sysfs /class/input/input1                u:object_r:sysfs_input:s0
 
 # devices
-genfscon sysfs /devices/virtual/sec/led/led_blink                                 u:object_r:sysfs_graphics:s0
-genfscon sysfs /devices/platform/108e0000.hsi2c/i2c-5/5-0049/input/               u:object_r:sysfs_touchscreen_writable:s0
-genfscon sysfs /devices/platform/10970000.spi/                                    u:object_r:sysfs_spi_writeable:s0
-genfscon sysfs /devices/platform/108c0000.spi/                                    u:object_r:sysfs_spi_writeable:s0
-genfscon sysfs /devices/platform/10460000.spi/                                    u:object_r:sysfs_spi_writeable:s0
-genfscon sysfs /devices/platform/164b0000.pinctrl/gpio/gpio13/value               u:object_r:sysfs_gps_writable:s0
-genfscon sysfs /devices/platform/11430000.pinctrl/gpio/gpio81/value               u:object_r:sysfs_gps_writable:s0
-genfscon sysfs /devices/platform/10980000.pinctrl/gpio/gpio216/value              u:object_r:sysfs_gps_writable:s0
 genfscon sysfs /module/modem_ctrl_ss310ap/parameters/ds_detect                    u:object_r:sysfs_sim_writable:s0
-genfscon sysfs /devices/platform/11500000.dwmmc2/mmc_host                         u:object_r:sysfs_mmc_host_writable:s0
-genfscon sysfs /devices/platform/11120000.ufs/host0                               u:object_r:sysfs_scsi_host_writable:s0
-genfscon sysfs /devices/platform/15b50000.speedy/i2c-14/14-0000/s2mps17-rtc/rtc   u:object_r:sysfs_rtc:s0
-genfscon sysfs /devices/platform/10970000.hsi2c/i2c-13/13-0066/max77865-charger/power_supply/max77865-charger/type u:object_r:sysfs_batteryinfo_charger_writable:s0
-genfscon sysfs /devices/platform/10970000.hsi2c/i2c-13/13-0066/max77865-charger/power_supply/max77865-charger/chip_id u:object_r:sysfs_batteryinfo_charger_writable:s0
-genfscon sysfs /devices/platform/10970000.hsi2c/i2c-13/13-0066/max77865-charger/power_supply/otg/type u:object_r:sysfs_batteryinfo_charger_writable:s0
-genfscon sysfs /devices/platform/10970000.hsi2c/i2c-13/13-0066/max77865-fuelgauge/power_supply/max77865-fuelgauge/type u:object_r:sysfs_batteryinfo_charger_writable:s0
-genfscon sysfs /devices/platform/10940000.hsi2c/i2c-11/11-003b/power_supply/mfc-charger u:object_r:sysfs_batteryinfo_charger_writable:s0
-genfscon sysfs /devices/platform/12ca0000.fimc_is_sensor/video4linux              u:object_r:sysfs_v4l_fimc:s0
-genfscon sysfs /devices/platform/12cb0000.fimc_is_sensor/video4linux              u:object_r:sysfs_v4l_fimc:s0
-genfscon sysfs /devices/platform/12cc0000.fimc_is_sensor/video4linux              u:object_r:sysfs_v4l_fimc:s0
-genfscon sysfs /devices/platform/12cd0000.fimc_is_sensor/video4linux              u:object_r:sysfs_v4l_fimc:s0
-genfscon sysfs /devices/platform/12ce0000.fimc_is/video4linux                     u:object_r:sysfs_v4l_fimc:s0
-genfscon sysfs /devices/platform/13ce0000.mfc0/video4linux                        u:object_r:sysfs_v4l_mfc:s0
-genfscon sysfs /devices/platform/13b00000.smfc/video4linux                        u:object_r:sysfs_v4l_smfc:s0
-genfscon sysfs /devices/platform/12860000.decon_f                                 u:object_r:sysfs_decon:s0
-genfscon sysfs /devices/platform/12860000.decon_f/vsync                           u:object_r:sysfs_ss_writable:s0
-genfscon sysfs /devices/platform/12a30000.decon_s                                 u:object_r:sysfs_decon:s0
-genfscon sysfs /devices/platform/12a30000.decon_s/vsync                           u:object_r:sysfs_ss_writable:s0
-genfscon sysfs /devices/platform/12a40000.decon_t                                 u:object_r:sysfs_decon:s0
-genfscon sysfs /devices/platform/12a40000.decon_t/vsync                           u:object_r:sysfs_ss_writable:s0
+genfscon sysfs /devices/platform/10000.mif_pdata/sim/ds_detect                    u:object_r:sysfs_sim_writable:s0
+genfscon sysfs /module/scsc_bt/parameters/bluetooth_address                       u:object_r:sysfs_bt_writable:s0
+genfscon sysfs /devices/platform/11ce0000.speedy/i2c-7/7-0000/s2mpu08-rtc/rtc     u:object_r:sysfs_rtc:s0
+genfscon sysfs /devices/platform/11ce0000.speedy/i2c-7/7-0003/input/input11       u:object_r:sysfs_touchscreen_writable:s0
+genfscon sysfs /devices/platform/13930000.hsi2c/i2c-5/5-0048/input/               u:object_r:sysfs_touchscreen_writable:s0
+genfscon sysfs /devices/platform/14870000.dsim/backlight/panel                    u:object_r:sysfs_graphics:s0
+genfscon sysfs /devices/platform/14a50000.abox/service                            u:object_r:sysfs_abox_writable:s0
+genfscon sysfs /devices/platform/14860000.decon_f                                 u:object_r:sysfs_decon:s0
+genfscon sysfs /devices/platform/14410000.fimc_is_sensor/video4linux              u:object_r:sysfs_v4l_fimc:s0
+genfscon sysfs /devices/platform/14430000.fimc_is_sensor/video4linux              u:object_r:sysfs_v4l_fimc:s0
+genfscon sysfs /devices/platform/14400000.fimc_is_sensor/video4linux              u:object_r:sysfs_v4l_fimc:s0
+genfscon sysfs /devices/platform/14440000.fimc_is/video4linux                     u:object_r:sysfs_v4l_fimc:s0
+genfscon sysfs /devices/platform/12c30000.mfc0/video4linux                        u:object_r:sysfs_v4l_mfc:s0
+genfscon sysfs /devices/platform/12c00000.smfc/video4linux                        u:object_r:sysfs_v4l_smfc:s0
 genfscon sysfs /devices/platform/bluetooth/rfkill/rfkill0/state                   u:object_r:sysfs_bt_writable:s0
 genfscon sysfs /devices/platform/battery/power_supply/battery                     u:object_r:sysfs_battery_writable:s0
 genfscon sysfs /devices/platform/battery/power_supply/battery/batt_capacity_max   u:object_r:sysfs_battery_writable:s0
@@ -71,7 +57,6 @@ genfscon sysfs /devices/virtual/camera/flash/rear_flash      u:object_r:sysfs_ca
 genfscon sysfs /devices/virtual/input/input3                 u:object_r:sysfs_sensors_writable:s0
 genfscon sysfs /devices/virtual/input/input4                 u:object_r:sysfs_sensors_writable:s0
 
-genfscon sysfs /devices/virtual/sec/switch                          u:object_r:sysfs_sec_switch:s0
 genfscon sysfs /devices/virtual/sec/sensorhub/mcu_power             u:object_r:sysfs_sensorhub_writable:s0
 genfscon sysfs /devices/virtual/usb_notify/usb_control/usb_hw_param u:object_r:sysfs_usb_writable:s0
 
