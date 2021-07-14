@@ -38,6 +38,10 @@ on post-fs-data
 # NFC
     mkdir /data/vendor/nfc 0770 nfc nfc
 
+# NFC: create /efs/sec_efs/nfc and /efs/nfc for nv storage
+    mkdir /efs/sec_efs/nfc 0700 nfc nfc
+    mkdir /efs/nfc 0700 nfc nfc
+
 # TEEGRIS service
     mkdir /data/vendor/tee 0700 system system
 
