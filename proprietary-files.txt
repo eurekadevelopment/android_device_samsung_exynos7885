@@ -169,22 +169,6 @@ vendor/lib64/vendor.samsung.hardware.radio.bridge@2.0.so
 vendor/lib64/vendor.samsung.hardware.radio.channel@2.0.so
 vendor/lib64/vendor.samsung.hardware.radio@2.0.so
 
-# Selinux
-vendor/etc/selinux/plat_pub_versioned.cil
-vendor/etc/selinux/plat_sepolicy_vers.txt
-vendor/etc/selinux/precompiled_sepolicy
-vendor/etc/selinux/precompiled_sepolicy.plat_sepolicy_and_mapping.sha256
-vendor/etc/selinux/precompiled_sepolicy.product_sepolicy_and_mapping.sha256
-vendor/etc/selinux/product_sepolicy_and_mapping.sha256
-vendor/etc/selinux/sk/authorize.xml
-vendor/etc/selinux/vendor_file_contexts
-vendor/etc/selinux/vendor_hwservice_contexts
-vendor/etc/selinux/vendor_mac_permissions.xml
-vendor/etc/selinux/vendor_property_contexts
-vendor/etc/selinux/vendor_seapp_contexts
-vendor/etc/selinux/vendor_sepolicy.cil
-vendor/etc/selinux/vndservice_contexts
-
 # Sensors
 vendor/etc/yas_set.cfg
 vendor/lib/libyasalgo.so
