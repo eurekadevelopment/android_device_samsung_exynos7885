@@ -9,3 +9,5 @@ type vendor_camera_prop, property_type;
 type vendor_factory_prop, property_type;
 type vendor_gps_prop, property_type;
 type vendor_nfc_prop, property_type;
+type vendor_wlbtd_prop, property_type;
+type vendor_wlan_prop, property_type;

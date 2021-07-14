@@ -23,14 +23,13 @@ allow hal_graphics_composer_default video_device:chr_file rw_file_perms;
 allow hal_graphics_composer_default sysfs_socinfo:dir r_dir_perms;
 allow hal_graphics_composer_default sysfs_socinfo:file r_file_perms;
 
-# /sys/devices/platform/12860000.decon_f/psr_info
-allow hal_graphics_composer_default sysfs_decon:dir r_dir_perms;
-allow hal_graphics_composer_default sysfs_decon:file r_file_perms;
-
-# /sys/devices/platform/12860000.decon_f/vsync
-allow hal_graphics_composer_default sysfs_ss_writable:dir r_dir_perms;
-allow hal_graphics_composer_default sysfs_ss_writable:file r_file_perms;
 
 # /sys/kernel/debug/dma_buf/footprint/[0-9]+
 allow hal_graphics_composer_default debugfs_ion_dma:dir r_dir_perms;
 allow hal_graphics_composer_default debugfs_ion_dma:file r_file_perms;
+
+allow hal_graphics_composer_default sysfs_decon:dir r_dir_perms;
+allow hal_graphics_composer_default sysfs_decon:file r_file_perms;
+
+allow hal_graphics_composer_default sysfs_ss_writable:dir r_dir_perms;
+allow hal_graphics_composer_default sysfs_ss_writable:file r_file_perms;

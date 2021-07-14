@@ -1,0 +1,2 @@
+allow hal_keymaster_default mobicore_vendor_file:dir search;
+allow hal_keymaster_default mobicore_vendor_file:file rw_file_perms;

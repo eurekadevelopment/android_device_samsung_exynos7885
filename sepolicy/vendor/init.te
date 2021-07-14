@@ -26,12 +26,9 @@ allow init sysfs_lcd:file setattr;
 allow init sysfs_mdnie:file setattr;
 allow init sysfs_modem:file w_file_perms;
 allow init sysfs_battery_writable:file setattr;
-allow init sysfs_mmc_host_writable:file setattr;
-allow init sysfs_scsi_host_writable:file setattr;
 allow init sysfs_power_writable:file setattr;
 allow init sysfs_bt_writable:file setattr;
 allow init sysfs_graphics:file create_file_perms;
-allow init sysfs_touchscreen_writable:file setattr;
 
 allow init system_server:binder { transfer call };
 allow init device:chr_file ioctl;
@@ -48,5 +45,7 @@ allow init proc_swapiness:file write;
 allow init proc_extra:file setattr;
 allow init proc_reset_reason:file setattr;
 allow init proc_swapiness:file open;
+allow init self:netlink_generic_socket { bind create getattr read setopt write };
+allow init mnt_vendor_file:dir mounton;
 
 unix_socket_connect(init, property, rild)

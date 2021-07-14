@@ -1,0 +1,9 @@
+allow tee efs_file:dir r_dir_perms;
+allow tee mnt_vendor_file:dir search;
+
+allow tee mobicore_vendor_data_file:dir create_dir_perms;
+allow tee mobicore_vendor_data_file:file create_file_perms;
+
+r_dir_file(tee, mobicore_vendor_file)
+
+set_prop(tee, system_prop)
