@@ -11,3 +11,4 @@ type vendor_gps_prop, property_type;
 type vendor_nfc_prop, property_type;
 type vendor_wlbtd_prop, property_type;
 type vendor_wlan_prop, property_type;
+type vendor_hwc_prop, property_type;
