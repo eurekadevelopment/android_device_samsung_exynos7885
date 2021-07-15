@@ -1,6 +1,0 @@
-attribute hal_tee_client;
-attribute hal_tee_server;
-attribute hal_tee;
-attribute hal_teeregistry_client;
-attribute hal_teeregistry_server;
-attribute hal_teeregistry;

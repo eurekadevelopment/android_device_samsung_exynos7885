@@ -8,7 +8,3 @@ vendor.samsung.hardware.nfc::ISecNfc                        u:object_r:hal_nfc_h
 vendor.samsung_slsi.hardware.MultiFrameProcessing20::IMultiFrameProcessing20 u:object_r:hal_vendor_multiframeprocessing_hwservice:s0
 vendor.samsung_slsi.hardware.eden_runtime::IEdenruntime     u:object_r:hal_vendor_eden_runtime_hwservice:s0
 vendor.samsung_slsi.hardware.iva::IIvaService               u:object_r:hal_vendor_iva_hwservice:s0
-
-vendor.trustonic.tee::ITee                        u:object_r:hal_tee_hwservice:s0
-vendor.trustonic.tee.tui::ITui                    u:object_r:hal_tee_hwservice:s0
-vendor.trustonic.teeregistry::ITeeRegistry        u:object_r:hal_teeregistry_hwservice:s0
