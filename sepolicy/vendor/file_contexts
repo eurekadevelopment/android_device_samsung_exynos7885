@@ -34,33 +34,13 @@
 
 ####################################
 # efs
-/cpefs(/.*)?                   u:object_r:efs_file:s0
 /mnt/vendor/cpefs(/.*)?        u:object_r:efs_file:s0
-
-/efs/FactoryApp(/.*)?          u:object_r:app_efs_file:s0
-/efs/FactoryApp/baro_delta     u:object_r:baro_delta_factoryapp_efs_file:s0
-/efs/FactoryApp/factorymode    u:object_r:factorymode_factoryapp_efs_file:s0
-/efs/FactoryApp/fdata          u:object_r:radio_factoryapp_efs_file:s0
-/efs/FactoryApp/hist_nv        u:object_r:radio_factoryapp_efs_file:s0
-/efs/FactoryApp/test_nv        u:object_r:radio_factoryapp_efs_file:s0
-/efs/FactoryApp/gyro_cal_data  u:object_r:sensor_factoryapp_efs_file:s0
-
-/efs/nv_data.bin(.*)           u:object_r:bin_nv_data_efs_file:s0
-/efs/nv.log                    u:object_r:bin_nv_data_efs_file:s0
-/efs/\.nv_core\.bak(.*)        u:object_r:bin_nv_data_efs_file:s0
-/efs/wv\.keys                  u:object_r:cpk_efs_file:s0
-/efs/factory\.prop             u:object_r:factoryprop_efs_file:s0
-/efs/TEE(/.*)?                 u:object_r:gatekeeper_efs_file:s0
-/efs/TEE/Store_1.tf            u:object_r:gatekeeper_efs_file:s0
 
 ####################################
 # data files
 /data/vendor/nfc(/.*)?             u:object_r:nfc_vendor_data_file:s0
 
 /data/misc/radio(/.*)?             u:object_r:radio_data_file:s0
-
-# livedisplay
-/data/vendor/display(/.*)?         u:object_r:display_vendor_data_file:s0
 
 # drm
 /data/vendor/mediadrm(/.*)?        u:object_r:mediadrm_data_file:s0
@@ -96,9 +76,6 @@
 # Backlight/Notification LED control
 /sys/class/backlight/panel/brightness                                  u:object_r:sysfs_graphics:s0
 /sys/class/backlight/panel/max_brightness                              u:object_r:sysfs_graphics:s0
-
-# camera
-/sys/devices/virtual/camera(/.*)?                                                               u:object_r:sysfs_camera:s0
 
 # rild
 /sys/devices/virtual/misc/multipdp(/.*)                                                         u:object_r:sysfs_multipdp:s0

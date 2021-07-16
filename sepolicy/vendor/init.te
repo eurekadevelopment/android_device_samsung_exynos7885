@@ -22,12 +22,9 @@ allow init sysfs_multipdp:file setattr;
 allow init sysfs_camera:file setattr;
 allow init sysfs_charger:file setattr;
 allow init sysfs_input:file setattr;
-allow init sysfs_lcd:file setattr;
-allow init sysfs_mdnie:file setattr;
 allow init sysfs_modem:file w_file_perms;
 allow init sysfs_battery_writable:file setattr;
 allow init sysfs_power_writable:file setattr;
-allow init sysfs_bt_writable:file setattr;
 allow init sysfs_graphics:file create_file_perms;
 
 allow init system_server:binder { transfer call };

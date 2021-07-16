@@ -5,7 +5,7 @@ init_daemon_domain(hal_drm_widevine)
 
 hal_server_domain(hal_drm_widevine, hal_drm)
 
-vndbinder_use(hal_drm_widevine);
+vndbinder_use(hal_drm_widevine)
 
 allow hal_drm_widevine mediacodec:fd use;
 allow hal_drm_widevine { appdomain -isolated_app }:fd use;
@@ -19,5 +19,3 @@ allow hal_drm_widevine vendor_data_file:file create_file_perms;
 
 allow hal_drm_widevine cpk_efs_file:file r_file_perms;
 allow hal_drm_widevine efs_file:dir search;
-
-allow hal_drm_widevine secmem_device:chr_file rw_file_perms;
