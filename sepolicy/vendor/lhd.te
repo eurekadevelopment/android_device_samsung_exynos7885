@@ -1,4 +1,0 @@
-allow lhd sysfs_virtual:dir search;
-allow lhd sysfs_virtual:file rw_file_perms;
-allow lhd sysfs_virtual:lnk_file read;
-allow lhd efs_file:dir search;

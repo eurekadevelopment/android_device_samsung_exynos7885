@@ -14,14 +14,10 @@ genfscon proc /sys/vm/swappiness                  u:object_r:proc_swapiness:s0
 # SYSFS
 
 # class
-genfscon sysfs /class/camera                      u:object_r:sysfs_camera:s0
-genfscon sysfs /class/input/input4                u:object_r:sysfs_sensors:s0
-genfscon sysfs /class/input/input6                u:object_r:sysfs_sensors:s0
 genfscon sysfs /class/video4linux                 u:object_r:sysfs_v4l:s0
 genfscon sysfs /class/input/input1                u:object_r:sysfs_input:s0
 
 # devices
-genfscon sysfs /module/modem_ctrl_ss310ap/parameters/ds_detect                    u:object_r:sysfs_sim_writable:s0
 genfscon sysfs /devices/platform/10000.mif_pdata/sim/ds_detect                    u:object_r:sysfs_sim_writable:s0
 genfscon sysfs /module/scsc_bt/parameters/bluetooth_address                       u:object_r:sysfs_bt_writable:s0
 genfscon sysfs /devices/platform/11ce0000.speedy/i2c-7/7-0000/s2mpu08-rtc/rtc     u:object_r:sysfs_rtc:s0
@@ -36,7 +32,6 @@ genfscon sysfs /devices/platform/14400000.fimc_is_sensor/video4linux            
 genfscon sysfs /devices/platform/14440000.fimc_is/video4linux                     u:object_r:sysfs_v4l_fimc:s0
 genfscon sysfs /devices/platform/12c30000.mfc0/video4linux                        u:object_r:sysfs_v4l_mfc:s0
 genfscon sysfs /devices/platform/12c00000.smfc/video4linux                        u:object_r:sysfs_v4l_smfc:s0
-genfscon sysfs /devices/platform/bluetooth/rfkill/rfkill0/state                   u:object_r:sysfs_bt_writable:s0
 genfscon sysfs /devices/platform/battery/power_supply/battery                     u:object_r:sysfs_battery_writable:s0
 genfscon sysfs /devices/platform/battery/power_supply/battery/batt_capacity_max   u:object_r:sysfs_battery_writable:s0
 genfscon sysfs /devices/platform/battery/power_supply/battery/status              u:object_r:sysfs_battery_writable:s0
@@ -54,13 +49,7 @@ genfscon sysfs /devices/virtual/camera                       u:object_r:sysfs_ca
 genfscon sysfs /devices/virtual/camera/rear/fw_update        u:object_r:sysfs_camera_writable:s0
 genfscon sysfs /devices/virtual/camera/rear/ssrm_camera_info u:object_r:sysfs_camera_writable:s0
 genfscon sysfs /devices/virtual/camera/flash/rear_flash      u:object_r:sysfs_camera_writable:s0
-genfscon sysfs /devices/virtual/input/input3                 u:object_r:sysfs_sensors_writable:s0
-genfscon sysfs /devices/virtual/input/input4                 u:object_r:sysfs_sensors_writable:s0
 
-genfscon sysfs /devices/virtual/sec/sensorhub/mcu_power             u:object_r:sysfs_sensorhub_writable:s0
-genfscon sysfs /devices/virtual/usb_notify/usb_control/usb_hw_param u:object_r:sysfs_usb_writable:s0
-
-genfscon sysfs /firmware/devicetree/base/argos                 u:object_r:sysfs_argos:s0
 genfscon sysfs /firmware/devicetree/base/model_info-system_rev u:object_r:sysfs_info:s0
 
 genfscon sysfs /kernel/gpu/                    u:object_r:sysfs_gpu:s0
