@@ -1,4 +1,2 @@
 allow tee efs_file:dir r_dir_perms;
 allow tee mnt_vendor_file:dir search;
-
-set_prop(tee, system_prop)
