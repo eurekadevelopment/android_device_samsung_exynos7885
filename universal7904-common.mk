@@ -96,12 +96,6 @@ PRODUCT_PACKAGES += \
     init.exynos7904.usb.rc \
     ueventd.exynos7904.rc
 
-# Keymaster
-PRODUCT_PACKAGES += \
-    android.hardware.keymaster@3.0-service \
-    android.hardware.keymaster@3.0-impl \
-    libkeymaster3device
-
 # Light
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.samsung
