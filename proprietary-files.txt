@@ -99,9 +99,9 @@ vendor/etc/media_codecs.xml
 vendor/etc/media_codecs_performance.xml
 vendor/etc/media_profiles_V1_0.xml
 
-# Memtrack
-vendor/lib/hw/memtrack.exynos7904.so
-vendor/lib64/hw/memtrack.exynos7904.so
+# Memtrack - from a40ser-user-11-RP1A.200720.012-A405FMPUU3CUC2-release-keys
+vendor/lib/hw/memtrack.exynos7904.so|bbd3a762209fd02e159bd501e6b7dd3e1dedd0a4
+vendor/lib64/hw/memtrack.exynos7904.so|417811e22c3f40e13d0b8b15510a25b997f6eba6
 
 # OMX
 vendor/lib/libExynosOMX_Core.so
