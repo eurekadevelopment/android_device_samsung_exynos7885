@@ -24,6 +24,9 @@ TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := generic
 TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a53
 
+# Board
+TARGET_BOARD_INFO_FILE := $(COMMON_PATH)/board-info.txt
+
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_PATH)/bluetooth
 BOARD_HAVE_BLUETOOTH_SLSI := true
@@ -78,6 +81,10 @@ TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
 
 # Recovery
 BOARD_HAS_DOWNLOAD_MODE := true
+
+# Releasetools
+TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_universal7904
+TARGET_RELEASETOOLS_EXTENSIONS := $(COMMON_PATH)
 
 # Sepolicy
 include device/lineage/sepolicy/exynos/sepolicy.mk
