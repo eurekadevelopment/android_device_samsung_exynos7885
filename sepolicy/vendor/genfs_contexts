@@ -21,6 +21,7 @@ genfscon sysfs /class/input/input1                u:object_r:sysfs_input:s0
 genfscon sysfs /devices/platform/10000.mif_pdata/sim/ds_detect                    u:object_r:sysfs_sim_writable:s0
 genfscon sysfs /module/scsc_bt/parameters/bluetooth_address                       u:object_r:sysfs_bt_writable:s0
 genfscon sysfs /devices/platform/11ce0000.speedy/i2c-7/7-0000/s2mpu08-rtc/rtc     u:object_r:sysfs_rtc:s0
+genfscon sysfs /devices/platform/11ce0000.speedy/i2c-6/6-0000/s2mpu08-rtc/rtc     u:object_r:sysfs_rtc:s0
 genfscon sysfs /devices/platform/11ce0000.speedy/i2c-7/7-0003/input/input11       u:object_r:sysfs_touchscreen_writable:s0
 genfscon sysfs /devices/platform/13930000.hsi2c/i2c-5/5-0048/input/               u:object_r:sysfs_touchscreen_writable:s0
 genfscon sysfs /devices/platform/14870000.dsim/backlight/panel                    u:object_r:sysfs_graphics:s0
