@@ -63,6 +63,12 @@
 /sys/devices/platform/13840000\.i2c/i2c-10/10-003d/s2mu004-charger/power_supply/s2mu004-charger(/.*)?     u:object_r:sysfs_charger:s0
 /sys/devices/platform/13830000\.i2c/i2c-9/9-003b/power_supply/s2mu004-fuelgauge(/.*)? u:object_r:sysfs_charger:s0
 /sys/devices/platform/13840000\.i2c/i2c-10/10-003d/s2mu004-muic/power_supply/muic-manager(/.*)? u:object_r:sysfs_charger:s0
+/sys/devices/platform/13830000\.i2c/i2c-8/8-003b/power_supply/s2mu106-fuelgauge(/.*)? u:object_r:sysfs_charger:s0
+/sys/devices/platform/13830000\.i2c/i2c-8/8-003c/power_supply/s2mu106-usbpd(/.*)? u:object_r:sysfs_charger:s0
+/sys/devices/platform/13840000\.i2c/i2c-9/9-003d/s2mu106-powermeter/power_supply/s2mu106_pmeter(/.*)? u:object_r:sysfs_charger:s0
+/sys/devices/platform/13840000\.i2c/i2c-9/9-003d/s2mu106-muic/power_supply/muic-manager(/.*)? u:object_r:sysfs_charger:s0
+/sys/devices/platform/13840000\.i2c/i2c-9/9-003d/s2mu106-charger/power_supply/otg(/.*)? u:object_r:sysfs_charger:s0
+/sys/devices/platform/13840000\.i2c/i2c-9/9-003d/s2mu106-charger/power_supply/s2mu106-charger(/.*)? u:object_r:sysfs_charger:s0
 
 # sec
 /sys/class/sec(/.*)?                          -- u:object_r:sysfs_sec:s0
