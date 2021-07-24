@@ -3,7 +3,7 @@ COMMON_PATH := device/samsung/universal7904-common
 BOARD_VENDOR := samsung
 
 # Platform
-TARGET_BOARD_PLATFORM := exynos5
+TARGET_BOARD_PLATFORM := universal7904
 TARGET_SOC := exynos7904
 TARGET_BOOTLOADER_BOARD_NAME := universal7904
 TARGET_NO_BOOTLOADER := true
