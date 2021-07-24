@@ -84,6 +84,8 @@
     <bool name="config_pinnerAssistantApp">false</bool>
     <bool name="config_pinnerCameraApp">false</bool>
     <bool name="config_pinnerHomeApp">false</bool>
+     <!-- Flag indicating whether we should enable the adaptive sleep.-->
+    <bool name="config_adaptive_sleep_available">true</bool>
     <!-- the number of the max cached processes in the system. -->
     <integer name="config_customizedMaxCachedProcesses">48</integer>
     <bool name="config_automatic_brightness_available">true</bool>
