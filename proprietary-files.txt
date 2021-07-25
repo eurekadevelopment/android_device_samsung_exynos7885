@@ -1,4 +1,4 @@
-# All blobs below are extracted from a40xx-user-10-QP1A.190711.020-A405FNXXU3BTK3-release-keys
+# All blobs below are extracted from a30ser-user-10-QP1A.190711.020-A305FNPUS6BUD3-release-keys
 
 # Audio
 vendor/bin/main_abox
