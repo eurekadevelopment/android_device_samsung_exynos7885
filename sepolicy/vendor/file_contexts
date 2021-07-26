@@ -31,6 +31,8 @@
 /dev/block/platform/.+/by-name/(userdata|USERDATA)?         u:object_r:userdata_block_device:s0
 /dev/block/platform/.+/by-name/(keyrefuge|KEYREFUGE)?       u:object_r:keyrefuge_block_device:s0
 /dev/block/platform/.+/by-name/(persistent|PERSISTENT)?     u:object_r:frp_block_device:s0
+/dev/block/platform/.+/by-name/(boot|BOOT)?                 u:object_r:boot_block_device:s0
+/dev/block/platform/.+/by-name/(recovery|RECOVERY)?         u:object_r:recovery_block_device:s0
 
 ####################################
 # efs
