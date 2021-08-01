@@ -3,3 +3,6 @@ type m2m1shot_device, dev_type;
 
 # gps
 type gps_device, dev_type;
+
+# /dev/goodix_fp
+type goodix_device, dev_type;
