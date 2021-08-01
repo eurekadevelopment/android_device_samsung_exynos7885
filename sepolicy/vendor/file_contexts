@@ -4,6 +4,7 @@
 /dev/umts_ipc0                                              u:object_r:radio_device:s0
 /dev/fimg2d                                                 u:object_r:video_device:s0
 /dev/sec-nfc                                                u:object_r:nfc_device:s0
+/dev/goodix_fp                                              u:object_r:goodix_device:s0
 
 /dev/cpuset(/.*)?                                           u:object_r:cgroup:s0
 
