@@ -1,11 +1,11 @@
 [
     {
-        "repository": "android_hardware_samsung",
-        "target_path": "hardware/samsung"
+        "repository": "android_device_samsung_slsi_sepolicy",
+        "target_path": "device/samsung_slsi/sepolicy"
     },
     {
-        "repository": "android_kernel_samsung_universal7904",
-        "target_path": "kernel/samsung/universal7904"
+        "repository": "android_hardware_samsung",
+        "target_path": "hardware/samsung"
     },
     {
         "repository": "android_hardware_samsung_nfc",
@@ -24,7 +24,7 @@
         "target_path": "hardware/samsung_slsi/scsc_wifibt/wpa_supplicant_lib"
     },
     {
-        "repository": "android_device_samsung_slsi_sepolicy",
-        "target_path": "device/samsung_slsi/sepolicy"
+        "repository": "android_kernel_samsung_universal7904",
+        "target_path": "kernel/samsung/universal7904"
     }
 ]

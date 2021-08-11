@@ -4,10 +4,6 @@ $(call inherit-product, vendor/samsung/universal7904-common/universal7904-common
 # Dalvik
 $(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
 
-# Screen density
-PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := xxhdpi
-
 # Audio
 TARGET_EXCLUDES_AUDIOFX := true
 
@@ -15,9 +11,6 @@ PRODUCT_PACKAGES += \
     android.hardware.audio@6.0-impl \
     android.hardware.audio.service \
     android.hardware.audio.effect@6.0-impl \
-    libalsautils \
-    libeffects \
-    libnbaio_mono \
     libtinycompress \
     audio.r_submix.default \
     audio.usb.default
@@ -74,9 +67,7 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.1-impl \
     android.hardware.graphics.composer@2.1-service \
     android.hardware.graphics.mapper@2.0-impl \
-    libgui_vendor \
-    libhwc2on1adapter \
-    libhwc2onfbadapter
+    libgui_vendor
 
 # Health
 PRODUCT_PACKAGES += \
@@ -127,10 +118,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/libnfc-nci.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nci.conf \
     $(LOCAL_PATH)/configs/nfcee_access.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/nfcee_access.xml
-
-# Net
-PRODUCT_PACKAGES += \
-    netutils-wrapper-1.0
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
@@ -197,20 +184,24 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     SamsungDoze
 
+# Screen density
+PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl.samsung \
     android.hardware.sensors@1.0-service \
     libsensorndkbridge
 
-# Skip Mount
-PRODUCT_COPY_FILES += \
-    build/target/product/gsi/gsi_skip_mount.cfg:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/config/skip_mount.cfg
-
 # Shims
 PRODUCT_PACKAGES += \
     libcamera_metadata_helper \
     libshim_sensorndkbridge
+
+# Skip Mount
+PRODUCT_COPY_FILES += \
+    build/target/product/gsi/gsi_skip_mount.cfg:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/config/skip_mount.cfg
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
@@ -225,13 +216,13 @@ PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0-impl \
     android.hardware.thermal@1.0-service
 
-# Trust HAL
-PRODUCT_PACKAGES += \
-    vendor.lineage.trust@1.0-service
-
 # Touch
 PRODUCT_PACKAGES += \
     vendor.lineage.touch@1.0-service.samsung
+
+# Trust HAL
+PRODUCT_PACKAGES += \
+    vendor.lineage.trust@1.0-service
 
 # USB
 PRODUCT_PACKAGES += \
