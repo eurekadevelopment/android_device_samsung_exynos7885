@@ -37,6 +37,16 @@ vendor/lib/liboemcrypto.so
 vendor/lib/libwvhidl.so
 vendor/lib/mediadrm/libwvdrmengine.so
 
+# Fingerprint
+vendor/lib/libegis_fp_normal_sensor_test.so
+vendor/lib/libgf_in_system_lib.so
+vendor/lib/libqfp_sensortest.so
+vendor/lib/libsynaFpSensorTestNwd.so
+vendor/lib64/libegis_fp_normal_sensor_test.so
+vendor/lib64/libgf_in_system_lib.so
+vendor/lib64/libqfp_sensortest.so
+vendor/lib64/libsynaFpSensorTestNwd.so
+
 # GPS
 vendor/bin/hw/gpsd
 vendor/bin/hw/vendor.samsung.hardware.gnss@2.0-service
@@ -77,16 +87,6 @@ vendor/lib64/libexynosscaler.so|9d45ea397e6ecd453d4cb40a5a260f6421f9e566
 vendor/lib64/libexynosutils.so|cb42b6ded8fb488c74a6b40c428de36778e96d63
 vendor/lib64/libexynosv4l2.so|fb66b93ad867a47d48da44a804d6c4514cbb5713
 vendor/lib64/libion_exynos.so|bff127f0d989e6c756dd8cff40847ee5b7560447
-
-# Fingerprint
-vendor/lib/libegis_fp_normal_sensor_test.so
-vendor/lib/libgf_in_system_lib.so
-vendor/lib/libqfp_sensortest.so
-vendor/lib/libsynaFpSensorTestNwd.so
-vendor/lib64/libegis_fp_normal_sensor_test.so
-vendor/lib64/libgf_in_system_lib.so
-vendor/lib64/libqfp_sensortest.so
-vendor/lib64/libsynaFpSensorTestNwd.so
 
 # Lights
 vendor/lib/hw/lights.universal7904.so
@@ -179,7 +179,7 @@ vendor/lib64/libyasalgo.so
 vendor/lib/hw/thermal.universal7904.so
 vendor/lib64/hw/thermal.universal7904.so
 
-# WIFI
+# Wifi
 vendor/bin/hw/macloader
 vendor/bin/wlbtd
 vendor/etc/init/wifi_slsi.rc
