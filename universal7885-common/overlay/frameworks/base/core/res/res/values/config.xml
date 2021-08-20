@@ -94,6 +94,21 @@
     <!-- Specify if the fingerprint hardware support gestures-->
     <bool name="config_fingerprintSupportsGestures">true</bool>
     
+     <!-- Maximum number of supported users -->
+    <bool name="config_enableMultiUserUI">true</bool>
+    <integer name="config_multiuserMaximumUsers">3</integer>
+
+    <!-- Flag indicating whether the surface flinger has limited
+         alpha compositing functionality in hardware.  If set, the window
+         manager will disable alpha trasformation in animations where not
+         strictly needed. -->
+    <bool name="config_sf_limitedAlpha">true</bool>
+
+    <!-- Enables or disables fading edges when marquee is enabled in TextView.
+         Off by default, since the framebuffer readback used to implement the
+         fading edges is prohibitively expensive on most GPUs. -->
+    <bool name="config_ui_enableFadingMarquee">true</bool>
+    
     <bool name="config_automatic_brightness_available">true</bool>
     <integer name="config_autoBrightnessBrighteningLightDebounce">2000</integer>
     <integer name="config_autoBrightnessDarkeningLightDebounce">4000</integer>
