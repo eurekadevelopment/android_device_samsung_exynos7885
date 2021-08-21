@@ -13,7 +13,7 @@ on init
 
     # ZRAM parameters
     write /proc/sys/vm/page-cluster 0
-    write /proc/sys/vm/swappiness 100
+    write /proc/sys/vm/swappiness 130
 
     ## SCSC WLAN
     # SD-755: Increase default socket rx buffer limit
