@@ -20,7 +20,6 @@
 #include <android/hardware/power/1.0/IPower.h>
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
-#include <vendor/lineage/power/1.0/ILineagePower.h>
 
 namespace android {
 namespace hardware {
@@ -36,10 +35,6 @@ using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
 
-using ::vendor::lineage::power::V1_0::ILineagePower;
-using ::vendor::lineage::power::V1_0::LineageFeature;
-using ::vendor::lineage::power::V1_0::LineagePowerHint;
-
 // clang-format off
 enum PowerProfile {
     POWER_SAVE = 0,
@@ -49,13 +44,11 @@ enum PowerProfile {
 };
 // clang-format on
 
-struct Power : public IPower, public ILineagePower {
+struct Power : public IPower {
     Return<void> setInteractive(bool interactive) override;
     Return<void> powerHint(PowerHint hint, int32_t data) override;
     Return<void> setFeature(Feature feature, bool activate) override;
     Return<void> getPlatformLowPowerStats(getPlatformLowPowerStats_cb _hidl_cb) override;
-
-    Return<int32_t> getFeature(LineageFeature feature) override;
 
   private:
     void initialize();

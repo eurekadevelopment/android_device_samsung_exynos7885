@@ -31,7 +31,6 @@ cc_binary {
         "libhidlbase",
         "libutils",
         "android.hardware.power@1.0",
-        "vendor.lineage.power@1.0",
     ],
 
     static_libs: ["libc++fs"],
