@@ -3,6 +3,7 @@ cc_library_shared {
 
     srcs: ["ASensorManager.cpp"],
     shared_libs: [
+        "liblog",
         "libsensorndkbridge",
         "libutils",
     ],
