@@ -76,12 +76,4 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
-        <name>vendor.samsung.frameworks.security.dsms</name>
-        <version>1.0</version>
-        <interface>
-            <name>ISehDsms</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
 </compatibility-matrix>
