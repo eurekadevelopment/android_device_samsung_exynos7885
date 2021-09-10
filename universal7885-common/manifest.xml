@@ -191,15 +191,6 @@
         </interface>
     </hal>
     <hal format="hidl">
-        <name>android.hardware.soundtrigger</name>
-        <transport>hwbinder</transport>
-        <version>2.0</version>
-        <interface>
-            <name>ISoundTriggerHw</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
         <name>android.hardware.thermal</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -257,24 +248,6 @@
             <instance>epdgd2</instance>
             <instance>imsd</instance>
             <instance>imsd2</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.trustonic.tee</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ITee</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.trustonic.teeregistry</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ITeeRegistry</name>
-            <instance>default</instance>
         </interface>
     </hal>
     <hal format="hidl">
