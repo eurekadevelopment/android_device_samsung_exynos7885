@@ -38,6 +38,7 @@ cc_binary {
     vendor: true,
 
     init_rc: ["android.hardware.power@1.0-service.universal7884B.rc"],
+    vintf_fragments: ["android.hardware.power@1.0-service.universal7884B.xml"],
     relative_install_path: "hw",
 
 }
