@@ -243,10 +243,6 @@ PRODUCT_PACKAGES += \
     fastbootd \
     init.recovery.exynos7884B.rc
 
-# Renderscript
-PRODUCT_PACKAGES += \
-    android.hardware.renderscript@1.0-impl
-
 # Nuke Useless Apps (Mostly GAPPS)
 PRODUCT_PACKAGES += \
     RemovePkgs
