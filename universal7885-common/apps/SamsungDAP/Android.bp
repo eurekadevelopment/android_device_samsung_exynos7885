@@ -1,0 +1,12 @@
+android_app {
+    name: "SamsungDAP",
+
+    srcs: ["src/**/*.kt"],
+
+    certificate: "platform",
+    platform_apis: true,
+
+    optimize: {
+        proguard_flags_files: ["proguard.flags"],
+    },
+}
