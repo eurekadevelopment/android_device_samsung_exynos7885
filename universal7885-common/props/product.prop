@@ -8,3 +8,7 @@ ro.lmk.use_psi=false
 
 # Binary XML
 persist.sys.binary_xml=false
+
+# DSDS Settings
+persist.sys.fflag.override.settings_provider_model=false
+
