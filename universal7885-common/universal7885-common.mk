@@ -4,6 +4,16 @@ $(call inherit-product, vendor/samsung/universal7885-common/universal7885-common
 # Dalvik
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
+# .apex packages
+$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
+
+# Allow Copying of apks.
+PRODUCT_BROKEN_VERIFY_USES_LIBRARIES := true
+
+# Disable APEX compression
+# Keep this after including updatable_apex.mk
+PRODUCT_COMPRESSED_APEX := false
+
 # Audio
 TARGET_EXCLUDES_AUDIOFX := true
 
