@@ -56,4 +56,27 @@
     <string-array name="config_biometric_sensors" translatable="false" >
         <item>0:2:15</item> <!-- ID0:Fingerprint:Strong -->
     </string-array>
+
+    <!-- If this is true, the screen will come on when you unplug usb/power/whatever. -->
+    <bool name="config_unplugTurnsOnScreen">true</bool>
+
+    <!-- Control the behavior when the user long presses the power button.
+		0 - Nothing
+                1 - Global actions menu
+                2 - Power off (with confirmation)
+                3 - Power off (without confirmation)
+                4 - Go to voice assist
+                5 - Go to assistant (Settings.Secure.ASSISTANT)	        -->
+    <integer name="config_longPressOnPowerBehavior">1</integer>
+
+    <!-- Shutdown if the battery temperature exceeds (this value * 0.1) Celsius. -->
+     <integer name="config_shutdownBatteryTemperature">600</integer>
+
+    <!-- From Stock framework-res.apk: -->
+    <bool name="config_enableBurnInProtection">false</bool>
+    <bool name="config_enableMultiUserUI">false</bool>
+    <bool name="config_enableNightMode">true</bool>
+    <bool name="config_pinnerAssistantApp">false</bool>
+    <bool name="config_pinnerCameraApp">false</bool>
+    <bool name="config_pinnerHomeApp">false</bool>
 </resources>
