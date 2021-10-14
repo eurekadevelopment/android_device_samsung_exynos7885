@@ -176,6 +176,11 @@ PRODUCT_PACKAGES += \
     init.target.rc \
     init.baseband.rc
 
+ifeq ($(TARGET_HAS_UDFPS),true)
+PRODUCT_PACKAGES += \
+    init.udfps.rc
+endif
+
 # Lights
 PRODUCT_PACKAGES += \
     android.hardware.light-service.samsung
