@@ -1,7 +1,3 @@
-# Blurs
-ro.surface_flinger.supports_background_blur=1
-persist.sys.sf.disable_blurs=1
-
 # LMKD
 ro.lmk.critical_upgrade=true
 ro.lmk.downgrade_pressure=60
