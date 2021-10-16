@@ -47,7 +47,6 @@
     <integer-array name="config_keyboardTapVibePattern">
         <item>40</item>
     </integer-array>
-    <bool name="config_setColorTransformAccelerated">true</bool>
     <fraction name="config_screenAutoBrightnessDozeScaleFactor">100.0%</fraction>
     <string name="db_default_journal_mode" translatable="false">MEMORY</string>
     <string name="db_default_sync_mode" translatable="false">OFF</string>
