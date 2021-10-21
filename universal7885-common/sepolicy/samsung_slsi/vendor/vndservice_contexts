@@ -1,0 +1,3 @@
+# vndservice_contexts
+
+Exynos.HWCService                      u:object_r:vendor_surfaceflinger_vndservice:s0

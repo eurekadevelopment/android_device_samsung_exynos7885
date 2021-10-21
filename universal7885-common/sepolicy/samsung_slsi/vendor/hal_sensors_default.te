@@ -1,0 +1,62 @@
+# hal_sensors_default.te
+
+# /dev/batch_io
+allow hal_sensors_default io_device:chr_file r_file_perms;
+
+# /dev/iio:device1
+allow hal_sensors_default iio_device:chr_file r_file_perms;
+
+# /dev/ssp_sensorhub
+allow hal_sensors_default ssp_device:chr_file rw_file_perms;
+
+# /efs
+allow hal_sensors_default efs_file:dir r_dir_perms;
+
+# /efs/FactoryApp/
+allow hal_sensors_default app_efs_file:dir rw_dir_perms;
+allow hal_sensors_default app_efs_file:file { setattr rw_file_perms };
+
+# /sys/bus/iio/devices
+allow hal_sensors_default sysfs_iio:dir r_dir_perms;
+allow hal_sensors_default sysfs_iio:file r_file_perms;
+
+# /sys/class/sec/sensors
+allow hal_sensors_default sysfs_sec_sensors:dir r_dir_perms;
+allow hal_sensors_default sysfs_sec_sensors:file r_file_perms;
+
+# /sys/class/sensors/ssp_sensor/enable
+allow hal_sensors_default sysfs_sensors_writable:dir r_dir_perms;
+allow hal_sensors_default sysfs_sensors_writable:file rw_file_perms;
+
+# /sys/devices/platform/10970000.spi/
+allow hal_sensors_default sysfs_spi_writeable:dir r_dir_perms;
+allow hal_sensors_default sysfs_spi_writeable:file rw_file_perms;
+
+# /sys/devices/platform/panel@0/lcd/panel/window_type
+allow hal_sensors_default sysfs_lcd_writable:dir r_dir_perms;
+allow hal_sensors_default sysfs_lcd_writable:file r_file_perms;
+
+# /sys/class/input
+allow hal_sensors_default sysfs_input:dir r_dir_perms;
+
+# /sys/devices/virtual/input/input4
+# /sys/devices/virtual/input/input6
+allow hal_sensors_default sysfs_sensors:dir r_dir_perms;
+allow hal_sensors_default sysfs_sensors:file r_file_perms;
+
+# /sys/devices/virtual/sensors/magnetic_sensor/vendor
+allow hal_sensors_default sysfs_sensors:dir r_dir_perms;
+allow hal_sensors_default sysfs_sensors:file r_file_perms;
+
+# /sys/devices/virtual/sec/sec_key/hall_detect
+allow hal_sensors_default sysfs_sec_key:dir r_dir_perms;
+allow hal_sensors_default sysfs_sec_key:file r_file_perms;
+
+# /sys/class/sec/tsp/
+allow hal_sensors_default sysfs_sec_touchscreen:dir r_dir_perms;
+allow hal_sensors_default sysfs_sec_touchscreen:file r_file_perms;
+allow hal_sensors_default sysfs_sec_touchscreen:lnk_file r_file_perms;
+
+# /sys/class/sec/tsp/ear_detect_enable
+# /sys/class/sec/tsp/cmd
+allow hal_sensors_default sysfs_touchscreen_writable:file rw_file_perms;

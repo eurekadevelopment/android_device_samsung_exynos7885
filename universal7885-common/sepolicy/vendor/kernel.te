@@ -9,4 +9,5 @@ allow kernel self:capability { sys_rawio mknod };
 
 allow kernel block_device:dir search;
 
+allow kernel sysfs_sec_key:dir search;
 r_dir_file(kernel, sysfs_virtual)

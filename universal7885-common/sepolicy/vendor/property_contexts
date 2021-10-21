@@ -14,6 +14,7 @@ persist.data.df.            u:object_r:persist_data_df_prop:s0
 persist.data.wda.           u:object_r:persist_data_wda_prop:s0
 
 # CAMERA
+persist.sys.camera.         u:object_r:camera_prop:s0
 persist.vendor.sys.camera.  u:object_r:vendor_camera_prop:s0
 
 # GPS

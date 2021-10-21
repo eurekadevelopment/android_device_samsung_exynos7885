@@ -1,0 +1,4 @@
+# device.te
+
+type tz_device, dev_type;
+type tz_user_device, dev_type;

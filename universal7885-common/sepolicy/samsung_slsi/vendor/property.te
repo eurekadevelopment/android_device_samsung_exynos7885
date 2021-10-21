@@ -1,0 +1,6 @@
+# property.te
+
+type vendor_cbd_prop, property_type;
+type vendor_radio_prop, property_type;
+type vendor_fastcharge_prop, property_type;
+type vendor_wifi_prop, property_type;

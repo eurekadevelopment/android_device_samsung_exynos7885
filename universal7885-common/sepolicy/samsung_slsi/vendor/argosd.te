@@ -1,0 +1,25 @@
+# argosd.te
+
+type argosd, domain;
+type argosd_exec, exec_type, vendor_file_type, file_type;
+
+# argosd is started by init, type transit from init domain to gpsd domain
+init_daemon_domain(argosd)
+
+# /dev/network_throughput
+allow argosd radio_qos_device:chr_file rw_file_perms;
+
+# /proc/net/dev
+allow argosd proc_net:file r_file_perms;
+
+# /sys/
+allow argosd sysfs:dir r_dir_perms;
+
+# /sys/devices/platform/argos
+# /sys/firmware/devicetree/base/argos
+allow argosd sysfs_argos:dir r_dir_perms;
+allow argosd sysfs_argos:file r_file_perms;
+
+# /sys/class/scsi_host/host0
+allow argosd sysfs_scsi_host_writable:dir r_dir_perms;
+allow argosd sysfs_scsi_host_writable:file r_file_perms;

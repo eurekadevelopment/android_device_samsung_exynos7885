@@ -1,0 +1,38 @@
+type lhd, domain;
+type lhd_exec, exec_type, vendor_file_type, file_type;
+
+# lhd is started by init, type transit from init domain to lhd domain
+init_daemon_domain(lhd)
+
+get_prop(lhd, hwservicemanager_prop)
+hwbinder_use(lhd)
+allow lhd system_suspend_hwservice:hwservice_manager { find };
+binder_call(lhd, system_suspend_server)
+
+allow lhd self:tcp_socket create_stream_socket_perms;
+allow lhd port:tcp_socket { name_bind name_connect };
+allow lhd node:tcp_socket node_bind;
+
+# /data/vendor/gps
+allow lhd gps_vendor_data_file:dir rw_dir_perms;
+allow lhd gps_vendor_data_file:file create_file_perms;
+allow lhd gps_vendor_data_file:fifo_file create_file_perms;
+
+# /dev/bbd_control
+allow lhd bbd_device:chr_file rw_file_perms;
+
+# /dev/socket/fwmarkd
+allow lhd fwmarkd_socket:sock_file write;
+
+# /sys/bbd/lk_enable
+r_dir_file(lhd, sysfs_bbd)
+
+# /sys/class/sec/gps
+allow lhd sysfs_sec_gps:dir r_dir_perms;
+allow lhd sysfs_sec_gps:file r_file_perms;
+
+# /sys/devices/virtual/sec/sensorhub/mcu_power
+allow lhd sysfs_sensorhub_writable:file rw_file_perms;
+
+# /sys/class/sec/gps/GPS_PWR_EN/value
+allow lhd sysfs_gps_writable:file rw_file_perms;

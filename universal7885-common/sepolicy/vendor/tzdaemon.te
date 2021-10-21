@@ -1,0 +1,4 @@
+allow tzdaemon mnt_vendor_file:dir rw_dir_perms;
+allow tzdaemon efs_file:dir search;
+allow tzdaemon tee_efs_file:dir { add_name remove_name open create read search write };
+allow tzdaemon tee_efs_file:file { getattr open create read rename unlink write };

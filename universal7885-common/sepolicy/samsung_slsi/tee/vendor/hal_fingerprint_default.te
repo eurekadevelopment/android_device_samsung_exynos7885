@@ -1,0 +1,3 @@
+# hal_fingerprint_default.te
+
+teegris_use(hal_fingerprint_default)

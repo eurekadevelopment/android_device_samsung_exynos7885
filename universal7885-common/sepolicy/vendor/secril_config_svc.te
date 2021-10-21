@@ -1,1 +1,1 @@
-dontaudit secril_config_svc exported3_radio_prop:property_service set;
+dontaudit secril_config_svc radio_control_prop:property_service set;
