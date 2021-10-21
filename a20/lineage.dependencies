@@ -1,0 +1,7 @@
+
+[
+    {
+        "repository": "android_device_samsung_universal7885-common",
+        "target_path": "device/samsung/universal7885-common"
+    }
+]
