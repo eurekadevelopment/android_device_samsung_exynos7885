@@ -1,0 +1,4 @@
+allow init sysfs_gpu_tmu:file { setattr };
+allow init sysfs_flashlight:file { setattr };
+allow init sysfs_sec_switch_writable { setattr };
+allow init sysfs_battery_writeable { setattr };

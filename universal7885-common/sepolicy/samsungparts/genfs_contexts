@@ -1,0 +1,4 @@
+genfscon sysfs /devices/platform/11500000.mali/tmu                               u:object_r:sysfs_gpu_tmu:s0
+genfscon sysfs /devices/virtual/camera/flash/torch_brightness_lvl                          u:object_r:sysfs_flashlight:s0
+genfscon sysfs /devices/virtual/camera/flash/torch_brightness_lvl_enable                   u:object_r:sysfs_flashlight:s0
+

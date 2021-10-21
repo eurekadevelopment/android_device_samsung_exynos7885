@@ -1,0 +1,11 @@
+on property:sys.boot_completed=1
+     chmod 664 /sys/devices/platform/11500000.mali/tmu
+     chown system system /sys/devices/platform/11500000.mali/tmu
+     chmod 664 /sys/class/camera/flash/torch_brightness_lvl 
+     chown system system /sys/class/camera/flash/torch_brightness_lvl 
+     chmod 664 /sys/class/camera/flash/torch_brightness_lvl_enable 
+     chown system system /sys/class/camera/flash/torch_brightness_lvl_enable
+     chmod 664 /sys/devices/platform/battery/power_supply/battery/batt_slate_mode
+     chmod system system /sys/devices/platform/battery/power_supply/battery/batt_slate_mode
+     chmod 644 /sys/class/sec/switch/afc_disable
+     chmod system system /sys/class/sec/switch/afc_disable
