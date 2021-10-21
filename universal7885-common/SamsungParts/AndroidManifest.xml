@@ -82,7 +82,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".battery.BatteryActivity"
+            android:name="com.eurekateam.samsungparts.battery.BatteryActivity"
             android:exported="true"
             android:label="@string/fastcharge_title">
 
