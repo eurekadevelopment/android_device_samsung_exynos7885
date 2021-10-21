@@ -88,10 +88,17 @@ TARGET_RELEASETOOLS_EXTENSIONS := $(COMMON_PATH)
 ENABLE_VENDOR_RIL_SERVICE := true
 
 # Sepolicy
-include device/lineage/sepolicy/exynos/sepolicy.mk
-include device/samsung_slsi/sepolicy/sepolicy.mk
-BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
+BOARD_PLAT_PUBLIC_SEPOLICY_DIR += \
+    $(COMMON_PATH)/sepolicy/samsung_slsi/tee/public \
+    $(COMMON_PATH)/sepolicy/samsung_slsi/public
+    
+BOARD_VENDOR_SEPOLICY_DIRS += \
+    $(COMMON_PATH)/sepolicy/samsung_slsi/tee/vendor \
+    $(COMMON_PATH)/sepolicy/vendor
 
+BOARD_PLAT_PRIVATE_SEPOLICY_DIRS += \
+    $(COMMON_PATH)/sepolicy/samsung_slsi/private
+    
 # Vendor
 TARGET_COPY_OUT_VENDOR := vendor
 
