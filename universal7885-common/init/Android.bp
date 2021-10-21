@@ -15,10 +15,8 @@
 cc_library_static {
     name: "libinit_universal7884B",
     recovery_available: true,
-    shared_libs: ["libbase"],
+    whole_static_libs: ["libbase"],
+    header_libs: ["libbase_headers"],
     srcs: ["init_universal7884B.cpp"],
-    include_dirs: [
-        "system/core/base/include",
-        "system/core/init"
-    ]
+    include_dirs: ["system/core/init"]
 }

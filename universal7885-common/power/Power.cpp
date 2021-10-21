@@ -106,13 +106,16 @@ Return<void> Power::powerHint(PowerHint hint, int32_t data) {
 
     switch (hint) {
         case PowerHint::INTERACTION:
-        case PowerHint::LAUNCH:
+	case PowerHint::VSYNC:
+	case PowerHint::SUSTAINED_PERFORMANCE:
+	case PowerHint::VR_MODE:
+	case PowerHint::VIDEO_ENCODE:
+	case PowerHint::VIDEO_DECODE:
+	case PowerHint::LAUNCH:
             sendBoostpulse();
             break;
         case PowerHint::LOW_POWER:
             setProfile(data ? PowerProfile::POWER_SAVE : PowerProfile::BALANCED);
-            break;
-        default:
             break;
     }
     return Void();
