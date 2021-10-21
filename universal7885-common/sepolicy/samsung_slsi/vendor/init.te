@@ -1,0 +1,3 @@
+# init.te
+
+allow init proc_last_kmsg:file setattr;

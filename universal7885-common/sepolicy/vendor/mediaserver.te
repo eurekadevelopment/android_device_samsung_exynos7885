@@ -1,0 +1,1 @@
+get_prop(mediaserver, exported_camera_prop)

@@ -1,0 +1,18 @@
+# file_contexts
+
+# DATA
+/data/vendor/tee(/.*)?                       u:object_r:tee_vendor_data_file:s0
+
+# DEV
+/dev/socket/tz                               u:object_r:tz_socket:s0
+/dev/tuihw                                   u:object_r:tz_device:s0
+/dev/tzdev                                   u:object_r:tz_user_device:s0
+/dev/tzic                                    u:object_r:tz_device:s0
+/dev/tzirs                                   u:object_r:tz_device:s0
+/dev/tziwsock                                u:object_r:tz_user_device:s0
+
+# VENDOR
+/(vendor|system/vendor)/bin/tzdaemon         u:object_r:tzdaemon_exec:s0
+/(vendor|system/vendor)/bin/tzts_daemon      u:object_r:tztsdaemon_exec:s0
+
+/(vendor|system/vendor)/lib(64)?/libteecl\.so    u:object_r:same_process_hal_file:s0

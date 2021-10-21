@@ -1,0 +1,64 @@
+# genfs_contexts
+
+### PROC
+genfscon proc /last_kmsg                                                  u:object_r:proc_last_kmsg:s0
+
+### SYSFS
+genfscon sysfs /bbd                                                       u:object_r:sysfs_bbd:s0
+
+genfscon sysfs /bus/iio/devices                                           u:object_r:sysfs_iio:s0
+
+genfscon sysfs /class/backlight/                                          u:object_r:sysfs_backlight_writable:s0
+genfscon sysfs /class/fingerprint/fingerprint                             u:object_r:sysfs_fingerprint:s0
+genfscon sysfs /class/input                                               u:object_r:sysfs_input:s0
+genfscon sysfs /class/power_supply                                        u:object_r:sysfs_battery:s0
+genfscon sysfs /class/rtc/rtc0                                            u:object_r:sysfs_rtc:s0
+genfscon sysfs /class/sec/gps                                             u:object_r:sysfs_sec_gps:s0
+genfscon sysfs /class/sec/sensors                                         u:object_r:sysfs_sec_sensors:s0
+genfscon sysfs /class/sec/tsp                                             u:object_r:sysfs_sec_touchscreen:s0
+genfscon sysfs /class/sensor_event                                        u:object_r:sysfs_sensors:s0
+genfscon sysfs /class/sensors                                             u:object_r:sysfs_sensors:s0
+genfscon sysfs /class/thermal                                             u:object_r:sysfs_thermal:s0
+genfscon sysfs /class/timed_output/vibrator/intensity                     u:object_r:sysfs_vibrator:s0
+genfscon sysfs /class/timed_output/vibrator/multi_freq                    u:object_r:sysfs_vibrator:s0
+
+genfscon sysfs /devices/platform/argos                                    u:object_r:sysfs_argos:s0
+genfscon sysfs /devices/platform/battery/power_supply                     u:object_r:sysfs_battery:s0
+genfscon sysfs /devices/platform/battery/power_supply/battery/lcd         u:object_r:sysfs_battery_writable:s0
+genfscon sysfs /devices/platform/panel@0/backlight/panel/brightness       u:object_r:sysfs_backlight_writable:s0
+genfscon sysfs /devices/platform/panel@0/backlight/panel/max_brightness   u:object_r:sysfs_backlight_writable:s0
+genfscon sysfs /devices/platform/panel@0/lcd/panel                        u:object_r:sysfs_lcd_writable:s0
+
+genfscon sysfs /devices/virtual/fingerprint/fingerprint                   u:object_r:sysfs_fingerprint:s0
+genfscon sysfs /devices/virtual/input                                     u:object_r:sysfs_input:s0
+genfscon sysfs /devices/virtual/lcd/panel                                 u:object_r:sysfs_lcd_writable:s0
+genfscon sysfs /devices/virtual/sec/gps                                   u:object_r:sysfs_sec_gps:s0
+genfscon sysfs /devices/virtual/sec/sec_key                               u:object_r:sysfs_sec_key:s0
+genfscon sysfs /devices/virtual/sec/tsp                                   u:object_r:sysfs_sec_touchscreen:s0
+genfscon sysfs /devices/virtual/sec/tsp/cmd                               u:object_r:sysfs_touchscreen_writable:s0
+genfscon sysfs /devices/virtual/sec/tsp/ear_detect_enable                 u:object_r:sysfs_touchscreen_writable:s0
+genfscon sysfs /devices/virtual/sec/tsp/prox_power_off                    u:object_r:sysfs_touchscreen_writable:s0
+genfscon sysfs /devices/virtual/sec/tsp/input/enabled                     u:object_r:sysfs_touchscreen_writable:s0
+genfscon sysfs /devices/virtual/sensor_event                              u:object_r:sysfs_sensors:s0
+genfscon sysfs /devices/virtual/sensors                                   u:object_r:sysfs_sensors:s0
+genfscon sysfs /devices/virtual/sensors/hidden_hole/hh_check_coef         u:object_r:sysfs_sensors_writable:s0
+genfscon sysfs /devices/virtual/sensors/ssp_sensor/enable                 u:object_r:sysfs_sensors_writable:s0
+genfscon sysfs /devices/virtual/sensors/ssp_sensor/ssp_flush              u:object_r:sysfs_sensors_writable:s0
+genfscon sysfs /devices/virtual/sec/switch                                u:object_r:sysfs_sec_switch:s0
+genfscon sysfs /devices/virtual/sec/switch/afc_disable                    u:object_r:sysfs_sec_switch_writable:s0
+genfscon sysfs /devices/virtual/thermal                                   u:object_r:sysfs_thermal:s0
+genfscon sysfs /devices/virtual/timed_output/vibrator/cp_trigger_index    u:object_r:sysfs_vibrator:s0
+genfscon sysfs /devices/virtual/timed_output/vibrator/intensity           u:object_r:sysfs_vibrator:s0
+genfscon sysfs /devices/virtual/timed_output/vibrator/multi_freq          u:object_r:sysfs_vibrator:s0
+
+genfscon sysfs /module/dhd/parameters                                     u:object_r:sysfs_wifi_writable:s0
+
+genfscon sysfs /power/cpufreq_max_limit                                   u:object_r:sysfs_power_writable:s0
+genfscon sysfs /power/cpufreq_min_limit                                   u:object_r:sysfs_power_writable:s0
+genfscon sysfs /power/cpuhotplug/max_online_cpu                           u:object_r:sysfs_power_writable:s0
+genfscon sysfs /power/rtc_status                                          u:object_r:sysfs_power_writable:s0
+
+genfscon sysfs /wifi                                                      u:object_r:sysfs_wifi:s0
+genfscon sysfs /wifi/cid                                                  u:object_r:sysfs_wifi_writable:s0
+genfscon sysfs /wifi/mac_addr                                             u:object_r:sysfs_wifi_writable:s0
+genfscon sysfs /wifi/memdump                                              u:object_r:sysfs_wifi_writable:s0

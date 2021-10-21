@@ -1,0 +1,37 @@
+type gpsd, domain, netdomain;
+type gpsd_exec, exec_type, vendor_file_type, file_type;
+
+# gpsd is started by init, type transit from init domain to gpsd domain
+init_daemon_domain(gpsd)
+
+allow gpsd rild:unix_stream_socket connectto;
+
+get_prop(gpsd, vendor_radio_prop)
+get_prop(gpsd, telephony_config_prop)
+get_prop(gpsd, exported_config_prop)
+
+get_prop(gpsd, hwservicemanager_prop)
+hwbinder_use(gpsd)
+allow gpsd system_suspend_hwservice:hwservice_manager { find };
+allow gpsd fwk_sensor_hwservice:hwservice_manager { find };
+
+binder_call(gpsd, system_suspend_server)
+binder_call(gpsd, system_server)
+binder_call(system_server, gpsd)
+
+allow gpsd self:netlink_kobject_uevent_socket create_socket_perms_no_ioctl;
+allow gpsd self:{ tcp_socket udp_socket } create_stream_socket_perms;
+allow gpsd port:tcp_socket { name_bind name_connect };
+allow gpsd port:udp_socket name_bind;
+allow gpsd node:{ tcp_socket udp_socket } node_bind;
+
+# /acct/tasks
+allow gpsd cgroup:file getattr;
+
+# /dev/socket/fwmarkd
+allow gpsd fwmarkd_socket:sock_file write;
+
+# /data/vendor/gps
+allow gpsd gps_vendor_data_file:dir rw_dir_perms;
+allow gpsd gps_vendor_data_file:file create_file_perms;
+allow gpsd gps_vendor_data_file:fifo_file create_file_perms;

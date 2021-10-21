@@ -1,0 +1,4 @@
+# property.te
+type vendor_secureos_prop, property_type;
+type vendor_tzdaemon_prop, property_type;
+type vendor_tztsdaemon_prop, property_type;

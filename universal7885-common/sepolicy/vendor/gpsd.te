@@ -1,4 +1,4 @@
-r_dir_file(gpsd, sysfs_sec_gps);
+r_dir_file(gpsd, sysfs_sec_gps)
 
 allow gpsd sysfs_gps_writable:file rw_file_perms;
 allow gpsd sysfs_wake_lock:file rw_file_perms;
@@ -10,3 +10,5 @@ allow gpsd bt_device:chr_file rw_file_perms;
 allow gpsd gps_device:chr_file rw_file_perms;
 
 allow gpsd gpsd_exec:file execute_no_trans;
+
+allow gpsd bootanim_system_prop:file { read open getattr };

@@ -14,6 +14,9 @@ type debugfs_mali_mem, fs_type, debugfs_type;
 type debugfs_ion, fs_type, debugfs_type;
 type debugfs_ion_dma, fs_type, debugfs_type;
 
+# cache
+type boot_logcat_file, file_type, data_file_type;
+
 # proc
 type proc_extra, fs_type, proc_type;
 type proc_reset_reason, fs_type, proc_type;
@@ -26,7 +29,11 @@ type mediadrm_data_file, file_type, data_file_type;
 type nfc_vendor_data_file, file_type, data_file_type;
 
 # sysfs types
+type sysfs_battery_info, sysfs_type, fs_type;
+type sysfs_battery_supply, sysfs_type, rw_fs_type, fs_type;
 type sysfs_abox_writable, sysfs_type, rw_fs_type, fs_type;
+type sysfs_sensor_writable, sysfs_type, rw_fs_type, fs_type;
+type sysfs_input_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_batteryinfo_charger_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_camera_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_decon, sysfs_type, r_fs_type, fs_type;
@@ -42,6 +49,7 @@ type sysfs_sec, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_gps, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_brightness, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_virtual, fs_type, sysfs_type, mlstrustedobject;
+type sysfs_fuelgauge, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_charger, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_modem, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_camera, fs_type, sysfs_type, mlstrustedobject;

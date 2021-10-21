@@ -1,4 +1,6 @@
 vendor.samsung.hardware.gnss::ISehGnss                      u:object_r:hal_gnss_hwservice:s0
-vendor.samsung.hardware.radio::ISehRadio                    u:object_r:hal_sec_radio_hwservice:s0
-vendor.samsung.hardware.radio.bridge::ISehBridge            u:object_r:hal_sec_radio_bridge_hwservice:s0
-vendor.samsung.hardware.radio.channel::ISehChannel          u:object_r:hal_sec_radio_channel_hwservice:s0
+vendor.samsung.hardware.radio::ISehRadio                    u:object_r:rild_hwservice:s0
+vendor.samsung.hardware.radio.bridge::ISehBridge            u:object_r:rild_hwservice:s0
+vendor.samsung.hardware.radio.channel::ISehChannel          u:object_r:rild_hwservice:s0
+vendor.lineage.power::ILineagePower			      u:object_r:hal_power_hwservice:s0
+

@@ -1,0 +1,27 @@
+type epicd, domain;
+type epicd_exec, exec_type, vendor_file_type, file_type;
+
+# epicd is started by init, type transit from init domain to epicd domain
+init_daemon_domain(epicd)
+
+# WTF?
+# execve("/vendor/bin/sh", ["sh", "-c", "getprop ro.hardware"]
+allow epicd vendor_shell_exec:file execute_no_trans;
+
+# WTF?
+# execve("/vendor/bin/getprop", ["getprop", "ro.hardware"]
+allow epicd vendor_toolbox_exec:file execute_no_trans;
+
+# /dev/cluster[0-9]_freq_(max|min)
+# /dev/*_throughput*
+# /dev/gpu_freq_(max|min)
+allow epicd pm_qos_device:chr_file rw_file_perms;
+
+# /dev/socket/
+allow epicd socket_device:dir w_dir_perms;
+
+# /dev/socket/epic
+allow epicd epicd_socket:unix_dgram_socket { read write };
+
+# /dev/mode
+allow epicd epic_device:chr_file rw_file_perms;

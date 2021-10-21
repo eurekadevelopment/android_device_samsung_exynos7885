@@ -37,6 +37,12 @@ allow init gps_vendor_data_file:file lock;
 allow init socket_device:sock_file create_file_perms;
 allow init kernel:system module_request;
 
+allow init logd:unix_stream_socket connectto;
+allow init logdr_socket:sock_file write;
+allow init self:capability sys_nice;
+allow init boot_logcat_file:file rw_file_perms;
+allow init logcat_exec:file { execute getattr open read };
+
 allow init proc:file setattr;
 allow init proc_swapiness:file write;
 allow init proc_extra:file setattr;

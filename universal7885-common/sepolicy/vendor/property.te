@@ -1,5 +1,6 @@
 # modemloader
 type modemloader_prop, property_type;
+type camera_prop, property_type;
 
 type persist_rmnet_prop, property_type;
 type persist_data_df_prop, property_type;

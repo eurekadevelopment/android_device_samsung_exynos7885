@@ -1,0 +1,68 @@
+# rild.te
+
+get_prop(rild, vendor_radio_prop)
+
+allow rild block_device:dir search;
+allow rild mnt_vendor_file:dir { getattr search };
+
+# audio hal
+allow rild hal_audio_default:dir search;
+allow rild hal_audio_default:file r_file_perms;
+
+# gps
+allow rild gpsd:dir search;
+allow rild gpsd:file r_file_perms;
+
+# /data
+allow rild system_data_file:dir getattr;
+
+# /data/vendor/log
+allow rild log_vendor_data_file:dir rw_dir_perms;
+allow rild log_vendor_data_file:file create_file_perms;
+
+# /dev/block/platform/.+/by-name/radio
+allow rild radio_block_device:blk_file r_file_perms;
+
+# /dev/drb
+allow rild drb_device:chr_file rw_file_perms;
+
+# /dev/umts_*
+# /dev/umts_ipc*
+allow rild vendor_radio_device:chr_file rw_file_perms;
+
+# /data/vendor/secradio
+allow rild radio_vendor_data_file:dir rw_dir_perms;
+allow rild radio_vendor_data_file:file create_file_perms;
+
+# /efs/FactoryApp/
+# /mnt/vendor/efs/root
+allow rild app_efs_file:dir r_dir_perms;
+allow rild app_efs_file:file { rw_file_perms setattr };
+
+# /efs/imei
+allow rild imei_efs_file:dir r_dir_perms;
+allow rild imei_efs_file:file r_file_perms;
+
+# /mnt/vendor/efs/
+allow rild prov_efs_file:dir r_dir_perms;
+allow rild prov_efs_file:file r_file_perms;
+
+# /mnt/vendor/efs/nv_data.bin
+allow rild bin_nv_data_efs_file:file { rw_file_perms setattr unlink };
+
+# /proc/net/xt_qtaguid/iface_stat_fmt
+allow rild proc_qtaguid_stat:file r_file_perms;
+
+# /proc/sys/net/ipv6/conf/*/accept_ra_defrtr
+allow rild proc_net:file rw_file_perms;
+
+# mdc.
+# persist.sys.omc_support
+# ro.csc.
+get_prop(rild, exported_config_prop);
+
+# ro.boot.cpboot, ril.NwNmId[0-9]
+get_prop(rild, telephony_config_prop)
+
+# vendor.cbd.
+set_prop(rild, vendor_cbd_prop)

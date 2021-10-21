@@ -1,0 +1,4 @@
+# file_contexts
+
+### DATA
+/data/zram(/.*)?                             u:object_r:zram_data_file:s0
