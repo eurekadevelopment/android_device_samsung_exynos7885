@@ -7,7 +7,7 @@ TARGET_OTA_ASSERT_DEVICE := a20,a20dd
 TARGET_KEYMASTER_VARIANT := samsung
 
 # Kernel
-TARGET_KERNEL_CONFIG := exynos7885-a20_permissive_defconfig
+TARGET_KERNEL_CONFIG := exynos7885-a20_enforcing_defconfig
 
 # Display
 TARGET_SCREEN_DENSITY := 411
