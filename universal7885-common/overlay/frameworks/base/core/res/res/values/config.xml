@@ -29,7 +29,6 @@
         <item>"/system_ext/priv-app/SystemUI/SystemUI.apk"</item>
         <item>"/system/bin/surfaceflinger"</item>
     </string-array>
-    <bool name="config_pinnerCameraApp">true</bool>
     <string name="config_radio_access_family">GSM|CDMA|EVDO|WCDMA|LTE</string>
     <integer name="config_fingerprintMaxTemplatesPerUser">4</integer>
     <integer-array name="config_longPressVibePattern">
