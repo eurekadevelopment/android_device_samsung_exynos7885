@@ -1,0 +1,8 @@
+service samsungparts_daemon /system/bin/android.software.samsungparts@1.0-service
+   user root
+   group root
+   oneshot
+
+on property:sys.boot_completed=1
+   start samsungparts_daemon
+
