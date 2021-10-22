@@ -274,7 +274,7 @@ PRODUCT_CFI_INCLUDE_PATHS += hardware/samsung_slsi/scsc_wifibt/wpa_supplicant_li
 # SamsungParts
 PRODUCT_PACKAGES += \
 	SamsungParts \
-	android.software.samsungparts@1.0-service
+	init.samsungparts.rc
 
 # Debug
 ifeq ($(TARGET_BUILD_VARIENT),eng)

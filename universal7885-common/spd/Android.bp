@@ -1,6 +1,0 @@
-cc_binary{
-   name: "android.software.samsungparts@1.0-service",
-   srcs: [ "main.cpp" ],
-   shared_libs: ["liblog"],
-   init_rc: [ "android.software.samsungparts@1.0-service.rc" ],
-}
