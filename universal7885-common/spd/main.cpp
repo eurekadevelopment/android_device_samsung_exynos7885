@@ -1,23 +1,20 @@
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <unidef.h>
-#include <android-base/logging.h>
+#include <unistd.h>
+#include <iostream>
 #define LOG_TAG "samsungparts@1.0-service"
+#include <log/log.h>
 #define SYSTEM_ID 1000
 void chmod(std::string filename){
-const char file* = filename.c_str();
+const char *file = filename.c_str();
 if (chmod(file, 664) < 0){
-LOG(ERROR) << "Failed to chmod " + filename;
-}else{
-LOG(INFO) << "Setting permissions for " + filename;
+ALOGE("Failed to chmod");
 }
 }
 void chown(std::string filename){
-const char file* = filename.c_str();
+const char *file = filename.c_str();
 if (chown(file, SYSTEM_ID, SYSTEM_ID) < 0) {
-LOG(ERROR) << "Failed to chown "  +  filename;
-else{
-LOG(INFO) << "Setting permissions for " + filename;
+ALOGE("Failed to chown");
 }
 }
 int main(){
@@ -45,5 +42,4 @@ chown("/sys/class/sec/switch/afc_disable");
 chmod("/sys/fs/selinux/enforce");
 chown("/sys/fs/selinux/enforce");
 
-LOG(INFO) <<  "Setting permissions done";
 }
