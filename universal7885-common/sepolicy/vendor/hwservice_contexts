@@ -4,3 +4,6 @@ vendor.samsung.hardware.radio.bridge::ISehBridge            u:object_r:rild_hwse
 vendor.samsung.hardware.radio.channel::ISehChannel          u:object_r:rild_hwservice:s0
 vendor.lineage.power::ILineagePower			      u:object_r:hal_power_hwservice:s0
 
+# SamsungParts
+vendor.eureka.hardware.battery::IBattery u:object_r:hal_battery_hwservice:s0
+

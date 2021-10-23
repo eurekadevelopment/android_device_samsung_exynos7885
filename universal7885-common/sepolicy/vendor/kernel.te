@@ -1,3 +1,8 @@
+# kernel.te
+
+# /vendor/firmware/
+allow kernel vendor_firmware_file:dir r_dir_perms;
+allow kernel vendor_firmware_file:file r_file_perms;
 allow kernel app_efs_file:dir search;
 allow kernel app_efs_file:file open;
 allow kernel sensor_factoryapp_efs_file:file open;

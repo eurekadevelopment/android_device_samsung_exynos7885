@@ -1,3 +1,18 @@
+# hal_fingerprint_default.te
+
+teegris_use(hal_fingerprint_default)
+# /dev/esfp[0-9]
+allow hal_fingerprint_default fp_sensor_device:chr_file rw_file_perms;
+
+# /data/vendor/ -> biometrics
+file_type_auto_trans(hal_fingerprint_default, vendor_data_file, biometrics_vendor_data_file)
+
+# /data/vendor/biometrics/*
+allow hal_fingerprint_default biometrics_vendor_data_file:file create_file_perms;
+
+# /sys/class/fingerprint/
+allow hal_fingerprint_default sysfs_fingerprint:dir r_dir_perms;
+allow hal_fingerprint_default sysfs_fingerprint:file r_file_perms;
 typeattribute hal_fingerprint_default data_between_core_and_vendor_violators;
 
 allow hal_fingerprint_default fingerprintd_data_file:dir write;

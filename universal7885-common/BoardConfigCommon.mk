@@ -84,17 +84,13 @@ ENABLE_VENDOR_RIL_SERVICE := true
 
 # Sepolicy
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += \
-    $(COMMON_PATH)/sepolicy/samsung_slsi/tee/public \
-    $(COMMON_PATH)/sepolicy/samsung_slsi/public \
-    $(COMMON_PATH)/sepolicy/samsungparts
+    $(COMMON_PATH)/sepolicy/public
     
 BOARD_VENDOR_SEPOLICY_DIRS += \
-    $(COMMON_PATH)/sepolicy/samsung_slsi/tee/vendor \
-    $(COMMON_PATH)/sepolicy/vendor \
-    $(COMMON_PATH)/sepolicy/samsung_slsi/vendor
+    $(COMMON_PATH)/sepolicy/vendor
 
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
-    $(COMMON_PATH)/sepolicy/samsung_slsi/private
+    $(COMMON_PATH)/sepolicy/private
     
 # Vendor
 TARGET_COPY_OUT_VENDOR := vendor
