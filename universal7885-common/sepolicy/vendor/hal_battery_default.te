@@ -1,0 +1,2 @@
+# hwservice
+hal_attribute_hwservice(hal_battery, hal_battery_hwservice)
