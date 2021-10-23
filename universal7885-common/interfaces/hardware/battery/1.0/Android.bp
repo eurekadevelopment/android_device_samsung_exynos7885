@@ -1,0 +1,10 @@
+hidl_interface { 
+    name: "vendor.eureka.hardware.battery@1.0",
+    root: "vendor.eureka",  
+    srcs: [
+       "types.hal",
+       "IBattery.hal",
+    ],
+    interfaces: [ "android.hidl.base@1.0" ],
+    gen_java: true,
+}
