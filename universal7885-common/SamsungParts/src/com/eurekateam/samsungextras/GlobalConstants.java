@@ -21,6 +21,5 @@ public class GlobalConstants {
             + "power_supply/battery/capacity";
     public static final String BATTERY_CURRENT_SYSFS = "/sys/devices/platform/battery/"
             + "power_supply/battery/current_now";
-    public static final String BATTERY_TIME_TO_FULL_SYSFS = "/sys/devices/platform/battery/"
-            + "power_supply/battery/time_to_full_now";
+   
 }
