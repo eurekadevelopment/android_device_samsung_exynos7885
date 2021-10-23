@@ -1,3 +1,10 @@
+# file.te
+
+# DATA
+type tee_vendor_data_file, file_type, data_file_type;
+
+# DEV SOCKET
+type tz_socket, file_type;
 ### efs types
 type radio_factoryapp_efs_file, file_type;
 type factoryprop_efs_file, file_type;

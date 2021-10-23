@@ -1,3 +1,16 @@
+### cbd
+vendor.cbd.                    u:object_r:vendor_cbd_prop:s0
+persist.vendor.cbd.            u:object_r:vendor_radio_prop:s0
+
+### radio
+ro.multisim.                   u:object_r:vendor_radio_prop:s0
+ro.vendor.multisim.            u:object_r:vendor_radio_prop:s0
+ro.vendor.radio.               u:object_r:vendor_radio_prop:s0
+
+### wifi
+vendor.wifi.                   u:object_r:vendor_wifi_prop:s0
+ro.vendor.wifi.                u:object_r:vendor_wifi_prop:s0
+
 # bluetooth
 persist.bluetooth_fw_ver    u:object_r:bluetooth_prop:s0
 ro.bluetooth.tty            u:object_r:bluetooth_prop:s0
@@ -38,3 +51,9 @@ vendor.wlan.               u:object_r:vendor_wlan_prop:s0
 
 # Hwc
 hwc.exynos.vsync_mode      u:object_r:vendor_hwc_prop:s0
+
+
+# TEEGRIS
+vendor.secureos.               u:object_r:vendor_secureos_prop:s0
+vendor.tzdaemon                u:object_r:vendor_tzdaemon_prop:s0
+vendor.tzts_daemon             u:object_r:vendor_tztsdaemon_prop:s0

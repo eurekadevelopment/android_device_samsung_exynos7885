@@ -1,7 +1,0 @@
-type samsungparts, coredomain;
-type samsungparts_exec, exec_type, file_type, system_file_type;
-#init_daemon_domain(samsungparts)
-allow samsungparts sysfs_gpu_tmu:file { setattr };
-allow samsungparts sysfs_flashlight:file { setattr };
-allow samsungparts sysfs_sec_switch_writable:file { setattr };
-allow samsungparts sysfs_battery_writable:file { setattr };
