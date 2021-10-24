@@ -1,0 +1,10 @@
+hidl_interface { 
+    name: "vendor.eureka.hardware.flashlight@1.0",
+    root: "vendor.eureka",  
+    srcs: [
+       "types.hal",
+       "IFlashlight.hal",
+    ],
+    interfaces: [ "android.hidl.base@1.0" ],
+    gen_java: true,
+}
