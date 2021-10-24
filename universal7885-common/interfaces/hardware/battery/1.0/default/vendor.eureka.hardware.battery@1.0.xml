@@ -1,3 +1,4 @@
+<manifest version="1.0" type="device" target-level="3">
 <hal format="hidl">
      <name>vendor.eureka.hardware.battery</name>
      <transport>hwbinder</transport>
@@ -7,3 +8,4 @@
          <instance>default</instance>
      </interface>
 </hal>
+</manifest>
