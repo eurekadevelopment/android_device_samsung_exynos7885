@@ -1,3 +1,4 @@
 type hal_battery_default, domain;
 type hal_battery_default_exec, exec_type, file_type,  vendor_file_type;
+add_hwservice(hal_battery_default, hal_battery_hwservice);
 init_daemon_domain(hal_battery_default);
