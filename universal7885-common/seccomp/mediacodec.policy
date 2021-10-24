@@ -1,0 +1,10 @@
+
+# for H/W Codec
+getdents64: 1
+
+# for Epic
+sendto: 1
+
+# used in frc library
+sched_setaffinity: 1
+sched_getaffinity: 1

@@ -221,7 +221,8 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Sensors
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@2.1-service.samsung-multihal \
+    android.hardware.sensors@1.0-impl.samsung \
+    android.hardware.sensors@1.0-service \
     libsensorndkbridge
 
 # Shims
@@ -244,7 +245,7 @@ PRODUCT_PACKAGES += \
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.1-service.typec
+    android.hardware.usb@1.1-service.exynos7884B
 
 # Vibrator
 PRODUCT_PACKAGES += \
