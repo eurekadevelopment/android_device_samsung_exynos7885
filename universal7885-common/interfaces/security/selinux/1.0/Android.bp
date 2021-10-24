@@ -1,0 +1,10 @@
+hidl_interface { 
+    name: "vendor.eureka.security.selinux@1.0",
+    root: "vendor.eureka",  
+    srcs: [
+       "types.hal",
+       "ISELinux.hal",
+    ],
+    interfaces: [ "android.hidl.base@1.0" ],
+    gen_java: true,
+}

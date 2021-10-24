@@ -212,7 +212,10 @@
 /(vendor|system/vendor)/bin/hw/android\.hardware\.usb@[0-9]\.[0-9]-service\.exynos7884B           u:object_r:hal_usb_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.samsung\.hardware\.gnss@[0-9]\.[0-9]-service           u:object_r:hal_gnss_default_exec:s0
 /(vendor|system/vendor)/firmware(/.*)?       u:object_r:vendor_firmware_file:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.sensors@2.1-service\.samsung-multihal      u:object_r:hal_sensors_default_exec:s0
 
 # SamsungParts
 /(vendor|system/vendor)/bin/hw/vendor\.eureka\.hardware\.battery@1\.0-service          u:object_r:hal_battery_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.eureka\.hardware\.flashlight@1\.0-service          u:object_r:hal_flashlight_default_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.eureka\.hardware\.gpu@1\.0-service          u:object_r:hal_gpu_default_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.eureka\.security\.selinux@1\.0-service          u:object_r:hal_selinux_default_exec:s0

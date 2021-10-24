@@ -35,4 +35,4 @@ enum Number : int32_t {
 enum Enable : int32_t {
 	ENABLE,
 	DISABLE,
-}
+};

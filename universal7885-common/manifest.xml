@@ -173,15 +173,6 @@
         </interface>
     </hal>
     <hal format="hidl">
-        <name>android.hardware.sensors</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ISensors</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
         <name>android.hardware.thermal</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -239,15 +230,6 @@
             <instance>epdgd2</instance>
             <instance>imsd</instance>
             <instance>imsd2</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.eureka.hardware.battery</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IBattery</name>
-            <instance>default</instance>
         </interface>
     </hal>
 </manifest>

@@ -14,11 +14,11 @@
 
 #pragma once
 
-#include <vendor/eureka/hardware/flashlight/1.0/IFlashlight.h>
+#include <vendor/eureka/security/selinux/1.0/ISELinux.h>
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
 
-namespace vendor::eureka::hardware::flashlight::V1_0 {
+namespace vendor::eureka::security::selinux::V1_0 {
 
 using ::android::hardware::hidl_array;
 using ::android::hardware::hidl_memory;
@@ -28,13 +28,12 @@ using ::android::hardware::Return;
 using ::android::hardware::Void;
 using ::android::sp;
 
-struct Flashlight : public IFlashlight {
-    // Methods from ::vendor::eureka::hardware::flashlight::V1_0::IFlashlight follow.
-    Return<int32_t> setFlashlightEnable(Enable enable);
-    Return<int32_t> setFlashlightWritable(Number value);
-    Return<int32_t> readFlashlightstats(Device device);
+struct SELinux : public ISELinux {
+    // Methods from ::vendor::eureka::security::selinux::V1_0::ISELinux follow.
+    Return<int32_t> setSELinuxWritable(Enable enable);
+    Return<int32_t> readSELinuxstats(void);
     // Methods from ::android::hidl::base::V1_0::IBase follow.
-    static IFlashlight* getInstance(void);
+    static ISELinux* getInstance(void);
 
 };
-}  // namespace android::hardware::flashlight::implementation
+}  // namespace android::security::selinux::implementation
