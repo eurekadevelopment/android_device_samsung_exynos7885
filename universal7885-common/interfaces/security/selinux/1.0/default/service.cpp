@@ -23,8 +23,8 @@
  
 using vendor::eureka::security::selinux::V1_0::ISELinux;
 using vendor::eureka::security::selinux::V1_0::SELinux;
-using android::security::configureRpcThreadpool;
-using android::security::joinRpcThreadpool;
+using android::hardware::configureRpcThreadpool;
+using android::hardware::joinRpcThreadpool;
 using android::sp;
  
 int main() {

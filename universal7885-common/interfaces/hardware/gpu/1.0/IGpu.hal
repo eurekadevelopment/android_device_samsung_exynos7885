@@ -15,6 +15,6 @@
 package vendor.eureka.hardware.gpu@1.0;
 
 interface IGpu {
-	setGpuWritable(Number value) generates (int32_t result);
+	setGpuWritable(Enable enable) generates (int32_t result);
 	readGpustats() generates (int32_t value);
 };

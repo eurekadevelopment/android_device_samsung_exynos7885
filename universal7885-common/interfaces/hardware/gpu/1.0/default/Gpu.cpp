@@ -24,7 +24,7 @@ Return<int32_t> Gpu::setGpuWritable(gpu::V1_0::Enable enable) {
         if (enable == Enable::ENABLE){
         writevalue = "1";
         }else{
-        writevalue = "0"
+        writevalue = "0";
         }
         file.open("/sys/devices/platform/11500000.mali/tmu");
         file << writevalue;

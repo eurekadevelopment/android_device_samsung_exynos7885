@@ -24,7 +24,7 @@ Return<int32_t> SELinux::setSELinuxWritable(selinux::V1_0::Enable enable) {
         if (enable == Enable::ENABLE){
         writevalue = "1";
         }else{
-        writevalue = "0"
+        writevalue = "0";
         }
         file.open("/sys/fs/selinux/enforce");
         file << writevalue;

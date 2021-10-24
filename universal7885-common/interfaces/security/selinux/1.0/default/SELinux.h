@@ -20,18 +20,18 @@
 
 namespace vendor::eureka::security::selinux::V1_0 {
 
-using ::android::security::hidl_array;
-using ::android::security::hidl_memory;
-using ::android::security::hidl_string;
-using ::android::security::hidl_vec;
-using ::android::security::Return;
-using ::android::security::Void;
+using ::android::hardware::hidl_array;
+using ::android::hardware::hidl_memory;
+using ::android::hardware::hidl_string;
+using ::android::hardware::hidl_vec;
+using ::android::hardware::Return;
+using ::android::hardware::Void;
 using ::android::sp;
 
 struct SELinux : public ISELinux {
     // Methods from ::vendor::eureka::security::selinux::V1_0::ISELinux follow.
-    Return<int32_t> SELinux::setSELinuxWritable(Enable enable);
-    Return<int32_t> SELinux::readSELinuxstats(void);
+    Return<int32_t> setSELinuxWritable(Enable enable);
+    Return<int32_t> readSELinuxstats(void);
     // Methods from ::android::hidl::base::V1_0::IBase follow.
     static ISELinux* getInstance(void);
 

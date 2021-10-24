@@ -30,8 +30,8 @@ using ::android::sp;
 
 struct Gpu : public IGpu {
     // Methods from ::vendor::eureka::hardware::gpu::V1_0::IGpu follow.
-    Return<int32_t> Gpu::setGpuWritable(Enable enable);
-    Return<int32_t> Gpu::readGpustats(void);
+    Return<int32_t> setGpuWritable(Enable enable);
+    Return<int32_t> readGpustats(void);
     // Methods from ::android::hidl::base::V1_0::IBase follow.
     static IGpu* getInstance(void);
 
