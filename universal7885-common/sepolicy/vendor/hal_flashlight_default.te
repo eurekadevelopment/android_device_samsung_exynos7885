@@ -1,0 +1,4 @@
+type hal_flashlight_default, domain;
+type hal_flashlight_default_exec, exec_type, file_type,  vendor_file_type;
+add_hwservice(hal_flashlight_default, hal_flashlight_hwservice);
+init_daemon_domain(hal_flashlight_default);
