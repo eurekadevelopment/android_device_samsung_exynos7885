@@ -19,18 +19,18 @@
 namespace vendor::eureka::hardware::flashlight::V1_0 {
 
 // Methods from ::android::hardware::flashlight::V1_0::IFlashlight follow.
-Return<int32_t> Flashlight::getFlashlightStats(flashlight::V1_0::Enable enable) {
+Return<int32_t> Flashlight::setFlashlightEnable(flashlight::V1_0::Enable enable) {
 	std::ofstream file;
         std::string writevalue;
 	switch (enable){
-	   case Number::ENABLE:
+	   case Enable::ENABLE:
 	      writevalue = "1";
 	      break;
-	   case Number::DISABLE:
+	   case Enable::DISABLE:
 	      writevalue = "0";
 	      break;
 	   default:
-	      filename = "";
+	      writevalue = "";
 	      break;
 	}
         file.open("/sys/class/camera/flash/torch_brightness_lvl_enable");
@@ -74,7 +74,7 @@ Return<int32_t> Flashlight::setFlashlightWritable(flashlight::V1_0::Number value
 	      writevalue = "10";
 	      break;
 	   default:
-	      filename = "";
+	      writevalue = "";
 	      break;
 	}
         file.open("/sys/class/camera/flash/torch_brightness_lvl");

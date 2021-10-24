@@ -281,7 +281,9 @@ PRODUCT_PACKAGES += \
     SamsungParts \
     init.samsungparts.rc \
     vendor.eureka.hardware.battery@1.0-service \
-    vendor.eureka.hardware.flashlight@1.0-service
+    vendor.eureka.hardware.flashlight@1.0-service \
+    vendor.eureka.hardware.gpu@1.0-service \
+    vendor.eureka.security.selinux@1.0-service
 
 # Debug
 ifeq ($(TARGET_BUILD_VARIENT),eng)

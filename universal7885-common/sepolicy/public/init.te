@@ -1,5 +1,0 @@
-allow init sysfs_gpu_tmu:file { setattr };
-allow init sysfs_flashlight:file { setattr };
-allow init selinuxfs:file { setattr };
-allow init sysfs_sec_switch_writable:file { setattr };
-allow init sysfs_battery_writable:file { setattr };

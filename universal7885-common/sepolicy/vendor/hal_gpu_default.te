@@ -1,0 +1,6 @@
+type hal_gpu_default, domain;
+type hal_gpu_default_exec, exec_type, file_type,  vendor_file_type;
+add_hwservice(hal_gpu_default, hal_gpu_hwservice);
+init_daemon_domain(hal_gpu_default);
+allow system_app sysfs_gpu_tmu:file { read open write getattr };
+allow system_app sysfs_gpu_tmu:dir search;

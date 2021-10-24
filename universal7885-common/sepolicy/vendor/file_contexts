@@ -216,3 +216,5 @@
 # SamsungParts
 /(vendor|system/vendor)/bin/hw/vendor\.eureka\.hardware\.battery@1\.0-service          u:object_r:hal_battery_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.eureka\.hardware\.flashlight@1\.0-service          u:object_r:hal_flashlight_default_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.eureka\.hardware\.gpu@1\.0-service          u:object_r:hal_gpu_default_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.eureka\.security\.selinux@1\.0-service          u:object_r:hal_selinux_default_exec:s0
