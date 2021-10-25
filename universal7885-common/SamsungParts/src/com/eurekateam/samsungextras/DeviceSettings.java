@@ -20,7 +20,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.preference.Preference;
@@ -30,9 +29,9 @@ import androidx.preference.SwitchPreference;
 
 import com.eurekateam.samsungextras.battery.BatteryActivity;
 import com.eurekateam.samsungextras.flashlight.FlashLightActivity;
+import com.eurekateam.samsungextras.interfaces.GPU;
+import com.eurekateam.samsungextras.interfaces.SELinux;
 import com.eurekateam.samsungextras.speaker.ClearSpeakerActivity;
-import com.eurekateam.samsungextras.utils.FileUtilsWrapper;
-import com.eurekateam.samsungextras.utils.SystemProperties;
 
 public class DeviceSettings extends PreferenceFragment implements
         Preference.OnPreferenceChangeListener {
@@ -48,6 +47,7 @@ public class DeviceSettings extends PreferenceFragment implements
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        System.loadLibrary("samsungparts_jni");
         setPreferencesFromResource(R.xml.preferences_samsung_parts, rootKey);
         Context mContext = this.getContext();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
@@ -66,30 +66,16 @@ public class DeviceSettings extends PreferenceFragment implements
 
         SwitchPreference mGPUExynos = findPreference(PREF_GPUEXYNOS);
         assert mGPUExynos != null;
-        if (FileUtilsWrapper.isFileReadable(GlobalConstants.TMU_SYSFS)) {
-            Log.d(GlobalConstants.TAG, "onCreatePreferences: "
-                    + (GlobalConstants.TMU_SYSFS) + " readable, value " +
-                    FileUtilsWrapper.readOneLine(GlobalConstants.TMU_SYSFS));
-            mGPUExynos.setChecked(
-                    FileUtilsWrapper.readOneLine(GlobalConstants.TMU_SYSFS).equals("1"));
-        }else {
-            Log.w(GlobalConstants.TAG, "onCreatePreferences: "
-                    + (GlobalConstants.TMU_SYSFS) + " not readable");
-            mGPUExynos.setEnabled(false);
-        }
+        mGPUExynos.setChecked(GPU.getGPU() == 1);
         mGPUExynos.setOnPreferenceChangeListener(this);
 
-        Preference mSELinux = findPreference(PREF_SELINUX);
+        SwitchPreference mSELinux = findPreference(PREF_SELINUX);
         assert mSELinux != null;
-        mSELinux.setOnPreferenceClickListener(preference -> {
-            boolean selinux_enforcing = SystemProperties.getenforce();
-            Toast.makeText(getContext(), selinux_enforcing ?
-                            "SELinux is in enforcing state." :
-                            "SELinux is in permissive state.",
-                    Toast.LENGTH_SHORT).show();
-            return true;
-        });
+        mSELinux.setOnPreferenceChangeListener(this);
+        mSELinux.setEnabled(SELinux.getSELinux() != 0);
+
         Preference mFlashLight = findPreference(PREF_FLASHLIGHT);
+        assert mFlashLight != null;
         mFlashLight.setOnPreferenceClickListener(preference -> {
             Intent intent = new Intent(getActivity().getApplicationContext(), FlashLightActivity.class);
             startActivity(intent);
@@ -119,11 +105,15 @@ public class DeviceSettings extends PreferenceFragment implements
                 break;
             case PREF_GPUEXYNOS:
                 boolean gpu_enabled = (Boolean) value;
-                Log.d(GlobalConstants.TAG, "onPreferenceChange: Writing " +
-                        gpu_enabled + " to " + GlobalConstants.TMU_SYSFS);
-                FileUtilsWrapper.writeLine(GlobalConstants.TMU_SYSFS, gpu_enabled ? "1" : "0");
+                GPU.setGPU(gpu_enabled ? 1 : 0);
                 Toast.makeText(getContext(), gpu_enabled ? "GPU Throttling is now enabled."
                         : "GPU Throttling is now disabled.",
+                        Toast.LENGTH_SHORT).show();
+            case PREF_SELINUX:
+                boolean selinux_enabled = (Boolean) value;
+                SELinux.setSELinux(selinux_enabled ? 1 : 0);
+                Toast.makeText(getContext(), selinux_enabled ? "SELinux is now in enforcing state."
+                                : "SELinux is now in permissive state.",
                         Toast.LENGTH_SHORT).show();
             default:
                 break;
