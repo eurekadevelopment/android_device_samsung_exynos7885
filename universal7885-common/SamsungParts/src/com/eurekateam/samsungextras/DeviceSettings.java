@@ -48,6 +48,7 @@ public class DeviceSettings extends PreferenceFragment implements
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        System.loadLibrary("libnativebridge");
         setPreferencesFromResource(R.xml.preferences_samsung_parts, rootKey);
         Context mContext = this.getContext();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);

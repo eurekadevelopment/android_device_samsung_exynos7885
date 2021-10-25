@@ -85,8 +85,8 @@ public class BatteryFragment extends PreferenceFragment implements
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (preference == mFastChargePref) {
             Boolean value = (Boolean) newValue;
-            Battery.setChargeSysfs(value ?  true : false);
-            mFastChargePref.setChecked(Battery.getChargeSysfs().equals("0"));
+            Battery.setChargeSysfs(value ?  0 : 1 );
+            mFastChargePref.setChecked(Battery.getChargeSysfs() = 0);
             return true;
         }else if (preference == mChargePref){
             Boolean value = (Boolean) newValue;
