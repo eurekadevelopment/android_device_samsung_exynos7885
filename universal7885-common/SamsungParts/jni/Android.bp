@@ -1,0 +1,18 @@
+cc_library_shared {
+    name: "libsamsungparts_jni",
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-Werror",
+    ],
+    srcs: ["*.cpp"],
+    shared_libs: [
+        "libhidlbase",
+        "libhidltransport",
+        "liblog",
+        "libutils",
+        "vendor.eureka.hardware.battery@1.0",
+    ]
+]
+

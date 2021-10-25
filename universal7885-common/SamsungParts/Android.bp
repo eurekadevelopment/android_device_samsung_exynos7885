@@ -1,0 +1,11 @@
+android_app {
+    name: "SamsungParts",
+    srcs: [
+        "src/**/**/**/**/*.java",
+    ],
+    platform_apis: true,
+    certificate: "platform",
+    jni_libs: ["libsamsungparts_jni"],
+    static_libs: ["androidx.preference_preference"],
+    defaults: ["SettingsLibDefaults"],
+}
