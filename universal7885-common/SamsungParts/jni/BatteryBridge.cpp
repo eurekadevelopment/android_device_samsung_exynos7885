@@ -30,3 +30,64 @@ Java_com_eurekateam_samsungextras_interfaces_Battery_getChargeSysfs
       int ret = service->getBatteryStats(SysfsType::CHARGE);
       return ret;
 }
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_eurekateam_samsungextras_interfaces_Battery_setFastCharge(JNIEnv *env, __unused jclass obj,
+                                                                   jint enable) {
+      android::sp<IBattery> service = IBattery::getService();
+      if (enable == 1){
+            service->setBatteryWritable(SysfsType::FASTCHARGE, Number::ENABLE);
+      }else{
+            service->setBatteryWritable(SysfsType::FASTCHARGE, Number::DISABLE);
+      }
+}
+extern "C"
+JNIEXPORT jint JNICALL
+Java_com_eurekateam_samsungextras_interfaces_Battery_getFastChargeSysfs(JNIEnv *env, __unused
+jclass obj) {
+      android::sp<IBattery> service = IBattery::getService();
+      int ret = service->getBatteryStats(SysfsType::FASTCHARGE);
+      return ret;
+}
+extern "C"
+JNIEXPORT jint JNICALL
+Java_com_eurekateam_samsungextras_interfaces_Battery_getGeneralBatteryStats(JNIEnv *env,
+                                                                            __unused
+                                                                            jclass obj, jint id) {
+      /**
+       * id:
+       * 1 = BATTERY_CAPACITY_MAX
+       * 2 = BATTERY_CAPACITY_CURRENT (%)
+       * 3 = BATTERY_CAPACITY_CURRENT (mAh)
+       * 4 = CHARGING_STATE
+       * 5 = BATTERY_TEMP
+       * 6 = BATTERY_CURRENT
+       */
+      android::sp<IBattery> service = IBattery::getService();
+      int ret;
+      switch (id) {
+          case 1:
+                ret = service->getBatteryStats(SysfsType::CAPACITY_MAX) / 1000;
+          case 2:
+                ret = service->getBatteryStats(SysfsType::CAPACITY_CURRENT);
+          case 3:
+                ret = (float) service->getBatteryStats(SysfsType::CAPACITY_CURRENT) *
+                        (float) service->getBatteryStats(SysfsType::CAPACITY_MAX) / 100000;
+          case 4:
+                if (service->getBatteryStats(SysfsType::CURRENT) > 0){
+                      ret = 1;
+                }else{
+                      ret = 0;
+                }
+          case 5:
+                ret = service->getBatteryStats(SysfsType::TEMP) / 10;
+          case 6:
+                ret = service->getBatteryStats(SysfsType::CURRENT);
+          default:
+                ret = -1;
+      }
+      return ret;
+
+
+}
