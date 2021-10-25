@@ -9,18 +9,6 @@ using vendor::eureka::hardware::gpu::V1_0::IGpu;
 using vendor::eureka::hardware::gpu::V1_0::Enable;
 using android::sp;
  
-extern "C" JNIEXPORT void
-JNICALL
-Java_com_eurekateam_samsungextras_interfaces_Battery_setChargeSysfs
-(JNIEnv *env , __unused jclass obj, jint enable) {
-      android::sp<IBattery> service = IBattery::getService();
-      if (enable == 1){
-      service->setBatteryWritable(SysfsType::CHARGE, Number::ENABLE);
-      }else{
-      service->setBatteryWritable(SysfsType::CHARGE, Number::DISABLE);
-      }
-}
-
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_eurekateam_samsungextras_interfaces_GPU_setGPU(JNIEnv *env, jclass clazz, jint enable) {

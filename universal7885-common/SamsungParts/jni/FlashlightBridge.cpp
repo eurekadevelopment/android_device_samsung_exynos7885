@@ -5,10 +5,10 @@
 #include <hidl/HidlSupport.h>
 #include "jni.h"
 
-using vendor::eureka::hardware::battery::V1_0::IFlashlight;
-using vendor::eureka::hardware::battery::V1_0::Device;
-using vendor::eureka::hardware::battery::V1_0::Enable;
-using vendor::eureka::hardware::battery::V1_0::Number;
+using vendor::eureka::hardware::flashlight::V1_0::IFlashlight;
+using vendor::eureka::hardware::flashlight::V1_0::Device;
+using vendor::eureka::hardware::flashlight::V1_0::Enable;
+using vendor::eureka::hardware::flashlight::V1_0::Number;
 using android::sp;
 
 extern "C"
