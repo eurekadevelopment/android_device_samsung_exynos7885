@@ -69,23 +69,30 @@ Java_com_eurekateam_samsungextras_interfaces_Battery_getGeneralBatteryStats(JNIE
       switch (id) {
           case 1:
                 ret = service->getBatteryStats(SysfsType::CAPACITY_MAX) / 1000;
+                break;
           case 2:
                 ret = service->getBatteryStats(SysfsType::CAPACITY_CURRENT);
+                break;
           case 3:
                 ret = (float) service->getBatteryStats(SysfsType::CAPACITY_CURRENT) *
                         (float) service->getBatteryStats(SysfsType::CAPACITY_MAX) / 100000;
+                break;
           case 4:
                 if (service->getBatteryStats(SysfsType::CURRENT) > 0){
                       ret = 1;
                 }else{
                       ret = 0;
                 }
+                break;
           case 5:
                 ret = service->getBatteryStats(SysfsType::TEMP) / 10;
+                break;
           case 6:
                 ret = service->getBatteryStats(SysfsType::CURRENT);
+                break;
           default:
                 ret = -1;
+                break;
       }
       return ret;
 
