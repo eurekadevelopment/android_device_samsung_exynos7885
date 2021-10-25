@@ -3,7 +3,9 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE_TAGS := optional
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-    androidx.preference_preference
+    androidx.preference_preference 
+    
+LOCAL_JAVA_LIBRARIES += vendor.eureka.hardware.battery-V1.0-java
 
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
 LOCAL_PACKAGE_NAME := SamsungParts
@@ -26,10 +28,3 @@ include $(BUILD_PACKAGE)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
-include $(CLEAR_VARS)
-LOCAL_MODULE := init.samsungparts.rc
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := ETC
-LOCAL_SRC_FILES := $(LOCAL_MODULE)
-LOCAL_MODULE_PATH := $(TARGET_OUT_ETC)/init
-include $(BUILD_PREBUILT)

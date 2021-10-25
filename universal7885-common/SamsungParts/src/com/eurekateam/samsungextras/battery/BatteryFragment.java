@@ -21,6 +21,8 @@ import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.eurekateam.samsungextras.interfaces.Battery;
+
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragment;
@@ -60,19 +62,6 @@ public class BatteryFragment extends PreferenceFragment implements
         mChargePref = findPreference(PREF_CHARGE);
         assert mChargePref != null;
         mChargePref.setOnPreferenceChangeListener(this);
-        mChargePref.setEnabled(FileUtilsWrapper.
-                fileExists(GlobalConstants.CHARGE_DISABLE_SYSFS));
-        if (FileUtilsWrapper.isFileReadable(GlobalConstants.CHARGE_DISABLE_SYSFS)){
-            Log.d(GlobalConstants.TAG, "onCreatePreferences: " +
-                    GlobalConstants.CHARGE_DISABLE_SYSFS + " readable, value " +
-                            FileUtilsWrapper.readOneLine(GlobalConstants.CHARGE_DISABLE_SYSFS));
-            mChargePref.setChecked(FileUtilsWrapper.readOneLine
-                    (GlobalConstants.CHARGE_DISABLE_SYSFS).equals("0"));
-        }else{
-            Log.w(GlobalConstants.TAG, "onCreatePreferences: " +
-                    GlobalConstants.FLASHLIGHT_SYSFS + " not readable");
-            mFastChargePref.setEnabled(false);
-        }
         ListPreference mBatteryInfo = findPreference(BATTERY_INFO);
         CharSequence[] items = {
                 Integer.parseInt(FileUtilsWrapper.readOneLine(GlobalConstants.BATTERY_CAPACITY_MAX_SYSFS)) / 1000 + " mAh",
@@ -96,11 +85,8 @@ public class BatteryFragment extends PreferenceFragment implements
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (preference == mFastChargePref) {
             Boolean value = (Boolean) newValue;
-            Log.d(GlobalConstants.TAG, "onPreferenceChange: writing " + value + " to " +
-                    GlobalConstants.FASTCHARGE_SYSFS);
-            FileUtilsWrapper.writeLine(GlobalConstants.FASTCHARGE_SYSFS, value ?  "0" : "1");
-            mFastChargePref.setChecked(FileUtilsWrapper.readOneLine
-                    (GlobalConstants.FASTCHARGE_SYSFS).equals("0"));
+            Battery.setChargeSysfs(value ?  true : false);
+            mFastChargePref.setChecked(Battery.getChargeSysfs().equals("0"));
             return true;
         }else if (preference == mChargePref){
             Boolean value = (Boolean) newValue;
