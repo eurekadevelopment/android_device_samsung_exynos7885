@@ -4,7 +4,7 @@ include $(CLEAR_VARS)
 
 # Here we give our module name and source file(s)
 
-LOCAL_SRC_FILES := Battery.cpp
-LOCAL_MODULE    := libnativebridge
+LOCAL_SRC_FILES := BatteryBridge.cpp
+LOCAL_MODULE    := libnativebridges
 
 include $(BUILD_SHARED_LIBRARY)

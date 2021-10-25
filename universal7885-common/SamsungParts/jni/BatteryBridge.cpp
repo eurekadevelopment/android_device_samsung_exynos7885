@@ -18,7 +18,7 @@ JAVA_com_eurekateam_samsungextras_interfaces_Battery_setChargeSysfs
       if (enable == 1){
       service->setBatteryWritable(SysfsType::CHARGE, Number::ENABLE);
       }else{
-      service->setBatteryWritable(SysfsType::CHARGE, Number::ENABLE);
+      service->setBatteryWritable(SysfsType::CHARGE, Number::DISABLE);
       }
 }
 
