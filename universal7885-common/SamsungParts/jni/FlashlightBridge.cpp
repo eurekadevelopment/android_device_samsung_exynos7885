@@ -5,10 +5,10 @@
 #include <hidl/HidlSupport.h>
 #include "jni.h"
 
-using vendor::eureka::hardware::battery::V1_0::IFlashlight;
-using vendor::eureka::hardware::battery::V1_0::Device;
-using vendor::eureka::hardware::battery::V1_0::Enable;
-using vendor::eureka::hardware::battery::V1_0::Number;
+using vendor::eureka::hardware::flashlight::V1_0::IFlashlight;
+using vendor::eureka::hardware::flashlight::V1_0::Device;
+using vendor::eureka::hardware::flashlight::V1_0::Enable;
+using vendor::eureka::hardware::flashlight::V1_0::Number;
 using android::sp;
 
 extern "C"
@@ -20,24 +20,36 @@ Java_com_eurekateam_samsungextras_interfaces_Flashlight_setFlash(JNIEnv *env, __
       switch (value) {
           case 1:
                 service->setFlashlightWritable(Number::ONEUI);
+                break;
           case 2:
                 service->setFlashlightWritable(Number::TWOUI);
+                break;
           case 3:
                 service->setFlashlightWritable(Number::THREEUI);
+                break;
           case 4:
                 service->setFlashlightWritable(Number::FOURUI);
+                break;
           case 5:
                 service->setFlashlightWritable(Number::FIVEUI);
+                break;
           case 6:
                 service->setFlashlightWritable(Number::SIXUI);
+                break;
           case 7:
                 service->setFlashlightWritable(Number::SEVENUI);
+                break;
           case 8:
                 service->setFlashlightWritable(Number::EIGHTUI);
+                break;
           case 9:
                 service->setFlashlightWritable(Number::NINEUI);
+                break;
           case 10:
                 service->setFlashlightWritable(Number::TENUI);
+                break;
+          default:
+          	break;
 
       }
 }
