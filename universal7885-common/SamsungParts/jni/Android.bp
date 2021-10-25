@@ -7,12 +7,12 @@ cc_library_shared {
         "-Werror",
     ],
     srcs: ["*.cpp"],
+    header_libs: ["jni_headers"],
     shared_libs: [
         "libhidlbase",
-        "libhidltransport",
         "liblog",
         "libutils",
         "vendor.eureka.hardware.battery@1.0",
     ]
-]
+}
 

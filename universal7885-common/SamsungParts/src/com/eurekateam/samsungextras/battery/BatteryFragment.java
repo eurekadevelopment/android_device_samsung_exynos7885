@@ -83,12 +83,12 @@ public class BatteryFragment extends PreferenceFragment implements
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference == mFastChargePref) {
+        if (preference == mChargePref) {
             Boolean value = (Boolean) newValue;
             Battery.setChargeSysfs(value ?  0 : 1 );
             mFastChargePref.setChecked(Battery.getChargeSysfs() == 0);
             return true;
-        }else if (preference == mChargePref){
+        }else if (preference == mFastChargePref){
             Boolean value = (Boolean) newValue;
             Log.d(GlobalConstants.TAG, "onPreferenceChange: writing " + value
                     + " to " + GlobalConstants.CHARGE_DISABLE_SYSFS);
