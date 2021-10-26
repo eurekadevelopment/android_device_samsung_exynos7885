@@ -55,3 +55,6 @@ allow init proc_last_kmsg:file setattr;
 allow init mnt_vendor_file:dir mounton;
 
 unix_socket_connect(init, property, rild)
+
+get_prop(init, vendor_radio_prop)
+get_prop(init, radio_prop)

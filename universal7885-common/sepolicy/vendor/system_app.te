@@ -10,3 +10,15 @@ allow system_app sysfs_battery_info:dir { search };
 allow system_app sysfs_battery_info:file { read open getattr };
 
 r_dir_file(system_app, sysfs_battery_info)
+
+# SamsungParts
+#
+allow system_app hal_battery_hwservice:hwservice_manager find;
+allow system_app hal_flashlight_hwservice:hwservice_manager find;
+allow system_app hal_selinux_hwservice:hwservice_manager find;
+allow system_app hal_gpu_hwservice:hwservice_manager find;
+
+allow system_app hal_battery_default:binder call;
+allow system_app hal_flashlight_default:binder call;
+allow system_app hal_selinux_default:binder call;
+allow system_app hal_gpu_default:binder call;

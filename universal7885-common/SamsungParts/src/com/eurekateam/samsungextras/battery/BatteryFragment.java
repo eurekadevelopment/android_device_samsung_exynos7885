@@ -69,12 +69,12 @@ public class BatteryFragment extends PreferenceFragment implements
         if (preference == mChargePref) {
             Boolean value = (Boolean) newValue;
             Battery.setChargeSysfs(value ?  0 : 1 );
-            mFastChargePref.setChecked(Battery.getChargeSysfs() == 0);
+            mChargePref.setChecked(Battery.getChargeSysfs() == 0);
             return true;
         }else if (preference == mFastChargePref){
             Boolean value = (Boolean) newValue;
             Battery.setFastCharge(value ?  0 : 1 );
-            mChargePref.setChecked(Battery.getFastChargeSysfs() == 0);
+            mFastChargePref.setChecked(Battery.getFastChargeSysfs() == 0);
             return true;
         }
         return false;

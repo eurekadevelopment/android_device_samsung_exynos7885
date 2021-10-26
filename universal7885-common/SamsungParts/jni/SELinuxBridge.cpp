@@ -16,14 +16,3 @@ Java_com_eurekateam_samsungextras_interfaces_SELinux_getSELinux(JNIEnv *env, jcl
       int ret = service->readSELinuxstats();
       return ret;
 }
-extern "C"
-JNIEXPORT void JNICALL
-Java_com_eurekateam_samsungextras_interfaces_SELinux_setSELinux(JNIEnv *env, jclass clazz,
-                                                                jint enable) {
-      android::sp<ISELinux> service = ISELinux::getService();
-      if (enable == 1){
-            service->setSELinuxWritable(Enable::ENABLE);
-      }else{
-            service->setSELinuxWritable(Enable::DISABLE);
-      }
-}

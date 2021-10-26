@@ -7,3 +7,5 @@ hwbinder_use(hal_flashlight_default);
 get_prop(hal_flashlight_default, hwservicemanager_prop);
 allow hal_flashlight_default sysfs_flashlight:file { read open write getattr };
 allow hal_flashlight_default sysfs_flashlight:dir search;
+
+allow hal_flashlight_default sysfs_virtual:dir { search };

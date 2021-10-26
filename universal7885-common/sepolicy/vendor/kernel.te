@@ -16,3 +16,5 @@ allow kernel block_device:dir search;
 
 allow kernel sysfs_sec_key:dir search;
 r_dir_file(kernel, sysfs_virtual)
+
+allow kernel loop_device:blk_file { create setattr };
