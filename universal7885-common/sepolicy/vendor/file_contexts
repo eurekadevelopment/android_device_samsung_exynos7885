@@ -152,6 +152,12 @@
 
 # camera
 /dev/m2m1shot_scaler0                                       u:object_r:m2m1shot_device:s0
+ 
+# DRM
+/dev/s5p-smem 						    u:object_r:drm_device:s0
+
+# Loop
+/dev/block/loop*					u:object_r:custom_loop_device:s0
 
 # usb
 /dev/android_ssusbcon(/.*)?                                 u:object_r:usb_device:s0
@@ -212,7 +218,7 @@
 /(vendor|system/vendor)/bin/hw/android\.hardware\.usb@[0-9]\.[0-9]-service\.exynos7884B           u:object_r:hal_usb_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.samsung\.hardware\.gnss@[0-9]\.[0-9]-service           u:object_r:hal_gnss_default_exec:s0
 /(vendor|system/vendor)/firmware(/.*)?       u:object_r:vendor_firmware_file:s0
-/(vendor|system/vendor)/bin/hw/android\.hardware\.sensors@2.1-service\.samsung-multihal      u:object_r:hal_sensors_default_exec:s0
+
 
 # SamsungParts
 /(vendor|system/vendor)/bin/hw/vendor\.eureka\.hardware\.battery@1\.0-service          u:object_r:hal_battery_default_exec:s0

@@ -33,3 +33,7 @@ type pm_qos_device, dev_type;
 type radio_qos_device, dev_type;
 type ssp_device, dev_type;
 type vendor_radio_device, dev_type;
+
+type drm_device, dev_type;
+type custom_loop_device, dev_type;
+
