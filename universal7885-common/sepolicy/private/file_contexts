@@ -2,3 +2,6 @@
 
 ### DATA
 /data/zram(/.*)?                             u:object_r:zram_data_file:s0
+
+### SYSTEM
+/system/bin/imsd			     u:object_r:imsd_exec:s0
