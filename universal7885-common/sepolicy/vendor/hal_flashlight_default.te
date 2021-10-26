@@ -8,4 +8,4 @@ get_prop(hal_flashlight_default, hwservicemanager_prop);
 allow hal_flashlight_default sysfs_flashlight:file { read open write getattr };
 allow hal_flashlight_default sysfs_flashlight:dir search;
 
-allow hal_battery_default sysfs_virtual:dir { search };
+allow hal_flashlight_default sysfs_virtual:dir { search };
