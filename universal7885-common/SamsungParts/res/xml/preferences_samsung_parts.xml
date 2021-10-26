@@ -67,7 +67,7 @@
     <PreferenceCategory
         android:key="info"
         android:title="@string/info_category">
-        <SwitchPreference
+        <Preference
             android:key="selinux_settings"
             android:title="@string/selinux_title"
             android:icon="@drawable/ic_qs_log"

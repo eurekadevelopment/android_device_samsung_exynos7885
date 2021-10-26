@@ -23,7 +23,7 @@ import android.content.SharedPreferences;
 
 import androidx.preference.PreferenceManager;
 
-import com.eurekateam.samsungextras.utils.FileUtilsWrapper;
+import com.eurekateam.samsungextras.interfaces.GPU;
 
 
 public class BootReceiver extends BroadcastReceiver {
@@ -37,7 +37,7 @@ public class BootReceiver extends BroadcastReceiver {
         }
         boolean gpuenabled = sharedPrefs.getBoolean(DeviceSettings.PREF_GPUEXYNOS, false);
         if (!gpuenabled){
-            FileUtilsWrapper.writeLine(GlobalConstants.TMU_SYSFS, "0");
+            GPU.setGPU(0);
         }
     }
 }

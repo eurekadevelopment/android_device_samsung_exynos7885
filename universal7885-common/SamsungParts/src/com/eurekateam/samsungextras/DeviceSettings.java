@@ -69,10 +69,15 @@ public class DeviceSettings extends PreferenceFragment implements
         mGPUExynos.setChecked(GPU.getGPU() == 1);
         mGPUExynos.setOnPreferenceChangeListener(this);
 
-        SwitchPreference mSELinux = findPreference(PREF_SELINUX);
+        Preference mSELinux = findPreference(PREF_SELINUX);
         assert mSELinux != null;
-        mSELinux.setOnPreferenceChangeListener(this);
-        mSELinux.setEnabled(SELinux.getSELinux() != 0);
+        mSELinux.setOnPreferenceClickListener(preference -> {
+            Toast.makeText(getContext(), SELinux.getSELinux() == 1 ?
+                            "SELinux is in enforcing state." :
+                            "SELinux is in permissive state.",
+                    Toast.LENGTH_SHORT).show();
+            return true;
+        });
 
         Preference mFlashLight = findPreference(PREF_FLASHLIGHT);
         assert mFlashLight != null;
@@ -108,12 +113,6 @@ public class DeviceSettings extends PreferenceFragment implements
                 GPU.setGPU(gpu_enabled ? 1 : 0);
                 Toast.makeText(getContext(), gpu_enabled ? "GPU Throttling is now enabled."
                         : "GPU Throttling is now disabled.",
-                        Toast.LENGTH_SHORT).show();
-            case PREF_SELINUX:
-                boolean selinux_enabled = (Boolean) value;
-                SELinux.setSELinux(selinux_enabled ? 1 : 0);
-                Toast.makeText(getContext(), selinux_enabled ? "SELinux is now in enforcing state."
-                                : "SELinux is now in permissive state.",
                         Toast.LENGTH_SHORT).show();
             default:
                 break;
