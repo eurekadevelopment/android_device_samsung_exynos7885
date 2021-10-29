@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.eurekateam.cameralightsensor">
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <protected-broadcast android:name="com.android.systemui.doze.pulse" />
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name">
+        <receiver
+            android:name=".BootReceiver"
+            android:defaultToDeviceProtectedStorage="true"
+            android:directBootAware="true"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <service
+            android:name=".CameraLightSensorService"
+            android:exported="true">
+        </service>
+        <service
+            android:name=".CameraListener"
+            android:exported="true">
+        </service>
+    </application>
+</manifest>
