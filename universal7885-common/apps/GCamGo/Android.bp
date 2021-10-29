@@ -1,7 +1,7 @@
 android_app_import {
 	name: "GCamGo",
 	owner: "google",
-	apk: "GCamGO.apk",
+	apk: "GcamGo.apk",
 	presigned: true,
 	dex_preopt: {
 		enabled: false,
