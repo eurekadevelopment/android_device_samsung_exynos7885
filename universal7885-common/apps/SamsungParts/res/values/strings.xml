@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2020 The Xiaomi-SM6250 Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="advanced_settings">SamsungParts</string>
+    <string name="advanced_settings_summary">Device specific tweaks</string>
+
+    <!-- Display category -->
+    <string name="display_category">Display</string>
+
+    <!-- Logs -->
+    <string name="quick_settings_log_tile_label">Logs</string>
+    <string name="quick_settings_log_tile_dialog_title">Options</string>
+    <string name="cannot_get_su">Action failed because of missing superuser access</string>
+
+    <!-- FPS Info -->
+    <string name="fps_info_title">FPS info overlay</string>
+    <string name="fps_info_summary">Show overlay with current frames per second</string>
+
+    <!-- Speaker category -->
+    <string name="speaker_category">Speaker</string>
+
+    <!-- Clear Speaker -->
+    <string name="clear_speaker_title">Clear speaker</string>
+    <string name="clear_speaker_summary">Play a 30-second audio to clear the speaker</string>
+    <string name="clear_speaker_description">Run this feature once or twice if you find that your speaker is lightly blocked by dust. Set media volume to maximum.\n\nIf the speaker is blocked heavily, run this feature 2–5 times while shaking your device with the speaker facing downwards.</string>
+
+    <!-- Eureka Kernel features category -->
+    <string name="eureka_kernel_features">Eureka Kernel Features</string>
+
+    <!-- FlashLight -->
+    <string name="flashlight_title">FlashLight Brightness</string>
+    <string name="flashlight_summary">Adjust FlashLight Brightness</string>
+    <string name="flashlight_description">Samsung\'s OneUI Has An Option to Adjust
+        Flashlight Brightness. AOSP doesn\'t have this feature.\n\n
+        Use this feature to adjust low or high flashlight brightness. Ranges from 0 to 10.</string>
+
+    <!-- GPU Category -->
+    <string name="gpu_category">GPU</string>
+
+    <!-- GPU TMU -->
+    <string name="gpuexynos_title">Exynos GPU (Mali) Throttling</string>
+    <string name="gpuexynos_summary">Disable/Enable GPU Throttling</string>
+
+    <!-- SELinux -->
+    <string name="selinux_title">SELinux Status</string>
+    <string name="selinux_summary">Click here to see current SELinux status</string>
+
+    <string name="info_category">Info</string>
+
+    <!-- Battery -->
+    <string name="fastcharge_category">Battery</string>
+    <string name="fastcharge_2nd_title">FastCharge Settings</string>
+    <string name="charge_title">Charging Settings</string>
+    <string name="charge_summary">Enable/Disable Charging here.</string>
+    <string name="fastcharge_title">Battery Info and Settings</string>
+    <string name="fastcharge_summary">Enable/Disable Fastcharge Feature</string>
+    <string name="fastcharge_description">Manage FastCharge Feature here.</string>
+    <string name="battery_info_title">Battery Misc Info</string>
+    <string name="battery_info_summary">Section for geeks</string>
+
+    <string name="battery_max_capa">Battery Max Capacity (mAh)</string>
+    <string name="battery_status">Battery Status</string>
+    <string name="battery_chrged_up_to">Battery Charged Up To (%)</string>
+    <string name="battery_chrged_up_to_mah">Battery Charged Up To (mAh)</string>
+    <string name="battery_temp">Battery Current Temperature</string>
+    <string name="battery_current">Battery Current (mA)</string>
+
+    <!-- Label for feature switch -->
+    <string name="switch_bar_on">On</string>
+
+    <!-- Label for feature switch -->
+    <string name="switch_bar_off">Off</string>
+
+    <!-- Custom seekbar -->
+    <string name="custom_seekbar_value">Value: <xliff:g id="v">%s</xliff:g></string>
+    <string name="custom_seekbar_default_value">Default</string>
+    <string name="custom_seekbar_default_value_to_set">Default value: <xliff:g id="v">%s</xliff:g>\nLong press to set</string>
+    <string name="custom_seekbar_default_value_is_set">Default value is set</string>
+
+</resources>

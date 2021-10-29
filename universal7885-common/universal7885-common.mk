@@ -90,6 +90,9 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@2.0-impl \
     libgui_vendor
 
+# GcamGO 
+PRODUCT_PACKAGES += \
+    GCamGo
 # Health
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
@@ -226,9 +229,9 @@ PRODUCT_COPY_FILES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@2.1-service.samsung-multihal \
-    libsensorndkbridge \
-    $(LOCAL_PATH)/configs/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
+    android.hardware.sensors@1.0-impl.samsung \
+    android.hardware.sensors@1.0-service \
+    libsensorndkbridge 
 
 # Shims
 PRODUCT_PACKAGES += \
