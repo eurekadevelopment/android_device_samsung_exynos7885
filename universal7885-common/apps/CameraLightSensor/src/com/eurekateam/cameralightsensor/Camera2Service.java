@@ -200,7 +200,9 @@ public class Camera2Service extends Service {
                 session.close();
             } catch (CameraAccessException e) {
                 Log.e(TAG, e.getMessage());
-            }
+            } catch (IllegalStateException e2){
+		Log.e(TAG, "Session Already Closed");
+	    }
 
         }
         destroy = true;
