@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.eurekateam.cameralightsensor"
+    android:sharedUserId="android.uid.system">
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.CAMERA_OPEN_CLOSE_LISTENER"/>
+    <uses-feature android:name="android.hardware.microphone" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera2.full"/>
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <protected-broadcast android:name="com.android.systemui.doze.pulse" />
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:persistent="true">
+        <receiver
+            android:name=".BootReceiver"
+            android:defaultToDeviceProtectedStorage="true"
+            android:directBootAware="true"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        <activity
+            android:name=".CameraLightSensorService"
+            android:exported="true">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.SCREEN_OFF" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+            </intent-filter>
+        </activity>
+        <service
+            android:name=".CameraLightSensorTile"
+            android:enabled="true"
+            android:icon="@drawable/ic_brightness"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".Camera2Service"
+            android:foregroundServiceType="camera">
+        </service>
+    </application>
+</manifest>
