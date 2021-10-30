@@ -65,7 +65,7 @@ PRODUCT_PACKAGES += \
     android.hardware.drm@1.2.vendor \
     android.hardware.drm@1.3.vendor
 
-# Figerprint
+# Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1-service.samsung
 
@@ -93,6 +93,7 @@ PRODUCT_PACKAGES += \
 # GcamGO 
 PRODUCT_PACKAGES += \
     GCamGo
+    
 # Health
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
@@ -113,8 +114,19 @@ PRODUCT_PACKAGES += \
     init.exynos7884B.rc \
     init.exynos7884B.usb.rc \
     ueventd.exynos7884B.rc \
-    wifi_sec.rc
+    wifi_sec.rc \
+    fstab.exynos7884B \
+    init.target.rc \
+    init.baseband.rc
+   
+# Keymaster
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@4.0-service.samsung \
+    libkeymaster4_1support.vendor
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/android.hardware.keymaster@4.0-service.samsung.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/manifest/android.hardware.keymaster@4.0-service.samsung.xml
+    
 # Light
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.samsung
@@ -138,6 +150,9 @@ PRODUCT_PACKAGES += \
     libnfc_nci_jni \
     NfcNci \
     Tag
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/libnfc-sec-vendor.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-sec-vendor.conf
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/libnfc-nci.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nci.conf \
