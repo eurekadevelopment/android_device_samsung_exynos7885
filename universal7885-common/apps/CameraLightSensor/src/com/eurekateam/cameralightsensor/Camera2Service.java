@@ -249,23 +249,18 @@ public class Camera2Service extends Service {
         }
         return (R + B + G) / (n * 3);
     }
-    private void AdjustBrightness(int brightness) throws Settings.SettingNotFoundException, InterruptedException {
-        if(DEBUG) Log.i(TAG, "AdjustBrightness: Received Brightness Value " + brightness);
+    private void AdjustBrightness(int brightness) throws Settings.SettingNotFoundException {
+        if (DEBUG) Log.i(TAG, "AdjustBrightness: Received Brightness Value " + brightness);
         int oldbrightness = Settings.System.getInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS);
         if (DEBUG) Log.i(TAG, "AdjustBrightness: Oldval = " + oldbrightness + " Newval = " +
                 brightness + " Adjusting..");
-        if(oldbrightness > brightness){
-            while (oldbrightness > brightness){
-                Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, brightness);
-                brightness -= 5;
-                Thread.sleep(500);
-            }
-        }else{
-            while (oldbrightness < brightness){
-                Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, brightness);
-                brightness += 5;
-                Thread.sleep(500);
-            }
-        }
+	int newbrightness = brightness;
+	if (newbrightness > 255){
+		newbrightness = 255;
+	}else if (newbrightness < 0){
+		newbrightness = 0;
+	}
+	
+        Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, newbrightness);
     }
 }
