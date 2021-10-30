@@ -9,27 +9,30 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.PowerManager;
 import android.provider.Settings;
 import android.util.Log;
 
+import com.android.internal.graphics.cam.Cam;
+
 
 public class CameraLightSensorService extends Activity {
     private static final String TAG = "CameraLightSensor";
-    static final boolean DEBUG = true;
+    static final boolean DEBUG = false;
     Intent i;
-    private boolean stop;
     private Context mContext;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         moveTaskToBack(true);
         mContext = getApplicationContext();
-        i = new Intent(mContext, Camera2Service.class);
         IntentFilter screenStateFilter = new IntentFilter(Intent.ACTION_SCREEN_ON);
         screenStateFilter.addAction(Intent.ACTION_SCREEN_OFF);
         BatteryOptimization(mContext);
+        i = new Intent(mContext, Camera2Service.class);
+        mContext.startForegroundService(i);
         registerReceiver(mScreenStateReceiver, screenStateFilter);
         if (this.checkSelfPermission(Manifest.permission.CAMERA) ==
                 PackageManager.PERMISSION_GRANTED) {
@@ -50,16 +53,13 @@ public class CameraLightSensorService extends Activity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
-                stop = false;
                 try {
                     onDisplayOn();
                 } catch (Settings.SettingNotFoundException e) {
                     e.printStackTrace();
                 }
             } else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
-                stop = true;
                 onDisplayOff();
-
             }
         }
     };
@@ -68,17 +68,7 @@ public class CameraLightSensorService extends Activity {
                 Settings.System.SCREEN_BRIGHTNESS_MODE ) == 1){
             if(DEBUG) Log.d(TAG, "AutoBrightness Mode Enabled. Starting...");
             i = new Intent(mContext, Camera2Service.class);
-            Thread th = new Thread(() -> {
-                do {
-                    mContext.startForegroundService(i);
-                    try {
-                        Thread.sleep(4000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                } while (!stop);
-            });
-            th.start();
+            mContext.startForegroundService(i);
         }else{
             Log.d(TAG, "AutoBrightness Mode Disabled, Not Starting Service...");
         }

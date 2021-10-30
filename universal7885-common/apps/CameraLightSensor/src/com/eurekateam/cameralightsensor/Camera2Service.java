@@ -24,23 +24,26 @@ import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CaptureRequest;
 import android.media.Image;
 import android.media.ImageReader;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
 
 import java.nio.ByteBuffer;
 import java.util.Collections;
+import java.util.Objects;
 
 public class Camera2Service extends Service {
     protected static final String TAG = Camera2Service.class.getSimpleName();
     protected static final int CAMERACHOICE = CameraCharacteristics.LENS_FACING_FRONT;
-    protected static long cameraCaptureStartTime;
     boolean destroy;
     protected CameraDevice cameraDevice;
     protected CameraCaptureSession session;
     boolean isavail = true;
     protected ImageReader imageReader;
     private Context mContext;
+    private CameraManager manager;
 
     protected CameraDevice.StateCallback cameraStateCallback = new CameraDevice.StateCallback() {
         @Override
@@ -65,11 +68,20 @@ public class Camera2Service extends Service {
 
         @Override
         public void onReady(CameraCaptureSession session) {
-            if (!destroy && isavail) {
+            if (!destroy) {
                 Camera2Service.this.session = session;
-                isavail = false;
                 try {
-                    session.capture(createCaptureRequest(), null, null);
+                    Handler mHandler = new Handler(Looper.getMainLooper());
+                    mHandler.postDelayed(() -> {
+                        try {
+                            if (createCaptureRequest() == null) return;
+                            session.capture(createCaptureRequest(), captureCallback, null);
+                        } catch (CameraAccessException e) {
+                            e.printStackTrace();
+                        } catch (IllegalStateException e){
+                            Log.w(TAG, "onReady: Session is NULL");
+                        }
+                    },1500);
                 } catch (Exception e){
                     Log.e(TAG,  "Camera is in use");
                     e.printStackTrace();
@@ -88,43 +100,34 @@ public class Camera2Service extends Service {
         }
     };
 
-    protected ImageReader.OnImageAvailableListener onImageAvailableListener = new ImageReader.OnImageAvailableListener() {
-        @Override
-        public void onImageAvailable(ImageReader reader) {
-                if (DEBUG) Log.d(TAG, "onImageAvailable: Capturing");
-                Image img = reader.acquireLatestImage();
-                cameraCaptureStartTime = System.currentTimeMillis();
-                if (img != null) {
-                    try {
-                        processImage(img);
-                    } catch (Settings.SettingNotFoundException | InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    img.close();
-                }
+    protected ImageReader.OnImageAvailableListener onImageAvailableListener = reader -> {
+        if (DEBUG) Log.d(TAG, "onImageAvailable: Capturing");
+        Image img = reader.acquireLatestImage();
+        if (img != null) {
             try {
-                session.stopRepeating();
-                session.close();
-            } catch (CameraAccessException e) {
+                processImage(img);
+            } catch (Settings.SettingNotFoundException | InterruptedException e) {
                 e.printStackTrace();
             }
-
+            img.close();
         }
     };
 
     public void readyCamera() {
-        CameraManager manager = (CameraManager) getSystemService(CAMERA_SERVICE);
+        manager = (CameraManager) getSystemService(CAMERA_SERVICE);
         try {
             String pickedCamera = getCamera(manager);
             if (this.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 return;
             }
+            manager.registerAvailabilityCallback(availabilityCallback, null);
             manager.openCamera(pickedCamera, cameraStateCallback, null);
-            imageReader = ImageReader.newInstance(720, 720, ImageFormat.JPEG, 2 /* images buffered */);
+            imageReader = ImageReader.newInstance(500, 500, ImageFormat.JPEG, 2 /* images buffered */);
             imageReader.setOnImageAvailableListener(onImageAvailableListener, null);
             if (DEBUG) Log.d(TAG, "imageReader created");
         } catch (CameraAccessException e) {
             Log.e(TAG, e.getMessage());
+            isavail = false;
         }
     }
 
@@ -142,16 +145,14 @@ public class Camera2Service extends Service {
         }
         return null;
     }
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if(DEBUG) Log.d(TAG, "onStartCommand flags " + flags + " startId " + startId);
-        readyCamera();
         destroy = false;
         isavail = true;
-        cameraCaptureStartTime = System.currentTimeMillis();
         startForeground(50, PushNotification());
-        return START_STICKY;
+        readyCamera();
+        return START_NOT_STICKY;
     }
 
     public Notification PushNotification()
@@ -180,7 +181,8 @@ public class Camera2Service extends Service {
     public void onCreate() {
         if(DEBUG) Log.d(TAG, "onCreate service");
         mContext = getApplicationContext();
-        startForeground(0, PushNotification());
+        startForeground(50, PushNotification());
+        readyCamera();
         super.onCreate();
     }
 
@@ -200,11 +202,14 @@ public class Camera2Service extends Service {
                 session.close();
             } catch (CameraAccessException e) {
                 Log.e(TAG, e.getMessage());
+            } catch (IllegalStateException e2){
+                Log.e(TAG, "Session Already Closed");
             }
 
         }
+        manager.unregisterAvailabilityCallback(availabilityCallback);
+        isavail = false;
         destroy = true;
-        Log.i(TAG, "onDestory: Destory");
         stopForeground(true);
     }
 
@@ -213,14 +218,13 @@ public class Camera2Service extends Service {
         byte[] bytes = new byte[buffer.capacity()];
         buffer.get(bytes);
         Bitmap bitmapImage = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, null);
-        int brightness = calculateBrightnessEstimate(bitmapImage,10);
-        Log.i(TAG, "brightness: " + brightness);
+        int brightness = calculateBrightnessEstimate(bitmapImage,5);
         AdjustBrightness(brightness);
     }
 
     protected CaptureRequest createCaptureRequest() {
         try {
-            CaptureRequest.Builder builder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_RECORD);
+            CaptureRequest.Builder builder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
             builder.addTarget(imageReader.getSurface());
             return builder.build();
         } catch (CameraAccessException e) {
@@ -228,12 +232,39 @@ public class Camera2Service extends Service {
             return null;
         }
     }
+    CameraManager.AvailabilityCallback availabilityCallback = new CameraManager.AvailabilityCallback() {
+        @Override
+        public void onCameraOpened(String cameraId, String packageId) {
+            super.onCameraOpened(cameraId, packageId);
+            Log.i(TAG, "CameraManager.AvailabilityCallback: Camera " + cameraId
+                    + " Opened by Package " + packageId);
+            isavail = Objects.equals(packageId, mContext.getBasePackageName());
+        }
 
+        @Override
+        public void onCameraClosed(String cameraId) {
+            if(!isavail){
+                Log.i(TAG, "CameraManager.AvailabilityCallback: Camera " + cameraId + " Closed." +
+                    "Re-opening Camera");
+                readyCamera();
+            }
+            super.onCameraClosed(cameraId);
+        }
+    };
+    CameraCaptureSession.CaptureCallback captureCallback = new CameraCaptureSession.CaptureCallback() {
+        @Override
+        public void onCaptureSequenceCompleted(CameraCaptureSession session, int sequenceId, long frameNumber) {
+            if (DEBUG) Log.d(TAG, "captureCallback: Closing Session");
+            Handler mHandler = new Handler(Looper.getMainLooper());
+            mHandler.postDelayed(() -> readyCamera(),400);
+            super.onCaptureSequenceCompleted(session, sequenceId, frameNumber);
+        }
+    };
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
-    public int calculateBrightnessEstimate(android.graphics.Bitmap bitmap, int pixelSpacing) {
+    public int calculateBrightnessEstimate(Bitmap bitmap, int pixelSpacing) {
         int R = 0; int G = 0; int B = 0;
         int height = bitmap.getHeight();
         int width = bitmap.getWidth();
@@ -249,23 +280,17 @@ public class Camera2Service extends Service {
         }
         return (R + B + G) / (n * 3);
     }
-    private void AdjustBrightness(int brightness) throws Settings.SettingNotFoundException, InterruptedException {
-        if(DEBUG) Log.i(TAG, "AdjustBrightness: Received Brightness Value " + brightness);
+    private void AdjustBrightness(int brightness) throws Settings.SettingNotFoundException {
+        if (DEBUG) Log.i(TAG, "AdjustBrightness: Received Brightness Value " + brightness);
         int oldbrightness = Settings.System.getInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS);
         if (DEBUG) Log.i(TAG, "AdjustBrightness: Oldval = " + oldbrightness + " Newval = " +
                 brightness + " Adjusting..");
-        if(oldbrightness > brightness){
-            while (oldbrightness > brightness){
-                Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, brightness);
-                brightness -= 5;
-                Thread.sleep(500);
-            }
-        }else{
-            while (oldbrightness < brightness){
-                Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, brightness);
-                brightness += 5;
-                Thread.sleep(500);
-            }
-        }
+	int newbrightness = brightness;
+	if (newbrightness > 255){
+		newbrightness = 255;
+	}else if (newbrightness < 0){
+		newbrightness = 0;
+	}
+        Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, newbrightness);
     }
 }
