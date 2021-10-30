@@ -40,6 +40,12 @@
     <string translatable="false" name="config_mainBuiltInDisplayCutoutRectApproximation">@*android:string/config_mainBuiltInDisplayCutout</string>
     <!-- If supported, are dreams enabled? (by default) -->
     <bool name="config_dreamsEnabledByDefault">false</bool>
+    <bool name="config_dozeAlwaysOnDisplayAvailable">true</bool>
+    <bool name="config_displayBlanksAfterDoze">false</bool>
+    <bool name="config_dozePulsePickup">true</bool>
+    <bool name="config_supportDoubleTapWake">true</bool>
+    <bool name="config_enableBurnInProtection">true</bool>
+    <bool name="config_allowAutoBrightnessWhileDozing">true</bool>
 
     <!-- List of biometric sensors on the device, in decreasing strength. Consumed by AuthService
          when registering authenticators with BiometricService. Format must be ID:Modality:Strength,

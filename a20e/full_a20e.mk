@@ -17,11 +17,3 @@ PRODUCT_MODEL := SM-A202K
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
 
-PRODUCT_GMS_CLIENTID_BASE := android-samsung
-
-# Set BUILD_FINGERPRINT variable to be picked up by both system and vendor build.prop
-BUILD_FINGERPRINT := "google/redfin/redfin:11/RQ3A.210805.001.A1/7474174:user/release-keys"
-
-PRODUCT_BUILD_PROP_OVERRIDES += \
-        PRODUCT_NAME=a20ektt \
-        PRIVATE_BUILD_DESC="redfin-user 11 RQ3A.210805.001.A1 7474174 release-keys"
