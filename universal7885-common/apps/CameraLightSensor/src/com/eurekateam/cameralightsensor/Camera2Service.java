@@ -81,7 +81,7 @@ public class Camera2Service extends Service {
                         } catch (IllegalStateException e){
                             Log.w(TAG, "onReady: Session is NULL");
                         }
-                    },1500);
+                    }, 4000);
                 } catch (Exception e){
                     Log.e(TAG,  "Camera is in use");
                     e.printStackTrace();

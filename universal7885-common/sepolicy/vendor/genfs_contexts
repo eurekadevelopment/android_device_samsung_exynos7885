@@ -116,6 +116,7 @@ genfscon sysfs /devices/platform/13870000.i2c/i2c-11/11-0048/input/            u
 genfscon sysfs /devices/platform/11ce0000.speedy/i2c-5/5-0003/input/input11		  u:object_r:sysfs_touchscreen_writable:s0
 # A20 Display
 genfscon sysfs /devices/platform/13870000.i2c/i2c-11/11-0020/input/            u:object_r:sysfs_touchscreen_writable:s0
+genfscon sysfs /devices/platform/11ce0000.speedy/i2c-6/6-0003/input/input12     u:object_r:sysfs_touchscreen_writable:s0
 
 genfscon sysfs /devices/platform/14870000.dsim/backlight/panel                    u:object_r:sysfs_graphics:s0
 genfscon sysfs /devices/platform/14a50000.abox/service                            u:object_r:sysfs_abox_writable:s0
@@ -157,7 +158,7 @@ genfscon sysfs /devices/platform/13840000.i2c/i2c-9/9-003d/s2mu106-powermeter/po
 genfscon sysfs /devices/platform/13840000.i2c/i2c-9/9-003d/s2mu106-muic/power_supply/muic-manager         u:object_r:sysfs_charger:s0
 genfscon sysfs /devices/platform/13840000.i2c/i2c-9/9-003d/s2mu106-charger/power_supply/otg               u:object_r:sysfs_charger:s0
 genfscon sysfs /devices/platform/13840000.i2c/i2c-9/9-003d/s2mu106-charger/power_supply/s2mu106-charger   u:object_r:sysfs_charger:s0
-genfscon sysfs /devices/platform/13830000.i2c/i2c-8/8-003b/power_supply/s2mu106-fuelgauge/                 u:object_r:sysfs_fuelgauge:s0
+genfscon sysfs /devices/platform/13830000.i2c/i2c-8/8-003b/power_supply/s2mu106-fuelgauge/type               u:object_r:sysfs_fuelgauge:s0
 
 genfscon sysfs /class/input/input1/enabled					     u:object_r:sysfs_sec_touchscreen:s0
 genfscon sysfs /module/modem_ctrl_ss310ap/parameters/ds_detect                    u:object_r:sysfs_modem:s0
