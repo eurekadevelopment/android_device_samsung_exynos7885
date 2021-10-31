@@ -124,9 +124,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.0-service.samsung \
     libkeymaster4_1support.vendor
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/android.hardware.keymaster@4.0-service.samsung.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/manifest/android.hardware.keymaster@4.0-service.samsung.xml
     
 # Light
 PRODUCT_PACKAGES += \

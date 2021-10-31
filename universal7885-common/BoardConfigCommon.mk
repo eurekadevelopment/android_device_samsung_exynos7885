@@ -54,6 +54,9 @@ BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 -
 TARGET_KERNEL_SOURCE := kernel/samsung/exynos7885
 TARGET_KERNEL_CLANG_COMPILE := true
 
+# Keymaster
+TARGET_KEYMASTER_VARIANT := samsung
+
 # HIDL
 DEVICE_MANIFEST_FILE := $(COMMON_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := $(COMMON_PATH)/compatibility_matrix.xml
@@ -78,6 +81,7 @@ TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
 
 # Recovery
 BOARD_HAS_DOWNLOAD_MODE := true
+TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/recovery/recovery.fstab
 
 # RIL
 ENABLE_VENDOR_RIL_SERVICE := true
