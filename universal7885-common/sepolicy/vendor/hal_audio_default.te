@@ -12,3 +12,5 @@ allow hal_audio_default imei_efs_file:file r_file_perms;
 get_prop(hal_audio_default, vendor_radio_prop)
 
 allow hal_audio_default init:unix_stream_socket connectto;
+
+binder_call(hal_audio_default, system_suspend)

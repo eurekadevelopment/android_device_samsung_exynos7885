@@ -68,7 +68,7 @@
     <string name="charge_summary">Enable/Disable Charging here.</string>
     <string name="fastcharge_title">Battery Info and Settings</string>
     <string name="fastcharge_summary">Enable/Disable Fastcharge Feature</string>
-    <string name="fastcharge_description">Manage FastCharge Feature here.</string>
+    <string name="fastcharge_description">Manage Charging Feature here.</string>
     <string name="battery_info_title">Battery Misc Info</string>
     <string name="battery_info_summary">Section for geeks</string>
 
