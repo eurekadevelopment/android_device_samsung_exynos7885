@@ -65,7 +65,8 @@ public class CameraLightSensorService extends Activity {
     };
     private void onDisplayOn() throws Settings.SettingNotFoundException {
         if(Settings.System.getInt(getContentResolver(),
-                Settings.System.SCREEN_BRIGHTNESS_MODE ) == 1){
+                Settings.System.SCREEN_BRIGHTNESS_MODE ) ==
+                Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC){
             if(DEBUG) Log.d(TAG, "AutoBrightness Mode Enabled. Starting...");
             i = new Intent(mContext, Camera2Service.class);
             mContext.startForegroundService(i);
@@ -75,7 +76,6 @@ public class CameraLightSensorService extends Activity {
     }
     private void onDisplayOff(){
         if(DEBUG) Log.d(TAG, "Screen is off. Stopping Service...");
-        i = new Intent(mContext, Camera2Service.class);
         mContext.stopService(i);
     }
     public static void BatteryOptimization(Context context){
