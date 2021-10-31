@@ -15,8 +15,6 @@ import android.os.PowerManager;
 import android.provider.Settings;
 import android.util.Log;
 
-import com.android.internal.graphics.cam.Cam;
-
 
 public class CameraLightSensorService extends Activity {
     private static final String TAG = "CameraLightSensor";
