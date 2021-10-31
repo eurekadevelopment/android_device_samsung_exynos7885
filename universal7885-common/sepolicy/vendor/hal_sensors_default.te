@@ -38,7 +38,6 @@ allow hal_sensors_default sysfs_lcd_writable:file r_file_perms;
 
 # /sys/class/input
 allow hal_sensors_default sysfs_input:dir r_dir_perms;
-allow hal_sensors_default sysfs_input:file write;
 
 # /sys/devices/virtual/input/input4
 # /sys/devices/virtual/input/input6
