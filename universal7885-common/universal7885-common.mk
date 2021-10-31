@@ -54,7 +54,8 @@ TARGET_SCREEN_WIDTH := 720
 
 # Camera
 PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.5-service
+    android.hardware.camera.provider@2.5-service \
+    CameraLightSensor
 
 # DRM
 PRODUCT_PACKAGES += \
