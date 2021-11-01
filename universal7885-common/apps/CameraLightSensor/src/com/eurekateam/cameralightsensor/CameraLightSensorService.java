@@ -18,7 +18,7 @@ import android.util.Log;
 
 public class CameraLightSensorService extends Activity {
     private static final String TAG = "CameraLightSensor";
-    static final boolean DEBUG = true;
+    static final boolean DEBUG = false;
     Intent i;
     private Context mContext;
     @Override

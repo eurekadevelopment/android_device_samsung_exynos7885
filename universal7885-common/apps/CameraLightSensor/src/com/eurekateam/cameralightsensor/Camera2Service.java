@@ -246,7 +246,7 @@ public class Camera2Service extends Service {
         }
         @Override
         public void onCameraClosed(String cameraId) {
-            Log.d(TAG, "CameraManager.AvailabilityCallback: Camera is closed now, " +
+            if (DEBUG) Log.d(TAG, "CameraManager.AvailabilityCallback: Camera is closed now, " +
                     "sleeping for 4000 ms");
             Handler mHandler = new Handler(Looper.getMainLooper());
             mHandler.postDelayed(() -> {
@@ -257,13 +257,13 @@ public class Camera2Service extends Service {
 
         @Override
         public void onCameraUnavailable(String cameraId) {
-            Log.i(TAG, "CameraManager.AvailabilityCallback : Camera NOT Available. ");
+            if (DEBUG)Log.i(TAG, "CameraManager.AvailabilityCallback : Camera NOT Available. ");
             super.onCameraUnavailable(cameraId);
         }
 
         @Override
         public void onCameraAvailable(String cameraId) {
-            Log.i(TAG, "CameraManager.AvailabilityCallback : Camera IS Available. ");
+            if (DEBUG) Log.i(TAG, "CameraManager.AvailabilityCallback : Camera IS Available. ");
             isavail = true;
             super.onCameraAvailable(cameraId);
         }
