@@ -18,7 +18,7 @@ import android.util.Log;
 
 public class CameraLightSensorService extends Activity {
     private static final String TAG = "CameraLightSensor";
-    static final boolean DEBUG = false;
+    static final boolean DEBUG = true;
     Intent i;
     private Context mContext;
     @Override
@@ -45,7 +45,6 @@ public class CameraLightSensorService extends Activity {
     public void onDestroy() {
         if (DEBUG) Log.d(TAG, "Destroying service");
         super.onDestroy();
-        this.unregisterReceiver(mScreenStateReceiver);
     }
     private final BroadcastReceiver mScreenStateReceiver = new BroadcastReceiver() {
         @Override
