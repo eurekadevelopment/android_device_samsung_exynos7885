@@ -27,12 +27,12 @@ import android.media.ImageReader;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.provider.Settings;
 import android.util.Log;
 
 import java.nio.ByteBuffer;
 import java.util.Collections;
-import java.util.Objects;
 
 public class Camera2Service extends Service {
     protected static final String TAG = Camera2Service.class.getSimpleName();
@@ -71,17 +71,14 @@ public class Camera2Service extends Service {
             if (!destroy) {
                 Camera2Service.this.session = session;
                 try {
-                    Handler mHandler = new Handler(Looper.getMainLooper());
-                    mHandler.postDelayed(() -> {
-                        try {
-                            if (createCaptureRequest() == null) return;
-                            session.capture(createCaptureRequest(), captureCallback, null);
-                        } catch (CameraAccessException e) {
-                            e.printStackTrace();
-                        } catch (IllegalStateException e){
-                            Log.w(TAG, "onReady: Session is NULL");
-                        }
-                    }, 4000);
+                    try {
+                        if (createCaptureRequest() == null) return;
+                        session.capture(createCaptureRequest(), captureCallback, null);
+                    } catch (CameraAccessException e) {
+                        e.printStackTrace();
+                    } catch (IllegalStateException e){
+                        Log.w(TAG, "onReady: Session is NULL");
+                    }
                 } catch (Exception e){
                     Log.e(TAG,  "Camera is in use");
                     e.printStackTrace();
@@ -100,6 +97,7 @@ public class Camera2Service extends Service {
         }
     };
 
+
     protected ImageReader.OnImageAvailableListener onImageAvailableListener = reader -> {
         if (DEBUG) Log.d(TAG, "onImageAvailable: Capturing");
         Image img = reader.acquireLatestImage();
@@ -110,6 +108,10 @@ public class Camera2Service extends Service {
                 e.printStackTrace();
             }
             img.close();
+            if (DEBUG)
+                Log.d(TAG, "ImageReader.OnImageAvailableListener: Closing Camera and Sessions..");
+            cameraDevice.close();
+            session.close();
         }
     };
 
@@ -122,7 +124,7 @@ public class Camera2Service extends Service {
             }
             manager.registerAvailabilityCallback(availabilityCallback, null);
             manager.openCamera(pickedCamera, cameraStateCallback, null);
-            imageReader = ImageReader.newInstance(500, 500, ImageFormat.JPEG, 2 /* images buffered */);
+            imageReader = ImageReader.newInstance(250, 250, ImageFormat.JPEG, 2 /* images buffered */);
             imageReader.setOnImageAvailableListener(onImageAvailableListener, null);
             if (DEBUG) Log.d(TAG, "imageReader created");
         } catch (CameraAccessException e) {
@@ -196,6 +198,7 @@ public class Camera2Service extends Service {
 
     @Override
     public void onDestroy() {
+        cameraDevice.close();
         if (session != null && isavail) {
             try {
                 session.abortCaptures();
@@ -238,17 +241,31 @@ public class Camera2Service extends Service {
             super.onCameraOpened(cameraId, packageId);
             Log.i(TAG, "CameraManager.AvailabilityCallback: Camera " + cameraId
                     + " Opened by Package " + packageId);
-            isavail = Objects.equals(packageId, mContext.getBasePackageName());
+            if (packageId.equals(mContext.getBasePackageName())) return;
+            isavail = false;
+        }
+        @Override
+        public void onCameraClosed(String cameraId) {
+            if (DEBUG) Log.d(TAG, "CameraManager.AvailabilityCallback: Camera is closed now, " +
+                    "sleeping for 4000 ms");
+            Handler mHandler = new Handler(Looper.getMainLooper());
+            mHandler.postDelayed(() -> {
+                if(isavail) readyCamera();
+            },4000);
+            super.onCameraClosed(cameraId);
         }
 
         @Override
-        public void onCameraClosed(String cameraId) {
-            if(!isavail){
-                Log.i(TAG, "CameraManager.AvailabilityCallback: Camera " + cameraId + " Closed." +
-                    "Re-opening Camera");
-                readyCamera();
-            }
-            super.onCameraClosed(cameraId);
+        public void onCameraUnavailable(String cameraId) {
+            if (DEBUG)Log.i(TAG, "CameraManager.AvailabilityCallback : Camera NOT Available. ");
+            super.onCameraUnavailable(cameraId);
+        }
+
+        @Override
+        public void onCameraAvailable(String cameraId) {
+            if (DEBUG) Log.i(TAG, "CameraManager.AvailabilityCallback : Camera IS Available. ");
+            isavail = true;
+            super.onCameraAvailable(cameraId);
         }
     };
     CameraCaptureSession.CaptureCallback captureCallback = new CameraCaptureSession.CaptureCallback() {
@@ -259,11 +276,14 @@ public class Camera2Service extends Service {
             mHandler.postDelayed(() -> readyCamera(),400);
             super.onCaptureSequenceCompleted(session, sequenceId, frameNumber);
         }
+
     };
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
+
     public int calculateBrightnessEstimate(Bitmap bitmap, int pixelSpacing) {
         int R = 0; int G = 0; int B = 0;
         int height = bitmap.getHeight();

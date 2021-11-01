@@ -45,7 +45,6 @@ public class CameraLightSensorService extends Activity {
     public void onDestroy() {
         if (DEBUG) Log.d(TAG, "Destroying service");
         super.onDestroy();
-        this.unregisterReceiver(mScreenStateReceiver);
     }
     private final BroadcastReceiver mScreenStateReceiver = new BroadcastReceiver() {
         @Override
