@@ -93,3 +93,5 @@ allow rild hal_audio_default:file r_file_perms;
 
 # hwservice
 add_hwservice(rild, rild_hwservice)
+
+get_prop(rild, rild_prop)
