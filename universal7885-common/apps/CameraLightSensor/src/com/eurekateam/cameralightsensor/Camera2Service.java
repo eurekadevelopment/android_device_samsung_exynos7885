@@ -2,8 +2,8 @@ package com.eurekateam.cameralightsensor;
 
 import static com.eurekateam.cameralightsensor.CameraLightSensorService.DEBUG;
 
-import android.Manifest;
 import android.annotation.NonNull;
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -11,7 +11,6 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -27,9 +26,10 @@ import android.media.ImageReader;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
-import android.os.SystemClock;
 import android.provider.Settings;
 import android.util.Log;
+
+import androidx.core.app.NotificationCompat;
 
 import java.nio.ByteBuffer;
 import java.util.Collections;
@@ -44,6 +44,8 @@ public class Camera2Service extends Service {
     protected ImageReader imageReader;
     private Context mContext;
     private CameraManager manager;
+    private long mCaptureTime;
+    private final int DELAY = 5000;
 
     protected CameraDevice.StateCallback cameraStateCallback = new CameraDevice.StateCallback() {
         @Override
@@ -71,16 +73,16 @@ public class Camera2Service extends Service {
             if (!destroy) {
                 Camera2Service.this.session = session;
                 try {
+                    if (createCaptureRequest() == null) return;
                     try {
-                        if (createCaptureRequest() == null) return;
                         session.capture(createCaptureRequest(), captureCallback, null);
                     } catch (CameraAccessException e) {
                         e.printStackTrace();
-                    } catch (IllegalStateException e){
+                    } catch (IllegalStateException e) {
                         Log.w(TAG, "onReady: Session is NULL");
                     }
-                } catch (Exception e){
-                    Log.e(TAG,  "Camera is in use");
+                } catch (Exception e) {
+                    Log.e(TAG, "Camera is in use");
                     e.printStackTrace();
                 }
             }
@@ -115,13 +117,12 @@ public class Camera2Service extends Service {
         }
     };
 
+    @SuppressLint("MissingPermission")
     public void readyCamera() {
         manager = (CameraManager) getSystemService(CAMERA_SERVICE);
+        mCaptureTime = System.currentTimeMillis();
         try {
             String pickedCamera = getCamera(manager);
-            if (this.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                return;
-            }
             manager.registerAvailabilityCallback(availabilityCallback, null);
             manager.openCamera(pickedCamera, cameraStateCallback, null);
             imageReader = ImageReader.newInstance(250, 250, ImageFormat.JPEG, 2 /* images buffered */);
@@ -161,24 +162,25 @@ public class Camera2Service extends Service {
     {
         NotificationManager nm = (NotificationManager) mContext.getSystemService(NOTIFICATION_SERVICE);
         NotificationChannel channel = new NotificationChannel(
-                mContext.getPackageName(), "CameraLightSensor",
+                mContext.getBasePackageName(), "CameraLightSensor",
                 NotificationManager.IMPORTANCE_LOW
         );
         nm.createNotificationChannel(channel);
-        Notification.Builder builder = new Notification.Builder(mContext);
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(mContext, mContext.getBasePackageName());
         Intent notificationIntent = new Intent(mContext, Camera2Service.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(mContext,50,notificationIntent,PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent contentIntent = PendingIntent.getActivity(mContext,50,
+                notificationIntent,PendingIntent.FLAG_IMMUTABLE);
 
         //set
         builder.setContentIntent(contentIntent);
         builder.setSmallIcon(R.drawable.ic_brightness);
-        builder.setContentText("Camera Light Sensor is running");
-        builder.setContentTitle("Camera Light Sensor");
-        builder.setChannelId(mContext.getPackageName());
-        builder.setAutoCancel(true);
+        builder.setContentTitle("Camera Light Sensor Service");
+        builder.setChannelId(mContext.getBasePackageName());
 
         return builder.build();
     }
+
     @Override
     public void onCreate() {
         if(DEBUG) Log.d(TAG, "onCreate service");
@@ -190,7 +192,7 @@ public class Camera2Service extends Service {
 
     public void actOnReadyCameraDevice() {
         try {
-            cameraDevice.createCaptureSession(Collections.singletonList(imageReader.getSurface()), sessionStateCallback, null);
+           cameraDevice.createCaptureSession(Collections.singletonList(imageReader.getSurface()), sessionStateCallback, null);
         } catch (CameraAccessException e) {
             Log.e(TAG, e.getMessage());
         }
@@ -227,7 +229,7 @@ public class Camera2Service extends Service {
 
     protected CaptureRequest createCaptureRequest() {
         try {
-            CaptureRequest.Builder builder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
+            CaptureRequest.Builder builder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_RECORD);
             builder.addTarget(imageReader.getSurface());
             return builder.build();
         } catch (CameraAccessException e) {
@@ -244,37 +246,47 @@ public class Camera2Service extends Service {
             if (packageId.equals(mContext.getBasePackageName())) return;
             isavail = false;
         }
-        @Override
-        public void onCameraClosed(String cameraId) {
-            if (DEBUG) Log.d(TAG, "CameraManager.AvailabilityCallback: Camera is closed now, " +
-                    "sleeping for 4000 ms");
-            Handler mHandler = new Handler(Looper.getMainLooper());
-            mHandler.postDelayed(() -> {
-                if(isavail) readyCamera();
-            },4000);
-            super.onCameraClosed(cameraId);
-        }
 
         @Override
         public void onCameraUnavailable(String cameraId) {
-            if (DEBUG)Log.i(TAG, "CameraManager.AvailabilityCallback : Camera NOT Available. ");
+            if (DEBUG) Log.i(TAG, "CameraManager.AvailabilityCallback : Camera NOT Available. ");
+            isavail = false;
             super.onCameraUnavailable(cameraId);
         }
 
         @Override
         public void onCameraAvailable(String cameraId) {
             if (DEBUG) Log.i(TAG, "CameraManager.AvailabilityCallback : Camera IS Available. ");
-            isavail = true;
             super.onCameraAvailable(cameraId);
+        }
+
+        @Override
+        public void onCameraClosed(String cameraId) {
+            super.onCameraClosed(cameraId);
+            while (mCaptureTime + DELAY >= System.currentTimeMillis() && isavail) {
+                try {
+                    Thread.sleep(1000);
+                    if (DEBUG) Log.i(TAG, "CameraManager.AvailabilityCallback: " +
+                            "Thread: Waiting...");
+                    isavail = false;
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            isavail = true;
+            Handler mHandler = new Handler(Looper.getMainLooper());
+            mHandler.postDelayed(() -> {
+                if(isavail) readyCamera();
+            },DELAY);
         }
     };
     CameraCaptureSession.CaptureCallback captureCallback = new CameraCaptureSession.CaptureCallback() {
         @Override
         public void onCaptureSequenceCompleted(CameraCaptureSession session, int sequenceId, long frameNumber) {
             if (DEBUG) Log.d(TAG, "captureCallback: Closing Session");
-            Handler mHandler = new Handler(Looper.getMainLooper());
-            mHandler.postDelayed(() -> readyCamera(),400);
             super.onCaptureSequenceCompleted(session, sequenceId, frameNumber);
+            cameraDevice.close();
+            session.close();
         }
 
     };
@@ -305,12 +317,12 @@ public class Camera2Service extends Service {
         int oldbrightness = Settings.System.getInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS);
         if (DEBUG) Log.i(TAG, "AdjustBrightness: Oldval = " + oldbrightness + " Newval = " +
                 brightness + " Adjusting..");
-	int newbrightness = brightness;
-	if (newbrightness > 255){
-		newbrightness = 255;
-	}else if (newbrightness < 0){
-		newbrightness = 0;
-	}
+        int newbrightness = brightness;
+        if (newbrightness > 255){
+            newbrightness = 255;
+        }else if (newbrightness < 0){
+            newbrightness = 0;
+        }
         Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, newbrightness);
     }
 }
