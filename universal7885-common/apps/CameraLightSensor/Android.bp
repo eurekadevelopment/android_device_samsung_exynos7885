@@ -6,4 +6,5 @@ android_app {
     platform_apis: true,
     privileged: true,
     certificate: "platform",
+    static_libs: [ "androidx.core_core" ],
 }
