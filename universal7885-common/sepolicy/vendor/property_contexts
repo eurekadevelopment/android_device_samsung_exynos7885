@@ -52,11 +52,6 @@ vendor.wlan.               u:object_r:vendor_wlan_prop:s0
 # Hwc
 hwc.exynos.vsync_mode      u:object_r:vendor_hwc_prop:s0
 
-# Rild
-mdc.sys.enable_smff0		u:object_r:rild_prop:s0
-ro.csc.countryiso_code		u:object_r:rild_prop:s0
-persist.sys.omc_etcpath		u:object_r:rild_prop:s0
-
 # TEEGRIS
 vendor.secureos.               u:object_r:vendor_secureos_prop:s0
 vendor.tzdaemon                u:object_r:vendor_tzdaemon_prop:s0
