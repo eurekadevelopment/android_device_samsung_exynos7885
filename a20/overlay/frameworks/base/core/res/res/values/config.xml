@@ -42,9 +42,11 @@
     <bool name="config_dreamsEnabledByDefault">false</bool>
     <bool name="config_dozeAlwaysOnDisplayAvailable">true</bool>
     <bool name="config_displayBlanksAfterDoze">false</bool>
-    <bool name="config_dozePulsePickup">true</bool>
+    <bool name="config_dozePulsePickup">false</bool>
     <bool name="config_supportDoubleTapWake">true</bool>
     <bool name="config_enableBurnInProtection">true</bool>
+    <bool name="config_dozeAfterScreenOffByDefault">true</bool>
+
     <bool name="config_allowAutoBrightnessWhileDozing">true</bool>
 
     <!-- List of biometric sensors on the device, in decreasing strength. Consumed by AuthService
