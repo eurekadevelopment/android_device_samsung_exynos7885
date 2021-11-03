@@ -298,3 +298,7 @@ PRODUCT_PACKAGES += \
 ifeq ($(TARGET_BUILD_VARIENT),eng)
 PRODUCT_PACKAGES += debug.rc
 endif
+
+# Extra Command-Line Tools
+PRODUCT_PACKAGES += \
+    sgdisk
