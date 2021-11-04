@@ -46,7 +46,7 @@ allow gpsd self:capability2 block_suspend;
 
 allow gpsd bt_device:chr_file rw_file_perms;
 allow gpsd gps_device:chr_file rw_file_perms;
-
 allow gpsd gpsd_exec:file execute_no_trans;
 
+get_prop(gpsd, exported_config_prop)
 allow gpsd bootanim_system_prop:file { read open getattr };

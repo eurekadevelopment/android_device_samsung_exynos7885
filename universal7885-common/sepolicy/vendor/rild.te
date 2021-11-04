@@ -89,8 +89,6 @@ allow rild hal_radio_default:binder call;
 
 # audio
 allow rild hal_audio_default:dir search;
-allow rild hal_audio_default:file r_file_perms;
-
+allow rild hal_audio_default:file r_file_perms
 # hwservice
 add_hwservice(rild, rild_hwservice)
-
