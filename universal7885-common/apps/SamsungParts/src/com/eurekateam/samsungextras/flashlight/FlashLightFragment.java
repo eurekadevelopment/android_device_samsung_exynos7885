@@ -43,7 +43,7 @@ public class FlashLightFragment extends PreferenceFragment implements
             mFlashLightPref.setEnabled(false);
         }
         mFlashLightPref.setMax(10);
-        mFlashLightPref.setMin(0);
+        mFlashLightPref.setMin(1);
         boolean isa10 = SystemProperties.read("ro.product.device").equals("a10");
         mFlashLightPref.setValue(Flashlight.getFlash(isa10 ? 1 : 0));
     }
