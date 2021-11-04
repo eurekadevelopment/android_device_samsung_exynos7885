@@ -1,6 +1,6 @@
 VENDOR=$(cat device/samsung/universal7885-common/vendor_name)
-if [ ! VENDOR ]; then
-exit 1;
+if [ ! $VENDOR ]; then
+VENDOR=aosp;
 fi
 
 # Generate AndroidProducts.mk
