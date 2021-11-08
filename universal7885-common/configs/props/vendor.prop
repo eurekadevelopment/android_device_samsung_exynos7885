@@ -10,6 +10,12 @@ ro.vendor.cscsupported=1
 ## OpenGLES
 ro.opengles.version=196610
 
+### Vulkan
+ro.hwui.use_vulkan=true
+graphics.gpu.profiler.support=true
+renderthread.skia.reduceopstasksplitting=true
+debug.hwui.renderer=skiavk
+
 ## RIL
 vendor.sec.rild.libpath=/vendor/lib64/libsec-ril.so
 vendor.sec.rild.libpath2=/vendor/lib64/libsec-ril-dsds.so
