@@ -7,4 +7,7 @@ android_app {
     privileged: true,
     certificate: "platform",
     static_libs: [ "androidx.core_core" ],
+    optimize: {
+        proguard_flags_files: ["proguard.flags"],
+    },
 }
