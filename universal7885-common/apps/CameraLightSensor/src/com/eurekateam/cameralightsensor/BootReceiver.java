@@ -12,8 +12,7 @@ public class BootReceiver extends BroadcastReceiver {
                 final Intent i = new Intent();
                 i.setClassName("com.eurekateam.cameralightsensor",
                         "com.eurekateam.cameralightsensor.CameraLightSensorService");
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(i);
+                context.startForegroundService(i);
             }
         }
     }
