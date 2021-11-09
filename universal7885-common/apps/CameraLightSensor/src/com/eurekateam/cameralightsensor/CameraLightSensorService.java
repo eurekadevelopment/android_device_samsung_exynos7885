@@ -136,12 +136,10 @@ public class CameraLightSensorService extends Service {
                     registerReceiver(mScreenStateReceiver, screenStateFilter);
                     mRegistered = true;
                     onDisplayOn();
-                    avail = true;
                 }else{
                     if(mRegistered) unregisterReceiver(mScreenStateReceiver);
                     mRegistered = false;
-                    stopForeground(true);
-                    avail = false;
+                    onDisplayOff();
                 }
             } catch (Settings.SettingNotFoundException e) {
                 e.printStackTrace();

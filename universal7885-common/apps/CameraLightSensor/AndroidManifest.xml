@@ -38,9 +38,5 @@
                 <action android:name="android.intent.action.SCREEN_ON" />
             </intent-filter>
         </activity>
-        <service
-            android:name=".Camera2Service"
-            android:foregroundServiceType="camera">
-        </service>
     </application>
 </manifest>
