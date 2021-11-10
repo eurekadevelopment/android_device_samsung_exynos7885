@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
-<audioPolicyConfiguration version="1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+<audioPolicyConfiguration version="7.0" xmlns:xi="http://www.w3.org/2001/XInclude">
 
     <globalConfiguration speaker_drc_enabled="true"/>
 
@@ -17,7 +17,7 @@
             <defaultOutputDevice>Speaker</defaultOutputDevice>
 
             <mixPorts>
-                <mixPort name="primary-out" role="source" flags="AUDIO_OUTPUT_FLAG_PRIMARY|AUDIO_OUTPUT_FLAG_DEEP_BUFFER">
+                <mixPort name="primary-out" role="source" flags="AUDIO_OUTPUT_FLAG_PRIMARY AUDIO_OUTPUT_FLAG_DEEP_BUFFER">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                              samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
                 </mixPort>
