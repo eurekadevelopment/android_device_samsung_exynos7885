@@ -301,7 +301,7 @@ public class CameraLightSensorService extends Service {
         destroy = false;
         avail = true;
         startForeground(50, PushNotification());
-        return START_NOT_STICKY;
+        return START_STICKY;
     }
 
     @Override
