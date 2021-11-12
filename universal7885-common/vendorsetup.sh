@@ -8,8 +8,7 @@ git clone https://github.com/lineageos/android_hardware_samsung_slsi_libbt hardw
 git clone https://github.com/lineageos/android_hardware_samsung_slsi_scsc_wifibt_wifi_hal hardware/samsung_slsi/scsc_wifibt/wifi_hal
 git clone https://github.com/lineageos/android_hardware_samsung_slsi_scsc_wifibt_wpa_supplicant_lib hardware/samsung_slsi/scsc_wifibt/wpa_supplicant_lib
 if ! test -f vendor_detect; then
-#clang++ device/samsung/universal7885-common/vendor_detect/main.cpp -o vendor_detect -std=c++17
-cp device/samsung/universal7885-common/vendor_detect/prebuilt vendor_detect
+clang++ device/samsung/universal7885-common/vendor_detect/main.cpp -o vendor_detect -std=c++17
 fi
 if ! test -f device/samsung/universal7885-common/vendor_name; then
 touch device/samsung/universal7885-common/vendor_name
