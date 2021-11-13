@@ -58,11 +58,7 @@ TARGET_KERNEL_CLANG_COMPILE := true
 TARGET_KEYMASTER_VARIANT := samsung
 
 # HIDL
-DEVICE_MANIFEST_FILE := $(COMMON_PATH)/manifest.xml
-DEVICE_MATRIX_FILE := $(COMMON_PATH)/compatibility_matrix.xml
-
-ODM_MANIFEST_SKUS += NFC
-ODM_MANIFEST_NFC_FILES := $(COMMON_PATH)/manifest_nfc.xml
+include device/samsung/universal7885-common/vintf/manifest.mk
 
 # LMKD stats logging
 TARGET_LMKD_STATS_LOG := true
@@ -75,9 +71,7 @@ BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # Properties
-BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
-TARGET_PRODUCT_PROP += $(COMMON_PATH)/product.prop
-TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
+include device/samsung/universal7885-common/props/props.mk
 
 # Recovery
 BOARD_HAS_DOWNLOAD_MODE := true
