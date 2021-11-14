@@ -16,6 +16,8 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <unistd.h>
+
 namespace vendor::eureka::hardware::battery::V1_0 {
 
 // Methods from ::android::hardware::battery::V1_0::IBattery follow.
@@ -61,6 +63,7 @@ Return<int32_t> Battery::getBatteryStats(battery::V1_0::SysfsType stats) {
 Return<int32_t> Battery::setBatteryWritable(battery::V1_0::SysfsType stats, battery::V1_0::Number value) {
         std::ofstream file;
         std::string filename;
+	bool FastCharge = false;
 	switch (stats){
 	   case SysfsType::CAPACITY_MAX:
 	      filename = "/sys/devices/platform/battery/power_supply/battery/charge_full";
@@ -76,6 +79,7 @@ Return<int32_t> Battery::setBatteryWritable(battery::V1_0::SysfsType stats, batt
 	      break;
 	   case SysfsType::FASTCHARGE:
 	      filename = "/sys/class/sec/switch/afc_disable";
+	      FastCharge = true;
 	      break;
 	   case SysfsType::CHARGE:
 	      filename = "/sys/devices/platform/battery/power_supply/battery/batt_slate_mode";
@@ -84,6 +88,7 @@ Return<int32_t> Battery::setBatteryWritable(battery::V1_0::SysfsType stats, batt
 	      filename = "";
 	      break;
 	}
+	if(FastCharge) seteuid(ANDROID_SYSTEM_UID);
         file.open(filename);
 	int write;
 	if (value == Number::ENABLE){
@@ -93,6 +98,7 @@ Return<int32_t> Battery::setBatteryWritable(battery::V1_0::SysfsType stats, batt
 	}
         file << write;
         file.close();
+        if(FastCharge) seteuid(ANDROID_ROOT_UID);
 	return 0;
 }
 
