@@ -3,7 +3,7 @@ package com.eurekateam.cameralightsensor;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import com.eurekateam.CameraLightSensorService;
+import com.eurekateam.cameralightsensor.CameraLightSensorService;
 
 public class BootReceiver extends BroadcastReceiver {
     @Override
