@@ -18,6 +18,9 @@
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
 
+#define ANDROID_SYSTEM_UID 1000
+#define ANDROID_ROOT_UID 0
+
 namespace vendor::eureka::hardware::battery::V1_0 {
 
 using ::android::hardware::hidl_array;
