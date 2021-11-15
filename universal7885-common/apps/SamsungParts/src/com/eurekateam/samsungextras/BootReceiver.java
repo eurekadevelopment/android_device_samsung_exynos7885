@@ -28,16 +28,20 @@ import com.eurekateam.samsungextras.interfaces.GPU;
 
 public class BootReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
+        if (intent.getAction().equalsIgnoreCase(Intent.ACTION_BOOT_COMPLETED)) {
+            if (context != null) {
+                SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+                boolean fpsenabled = sharedPrefs.getBoolean(DeviceSettings.PREF_KEY_FPS_INFO, false);
+                if (fpsenabled) {
+                    context.startService(new Intent(context, FPSInfoService.class));
+                }
+                boolean gpuenabled = sharedPrefs.getBoolean(DeviceSettings.PREF_GPUEXYNOS, false);
+                if (!gpuenabled){
+                    GPU.setGPU(0);
+                }
+            }
+        }
 
-        boolean fpsenabled = sharedPrefs.getBoolean(DeviceSettings.PREF_KEY_FPS_INFO, false);
-        if (fpsenabled) {
-            context.startService(new Intent(context, FPSInfoService.class));
-        }
-        boolean gpuenabled = sharedPrefs.getBoolean(DeviceSettings.PREF_GPUEXYNOS, false);
-        if (!gpuenabled){
-            GPU.setGPU(0);
-        }
     }
 }
