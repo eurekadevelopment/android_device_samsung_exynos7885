@@ -43,7 +43,7 @@ import java.util.Collections;
 
 public class CameraLightSensorService extends Service {
     protected static final String TAG = CameraLightSensorService.class.getSimpleName();
-    static final boolean DEBUG = true;
+    static final boolean DEBUG = false;
     IntentFilter screenStateFilter;
     private Context mContext;
     public ContentResolver contentResolver;
