@@ -113,7 +113,7 @@
         <service
             android:name=".DolbyTile"
             android:enabled="true"
-            android:icon="@drawable/dolby"
+            android:icon="@drawable/ic_speaker_cleaner_icon"
             android:label="@string/dolby_title"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
             android:exported="true">
