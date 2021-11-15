@@ -30,8 +30,8 @@
             android:icon="@drawable/ic_speaker_cleaner_icon" >
             <intent
                 android:action="android.intent.action.MAIN"
-                android:targetClass="com.eurekateam.samsungextras.DolbyActivity"
-                android:targetPackage="com.eurekateam.samsungextras.dolby" />
+                android:targetClass="com.eurekateam.samsungextras.dolby.DolbyActivity"
+                android:targetPackage="com.eurekateam.samsungextras" />
         </Preference>
     </PreferenceCategory>
     <PreferenceCategory
