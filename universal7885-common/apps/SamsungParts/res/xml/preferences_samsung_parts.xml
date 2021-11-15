@@ -17,11 +17,21 @@
             android:key="clear_speaker_settings"
             android:title="@string/clear_speaker_title"
             android:summary="@string/clear_speaker_summary"
-            android:icon="@drawable/ic_speaker_cleaner_icon" >
+            android:icon="@drawable/ic_sound" >
             <intent
                 android:action="android.intent.action.MAIN"
                 android:targetClass="com.eurekateam.samsungextras.ClearSpeakerActivity"
                 android:targetPackage="com.eurekateam.samsungextras.speaker" />
+        </Preference>
+        <Preference
+            android:key="dolby_settings"
+            android:title="@string/dolby_title"
+            android:summary="@string/dolby_summary"
+            android:icon="@drawable/ic_speaker_cleaner_icon" >
+            <intent
+                android:action="android.intent.action.MAIN"
+                android:targetClass="com.eurekateam.samsungextras.DolbyActivity"
+                android:targetPackage="com.eurekateam.samsungextras.dolby" />
         </Preference>
     </PreferenceCategory>
     <PreferenceCategory

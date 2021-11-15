@@ -35,7 +35,6 @@
         <activity
             android:name=".DeviceSettingsActivity"
             android:exported="true"
-            android:label="@string/advanced_settings"
             android:excludeFromRecents="true"
             android:launchMode="singleTask">
             <intent-filter>
@@ -82,6 +81,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".dolby.DolbyActivity"
+            android:exported="true"
+            android:label="@string/dolby_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".battery.BatteryActivity"
             android:exported="true"
             android:label="@string/fastcharge_title">
@@ -96,6 +104,17 @@
             android:enabled="true"
             android:icon="@drawable/ic_device"
             android:label="@string/advanced_settings"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".DolbyTile"
+            android:enabled="true"
+            android:icon="@drawable/dolby"
+            android:label="@string/dolby_title"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
             android:exported="true">
             <intent-filter>

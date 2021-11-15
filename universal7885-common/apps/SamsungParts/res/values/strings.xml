@@ -21,22 +21,35 @@
     <!-- Display category -->
     <string name="display_category">Display</string>
 
-    <!-- Logs -->
-    <string name="quick_settings_log_tile_label">Logs</string>
-    <string name="quick_settings_log_tile_dialog_title">Options</string>
-    <string name="cannot_get_su">Action failed because of missing superuser access</string>
-
     <!-- FPS Info -->
     <string name="fps_info_title">FPS info overlay</string>
     <string name="fps_info_summary">Show overlay with current frames per second</string>
 
     <!-- Speaker category -->
-    <string name="speaker_category">Speaker</string>
+    <string name="speaker_category">Audio</string>
 
     <!-- Clear Speaker -->
     <string name="clear_speaker_title">Clear speaker</string>
     <string name="clear_speaker_summary">Play a 30-second audio to clear the speaker</string>
     <string name="clear_speaker_description">Run this feature once or twice if you find that your speaker is lightly blocked by dust. Set media volume to maximum.\n\nIf the speaker is blocked heavily, run this feature 2–5 times while shaking your device with the speaker facing downwards.</string>
+
+    <!-- Dolby -->
+    <string name="dolby_title">Dolby Atmos</string>
+    <string name="dolby_summary">Enable the Dolby Atmos audio effect</string>
+    <string name="dolby_description">Enable Dolby audio, just like in OneUI.</string>
+    <string name="dolby_modes_title">Available Dolby Modes</string>
+    <string name="dolby_modes_summary">Choose one of these</string>
+    <string name="dolby_profile_auto">Auto Profile</string>
+    <string name="dolby_profile_movie">Movie Profile</string>
+    <string name="dolby_profile_music">Music Profile</string>
+    <string name="dolby_profile_voice">Voice Profile</string>
+    <string name="dolby_profile_game">Game Profile</string>
+    <string name="dolby_profile_off">No Profile</string>
+    <string name="dolby_profile_game_1">Game 1 Profile</string>
+    <string name="dolby_profile_game_2">Game 2 Profile</string>
+    <string name="dolby_profile_special_audio">Special Audio Profile</string>
+
+
 
     <!-- Eureka Kernel features category -->
     <string name="eureka_kernel_features">Eureka Kernel Features</string>
