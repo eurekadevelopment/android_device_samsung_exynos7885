@@ -45,7 +45,7 @@ public class DolbyFragment extends PreferenceFragment implements
         };
         DolbyModesPreference.setEntries(items);
         DolbyModesPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-            switch ((int) newValue){
+            switch (Integer.parseInt((String) newValue)){
                 case 1:
                     dolbyCore.startDolbyEffect(DolbyCore.PROFILE_AUTO);
                     break;
