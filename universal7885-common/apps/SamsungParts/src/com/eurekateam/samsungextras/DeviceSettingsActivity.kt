@@ -22,7 +22,7 @@ import com.android.internal.R.id.content
 import com.android.internal.R.id.home
 
 class DeviceSettingsActivity : Activity() {
-    override fun onCreate(savedInstanceState: Bundle) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         actionBar.setDisplayHomeAsUpEnabled(true)
         val fragment = fragmentManager.findFragmentById(content)
