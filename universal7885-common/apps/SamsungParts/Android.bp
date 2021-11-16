@@ -1,7 +1,6 @@
 android_app {
     name: "SamsungParts",
     srcs: [
-        "src/**/*.java",
         "src/**/*.kt",
     ],
     platform_apis: true,

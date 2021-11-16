@@ -15,25 +15,20 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-package com.eurekateam.samsungextras;
+package com.eurekateam.samsungextras
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import androidx.preference.PreferenceManager
 
-import androidx.preference.PreferenceManager;
-
-public class Startup extends BroadcastReceiver {
-
-    @Override
-    public void onReceive(final Context context, final Intent bootintent) {
-        boolean enabled;
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        enabled = sharedPrefs.getBoolean(DeviceSettings.PREF_KEY_FPS_INFO, false);
+class Startup : BroadcastReceiver() {
+    override fun onReceive(context: Context, bootintent: Intent) {
+        val enabled: Boolean
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
+        enabled = sharedPrefs.getBoolean(DeviceSettings.PREF_KEY_FPS_INFO, false)
         if (enabled) {
-            context.startService(new Intent(context, FPSInfoService.class));
+            context.startService(Intent(context, FPSInfoService::class.java))
         }
     }
-
 }

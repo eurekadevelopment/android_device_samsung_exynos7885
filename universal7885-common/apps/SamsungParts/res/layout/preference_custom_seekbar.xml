@@ -23,7 +23,8 @@
     android:paddingStart="?android:attr/listPreferredItemPaddingStart"
     android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
     android:background="?android:attr/activatedBackgroundIndicator"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    android:baselineAligned="false">
 
     <LinearLayout
         android:id="@android:id/icon_frame"
@@ -45,7 +46,7 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:paddingTop="16dp"
@@ -127,11 +128,11 @@
                 android:id="@+id/seekbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginEnd="3dp"
                 android:layout_toEndOf="@id/minus"
                 android:layout_toStartOf="@id/plus"
-                android:layout_centerVertical="true" />
+                android:layout_centerVertical="true"
+                android:orientation="horizontal" />
         </RelativeLayout>
     </RelativeLayout>
 
