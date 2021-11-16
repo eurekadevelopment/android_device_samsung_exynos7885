@@ -13,7 +13,7 @@ using android::sp;
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_eurekateam_samsungextras_interfaces_Flashlight_setFlash(JNIEnv *env, __unused jclass obj,
+Java_com_eurekateam_samsungextras_interfaces_Flashlight_setFlash(JNIEnv *env, __unused jobject obj,
                                                                  jint value) {
       android::sp<IFlashlight> service = IFlashlight::getService();
       service->setFlashlightEnable(Enable::ENABLE);
@@ -55,14 +55,10 @@ Java_com_eurekateam_samsungextras_interfaces_Flashlight_setFlash(JNIEnv *env, __
 }
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_eurekateam_samsungextras_interfaces_Flashlight_getFlash(JNIEnv *env, jclass clazz,
+Java_com_eurekateam_samsungextras_interfaces_Flashlight_getFlash(JNIEnv *env, jobject clazz,
                                                                  jint isA10) {
       android::sp<IFlashlight> service = IFlashlight::getService();
       int ret;
-      if(isA10 == 1) {
-            ret = service->readFlashlightstats(Device::A10);
-      }else{
-            ret = service->readFlashlightstats(Device::NOTA10);
-      }
+      ret = service->readFlashlightstats(Device::A10);
       return ret;
 }

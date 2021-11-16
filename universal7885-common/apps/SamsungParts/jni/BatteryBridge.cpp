@@ -33,7 +33,7 @@ Java_com_eurekateam_samsungextras_interfaces_Battery_getChargeSysfs
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_eurekateam_samsungextras_interfaces_Battery_setFastCharge(JNIEnv *env, __unused jclass obj,
+Java_com_eurekateam_samsungextras_interfaces_Battery_setFastCharge(JNIEnv *env, __unused jobject obj,
                                                                    jint enable) {
       android::sp<IBattery> service = IBattery::getService();
       if (enable == 1){
@@ -52,9 +52,7 @@ jclass obj) {
 }
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_eurekateam_samsungextras_interfaces_Battery_getGeneralBatteryStats(JNIEnv *env,
-                                                                            __unused
-                                                                            jclass obj, jint id) {
+Java_com_eurekateam_samsungextras_interfaces_Battery_getGeneralBatteryStats(JNIEnv *env,__unused jobject obj, jint id) {
       /**
        * id:
        * 1 = BATTERY_CAPACITY_MAX
