@@ -241,8 +241,8 @@ PRODUCT_PACKAGES += \
     libshim_sensorndkbridge
 
 # Skip Mount
-PRODUCT_COPY_FILES += \
-    build/target/product/gsi/gsi_skip_mount.cfg:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/config/skip_mount.cfg
+PRODUCT_PACKAGES += \
+    gsi_skip_mount.cfg
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
