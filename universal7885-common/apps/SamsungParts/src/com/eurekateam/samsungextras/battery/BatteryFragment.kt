@@ -27,7 +27,7 @@ import com.eurekateam.samsungextras.interfaces.Battery
 class BatteryFragment : PreferenceFragment(), Preference.OnPreferenceChangeListener {
     private var mFastChargePref: SwitchPreference? = null
     private var mChargePref: SwitchPreference? = null
-    override fun onCreatePreferences(savedInstanceState: Bundle, rootKey: String) {
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String) {
         addPreferencesFromResource(R.xml.battery_settings)
         mFastChargePref = findPreference(PREF_FASTCHARGE)
         assert(mFastChargePref != null)

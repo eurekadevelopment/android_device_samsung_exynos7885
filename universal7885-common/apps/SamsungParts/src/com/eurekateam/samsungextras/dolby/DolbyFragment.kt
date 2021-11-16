@@ -26,7 +26,7 @@ class DolbyFragment : PreferenceFragment(), Preference.OnPreferenceChangeListene
     private var DolbyModesPreference: ListPreference? = null
     private var DolbyEnablePreference: SwitchPreference? = null
     private var dolbyCore = DolbyCore()
-    override fun onCreatePreferences(savedInstanceState: Bundle, rootKey: String) {
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String) {
         addPreferencesFromResource(R.xml.dolby_settings)
         DolbyModesPreference = findPreference(DOLBY_MODES)
         DolbyEnablePreference = findPreference(PREF_DOLBY)

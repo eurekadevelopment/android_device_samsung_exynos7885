@@ -29,7 +29,7 @@ import com.eurekateam.samsungextras.interfaces.SELinux.SELinux
 import com.eurekateam.samsungextras.speaker.ClearSpeakerActivity
 
 class DeviceSettings : PreferenceFragment(), Preference.OnPreferenceChangeListener {
-    override fun onCreatePreferences(savedInstanceState: Bundle, rootKey: String) {
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String) {
         System.loadLibrary("samsungparts_jni")
         setPreferencesFromResource(R.xml.preferences_samsung_parts, rootKey)
         val mContext = this.context

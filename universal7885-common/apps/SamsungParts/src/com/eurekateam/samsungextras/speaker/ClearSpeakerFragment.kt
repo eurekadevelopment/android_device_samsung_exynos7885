@@ -33,7 +33,7 @@ class ClearSpeakerFragment : PreferenceFragment(), Preference.OnPreferenceChange
     private var mHandler: Handler? = null
     private var mMediaPlayer: MediaPlayer? = null
     private var mClearSpeakerPref: SwitchPreference? = null
-    override fun onCreatePreferences(savedInstanceState: Bundle, rootKey: String) {
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String) {
         addPreferencesFromResource(R.xml.clear_speaker_settings)
         mClearSpeakerPref = findPreference(PREF_CLEAR_SPEAKER)
         mClearSpeakerPref!!.onPreferenceChangeListener = this
