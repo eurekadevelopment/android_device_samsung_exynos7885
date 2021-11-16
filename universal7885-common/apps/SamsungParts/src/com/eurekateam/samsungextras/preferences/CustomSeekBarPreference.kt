@@ -216,7 +216,7 @@ open class CustomSeekBarPreference @JvmOverloads constructor(
 
     // dont need too much shit about initial and default values
     // its all done in constructor already
-    override fun onSetInitialValue(restoreValue: Boolean, defaultValue: Any) {
+    override fun onSetInitialValue(restoreValue: Boolean, defaultValue: Any?) {
         if (restoreValue) mValue = getPersistedInt(mValue)
     }
 
