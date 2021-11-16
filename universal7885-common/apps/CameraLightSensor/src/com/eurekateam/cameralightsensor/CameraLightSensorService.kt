@@ -53,6 +53,7 @@ open class CameraLightSensorService : Service() {
             mContext!!.basePackageName, "CameraLightSensor",
             NotificationManager.IMPORTANCE_LOW
         )
+        channel.isBlockable = true
         nm.createNotificationChannel(channel)
         val builder = NotificationCompat.Builder(mContext!!, mContext!!.basePackageName)
         val notificationIntent = Intent(mContext, CameraLightSensorService::class.java)
@@ -61,7 +62,6 @@ open class CameraLightSensorService : Service() {
             notificationIntent, PendingIntent.FLAG_IMMUTABLE
         )
 
-        //set
         builder.setContentIntent(contentIntent)
         builder.setSmallIcon(R.drawable.ic_brightness)
         builder.setContentTitle("Camera Light Sensor Service")
