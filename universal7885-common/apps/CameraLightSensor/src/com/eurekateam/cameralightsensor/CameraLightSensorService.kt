@@ -1,34 +1,28 @@
 package com.eurekateam.cameralightsensor
 
-import android.hardware.camera2.CameraDevice
-import android.hardware.camera2.CameraCaptureSession
-import kotlin.jvm.Volatile
-import android.hardware.camera2.CameraManager
-import androidx.core.app.NotificationCompat
-import android.hardware.camera2.CameraAccessException
-import android.database.ContentObserver
-import android.provider.Settings.SettingNotFoundException
 import android.annotation.SuppressLint
 import android.app.*
-import android.content.*
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.ServiceInfo
-import android.hardware.camera2.CameraCharacteristics
-import kotlin.Throws
+import android.database.ContentObserver
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.ImageFormat
-import android.hardware.camera2.CaptureRequest
+import android.hardware.camera2.*
 import android.hardware.camera2.CameraManager.AvailabilityCallback
 import android.media.Image
 import android.media.ImageReader
 import android.net.Uri
 import android.os.*
-import androidx.core.content.ContextCompat
 import android.provider.Settings
+import android.provider.Settings.SettingNotFoundException
 import android.util.Log
-import java.lang.Exception
-import java.lang.IllegalStateException
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 
 open class CameraLightSensorService : Service() {
     var screenStateFilter: IntentFilter? = null
@@ -221,7 +215,7 @@ open class CameraLightSensorService : Service() {
             manager!!.registerAvailabilityCallback(availabilityCallback, null)
             manager!!.openCamera(pickedCamera, cameraStateCallback, null)
             imageReader =
-                ImageReader.newInstance(250, 250, ImageFormat.JPEG, 2 /* images buffered */)
+                ImageReader.newInstance(50, 50, ImageFormat.JPEG, 2 /* images buffered */)
             imageReader?.setOnImageAvailableListener(onImageAvailableListener, null)
             if (!mThreadRunning) {
                 val mMyThread = Thread(thread)
@@ -301,7 +295,7 @@ open class CameraLightSensorService : Service() {
         val bytes = ByteArray(buffer.capacity())
         buffer[bytes]
         val bitmapImage = BitmapFactory.decodeByteArray(bytes, 0, bytes.size, null)
-        val brightness = calculateBrightnessEstimate(bitmapImage, 5)
+        val brightness = calculateBrightnessEstimate(bitmapImage, 2)
         AdjustBrightness(brightness)
     }
 
@@ -408,13 +402,15 @@ open class CameraLightSensorService : Service() {
             if (avail && !mLock) {
                 SystemClock.sleep(DELAY.toLong())
                 ContextCompat.getMainExecutor(mContext!!).execute { if (avail) readyCamera() }
+            }else{
+                SystemClock.sleep(DELAY.toLong() / 10) // For Fast Detection
             }
         }
     }
 
     companion object {
         protected val TAG: String = CameraLightSensorService::class.java.simpleName
-        const val DEBUG = false
+        const val DEBUG = true
         protected const val CAMERA_CHOICE = CameraCharacteristics.LENS_FACING_FRONT
         private const val DELAY = 5 * 1000 // 5 Seconds
         fun BatteryOptimization(context: Context?) {
