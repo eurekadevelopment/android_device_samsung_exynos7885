@@ -410,7 +410,7 @@ open class CameraLightSensorService : Service() {
 
     companion object {
         protected val TAG: String = CameraLightSensorService::class.java.simpleName
-        const val DEBUG = true
+        const val DEBUG = false
         protected const val CAMERA_CHOICE = CameraCharacteristics.LENS_FACING_FRONT
         private const val DELAY = 5 * 1000 // 5 Seconds
         fun BatteryOptimization(context: Context?) {
