@@ -1,7 +1,7 @@
 android_app {
     name: "CameraLightSensor",
     srcs: [
-        "src/**/*.java",
+        "src/**/*.kt",
     ],
     platform_apis: true,
     privileged: true,
