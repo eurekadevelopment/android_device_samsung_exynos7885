@@ -61,7 +61,7 @@
                 android:resource="@drawable/ic_device" />
         </activity>
         <activity
-            android:name=".speaker.ClearSpeakerActivity" 
+            android:name="com.eurekateam.samsungextras.speaker.ClearSpeakerActivity" 
             android:exported="true"
             android:label="@string/clear_speaker_title">
 
@@ -71,7 +71,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".flashlight.FlashLightActivity"
+            android:name="com.eurekateam.samsungextras.flashlight.FlashLightActivity"
             android:exported="true"
             android:label="@string/flashlight_title">
 
@@ -81,7 +81,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".dolby.DolbyActivity"
+            android:name="com.eurekateam.samsungextras.dolby.DolbyActivity"
             android:exported="true"
             android:label="@string/dolby_title">
             <intent-filter>
@@ -90,7 +90,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".battery.BatteryActivity"
+            android:name="com.eurekateam.samsungextras.battery.BatteryActivity"
             android:exported="true"
             android:label="@string/fastcharge_title">
 
