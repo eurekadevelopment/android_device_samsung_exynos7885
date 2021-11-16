@@ -27,7 +27,7 @@ import java.io.File
 
 class FlashLightFragment : PreferenceFragment(), Preference.OnPreferenceChangeListener {
     private var mFlashLightPref: CustomSeekBarPreference? = null
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String) {
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.flashlight_settings)
         mFlashLightPref = findPreference(PREF_FLASHLIGHT)
         assert(mFlashLightPref != null)
