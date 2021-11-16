@@ -11,7 +11,7 @@ $(call inherit-product, $(LOCAL_PATH)/fingerprint.mk)
 PRODUCT_BROKEN_VERIFY_USES_LIBRARIES := true
 
 # For framework-res__auto_generated_rro_vendor.apk
-PRODUCT_ENFORCE_RRO_TARGETS := *
+PRODUCT_ENFORCE_RRO_TARGETS := framework-res
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS := # leave it empty
 
 # Audio
