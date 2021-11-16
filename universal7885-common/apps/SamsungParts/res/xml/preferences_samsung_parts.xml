@@ -20,8 +20,8 @@
             android:icon="@drawable/ic_sound" >
             <intent
                 android:action="android.intent.action.MAIN"
-                android:targetClass="com.eurekateam.samsungextras.ClearSpeakerActivity"
-                android:targetPackage="com.eurekateam.samsungextras.speaker" />
+                android:targetClass=".speaker.ClearSpeakerActivity"
+                android:targetPackage="com.eurekateam.samsungextras" />
         </Preference>
         <Preference
             android:key="dolby_settings"
@@ -30,7 +30,7 @@
             android:icon="@drawable/ic_speaker_cleaner_icon" >
             <intent
                 android:action="android.intent.action.MAIN"
-                android:targetClass="com.eurekateam.samsungextras.dolby.DolbyActivity"
+                android:targetClass=".dolby.DolbyActivity"
                 android:targetPackage="com.eurekateam.samsungextras" />
         </Preference>
     </PreferenceCategory>
@@ -44,8 +44,8 @@
             android:icon="@drawable/ic_led" >
             <intent
                 android:action="android.intent.action.MAIN"
-                android:targetClass="com.eurekateam.samsungextras.FlashLightActivity"
-                android:targetPackage="com.eurekateam.samsungextras.flashlight" />
+                android:targetClass=".flashlight.FlashLightActivity"
+                android:targetPackage="com.eurekateam.samsungextras" />
         </Preference>
     </PreferenceCategory>
     <PreferenceCategory
@@ -69,8 +69,8 @@
             android:persistent="true">
         <intent
             android:action="android.intent.action.MAIN"
-            android:targetClass="com.eurekateam.samsungextras.FastChargeActivity"
-            android:targetPackage="com.eurekateam.samsungextras.fastcharge" />
+            android:targetClass=".fastcharge.FastChargeActivity"
+            android:targetPackage="com.eurekateam.samsungextras" />
         </Preference>
 
     </PreferenceCategory>
