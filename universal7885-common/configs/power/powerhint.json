@@ -34,8 +34,7 @@
             "Name": "TouchscreenEnable",
             "Path": "/sys/class/sec/tsp/input/enabled",
             "Values": [
-                "1",
-                "0"
+                "1"
             ],
             "ResetOnInit": true
         },
