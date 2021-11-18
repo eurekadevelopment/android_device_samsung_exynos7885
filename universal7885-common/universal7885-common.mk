@@ -224,6 +224,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.renderscript@1.0-impl
 
+# Nuke Useless Apps (Mostly GAPPS)
+PRODUCT_PACKAGES += \
+    RemovePkgs
+    
 # RIL
 PRODUCT_PACKAGES += \
     android.hardware.radio@1.2.vendor \
