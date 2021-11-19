@@ -1,3 +1,5 @@
+# Neccessary Makefile for building CAF-based ROMs. Include when needed.
+
 # HIDL Wrapper
 PRODUCT_PACKAGES += \
     qti-telephony-hidl-wrapper \
