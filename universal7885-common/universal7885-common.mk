@@ -23,7 +23,8 @@ PRODUCT_PACKAGES += \
     android.hardware.audio.effect@7.0-impl \
     libtinycompress \
     audio.r_submix.default \
-    audio.usb.default
+    audio.usb.default \
+    audio.a2dp.default
 
 PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_audio_policy_configuration.xml \
