@@ -3,6 +3,8 @@
     <style name="CustomOptionsTheme" parent="@android:style/Theme.DeviceDefault.Settings">
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="preferenceTheme">@style/PreferenceTheme</item>
+        <item name="dialogTheme">@style/Theme.MaterialComponents.Dialog</item>
+        <item name="alertDialogTheme">@style/Theme.MaterialComponents.Dialog</item>
     </style>
 
     <style name="PreferenceTheme" parent="@style/PreferenceThemeOverlay.v14.Material">
