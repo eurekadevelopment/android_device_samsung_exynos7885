@@ -1,8 +1,7 @@
-package com.eurekateam.samsungextras
+package com.eurekateam.samsungextras.dolby
 
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
-import com.eurekateam.samsungextras.dolby.DolbyCore
 
 class DolbyTile : TileService() {
     private var isRunning = false

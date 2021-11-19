@@ -18,11 +18,11 @@ package com.eurekateam.samsungextras.dolby
 import android.os.Bundle
 import androidx.preference.ListPreference
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragment
+import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.eurekateam.samsungextras.R
 
-class DolbyFragment : PreferenceFragment(), Preference.OnPreferenceChangeListener {
+class DolbyFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
     private var DolbyModesPreference: ListPreference? = null
     private var DolbyEnablePreference: SwitchPreference? = null
     private var dolbyCore = DolbyCore()

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.eurekateam.samsungextras
+package com.eurekateam.samsungextras.fps
 
 import android.app.Service
 import android.content.BroadcastReceiver
@@ -28,6 +28,7 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
+import com.eurekateam.samsungextras.utils.SurfaceFlingerFPS
 import kotlin.math.roundToInt
 
 open class FPSInfoService : Service() {
@@ -36,6 +37,7 @@ open class FPSInfoService : Service() {
     private val TAG = "FPSInfoService"
     private var fPSInfoString: String? = null
     private var mDreamManager: IDreamManager? = null
+    private var mRunning : Boolean = false
 
     private inner class FPSView(c: Context) : View(c) {
         private val mOnlinePaint: Paint?
@@ -217,6 +219,7 @@ open class FPSInfoService : Service() {
 
     private fun startThread() {
         Log.d(TAG, "started CurFPSThread")
+        mRunning = true
         mCurFPSThread = CurFPSThread(mView!!.handler)
         surfaceFlingerFPS!!.start()
         mCurFPSThread?.start()
@@ -233,9 +236,13 @@ open class FPSInfoService : Service() {
                 e.printStackTrace()
             }
         }
+        mRunning = false
         mCurFPSThread = null
     }
 
+    fun getRunning() : Boolean{
+        return mRunning
+    }
     companion object {
         private var surfaceFlingerFPS: SurfaceFlingerFPS? = null
     }

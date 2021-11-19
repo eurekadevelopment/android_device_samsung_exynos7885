@@ -13,9 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.eurekateam.samsungextras
+package com.eurekateam.samsungextras.fps
 
-import android.app.ActivityManager
 import android.content.Intent
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
@@ -25,14 +24,8 @@ class FPSTileService : TileService() {
     private var isShowing = false
     override fun onStartListening() {
         super.onStartListening()
-        val manager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
-        for (service in manager.getRunningServices(Int.MAX_VALUE)) {
-            if (FPSInfoService::class.java.name ==
-                service.service.className
-            ) {
-                isShowing = true
-            }
-        }
+        val fpsInfoService = FPSInfoService()
+        isShowing = fpsInfoService.getRunning()
         updateTile()
     }
 

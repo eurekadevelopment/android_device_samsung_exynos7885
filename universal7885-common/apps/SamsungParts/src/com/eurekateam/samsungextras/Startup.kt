@@ -21,6 +21,8 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.preference.PreferenceManager
+import com.eurekateam.samsungextras.fps.FPSInfoService
+import com.eurekateam.samsungextras.main.DeviceSettings
 
 class Startup : BroadcastReceiver() {
     override fun onReceive(context: Context, bootintent: Intent) {

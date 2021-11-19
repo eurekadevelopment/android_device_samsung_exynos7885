@@ -13,22 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License
  */
-package com.eurekateam.samsungextras
+package com.eurekateam.samsungextras.main
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragment
+import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import androidx.preference.SwitchPreference
+import com.eurekateam.samsungextras.R
 import com.eurekateam.samsungextras.battery.BatteryActivity
 import com.eurekateam.samsungextras.flashlight.FlashLightActivity
+import com.eurekateam.samsungextras.fps.FPSInfoService
 import com.eurekateam.samsungextras.interfaces.GPU.GPU
 import com.eurekateam.samsungextras.interfaces.SELinux.SELinux
 import com.eurekateam.samsungextras.speaker.ClearSpeakerActivity
 
-class DeviceSettings : PreferenceFragment(), Preference.OnPreferenceChangeListener {
+class DeviceSettings : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         System.loadLibrary("samsungparts_jni")
         setPreferencesFromResource(R.xml.preferences_samsung_parts, rootKey)
@@ -37,7 +39,7 @@ class DeviceSettings : PreferenceFragment(), Preference.OnPreferenceChangeListen
         val mClearSpeakerPref = findPreference<Preference>(PREF_CLEAR_SPEAKER)!!
         mClearSpeakerPref.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
-                val intent = Intent(activity.applicationContext, ClearSpeakerActivity::class.java)
+                val intent = Intent(requireActivity().applicationContext, ClearSpeakerActivity::class.java)
                 startActivity(intent)
                 true
             }
@@ -60,14 +62,14 @@ class DeviceSettings : PreferenceFragment(), Preference.OnPreferenceChangeListen
         val mFlashLight = findPreference<Preference>(PREF_FLASHLIGHT)!!
         mFlashLight.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
-                val intent = Intent(activity.applicationContext, FlashLightActivity::class.java)
+                val intent = Intent(requireActivity().applicationContext, FlashLightActivity::class.java)
                 startActivity(intent)
                 true
             }
         val mFastCharge = findPreference<Preference>(PREF_BATTERY)!!
         mFastCharge.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
-                val intent = Intent(activity.applicationContext, BatteryActivity::class.java)
+                val intent = Intent(requireActivity().applicationContext, BatteryActivity::class.java)
                 startActivity(intent)
                 true
             }
@@ -79,9 +81,9 @@ class DeviceSettings : PreferenceFragment(), Preference.OnPreferenceChangeListen
                 val fps_enabled = value as Boolean
                 val fpsinfo = Intent(this.context, FPSInfoService::class.java)
                 if (fps_enabled) {
-                    this.context.startService(fpsinfo)
+                    this.requireContext().startService(fpsinfo)
                 } else {
-                    this.context.stopService(fpsinfo)
+                    this.requireContext().stopService(fpsinfo)
                 }
             }
             PREF_GPUEXYNOS -> {
