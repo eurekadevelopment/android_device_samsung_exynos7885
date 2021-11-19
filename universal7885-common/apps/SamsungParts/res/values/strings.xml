@@ -20,7 +20,6 @@
 
     <!-- Display category -->
     <string name="display_category">Display</string>
-
     <!-- FPS Info -->
     <string name="fps_info_title">FPS info overlay</string>
     <string name="fps_info_summary">Show overlay with current frames per second</string>
@@ -48,9 +47,6 @@
     <string name="dolby_profile_game_1">Game 1 Profile</string>
     <string name="dolby_profile_game_2">Game 2 Profile</string>
     <string name="dolby_profile_special_audio">Special Audio Profile</string>
-
-
-
     <!-- Eureka Kernel features category -->
     <string name="eureka_kernel_features">Eureka Kernel Features</string>
 
@@ -62,8 +58,13 @@
         Use this feature to adjust low or high flashlight brightness. Ranges from 0 to 10.</string>
 
     <!-- GPU Category -->
-    <string name="gpu_category">GPU</string>
+    <string name="misc_category">Misc</string>
 
+    <!-- Inout Devices Settings -->
+    <string name="input_ctrl_title">Input Devices Control</string>
+    <string name="input_ctrl_summary">Control sensor\'s power. Can be used to save battery.</string>
+    <string name="input_ctrl_description">Manage Sensor\'s Power here.
+        If you are really low on battery, perhaps this settings can help</string>
     <!-- GPU TMU -->
     <string name="gpuexynos_title">Exynos GPU (Mali) Throttling</string>
     <string name="gpuexynos_summary">Disable/Enable GPU Throttling</string>

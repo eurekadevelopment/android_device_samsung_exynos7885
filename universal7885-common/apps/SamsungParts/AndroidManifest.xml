@@ -17,21 +17,6 @@
         android:theme="@style/CustomOptionsTheme"
         android:fullBackupOnly="true"
         android:allowBackup="true">
-
-        <receiver
-            android:name=".BootReceiver"
-            android:defaultToDeviceProtectedStorage="true"
-            android:directBootAware="true"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter android:priority="1000">
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
-            </intent-filter>
-        </receiver>
-
         <activity
             android:name=".DeviceSettingsActivity"
             android:exported="true"
@@ -64,7 +49,6 @@
             android:name="com.eurekateam.samsungextras.speaker.ClearSpeakerActivity" 
             android:exported="true"
             android:label="@string/clear_speaker_title">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -74,7 +58,6 @@
             android:name="com.eurekateam.samsungextras.flashlight.FlashLightActivity"
             android:exported="true"
             android:label="@string/flashlight_title">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -100,18 +83,7 @@
             </intent-filter>
         </activity>
         <service
-            android:name=".SamsungPartsTile"
-            android:enabled="true"
-            android:icon="@drawable/ic_device"
-            android:label="@string/advanced_settings"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.service.quicksettings.action.QS_TILE"/>
-            </intent-filter>
-        </service>
-        <service
-            android:name=".DolbyTile"
+            android:name=".dolby.DolbyTile"
             android:enabled="true"
             android:icon="@drawable/ic_speaker_cleaner_icon"
             android:label="@string/dolby_title"
@@ -122,11 +94,11 @@
             </intent-filter>
         </service>
         <service
-            android:name=".FPSInfoService"
+            android:name=".fps.FPSInfoService"
             android:exported="false">
         </service>
         <service
-            android:name=".FPSTileService"
+            android:name=".fps.FPSTileService"
             android:icon="@drawable/ic_fps_info"
             android:label="@string/fps_info_title"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"

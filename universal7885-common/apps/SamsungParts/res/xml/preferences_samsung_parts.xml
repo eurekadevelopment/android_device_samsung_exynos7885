@@ -49,8 +49,8 @@
         </Preference>
     </PreferenceCategory>
     <PreferenceCategory
-        android:key="gpu"
-        android:title="@string/gpu_category">
+        android:key="misc"
+        android:title="@string/misc_category">
         <SwitchPreference
             android:key="gpuexynos_settings"
             android:title="@string/gpuexynos_title"
@@ -69,7 +69,7 @@
             android:persistent="true">
         <intent
             android:action="android.intent.action.MAIN"
-            android:targetClass="com.eurekateam.samsungextras.fastcharge.FastChargeActivity"
+            android:targetClass="com.eurekateam.samsungextras.battery.BatteryActivity"
             android:targetPackage="com.eurekateam.samsungextras" />
         </Preference>
 

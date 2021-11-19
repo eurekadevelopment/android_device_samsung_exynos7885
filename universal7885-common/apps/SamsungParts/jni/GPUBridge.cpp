@@ -13,7 +13,7 @@ extern "C"
 JNIEXPORT void JNICALL
 Java_com_eurekateam_samsungextras_interfaces_GPU_setGPU(JNIEnv *env, jclass clazz, jint enable) {
       android::sp<IGpu> service = IGpu::getService();
-      if (enable == 1){
+       if (enable == 1){
             service->setGpuWritable(Enable::ENABLE);
       }else{
             service->setGpuWritable(Enable::DISABLE);

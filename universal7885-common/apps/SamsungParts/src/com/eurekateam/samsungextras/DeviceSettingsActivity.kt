@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License
  */
-package com.eurekateam.samsungextras.main
+package com.eurekateam.samsungextras
 
 import android.os.Bundle
 import android.view.MenuItem
