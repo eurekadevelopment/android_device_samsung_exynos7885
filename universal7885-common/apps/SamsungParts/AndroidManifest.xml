@@ -17,23 +17,8 @@
         android:theme="@style/CustomOptionsTheme"
         android:fullBackupOnly="true"
         android:allowBackup="true">
-
-        <receiver
-            android:name=".BootReceiver"
-            android:defaultToDeviceProtectedStorage="true"
-            android:directBootAware="true"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter android:priority="1000">
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
-            </intent-filter>
-        </receiver>
-
         <activity
-            android:name="com.eurekateam.samsungextras.main.DeviceSettingsActivity"
+            android:name=".DeviceSettingsActivity"
             android:exported="true"
             android:excludeFromRecents="true"
             android:launchMode="singleTask">
@@ -64,7 +49,6 @@
             android:name="com.eurekateam.samsungextras.speaker.ClearSpeakerActivity" 
             android:exported="true"
             android:label="@string/clear_speaker_title">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -74,7 +58,6 @@
             android:name="com.eurekateam.samsungextras.flashlight.FlashLightActivity"
             android:exported="true"
             android:label="@string/flashlight_title">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -93,6 +76,7 @@
             android:name="com.eurekateam.samsungextras.battery.BatteryActivity"
             android:exported="true"
             android:label="@string/fastcharge_title">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />

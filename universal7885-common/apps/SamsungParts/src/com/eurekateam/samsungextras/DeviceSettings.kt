@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License
  */
-package com.eurekateam.samsungextras.main
+package com.eurekateam.samsungextras
 
 import android.content.Intent
 import android.os.Bundle
@@ -22,7 +22,6 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import androidx.preference.SwitchPreference
-import com.eurekateam.samsungextras.R
 import com.eurekateam.samsungextras.battery.BatteryActivity
 import com.eurekateam.samsungextras.flashlight.FlashLightActivity
 import com.eurekateam.samsungextras.fps.FPSInfoService
