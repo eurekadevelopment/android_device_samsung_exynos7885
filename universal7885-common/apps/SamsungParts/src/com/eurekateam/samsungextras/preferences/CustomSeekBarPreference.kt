@@ -230,11 +230,11 @@ open class CustomSeekBarPreference @JvmOverloads constructor(
     }
 
     private fun setDefaultValue(newValue: Int, update: Boolean) {
-        var newValue = newValue
-        newValue = getLimitedValue(newValue)
-        if (!mDefaultValueExists || mDefaultValue != newValue) {
+        var mNewValue = newValue
+        mNewValue = getLimitedValue(mNewValue)
+        if (!mDefaultValueExists || mDefaultValue != mNewValue) {
             mDefaultValueExists = true
-            mDefaultValue = newValue
+            mDefaultValue = mNewValue
             if (update) updateValueViews()
         }
     }
@@ -259,10 +259,10 @@ open class CustomSeekBarPreference @JvmOverloads constructor(
     }
 
     fun setValue(newValue: Int, update: Boolean) {
-        var newValue = newValue
-        newValue = getLimitedValue(newValue)
-        if (mValue != newValue) {
-            if (update) mSeekBar.progress = getSeekValue(newValue) else mValue = newValue
+        var mNewValue = newValue
+        mNewValue = getLimitedValue(mNewValue)
+        if (mValue != mNewValue) {
+            if (update) mSeekBar.progress = getSeekValue(mNewValue) else mValue = mNewValue
         }
     }
 
