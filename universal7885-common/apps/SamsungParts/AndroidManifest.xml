@@ -33,7 +33,7 @@
         </receiver>
 
         <activity
-            android:name=".DeviceSettingsActivity"
+            android:name="com.eurekateam.samsungextras.main.DeviceSettingsActivity"
             android:exported="true"
             android:excludeFromRecents="true"
             android:launchMode="singleTask">
@@ -93,25 +93,13 @@
             android:name="com.eurekateam.samsungextras.battery.BatteryActivity"
             android:exported="true"
             android:label="@string/fastcharge_title">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <service
-            android:name=".SamsungPartsTile"
-            android:enabled="true"
-            android:icon="@drawable/ic_device"
-            android:label="@string/advanced_settings"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.service.quicksettings.action.QS_TILE"/>
-            </intent-filter>
-        </service>
-        <service
-            android:name=".DolbyTile"
+            android:name=".dolby.DolbyTile"
             android:enabled="true"
             android:icon="@drawable/ic_speaker_cleaner_icon"
             android:label="@string/dolby_title"
@@ -122,11 +110,11 @@
             </intent-filter>
         </service>
         <service
-            android:name=".FPSInfoService"
+            android:name=".fps.FPSInfoService"
             android:exported="false">
         </service>
         <service
-            android:name=".FPSTileService"
+            android:name=".fps.FPSTileService"
             android:icon="@drawable/ic_fps_info"
             android:label="@string/fps_info_title"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
