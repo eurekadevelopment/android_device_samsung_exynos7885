@@ -1,4 +1,5 @@
 # Neccessary Makefile for building CAF-based ROMs. Include when needed.
+# Additional required flag on BoardConfig.mk : BOARD_USES_QCOM_HARDWARE
 
 # HIDL Wrapper
 PRODUCT_PACKAGES += \
