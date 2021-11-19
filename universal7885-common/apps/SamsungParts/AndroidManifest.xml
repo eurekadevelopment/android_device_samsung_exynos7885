@@ -18,7 +18,7 @@
         android:fullBackupOnly="true"
         android:allowBackup="true">
         <activity
-            android:name=".DeviceSettingsActivity"
+            android:name="com.eurekateam.samsungextras.DeviceSettingsActivity"
             android:exported="true"
             android:excludeFromRecents="true"
             android:launchMode="singleTask">
