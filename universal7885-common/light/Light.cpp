@@ -18,7 +18,6 @@
 #include <android-base/stringprintf.h>
 #include <log/log.h>
 #include <iomanip>
-#include <sys/stat.h>
 
 #include "Light.h"
 
@@ -51,12 +50,6 @@ static T get(const std::string& path, const T& def) {
 
     file >> result;
     return file.fail() ? def : result;
-}
-
-template <typename T>
-static T exist(const std::string& path) {
-     struct stat buffer;   
-     return (stat (name.c_str(), &buffer) == 0); 
 }
 
 Light::Light() {
