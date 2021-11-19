@@ -37,7 +37,7 @@ class BatteryFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChang
         assert(mChargePref != null)
         mChargePref!!.onPreferenceChangeListener = this
         mChargePref!!.isChecked = Battery.fastChargeSysfs == 0
-        val mBatteryInfo = findPreference<ListPreference>(BATTERY_INFO)
+        val mBatteryInfo : ListPreference = findPreference(BATTERY_INFO)!!
         val items = arrayOf<CharSequence>(
             Battery.getGeneralBatteryStats(1).toString() + " mAh",
             Battery.getGeneralBatteryStats(2).toString() + " %",
@@ -46,12 +46,11 @@ class BatteryFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChang
             if (Battery.getGeneralBatteryStats(4) == 1) "Charging" else "Discharging",
             Battery.getGeneralBatteryStats(5).toString() + " \u2103"
         )
-        assert(mBatteryInfo != null)
-        mBatteryInfo!!.entryValues = items
+        mBatteryInfo.entryValues = items
         mBatteryInfo.onPreferenceChangeListener =
             Preference.OnPreferenceChangeListener { _: Preference?, newValue: Any? ->
                 Toast.makeText(
-                    context, newValue as String?, Toast.LENGTH_SHORT
+                    context, newValue as String, Toast.LENGTH_SHORT
                 ).show()
                 true
             }

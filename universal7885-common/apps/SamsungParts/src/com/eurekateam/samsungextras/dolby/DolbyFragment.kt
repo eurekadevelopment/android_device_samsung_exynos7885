@@ -30,7 +30,6 @@ class DolbyFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeL
         addPreferencesFromResource(R.xml.dolby_settings)
         DolbyModesPreference = findPreference(DOLBY_MODES)
         DolbyEnablePreference = findPreference(PREF_DOLBY)
-        assert(DolbyEnablePreference != null)
         DolbyEnablePreference!!.isChecked = dolbyCore.isRunning()
         DolbyEnablePreference!!.onPreferenceChangeListener = this
         val items = arrayOf<CharSequence>(
@@ -39,7 +38,7 @@ class DolbyFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeL
         DolbyModesPreference!!.entryValues = items
         DolbyModesPreference!!.onPreferenceChangeListener =
             Preference.OnPreferenceChangeListener { _: Preference?, newValue: Any ->
-                when ((newValue as String?)?.toInt()) {
+                when ((newValue as String).toInt()) {
                     1 -> dolbyCore.startDolbyEffect(DolbyCore.PROFILE_AUTO)
                     2 -> dolbyCore.startDolbyEffect(DolbyCore.PROFILE_GAME)
                     3 -> dolbyCore.startDolbyEffect(DolbyCore.PROFILE_GAME_1)
