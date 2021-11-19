@@ -7,13 +7,10 @@ git clone https://github.com/lineageos/android_hardware_samsung_nfc hardware/sam
 git clone https://github.com/lineageos/android_hardware_samsung_slsi_libbt hardware/samsung_slsi/libbt
 git clone https://github.com/lineageos/android_hardware_samsung_slsi_scsc_wifibt_wifi_hal hardware/samsung_slsi/scsc_wifibt/wifi_hal
 git clone https://github.com/lineageos/android_hardware_samsung_slsi_scsc_wifibt_wpa_supplicant_lib hardware/samsung_slsi/scsc_wifibt/wpa_supplicant_lib
-if ! test -f vendor_detect; then
-clang++ device/samsung/universal7885-common/vendor_detect/main.cpp -o vendor_detect -std=c++17
+if test -f device/samsung/universal7885-common/vendor_name; then
+rm device/samsung/universal7885-common/vendor_name
 fi
-if ! test -f device/samsung/universal7885-common/vendor_name; then
-touch device/samsung/universal7885-common/vendor_name
-fi
-./vendor_detect
+python3 device/samsung/universal7885-common/vendor_detect/main.py -d 0
 echo "Generating A20 Makefiles"
 ./device/samsung/a20/setup.sh
 echo "Generating A20e Makefiles"
