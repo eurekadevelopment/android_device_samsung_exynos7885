@@ -1,4 +1,4 @@
-package com.eurekateam.samsungextras
+package com.eurekateam.samsungextras.utils
 
 import android.os.Parcel
 import android.os.ServiceManager

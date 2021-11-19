@@ -17,7 +17,7 @@ package com.eurekateam.samsungextras.flashlight
 
 import android.os.Bundle
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragment
+import androidx.preference.PreferenceFragmentCompat
 import com.eurekateam.samsungextras.GlobalConstants
 import com.eurekateam.samsungextras.R
 import com.eurekateam.samsungextras.interfaces.Flashlight
@@ -25,7 +25,7 @@ import com.eurekateam.samsungextras.preferences.CustomSeekBarPreference
 import com.eurekateam.samsungextras.utils.SystemProperties
 import java.io.File
 
-class FlashLightFragment : PreferenceFragment(), Preference.OnPreferenceChangeListener {
+class FlashLightFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
     private var mFlashLightPref: CustomSeekBarPreference? = null
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.flashlight_settings)

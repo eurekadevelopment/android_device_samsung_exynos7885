@@ -19,12 +19,12 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.preference.ListPreference
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragment
+import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.eurekateam.samsungextras.R
 import com.eurekateam.samsungextras.interfaces.Battery
 
-class BatteryFragment : PreferenceFragment(), Preference.OnPreferenceChangeListener {
+class BatteryFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
     private var mFastChargePref: SwitchPreference? = null
     private var mChargePref: SwitchPreference? = null
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {

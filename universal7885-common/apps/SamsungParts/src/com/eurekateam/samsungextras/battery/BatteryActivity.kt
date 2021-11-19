@@ -25,11 +25,11 @@ class BatteryActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         actionBar.setDisplayHomeAsUpEnabled(true)
-        val fragment = fragmentManager.findFragmentById(content)
+        val fragment = this.supportFragmentManager.findFragmentById(content)
         val batteryFragment: BatteryFragment
         if (fragment == null) {
             batteryFragment = BatteryFragment()
-            fragmentManager.beginTransaction()
+            this.supportFragmentManager.beginTransaction()
                 .add(content, batteryFragment)
                 .commit()
         }

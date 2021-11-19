@@ -25,11 +25,11 @@ class FlashLightActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         actionBar.setDisplayHomeAsUpEnabled(true)
-        val fragment = fragmentManager.findFragmentById(content)
+        val fragment = this.supportFragmentManager.findFragmentById(content)
         val flashLightFragment: FlashLightFragment
         if (fragment == null) {
             flashLightFragment = FlashLightFragment()
-            fragmentManager.beginTransaction()
+            this.supportFragmentManager.beginTransaction()
                 .add(content, flashLightFragment)
                 .commit()
         }

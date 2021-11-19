@@ -25,11 +25,11 @@ class ClearSpeakerActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         actionBar.setDisplayHomeAsUpEnabled(true)
-        val fragment = fragmentManager.findFragmentById(content)
+        val fragment = this.supportFragmentManager.findFragmentById(content)
         val clearSpeakerFragment: ClearSpeakerFragment
         if (fragment == null) {
             clearSpeakerFragment = ClearSpeakerFragment()
-            fragmentManager.beginTransaction()
+            this.supportFragmentManager.beginTransaction()
                 .add(content, clearSpeakerFragment)
                 .commit()
         }

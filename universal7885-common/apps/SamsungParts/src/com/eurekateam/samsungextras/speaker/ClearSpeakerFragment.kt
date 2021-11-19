@@ -23,12 +23,12 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragment
+import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.eurekateam.samsungextras.R
 import java.io.IOException
 
-class ClearSpeakerFragment : PreferenceFragment(), Preference.OnPreferenceChangeListener {
+class ClearSpeakerFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
     private var mAudioManager: AudioManager? = null
     private var mHandler: Handler? = null
     private var mMediaPlayer: MediaPlayer? = null
@@ -38,7 +38,7 @@ class ClearSpeakerFragment : PreferenceFragment(), Preference.OnPreferenceChange
         mClearSpeakerPref = findPreference(PREF_CLEAR_SPEAKER)
         mClearSpeakerPref!!.onPreferenceChangeListener = this
         mHandler = Handler(Looper.getMainLooper())
-        mAudioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        mAudioManager = requireContext().getSystemService(Context.AUDIO_SERVICE) as AudioManager
     }
 
     override fun onPreferenceChange(preference: Preference, newValue: Any): Boolean {
@@ -67,7 +67,7 @@ class ClearSpeakerFragment : PreferenceFragment(), Preference.OnPreferenceChange
     private fun startPlaying(): Boolean {
         mAudioManager!!.setParameters("status_earpiece_clean=on")
         mMediaPlayer = MediaPlayer()
-        activity.volumeControlStream = AudioManager.STREAM_MUSIC
+        requireActivity().volumeControlStream = AudioManager.STREAM_MUSIC
         mMediaPlayer!!.setAudioStreamType(AudioManager.STREAM_MUSIC)
         mMediaPlayer!!.isLooping = true
         try {

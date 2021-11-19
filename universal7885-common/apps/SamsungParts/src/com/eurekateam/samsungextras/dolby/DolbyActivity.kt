@@ -25,11 +25,11 @@ class DolbyActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         actionBar.setDisplayHomeAsUpEnabled(true)
-        val fragment = fragmentManager.findFragmentById(content)
+        val fragment = this.supportFragmentManager.findFragmentById(content)
         val dolbyFragment: DolbyFragment
         if (fragment == null) {
             dolbyFragment = DolbyFragment()
-            fragmentManager.beginTransaction()
+            this.supportFragmentManager.beginTransaction()
                 .add(content, dolbyFragment)
                 .commit()
         }
