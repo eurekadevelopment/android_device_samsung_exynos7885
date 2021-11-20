@@ -18,7 +18,7 @@ cc_library_shared {
     vendor: true,
 }
 
-7884B_build_command {
+exynos7884B_build_command {
     name: "libhwccomposer-patch",
     cmd: "mkdir -p $(productOut)/vendor/lib64/hw" + cmd_and +
          "sed -i s/" + original_symbol + "/" + custom_symbol + "/g " + hwcomposer + cmd_and +

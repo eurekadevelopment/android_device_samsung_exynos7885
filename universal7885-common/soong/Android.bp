@@ -1,6 +1,6 @@
 bootstrap_go_package {
-    name: "soong-7884B_build_command",
-    pkgPath: "android/soong/7884B_build_command",
+    name: "soong-exynos7884B_build_command",
+    pkgPath: "android/soong/exynos7884B_build_command",
     deps: [
         "blueprint",
         "blueprint-pathtools",
