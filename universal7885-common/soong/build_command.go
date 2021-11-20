@@ -8,12 +8,12 @@ import (
 )
 
 var (
-	moduleName = "sweet_build_command"
+	moduleName = "exynos7884B_build_command"
 	pctx       = android.NewPackageContext("android/soong/" + moduleName)
 )
 
 func init() {
-	android.InitRegistrationContext.RegisterModuleType(moduleName, SweetBuildCommandFactory)
+	android.InitRegistrationContext.RegisterModuleType(moduleName, Exynos7884BBuildCommandFactory)
 }
 
 type moduleProperties struct {
@@ -68,7 +68,7 @@ func (g *Module) AndroidMk() android.AndroidMkData {
 	}
 }
 
-func SweetBuildCommandFactory() android.Module {
+func Exynos7884BBuildCommandFactory() android.Module {
 	module := &Module{}
 	module.AddProperties(&module.properties)
 	android.InitAndroidModule(module)
