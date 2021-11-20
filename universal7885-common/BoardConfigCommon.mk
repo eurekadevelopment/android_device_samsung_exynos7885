@@ -58,7 +58,7 @@ TARGET_KERNEL_CLANG_COMPILE := true
 TARGET_KEYMASTER_VARIANT := samsung
 
 # HIDL
-include device/samsung/universal7885-common/vintf/manifest.mk
+include device/samsung/universal7885-common/configs/vintf/manifest.mk
 
 # LMKD stats logging
 TARGET_LMKD_STATS_LOG := true
@@ -71,7 +71,7 @@ BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # Properties
-include device/samsung/universal7885-common/props/props.mk
+include device/samsung/universal7885-common/configs/props/props.mk
 
 # Recovery
 BOARD_HAS_DOWNLOAD_MODE := true

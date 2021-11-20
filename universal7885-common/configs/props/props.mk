@@ -1,4 +1,4 @@
-PROPS_PATH := device/samsung/universal7885-common/props
+PROPS_PATH := device/samsung/universal7885-common/configs/props
 
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 TARGET_PRODUCT_PROP += $(PROPS_PATH)/product.prop
