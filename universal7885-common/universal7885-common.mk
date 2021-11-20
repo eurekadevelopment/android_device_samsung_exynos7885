@@ -121,7 +121,11 @@ PRODUCT_PACKAGES += \
     fstab.exynos7884B \
     init.target.rc \
     init.baseband.rc
-   
+
+# Keylayout
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/keylayout/Codec3035_Headset_Events.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/Codec3035_Headset_Events.kl
+    
 # Keymaster
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.0-service.samsung \
