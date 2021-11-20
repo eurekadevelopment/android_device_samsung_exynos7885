@@ -1,4 +1,4 @@
-package sweet_build_command
+package 7884B_build_command
 
 import (
 	"fmt"
