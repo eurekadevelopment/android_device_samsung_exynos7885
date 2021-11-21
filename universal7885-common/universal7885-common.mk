@@ -131,7 +131,7 @@ PRODUCT_PACKAGES += \
     
 # Light
 PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-service.eureka
+    android.hardware.light-service.samsung
 
 # Media
 PRODUCT_COPY_FILES += \
