@@ -42,8 +42,8 @@
             "Name": "DoubleTapToWakeEnable",
             "Path": "/sys/class/sec/tsp/cmd",
             "Values": [
-                "aod_enable,0",
-                "set_aod_rect,720,1560,0,0",
+                "aot_enable,0",
+                "aot_enable,1"
             ],
             "DefaultIndex": 0,
             "ResetOnInit": false
@@ -112,7 +112,7 @@
             "PowerHint": "DOUBLE_TAP_TO_WAKE",
             "Node": "DoubleTapToWakeEnable",
             "Duration": 0,
-            "Value": "set_aod_rect,720,1560,0,0"
+            "Value": "aot_enable,1"
         },
         {
             "PowerHint": "AUDIO_STREAMING_LOW_LATENCY",
