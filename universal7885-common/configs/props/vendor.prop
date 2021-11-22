@@ -24,3 +24,16 @@ debug.sf.latch_unsignaled=0
 
 # Wifi direct
 wifi.direct.interface=p2p0
+# Audio (APTX)
+
+# A2DP offload supported
+ro.bluetooth.a2dp_offload.supported=true
+
+# A2DP offload disabled (UI toggle property)
+persist.bluetooth.a2dp_offload.disabled=false
+
+# A2DP offload DSP supported encoder list
+persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac
+persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxhd-aac-ldac
+persist.vendor.btstack.a2dp_offload_cap=sbc-aptx-aptxhd-aac
+-ldac
