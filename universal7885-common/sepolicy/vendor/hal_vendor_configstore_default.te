@@ -1,0 +1,13 @@
+# hal_vendor_configstore_default.te
+
+type hal_vendor_configstore_default, domain;
+type hal_vendor_configstore_default_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_vendor_configstore_default)
+
+add_hwservice(hal_vendor_configstore_default, hal_vendor_configstore_hwservice)
+
+hwbinder_use(hal_vendor_configstore_default)
+get_prop(hal_vendor_configstore_default, hwservicemanager_prop)
+
+# /acct/tasks
+allow hal_vendor_configstore_default cgroup:file getattr;
