@@ -314,7 +314,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
     hostapd \
-    TetheringConfigOverlay \
     WifiOverlay \
     wpa_supplicant
 
