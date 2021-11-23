@@ -243,7 +243,7 @@ open class CameraLightSensorService : Service() {
         return null
     }
 
-    override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         mContext = applicationContext
         startForeground(50, PushNotification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA)
         BatteryOptimization(mContext)
