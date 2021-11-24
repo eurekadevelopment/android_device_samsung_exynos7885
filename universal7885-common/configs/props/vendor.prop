@@ -35,19 +35,24 @@ persist.bluetooth.a2dp_offload.disabled=false
 # A2DP offload DSP supported encoder list
 persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac
 persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxhd-aac-ldac
-persist.vendor.btstack.a2dp_offload_cap=sbc-aptx-aptxhd-aac
--ldac
+persist.vendor.btstack.a2dp_offload_cap=sbc-aptx-aptxhd-aac-ldac
 vendor.audio.feature.a2dp_offload.enable=true
 persist.vendor.btstack.enable.splita2dp=true
 vendor.audio.feature.a2dp_offload.enable=true
-audio.offload.min.duration.secs=30                              vendor.audio.flac.sw.decoder.24bit=true                         vendor.audio.hal.boot.timeout.ms=20000                          vendor.audio.use.sw.alac.decoder=true                           vendor.audio.use.sw.ape.decoder=true                            vendor.audio.use.sw.mpegh.decoder=true
+audio.offload.min.duration.secs=30                              
+vendor.audio.flac.sw.decoder.24bit=true                         
+vendor.audio.hal.boot.timeout.ms=20000                          
+vendor.audio.use.sw.alac.decoder=true                           
+vendor.audio.use.sw.ape.decoder=true                            
+vendor.audio.use.sw.mpegh.decoder=true
 vendor.audio.hw.aac.encoder=true
 vendor.audio_hal.in_period_size=144
 vendor.audio_hal.period_multiplier=3
 vendor.audio.adm.buffering.ms=2
 vendor.audio.volume.headset.gain.depcal=true
 persist.vendor.audio.fluence.voicecomm=true
-vendor.audio.hal.output.suspend.supported=true                  aaudio.mmap_policy=2
+vendor.audio.hal.output.suspend.supported=true                  
+aaudio.mmap_policy=2
 aaudio.mmap_exclusive_policy=2
 aaudio.hw_burst_min_usec=2000
 vendor.audio.enable.mirrorlink=false
@@ -55,14 +60,16 @@ persist.vendor.bt.aac_frm_ctl.enabled=true
 vendor.audio.feature.a2dp_offload.enable=true
 vendor.audio.feature.afe_proxy.enable=true
 vendor.audio.feature.anc_headset.enable=true
-vendor.audio.feature.battery_listener.enable=true               vendor.audio.feature.compr_cap.enable=false
+vendor.audio.feature.battery_listener.enable=true               
+vendor.audio.feature.compr_cap.enable=false
 vendor.audio.feature.compress_in.enable=true
 vendor.audio.feature.compress_meta_data.enable=true
 vendor.audio.feature.compr_voip.enable=false
 vendor.audio.feature.concurrent_capture.enable=true
 vendor.audio.feature.custom_stereo.enable=true
 vendor.audio.feature.display_port.enable=true
-vendor.audio.feature.dsm_feedback.enable=false                  vendor.audio.feature.dynamic_ecns.enable=true
+vendor.audio.feature.dsm_feedback.enable=false                  
+vendor.audio.feature.dynamic_ecns.enable=true
 vendor.audio.feature.ext_hw_plugin.enable=false
 vendor.audio.feature.external_dsp.enable=false
 vendor.audio.feature.external_speaker.enable=false
@@ -72,10 +79,13 @@ vendor.audio.feature.hdmi_edid.enable=true
 vendor.audio.feature.hdmi_passthrough.enable=true
 vendor.audio.feature.hfp.enable=true
 vendor.audio.feature.hifi_audio.enable=false
-vendor.audio.feature.hwdep_cal.enable=false                     vendor.audio.feature.incall_music.enable=true
+vendor.audio.feature.hwdep_cal.enable=false                     
+vendor.audio.feature.incall_music.enable=true
 vendor.audio.feature.multi_voice_session.enable=true
 vendor.audio.feature.keep_alive.enable=true
-vendor.audio.feature.kpi_optimize.enable=true                   vendor.audio.feature.maxx_audio.enable=false                    vendor.audio.feature.ras.enable=true
+vendor.audio.feature.kpi_optimize.enable=true                   
+vendor.audio.feature.maxx_audio.enable=false                    
+vendor.audio.feature.ras.enable=true
 vendor.audio.feature.record_play_concurency.enable=false
 vendor.audio.feature.src_trkn.enable=true
 vendor.audio.feature.spkr_prot.enable=true
