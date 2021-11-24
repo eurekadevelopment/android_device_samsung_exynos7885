@@ -21,4 +21,6 @@
     <integer name="a2dp_source_codec_priority_aptx">2001</integer>
     <integer name="a2dp_source_codec_priority_aptx_hd">1001</integer>
     <integer name="a2dp_source_codec_priority_ldac">3001</integer>
+    <bool name="profile_supported_a2dp_sink">true</bool>
+    <bool name="profile_supported_sap">true</bool>
 </resources>
