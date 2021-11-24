@@ -33,13 +33,15 @@ PRODUCT_PACKAGES += \
 # Audio (BT)
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth.audio@2.1-impl \
-    audio.bluetooth.default 
+    audio.bluetooth.default \
+    android.hardware.bluetooth.a2dp@1.0
 
 # Aptx    
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/aptx/libaptX_encoder.so:$(TARGET_COPY_OUT_PRODUCT)/lib64/libaptX_encoder.so \
-    $(LOCAL_PATH)/aptx/libaptXHD_encoder.so:$(TARGET_COPY_OUT_PRODUCT)/lib64/libaptXHD_encoder.so
+    $(LOCAL_PATH)/aptx/libaptXHD_encoder.so:$(TARGET_COPY_OUT_PRODUCT)/lib64/libaptXHD_encoder.so 
     
+# Audio Configs    
 PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/a2dp_in_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_in_audio_policy_configuration.xml \
     $(LOCAL_PATH)/configs/audio/bluetooth_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration.xml \
