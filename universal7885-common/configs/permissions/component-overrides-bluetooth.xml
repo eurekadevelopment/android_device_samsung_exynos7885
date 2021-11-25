@@ -19,7 +19,8 @@
         <component class=".avrcpcontroller.AvrcpControllerService" enabled="true" />
         <component class=".avrcpcontroller.BluetoothMediaBrowserService" enabled="true" />
         <component class=".hfpclient.connserv.HeadsetClientService" enabled="true" />
-        <component class=".hfpclient.HeadsetClientService" enabled="true" />
+	<component class=".hfpclient.HeadsetClientService" enabled="true" />
+	<component class=".hfpclient.connserv.HfpClientConnectionService" enabled="true" />
         <component class=".sap.SapService" enabled="true" />
     </component-override>
 </config>

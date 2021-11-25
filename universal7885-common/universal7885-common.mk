@@ -56,8 +56,7 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth@1.0-impl \
-    android.hardware.bluetooth@1.0-service \
+    android.hardware.bluetooth@1.1-service \
     audio.a2dp.default \
     libbt-vendor
 
@@ -76,7 +75,7 @@ PRODUCT_PACKAGES += \
 
 # Component overrides
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/permissions/component-overrides.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/component-overrides.xml
+    $(LOCAL_PATH)/configs/permissions/component-overrides-bluetooth.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/component-overrides-bluetooth.xml
 
 # DRM
 PRODUCT_PACKAGES += \
