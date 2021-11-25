@@ -21,6 +21,10 @@
     <integer name="a2dp_source_codec_priority_aptx">2001</integer>
     <integer name="a2dp_source_codec_priority_aptx_hd">1001</integer>
     <integer name="a2dp_source_codec_priority_ldac">3001</integer>
-    <bool name="profile_supported_a2dp_sink">true</bool>
     <bool name="profile_supported_sap">true</bool>
+    
+    <!-- If true, we will require location to be enabled on the device to
+         fire Bluetooth LE scan result callbacks in addition to having one
+         of the location permissions. -->
+    <bool name="strict_location_check">false</bool>
 </resources>

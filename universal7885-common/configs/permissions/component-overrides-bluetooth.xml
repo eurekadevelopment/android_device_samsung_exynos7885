@@ -15,12 +15,12 @@
 -->
 <config>
     <component-override package="com.android.bluetooth" >
-    	<component class=".a2dpsink.A2dpSinkService" enabled="true" />
-        <component class=".avrcpcontroller.AvrcpControllerService" enabled="true" />
-        <component class=".avrcpcontroller.BluetoothMediaBrowserService" enabled="true" />
-        <component class=".hfpclient.connserv.HeadsetClientService" enabled="true" />
-	<component class=".hfpclient.HeadsetClientService" enabled="true" />
-	<component class=".hfpclient.connserv.HfpClientConnectionService" enabled="true" />
+    	<component class=".a2dpsink.A2dpSinkService" enabled="false" />
+        <component class=".avrcpcontroller.AvrcpControllerService" enabled="false" />
+        <component class=".avrcpcontroller.BluetoothMediaBrowserService" enabled="false" />
+        <component class=".hfpclient.connserv.HeadsetClientService" enabled="false" />
+	<component class=".hfpclient.HeadsetClientService" enabled="false" />
+	<component class=".hfpclient.connserv.HfpClientConnectionService" enabled="false" />
         <component class=".sap.SapService" enabled="true" />
     </component-override>
 </config>
