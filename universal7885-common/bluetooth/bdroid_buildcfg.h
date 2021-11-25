@@ -23,6 +23,7 @@ static inline const char* BtmGetDefaultName()
 
 #define BTM_DEF_LOCAL_NAME BtmGetDefaultName()
 #define BTM_ESCO_TRANSPORT_UNIT_SIZE_PCM16
-
 #pragma pop_macro("PROPERTY_VALUE_MAX")
+/*A2DP SINK ENABLE*/
+#define BTA_AV_SINK_INCLUDED TRUE
 #endif
