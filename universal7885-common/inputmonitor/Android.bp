@@ -1,0 +1,13 @@
+cc_binary {
+    name: "inputmonitor",
+    srcs: ["inputmonitor.cpp"],
+    shared_libs: [
+        "libutils",
+        "liblog",
+    ],
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+    init_rc: ["inputmonitor.rc"],
+}

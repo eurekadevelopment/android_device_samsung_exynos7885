@@ -27,18 +27,18 @@ wifi.direct.interface=p2p0
 # Audio (APTX)
 
 # A2DP offload supported
-ro.bluetooth.a2dp_offload.supported=true
+ro.bluetooth.a2dp_offload.supported=false
 
 # A2DP offload disabled (UI toggle property)
-persist.bluetooth.a2dp_offload.disabled=false
+persist.bluetooth.a2dp_offload.disabled=true
 
 # A2DP offload DSP supported encoder list
 persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac
 persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxhd-aac-ldac
 persist.vendor.btstack.a2dp_offload_cap=sbc-aptx-aptxhd-aac-ldac
-vendor.audio.feature.a2dp_offload.enable=true
-persist.vendor.btstack.enable.splita2dp=true
-vendor.audio.feature.a2dp_offload.enable=true
+vendor.audio.feature.a2dp_offload.enable=false
+persist.vendor.btstack.enable.splita2dp=false
+vendor.audio.feature.a2dp_offload.enable=false
 audio.offload.min.duration.secs=30                              
 vendor.audio.flac.sw.decoder.24bit=true                         
 vendor.audio.hal.boot.timeout.ms=20000                          
@@ -57,7 +57,7 @@ aaudio.mmap_exclusive_policy=2
 aaudio.hw_burst_min_usec=2000
 vendor.audio.enable.mirrorlink=false
 persist.vendor.bt.aac_frm_ctl.enabled=true
-vendor.audio.feature.a2dp_offload.enable=true
+vendor.audio.feature.a2dp_offload.enable=false
 vendor.audio.feature.afe_proxy.enable=true
 vendor.audio.feature.anc_headset.enable=true
 vendor.audio.feature.battery_listener.enable=true               

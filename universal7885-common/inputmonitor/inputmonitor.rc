@@ -1,0 +1,5 @@
+service inputmonitor /system/bin/inputmonitor
+     class main
+     user root
+     group system
+     
