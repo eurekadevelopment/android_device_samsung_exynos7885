@@ -1,4 +1,5 @@
 # Device Tree for Samsung Galaxy A20/A20e (SM-A205, SM-A202)
+The Galaxy A20/A20e (codenamed "a20/a20e") is a low-end smartphone from Samsung. It was released on 2019 April.
 ## Specs
 
 |        Component        |          Specification            |
