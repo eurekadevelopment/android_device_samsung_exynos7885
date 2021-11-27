@@ -272,6 +272,10 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-service \
     libsensorndkbridge 
 
+# Soundtrigger
+PRODUCT_PACKAGES += \
+    android.hardware.soundtrigger@2.3-impl
+
 # Shims
 PRODUCT_PACKAGES += \
     libcamera_metadata_helper \
