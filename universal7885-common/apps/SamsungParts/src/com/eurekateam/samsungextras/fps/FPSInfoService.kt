@@ -37,7 +37,6 @@ open class FPSInfoService : Service() {
     private val TAG = "FPSInfoService"
     private var fPSInfoString: String? = null
     private var mDreamManager: IDreamManager? = null
-    private var mRunning : Boolean = false
 
     private inner class FPSView(c: Context) : View(c) {
         private val mOnlinePaint: Paint?
@@ -245,5 +244,6 @@ open class FPSInfoService : Service() {
     }
     companion object {
         private var surfaceFlingerFPS: SurfaceFlingerFPS? = null
+        private var mRunning : Boolean = false
     }
 }
