@@ -26,7 +26,7 @@ import androidx.core.content.ContextCompat
 
 open class CameraLightSensorService : Service() {
     var screenStateFilter: IntentFilter? = null
-    private var mContext: Context? = null
+    lateinit var mContext: Context
     private var mRegistered = false
     var destroy = false
     private var cameraDevice: CameraDevice? = null
@@ -41,15 +41,15 @@ open class CameraLightSensorService : Service() {
     @Volatile
     private var mLock = false
     private var mThreadRunning = false
-    private fun PushNotification(): Notification {
-        val nm = mContext!!.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+    private fun pushNotification(): Notification {
+        val nm = mContext.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         val channel = NotificationChannel(
-            mContext!!.basePackageName, "CameraLightSensor",
-            NotificationManager.IMPORTANCE_LOW
+            mContext.basePackageName, "Useless Notification",
+            NotificationManager.IMPORTANCE_NONE
         )
         channel.isBlockable = true
         nm.createNotificationChannel(channel)
-        val builder = NotificationCompat.Builder(mContext!!, mContext!!.basePackageName)
+        val builder = NotificationCompat.Builder(mContext, mContext.basePackageName)
         val notificationIntent = Intent(mContext, CameraLightSensorService::class.java)
         val contentIntent = PendingIntent.getActivity(
             mContext, 50,
@@ -59,7 +59,7 @@ open class CameraLightSensorService : Service() {
         builder.setContentIntent(contentIntent)
         builder.setSmallIcon(R.drawable.ic_brightness)
         builder.setContentTitle("Camera Light Sensor Service")
-        builder.setChannelId(mContext!!.basePackageName)
+        builder.setChannelId(mContext.basePackageName)
         return builder.build()
     }
 
@@ -245,8 +245,9 @@ open class CameraLightSensorService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         mContext = applicationContext
-        startForeground(50, PushNotification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA)
-        BatteryOptimization(mContext)
+        @Suppress("SameParameterValue")
+        startForeground(50, pushNotification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA)
+        batteryOptimization(mContext)
         mRegistered = false
         screenStateFilter = IntentFilter(Intent.ACTION_SCREEN_ON)
         screenStateFilter!!.addAction(Intent.ACTION_SCREEN_OFF)
@@ -265,14 +266,14 @@ open class CameraLightSensorService : Service() {
         if (DEBUG) Log.d(TAG, "onStartCommand flags $flags startId $startId")
         destroy = false
         avail = true
-        startForeground(50, PushNotification())
+        startForeground(50, pushNotification())
         return START_STICKY
     }
 
     override fun onCreate() {
         if (DEBUG) Log.d(TAG, "onCreate service")
         mContext = applicationContext
-        startForeground(50, PushNotification())
+        startForeground(50, pushNotification())
         super.onCreate()
     }
 
@@ -296,7 +297,7 @@ open class CameraLightSensorService : Service() {
         buffer[bytes]
         val bitmapImage = BitmapFactory.decodeByteArray(bytes, 0, bytes.size, null)
         val brightness = calculateBrightnessEstimate(bitmapImage, 2)
-        AdjustBrightness(brightness)
+        adjustBrightness(brightness)
     }
 
     protected fun createCaptureRequest(): CaptureRequest? {
@@ -319,7 +320,7 @@ open class CameraLightSensorService : Service() {
                         + " Opened by Package " + packageId
             )
             mLock = true
-            if (packageId == mContext!!.basePackageName) return
+            if (packageId == mContext.basePackageName) return
             avail = false
         }
 
@@ -355,9 +356,9 @@ open class CameraLightSensorService : Service() {
         }
 
     private fun calculateBrightnessEstimate(bitmap: Bitmap, pixelSpacing: Int): Int {
-        var R = 0
-        var G = 0
-        var B = 0
+        var r = 0
+        var g = 0
+        var b = 0
         val height = bitmap.height
         val width = bitmap.width
         var n = 0
@@ -366,17 +367,17 @@ open class CameraLightSensorService : Service() {
         var i = 0
         while (i < pixels.size) {
             val color = pixels[i]
-            R += Color.red(color)
-            G += Color.green(color)
-            B += Color.blue(color)
+            r += Color.red(color)
+            g += Color.green(color)
+            b += Color.blue(color)
             n++
             i += pixelSpacing
         }
-        return (R + B + G) / (n * 3)
+        return (r + g + b) / (n * 3)
     }
 
     @Throws(SettingNotFoundException::class)
-    private fun AdjustBrightness(brightness: Int) {
+    private fun adjustBrightness(brightness: Int) {
         if (DEBUG) Log.i(TAG, "AdjustBrightness: Received Brightness Value $brightness")
         val oldbrightness =
             Settings.System.getInt(contentResolver, Settings.System.SCREEN_BRIGHTNESS)
@@ -401,7 +402,7 @@ open class CameraLightSensorService : Service() {
         while (!Thread.currentThread().isInterrupted) {
             if (avail && !mLock) {
                 SystemClock.sleep(DELAY.toLong())
-                ContextCompat.getMainExecutor(mContext!!).execute { if (avail) readyCamera() }
+                ContextCompat.getMainExecutor(mContext).execute { if (avail) readyCamera() }
             }else{
                 SystemClock.sleep(DELAY.toLong() / 10) // For Fast Detection
             }
@@ -413,7 +414,7 @@ open class CameraLightSensorService : Service() {
         const val DEBUG = false
         protected const val CAMERA_CHOICE = CameraCharacteristics.LENS_FACING_FRONT
         private const val DELAY = 5 * 1000 // 5 Seconds
-        fun BatteryOptimization(context: Context?) {
+        fun batteryOptimization(context: Context?) {
             val intent = Intent()
             val packageName = context!!.packageName
             val pm = context.getSystemService(POWER_SERVICE) as PowerManager
