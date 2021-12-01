@@ -147,7 +147,8 @@
 /dev/umts_ipc0                                              u:object_r:radio_device:s0
 /dev/fimg2d                                                 u:object_r:video_device:s0
 /dev/sec-nfc                                                u:object_r:nfc_device:s0
-/dev/esfp0                                              u:object_r:goodix_device:s0
+/dev/esfp0                                                  u:object_r:goodix_device:s0
+/dev/goodix_fp                                              u:object_r:goodix_device:s0
 /dev/gnss_ipc                                               u:object_r:gps_device:s0
 /dev/scsc_h4_0                                              u:object_r:bt_device:s0
 /dev/cpuset(/.*)?                                           u:object_r:cgroup:s0
