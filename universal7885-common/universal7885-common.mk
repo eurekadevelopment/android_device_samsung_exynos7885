@@ -7,6 +7,9 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 # Build Fingerprints
 $(call inherit-product, $(LOCAL_PATH)/fingerprint.mk)
 
+# Derp
+DERP_BUILDTYPE := Official
+
 # Allow Copying of apks.
 PRODUCT_BROKEN_VERIFY_USES_LIBRARIES := true
 
@@ -171,7 +174,7 @@ PRODUCT_COPY_FILES += \
  
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
-# DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-derp
 
 # Permissions
 PRODUCT_COPY_FILES += \
