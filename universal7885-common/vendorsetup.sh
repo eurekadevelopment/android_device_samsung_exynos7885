@@ -11,8 +11,14 @@ if test -f device/samsung/universal7885-common/vendor_name; then
 rm device/samsung/universal7885-common/vendor_name
 fi
 python3 device/samsung/universal7885-common/vendor_detect/main.py -d 0
+echo "Generating A10 Makefiles"
+./device/samsung/a10/setup.sh
 echo "Generating A20 Makefiles"
 ./device/samsung/a20/setup.sh
 echo "Generating A20e Makefiles"
 ./device/samsung/a20e/setup.sh
+echo "Generating A30 Makefiles"
+./device/samsung/a30/setup.sh
+echo "Generating A40 Makefiles"
+./device/samsung/a40/setup.sh
 
