@@ -64,6 +64,7 @@ get_prop(rild, exported_config_prop);
 # ro.boot.cpboot, ril.NwNmId[0-9]
 get_prop(rild, telephony_config_prop)
 
+get_prop(rild, vendor_radio_prop)
 # vendor.cbd.
 set_prop(rild, vendor_cbd_prop)
 allow rild proc_net:file write;
@@ -92,3 +93,4 @@ allow rild hal_audio_default:dir search;
 allow rild hal_audio_default:file r_file_perms;
 # hwservice
 add_hwservice(rild, rild_hwservice)
+set_prop(rild, radio_prop)

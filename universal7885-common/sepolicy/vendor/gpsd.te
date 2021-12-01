@@ -7,6 +7,8 @@ init_daemon_domain(gpsd)
 allow gpsd rild:unix_stream_socket connectto;
 
 get_prop(gpsd, vendor_radio_prop)
+allow gpsd system_data_file:dir search;
+
 get_prop(gpsd, telephony_config_prop)
 get_prop(gpsd, exported_config_prop)
 

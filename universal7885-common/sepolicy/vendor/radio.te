@@ -1,1 +1,3 @@
 binder_call(radio, gpuservice)
+get_prop(radio, radio_prop)
+
