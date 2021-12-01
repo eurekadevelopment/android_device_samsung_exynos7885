@@ -16,4 +16,4 @@ set_prop(vendor_init, persist_data_df_prop)
 set_prop(vendor_init, persist_data_wda_prop)
 set_prop(vendor_init, persist_rmnet_prop)
 get_prop(vendor_init, system_prop)
-
+get_prop(vendor_init, vendor_radio_prop)
