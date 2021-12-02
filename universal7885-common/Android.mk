@@ -1,29 +1,8 @@
 LOCAL_PATH := $(call my-dir)
 
-ifneq ($(filter a20 a20e, $(TARGET_DEVICE)),)
+ifneq ($(filter a10 a20 a20e a30 a40, $(TARGET_DEVICE)),)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
-
-include $(CLEAR_VARS)
-
-LIBGLES_MALI_LIBRARY := /vendor/lib/egl/libGLES_mali.so
-LIBGLES_MALI64_LIBRARY := /vendor/lib64/egl/libGLES_mali.so
-
-VULKAN_SYMLINK := $(TARGET_OUT_VENDOR)/lib/hw/vulkan.universal7884B.so
-$(VULKAN_SYMLINK): $(LOCAL_INSTALLED_MODULE)
-	@echo "Creating lib/hw/vulkan.universal7884B.so symlink: $@"
-	@mkdir -p $(dir $@)
-	$(hide) ln -sf $(LIBGLES_MALI_LIBRARY) $@
-
-VULKAN64_SYMLINK := $(TARGET_OUT_VENDOR)/lib64/hw/vulkan.universal7884B.so
-$(VULKAN64_SYMLINK): $(LOCAL_INSTALLED_MODULE)
-	@echo "Creating lib64/hw/vulkan.universal7884B.so symlink: $@"
-	@mkdir -p $(dir $@)
-	$(hide) ln -sf $(LIBGLES_MALI64_LIBRARY) $@
-
-ALL_DEFAULT_INSTALLED_MODULES += \
-	$(VULKAN_SYMLINK) \
-	$(VULKAN64_SYMLINK)
 
 include $(CLEAR_VARS)
 
