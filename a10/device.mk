@@ -19,4 +19,4 @@ TARGET_SCREEN_WIDTH := 720
 
 PRODUCT_PACKAGES += \
    fstab.exynos7884B \
-   ueventd.exynos7884B.rc
+   ueventd.exynos7885.rc
