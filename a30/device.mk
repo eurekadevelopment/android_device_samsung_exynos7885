@@ -22,4 +22,7 @@ PRODUCT_PACKAGES += \
     
 PRODUCT_PACKAGES += \
    fstab.exynos7904 \
-   ueventd.exynos7904.rc
+   ueventd.exynos7885.rc
+   
+PRODUCT_PACKAGES += \
+   android.hardware.sensors@1.0-service
