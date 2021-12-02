@@ -3,9 +3,16 @@ COMMON_PATH := device/samsung/universal7885-common
 BOARD_VENDOR := samsung
 
 # Platform
-TARGET_BOARD_PLATFORM := universal7884B
+TARGET_BOARD_PLATFORM := exynos7
+
+ifeq ($(TARGET_DEVICE), $(filter $(TARGET_DEVICE),a10 a20 a20e))
 TARGET_SOC := exynos7884B
 TARGET_BOOTLOADER_BOARD_NAME := universal7884B
+else ifeq ($(TARGET_DEVICE), $(filter $(TARGET_DEVICE),a30 a40))
+TARGET_SOC := exynos7904
+TARGET_BOOTLOADER_BOARD_NAME := universal7904
+endif
+
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
@@ -45,7 +52,7 @@ BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_SPECIFIC_HEADER_PATH := $(COMMON_PATH)/include
 
 # Init
-TARGET_INIT_VENDOR_LIB := //$(COMMON_PATH):libinit_universal7884B
+TARGET_INIT_VENDOR_LIB := //$(COMMON_PATH):libinit_universal7885
 
 # Kernel
 BOARD_KERNEL_IMAGE_NAME := Image

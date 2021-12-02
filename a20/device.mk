@@ -5,8 +5,27 @@ $(call inherit-product, device/samsung/universal7885-common/universal7885-common
 
 $(call inherit-product, vendor/samsung/a20/a20-vendor.mk)
 
+$(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
+
 # Derp
 DERP_BUILDTYPE := Official
 
 PRODUCT_PACKAGES += \
     CameraLightSensor
+    
+# USB
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.1-service.exynos7885
+
+TARGET_SCREEN_HEIGHT := 1560
+TARGET_SCREEN_WIDTH := 720
+
+# Fingerprint
+PRODUCT_COPY_FILES += frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
+
+PRODUCT_PACKAGES += \
+    android.hardware.biometrics.fingerprint@2.1-service.samsung
+
+PRODUCT_PACKAGES += \
+   fstab.exynos7884B \
+   ueventd.exynos7884B.rc

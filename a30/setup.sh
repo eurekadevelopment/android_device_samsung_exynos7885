@@ -18,5 +18,5 @@ echo "PRODUCT_NAME := "$VENDOR"_a30" >> device/samsung/a30/"$VENDOR"_a30.mk
 echo "" >>  device/samsung/a30/"$VENDOR"_a30.mk
 echo "# Additional Props" >>  device/samsung/a30/"$VENDOR"_a30.mk
 echo "TARGET_FACE_UNLOCK_SUPPORTED := true" >>  device/samsung/a30/"$VENDOR"_a30.mk
-echo "TARGET_BOOT_ANIMATION_RES := 720" >> device/samsung/a30/"$VENDOR"_a30.mk
+echo "TARGET_BOOT_ANIMATION_RES := 1080" >> device/samsung/a30/"$VENDOR"_a30.mk
 

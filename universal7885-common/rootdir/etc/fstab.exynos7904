@@ -1,0 +1,18 @@
+# Android fstab file.
+#<src>                  <mnt_point>         <type>    <mnt_flags and options>                               <fs_mgr_flags>
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+# system and vendor partition will be early-mounted by kernel
+# /dev/block/platform/13500000.dwmmc0/by-name/system	/system		ext4	ro	wait
+/dev/block/platform/13500000.dwmmc0/by-name/cache      /cache  ext4   nosuid,nodev,noatime,barrier=1                   wait
+/dev/block/platform/13500000.dwmmc0/by-name/cache      /cache   f2fs   nosuid,nodev,noatime,inline_xattr,flush_merge,data_flush   wait
+/dev/block/platform/13500000.dwmmc0/by-name/userdata	/data	ext4	nosuid,nodev,barrier=1,noauto_da_alloc,discard,noatime,lazytime   wait,check,quota,reservedsize=128M
+/dev/block/platform/13500000.dwmmc0/by-name/userdata   /data    f2fs     nosuid,nodev,discard,noatime,lazytime,data_flush    wait,check,quota
+/dev/block/platform/13500000.dwmmc0/by-name/efs	/mnt/vendor/efs	ext4	noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic	wait,check
+/dev/block/platform/13500000.dwmmc0/by-name/misc	/misc	emmc      defaults  defaults
+
+# VOLD :: fstab.a20e
+/dev/block/platform/13500000.dwmmc0/by-name/hidden	/preload	ext4	noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic	voldmanaged=preload:auto,check
+/devices/platform/13550000.dwmmc2/mmc_host/mmc1*        auto        vfat    defaults    voldmanaged=sdcard:auto
+/devices/platform/13600000.usb/13600000.dwc3*		auto        auto    defaults    voldmanaged=usb:auto

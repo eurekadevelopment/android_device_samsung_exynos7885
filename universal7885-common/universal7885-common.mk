@@ -1,9 +1,6 @@
 # Call proprietary blob setup
 $(call inherit-product, vendor/samsung/universal7885-common/universal7885-common-vendor.mk)
 
-# Dalvik
-$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
-
 # Build Fingerprints
 $(call inherit-product, $(LOCAL_PATH)/fingerprint.mk)
 
@@ -54,10 +51,6 @@ PRODUCT_COPY_FILES += \
     hardware/samsung_slsi/libbt/conf/bt_did.conf:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_did.conf \
     hardware/samsung_slsi/libbt/conf/bt_vendor.conf:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_vendor.conf
 
-# Boot animation
-TARGET_SCREEN_HEIGHT := 1560
-TARGET_SCREEN_WIDTH := 720
-
 # Camera
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.5-service
@@ -74,10 +67,6 @@ PRODUCT_PACKAGES += \
     android.hardware.drm@1.1.vendor \
     android.hardware.drm@1.2.vendor \
     android.hardware.drm@1.3.vendor
-
-# Fingerprint
-PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.1-service.samsung
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
@@ -120,11 +109,9 @@ PRODUCT_PACKAGES += \
 # Init
 PRODUCT_PACKAGES += \
     fstab.enableswap \
-    init.exynos7884B.rc \
-    init.exynos7884B.usb.rc \
-    ueventd.exynos7884B.rc \
+    init.exynos7885.rc \
+    init.exynos7885.usb.rc \
     wifi_sec.rc \
-    fstab.exynos7884B \
     init.target.rc \
     init.baseband.rc
 
@@ -185,7 +172,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.raw.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.raw.xml \
     frameworks/native/data/etc/android.hardware.camera.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.xml \
     frameworks/native/data/etc/android.hardware.ethernet.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.ethernet.xml \
-    frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_NFC/android.hardware.nfc.hce.xml \
     frameworks/native/data/etc/android.hardware.nfc.hcef.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_NFC/android.hardware.nfc.hcef.xml \
     frameworks/native/data/etc/android.hardware.nfc.uicc.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_NFC/android.hardware.nfc.uicc.xml \
@@ -235,11 +221,6 @@ PRODUCT_PACKAGES += \
 # Public Libraries
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
-
-# Recovery
-PRODUCT_PACKAGES += \
-    fastbootd \
-    init.recovery.exynos7884B.rc
 
 # Nuke Useless Apps (Mostly GAPPS)
 PRODUCT_PACKAGES += \
@@ -294,10 +275,6 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0-impl \
     android.hardware.thermal@1.0-service
-
-# USB
-PRODUCT_PACKAGES += \
-    android.hardware.usb@1.1-service.exynos7884B
 
 # Vibrator
 PRODUCT_PACKAGES += \

@@ -71,6 +71,14 @@ void set_ro_build_prop(const std::string &prop, const std::string &value, bool p
     }
 }
 
+bool hasEnding (std::string const &fullString, std::string const &ending) {
+    if (fullString.length() >= ending.length()) {
+        return (0 == fullString.compare (fullString.length() - ending.length(), ending.length(), ending));
+    } else { 
+        return false;
+    }
+}
+
 void vendor_load_properties() {
     string model;
 
@@ -79,8 +87,8 @@ void vendor_load_properties() {
         model = GetProperty("ro.boot.em.model", "");
     }
 
-    if (model == "SM-A205FN" || model == "SM-A205GN" || model == "SM-A202K" || model == "SM-A205YN") {
-    property_override("ro.boot.product.hardware.sku", "NFC");
+    if (hasEnding(model, "N") || hasEnding(model, "S") || hasEnding(model, "K")) {
+    	property_override("ro.boot.product.hardware.sku", "NFC");
     }
 
     set_ro_build_prop("model", model);
