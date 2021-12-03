@@ -1,5 +1,9 @@
 # Call proprietary blob setup
+ifneq ($(filter $(TARGET_DEVICE), a20 a20e),)
 $(call inherit-product, vendor/samsung/universal7885-common/universal7885-common-vendor.mk)
+else ifneq ($(filter $(TARGET_DEVICE), a30 a40),)
+$(call inherit-product, vendor/samsung/universal7904-common/universal7904-common-vendor.mk)
+endif
 
 # Build Fingerprints
 $(call inherit-product, $(LOCAL_PATH)/fingerprint.mk)
