@@ -3,13 +3,13 @@ COMMON_PATH := device/samsung/universal7885-common
 BOARD_VENDOR := samsung
 
 # Platform
-TARGET_BOARD_PLATFORM := exynos7
-
 ifeq ($(TARGET_DEVICE), $(filter $(TARGET_DEVICE),a10 a20 a20e))
 TARGET_SOC := exynos7884B
+TARGET_BOARD_PLATFORM := universal7884B
 TARGET_BOOTLOADER_BOARD_NAME := universal7884B
 else ifeq ($(TARGET_DEVICE), $(filter $(TARGET_DEVICE),a30 a40))
 TARGET_SOC := exynos7904
+TARGET_BOARD_PLATFORM := universal7904
 TARGET_BOOTLOADER_BOARD_NAME := universal7904
 endif
 
