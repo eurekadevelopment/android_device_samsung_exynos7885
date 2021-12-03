@@ -59,6 +59,10 @@ Java_com_eurekateam_samsungextras_interfaces_Flashlight_getFlash(JNIEnv *env, jo
                                                                  jint isA10) {
       android::sp<IFlashlight> service = IFlashlight::getService();
       int ret;
-      ret = service->readFlashlightstats(Device::A10);
+      if (isA10 == 1){
+        ret = service->readFlashlightstats(Device::A10);
+      }else{
+        ret = service->readFlashlightstats(Device::NOTA10);
+      }
       return ret;
 }
