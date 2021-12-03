@@ -91,6 +91,7 @@ genfscon sysfs /class/power_supply/battery/                                     
 genfscon sysfs /devices/virtual                                                   u:object_r:sysfs_virtual:s0
 genfscon sysfs /devices/virtual/misc/multipdp                                     u:object_r:sysfs_multipdp:s0
 genfscon sysfs /devices/virtual/sensors/sensor_dev/flush                          u:object_r:sysfs_sensor_writable:s0
+genfscon sysfs /devices/virtual/input/input1/enable                               u:object_r:sysfs_input_writable:s0
 genfscon sysfs /devices/virtual/input/input2/enable                               u:object_r:sysfs_input_writable:s0
 genfscon sysfs /devices/virtual/input/input3/enable                               u:object_r:sysfs_input_writable:s0
 genfscon sysfs /devices/virtual/input/input4/enable                               u:object_r:sysfs_input_writable:s0
@@ -100,6 +101,7 @@ genfscon sysfs /devices/virtual/input/input7/enable                             
 genfscon sysfs /devices/virtual/input/input8/enable                               u:object_r:sysfs_input_writable:s0
 genfscon sysfs /devices/virtual/input/input9/enable                               u:object_r:sysfs_input_writable:s0
 genfscon sysfs /devices/virtual/input/input10/enable                              u:object_r:sysfs_input_writable:s0
+genfscon sysfs /devices/virtual/input/input1/poll_delay                           u:object_r:sysfs_input_writable:s0
 genfscon sysfs /devices/virtual/input/input2/poll_delay                           u:object_r:sysfs_input_writable:s0
 genfscon sysfs /devices/virtual/input/input3/poll_delay                           u:object_r:sysfs_input_writable:s0
 genfscon sysfs /devices/virtual/input/input4/poll_delay                           u:object_r:sysfs_input_writable:s0
