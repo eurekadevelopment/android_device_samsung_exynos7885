@@ -11,8 +11,10 @@ git clone git@github.com:eurekadevelopment/android_vendor_samsung_a20_r.git --de
 git clone git@github.com:eurekadevelopment/proprietary_vendor_samsung_a40_r.git tmp/a40 --depth=1
 git clone git@github.com:eurekadevelopment/proprietary_vendor_samsung_a30_r.git tmp/a30 --depth=1
 git clone git@github.com:eurekadevelopment/android_vendor_samsung_a10_arm64_R.git tmp/a10 --depth=1
-git clone git@github.com:eurekadevelopment/proprietary_vendor_samsung_universal7904-common_r.git tmp/universal7904-common --depth=1
+git clone git@github.com:eurekadevelopment/proprietary_vendor_samsung_universal7904-common_r.git tmp2 --depth=1
+mv tmp2/universal7904-common tmp/
 rm -rf vendor/samsung
+rm -rf tmp2
 mv tmp vendor/samsung
 if test -f device/samsung/universal7885-common/vendor_name; then
 rm device/samsung/universal7885-common/vendor_name
