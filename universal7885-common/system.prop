@@ -19,3 +19,4 @@ persist.rcs.supported=1
 # Rendering
 debug.renderengine.backend=skiaglthreaded
 renderthread.skia.reduceopstasksplitting=true
+ro.surface_flinger.max_frame_buffer_acquired_buffers=3
