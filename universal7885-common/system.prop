@@ -18,3 +18,4 @@ persist.rcs.supported=1
 
 # Rendering
 debug.renderengine.backend=skiaglthreaded
+renderthread.skia.reduceopstasksplitting=true
