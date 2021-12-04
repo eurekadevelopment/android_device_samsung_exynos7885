@@ -3,5 +3,3 @@
 ### DATA
 /data/zram(/.*)?                             u:object_r:zram_data_file:s0
 
-### SYSTEM
-/system/bin/inputmonitor		    u:object_r:inputmonitor_exec:s0
