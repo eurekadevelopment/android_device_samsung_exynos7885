@@ -1,2 +1,0 @@
-allow system_app tz_user_device:chr_file { read write };
-
