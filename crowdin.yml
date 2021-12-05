@@ -1,0 +1,3 @@
+files:
+  - source: /universal7885-common/apps/SamsungParts/res/values/strings.xml
+    translation: /universal7885-common/apps/SamsungParts/res/values-%locale%/strings.xml
