@@ -79,7 +79,6 @@
 
     <!-- From Stock framework-res.apk: -->
     <bool name="config_setColorTransformAccelerated">true</bool>
-    <bool name="config_enableMultiUserUI">false</bool>
     <bool name="config_enableNightMode">true</bool>
     <bool name="config_pinnerAssistantApp">false</bool>
     <bool name="config_pinnerCameraApp">false</bool>
