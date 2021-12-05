@@ -8,11 +8,10 @@ git clone https://github.com/lineageos/android_hardware_samsung_slsi_scsc_wifibt
 # Vendors
 mkdir -p tmp
 git clone git@github.com:eurekadevelopment/android_vendor_samsung_a20_r.git --depth=1 tmp/
-git clone git@github.com:eurekadevelopment/proprietary_vendor_samsung_a40_r.git tmp/a40 --depth=1
+git clone git@github.com:eurekadevelopment/proprietary_vendor_samsung_a40_r.git tmp2 --depth=1 -b Android12
 git clone git@github.com:eurekadevelopment/proprietary_vendor_samsung_a30_r.git tmp/a30 --depth=1
 git clone git@github.com:eurekadevelopment/android_vendor_samsung_a10_arm64_R.git tmp/a10 --depth=1
-git clone git@github.com:eurekadevelopment/proprietary_vendor_samsung_universal7904-common_r.git tmp2 --depth=1
-mv tmp2/universal7904-common tmp/
+mv tmp2/* tmp/
 rm -rf vendor/samsung
 rm -rf tmp2
 mv tmp vendor/samsung
