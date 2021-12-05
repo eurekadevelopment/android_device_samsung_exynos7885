@@ -205,6 +205,7 @@
 
 ### VENDOR
 /(vendor|system/vendor)/lib(64)?/hw/gralloc\.exynos7884B\.so  u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib(64)?/hw/gralloc\.exynos7904\.so  u:object_r:same_process_hal_file:s0
 /(vendor|system/vendor)/lib(64)?/libion_exynos\.so          u:object_r:same_process_hal_file:s0
 /(vendor|system/vendor)/bin/main_abox                       u:object_r:abox_exec:s0
 /(vendor|system/vendor)/bin/wlbtd                           u:object_r:wlbtd_exec:s0
