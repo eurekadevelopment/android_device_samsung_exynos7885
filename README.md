@@ -5,9 +5,9 @@ The Galaxy A10/A20/A20e/A30/A40 (codenamed "a10/a20/a20e/a30/a40") is a low-end 
 |        Component        |          Specification            |
 | :---------------------- | :-------------------------------- |
 | Chipset                 | Exynos 7885                       |
-| Memory                  | 3 GB                              |
+| Memory                  | 3/4 GB                            |
 | Storage                 | 32GB                              |
-| Battery                 | <differs from model> mAh          |
+| Battery                 | (differs from model) mAh          |
 | Dimensions              | 158.4 x 74.7 x 7.8 mm             |
 | Display                 | 720 x 1560 pixels, 19.5:9, 268PPI |
 | Release Date            | 2019 April                        |
