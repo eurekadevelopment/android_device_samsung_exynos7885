@@ -9,3 +9,4 @@ allow hal_thermal_default self:netlink_kobject_uevent_socket create_socket_perms
 hal_client_domain(hal_thermal_default, hal_power);
 
 get_prop(hal_thermal_default, vendor_thermal_prop)
+allow hal_thermal_default sysfs_virtual:dir search;
