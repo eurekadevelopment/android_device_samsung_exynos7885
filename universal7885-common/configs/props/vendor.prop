@@ -32,7 +32,6 @@ vendor.sec.rild.libpath2=/vendor/lib64/libsec-ril-dsds.so
 ro.telephony.default_network=9,9
 
 ## Surfaceflinger
-debug.sf.disable_backpressure=1
 ro.surface_flinger.max_frame_buffer_acquired_buffers=3
 debug.sf.enable_hwc_vds=0
 debug.sf.latch_unsignaled=0
