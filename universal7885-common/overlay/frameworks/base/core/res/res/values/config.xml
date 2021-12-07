@@ -36,7 +36,6 @@
         <item>"/system/bin/surfaceflinger"</item>
     </string-array>
     <string name="config_radio_access_family">GSM|CDMA|EVDO|WCDMA|LTE</string>
-    <integer name="config_fingerprintMaxTemplatesPerUser">4</integer>
     <integer-array name="config_longPressVibePattern">
         <item>0</item>
         <item>1</item>
@@ -58,9 +57,6 @@
     <string name="db_wal_sync_mode" translatable="false">OFF</string>
     <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
     <bool name="config_showNavigationBar">true</bool>
-    <string-array name="config_biometric_sensors" translatable="false" >
-        <item>0:2:15</item> <!-- ID0:Fingerprint:Strong -->
-    </string-array>
 
     <!-- If this is true, the screen will come on when you unplug usb/power/whatever. -->
     <bool name="config_unplugTurnsOnScreen">true</bool>
@@ -89,9 +85,6 @@
     
     <!-- the number of the max cached processes in the system. -->
     <integer name="config_customizedMaxCachedProcesses">48</integer>
-    
-    <!-- Specify if the fingerprint hardware support gestures-->
-    <bool name="config_fingerprintSupportsGestures">true</bool>
     
      <!-- Maximum number of supported users -->
     <bool name="config_enableMultiUserUI">true</bool>
