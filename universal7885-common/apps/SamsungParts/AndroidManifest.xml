@@ -14,9 +14,8 @@
     <application
         android:label="@string/advanced_settings"
         android:supportsRtl="true"
-        android:theme="@style/CustomOptionsTheme"
-        android:fullBackupOnly="true"
-        android:allowBackup="true">
+        android:theme="@style/Theme.SubSettingsBase"
+        android:fullBackupOnly="true">
         <activity
             android:name="com.eurekateam.samsungextras.DeviceSettingsActivity"
             android:exported="true"
