@@ -29,10 +29,14 @@ persist.rmnet.              u:object_r:persist_rmnet_prop:s0
 persist.data.df.            u:object_r:persist_data_df_prop:s0
 persist.data.wda.           u:object_r:persist_data_wda_prop:s0
 
+# CSC
+ro.csc.          	     u:object_r:exported_default_prop:s0
+
 # CAMERA
 persist.sys.camera.         u:object_r:camera_prop:s0
 persist.vendor.sys.camera.  u:object_r:vendor_camera_prop:s0
-vendor.camera.aux.          u:object_r:exported_camera_prop:s0
+persist.vendor.camera.      u:object_r:vendor_camera_prop:s0
+vendor.camera.             u:object_r:exported_camera_prop:s0
 
 # Charger
 ro.charger.enable_suspend      u:object_r:exported_default_prop:s0
@@ -41,6 +45,7 @@ ro.charger.enable_suspend      u:object_r:exported_default_prop:s0
 ro.product_ship                u:object_r:exported_default_prop:s0
 ro.debug_level                 u:object_r:exported_default_prop:s0
 ro.hardware.chipname           u:object_r:exported_default_prop:s0
+ro.build.PDA                   u:object_r:exported_default_prop:s0
 
 # GPS
 ro.spid.gps.                u:object_r:vendor_gps_prop:s0
