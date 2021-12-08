@@ -24,7 +24,6 @@ import com.android.internal.R.id.home
 class DeviceSettingsActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        actionBar.setDisplayHomeAsUpEnabled(true)
         val fragment = this.supportFragmentManager.findFragmentById(content)
         val mDeviceSettingsFragment: DeviceSettings
         if (fragment == null) {

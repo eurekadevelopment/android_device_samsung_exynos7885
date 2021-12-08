@@ -24,7 +24,6 @@ import androidx.fragment.app.FragmentActivity
 class ClearSpeakerActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        actionBar.setDisplayHomeAsUpEnabled(true)
         val fragment = this.supportFragmentManager.findFragmentById(content)
         val clearSpeakerFragment: ClearSpeakerFragment
         if (fragment == null) {
