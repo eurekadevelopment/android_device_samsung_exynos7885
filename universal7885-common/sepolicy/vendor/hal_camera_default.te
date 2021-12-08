@@ -14,6 +14,7 @@ allow hal_camera_default sysfs_battery_writable:file r_file_perms;
 get_prop(hal_camera_default, exported_camera_prop)
 set_prop(hal_camera_default, vendor_camera_prop)
 get_prop(hal_camera_default, exported_default_prop)
+get_prop(hal_camera_default, vendor_factory_prop)
 
 binder_call(hal_camera_default, system_server)
 binder_call(system_server, hal_camera_default)

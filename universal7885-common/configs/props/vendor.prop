@@ -50,7 +50,13 @@ vendor.display.disable_scaler=0
 
 ## SoC
 ro.soc.manufacturer=samsung
-ro.soc.model=exynos7884B
+ro.soc.model=exynos7885
+
+### CSC
+ro.csc.sales_code=KTC
+ro.csc.country_code=Korea
+ro.csc.countryiso_code=KR
+ro.csc.omcmw_code=KTC
 
 # Wifi direct
 wifi.direct.interface=p2p0
