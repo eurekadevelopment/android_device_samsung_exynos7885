@@ -58,6 +58,9 @@ ro.csc.country_code=Korea
 ro.csc.countryiso_code=KR
 ro.csc.omcmw_code=KTC
 
+## PDA
+ro.build.PDA=A202KKKU7CUF1
+
 # Wifi direct
 wifi.direct.interface=p2p0
 
