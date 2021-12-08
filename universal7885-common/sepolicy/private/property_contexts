@@ -14,9 +14,6 @@ ro.camera.res.fmq.size                       u:object_r:exported_camera_prop:s0
 ### GFX
 #ro.gfx.driver.1                              u:object_r:exported3_default_prop:s0 exact string
 
-### CSC
-ro.csc.                                      u:object_r:exported_config_prop:s0
-
 ### MDC
 mdc.                                         u:object_r:exported_config_prop:s0
 
