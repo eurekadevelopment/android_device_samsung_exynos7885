@@ -30,11 +30,6 @@ PRODUCT_PACKAGES += \
     libtinycompress \
     audio.hearing_aid.default
 
-# Aptx    
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/aptx/libaptX_encoder.so:$(TARGET_COPY_OUT_PRODUCT)/lib64/libaptX_encoder.so \
-    $(LOCAL_PATH)/aptx/libaptXHD_encoder.so:$(TARGET_COPY_OUT_PRODUCT)/lib64/libaptXHD_encoder.so 
-    
 # Audio Configs    
 PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_audio_policy_configuration.xml \
