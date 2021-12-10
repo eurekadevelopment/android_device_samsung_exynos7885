@@ -1,5 +1,5 @@
 rm -rf hardware/samsung
-git clone git@github.com:eurekadevelopment/android_hardware_samsung.git hardware/samsung -b NUKE_ALL
+git clone git@github.com:eurekadevelopment/android_hardware_samsung.git hardware/samsung -b NEW_NUKE_ALL
 git clone git@github.com:eurekadevelopment/Eureka-Kernel-Exynos7885-Q-R-S-private.git kernel/samsung/exynos7885 --depth=1 -b R8.1_rom
 git clone https://github.com/lineageos/android_hardware_samsung_nfc hardware/samsung/nfc
 git clone https://github.com/lineageos/android_hardware_samsung_slsi_libbt hardware/samsung_slsi/libbt
