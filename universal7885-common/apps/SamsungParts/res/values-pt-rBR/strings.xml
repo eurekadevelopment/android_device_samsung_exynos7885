@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2021 The SamsungParts Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="advanced_settings">SamsungParts</string>
+    <string name="advanced_settings_summary">Tweaks específicos do dispositivo</string>
+
+    <!-- Display category -->
+    <string name="display_category">Tela</string>
+    <!-- FPS Info -->
+    <string name="fps_info_title">FPS info overlay</string>
+    <string name="fps_info_summary">Mostrar overlay com informações atuais sobre o FPS</string>
+
+    <!-- Speaker category -->
+    <string name="speaker_category">Áudio</string>
+
+    <!-- Clear Speaker -->
+    <string name="clear_speaker_title">Limpar alto falante</string>
+    <string name="clear_speaker_summary">Tocar um áudio de 30 segundos para limpar o alto falante</string>
+    <string name="clear_speaker_description">Execute este recurso uma ou duas vezes se o alto-falante está ligeiramente bloqueado por poeira. Defina o volume da mídia para o máximo.\n\nSe o alto-falante estiver muito bloqueado, execute este recurso 2 a 5 vezes enquanto agita seu dispositivo com o alto-falante voltado para baixo.</string>
+
+    <!-- Dolby -->
+    <string name="dolby_title">Dolby Atmos</string>
+    <string name="dolby_summary">Ativar o efeito de áudio Dolby Atmos</string>
+    <string name="dolby_description">Ativar Dolby Atmos, Assim como na OneUI.</string>
+    <string name="dolby_modes_title">Modos do Dolby Disponíveis</string>
+    <string name="dolby_modes_summary">Selecione um destes</string>
+    <string name="dolby_profile_auto">Perfil automático</string>
+    <string name="dolby_profile_movie">Perfil de Filme</string>
+    <string name="dolby_profile_music">Perfil de Música</string>
+    <string name="dolby_profile_voice">Perfil de Voz</string>
+    <string name="dolby_profile_game">Perfil de Jogos</string>
+    <string name="dolby_profile_off">Nenhum Perfil</string>
+    <string name="dolby_profile_game_1">Perfil de Jogos 1</string>
+    <string name="dolby_profile_game_2">Perfil de Jogos 2</string>
+    <string name="dolby_profile_special_audio">Perfil automático especial</string>
+    <!-- Eureka Kernel features category -->
+    <string name="eureka_kernel_features">Recursos do Eureka Kernel</string>
+
+    <!-- FlashLight -->
+    <string name="flashlight_title">Brilho da lanterna</string>
+    <string name="flashlight_summary">Ajustar o brilho da lanterna</string>
+    <string name="flashlight_description">a OneUI da Samsung tem um recurso para ajustar
+        o brilho da lanterna. AOSP não tem esse recurso.\n\n
+        Use isto para deixar o brilho da lanterna baixo ou alto. Varia de 0 a 10.</string>
+
+    <!-- GPU Category -->
+    <string name="misc_category">Diversos</string>
+
+    <!-- Inout Devices Settings -->
+    <string name="input_ctrl_title">Controle de sensores</string>
+    <string name="input_ctrl_summary">Controlar a energia dos sensores. Pode ser utilizado para melhorar o consumo de energia.</string>
+    <string name="input_ctrl_description">Controle a energia dos sensores aqui.
+        Se você estiver realmente com pouca bateria, talvez essas configurações possam ajudar</string>
+    <!-- GPU TMU -->
+    <string name="gpuexynos_title">Exynos GPU (Mali) Throttling</string>
+    <string name="gpuexynos_summary">Desativar/Ativar GPU Throttling</string>
+
+    <!-- SELinux -->
+    <string name="selinux_title">Status do SELinux</string>
+    <string name="selinux_summary">Clique aqui para ver o status atual do SELinux</string>
+
+    <string name="info_category">Informações</string>
+
+    <!-- Battery -->
+    <string name="fastcharge_category">Bateria</string>
+    <string name="fastcharge_2nd_title">Configurações do Carregamento rápido</string>
+    <string name="charge_title">Configurações de Carregamento</string>
+    <string name="charge_summary">Ative/Desative o carregamento aqui.</string>
+    <string name="fastcharge_title">Informações da bateria e configurações</string>
+    <string name="fastcharge_summary">Ativar/Desativar o recurso de carregamento rápido</string>
+    <string name="fastcharge_description">Controle o carregamento rápido aqui.</string>
+    <string name="battery_info_title">Informações diversas sobre a bateria</string>
+    <string name="battery_info_summary">Seção para Geeks</string>
+
+    <string name="battery_max_capa">Capacidade máxima da bateria (mAh)</string>
+    <string name="battery_status">Status da bateria</string>
+    <string name="battery_chrged_up_to">Bateria carregada até (%)</string>
+    <string name="battery_chrged_up_to_mah">Bateria carregada até (mAh)</string>
+    <string name="battery_temp">Temperatura atual da bateria</string>
+    <string name="battery_current">Corrente da bateria (mA)</string>
+
+    <!-- Label for feature switch -->
+    <string name="switch_bar_on">Ligado</string>
+
+    <!-- Label for feature switch -->
+    <string name="switch_bar_off">Desligado</string>
+
+    <!-- Custom seekbar -->
+    <string name="custom_seekbar_value">Valor: <xliff:g id="v">%s</xliff:g></string>
+    <string name="custom_seekbar_default_value">Padrão</string>
+    <string name="custom_seekbar_default_value_to_set">Valor padrão: <xliff:g id="v">%s</xliff:g>\nPressione longamente para definir</string>
+    <string name="custom_seekbar_default_value_is_set">Valor padrão está definido</string>
+
+</resources>
