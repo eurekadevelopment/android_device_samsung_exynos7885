@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2020 The Xiaomi-SM6250 Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="advanced_settings">Опции Samsung</string>
+    <string name="advanced_settings_summary">Дополнительные функции устройства</string>
+
+    <!-- Display category -->
+    <string name="display_category">Экран</string>
+    <!-- FPS Info -->
+    <string name="fps_info_title">Мониторинг FPS</string>
+    <string name="fps_info_summary">Показывать частоту кадров в секунду</string>
+
+    <!-- Speaker category -->
+    <string name="speaker_category">Звук</string>
+
+    <!-- Clear Speaker -->
+    <string name="clear_speaker_title">Очистка динамика</string>
+    <string name="clear_speaker_summary">Воспроизведение 30-секундного звука для очистки динамика</string>
+    <string name="clear_speaker_description">Запустите эту функцию один или два раза, если обнаружите, что ваш динамик слегка загрязнён пылью. Установите максимальную громкость мультимедиа.\n\nЕсли динамик сильно загрязнён, запустите эту опцию 2-5 раз, встряхивая устройство динамиком вниз.</string>
+
+    <!-- Dolby -->
+    <string name="dolby_title">Dolby Atmos</string>
+    <string name="dolby_summary">Включение звуковых эффектов от Dolby Atmos</string>
+    <string name="dolby_description">Включите звук Dolby, как в OneUI.</string>
+    <string name="dolby_modes_title">Доступные режимы Dolby</string>
+    <string name="dolby_modes_summary">Выберите один из них</string>
+    <string name="dolby_profile_auto">Автомотический</string>
+    <string name="dolby_profile_movie">Фильм</string>
+    <string name="dolby_profile_music">Музыка</string>
+    <string name="dolby_profile_voice">Голос</string>
+    <string name="dolby_profile_game">Игра</string>
+    <string name="dolby_profile_off">Без профиля</string>
+    <string name="dolby_profile_game_1">Игровой профиль 1</string>
+    <string name="dolby_profile_game_2">Игровой профиль 2</string>
+    <string name="dolby_profile_special_audio">Свой профиль звука</string>
+    <!-- Eureka Kernel features category -->
+    <string name="eureka_kernel_features">Функции Eureka Kernel</string>
+
+    <!-- FlashLight -->
+    <string name="flashlight_title">Яркость фонарика</string>
+    <string name="flashlight_summary">Отрегулируйте яркость фонарика</string>
+    <string name="flashlight_description">У OneUI есть возможность регулировать яркость фонарика, но данной опции нет в AOSP.\n\nИспользуйте эту функцию для регулировки низкой или высокой яркости фонарика. Колеблется от 0 до 10.</string>
+
+    <!-- GPU Category -->
+    <string name="misc_category">Разное</string>
+
+    <!-- Inout Devices Settings -->
+    <string name="input_ctrl_title">Управление устройствами ввода</string>
+    <string name="input_ctrl_summary">Управление питанием датчиков. Может использоваться для экономии заряда батареи.</string>
+    <string name="input_ctrl_description">Здесь происходит управление питанием датчиков. Если у Вас разряжен аккумулятор, возможно, эти настройки помогут.</string>
+    <!-- GPU TMU -->
+    <string name="gpuexynos_title">Регулирование графики Exynos (Mali)</string>
+    <string name="gpuexynos_summary">Отключение/Включение регулирования</string>
+
+    <!-- SELinux -->
+    <string name="selinux_title">Статус SELinux</string>
+    <string name="selinux_summary">Нажмите сюда, чтобы увидеть текущий статус SELinux</string>
+
+    <string name="info_category">Информация</string>
+
+    <!-- Battery -->
+    <string name="fastcharge_category">Батарея</string>
+    <string name="fastcharge_2nd_title">Экспресс зарядка</string>
+    <string name="charge_title">Зарядка</string>
+    <string name="charge_summary">Включение/Отключение зарядки</string>
+    <string name="fastcharge_title">Информация о батареи и настройки</string>
+    <string name="fastcharge_summary">Включение/Отключение функции быстрой зарядки</string>
+    <string name="fastcharge_description">Здесь происходит управление зарядкой.</string>
+    <string name="battery_info_title">Прочая информация о батареи</string>
+    <string name="battery_info_summary">Полезная информация (не для всех)</string>
+
+    <string name="battery_max_capa">Максимальная ёмкость АКБ (mAh)</string>
+    <string name="battery_status">Статус батареи</string>
+    <string name="battery_chrged_up_to">Заряд батареи (%)</string>
+    <string name="battery_chrged_up_to_mah">Заряд батареи (mAh)</string>
+    <string name="battery_temp">Текущая температура АКБ</string>
+    <string name="battery_current">Использовано заряда (mA)</string>
+
+    <!-- Label for feature switch -->
+    <string name="switch_bar_on">Включено</string>
+
+    <!-- Label for feature switch -->
+    <string name="switch_bar_off">Отключено</string>
+
+    <!-- Custom seekbar -->
+    <string name="custom_seekbar_value">Значение: <xliff:g id="v">%s</xliff:g></string>
+    <string name="custom_seekbar_default_value">По-умолчанию</string>
+    <string name="custom_seekbar_default_value_to_set">Значение по-умолчанию: <xliff:g id="v">%s</xliff:g>\nДлительное нажатие для настройки</string>
+    <string name="custom_seekbar_default_value_is_set">Установлено значение по-умолчанию</string>
+
+</resources>
