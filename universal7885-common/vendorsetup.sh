@@ -6,15 +6,7 @@ git clone https://github.com/lineageos/android_hardware_samsung_slsi_libbt hardw
 git clone https://github.com/lineageos/android_hardware_samsung_slsi_scsc_wifibt_wifi_hal hardware/samsung_slsi/scsc_wifibt/wifi_hal
 git clone https://github.com/lineageos/android_hardware_samsung_slsi_scsc_wifibt_wpa_supplicant_lib hardware/samsung_slsi/scsc_wifibt/wpa_supplicant_lib
 # Vendors
-mkdir -p tmp
-git clone git@github.com:eurekadevelopment/android_vendor_samsung_a20_r.git --depth=1 tmp/
-git clone git@github.com:eurekadevelopment/proprietary_vendor_samsung_a40_r.git tmp2 --depth=1 -b Android12
-git clone git@github.com:eurekadevelopment/proprietary_vendor_samsung_a30_r.git tmp/a30 --depth=1
-git clone git@github.com:eurekadevelopment/android_vendor_samsung_a10_arm64_R.git tmp/a10 --depth=1
-mv tmp2/* tmp/
-rm -rf vendor/samsung
-rm -rf tmp2
-mv tmp vendor/samsung
+git clone git@github.com:eurekadevelopment/android_vendor_samsung_exynos7885.git --depth=1 vendor/samsung
 if test -f device/samsung/universal7885-common/vendor_name; then
 rm device/samsung/universal7885-common/vendor_name
 fi
