@@ -3,7 +3,6 @@ on early-init
     mkdir /mnt/vendor/efs 0771 radio system
     mkdir /mnt/vendor/cpefs 0771 radio system
     mkdir /mnt/vendor/persist 0771 system system
-    mount debugfs /sys/kernel/debug /sys/kernel/debug
 
 on init
     start watchdogd
