@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2021 The SamsungParts Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="advanced_settings">SamsungParts</string>
+    <string name="advanced_settings_summary">Gerät Spezifische Tweaks</string>
+
+    <!-- Display category -->
+    <string name="display_category">Display</string>
+    <!-- FPS Info -->
+    <string name="fps_info_title">FPS Info Overlay</string>
+    <string name="fps_info_summary">Zeige Overlay mit aktueller Frames per Second. (FPS)</string>
+
+    <!-- Speaker category -->
+    <string name="speaker_category">Sound</string>
+
+    <!-- Clear Speaker -->
+    <string name="clear_speaker_title">Lautsprecher reinigen</string>
+    <string name="clear_speaker_summary">Spiele ein 30 sekündigen Ton ab, um den Lautsprecher zu reinigen.</string>
+    <string name="clear_speaker_description">Starte die Eigenschaft, um den Lautsprecher von Schmutz und Staub zu befreien. Setzte die Lautstärke dabei auf das Maximum.\n\nWenn in dem Lautsprecher zuviel Schmutz und Staub ist, führe dies 2-5 mal aus.</string>
+
+    <!-- Dolby -->
+    <string name="dolby_title">Dolby Atmos</string>
+    <string name="dolby_summary">Aktivere den Dolby Atmos Sound Effekt</string>
+    <string name="dolby_description">Aktiviere Dolby Sound, wie in OneUI (Stock ROM).</string>
+    <string name="dolby_modes_title">Verfügbare Dolby Modi</string>
+    <string name="dolby_modes_summary">Wähle ein Modi aus</string>
+    <string name="dolby_profile_auto">Auto Profil</string>
+    <string name="dolby_profile_movie">Film Profil</string>
+    <string name="dolby_profile_music">Musik Profil</string>
+    <string name="dolby_profile_voice">Sprach Profil</string>
+    <string name="dolby_profile_game">Spiel Profil</string>
+    <string name="dolby_profile_off">Kein Profil</string>
+    <string name="dolby_profile_game_1">Spiel 1 Profil</string>
+    <string name="dolby_profile_game_2">Spiel 2 Profil</string>
+    <string name="dolby_profile_special_audio">Spezial Sound Profil</string>
+    <!-- Eureka Kernel features category -->
+    <string name="eureka_kernel_features">Eureka Kernel Eigenschaften</string>
+
+    <!-- FlashLight -->
+    <string name="flashlight_title">Taschenlampe Helligkeit</string>
+    <string name="flashlight_summary">Einstellen der Taschenlampe Helligkeit</string>
+    <string name="flashlight_description">Samsung\'s OneUI hat eine Option zum Einstellen der
+        Taschenlampe Helligkeit. AOSP hat nicht diese möglichkeit.\n\n
+        Benutze das feature zum Einstellen der Helligkeit von wenig bis viel. Parameter zwischen 0 bis 10 wählbar.</string>
+
+    <!-- GPU Category -->
+    <string name="misc_category">Sonstiges</string>
+
+    <!-- Inout Devices Settings -->
+    <string name="input_ctrl_title">Eingabegeräte Steuerung</string>
+    <string name="input_ctrl_summary">Steuer Sensor Leistung. Kann benutzt werden um Batterie zu sparen.</string>
+    <string name="input_ctrl_description">Verwalte die Sensor Leistung hier.
+        wenn deine Batterie fast leer ist, kann dir diese Einstellung helfen.</string>
+    <!-- GPU TMU -->
+    <string name="gpuexynos_title">Exynos GPU (Mali) Throttling</string>
+    <string name="gpuexynos_summary">Deaktiviere/Aktiviere GPU Throttling</string>
+
+    <!-- SELinux -->
+    <string name="selinux_title">SELinux Status</string>
+    <string name="selinux_summary">Klicke hier, um den SELinux Status anzuzeigen.</string>
+
+    <string name="info_category">Info</string>
+
+    <!-- Battery -->
+    <string name="fastcharge_category">Batterie</string>
+    <string name="fastcharge_2nd_title">Schnellladen Einstellung</string>
+    <string name="charge_title">Laden Einstellung</string>
+    <string name="charge_summary">Aktiviere/Deaktiviere den Ladevorgang hier.</string>
+    <string name="fastcharge_title">Batterie Info und Einstellungen</string>
+    <string name="fastcharge_summary">Aktiviere/Deaktiviere Schnellladen Eigenschaft</string>
+    <string name="fastcharge_description">Verwalte die Ladevorgang Eigenschaft hier.</string>
+    <string name="battery_info_title">Sonstige Batterie Info</string>
+    <string name="battery_info_summary">Sektion für Geeks</string>
+
+    <string name="battery_max_capa">Batterie Max Kapazität (mAh)</string>
+    <string name="battery_status">Batterie Status</string>
+    <string name="battery_chrged_up_to">Batterie geladen in (%)</string>
+    <string name="battery_chrged_up_to_mah">Batterie geladen in (mAh)</string>
+    <string name="battery_temp">Aktuelle Batterie Temperatur</string>
+    <string name="battery_current">Batterie aktuell (mA)</string>
+
+    <!-- Label for feature switch -->
+    <string name="switch_bar_on">An</string>
+
+    <!-- Label for feature switch -->
+    <string name="switch_bar_off">Aus</string>
+
+    <!-- Custom seekbar -->
+    <string name="custom_seekbar_value">Werte: <xliff:g id="v">%s</xliff:g></string>
+    <string name="custom_seekbar_default_value">Standard</string>
+    <string name="custom_seekbar_default_value_to_set">Standard Wert: <xliff:g id="v">%s</xliff:g>\nLanges drücken um zu setzen.</string>
+    <string name="custom_seekbar_default_value_is_set">Standard Werte sind gesetzt.</string>
+
+</resources>
