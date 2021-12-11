@@ -5,7 +5,7 @@ parser.add_argument("-d", help="Debug", type=int)
 args = parser.parse_args()
 var = vars(args)
 DEBUG = var['d'] == 1
-blacklist = ["qcom", "nxp","pixel-framework", "lawnchair"  ,"support", "overlay","samsung", "gapps", "google", "gms", "codeaurora", "addons"]
+blacklist = ["qcom", "nxp","pixel-framework", "lawnchair"  ,"support", "overlay","samsung", "gapps", "google", "gms", "codeaurora", "addons", "overlays"]
 vendors = os.listdir("vendor")
 for vendor in vendors:
   if DEBUG:
