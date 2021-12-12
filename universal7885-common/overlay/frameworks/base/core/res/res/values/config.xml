@@ -36,21 +36,6 @@
         <item>"/system/bin/surfaceflinger"</item>
     </string-array>
     <string name="config_radio_access_family">GSM|CDMA|EVDO|WCDMA|LTE</string>
-    <integer-array name="config_longPressVibePattern">
-        <item>0</item>
-        <item>1</item>
-        <item>20</item>
-        <item>21</item>
-    </integer-array>
-    <integer-array name="config_virtualKeyVibePattern">
-        <item>0</item>
-        <item>10</item>
-        <item>20</item>
-        <item>30</item>
-    </integer-array>
-    <integer-array name="config_keyboardTapVibePattern">
-        <item>40</item>
-    </integer-array>
     <fraction name="config_screenAutoBrightnessDozeScaleFactor">100.0%</fraction>
     <string name="db_default_journal_mode" translatable="false">MEMORY</string>
     <string name="db_default_sync_mode" translatable="false">OFF</string>
@@ -94,14 +79,14 @@
     <integer-array name="config_keyboardTapVibePattern">
         <item>10</item>
     </integer-array>
-
+    
     <!-- Vibrator pattern for feedback about a long screen/key press -->
     <integer-array name="config_longPressVibePattern">
         <item>0</item>
         <item>12</item>
         <item>7</item>
     </integer-array>
-
+    
     <!-- Vibrator pattern for feedback about touching a virtual key -->
     <integer-array name="config_virtualKeyVibePattern">
         <item>0</item>

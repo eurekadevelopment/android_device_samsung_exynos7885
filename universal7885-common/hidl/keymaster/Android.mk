@@ -14,8 +14,6 @@
 # limitations under the License.
 #
 
-ifeq ($(TARGET_KEYMASTER_VARIANT),samsung)
-
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
@@ -42,5 +40,3 @@ LOCAL_MODULE_OWNER := samsung
 LOCAL_VENDOR_MODULE := true
 
 include $(BUILD_EXECUTABLE)
-
-endif # TARGET_KEYMASTER_VARIANT
