@@ -13,41 +13,41 @@
 // limitations under the License.
 
 #include "Gpu.h"
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <sstream>
 namespace vendor::eureka::hardware::gpu::V1_0 {
 
 Return<int32_t> Gpu::setGpuWritable(gpu::V1_0::Enable enable) {
-        std::ofstream file;
-        std::string writevalue;
-        if (enable == Enable::ENABLE){
+    std::ofstream file;
+    std::string writevalue;
+    if (enable == Enable::ENABLE) {
         writevalue = "1";
-        }else{
+    } else {
         writevalue = "0";
-        }
-        file.open("/sys/devices/platform/11500000.mali/tmu");
-        file << writevalue;
-        file.close();
-	return 0;
+    }
+    file.open("/sys/devices/platform/11500000.mali/tmu");
+    file << writevalue;
+    file.close();
+    return 0;
 }
 
 Return<int32_t> Gpu::readGpustats(void) {
-	std::ifstream file;
-	std::string value;
-	int32_t intvalue;
-	file.open("/sys/devices/platform/11500000.mali/tmu");
-	if (file.is_open()) {
-	   getline(file, value);
-	   file.close();
-	   std::stringstream val(value);
-	   val >> intvalue;
-	   return intvalue;
-	}
-	return -1;
+    std::ifstream file;
+    std::string value;
+    int32_t intvalue;
+    file.open("/sys/devices/platform/11500000.mali/tmu");
+    if (file.is_open()) {
+        getline(file, value);
+        file.close();
+        std::stringstream val(value);
+        val >> intvalue;
+        return intvalue;
+    }
+    return -1;
 }
 
-IGpu *Gpu::getInstance(void){
-  return new Gpu();
+IGpu* Gpu::getInstance(void) {
+    return new Gpu();
 }
-}  // namespace android::hardware::gpu::implementation
+}  // namespace vendor::eureka::hardware::gpu::V1_0

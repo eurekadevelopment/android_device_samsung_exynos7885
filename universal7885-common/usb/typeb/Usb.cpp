@@ -30,8 +30,8 @@ namespace usb {
 namespace V1_0 {
 namespace implementation {
 
-Return<void> Usb::switchRole(const hidl_string &portName __unused,
-                             const PortRole &newRole __unused) {
+Return<void> Usb::switchRole(const hidl_string& portName __unused,
+                             const PortRole& newRole __unused) {
     LOG(ERROR) << __func__ << ": Not supported";
     return Void();
 }
@@ -51,8 +51,7 @@ Return<void> Usb::queryPortStatus() {
 
     pthread_mutex_lock(&mLock);
     if (mCallback != NULL) {
-        Return<void> ret =
-                mCallback->notifyPortStatusChange(currentPortStatus, Status::SUCCESS);
+        Return<void> ret = mCallback->notifyPortStatusChange(currentPortStatus, Status::SUCCESS);
         if (!ret.isOk()) {
             LOG(ERROR) << "queryPortStatus error " << ret.description();
         }
@@ -64,7 +63,7 @@ Return<void> Usb::queryPortStatus() {
     return Void();
 }
 
-Return<void> Usb::setCallback(const sp<IUsbCallback> &callback) {
+Return<void> Usb::setCallback(const sp<IUsbCallback>& callback) {
     pthread_mutex_lock(&mLock);
 
     mCallback = callback;

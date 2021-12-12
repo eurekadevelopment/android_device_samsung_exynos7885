@@ -14,19 +14,19 @@
 
 #pragma once
 
-#include <vendor/eureka/hardware/flashlight/1.0/IFlashlight.h>
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
+#include <vendor/eureka/hardware/flashlight/1.0/IFlashlight.h>
 
 namespace vendor::eureka::hardware::flashlight::V1_0 {
 
+using ::android::sp;
 using ::android::hardware::hidl_array;
 using ::android::hardware::hidl_memory;
 using ::android::hardware::hidl_string;
 using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
-using ::android::sp;
 
 struct Flashlight : public IFlashlight {
     // Methods from ::vendor::eureka::hardware::flashlight::V1_0::IFlashlight follow.
@@ -35,6 +35,5 @@ struct Flashlight : public IFlashlight {
     Return<int32_t> readFlashlightstats(Device device);
     // Methods from ::android::hidl::base::V1_0::IBase follow.
     static IFlashlight* getInstance(void);
-
 };
-}  // namespace android::hardware::flashlight::implementation
+}  // namespace vendor::eureka::hardware::flashlight::V1_0

@@ -37,7 +37,7 @@ namespace power {
 namespace impl {
 namespace pixel {
 
-ndk::ScopedAStatus PowerExt::setMode(const std::string &mode, bool enabled) {
+ndk::ScopedAStatus PowerExt::setMode(const std::string& mode, bool enabled) {
     LOG(DEBUG) << "PowerExt setMode: " << mode << " to: " << enabled;
     ATRACE_INT(mode.c_str(), enabled);
 
@@ -50,14 +50,14 @@ ndk::ScopedAStatus PowerExt::setMode(const std::string &mode, bool enabled) {
     return ndk::ScopedAStatus::ok();
 }
 
-ndk::ScopedAStatus PowerExt::isModeSupported(const std::string &mode, bool *_aidl_return) {
+ndk::ScopedAStatus PowerExt::isModeSupported(const std::string& mode, bool* _aidl_return) {
     bool supported = mHintManager->IsHintSupported(mode);
     LOG(INFO) << "PowerExt mode " << mode << " isModeSupported: " << supported;
     *_aidl_return = supported;
     return ndk::ScopedAStatus::ok();
 }
 
-ndk::ScopedAStatus PowerExt::setBoost(const std::string &boost, int32_t durationMs) {
+ndk::ScopedAStatus PowerExt::setBoost(const std::string& boost, int32_t durationMs) {
     LOG(DEBUG) << "PowerExt setBoost: " << boost << " duration: " << durationMs;
     ATRACE_INT(boost.c_str(), durationMs);
 
@@ -72,7 +72,7 @@ ndk::ScopedAStatus PowerExt::setBoost(const std::string &boost, int32_t duration
     return ndk::ScopedAStatus::ok();
 }
 
-ndk::ScopedAStatus PowerExt::isBoostSupported(const std::string &boost, bool *_aidl_return) {
+ndk::ScopedAStatus PowerExt::isBoostSupported(const std::string& boost, bool* _aidl_return) {
     bool supported = mHintManager->IsHintSupported(boost);
     LOG(INFO) << "PowerExt boost " << boost << " isBoostSupported: " << supported;
     *_aidl_return = supported;

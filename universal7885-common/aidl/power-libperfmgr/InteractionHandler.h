@@ -36,7 +36,7 @@ enum interaction_state {
 
 class InteractionHandler {
   public:
-    InteractionHandler(std::shared_ptr<HintManager> const &hint_manager);
+    InteractionHandler(std::shared_ptr<HintManager> const& hint_manager);
     ~InteractionHandler();
     bool Init();
     void Exit();

@@ -29,8 +29,8 @@ using android::hardware::joinRpcThreadpool;
 using android::hardware::usb::V1_1::IUsb;
 using android::hardware::usb::V1_1::implementation::Usb;
 
-using android::status_t;
 using android::OK;
+using android::status_t;
 
 int main() {
     android::sp<IUsb> service = new Usb();
@@ -48,5 +48,4 @@ int main() {
     // Under noraml cases, execution will not reach this line.
     ALOGI("USB HAL failed to join thread pool.");
     return 1;
-
 }

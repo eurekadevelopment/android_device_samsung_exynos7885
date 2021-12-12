@@ -14,19 +14,19 @@
 
 #pragma once
 
-#include <vendor/eureka/hardware/gpu/1.0/IGpu.h>
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
+#include <vendor/eureka/hardware/gpu/1.0/IGpu.h>
 
 namespace vendor::eureka::hardware::gpu::V1_0 {
 
+using ::android::sp;
 using ::android::hardware::hidl_array;
 using ::android::hardware::hidl_memory;
 using ::android::hardware::hidl_string;
 using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
-using ::android::sp;
 
 struct Gpu : public IGpu {
     // Methods from ::vendor::eureka::hardware::gpu::V1_0::IGpu follow.
@@ -34,6 +34,5 @@ struct Gpu : public IGpu {
     Return<int32_t> readGpustats(void);
     // Methods from ::android::hidl::base::V1_0::IBase follow.
     static IGpu* getInstance(void);
-
 };
-}  // namespace android::hardware::gpu::implementation
+}  // namespace vendor::eureka::hardware::gpu::V1_0

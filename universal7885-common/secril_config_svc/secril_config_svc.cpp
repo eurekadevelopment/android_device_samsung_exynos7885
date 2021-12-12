@@ -42,11 +42,10 @@ void LoadProperties(std::string data) {
     }
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     std::string prop = FACTORY_PROP;
 
-    if (argc > 1 && std::string(argv[1]) == "NetworkConfig")
-        prop = TELEPHONY_PROP;
+    if (argc > 1 && std::string(argv[1]) == "NetworkConfig") prop = TELEPHONY_PROP;
 
     std::ifstream in(EFS_NEW + prop);
     if (in.good()) {
