@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2020 The Xiaomi-SM6250 Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="advanced_settings">SamsungParts</string>
+    <string name="advanced_settings_summary">Tweak Untuk Device</string>
+
+    <!-- Display category -->
+    <string name="display_category">Bagian Display</string>
+    <!-- FPS Info -->
+    <string name="fps_info_title">Info FPS</string>
+    <string name="fps_info_summary">Menampilkan overlay Frame Per Detik</string>
+
+    <!-- Speaker category -->
+    <string name="speaker_category">Bagian Audio</string>
+
+    <!-- Clear Speaker -->
+    <string name="clear_speaker_title">Pembersihan Speaker</string>
+    <string name="clear_speaker_summary">Memainkan Audio 30 Detik Untuk Membersihkan Speaker</string>
+    <string name="clear_speaker_description">Gunakan fitur ini jika speakermu berdebuh atau kemasukan air, maksimalkan volume dan arahkan layar hp ke bawah, lalu tunggu 30 detik selama lagu dimainkan.</string>
+
+    <!-- Dolby -->
+    <string name="dolby_title">Dolby Atmos</string>
+    <string name="dolby_summary">Mengaktifkan Efek Dolby Atmos</string>
+    <string name="dolby_description">Dolby Atmos adalah fitur untuk memperbesar volume yang kecil, seperti di oneui. Gunakan jika merasa speaker hp mu kurang besar.</string>
+    <string name="dolby_modes_title">Mode Yang Tersedia</string>
+    <string name="dolby_modes_summary">Pilih salah satu</string>
+    <string name="dolby_profile_auto">Profile Auto</string>
+    <string name="dolby_profile_movie">Profile Movie</string>
+    <string name="dolby_profile_music">Profile Music</string>
+    <string name="dolby_profile_voice">Profile Voice</string>
+    <string name="dolby_profile_game">Profile Gaming</string>
+    <string name="dolby_profile_off">Tidak Ada</string>
+    <string name="dolby_profile_game_1">Profile Game 1</string>
+    <string name="dolby_profile_game_2">Profile Game 2</string>
+    <string name="dolby_profile_special_audio">Profile Spesial</string>
+    <!-- Eureka Kernel features category -->
+    <string name="eureka_kernel_features">Fitur Eureka Kernel</string>
+
+    <!-- FlashLight -->
+    <string name="flashlight_title">Kecerahan Senter</string>
+    <string name="flashlight_summary">Atur Kecerahan Sentermu</string>
+    <string name="flashlight_description">Jika merasa sentermu kurang terang maka gunakanlah fitur ini. Fitur ini dapat mempercerah atau menurunkan kecerahan pada sentermu. Sesuaikan Dengan Keinginan mu saja.</string>
+
+    <!-- GPU Category -->
+    <string name="misc_category">Misc</string>
+
+    <!-- Inout Devices Settings -->
+    <string name="input_ctrl_title">Kontrol Input</string>
+    <string name="input_ctrl_summary">Kontrol Sensor bisa digunakan untuk menghemat baterai Android mu.</string>
+    <string name="input_ctrl_description">Atur sensor disini, jika baterai mu dalam keadaan sekarat. Fitur ini mungkin dapat membantumu.</string>
+    <!-- GPU TMU -->
+    <string name="gpuexynos_title">Exynos GPU (Mali) Throttling</string>
+    <string name="gpuexynos_summary">Mengaktifkan/Menonaktifkan GPU Throttling</string>
+
+    <!-- SELinux -->
+    <string name="selinux_title">SELinux Status</string>
+    <string name="selinux_summary">Klik disini untuk melihat status SELinux mu.</string>
+
+    <string name="info_category">Informasi</string>
+
+    <!-- Battery -->
+    <string name="fastcharge_category">Bagian Baterai</string>
+    <string name="fastcharge_2nd_title">Pengaturan Pengecasan Cepat</string>
+    <string name="charge_title">Pengaturan Pengecasan</string>
+    <string name="charge_summary">Mengaktifkan/Menonaktifkan Pengecasan Disini.</string>
+    <string name="fastcharge_title">Informasi Baterai Dan Pengaturan</string>
+    <string name="fastcharge_summary">Mengaktifkan/Menonaktifkan Fitur Pengecasan Cepat, Seperti di oneui.</string>
+    <string name="fastcharge_description">Atur Fitur Pengecasan Disini.</string>
+    <string name="battery_info_title">Baterai Misc Info</string>
+    <string name="battery_info_summary">Bagian untuk Geeks</string>
+
+    <string name="battery_max_capa">Max Kapasitas Baterai (mAh)</string>
+    <string name="battery_status">Status Baterai</string>
+    <string name="battery_chrged_up_to">Baterai Diisi Hingga (%)</string>
+    <string name="battery_chrged_up_to_mah">Baterai Diisi Hingga (mAh)</string>
+    <string name="battery_temp">Suhu Baterai Saat Ini</string>
+    <string name="battery_current">Baterai Saat Ini (mA)</string>
+
+    <!-- Label for feature switch -->
+    <string name="switch_bar_on">Aktifkan</string>
+
+    <!-- Label for feature switch -->
+    <string name="switch_bar_off">Matikan</string>
+
+    <!-- Custom seekbar -->
+    <string name="custom_seekbar_value">Value: <xliff:g id="v">%s</xliff:g></string>
+    <string name="custom_seekbar_default_value">Default</string>
+    <string name="custom_seekbar_default_value_to_set">Default value: <xliff:g id="v">%s</xliff:g>\nLong press to set</string>
+    <string name="custom_seekbar_default_value_is_set">Default value is set</string>
+
+</resources>
