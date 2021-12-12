@@ -14,19 +14,19 @@
 
 #pragma once
 
-#include <vendor/eureka/security/selinux/1.0/ISELinux.h>
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
+#include <vendor/eureka/security/selinux/1.0/ISELinux.h>
 
 namespace vendor::eureka::security::selinux::V1_0 {
 
+using ::android::sp;
 using ::android::hardware::hidl_array;
 using ::android::hardware::hidl_memory;
 using ::android::hardware::hidl_string;
 using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
-using ::android::sp;
 
 struct SELinux : public ISELinux {
     // Methods from ::vendor::eureka::security::selinux::V1_0::ISELinux follow.
@@ -34,6 +34,5 @@ struct SELinux : public ISELinux {
     Return<int32_t> readSELinuxstats(void);
     // Methods from ::android::hidl::base::V1_0::IBase follow.
     static ISELinux* getInstance(void);
-
 };
-}  // namespace android::security::selinux::implementation
+}  // namespace vendor::eureka::security::selinux::V1_0

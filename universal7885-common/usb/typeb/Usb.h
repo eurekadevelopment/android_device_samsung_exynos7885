@@ -35,17 +35,17 @@ namespace usb {
 namespace V1_0 {
 namespace implementation {
 
-using ::android::hardware::usb::V1_0::IUsb;
-using ::android::hardware::usb::V1_0::IUsbCallback;
-using ::android::hardware::usb::V1_0::PortRole;
-using ::android::hidl::base::V1_0::IBase;
+using ::android::sp;
 using ::android::hardware::hidl_array;
 using ::android::hardware::hidl_memory;
 using ::android::hardware::hidl_string;
 using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
-using ::android::sp;
+using ::android::hardware::usb::V1_0::IUsb;
+using ::android::hardware::usb::V1_0::IUsbCallback;
+using ::android::hardware::usb::V1_0::PortRole;
+using ::android::hidl::base::V1_0::IBase;
 
 struct Usb : public IUsb {
     Return<void> switchRole(const hidl_string& portName, const PortRole& role) override;

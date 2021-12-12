@@ -169,10 +169,10 @@ ndk::ScopedAStatus Power::setMode(Mode type, bool enabled) {
     return ndk::ScopedAStatus::ok();
 }
 
-ndk::ScopedAStatus Power::isModeSupported(Mode type, bool *_aidl_return) {
+ndk::ScopedAStatus Power::isModeSupported(Mode type, bool* _aidl_return) {
     bool supported = mHintManager->IsHintSupported(toString(type));
     switch (type) {
-        case Mode::LOW_POWER: // LOW_POWER handled insides PowerHAL specifically
+        case Mode::LOW_POWER:  // LOW_POWER handled insides PowerHAL specifically
             supported = true;
             break;
         case Mode::DOUBLE_TAP_TO_WAKE:
@@ -227,18 +227,18 @@ ndk::ScopedAStatus Power::setBoost(Boost type, int32_t durationMs) {
     return ndk::ScopedAStatus::ok();
 }
 
-ndk::ScopedAStatus Power::isBoostSupported(Boost type, bool *_aidl_return) {
+ndk::ScopedAStatus Power::isBoostSupported(Boost type, bool* _aidl_return) {
     bool supported = mHintManager->IsHintSupported(toString(type));
     LOG(INFO) << "Power boost " << toString(type) << " isBoostSupported: " << supported;
     *_aidl_return = supported;
     return ndk::ScopedAStatus::ok();
 }
 
-constexpr const char *boolToString(bool b) {
+constexpr const char* boolToString(bool b) {
     return b ? "true" : "false";
 }
 
-binder_status_t Power::dump(int fd, const char **, uint32_t) {
+binder_status_t Power::dump(int fd, const char**, uint32_t) {
     std::string buf(::android::base::StringPrintf(
             "HintManager Running: %s\n"
             "VRMode: %s\n"

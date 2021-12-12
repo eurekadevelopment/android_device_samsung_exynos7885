@@ -13,41 +13,41 @@
 // limitations under the License.
 
 #include "SELinux.h"
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <sstream>
 namespace vendor::eureka::security::selinux::V1_0 {
 
 Return<int32_t> SELinux::setSELinuxWritable(selinux::V1_0::Enable enable) {
-        std::ofstream file;
-        std::string writevalue;
-        if (enable == Enable::ENABLE){
+    std::ofstream file;
+    std::string writevalue;
+    if (enable == Enable::ENABLE) {
         writevalue = "1";
-        }else{
+    } else {
         writevalue = "0";
-        }
-        file.open("/sys/fs/selinux/enforce");
-        file << writevalue;
-        file.close();
-	return 0;
+    }
+    file.open("/sys/fs/selinux/enforce");
+    file << writevalue;
+    file.close();
+    return 0;
 }
 
 Return<int32_t> SELinux::readSELinuxstats(void) {
-	std::ifstream file;
-	std::string value;
-	int32_t intvalue;
-	file.open("/sys/fs/selinux/enforce");
-	if (file.is_open()) {
-	   getline(file, value);
-	   file.close();
-	   std::stringstream val(value);
-	   val >> intvalue;
-	   return intvalue;
-	}
-	return -1;
+    std::ifstream file;
+    std::string value;
+    int32_t intvalue;
+    file.open("/sys/fs/selinux/enforce");
+    if (file.is_open()) {
+        getline(file, value);
+        file.close();
+        std::stringstream val(value);
+        val >> intvalue;
+        return intvalue;
+    }
+    return -1;
 }
 
-ISELinux *SELinux::getInstance(void){
-  return new SELinux();
+ISELinux* SELinux::getInstance(void) {
+    return new SELinux();
 }
-}  // namespace android::security::selinux::implementation
+}  // namespace vendor::eureka::security::selinux::V1_0

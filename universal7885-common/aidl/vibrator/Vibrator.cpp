@@ -53,7 +53,8 @@ Vibrator::Vibrator() {
 ndk::ScopedAStatus Vibrator::getCapabilities(int32_t* _aidl_return) {
     *_aidl_return = IVibrator::CAP_ON_CALLBACK | IVibrator::CAP_PERFORM_CALLBACK |
                     IVibrator::CAP_EXTERNAL_CONTROL /*| IVibrator::CAP_COMPOSE_EFFECTS |
-                    IVibrator::CAP_ALWAYS_ON_CONTROL*/;
+                    IVibrator::CAP_ALWAYS_ON_CONTROL*/
+            ;
 
     if (mHasTimedOutIntensity) {
         *_aidl_return = *_aidl_return | IVibrator::CAP_AMPLITUDE_CONTROL |
@@ -67,7 +68,8 @@ ndk::ScopedAStatus Vibrator::off() {
     return activate(0);
 }
 
-ndk::ScopedAStatus Vibrator::on(int32_t timeoutMs, const std::shared_ptr<IVibratorCallback>& callback) {
+ndk::ScopedAStatus Vibrator::on(int32_t timeoutMs,
+                                const std::shared_ptr<IVibratorCallback>& callback) {
     ndk::ScopedAStatus status = activate(timeoutMs);
 
     if (callback != nullptr) {
@@ -84,7 +86,9 @@ ndk::ScopedAStatus Vibrator::on(int32_t timeoutMs, const std::shared_ptr<IVibrat
     return status;
 }
 
-ndk::ScopedAStatus Vibrator::perform(Effect effect, EffectStrength strength, const std::shared_ptr<IVibratorCallback>& callback, int32_t* _aidl_return) {
+ndk::ScopedAStatus Vibrator::perform(Effect effect, EffectStrength strength,
+                                     const std::shared_ptr<IVibratorCallback>& callback,
+                                     int32_t* _aidl_return) {
     ndk::ScopedAStatus status;
     uint8_t amplitude;
     uint32_t ms;
@@ -115,14 +119,13 @@ ndk::ScopedAStatus Vibrator::perform(Effect effect, EffectStrength strength, con
 }
 
 ndk::ScopedAStatus Vibrator::getSupportedEffects(std::vector<Effect>* _aidl_return) {
-    *_aidl_return = {Effect::CLICK, Effect::DOUBLE_CLICK, Effect::HEAVY_CLICK,
-                     Effect::TICK, Effect::TEXTURE_TICK, Effect::THUD, Effect::POP,
-                     Effect::RINGTONE_1, Effect::RINGTONE_2, Effect::RINGTONE_3,
-                     Effect::RINGTONE_4, Effect::RINGTONE_5, Effect::RINGTONE_6,
-                     Effect::RINGTONE_7, Effect::RINGTONE_7, Effect::RINGTONE_8,
-                     Effect::RINGTONE_9, Effect::RINGTONE_10, Effect::RINGTONE_11,
-                     Effect::RINGTONE_12, Effect::RINGTONE_13, Effect::RINGTONE_14,
-                     Effect::RINGTONE_15};
+    *_aidl_return = {
+            Effect::CLICK,        Effect::DOUBLE_CLICK, Effect::HEAVY_CLICK, Effect::TICK,
+            Effect::TEXTURE_TICK, Effect::THUD,         Effect::POP,         Effect::RINGTONE_1,
+            Effect::RINGTONE_2,   Effect::RINGTONE_3,   Effect::RINGTONE_4,  Effect::RINGTONE_5,
+            Effect::RINGTONE_6,   Effect::RINGTONE_7,   Effect::RINGTONE_7,  Effect::RINGTONE_8,
+            Effect::RINGTONE_9,   Effect::RINGTONE_10,  Effect::RINGTONE_11, Effect::RINGTONE_12,
+            Effect::RINGTONE_13,  Effect::RINGTONE_14,  Effect::RINGTONE_15};
     return ndk::ScopedAStatus::ok();
 }
 
@@ -168,15 +171,18 @@ ndk::ScopedAStatus Vibrator::getCompositionSizeMax(int32_t* /*_aidl_return*/) {
     return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
 }
 
-ndk::ScopedAStatus Vibrator::getSupportedPrimitives(std::vector<CompositePrimitive>* /*_aidl_return*/) {
+ndk::ScopedAStatus Vibrator::getSupportedPrimitives(
+        std::vector<CompositePrimitive>* /*_aidl_return*/) {
     return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
 }
 
-ndk::ScopedAStatus Vibrator::getPrimitiveDuration(CompositePrimitive /*primitive*/, int32_t* /*_aidl_return*/) {
+ndk::ScopedAStatus Vibrator::getPrimitiveDuration(CompositePrimitive /*primitive*/,
+                                                  int32_t* /*_aidl_return*/) {
     return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
 }
 
-ndk::ScopedAStatus Vibrator::compose(const std::vector<CompositeEffect>& /*composite*/, const std::shared_ptr<IVibratorCallback>& /*callback*/) {
+ndk::ScopedAStatus Vibrator::compose(const std::vector<CompositeEffect>& /*composite*/,
+                                     const std::shared_ptr<IVibratorCallback>& /*callback*/) {
     return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
 }
 
@@ -184,7 +190,8 @@ ndk::ScopedAStatus Vibrator::getSupportedAlwaysOnEffects(std::vector<Effect>* /*
     return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
 }
 
-ndk::ScopedAStatus Vibrator::alwaysOnEnable(int32_t /*id*/, Effect /*effect*/, EffectStrength /*strength*/) {
+ndk::ScopedAStatus Vibrator::alwaysOnEnable(int32_t /*id*/, Effect /*effect*/,
+                                            EffectStrength /*strength*/) {
     return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
 }
 
@@ -224,7 +231,8 @@ ndk::ScopedAStatus Vibrator::getSupportedBraking(std::vector<Braking>* /*_aidl_r
     return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
 }
 
-ndk::ScopedAStatus Vibrator::composePwle(const std::vector<PrimitivePwle>& /*composite*/, const std::shared_ptr<IVibratorCallback>& /*callback*/) {
+ndk::ScopedAStatus Vibrator::composePwle(const std::vector<PrimitivePwle>& /*composite*/,
+                                         const std::shared_ptr<IVibratorCallback>& /*callback*/) {
     return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
 }
 
@@ -290,7 +298,7 @@ uint32_t Vibrator::effectToMs(Effect effect, ndk::ScopedAStatus* status) {
     return 0;
 }
 
-} // namespace vibrator
-} // namespace hardware
-} // namespace android
-} // namespace aidl
+}  // namespace vibrator
+}  // namespace hardware
+}  // namespace android
+}  // namespace aidl

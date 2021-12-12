@@ -14,22 +14,22 @@
 
 #pragma once
 
-#include <vendor/eureka/hardware/battery/1.0/IBattery.h>
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
+#include <vendor/eureka/hardware/battery/1.0/IBattery.h>
 
 #define ANDROID_SYSTEM_UID 1000
 #define ANDROID_ROOT_UID 0
 
 namespace vendor::eureka::hardware::battery::V1_0 {
 
+using ::android::sp;
 using ::android::hardware::hidl_array;
 using ::android::hardware::hidl_memory;
 using ::android::hardware::hidl_string;
 using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
-using ::android::sp;
 
 struct Battery : public IBattery {
     // Methods from ::vendor::eureka::hardware::battery::V1_0::IBattery follow.
@@ -38,6 +38,5 @@ struct Battery : public IBattery {
 
     // Methods from ::android::hidl::base::V1_0::IBase follow.
     static IBattery* getInstance(void);
-
 };
-}  // namespace android::hardware::battery::implementation
+}  // namespace vendor::eureka::hardware::battery::V1_0

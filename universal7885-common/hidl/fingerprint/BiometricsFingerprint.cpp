@@ -24,9 +24,9 @@
 #include "BiometricsFingerprint.h"
 
 #include <dlfcn.h>
-#include <fstream>
 #include <inttypes.h>
 #include <unistd.h>
+#include <fstream>
 
 #ifdef HAS_FINGERPRINT_GESTURES
 #include <fcntl.h>
@@ -58,9 +58,8 @@ BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr) {
         return;
     }
 
-    int err = ioctl(uinputFd, UI_SET_EVBIT, EV_KEY) |
-          ioctl(uinputFd, UI_SET_KEYBIT, KEY_UP) |
-          ioctl(uinputFd, UI_SET_KEYBIT, KEY_DOWN);
+    int err = ioctl(uinputFd, UI_SET_EVBIT, EV_KEY) | ioctl(uinputFd, UI_SET_KEYBIT, KEY_UP) |
+              ioctl(uinputFd, UI_SET_KEYBIT, KEY_DOWN);
     if (err != 0) {
         LOG(ERROR) << "Unable to enable key events";
         return;
@@ -71,14 +70,14 @@ BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr) {
 
     err = write(uinputFd, &uidev, sizeof(uidev));
     if (err < 0) {
-       LOG(ERROR) << "Write user device to uinput node failed";
-       return;
+        LOG(ERROR) << "Write user device to uinput node failed";
+        return;
     }
 
     err = ioctl(uinputFd, UI_DEV_CREATE);
     if (err < 0) {
-       LOG(ERROR) << "Unable to create uinput device";
-       return;
+        LOG(ERROR) << "Unable to create uinput device";
+        return;
     }
 
     LOG(INFO) << "Successfully registered uinput-sec-fp for fingerprint gestures";
@@ -200,7 +199,7 @@ FingerprintAcquiredInfo BiometricsFingerprint::VendorAcquiredFilter(int32_t info
 }
 
 Return<uint64_t> BiometricsFingerprint::setNotify(
-    const sp<IBiometricsFingerprintClientCallback>& clientCallback) {
+        const sp<IBiometricsFingerprintClientCallback>& clientCallback) {
     std::lock_guard<std::mutex> lock(mClientCallbackMutex);
     mClientCallback = clientCallback;
     // This is here because HAL 2.3 doesn't have a way to propagate a
@@ -286,33 +285,33 @@ bool BiometricsFingerprint::openHal() {
     if (handle) {
         int err;
 
-        ss_fingerprint_close =
-            reinterpret_cast<typeof(ss_fingerprint_close)>(dlsym(handle, "ss_fingerprint_close"));
+        ss_fingerprint_close = reinterpret_cast<typeof(ss_fingerprint_close)>(
+                dlsym(handle, "ss_fingerprint_close"));
         ss_fingerprint_open =
-            reinterpret_cast<typeof(ss_fingerprint_open)>(dlsym(handle, "ss_fingerprint_open"));
+                reinterpret_cast<typeof(ss_fingerprint_open)>(dlsym(handle, "ss_fingerprint_open"));
 
         ss_set_notify_callback = reinterpret_cast<typeof(ss_set_notify_callback)>(
-            dlsym(handle, "ss_set_notify_callback"));
+                dlsym(handle, "ss_set_notify_callback"));
         ss_fingerprint_pre_enroll = reinterpret_cast<typeof(ss_fingerprint_pre_enroll)>(
-            dlsym(handle, "ss_fingerprint_pre_enroll"));
-        ss_fingerprint_enroll =
-            reinterpret_cast<typeof(ss_fingerprint_enroll)>(dlsym(handle, "ss_fingerprint_enroll"));
+                dlsym(handle, "ss_fingerprint_pre_enroll"));
+        ss_fingerprint_enroll = reinterpret_cast<typeof(ss_fingerprint_enroll)>(
+                dlsym(handle, "ss_fingerprint_enroll"));
         ss_fingerprint_post_enroll = reinterpret_cast<typeof(ss_fingerprint_post_enroll)>(
-            dlsym(handle, "ss_fingerprint_post_enroll"));
+                dlsym(handle, "ss_fingerprint_post_enroll"));
         ss_fingerprint_get_auth_id = reinterpret_cast<typeof(ss_fingerprint_get_auth_id)>(
-            dlsym(handle, "ss_fingerprint_get_auth_id"));
-        ss_fingerprint_cancel =
-            reinterpret_cast<typeof(ss_fingerprint_cancel)>(dlsym(handle, "ss_fingerprint_cancel"));
+                dlsym(handle, "ss_fingerprint_get_auth_id"));
+        ss_fingerprint_cancel = reinterpret_cast<typeof(ss_fingerprint_cancel)>(
+                dlsym(handle, "ss_fingerprint_cancel"));
         ss_fingerprint_enumerate = reinterpret_cast<typeof(ss_fingerprint_enumerate)>(
-            dlsym(handle, "ss_fingerprint_enumerate"));
-        ss_fingerprint_remove =
-            reinterpret_cast<typeof(ss_fingerprint_remove)>(dlsym(handle, "ss_fingerprint_remove"));
+                dlsym(handle, "ss_fingerprint_enumerate"));
+        ss_fingerprint_remove = reinterpret_cast<typeof(ss_fingerprint_remove)>(
+                dlsym(handle, "ss_fingerprint_remove"));
         ss_fingerprint_set_active_group = reinterpret_cast<typeof(ss_fingerprint_set_active_group)>(
-            dlsym(handle, "ss_fingerprint_set_active_group"));
+                dlsym(handle, "ss_fingerprint_set_active_group"));
         ss_fingerprint_authenticate = reinterpret_cast<typeof(ss_fingerprint_authenticate)>(
-            dlsym(handle, "ss_fingerprint_authenticate"));
+                dlsym(handle, "ss_fingerprint_authenticate"));
         ss_fingerprint_request = reinterpret_cast<typeof(ss_fingerprint_request)>(
-            dlsym(handle, "ss_fingerprint_request"));
+                dlsym(handle, "ss_fingerprint_request"));
 
         if ((err = ss_fingerprint_open(nullptr)) != 0) {
             LOG(ERROR) << "Can't open fingerprint, error: " << err;
@@ -332,7 +331,7 @@ bool BiometricsFingerprint::openHal() {
 
 void BiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
     BiometricsFingerprint* thisPtr =
-        static_cast<BiometricsFingerprint*>(BiometricsFingerprint::getInstance());
+            static_cast<BiometricsFingerprint*>(BiometricsFingerprint::getInstance());
     std::lock_guard<std::mutex> lock(thisPtr->mClientCallbackMutex);
     if (thisPtr == nullptr || thisPtr->mClientCallback == nullptr) {
         LOG(ERROR) << "Receiving callbacks before the client callback is registered.";
@@ -355,7 +354,7 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
             }
             int32_t vendorCode = 0;
             FingerprintAcquiredInfo result =
-                VendorAcquiredFilter(msg->data.acquired.acquired_info, &vendorCode);
+                    VendorAcquiredFilter(msg->data.acquired.acquired_info, &vendorCode);
             LOG(DEBUG) << "onAcquired(" << static_cast<int>(result) << ")";
             if (!thisPtr->mClientCallback->onAcquired(devId, result, vendorCode).isOk()) {
                 LOG(ERROR) << "failed to invoke fingerprint onAcquired callback";
@@ -364,10 +363,10 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
         case FINGERPRINT_TEMPLATE_ENROLLING:
 #ifdef USES_PERCENTAGE_SAMPLES
             const_cast<fingerprint_msg_t*>(msg)->data.enroll.samples_remaining =
-                100 - msg->data.enroll.samples_remaining;
+                    100 - msg->data.enroll.samples_remaining;
 #endif
 #ifdef CALL_CANCEL_ON_ENROLL_COMPLETION
-            if(msg->data.enroll.samples_remaining == 0) {
+            if (msg->data.enroll.samples_remaining == 0) {
                 thisPtr->ss_fingerprint_cancel();
             }
 #endif
@@ -375,9 +374,10 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
                        << ", gid=" << msg->data.enroll.finger.gid
                        << ", rem=" << msg->data.enroll.samples_remaining << ")";
             if (!thisPtr->mClientCallback
-                    ->onEnrollResult(devId, msg->data.enroll.finger.fid,
-                                     msg->data.enroll.finger.gid, msg->data.enroll.samples_remaining)
-                    .isOk()) {
+                         ->onEnrollResult(devId, msg->data.enroll.finger.fid,
+                                          msg->data.enroll.finger.gid,
+                                          msg->data.enroll.samples_remaining)
+                         .isOk()) {
                 LOG(ERROR) << "failed to invoke fingerprint onEnrollResult callback";
             }
             break;
@@ -386,9 +386,10 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
                        << ", gid=" << msg->data.removed.finger.gid
                        << ", rem=" << msg->data.removed.remaining_templates << ")";
             if (!thisPtr->mClientCallback
-                     ->onRemoved(devId, msg->data.removed.finger.fid, msg->data.removed.finger.gid,
-                                 msg->data.removed.remaining_templates)
-                     .isOk()) {
+                         ->onRemoved(devId, msg->data.removed.finger.fid,
+                                     msg->data.removed.finger.gid,
+                                     msg->data.removed.remaining_templates)
+                         .isOk()) {
                 LOG(ERROR) << "failed to invoke fingerprint onRemoved callback";
             }
             break;
@@ -398,19 +399,20 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
             if (msg->data.authenticated.finger.fid != 0) {
                 const uint8_t* hat = reinterpret_cast<const uint8_t*>(&msg->data.authenticated.hat);
                 const hidl_vec<uint8_t> token(
-                    std::vector<uint8_t>(hat, hat + sizeof(msg->data.authenticated.hat)));
+                        std::vector<uint8_t>(hat, hat + sizeof(msg->data.authenticated.hat)));
                 if (!thisPtr->mClientCallback
-                         ->onAuthenticated(devId, msg->data.authenticated.finger.fid,
-                                           msg->data.authenticated.finger.gid, token)
-                         .isOk()) {
+                             ->onAuthenticated(devId, msg->data.authenticated.finger.fid,
+                                               msg->data.authenticated.finger.gid, token)
+                             .isOk()) {
                     LOG(ERROR) << "failed to invoke fingerprint onAuthenticated callback";
                 }
             } else {
                 // Not a recognized fingerprint
                 if (!thisPtr->mClientCallback
-                         ->onAuthenticated(devId, msg->data.authenticated.finger.fid,
-                                           msg->data.authenticated.finger.gid, hidl_vec<uint8_t>())
-                         .isOk()) {
+                             ->onAuthenticated(devId, msg->data.authenticated.finger.fid,
+                                               msg->data.authenticated.finger.gid,
+                                               hidl_vec<uint8_t>())
+                             .isOk()) {
                     LOG(ERROR) << "failed to invoke fingerprint onAuthenticated callback";
                 }
             }
@@ -420,10 +422,10 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
                        << ", gid=" << msg->data.enumerated.finger.gid
                        << ", rem=" << msg->data.enumerated.remaining_templates << ")";
             if (!thisPtr->mClientCallback
-                     ->onEnumerate(devId, msg->data.enumerated.finger.fid,
-                                   msg->data.enumerated.finger.gid,
-                                   msg->data.enumerated.remaining_templates)
-                     .isOk()) {
+                         ->onEnumerate(devId, msg->data.enumerated.finger.fid,
+                                       msg->data.enumerated.finger.gid,
+                                       msg->data.enumerated.remaining_templates)
+                         .isOk()) {
                 LOG(ERROR) << "failed to invoke fingerprint onEnumerate callback";
             }
             break;
@@ -436,8 +438,7 @@ void BiometricsFingerprint::handleEvent(int eventCode) {
         case SEM_FINGERPRINT_EVENT_GESTURE_SWIPE_DOWN:
         case SEM_FINGERPRINT_EVENT_GESTURE_SWIPE_UP:
             struct input_event event {};
-            int keycode = eventCode == SEM_FINGERPRINT_EVENT_GESTURE_SWIPE_UP ?
-                          KEY_UP : KEY_DOWN;
+            int keycode = eventCode == SEM_FINGERPRINT_EVENT_GESTURE_SWIPE_UP ? KEY_UP : KEY_DOWN;
             int err;
 
             // Report the key
@@ -479,7 +480,7 @@ void BiometricsFingerprint::handleEvent(int eventCode) {
                 LOG(ERROR) << "Write EV_SYN to uinput node failed";
                 return;
             }
-        break;
+            break;
 #endif
     }
 }
@@ -496,8 +497,8 @@ int BiometricsFingerprint::waitForSensor(std::chrono::milliseconds pollWait,
     int sensorStatus = SEM_SENSOR_STATUS_WORKING;
     std::chrono::milliseconds timeWaited = 0ms;
     while (sensorStatus != SEM_SENSOR_STATUS_OK) {
-        if (sensorStatus == SEM_SENSOR_STATUS_CALIBRATION_ERROR
-                || sensorStatus == SEM_SENSOR_STATUS_ERROR){
+        if (sensorStatus == SEM_SENSOR_STATUS_CALIBRATION_ERROR ||
+            sensorStatus == SEM_SENSOR_STATUS_ERROR) {
             return -1;
         }
         if (timeWaited >= timeOut) {

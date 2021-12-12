@@ -24,12 +24,12 @@
 #include <linux/uinput.h>
 #endif
 
+#include <android/hardware/biometrics/fingerprint/2.1/types.h>
+#include <android/hardware/biometrics/fingerprint/2.3/IBiometricsFingerprint.h>
 #include <hardware/fingerprint.h>
 #include <hardware/hardware.h>
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
-#include <android/hardware/biometrics/fingerprint/2.3/IBiometricsFingerprint.h>
-#include <android/hardware/biometrics/fingerprint/2.1/types.h>
 
 #include "VendorConstants.h"
 
@@ -47,11 +47,11 @@ using ::android::hardware::hidl_string;
 using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
-using ::android::hardware::biometrics::fingerprint::V2_3::IBiometricsFingerprint;
-using ::android::hardware::biometrics::fingerprint::V2_1::IBiometricsFingerprintClientCallback;
 using ::android::hardware::biometrics::fingerprint::V2_1::FingerprintAcquiredInfo;
 using ::android::hardware::biometrics::fingerprint::V2_1::FingerprintError;
+using ::android::hardware::biometrics::fingerprint::V2_1::IBiometricsFingerprintClientCallback;
 using ::android::hardware::biometrics::fingerprint::V2_1::RequestStatus;
+using ::android::hardware::biometrics::fingerprint::V2_3::IBiometricsFingerprint;
 
 struct BiometricsFingerprint : public IBiometricsFingerprint {
     BiometricsFingerprint();
@@ -60,9 +60,10 @@ struct BiometricsFingerprint : public IBiometricsFingerprint {
     // Method to wrap legacy HAL with BiometricsFingerprint class
     static IBiometricsFingerprint* getInstance();
 
-    // Methods from ::android::hardware::biometrics::fingerprint::V2_3::IBiometricsFingerprint follow.
+    // Methods from ::android::hardware::biometrics::fingerprint::V2_3::IBiometricsFingerprint
+    // follow.
     Return<uint64_t> setNotify(
-        const sp<IBiometricsFingerprintClientCallback>& clientCallback) override;
+            const sp<IBiometricsFingerprintClientCallback>& clientCallback) override;
     Return<uint64_t> preEnroll() override;
     Return<RequestStatus> enroll(const hidl_array<uint8_t, 69>& hat, uint32_t gid,
                                  uint32_t timeoutSec) override;
@@ -76,15 +77,15 @@ struct BiometricsFingerprint : public IBiometricsFingerprint {
     Return<bool> isUdfps(uint32_t sensorID) override;
     Return<void> onFingerDown(uint32_t x, uint32_t y, float minor, float major) override;
     Return<void> onFingerUp() override;
-    Return<void> onShowUdfpsOverlay(){ return Void();}
-    Return<void> onHideUdfpsOverlay(){ return Void();}
+    Return<void> onShowUdfpsOverlay() { return Void(); }
+    Return<void> onHideUdfpsOverlay() { return Void(); }
 
   private:
     bool openHal();
     int request(int cmd, int param);
     int waitForSensor(std::chrono::milliseconds pollWait, std::chrono::milliseconds timeOut);
     static void notify(
-        const fingerprint_msg_t* msg); /* Static callback for legacy HAL implementation */
+            const fingerprint_msg_t* msg); /* Static callback for legacy HAL implementation */
     void handleEvent(int eventCode);
     static Return<RequestStatus> ErrorFilter(int32_t error);
     static FingerprintError VendorErrorFilter(int32_t error, int32_t* vendorCode);
@@ -111,7 +112,8 @@ struct BiometricsFingerprint : public IBiometricsFingerprint {
     int (*ss_fingerprint_remove)(uint32_t gid, uint32_t fid);
     int (*ss_fingerprint_set_active_group)(uint32_t gid, const char* store_path);
     int (*ss_fingerprint_authenticate)(uint64_t operation_id, uint32_t gid);
-    int (*ss_fingerprint_request)(uint32_t cmd, char *inBuf, uint32_t inBuf_length, char *outBuf, uint32_t outBuf_length, uint32_t param);
+    int (*ss_fingerprint_request)(uint32_t cmd, char* inBuf, uint32_t inBuf_length, char* outBuf,
+                                  uint32_t outBuf_length, uint32_t param);
 };
 
 }  // namespace implementation
