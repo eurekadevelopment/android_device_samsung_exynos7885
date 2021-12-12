@@ -20,6 +20,35 @@ on init
     # SD-755: Increase default socket rx buffer limit
     write /proc/sys/net/core/rmem_default 327680
     write /proc/sys/net/core/rmem_max 327680
+    
+# Mount cpuset group for cameraserver
+    mkdir /dev/cpuset/cameraserver
+    copy /dev/cpuset/cpus /dev/cpuset/cameraserver/cpus
+    copy /dev/cpuset/mems /dev/cpuset/cameraserver/mems
+    chown system system /dev/cpuset/cameraserver
+    chown system system /dev/cpuset/cameraserver/tasks
+    chown system system /dev/cpuset/cameraserver/cpus
+    chmod 0664 /dev/cpuset/cameraserver/tasks
+    chmod 0664 /dev/cpuset/cameraserver/cpus
+
+# For CPUSET(7885)   0-3, 4-5, 6-7
+    chown system system /dev/cpuset/top-app/cpus
+    chown system system /dev/cpuset/foreground/cpus
+    chown system system /dev/cpuset/background/cpus
+    chown system system /dev/cpuset/system-background/cpus
+    chmod 664 /dev/cpuset/top-app/cpus
+    chmod 664 /dev/cpuset/foreground/cpus
+    chmod 664 /dev/cpuset/background/cpus
+    chmod 664 /dev/cpuset/system-background/cpus
+    write /dev/cpuset/top-app/cpus 0-7
+    write /dev/cpuset/foreground/cpus 0-7
+    write /dev/cpuset/background/cpus 0-7
+    write /dev/cpuset/system-background/cpus 0-7
+
+# For Selective boost
+    write /dev/cpuset/top-app/selective_boost 1
+    write /dev/cpuset/foreground/selective_boost 1
+    write /dev/cpuset/cameraserver/selective_boost 1
 
 
     ## SCSC BT
@@ -315,10 +344,10 @@ on boot
     chmod 0664 /sys/devices/system/sec_os_ctrl/migrate_os
 
     # mif dvfs node
-    chown system system sys/devices/platform/17000010.devfreq_mif/devfreq/17000010.devfreq_mif/available_frequencies
-    chmod 0444 sys/devices/platform/17000010.devfreq_mif/devfreq/17000010.devfreq_mif/available_frequencies
+    chown system system /sys/devices/platform/17000010.devfreq_mif/devfreq/17000010.devfreq_mif/available_frequencies
+    chmod 0444 /sys/devices/platform/17000010.devfreq_mif/devfreq/17000010.devfreq_mif/available_frequencies
     chown system system sys/devices/platform/17000010.devfreq_mif/devfreq/17000010.devfreq_mif/min_freq
-    chmod 0664 sys/devices/platform/17000010.devfreq_mif/devfreq/17000010.devfreq_mif/min_freq
+    chmod 0664 /sys/devices/platform/17000010.devfreq_mif/devfreq/17000010.devfreq_mif/min_freq
 
     # GPU dvfs node
     chown radio system /sys/devices/platform/11500000.mali/dvfs_table
@@ -378,35 +407,6 @@ on boot
     chmod 0660 /sys/devices/system/cpu/cpu6/cpufreq/interactive/boostpulse_duration
     chown system system /sys/devices/system/cpu/cpu6/cpufreq/interactive/io_is_busy
     chmod 0660 /sys/devices/system/cpu/cpu6/cpufreq/interactive/io_is_busy
-
-# Mount cpuset group for cameraserver
-    mkdir /dev/cpuset/cameraserver
-    copy /dev/cpuset/cpus /dev/cpuset/cameraserver/cpus
-    copy /dev/cpuset/mems /dev/cpuset/cameraserver/mems
-    chown system system /dev/cpuset/cameraserver
-    chown system system /dev/cpuset/cameraserver/tasks
-    chown system system /dev/cpuset/cameraserver/cpus
-    chmod 0664 /dev/cpuset/cameraserver/tasks
-    chmod 0664 /dev/cpuset/cameraserver/cpus
-
-# For CPUSET(7885)   0-3, 4-5, 6-7
-    chown system system /dev/cpuset/top-app/cpus
-    chown system system /dev/cpuset/foreground/cpus
-    chown system system /dev/cpuset/background/cpus
-    chown system system /dev/cpuset/system-background/cpus
-    chmod 664 /dev/cpuset/top-app/cpus
-    chmod 664 /dev/cpuset/foreground/cpus
-    chmod 664 /dev/cpuset/background/cpus
-    chmod 664 /dev/cpuset/system-background/cpus
-    write /dev/cpuset/top-app/cpus 0-7
-    write /dev/cpuset/foreground/cpus 0-7
-    write /dev/cpuset/background/cpus 0-7
-    write /dev/cpuset/system-background/cpus 0-7
-
-# For Selective boost
-    write /dev/cpuset/top-app/selective_boost 1
-    write /dev/cpuset/foreground/selective_boost 1
-    write /dev/cpuset/cameraserver/selective_boost 1
 
 # Permission for UART SWITCH
     chmod 0660 /sys/class/sec/switch/uart_sel
