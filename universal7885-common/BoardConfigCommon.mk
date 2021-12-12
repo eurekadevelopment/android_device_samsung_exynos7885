@@ -48,9 +48,6 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 
-# Fingerprint
-TARGET_SEC_FP_HAS_FINGERPRINT_GESTURES := true
-
 # Init
 TARGET_INIT_VENDOR_LIB := //$(COMMON_PATH):libinit_universal7885
 
@@ -78,7 +75,7 @@ include device/samsung/universal7885-common/configs/props/props.mk
 
 # Recovery
 BOARD_HAS_DOWNLOAD_MODE := true
-TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/recovery/recovery.fstab
+TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/recovery.fstab
 
 # RIL
 ENABLE_VENDOR_RIL_SERVICE := true
