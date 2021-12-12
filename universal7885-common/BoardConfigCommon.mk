@@ -63,9 +63,6 @@ BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 -
 TARGET_KERNEL_SOURCE := kernel/samsung/exynos7885
 TARGET_KERNEL_CLANG_COMPILE := true
 
-# Keymaster
-TARGET_KEYMASTER_VARIANT := samsung
-
 # HIDL
 include device/samsung/universal7885-common/configs/vintf/manifest.mk
 
