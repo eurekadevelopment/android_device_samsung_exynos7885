@@ -1,0 +1,21 @@
+cc_binary {
+    name: "android.hardware.keymaster@4.0-service.samsung",
+    defaults: ["hidl_defaults"],
+    proprietary: true,
+    init_rc: ["android.hardware.keymaster@4.0-service.samsung.rc"],
+    relative_install_path: "hw",
+    srcs: [
+         "service.cpp",
+    ],
+    shared_libs: [
+        "liblog",
+        "libcutils",
+        "libhardware",
+        "libbase",
+        "libutils",
+        "libhidlbase",
+        "android.hardware.keymaster@4.0",
+        "libskeymaster4device",
+        "libkeymaster4",
+    ],
+}
