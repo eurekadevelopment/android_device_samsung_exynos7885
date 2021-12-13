@@ -91,7 +91,7 @@ open class CameraLightSensorService : Service() {
 
     private val mScreenStateReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            if (intent.action == Intent.ACTION_SCREEN_ON) {
+            if (intent.action == Intent.ACTION_USER_PRESENT) {
                 onDisplayOn()
                 mServiceStarted = true
             } else if (intent.action == Intent.ACTION_SCREEN_OFF) {
@@ -249,7 +249,7 @@ open class CameraLightSensorService : Service() {
         startForeground(50, pushNotification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA)
         batteryOptimization(mContext)
         mRegistered = false
-        screenStateFilter = IntentFilter(Intent.ACTION_SCREEN_ON)
+        screenStateFilter = IntentFilter(Intent.ACTION_USER_PRESENT)
         screenStateFilter!!.addAction(Intent.ACTION_SCREEN_OFF)
         try {
             if (Settings.System.getInt(contentResolver, Settings.System.SCREEN_BRIGHTNESS_MODE)
