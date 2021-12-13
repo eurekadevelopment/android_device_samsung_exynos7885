@@ -34,7 +34,7 @@
 	    android:foregroundServiceType="camera">
             <intent-filter android:priority="1000">
                 <action android:name="android.intent.action.SCREEN_OFF" />
-                <action android:name="android.intent.action.ACTION_USER_PRESENT" />
+                <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </service>
     </application>
