@@ -16,9 +16,7 @@
 
 #define CHECK_LOGCAT "/data/debug/logcat"
 #define WRITE_LOGCAT "/data/debug/logs/logcat.txt"
-#define LOG_TAG "DebugLogcatDaemon"
 
-#include <log/log.h>
 #include <fstream>
 #include <iostream>
 
@@ -26,10 +24,8 @@ bool check_data_logcat() {
     std::ifstream datafile(CHECK_LOGCAT);
     if (datafile.good()) {
         datafile.close();
-        ALOGI("Found %s, logging...", CHECK_LOGCAT);
         return true;
     } else {
-        ALOGW("Couldn't find %s, not logging...", CHECK_LOGCAT);
         return false;
     }
 }
