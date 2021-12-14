@@ -1,0 +1,10 @@
+type debug_daemon, domain, mlstrustedsubject;
+type debug_daemon_exec, exec_type, file_type, vendor_file_type;
+init_daemon_domain(debug_daemon)
+type debug_daemon_data_file, file_type, data_file_type;
+
+allow debug_daemon debug_daemon_data_file:dir rw_dir_perms;
+allow debug_daemon debug_daemon_data_file:file rw_file_perms;
+allow debug_daemon proc_kmsg:file r_file_perms;
+allow debug_daemon logcat_exec rx_file_perms;
+
