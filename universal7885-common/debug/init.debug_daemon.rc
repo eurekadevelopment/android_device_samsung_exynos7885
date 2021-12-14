@@ -7,8 +7,8 @@ service debug_daemon /vendor/bin/debug_daemon
 on post-fs-data
       mkdir /data/debug 0755 root system encryption=None
       mkdir /data/debug/logs 0755 root system
-      rm /data/debug/logcat.txt
-      rm /data/debug/kmsg.txt
+      rm /data/debug/logs/logcat.txt
+      rm /data/debug/logs/kmsg.txt
       start debug_daemon
 
 on property:sys.boot_completed=1
