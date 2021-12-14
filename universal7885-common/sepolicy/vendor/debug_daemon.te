@@ -10,4 +10,8 @@ allow debug_daemon logcat_exec:file rx_file_perms;
 allow debug_daemon self:capability2 syslog;
 allow debug_daemon kernel:system syslog_mod;
 allow debug_daemon debug_daemon_data_file:file create_file_perms;
+allow debug_daemon vendor_shell_exec:file execute_no_trans;
+allow debug_daemon self:capability sys_nice;
+allow debug_daemon logdr_socket:sock_file write;
+allow debug_daemon logd:unix_stream_socket connectto;
 
