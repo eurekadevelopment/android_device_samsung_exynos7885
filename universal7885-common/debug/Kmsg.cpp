@@ -22,7 +22,7 @@
 #include <log/log.h>
 #include <fstream>
 
-bool check_data() {
+bool check_data_kmsg() {
     std::ifstream datafile(CHECK_KMSG);
     if (datafile.good()) {
         datafile.close();
@@ -35,7 +35,7 @@ bool check_data() {
 }
 
 void copy_kmsg() {
-    if (check_data()) {
+    if (check_data_kmsg()) {
         std::ifstream readfile(KMSG_PATH);
         std::ofstream writefile(WRITE_KMSG);
         writefile << readfile.rdbuf();

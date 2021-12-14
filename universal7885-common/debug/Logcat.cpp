@@ -22,7 +22,7 @@
 #include <fstream>
 #include <iostream>
 
-bool check_data() {
+bool check_data_logcat() {
     std::ifstream datafile(CHECK_LOGCAT);
     if (datafile.good()) {
         datafile.close();
@@ -35,7 +35,7 @@ bool check_data() {
 }
 
 void copy_logcat() {
-    if (check_data()) {
+    if (check_data_logcat()) {
         system("/system/bin/logcat -f /data/debug/logs/logcat.txt");
     }
 }
