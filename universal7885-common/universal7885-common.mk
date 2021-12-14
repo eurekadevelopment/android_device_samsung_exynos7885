@@ -66,6 +66,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/component-overrides-bluetooth.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/component-overrides-bluetooth.xml
 
+# Debug
+PRODUCT_PACKAGES += debug_daemon
+
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl \
@@ -327,11 +330,6 @@ PRODUCT_PACKAGES += \
     vendor.eureka.hardware.flashlight@1.0-service \
     vendor.eureka.hardware.gpu@1.0-service \
     vendor.eureka.security.selinux@1.0-service
-
-# Debug
-ifeq ($(TARGET_BUILD_VARIENT),eng)
-PRODUCT_PACKAGES += debug.rc
-endif
 
 # Extra Command-Line Tools
 PRODUCT_PACKAGES += \
