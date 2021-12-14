@@ -9,6 +9,7 @@ on post-fs-data
       mkdir /data/debug/logs 0755 root system
       rm /data/debug/logcat.txt
       rm /data/debug/kmsg.txt
+      start debug_daemon
 
 on property:sys.boot_completed=1
-      start debug_daemon
+      stop debug_daemon

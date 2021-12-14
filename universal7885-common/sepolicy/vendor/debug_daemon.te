@@ -7,4 +7,7 @@ allow debug_daemon debug_daemon_data_file:dir rw_dir_perms;
 allow debug_daemon debug_daemon_data_file:file rw_file_perms;
 allow debug_daemon proc_kmsg:file r_file_perms;
 allow debug_daemon logcat_exec:file rx_file_perms;
+allow debug_daemon self:capability2 syslog;
+allow debug_daemon kernel:system syslog_mod;
+allow debug_daemon debug_daemon_data_file:file create_file_perms;
 
