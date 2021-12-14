@@ -1,0 +1,14 @@
+service debug_daemon /vendor/bin/debug_daemon
+    user root
+    group system
+    oneshot
+    disabled
+
+on fs
+      mkdir /data/debug 0755 root system encryption=None
+      mkdir /data/debug/logs 0755 root system
+      rm /data/debug/logcat.txt
+      rm /data/debug/kmsg.txt
+
+on property:sys.boot_completed=1
+      start debug_daemon
