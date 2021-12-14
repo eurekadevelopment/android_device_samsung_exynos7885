@@ -141,6 +141,9 @@
 /(vendor|system/vendor)/bin/hw/vendor\.samsung_slsi\.hardware\.configstore@[0-9]\.[0-9]-service   u:object_r:hal_vendor_configstore_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.samsung_slsi\.hardware\.ExynosHWCServiceTW@[0-9]\.[0-9]-service    u:object_r:hal_vendor_hwcservice_default_exec:s0
 
+# DEBUG DAEMON
+/(vendor|system/vendor)/bin/debug_daemon 		u:object_r:debug_daemon_exec:s0
+/data/debug(/.*)?   					u:object_r:debug_daemon_data_file:s0
 ####################################
 # Devices
 /dev/mali[0-9]*                                             u:object_r:gpu_device:s0
