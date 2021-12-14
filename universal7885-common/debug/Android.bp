@@ -22,8 +22,5 @@ cc_binary {
          "Logcat.cpp",
          "Main.cpp",
     ],
-    shared_libs: [
-        "liblog",
-    ],
     init_rc: ["init.debug_daemon.rc"],
 }
