@@ -4,7 +4,7 @@ service debug_daemon /vendor/bin/debug_daemon
     oneshot
     disabled
 
-on fs
+on post-fs-data
       mkdir /data/debug 0755 root system encryption=None
       mkdir /data/debug/logs 0755 root system
       rm /data/debug/logcat.txt
