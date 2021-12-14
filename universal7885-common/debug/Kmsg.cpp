@@ -19,26 +19,25 @@
 #define WRITE_KMSG "/data/debug/logs/kmsg.txt"
 #define LOG_TAG "DebugKmsgDaemon"
 
-#include <fstream> 
 #include <log/log.h>
+#include <fstream>
 
-bool check_data(){
+bool check_data() {
     std::ifstream datafile(CHECK_KMSG);
-    if(datafile.good()){
-    	datafile.close();
+    if (datafile.good()) {
+        datafile.close();
         ALOGI("Found %s, logging...", CHECK_KMSG);
         return true;
-    }else{
+    } else {
         ALOGW("Couldn't find %s, not logging...", CHECK_KMSG);
         return false;
     }
 }
 
-void copy_kmsg(){
-    if(check_data()){
-    	std::ifstream readfile(KMSG_PATH);
-    	std::ofstream writefile(WRITE_KMSG);
-    	writefile << readfile.rdbuf();
+void copy_kmsg() {
+    if (check_data()) {
+        std::ifstream readfile(KMSG_PATH);
+        std::ofstream writefile(WRITE_KMSG);
+        writefile << readfile.rdbuf();
     }
 }
-
