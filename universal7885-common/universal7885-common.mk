@@ -334,4 +334,6 @@ PRODUCT_PACKAGES += \
 
 # Extra Command-Line Tools
 PRODUCT_PACKAGES += \
-    sgdisk
+    sgdisk \
+    strace
+
