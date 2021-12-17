@@ -69,7 +69,8 @@
     </array>
     <item name="cpu.idle">3.79</item>
     <item name="cpu.awake">23</item>
-    <item name="battery.capacity">3300</item>
+    <item name="battery.capacity">3400</item>
+    <item name="battery.typical.capacity">3300</item>
     <item name="wifi.controller.idle">1</item>
     <item name="wifi.controller.rx">65</item>
     <item name="wifi.controller.tx">265</item>
