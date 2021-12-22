@@ -162,9 +162,6 @@
 # DRM
 /dev/s5p-smem 						    u:object_r:drm_device:s0
 
-# Loop
-/dev/block/loop*					u:object_r:custom_loop_device:s0
-
 # usb
 /dev/android_ssusbcon(/.*)?                                 u:object_r:usb_device:s0
 /dev/mtp_usb*                                               u:object_r:mtp_device:s0
