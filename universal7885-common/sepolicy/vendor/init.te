@@ -56,5 +56,7 @@ allow init mnt_vendor_file:dir mounton;
 
 unix_socket_connect(init, property, rild)
 
+allow init sec_efs_file:dir mounton;
+
 get_prop(init, vendor_radio_prop)
 get_prop(init, radio_prop)
