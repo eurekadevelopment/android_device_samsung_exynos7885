@@ -22,3 +22,7 @@ allow system_app hal_battery_default:binder call;
 allow system_app hal_flashlight_default:binder call;
 allow system_app hal_selinux_default:binder call;
 allow system_app hal_gpu_default:binder call;
+
+allow system_app fm_radio_device:chr_file { read write open ioctl };
+
+
