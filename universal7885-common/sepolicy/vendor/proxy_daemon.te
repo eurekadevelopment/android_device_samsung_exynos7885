@@ -1,0 +1,4 @@
+type proxy_daemon, domain;
+type proxy_daemon_exec, file_type, vendor_file_type, exec_type;
+init_daemon_domain(proxy_daemon)
+

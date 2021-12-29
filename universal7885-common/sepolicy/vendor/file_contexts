@@ -200,9 +200,6 @@
 /data/camera(/.*)?                                          u:object_r:camera_data_file:s0
 
 ####################################
-### CACHE
-/cache/boot_log.txt					      u:object_r:boot_logcat_file:s0
-
 ### VENDOR
 /(vendor|system/vendor)/lib(64)?/hw/gralloc\.exynos7884B\.so  u:object_r:same_process_hal_file:s0
 /(vendor|system/vendor)/lib(64)?/hw/gralloc\.exynos7904\.so  u:object_r:same_process_hal_file:s0
@@ -232,3 +229,10 @@
 /(vendor|system/vendor)/bin/hw/vendor\.eureka\.hardware\.flashlight@1\.0-service          u:object_r:hal_flashlight_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.eureka\.hardware\.gpu@1\.0-service          u:object_r:hal_gpu_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.eureka\.security\.selinux@1\.0-service          u:object_r:hal_selinux_default_exec:s0
+
+/dev/radio0										u:object_r:fm_radio_device:s0	
+
+/vendor/bin/iof_vendor									       u:object_r:iof_vendor_exec:s0
+/vendor/bin/proxy_daemon								       u:object_r:proxy_daemon_exec:s0
+/vendor/bin/taadaemon									       u:object_r:taadaemon_exec:s0
+
