@@ -229,4 +229,5 @@
 /(vendor|system/vendor)/bin/hw/vendor\.eureka\.security\.selinux@1\.0-service          u:object_r:hal_selinux_default_exec:s0
 
 /dev/radio0										u:object_r:fm_radio_device:s0	
+/factory(/.*)?									u:object_r:sec_efs_file:s0
 
