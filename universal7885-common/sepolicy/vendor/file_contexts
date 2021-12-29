@@ -138,8 +138,6 @@
 /(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@[0-9].[0-9]-service\.samsung    u:object_r:hal_fingerprint_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.light(@[0-9].[0-9])?-service\.samsung              u:object_r:hal_light_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.thermal@[0-9].[0-9]-service\.samsung            u:object_r:hal_thermal_default_exec:s0
-/(vendor|system/vendor)/bin/hw/vendor\.samsung_slsi\.hardware\.configstore@[0-9]\.[0-9]-service   u:object_r:hal_vendor_configstore_default_exec:s0
-/(vendor|system/vendor)/bin/hw/vendor\.samsung_slsi\.hardware\.ExynosHWCServiceTW@[0-9]\.[0-9]-service    u:object_r:hal_vendor_hwcservice_default_exec:s0
 
 # DEBUG DAEMON
 /(vendor|system/vendor)/bin/debug_daemon 		u:object_r:debug_daemon_exec:s0
@@ -231,8 +229,4 @@
 /(vendor|system/vendor)/bin/hw/vendor\.eureka\.security\.selinux@1\.0-service          u:object_r:hal_selinux_default_exec:s0
 
 /dev/radio0										u:object_r:fm_radio_device:s0	
-
-/vendor/bin/iof_vendor									       u:object_r:iof_vendor_exec:s0
-/vendor/bin/proxy_daemon								       u:object_r:proxy_daemon_exec:s0
-/vendor/bin/taadaemon									       u:object_r:taadaemon_exec:s0
 

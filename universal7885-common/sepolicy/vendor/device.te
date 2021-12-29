@@ -39,5 +39,3 @@ type ssp_device, dev_type;
 type vendor_radio_device, dev_type;
 
 type drm_device, dev_type;
-type custom_loop_device, dev_type;
-
