@@ -25,4 +25,3 @@ allow hal_drm_widevine drm_device:chr_file { read write open ioctl };
 allow hal_drm_widevine tz_user_device:chr_file { read write open ioctl };
 
 allow hal_drm_widevine sec_efs_file:file r_file_perms;
-
