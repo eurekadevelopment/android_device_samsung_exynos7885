@@ -1,4 +1,0 @@
-type taadaemon, domain;
-type taadaemon_exec, file_type, vendor_file_type, exec_type;
-init_daemon_domain(taadaemon)
-

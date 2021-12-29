@@ -1,4 +1,0 @@
-type iof_vendor, domain;
-type iof_vendor_exec, file_type, vendor_file_type, exec_type;
-init_daemon_domain(iof_vendor)
-
