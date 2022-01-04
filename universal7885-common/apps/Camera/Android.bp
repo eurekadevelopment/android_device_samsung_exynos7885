@@ -1,0 +1,11 @@
+android_app_import {
+	name: "Footej",
+	owner: "me",
+	apk: "Footej.apk",
+	presigned: true,
+	dex_preopt: {
+		enabled: false,
+	},
+	product_specific: true,
+	overrides: ["Camera2", "Snap"],
+}
