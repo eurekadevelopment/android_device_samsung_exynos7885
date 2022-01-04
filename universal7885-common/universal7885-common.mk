@@ -64,6 +64,10 @@ PRODUCT_COPY_FILES += \
 # Camera
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.5-service
+    
+# Camera app
+PRODUCT_PACKAGES += \
+    Footej
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -109,10 +113,6 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.1-service \
     android.hardware.graphics.mapper@2.0-impl \
     libgui_vendor
-
-# GcamGO 
-PRODUCT_PACKAGES += \
-    GCamGo
     
 # Health
 PRODUCT_PACKAGES += \
