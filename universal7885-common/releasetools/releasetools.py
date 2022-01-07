@@ -35,6 +35,7 @@ def PrintInfo(info, dest):
 
 def OTA_InstallEnd(info):
   AddImage(info, "RADIO/", "eureka_dtb.img", "/dev/block/platform/13500000.dwmmc0/by-name/dtb")
+  AddImage(info, "RADIO/", "eureka_dtbo.img", "/dev/block/platform/13500000.dwmmc0/by-name/dtbo")
   info.script.AppendExtra('run_program("/sbin/mount", "/vendor");')
   info.script.AppendExtra('run_program("/sbin/mount", "-o", "rw,remount", "/vendor");')
   info.script.AppendExtra('run_program("/sbin/rm", "-rf", "/vendor/recovery-from-boot.p");')
