@@ -8,18 +8,15 @@ DEBUG = var['d'] == 1
 blacklist = ["qcom", "nxp","pixel-framework", "lawnchair"  ,"support", "overlay","samsung", "gapps", "google", "gms", "codeaurora", "addons", "overlays", "xtras", "themes"]
 vendors = os.listdir("vendor")
 for vendor in vendors:
-  if DEBUG:
-     print("Found vendor " + vendor)
-  if vendor in blacklist:
+  common = "vendor/"+vendor+"/config/common.mk"
+  if os.path.isfile(common) and vendor not in blacklist:
      if DEBUG:
-         print("Vendor " + vendor + " in blacklist. Skipping...")
-  else:   
-     if DEBUG:
-         print("Vendor " + vendor + " not in blacklist. Writing...")
+        print("Found vendor " + vendor)
      f = open("device/samsung/universal7885-common/vendor_name", "a")
      f.write(vendor)
      f.close()
      break
-     
-     
-  
+  else:
+     if DEBUG:
+        print(vendor + " is on the blacklist or does not have common.mk. Skipping...")
+
