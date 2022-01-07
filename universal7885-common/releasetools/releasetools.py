@@ -24,7 +24,17 @@ def IncrementalOTA_InstallEnd(info):
   OTA_InstallEnd(info)
   return
 
+def AddImage(info, folder, basename, dest):
+  name = basename
+  data = info.input_zip.read(folder + basename)
+  common.ZipWriteStr(info.output_zip, name, data)
+  info.script.AppendExtra('package_extract_file("%s", "%s");' % (name, dest))
+
+def PrintInfo(info, dest):
+  info.script.Print("Patching {} image unconditionally...".format(dest.split('/')[-1]))
+
 def OTA_InstallEnd(info):
+  AddImage(info, "RADIO/", "eureka_dtb.img", "/dev/block/platform/13500000.dwmmc0/by-name/dtb")
   info.script.AppendExtra('run_program("/sbin/mount", "/vendor");')
   info.script.AppendExtra('run_program("/sbin/mount", "-o", "rw,remount", "/vendor");')
   info.script.AppendExtra('run_program("/sbin/rm", "-rf", "/vendor/recovery-from-boot.p");')
