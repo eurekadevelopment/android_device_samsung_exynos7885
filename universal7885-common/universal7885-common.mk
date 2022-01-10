@@ -105,7 +105,7 @@ PRODUCT_PACKAGES += \
     libsuspend
 
 # Debug
-PRODUCT_PACKAGES += eklogger
+PRODUCT_PACKAGES += eklogger dlopener
 
 # DRM
 PRODUCT_PACKAGES += \
