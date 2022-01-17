@@ -14,8 +14,8 @@ $(call inherit-product, $(LOCAL_PATH)/fingerprint.mk)
 # Allow Copying of apks.
 PRODUCT_BROKEN_VERIFY_USES_LIBRARIES := true
 
-# For framework-res__auto_generated_rro_vendor.apk
-PRODUCT_ENFORCE_RRO_TARGETS := framework-res
+# For *_auto_generated_rro_vendor.apk
+PRODUCT_ENFORCE_RRO_TARGETS := framework-res SystemUI
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS := # leave it empty
 
 # Disable APEX compression
