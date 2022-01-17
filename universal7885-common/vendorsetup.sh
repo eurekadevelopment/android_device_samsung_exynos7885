@@ -1,5 +1,12 @@
 rm -rf hardware/samsung
-git clone --depth=1 https://github.com/eurekadevelopment/Eureka-Kernel-Exynos7885-Q-R-S-private.git -b R8.1_rom kernel/samsung/exynos7885
+if [ -e ~/.git-credentials ]; then
+MODE="https://"
+SPERATOR="/"
+else
+MODE="git@"
+SPERATOR=":"
+fi
+git clone --depth=1 "$MODE"github.com"$SPERATOR"eurekadevelopment/Eureka-Kernel-Exynos7885-Q-R-S-private.git -b R8.1_rom kernel/samsung/exynos7885
 git clone https://github.com/lineageos/android_hardware_samsung_nfc hardware/samsung/nfc
 git clone https://github.com/lineageos/android_hardware_samsung_slsi_libbt hardware/samsung_slsi/libbt
 git clone https://github.com/eurekadevelopment/android_hardware_samsung_slsi_scsc_wifibt_wifi_hal.git hardware/samsung_slsi/scsc_wifibt/wifi_hal
