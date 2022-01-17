@@ -32,22 +32,33 @@ if [ "$#" -lt 2 ]; then
     tg_sendText "Illegal number of parameters ($#)"
     exit 1
 fi
+. build/envsetup.sh
 TARGET=${*%${!#}}
-tg_sendText "VENDOR = $VENDOR, Devices = ${@:$#}, Build Target=$TARGET"
-for i in TARGET; do 
-tg_sendText "$VENDOR $i lunch...";
-if lunch $VENDOR_$i-user; then
-tg_sendText "$VENDOR $i lunch success";
+if [ "$1" == "all" ]; then
+TARGET="a10 a20 a20e a30 a40"
+fi
+tg_sendText "[Vendor = $VENDOR], [Devices = $TARGET], [Build Target=${@:$#}]"
+for i in $TARGET; do 
+start=`date +%s`
+tg_sendText "[$VENDOR][$i] lunch...";
+if lunch ${VENDOR}_${i}-user; then
+tg_sendText "[$VENDOR][$i] lunch success";
 else
-tg_sendText "$VENDOR $i lunch fail";
+tg_sendText "[$VENDOR][$i] lunch failed";
 exit 1;
 fi
-tg_sendText "$VENDOR $i build...";
-if m $TARGET; then
-tg_sendText "$VENDOR $i finish";
-else
-tg_sendText "$VENDOR $i failed";
+tg_sendText "[$VENDOR][$i] start build...";
+if ! m ${@:$#}; then
+end=`date +%s`
+secs=$((end-start)) 
+tg_sendText "[$VENDOR][$i] fail in $((secs/3600)) Hours $((secs%3600/60)) Minutes $((secs%60)) Seconds";
+if [ -e out/error.log ]; then
+tg_sendFile "out/error.log"
+fi
 exit 1;
 fi
+end=`date +%s`
+secs=$((end-start))
+tg_sendText "[$VENDOR][$i] success in $((secs/3600)) Hours $((secs%3600/60)) Minutes $((secs%60)) Seconds"
 done
-
+tg_sendText "All done"
