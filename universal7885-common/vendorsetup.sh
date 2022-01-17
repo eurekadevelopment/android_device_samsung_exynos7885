@@ -27,4 +27,4 @@ echo "Generating A30 Makefiles"
 ./device/samsung/a30/setup.sh
 echo "Generating A40 Makefiles"
 ./device/samsung/a40/setup.sh
-
+ln -s device/samsung/universal7885-common/build.sh
