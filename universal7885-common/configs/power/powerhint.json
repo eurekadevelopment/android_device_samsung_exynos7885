@@ -1,40 +1,11 @@
 {
     "Nodes": [
         {
-            "Name": "CPULittleClusterIOIsBusy",
-            "Path": "/sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy",
-            "Values": [
-                "0",
-                "1"
-            ],
-            "DefaultIndex": 0,
-            "ResetOnInit": true
-        },
-        {
-            "Name": "CPUBoostPulse",
-            "Path": "/sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse",
-            "Values": [
-                "0",
-                "1"
-            ],
-            "DefaultIndex": 0,
-            "ResetOnInit": true
-        },
-        {
-            "Name": "CPUBigClusterIOIsBusy",
-            "Path": "/sys/devices/system/cpu/cpu6/cpufreq/interactive/io_is_busy",
-            "Values": [
-                "0",
-                "1"
-            ],
-            "DefaultIndex": 0,
-            "ResetOnInit": true
-        },
-        {
             "Name": "TouchscreenEnable",
             "Path": "/sys/class/sec/tsp/input/enabled",
             "Values": [
-                "1"
+                "1",
+                "0"
             ],
             "ResetOnInit": true
         },
@@ -90,24 +61,6 @@
         }
     ],
     "Actions": [
-        {
-            "PowerHint": "INTERACTION",
-            "Node": "CPULittleClusterIOIsBusy",
-            "Duration": 0,
-            "Value": "1"
-        },
-        {
-            "PowerHint": "INTERACTION",
-            "Node": "CPUBoostPulse",
-            "Duration": 0,
-            "Value": "1"
-        },
-        {
-            "PowerHint": "INTERACTION",
-            "Node": "CPUBigClusterIOIsBusy",
-            "Duration": 0,
-            "Value": "1"
-        },
         {
             "PowerHint": "DOUBLE_TAP_TO_WAKE",
             "Node": "DoubleTapToWakeEnable",
