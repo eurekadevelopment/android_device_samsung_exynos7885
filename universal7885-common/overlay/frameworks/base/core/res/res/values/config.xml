@@ -52,11 +52,7 @@
     <bool name="config_supportSystemNavigationKeys">true</bool>
     <!-- If this is true, the screen will come on when you unplug usb/power/whatever. -->
     <bool name="config_unplugTurnsOnScreen">true</bool>
-    
-    <!-- When true use the linux /dev/input/event subsystem to detect the switch changes
-         on the headphone/microphone jack. When false use the older uevent framework. -->
-    <bool name="config_useDevInputEventForAudioJack">false</bool>
-    
+
     <!-- Control the behavior when the user long presses the power button.
 		0 - Nothing
                 1 - Global actions menu

@@ -44,7 +44,7 @@
     <bool name="config_displayBlanksAfterDoze">false</bool>
     <bool name="config_dozePulsePickup">false</bool>
     <bool name="config_supportDoubleTapWake">true</bool>
-    <bool name="config_enableBurnInProtection">false</bool>
+    <bool name="config_enableBurnInProtection">true</bool>
     <bool name="config_dozeAfterScreenOffByDefault">true</bool>
 
     <bool name="config_allowAutoBrightnessWhileDozing">true</bool>
