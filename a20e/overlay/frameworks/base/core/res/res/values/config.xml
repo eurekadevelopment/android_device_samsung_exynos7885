@@ -7,7 +7,6 @@
     <string translatable="false" name="config_mainBuiltInDisplayCutoutRectApproximation">@*android:string/config_mainBuiltInDisplayCutout</string>
     <bool name="config_supportDoubleTapWake">false</bool>
     <bool name="config_enableBurnInProtection">false</bool>
-    <bool name="config_allowAutoBrightnessWhileDozing">true</bool>
      <!-- List of biometric sensors on the device, in decreasing strength. Consumed by AuthService
          when registering authenticators with BiometricService. Format must be ID:Modality:Strength,
          where: IDs are unique per device, Modality as defined in BiometricAuthenticator.java,
