@@ -58,6 +58,7 @@ BOARD_KERNEL_CMDLINE := androidboot.init_fatal_reboot_target=recovery
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 TARGET_KERNEL_SOURCE := kernel/samsung/exynos7885
 TARGET_KERNEL_CLANG_COMPILE := true
+KERNEL_LD := LD=ld.lld
 
 # HIDL
 include device/samsung/universal7885-common/configs/vintf/manifest.mk
