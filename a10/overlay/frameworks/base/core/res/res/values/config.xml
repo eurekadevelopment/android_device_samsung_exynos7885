@@ -45,9 +45,6 @@
     <bool name="config_dozePulsePickup">false</bool>
     <bool name="config_supportDoubleTapWake">false</bool>
     <bool name="config_enableBurnInProtection">true</bool>
-    <bool name="config_dozeAfterScreenOffByDefault">true</bool>
-
-    <bool name="config_allowAutoBrightnessWhileDozing">true</bool>
 
     <!-- List of biometric sensors on the device, in decreasing strength. Consumed by AuthService
          when registering authenticators with BiometricService. Format must be ID:Modality:Strength,
