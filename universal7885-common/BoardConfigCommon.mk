@@ -89,13 +89,13 @@ BOARD_ROOT_EXTRA_FOLDERS := factory
 # Sepolicy
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += \
     $(COMMON_PATH)/sepolicy/public
-    
+
 BOARD_VENDOR_SEPOLICY_DIRS += \
     $(COMMON_PATH)/sepolicy/vendor
 
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
     $(COMMON_PATH)/sepolicy/private
-    
+
 # Derp
 USE_LEGACY_BOOTANIMATION := true
 
