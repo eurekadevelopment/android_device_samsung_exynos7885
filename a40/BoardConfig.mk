@@ -1,7 +1,7 @@
 DEVICE_PATH := device/samsung/a40
 
 # Asserts
-TARGET_OTA_ASSERT_DEVICE := a40|a40dd
+TARGET_OTA_ASSERT_DEVICE := a40,a40dd
 
 # Kernel
 TARGET_KERNEL_CONFIG := exynos7885-a40_enforcing_defconfig

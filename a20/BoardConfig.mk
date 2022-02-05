@@ -1,7 +1,7 @@
 DEVICE_PATH := device/samsung/a20
 
 # Asserts
-TARGET_OTA_ASSERT_DEVICE := a20|a20dd
+TARGET_OTA_ASSERT_DEVICE := a20,a20dd
 
 # Kernel
 TARGET_KERNEL_CONFIG := exynos7885-a20_enforcing_defconfig
