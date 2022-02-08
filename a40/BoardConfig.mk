@@ -4,7 +4,7 @@ DEVICE_PATH := device/samsung/a40
 TARGET_OTA_ASSERT_DEVICE := a40,a40dd
 
 # Kernel
-TARGET_KERNEL_CONFIG := exynos7885-a40_enforcing_defconfig
+TARGET_KERNEL_CONFIG := exynos7885-a40_defconfig
 
 # Display
 TARGET_SCREEN_DENSITY := 420
