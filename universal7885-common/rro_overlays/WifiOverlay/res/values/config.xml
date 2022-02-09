@@ -33,19 +33,6 @@
     <!-- Integer indicating maximum hardware supported client number of soft ap -->
     <integer name="config_wifiHardwareSoftapMaxClientCount">10</integer>
     
-    <!-- List of allowed channels in 2GHz band for softap. If the device doesn't want to restrict
-         channels this should be empty. Values is a comma separated channel string and/or channel
-         range string like '1-6,11'. -->
-    <string name="config_wifiSoftap2gChannelList">1-11</string>
-    
-     <!-- List of allowed channels in 5GHz band for softap. If the device doesn't want to restrict
-         channels this should be empty. Values is a comma separated channel string and/or channel
-         range string like '36-48,149'. -->
-    <string name="config_wifiSoftap5gChannelList">149</string>
-    
-    <!-- Wifi driver supports Automatic channel selection (ACS) for softap -->
-    <bool name="config_wifi_softap_acs_supported">true</bool>
-    
     <!-- Boolean indicating whether 802.11r Fast BSS Transition is enabled on this platform -->
     <bool name="config_wifi_fast_bss_transition_enabled">true</bool>
    
