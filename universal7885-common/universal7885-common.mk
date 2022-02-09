@@ -245,10 +245,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
 
-# Nuke Useless Apps (Mostly GAPPS)
-PRODUCT_PACKAGES += \
-    RemovePkgs
-
 # Notch
 PRODUCT_PACKAGES += \
     NotchBarKiller \
