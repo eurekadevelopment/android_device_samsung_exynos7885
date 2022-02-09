@@ -16,8 +16,20 @@
  
 #include <thread>
 
-void copy_kmsg();
-void copy_logcat();
+#define KMSG_PATH "/proc/kmsg"
+#define WRITE_KMSG "/data/debug/kmsg.txt"
+
+#include <fstream>
+#include <iostream>
+
+void copy_kmsg() {
+	std::ifstream readfile(KMSG_PATH);
+    	std::ofstream writefile(WRITE_KMSG);
+        writefile << readfile.rdbuf();
+}
+void copy_logcat() {
+	system("/system/bin/logcat -f /data/debug/logcat.txt");
+}
 int main() {
     std::thread kmsg(copy_kmsg);
     std::thread logcat(copy_logcat);

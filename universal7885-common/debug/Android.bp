@@ -18,9 +18,7 @@ cc_binary {
     name: "debug_daemon",
     vendor: true,
     srcs: [
-         "Kmsg.cpp",
-         "Logcat.cpp",
-         "Main.cpp",
+         "Logger.cpp",
     ],
     init_rc: ["init.debug_daemon.rc"],
 }
