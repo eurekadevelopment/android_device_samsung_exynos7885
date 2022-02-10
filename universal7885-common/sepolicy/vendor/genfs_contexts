@@ -101,6 +101,8 @@ genfscon sysfs /devices/virtual/input/input7/enable                             
 genfscon sysfs /devices/virtual/input/input8/enable                               u:object_r:sysfs_input_writable:s0
 genfscon sysfs /devices/virtual/input/input9/enable                               u:object_r:sysfs_input_writable:s0
 genfscon sysfs /devices/virtual/input/input10/enable                              u:object_r:sysfs_input_writable:s0
+genfscon sysfs /devices/virtual/input/input11/enable                               u:object_r:sysfs_input_writable:s0
+genfscon sysfs /devices/virtual/input/input12/enable                              u:object_r:sysfs_input_writable:s0
 genfscon sysfs /devices/virtual/input/input1/poll_delay                           u:object_r:sysfs_input_writable:s0
 genfscon sysfs /devices/virtual/input/input2/poll_delay                           u:object_r:sysfs_input_writable:s0
 genfscon sysfs /devices/virtual/input/input3/poll_delay                           u:object_r:sysfs_input_writable:s0
@@ -110,6 +112,10 @@ genfscon sysfs /devices/virtual/input/input6/poll_delay                         
 genfscon sysfs /devices/virtual/input/input7/poll_delay                           u:object_r:sysfs_input_writable:s0
 genfscon sysfs /devices/virtual/input/input8/poll_delay                           u:object_r:sysfs_input_writable:s0
 genfscon sysfs /devices/virtual/input/input9/poll_delay                           u:object_r:sysfs_input_writable:s0
+genfscon sysfs /devices/virtual/input/input10/poll_delay                           u:object_r:sysfs_input_writable:s0
+genfscon sysfs /devices/virtual/input/input11/poll_delay                           u:object_r:sysfs_input_writable:s0
+genfscon sysfs /devices/virtual/input/input12/poll_delay                           u:object_r:sysfs_input_writable:s0
+
 # A20e GPIO
 genfscon sysfs /devices/platform/gpio_keys/input/input12                          u:object_r:sysfs_input:s0
 # A20 GPIO
