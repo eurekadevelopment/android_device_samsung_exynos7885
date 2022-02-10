@@ -18,7 +18,7 @@ PRODUCT_BROKEN_VERIFY_USES_LIBRARIES := true
 USE_LEGACY_BOOTANIMATION := true
 
 # For *_auto_generated_rro_vendor.apk
-PRODUCT_ENFORCE_RRO_TARGETS := framework-res SystemUI
+PRODUCT_ENFORCE_RRO_TARGETS := framework-res SystemUI Bluetooth
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS := # leave it empty
 
 # Disable APEX compression
