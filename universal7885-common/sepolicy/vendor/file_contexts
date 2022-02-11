@@ -217,11 +217,6 @@
 /(vendor|system/vendor)/bin/hw/vendor\.samsung\.hardware\.gnss@[0-9]\.[0-9]-service           u:object_r:hal_gnss_default_exec:s0
 /(vendor|system/vendor)/firmware(/.*)?       u:object_r:vendor_firmware_file:s0
 
-# Thermal
-/(vendor|system/vendor)/bin/hw/android\.hardware\.thermal@2\.0-service\.pixel                     u:object_r:hal_thermal_default_exec:s0
-/dev/thermal(/.*)?										u:object_r:thermal_link_device:s0
-/vendor/bin/thermal_symlinks                                                      u:object_r:init-thermal-symlinks-sh_exec:s0
-
 # SamsungParts
 /(vendor|system/vendor)/bin/hw/vendor\.eureka\.hardware\.battery@1\.0-service          u:object_r:hal_battery_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.eureka\.hardware\.flashlight@1\.0-service          u:object_r:hal_flashlight_default_exec:s0

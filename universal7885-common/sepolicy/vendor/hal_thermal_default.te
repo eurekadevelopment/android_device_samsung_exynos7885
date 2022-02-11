@@ -1,12 +1,8 @@
+
+# /acct/tasks
+allow hal_thermal_default cgroup:file getattr;
+
+# /sys/devices/virtual/thermal/
 allow hal_thermal_default sysfs_thermal:dir r_dir_perms;
-allow hal_thermal_default sysfs_thermal:file rw_file_perms;
-allow hal_thermal_default sysfs_thermal:lnk_file r_file_perms;
-allow hal_thermal_default thermal_link_device:dir r_dir_perms;
-allow hal_thermal_default proc_stat:file r_file_perms;
-
-allow hal_thermal_default self:netlink_kobject_uevent_socket create_socket_perms_no_ioctl;
-
-hal_client_domain(hal_thermal_default, hal_power);
-
-get_prop(hal_thermal_default, vendor_thermal_prop)
-allow hal_thermal_default sysfs_virtual:dir search;
+allow hal_thermal_default sysfs_thermal:file r_file_perms;
+r_dir_file(hal_thermal_default, sysfs_virtual)
