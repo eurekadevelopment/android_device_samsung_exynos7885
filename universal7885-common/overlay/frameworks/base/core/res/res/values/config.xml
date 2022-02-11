@@ -134,7 +134,6 @@
          fading edges is prohibitively expensive on most GPUs. -->
     <bool name="config_ui_enableFadingMarquee">true</bool>
     
-    <bool name="config_automatic_brightness_available">true</bool>
     <integer name="config_autoBrightnessBrighteningLightDebounce">2000</integer>
     <integer name="config_autoBrightnessDarkeningLightDebounce">4000</integer>
     <integer-array name="config_autoBrightnessDisplayValuesNits">

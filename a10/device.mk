@@ -7,9 +7,6 @@ $(call inherit-product, vendor/samsung/a10-arm64/a10-vendor.mk)
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
 
-PRODUCT_PACKAGES += \
-    CameraLightSensor
-
 # USB
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service.a10

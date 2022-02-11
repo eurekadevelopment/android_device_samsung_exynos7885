@@ -51,6 +51,8 @@
          will not debounce light sensor readings -->
     <integer name="config_lightSensorWarmupTime">200</integer>
 
+    <bool name="config_automatic_brightness_available">true</bool>
+
     <!-- The type of the light sensor to be used by the display framework for things like
          auto-brightness. If unset, then it just gets the default sensor of type TYPE_LIGHT. -->
     <string name="config_displayLightSensorType">com.samsung.sensor.physical_light</string>

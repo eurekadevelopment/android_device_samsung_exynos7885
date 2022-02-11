@@ -66,6 +66,8 @@
     <!-- For performance and storage reasons, limit the number of fingerprints per user -->
     <integer name="config_fingerprintMaxTemplatesPerUser">4</integer>
 
+    <bool name="config_automatic_brightness_available">true</bool>
+
     <!-- Specify if the fingerprint hardware support gestures-->
     <bool name="config_fingerprintSupportsGestures">true</bool>
 
