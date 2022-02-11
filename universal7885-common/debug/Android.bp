@@ -16,7 +16,6 @@
 
 cc_binary {
     name: "debug_daemon",
-    vendor: true,
     srcs: [
          "Logger.cpp",
     ],

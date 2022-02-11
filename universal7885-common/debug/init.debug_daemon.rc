@@ -1,4 +1,4 @@
-service debug_daemon /vendor/bin/debug_daemon
+service debug_daemon /system/bin/debug_daemon
     user root
     group system
     oneshot
