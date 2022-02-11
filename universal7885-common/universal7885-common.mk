@@ -17,7 +17,7 @@ PRODUCT_ENFORCE_RRO_TARGETS := framework-res SystemUI Bluetooth
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS := # leave it empty
 
 PRODUCT_PACKAGES += \
-    android.hardware.audio@7.0-impl \
+    android.hardware.audio@7.1-impl \
     android.hardware.audio.service \
     android.hardware.audio.effect@7.0-impl \
     libtinycompress \
@@ -27,7 +27,7 @@ PRODUCT_PACKAGES += \
 
 # Audio (BT)
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth.audio@2.1-impl \
+    android.hardware.bluetooth.audio@2.2-impl \
     audio.bluetooth.default \
     audio.a2dp.default
 
