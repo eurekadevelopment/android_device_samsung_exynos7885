@@ -2,13 +2,13 @@
 #include <hidl/HidlSupport.h>
 #include <hidl/LegacySupport.h>
 #include <hidl/Status.h>
-#include <vendor/eureka/hardware/battery/1.0/IBattery.h>
+#include <vendor/eureka/hardware/parts/1.0/IBattery.h>
 #include "jni.h"
 
 using android::sp;
-using vendor::eureka::hardware::battery::V1_0::IBattery;
-using vendor::eureka::hardware::battery::V1_0::Number;
-using vendor::eureka::hardware::battery::V1_0::SysfsType;
+using vendor::eureka::hardware::parts::V1_0::IBattery;
+using vendor::eureka::hardware::parts::V1_0::Number;
+using vendor::eureka::hardware::parts::V1_0::SysfsType;
 
 extern "C" JNIEXPORT void JNICALL
 Java_com_eurekateam_samsungextras_interfaces_Battery_setChargeSysfs(JNIEnv* env,

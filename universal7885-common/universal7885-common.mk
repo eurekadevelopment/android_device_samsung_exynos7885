@@ -322,12 +322,7 @@ PRODUCT_CFI_INCLUDE_PATHS += hardware/samsung_slsi/scsc_wifibt/wpa_supplicant_li
 
 # SamsungParts
 PRODUCT_PACKAGES += \
-    SamsungParts \
-    init.samsungparts.rc \
-    vendor.eureka.hardware.battery@1.0-service \
-    vendor.eureka.hardware.flashlight@1.0-service \
-    vendor.eureka.hardware.gpu@1.0-service \
-    vendor.eureka.security.selinux@1.0-service
+    SamsungParts
 
 # Extra Command-Line Tools
 PRODUCT_PACKAGES += \

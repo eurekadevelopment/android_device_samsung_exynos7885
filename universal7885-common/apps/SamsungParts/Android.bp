@@ -9,4 +9,5 @@ android_app {
     jni_libs: ["libsamsungparts_jni"],
     static_libs: ["androidx.preference_preference"],
     defaults: ["SettingsLibDefaults"],
+    required: ["vendor.eureka.hardware.parts@1.0-service"],
 }

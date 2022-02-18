@@ -2,49 +2,49 @@
 #include <hidl/HidlSupport.h>
 #include <hidl/LegacySupport.h>
 #include <hidl/Status.h>
-#include <vendor/eureka/hardware/flashlight/1.0/IFlashlight.h>
+#include <vendor/eureka/hardware/parts/1.0/IFlashlight.h>
 #include "jni.h"
 
 using android::sp;
-using vendor::eureka::hardware::flashlight::V1_0::Device;
-using vendor::eureka::hardware::flashlight::V1_0::Enable;
-using vendor::eureka::hardware::flashlight::V1_0::IFlashlight;
-using vendor::eureka::hardware::flashlight::V1_0::Number;
+using vendor::eureka::hardware::parts::V1_0::Device;
+using vendor::eureka::hardware::parts::V1_0::Value;
+using vendor::eureka::hardware::parts::V1_0::IFlashLight;
+using vendor::eureka::hardware::parts::V1_0::Number;
 
 extern "C" JNIEXPORT void JNICALL Java_com_eurekateam_samsungextras_interfaces_Flashlight_setFlash(
         JNIEnv* env, __unused jobject obj, jint value) {
-    android::sp<IFlashlight> service = IFlashlight::getService();
-    service->setFlashlightEnable(Enable::ENABLE);
+    android::sp<IFlashlight> service = IFlashLight::getService();
+    service->setFlashlightEnable(Number::ENABLE);
     switch (value) {
         case 1:
-            service->setFlashlightWritable(Number::ONEUI);
+            service->setFlashlightWritable(Value::ONEUI);
             break;
         case 2:
-            service->setFlashlightWritable(Number::TWOUI);
+            service->setFlashlightWritable(Value::TWOUI);
             break;
         case 3:
-            service->setFlashlightWritable(Number::THREEUI);
+            service->setFlashlightWritable(Value::THREEUI);
             break;
         case 4:
-            service->setFlashlightWritable(Number::FOURUI);
+            service->setFlashlightWritable(Value::FOURUI);
             break;
         case 5:
-            service->setFlashlightWritable(Number::FIVEUI);
+            service->setFlashlightWritable(Value::FIVEUI);
             break;
         case 6:
-            service->setFlashlightWritable(Number::SIXUI);
+            service->setFlashlightWritable(Value::SIXUI);
             break;
         case 7:
-            service->setFlashlightWritable(Number::SEVENUI);
+            service->setFlashlightWritable(Value::SEVENUI);
             break;
         case 8:
-            service->setFlashlightWritable(Number::EIGHTUI);
+            service->setFlashlightWritable(Value::EIGHTUI);
             break;
         case 9:
-            service->setFlashlightWritable(Number::NINEUI);
+            service->setFlashlightWritable(Value::NINEUI);
             break;
         case 10:
-            service->setFlashlightWritable(Number::TENUI);
+            service->setFlashlightWritable(Value::TENUI);
             break;
         default:
             break;
@@ -52,7 +52,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_eurekateam_samsungextras_interfaces_F
 }
 extern "C" JNIEXPORT jint JNICALL Java_com_eurekateam_samsungextras_interfaces_Flashlight_getFlash(
         JNIEnv* env, jobject clazz, jint isA10) {
-    android::sp<IFlashlight> service = IFlashlight::getService();
+    android::sp<IFlashlight> service = IFlashLight::getService();
     int ret;
     if (isA10 == 1) {
         ret = service->readFlashlightstats(Device::A10);
