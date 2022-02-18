@@ -18,7 +18,7 @@
 #include <sstream>
 namespace vendor::eureka::hardware::parts::V1_0 {
 
-Return<int32_t> Gpu::setGpuWritable(parts::V1_0::Number enable) {
+Return<int32_t> IGpu::setGpuWritable(parts::V1_0::Number enable) {
     std::ofstream file;
     std::string writevalue;
     if (enable == Number::ENABLE) {
@@ -32,7 +32,7 @@ Return<int32_t> Gpu::setGpuWritable(parts::V1_0::Number enable) {
     return 0;
 }
 
-Return<int32_t> Gpu::readGpustats(void) {
+Return<int32_t> IGpu::readGpustats(void) {
     std::ifstream file;
     std::string value;
     int32_t intvalue;

@@ -6,7 +6,7 @@
 #include "jni.h"
 
 using android::sp;
-using vendor::eureka::hardware::parts::V1_0::Enable;
+using vendor::eureka::hardware::parts::V1_0::Number;
 using vendor::eureka::hardware::parts::V1_0::IGpu;
 
 extern "C" JNIEXPORT void JNICALL

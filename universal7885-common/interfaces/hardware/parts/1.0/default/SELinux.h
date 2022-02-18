@@ -30,7 +30,7 @@ using ::android::hardware::Void;
 
 struct SELinux : public ISELinux {
     // Methods from ::vendor::eureka::hardware::parts::V1_0::ISELinux follow.
-    Return<int32_t> setSELinuxWritable(Enable enable);
+    Return<int32_t> setSELinuxWritable(Number enable);
     Return<int32_t> readSELinuxstats(void);
     // Methods from ::android::hidl::base::V1_0::IBase follow.
     static ISELinux* getInstance(void);

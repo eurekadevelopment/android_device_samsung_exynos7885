@@ -22,6 +22,9 @@
 #include <hidl/LegacySupport.h>
 
 #include "Battery.h"
+#include "FlashLight.h"
+#include "Gpu.h"
+#include "SELinux.h"
 
 using android::sp;
 using android::hardware::configureRpcThreadpool;

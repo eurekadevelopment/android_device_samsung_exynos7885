@@ -14,7 +14,7 @@
 
 package vendor.eureka.hardware.parts@1.0;
 
-interface IFlashlight {
+interface IFlashLight {
 	setFlashlightWritable(Value value) generates (int32_t result);
 	setFlashlightEnable(Number enable) generates (int32_t result);
 	readFlashlightstats(Device device) generates (int32_t value);

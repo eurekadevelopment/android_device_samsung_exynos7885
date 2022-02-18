@@ -19,7 +19,7 @@
 namespace vendor::eureka::hardware::parts::V1_0 {
 
 // Methods from ::android::hardware::parts::V1_0::IFlashLight follow.
-Return<int32_t> FlashLight::setFlashlightEnable(parts::V1_0::Number enable) {
+Return<int32_t> IFlashLight::setFlashlightEnable(parts::V1_0::Number enable) {
     std::ofstream file;
     std::string writevalue;
     switch (enable) {
@@ -39,7 +39,7 @@ Return<int32_t> FlashLight::setFlashlightEnable(parts::V1_0::Number enable) {
     return 0;
 }
 
-Return<int32_t> FlashLight::setFlashlightWritable(parts::V1_0::Value value) {
+Return<int32_t> IFlashLight::setFlashlightWritable(parts::V1_0::Value value) {
     std::ofstream file;
     std::string writevalue;
     switch (value) {
@@ -83,7 +83,7 @@ Return<int32_t> FlashLight::setFlashlightWritable(parts::V1_0::Value value) {
     return 0;
 }
 
-Return<int32_t> FlashLight::readFlashlightstats(parts::V1_0::Device device) {
+Return<int32_t> IFlashLight::readFlashlightstats(parts::V1_0::Device device) {
     std::ifstream file;
     std::string value;
     int32_t intvalue;
@@ -104,7 +104,7 @@ Return<int32_t> FlashLight::readFlashlightstats(parts::V1_0::Device device) {
     return -1;
 }
 
-IFlashlight* FlashLight::getInstance(void) {
+IFlashLight* FlashLight::getInstance(void) {
     return new FlashLight();
 }
 }  // namespace vendor::eureka::hardware::parts::V1_0
