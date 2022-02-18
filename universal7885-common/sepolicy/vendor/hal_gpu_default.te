@@ -1,9 +1,0 @@
-type hal_gpu_default, domain;
-type hal_gpu_default_exec, exec_type, file_type,  vendor_file_type;
-add_hwservice(hal_gpu_default, hal_gpu_hwservice);
-init_daemon_domain(hal_gpu_default);
-
-hwbinder_use(hal_gpu_default);
-get_prop(hal_gpu_default, hwservicemanager_prop)
-allow hal_gpu_default sysfs_gpu_tmu:file { read open write getattr };
-allow hal_gpu_default sysfs_gpu_tmu:dir search;

@@ -5,10 +5,10 @@ vendor.samsung.hardware.radio.channel::ISehChannel          u:object_r:rild_hwse
 vendor.lineage.power::ILineagePower			      u:object_r:hal_power_hwservice:s0
 
 # SamsungParts
-vendor.eureka.hardware.battery::IBattery u:object_r:hal_battery_hwservice:s0
-vendor.eureka.hardware.flashlight::IFlashlight u:object_r:hal_flashlight_hwservice:s0
-vendor.eureka.hardware.gpu::IGpu u:object_r:hal_gpu_hwservice:s0
-vendor.eureka.security.selinux::ISELinux u:object_r:hal_selinux_hwservice:s0
+vendor.eureka.hardware.parts::IBattery u:object_r:hal_parts_hwservice:s0
+vendor.eureka.hardware.parts::IFlashLight u:object_r:hal_parts_hwservice:s0
+vendor.eureka.hardware.parts::IGpu u:object_r:hal_parts_hwservice:s0
+vendor.eureka.security.parts::ISELinux u:object_r:hal_parts_hwservice:s0
 
 vendor.samsung_slsi.hardware.ExynosHWCServiceTW::IExynosHWCServiceTW u:object_r:hal_vendor_surfaceflinger_hwservice:s0
 vendor.samsung_slsi.hardware.configstore::IExynosHWCConfigs          u:object_r:hal_vendor_configstore_hwservice:s0

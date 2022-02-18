@@ -1,9 +1,0 @@
-type hal_selinux_default, domain;
-type hal_selinux_default_exec, exec_type, file_type,  vendor_file_type;
-add_hwservice(hal_selinux_default, hal_selinux_hwservice);
-init_daemon_domain(hal_selinux_default);
-
-hwbinder_use(hal_selinux_default)
-get_prop(hal_selinux_default, hwservicemanager_prop)
-allow hal_selinux_default selinuxfs:file rw_file_perms;
-allow hal_selinux_default selinuxfs:dir search;

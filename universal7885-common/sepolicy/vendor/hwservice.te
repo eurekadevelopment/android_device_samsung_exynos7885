@@ -1,7 +1,4 @@
 type rild_hwservice, hwservice_manager_type;
-type hal_battery_hwservice, hwservice_manager_type;
-type hal_flashlight_hwservice, hwservice_manager_type;
-type hal_gpu_hwservice, hwservice_manager_type;
-type hal_selinux_hwservice, hwservice_manager_type;
+type hal_parts_hwservice, hwservice_manager_type;
 type hal_vendor_configstore_hwservice, hwservice_manager_type;
 type hal_vendor_surfaceflinger_hwservice, hwservice_manager_type;
