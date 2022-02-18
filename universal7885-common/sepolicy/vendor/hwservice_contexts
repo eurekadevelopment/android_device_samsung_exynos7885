@@ -8,7 +8,10 @@ vendor.lineage.power::ILineagePower			      u:object_r:hal_power_hwservice:s0
 vendor.eureka.hardware.parts::IBattery u:object_r:hal_parts_hwservice:s0
 vendor.eureka.hardware.parts::IFlashLight u:object_r:hal_parts_hwservice:s0
 vendor.eureka.hardware.parts::IGpu u:object_r:hal_parts_hwservice:s0
-vendor.eureka.security.parts::ISELinux u:object_r:hal_parts_hwservice:s0
+vendor.eureka.hardware.parts::ISELinux u:object_r:hal_parts_hwservice:s0
+
+# FMRadio
+vendor.eureka.hardware.fmradio::IFMRadio u:object_r:hal_fmradio_hwservice:s0
 
 vendor.samsung_slsi.hardware.ExynosHWCServiceTW::IExynosHWCServiceTW u:object_r:hal_vendor_surfaceflinger_hwservice:s0
 vendor.samsung_slsi.hardware.configstore::IExynosHWCConfigs          u:object_r:hal_vendor_configstore_hwservice:s0

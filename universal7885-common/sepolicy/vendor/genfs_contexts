@@ -77,6 +77,8 @@ genfscon proc /reset_reason                       u:object_r:proc_reset_reason:s
 genfscon proc /sys/vm/swappiness                  u:object_r:proc_swapiness:s0
 
 # SYSFS
+## FMRadio
+genfscon sysfs /devices/virtual/s610_radio/s610_radio/				u:object_r:sysfs_fmradio_tune:s0
 
 # class
 genfscon sysfs /class/video4linux                                                 u:object_r:sysfs_v4l:s0

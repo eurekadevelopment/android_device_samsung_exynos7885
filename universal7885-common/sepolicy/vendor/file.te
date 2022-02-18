@@ -102,6 +102,7 @@ type sysfs_camera_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_decon, sysfs_type, r_fs_type, fs_type;
 type sysfs_gpu, sysfs_type, r_fs_type, fs_type;
 type sysfs_socinfo, sysfs_type, r_fs_type, fs_type;
+type sysfs_fmradio_tune, sysfs_type, rw_fs_type, fs_type;
 type sysfs_v4l, sysfs_type, r_fs_type, fs_type;
 type sysfs_v4l_mfc, sysfs_type, r_fs_type, fs_type;
 type sysfs_v4l_smfc, sysfs_type, r_fs_type, fs_type;

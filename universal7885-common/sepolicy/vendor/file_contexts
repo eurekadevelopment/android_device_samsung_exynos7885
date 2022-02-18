@@ -220,6 +220,8 @@
 
 # SamsungParts
 /(vendor|system/vendor)/bin/hw/vendor\.eureka\.hardware\.parts@[0-9]\.[0-9]-service          u:object_r:hal_parts_default_exec:s0
+# FMRadio
+/(vendor|system/vendor)/bin/hw/vendor\.eureka\.hardware\.fmradio@[0-9]\.[0-9]-service          u:object_r:hal_fmradio_default_exec:s0
 
 /dev/radio0										u:object_r:fm_radio_device:s0	
 /factory(/.*)?									u:object_r:sec_efs_file:s0
