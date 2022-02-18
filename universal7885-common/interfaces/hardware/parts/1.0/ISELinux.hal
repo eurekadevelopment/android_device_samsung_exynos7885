@@ -12,27 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package vendor.eureka.hardware.flashlight@1.0;
+package vendor.eureka.security.selinux@1.0;
 
-enum Device : int32_t {
-	A10,
-	NOTA10,
-};
-
-enum Number : int32_t {
-	ONEUI,
-	TWOUI,
-	THREEUI,
-	FOURUI,
-	FIVEUI,
-	SIXUI,
-	SEVENUI,
-	EIGHTUI,
-	NINEUI,
-	TENUI,
-};
-
-enum Enable : int32_t {
-	ENABLE,
-	DISABLE,
+interface ISELinux {
+	setSELinuxWritable(Number enable) generates (int32_t result);
+	readSELinuxstats() generates (int32_t value);
 };

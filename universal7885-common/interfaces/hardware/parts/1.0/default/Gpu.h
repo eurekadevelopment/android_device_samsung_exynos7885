@@ -16,9 +16,9 @@
 
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
-#include <vendor/eureka/security/selinux/1.0/ISELinux.h>
+#include <vendor/eureka/hardware/parts/1.0/IGpu.h>
 
-namespace vendor::eureka::security::selinux::V1_0 {
+namespace vendor::eureka::hardware::parts::V1_0 {
 
 using ::android::sp;
 using ::android::hardware::hidl_array;
@@ -28,11 +28,11 @@ using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
 
-struct SELinux : public ISELinux {
-    // Methods from ::vendor::eureka::security::selinux::V1_0::ISELinux follow.
-    Return<int32_t> setSELinuxWritable(Enable enable);
-    Return<int32_t> readSELinuxstats(void);
+struct Gpu : public IGpu {
+    // Methods from ::vendor::eureka::hardware::parts::V1_0::IGpu follow.
+    Return<int32_t> setGpuWritable(Number enable);
+    Return<int32_t> readGpustats(void);
     // Methods from ::android::hidl::base::V1_0::IBase follow.
-    static ISELinux* getInstance(void);
+    static IGpu* getInstance(void);
 };
-}  // namespace vendor::eureka::security::selinux::V1_0
+}  // namespace vendor::eureka::hardware::parss::V1_0

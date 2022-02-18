@@ -1,5 +1,0 @@
-service vendor.battery-hal /vendor/bin/hw/vendor.eureka.hardware.battery@1.0-service
-    interface vendor.eureka.hardware.battery@1.0::IBattery default
-    class hal
-    user root
-    group root

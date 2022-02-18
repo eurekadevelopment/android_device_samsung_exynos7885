@@ -16,12 +16,12 @@
 
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
-#include <vendor/eureka/hardware/battery/1.0/IBattery.h>
+#include <vendor/eureka/hardware/parts/1.0/IBattery.h>
 
 #define ANDROID_SYSTEM_UID 1000
 #define ANDROID_ROOT_UID 0
 
-namespace vendor::eureka::hardware::battery::V1_0 {
+namespace vendor::eureka::hardware::parts::V1_0 {
 
 using ::android::sp;
 using ::android::hardware::hidl_array;
@@ -32,11 +32,11 @@ using ::android::hardware::Return;
 using ::android::hardware::Void;
 
 struct Battery : public IBattery {
-    // Methods from ::vendor::eureka::hardware::battery::V1_0::IBattery follow.
+    // Methods from ::vendor::eureka::hardware::parts::V1_0::IBattery follow.
     Return<int32_t> getBatteryStats(SysfsType stats) override;
     Return<int32_t> setBatteryWritable(SysfsType stats, Number value) override;
 
     // Methods from ::android::hidl::base::V1_0::IBase follow.
     static IBattery* getInstance(void);
 };
-}  // namespace vendor::eureka::hardware::battery::V1_0
+}  // namespace vendor::eureka::hardware::parts::V1_0

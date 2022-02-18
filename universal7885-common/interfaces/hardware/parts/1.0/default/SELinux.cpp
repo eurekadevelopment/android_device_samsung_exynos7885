@@ -16,12 +16,12 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
-namespace vendor::eureka::security::selinux::V1_0 {
+namespace vendor::eureka::hardware::parts::V1_0 {
 
-Return<int32_t> SELinux::setSELinuxWritable(selinux::V1_0::Enable enable) {
+Return<int32_t> SELinux::setSELinuxWritable(parts::V1_0::Number enable) {
     std::ofstream file;
     std::string writevalue;
-    if (enable == Enable::ENABLE) {
+    if (enable == Number::ENABLE) {
         writevalue = "1";
     } else {
         writevalue = "0";
@@ -50,4 +50,4 @@ Return<int32_t> SELinux::readSELinuxstats(void) {
 ISELinux* SELinux::getInstance(void) {
     return new SELinux();
 }
-}  // namespace vendor::eureka::security::selinux::V1_0
+}  // namespace vendor::eureka::hardware::parts::V1_0

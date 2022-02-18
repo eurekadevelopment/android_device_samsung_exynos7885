@@ -12,9 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package vendor.eureka.security.selinux@1.0;
+package vendor.eureka.hardware.parts@1.0;
 
-enum Enable : int32_t {
-	ENABLE,
-	DISABLE,
+interface IFlashlight {
+	setFlashlightWritable(Value value) generates (int32_t result);
+	setFlashlightEnable(Number enable) generates (int32_t result);
+	readFlashlightstats(Device device) generates (int32_t value);
 };

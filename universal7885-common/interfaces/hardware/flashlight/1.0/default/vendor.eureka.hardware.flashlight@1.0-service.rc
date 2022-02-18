@@ -1,5 +1,0 @@
-service vendor.flashlight-hal /vendor/bin/hw/vendor.eureka.hardware.flashlight@1.0-service
-    interface vendor.eureka.hardware.flashlight@1.0::IFlashlight default
-    class hal
-    user root
-    group root

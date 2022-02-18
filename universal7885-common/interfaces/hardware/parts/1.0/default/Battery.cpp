@@ -18,10 +18,10 @@
 #include <iostream>
 #include <sstream>
 
-namespace vendor::eureka::hardware::battery::V1_0 {
+namespace vendor::eureka::hardware::parts::V1_0 {
 
 // Methods from ::android::hardware::battery::V1_0::IBattery follow.
-Return<int32_t> Battery::getBatteryStats(battery::V1_0::SysfsType stats) {
+Return<int32_t> Battery::getBatteryStats(parts::V1_0::SysfsType stats) {
     std::ifstream file;
     std::string filename;
     switch (stats) {
@@ -60,8 +60,8 @@ Return<int32_t> Battery::getBatteryStats(battery::V1_0::SysfsType stats) {
     return -1;
 }
 
-Return<int32_t> Battery::setBatteryWritable(battery::V1_0::SysfsType stats,
-                                            battery::V1_0::Number value) {
+Return<int32_t> Battery::setBatteryWritable(parts::V1_0::SysfsType stats,
+                                            parts::V1_0::Number value) {
     std::ofstream file;
     std::string filename;
     bool FastCharge = false;
@@ -106,4 +106,4 @@ Return<int32_t> Battery::setBatteryWritable(battery::V1_0::SysfsType stats,
 IBattery* Battery::getInstance(void) {
     return new Battery();
 }
-}  // namespace vendor::eureka::hardware::battery::V1_0
+}  // namespace vendor::eureka::hardware::parts::V1_0

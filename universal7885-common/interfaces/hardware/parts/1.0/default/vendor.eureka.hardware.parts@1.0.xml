@@ -1,0 +1,23 @@
+<manifest version="1.0" type="device">
+   <hal format="hidl">
+     <name>vendor.eureka.hardware.parts</name>
+     <transport>hwbinder</transport>
+     <version>1.0</version>
+     <interface>
+         <name>IBattery</name>
+         <instance>default</instance>
+     </interface>
+     <interface>
+         <name>IFlashLight</name>
+         <instance>default</instance>
+     </interface>
+     <interface>
+         <name>IGpu</name>
+         <instance>default</instance>
+     </interface>
+     <interface>
+         <name>ISELinux</name>
+         <instance>default</instance>
+     </interface>
+   </hal>
+</manifest>

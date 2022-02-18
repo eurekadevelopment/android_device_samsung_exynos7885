@@ -11,7 +11,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package vendor.eureka.hardware.battery@1.0;
+
+package vendor.eureka.hardware.parts@1.0;
 
 enum SysfsType : int32_t {
 	CAPACITY_MAX,
@@ -25,4 +26,22 @@ enum SysfsType : int32_t {
 enum Number : int32_t {
 	ENABLE = 1,
 	DISABLE = 0,
+};
+
+enum Device : int32_t {
+	A10,
+	NOTA10,
+};
+
+enum Value : int32_t {
+	ONEUI,
+	TWOUI,
+	THREEUI,
+	FOURUI,
+	FIVEUI,
+	SIXUI,
+	SEVENUI,
+	EIGHTUI,
+	NINEUI,
+	TENUI,
 };

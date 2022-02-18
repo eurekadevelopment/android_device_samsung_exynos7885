@@ -1,5 +1,0 @@
-service vendor.selinux-hal /vendor/bin/hw/vendor.eureka.security.selinux@1.0-service
-    interface vendor.eureka.security.selinux@1.0::ISELinux default
-    class hal
-    user root
-    group root

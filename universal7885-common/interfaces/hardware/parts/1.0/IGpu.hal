@@ -12,10 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package vendor.eureka.hardware.flashlight@1.0;
+package vendor.eureka.hardware.gpu@1.0;
 
-interface IFlashlight {
-	setFlashlightWritable(Number value) generates (int32_t result);
-	setFlashlightEnable(Enable enable) generates (int32_t result);
-	readFlashlightstats(Device device) generates (int32_t value);
+interface IGpu {
+	setGpuWritable(Number enable) generates (int32_t result);
+	readGpustats() generates (int32_t value);
 };

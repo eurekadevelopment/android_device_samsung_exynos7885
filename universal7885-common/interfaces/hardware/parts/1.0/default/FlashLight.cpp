@@ -12,21 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "Flashlight.h"
+#include "FlashLight.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
-namespace vendor::eureka::hardware::flashlight::V1_0 {
+namespace vendor::eureka::hardware::parts::V1_0 {
 
-// Methods from ::android::hardware::flashlight::V1_0::IFlashlight follow.
-Return<int32_t> Flashlight::setFlashlightEnable(flashlight::V1_0::Enable enable) {
+// Methods from ::android::hardware::parts::V1_0::IFlashLight follow.
+Return<int32_t> FlashLight::setFlashlightEnable(parts::V1_0::Number enable) {
     std::ofstream file;
     std::string writevalue;
     switch (enable) {
-        case Enable::ENABLE:
+        case Number::ENABLE:
             writevalue = "1";
             break;
-        case Enable::DISABLE:
+        case Number::DISABLE:
             writevalue = "0";
             break;
         default:
@@ -39,38 +39,38 @@ Return<int32_t> Flashlight::setFlashlightEnable(flashlight::V1_0::Enable enable)
     return 0;
 }
 
-Return<int32_t> Flashlight::setFlashlightWritable(flashlight::V1_0::Number value) {
+Return<int32_t> FlashLight::setFlashlightWritable(parts::V1_0::Value value) {
     std::ofstream file;
     std::string writevalue;
     switch (value) {
-        case Number::ONEUI:
+        case Value::ONEUI:
             writevalue = "1";
             break;
-        case Number::TWOUI:
+        case Value::TWOUI:
             writevalue = "2";
             break;
-        case Number::THREEUI:
+        case Value::THREEUI:
             writevalue = "3";
             break;
-        case Number::FOURUI:
+        case Value::FOURUI:
             writevalue = "4";
             break;
-        case Number::FIVEUI:
+        case Value::FIVEUI:
             writevalue = "5";
             break;
-        case Number::SIXUI:
+        case Value::SIXUI:
             writevalue = "6";
             break;
-        case Number::SEVENUI:
+        case Value::SEVENUI:
             writevalue = "7";
             break;
-        case Number::EIGHTUI:
+        case Value::EIGHTUI:
             writevalue = "8";
             break;
-        case Number::NINEUI:
+        case Value::NINEUI:
             writevalue = "9";
             break;
-        case Number::TENUI:
+        case Value::TENUI:
             writevalue = "10";
             break;
         default:
@@ -83,7 +83,7 @@ Return<int32_t> Flashlight::setFlashlightWritable(flashlight::V1_0::Number value
     return 0;
 }
 
-Return<int32_t> Flashlight::readFlashlightstats(flashlight::V1_0::Device device) {
+Return<int32_t> FlashLight::readFlashlightstats(parts::V1_0::Device device) {
     std::ifstream file;
     std::string value;
     int32_t intvalue;
@@ -104,7 +104,7 @@ Return<int32_t> Flashlight::readFlashlightstats(flashlight::V1_0::Device device)
     return -1;
 }
 
-IFlashlight* Flashlight::getInstance(void) {
-    return new Flashlight();
+IFlashlight* FlashLight::getInstance(void) {
+    return new FlashLight();
 }
-}  // namespace vendor::eureka::hardware::flashlight::V1_0
+}  // namespace vendor::eureka::hardware::parts::V1_0

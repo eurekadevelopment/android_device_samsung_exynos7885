@@ -16,9 +16,9 @@
 
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
-#include <vendor/eureka/hardware/gpu/1.0/IGpu.h>
+#include <vendor/eureka/hardware/parts/1.0/IFlashLight.h>
 
-namespace vendor::eureka::hardware::gpu::V1_0 {
+namespace vendor::eureka::hardware::parts::V1_0 {
 
 using ::android::sp;
 using ::android::hardware::hidl_array;
@@ -28,11 +28,12 @@ using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
 
-struct Gpu : public IGpu {
-    // Methods from ::vendor::eureka::hardware::gpu::V1_0::IGpu follow.
-    Return<int32_t> setGpuWritable(Enable enable);
-    Return<int32_t> readGpustats(void);
+struct FlashLight : public IFlashLight {
+    // Methods from ::vendor::eureka::hardware::flashlight::V1_0::IFlashLight follow.
+    Return<int32_t> setFlashlightEnable(Number enable);
+    Return<int32_t> setFlashlightWritable(Value value);
+    Return<int32_t> readFlashlightstats(Device device);
     // Methods from ::android::hidl::base::V1_0::IBase follow.
-    static IGpu* getInstance(void);
+    static IFlashLight* getInstance(void);
 };
-}  // namespace vendor::eureka::hardware::gpu::V1_0
+}  // namespace vendor::eureka::hardware::parts::V1_0
