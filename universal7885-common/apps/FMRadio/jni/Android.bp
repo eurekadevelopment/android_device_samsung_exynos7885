@@ -1,0 +1,12 @@
+cc_library_shared {
+    name: "libfmioctl_jni",
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-Werror",
+    ],
+    srcs: ["fm_ioctl.cpp"],
+    header_libs: ["jni_headers"],
+}
+

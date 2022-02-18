@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.eurekateam.fmradio"
+    android:sharedUserId="android.uid.system">
+
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/OneUI4Theme">
+        <activity
+            android:name=".ErrorHandler"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.HEADSET_PLUG"/>
+                <action android:name="com.eurekateam.fmradio.RADIO.IO" />
+                <action android:name="com.eurekateam.fmradio.TRACKS" />
+                <action android:name="com.eurekateam.fmradio.NO_HEADPHONE" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.HEADSET_PLUG"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <service
+            android:name=".FMRadioService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.eurekateam.fmradio.STARTBG" />
+                <action android:name="com.eurekateam.fmradio.PLAY_FM"/>
+                <action android:name="com.eurekateam.fmradio.NEXT"/>
+                <action android:name="com.eurekateam.fmradio.BEFORE"/>
+                <action android:name="com.eurekateam.fmradio.QUIT"/>
+                <action android:name="com.eurekateam.fmradio.STOPBG"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

@@ -1,0 +1,21 @@
+android_app {
+    name: "FMRadio",
+    srcs: [
+        "src/**/*.kt",
+    ],
+    platform_apis: true,
+    privileged: true,
+    certificate: "platform",
+    jni_libs: ["libfmioctl_jni"],
+    static_libs: [
+    	"androidx.core_core",
+    	"androidx.appcompat_appcompat",
+    ],
+    required: ["privapp_whitelist_com.eurekateam.fmradio.xml"],
+}
+
+prebuilt_etc {
+    name: "privapp_whitelist_com.eurekateam.fmradio.xml",
+    src: "privapp_whitelist_com.eurekateam.fmradio.xml",
+    sub_dir: "permissions",
+}
