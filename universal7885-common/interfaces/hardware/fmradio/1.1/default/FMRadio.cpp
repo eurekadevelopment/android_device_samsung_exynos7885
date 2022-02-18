@@ -16,7 +16,10 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
-namespace vendor::eureka::hardware::fmradio::V1_0 {
+#include <sys/types.h>
+#include <sys/stat.h>
+
+namespace vendor::eureka::hardware::fmradio::V1_1 {
 
 Return<void> IFMRadio::setManualFreq(float freq) {
     std::ofstream file;
@@ -39,8 +42,15 @@ Return<void> IFMRadio::adjustFreqByStep(fmradio::V1_0::Direction dir) {
     file.close();
     return Void();
 }
-
-IFMRadio* FMRadio::getInstance(void) {
+Return<int32_t> IFMRadio::isAvailable(){
+    struct stat info;
+    if(stat("/sys/devices/virtual/s610_radio/s610_radio/", &info ) != 0) {
+    	return Status::NO;
+    else
+    	return Status::YES;
+    }
+}
+IFMRadio* IFMRadio::getInstance(void) {
     return new FMRadio();
 }
 }  // namespace vendor::eureka::hardware::fmradio::V1_0

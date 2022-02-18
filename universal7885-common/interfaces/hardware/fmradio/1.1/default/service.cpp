@@ -14,7 +14,7 @@
 
 #define LOG_TAG "vendor.eureka.hardware.fmradio@1.0-service"
 
-#include <vendor/eureka/hardware/parts/1.0/IFMRadio.h>
+#include <vendor/eureka/hardware/fmradio/1.1/IFMRadio.h>
 
 #include <hidl/LegacySupport.h>
 
@@ -23,8 +23,8 @@
 using android::sp;
 using android::hardware::configureRpcThreadpool;
 using android::hardware::joinRpcThreadpool;
-using vendor::eureka::hardware::parts::V1_0::FMRadio;
-using vendor::eureka::hardware::parts::V1_0::IFMRadio;
+using vendor::eureka::hardware::fmradio::V1_1::FMRadio;
+using vendor::eureka::hardware::fmradio::V1_1::IFMRadio;
 
 int main() {
     int ret;

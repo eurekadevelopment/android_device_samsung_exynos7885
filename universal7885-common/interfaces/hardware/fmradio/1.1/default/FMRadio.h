@@ -16,9 +16,9 @@
 
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
-#include <vendor/eureka/hardware/fmradio/1.0/IFMRadio.h>
+#include <vendor/eureka/hardware/fmradio/1.1/IFMRadio.h>
 
-namespace vendor::eureka::hardware::fmradio::V1_0 {
+namespace vendor::eureka::hardware::fmradio::V1_1 {
 
 using ::android::sp;
 using ::android::hardware::hidl_array;
@@ -29,9 +29,11 @@ using ::android::hardware::Return;
 using ::android::hardware::Void;
 
 struct FMRadio : public IFMRadio {
-    // Methods from ::vendor::eureka::hardware::parts::V1_0::ISELinux follow.
+    // Methods from ::vendor::eureka::hardware::fmradio::V1_0::IFMRadio follow.
     Return<void> setManualFreq(float freq);
     Return<void> adjustFreqByStep(Direction dir);
+    // Methods from ::vendor::eureka::hardware::fmradio::V1_1::IFMRadio follow.
+    Return<int32_t> isAvailable();
     // Methods from ::android::hidl::base::V1_0::IBase follow.
     static IFMRadio* getInstance(void);
 };

@@ -1,5 +1,5 @@
 hidl_interface { 
-    name: "vendor.eureka.hardware.fmradio@1.0",
+    name: "vendor.eureka.hardware.fmradio@1.1",
     root: "vendor.eureka",  
     srcs: [
        "types.hal",
@@ -7,6 +7,7 @@ hidl_interface {
     ],
     interfaces: [ 
     	"android.hidl.base@1.0",
+    	"vendor.eureka.hardware.fmradio@1.0",
     ],
     gen_java: true,
 }
