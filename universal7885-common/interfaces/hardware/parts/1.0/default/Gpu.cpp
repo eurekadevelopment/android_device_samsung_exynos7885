@@ -47,7 +47,7 @@ Return<int32_t> IGpu::readGpustats(void) {
     return -1;
 }
 
-IGpu* Gpu::getInstance(void) {
+IGpu* IGpu::getInstance(void) {
     return new Gpu();
 }
 }  // namespace vendor::eureka::hardware::parts::V1_0

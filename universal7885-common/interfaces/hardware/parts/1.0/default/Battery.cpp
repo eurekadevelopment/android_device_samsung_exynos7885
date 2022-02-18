@@ -103,7 +103,7 @@ Return<int32_t> IBattery::setBatteryWritable(parts::V1_0::SysfsType stats,
     return 0;
 }
 
-IBattery* Battery::getInstance(void) {
+IBattery* IBattery::getInstance(void) {
     return new Battery();
 }
 }  // namespace vendor::eureka::hardware::parts::V1_0

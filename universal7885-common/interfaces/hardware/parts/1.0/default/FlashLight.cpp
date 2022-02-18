@@ -104,7 +104,7 @@ Return<int32_t> IFlashLight::readFlashlightstats(parts::V1_0::Device device) {
     return -1;
 }
 
-IFlashLight* FlashLight::getInstance(void) {
+IFlashLight* IFlashLight::getInstance(void) {
     return new FlashLight();
 }
 }  // namespace vendor::eureka::hardware::parts::V1_0

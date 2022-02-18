@@ -47,7 +47,7 @@ Return<int32_t> ISELinux::readSELinuxstats(void) {
     return -1;
 }
 
-ISELinux* SELinux::getInstance(void) {
+ISELinux* ISELinux::getInstance(void) {
     return new SELinux();
 }
 }  // namespace vendor::eureka::hardware::parts::V1_0
