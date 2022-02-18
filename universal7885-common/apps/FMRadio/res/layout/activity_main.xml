@@ -175,7 +175,7 @@
             android:layout_height="wrap_content"
             android:background="@color/secondary_color">
 
-            <de.dlyt.yanndroid.oneui.view.SeekBar
+            <SeekBar
                 android:id="@+id/fm_freq_seekbar"
                 android:layout_width="325dp"
                 android:layout_height="50dp"

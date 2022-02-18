@@ -20,7 +20,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import de.dlyt.yanndroid.oneui.view.SeekBar
+import android.widget.SeekBar
 import java.io.*
 import java.text.DecimalFormat
 
