@@ -13,38 +13,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
-soong_config_module_type {
-    name: "exynos9820_model",
-    module_type: "cc_defaults",
-    config_namespace: "exynos9820CameraVars",
-    value_variables: ["exynos9820_model"],
-    properties: ["cppflags"],
-}
-
-exynos9820_model {
-    name: "exynos9820_model_defaults",
-    soong_config_variables: {
-        exynos9820_model: {
-            cppflags: ["-DEXYNOS9820_MODEL_%s"],
-        },
-    },
-}
-
 cc_binary {
-    name: "android.hardware.camera.provider@2.5-service_64.exynos9820",
+    name: "android.hardware.camera.provider@2.5-service.exynos7885",
     defaults: [
         "hidl_defaults",
-        "exynos9820_model_defaults",
     ],
-    compile_multilib: "64",
+    compile_multilib: "32",
     proprietary: true,
     relative_install_path: "hw",
     srcs: [
         "SamsungCameraProvider.cpp",
         "service.cpp"
     ],
-    init_rc: ["android.hardware.camera.provider@2.5-service_64.exynos9820.rc"],
+    init_rc: ["android.hardware.camera.provider@2.5-service.exynos7885.rc"],
     shared_libs: [
         "android.hardware.camera.provider@2.4",
         "android.hardware.camera.provider@2.4-legacy",
