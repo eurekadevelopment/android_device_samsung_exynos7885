@@ -1,0 +1,105 @@
+From 50bffe91bbb6fec8405e4bd6229c414f68bfb804 Mon Sep 17 00:00:00 2001
+From: Alberto Ponces <ponces26@gmail.com>
+Date: Tue, 15 Jun 2021 15:21:27 +0530
+Subject: [PATCH] Add option to change eSCO Transport Unit Size to 16
+
+ * Fixes bluetooth calls on samsung {m20lte, m30lte, a30, a40}
+
+[SamarV-121: Make it conditional and apply it for mSBC T1, CVSD codec as well]
+
+Change-Id: Id1a64b97a105f16c29343a489a1b9560736b8647
+Signed-off-by: SamarV-121 <samarvispute121@gmail.com>
+---
+ device/src/esco_parameters.cc | 22 +++++++++++-----------
+ internal_include/bt_target.h  | 10 ++++++++++
+ 2 files changed, 21 insertions(+), 11 deletions(-)
+
+diff --git a/device/src/esco_parameters.cc b/device/src/esco_parameters.cc
+index e2a6eeccef..84a235ed72 100644
+--- a/device/src/esco_parameters.cc
++++ b/device/src/esco_parameters.cc
+@@ -17,7 +17,7 @@
+  ******************************************************************************/
+ 
+ #include "base/logging.h"
+-
++#include "bt_target.h"
+ #include "device/include/esco_parameters.h"
+ 
+ static const enh_esco_params_t default_esco_parameters[ESCO_NUM_CODECS] = {
+@@ -49,8 +49,8 @@ static const enh_esco_params_t default_esco_parameters[ESCO_NUM_CODECS] = {
+         .output_pcm_payload_msb_position = 0,
+         .input_data_path = ESCO_DATA_PATH_PCM,
+         .output_data_path = ESCO_DATA_PATH_PCM,
+-        .input_transport_unit_size = 0x00,
+-        .output_transport_unit_size = 0x00,
++        .input_transport_unit_size = ESCO_TRANSPORT_UNIT_SIZE,
++        .output_transport_unit_size = ESCO_TRANSPORT_UNIT_SIZE,
+         .max_latency_ms = 0xFFFF,  // Don't care
+         .packet_types = (ESCO_PKT_TYPES_MASK_HV1 | ESCO_PKT_TYPES_MASK_HV2 |
+                          ESCO_PKT_TYPES_MASK_HV3),
+@@ -84,8 +84,8 @@ static const enh_esco_params_t default_esco_parameters[ESCO_NUM_CODECS] = {
+         .output_pcm_payload_msb_position = 0,
+         .input_data_path = ESCO_DATA_PATH_PCM,
+         .output_data_path = ESCO_DATA_PATH_PCM,
+-        .input_transport_unit_size = 0x00,
+-        .output_transport_unit_size = 0x00,
++        .input_transport_unit_size = ESCO_TRANSPORT_UNIT_SIZE,
++        .output_transport_unit_size = ESCO_TRANSPORT_UNIT_SIZE,
+         .max_latency_ms = 10,
+         .packet_types =
+             (ESCO_PKT_TYPES_MASK_HV1 | ESCO_PKT_TYPES_MASK_HV2 |
+@@ -123,8 +123,8 @@ static const enh_esco_params_t default_esco_parameters[ESCO_NUM_CODECS] = {
+         .output_pcm_payload_msb_position = 0,
+         .input_data_path = ESCO_DATA_PATH_PCM,
+         .output_data_path = ESCO_DATA_PATH_PCM,
+-        .input_transport_unit_size = 0x00,
+-        .output_transport_unit_size = 0x00,
++        .input_transport_unit_size = ESCO_TRANSPORT_UNIT_SIZE,
++        .output_transport_unit_size = ESCO_TRANSPORT_UNIT_SIZE,
+         .max_latency_ms = 12,
+         .packet_types =
+             (ESCO_PKT_TYPES_MASK_HV1 | ESCO_PKT_TYPES_MASK_HV2 |
+@@ -162,8 +162,8 @@ static const enh_esco_params_t default_esco_parameters[ESCO_NUM_CODECS] = {
+         .output_pcm_payload_msb_position = 0,
+         .input_data_path = ESCO_DATA_PATH_PCM,
+         .output_data_path = ESCO_DATA_PATH_PCM,
+-        .input_transport_unit_size = 0x00,
+-        .output_transport_unit_size = 0x00,
++        .input_transport_unit_size = ESCO_TRANSPORT_UNIT_SIZE,
++        .output_transport_unit_size = ESCO_TRANSPORT_UNIT_SIZE,
+         .max_latency_ms = 8,
+         .packet_types =
+             (ESCO_PKT_TYPES_MASK_EV3 | ESCO_PKT_TYPES_MASK_NO_3_EV3 |
+@@ -199,8 +199,8 @@ static const enh_esco_params_t default_esco_parameters[ESCO_NUM_CODECS] = {
+         .output_pcm_payload_msb_position = 0,
+         .input_data_path = ESCO_DATA_PATH_PCM,
+         .output_data_path = ESCO_DATA_PATH_PCM,
+-        .input_transport_unit_size = 0x00,
+-        .output_transport_unit_size = 0x00,
++        .input_transport_unit_size = ESCO_TRANSPORT_UNIT_SIZE,
++        .output_transport_unit_size = ESCO_TRANSPORT_UNIT_SIZE,
+         .max_latency_ms = 13,
+         .packet_types =
+             (ESCO_PKT_TYPES_MASK_EV3 | ESCO_PKT_TYPES_MASK_NO_3_EV3 |
+diff --git a/internal_include/bt_target.h b/internal_include/bt_target.h
+index dd8c74eba0..18353cde84 100644
+--- a/internal_include/bt_target.h
++++ b/internal_include/bt_target.h
+@@ -263,6 +263,16 @@
+ #define BTM_DISC_DURING_RS TRUE
+ #endif
+ 
++/*  This is used to work around an uncompliant AOSP implementation regarding
++ *  eSCO Transport Unit Size parameter defined as 0x00 (HCI) which is not
++ *  suitable for all devices. This sets this parameter to 16 bits (PCM)
++ */
++#ifdef BTM_ESCO_TRANSPORT_UNIT_SIZE_PCM16
++#define ESCO_TRANSPORT_UNIT_SIZE 16
++#else
++#define ESCO_TRANSPORT_UNIT_SIZE 0x00
++#endif
++
+ /**************************
+  * Initial SCO TX credit
+  ************************/
