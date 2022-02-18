@@ -18,7 +18,7 @@
 #include <sstream>
 namespace vendor::eureka::hardware::parts::V1_0 {
 
-Return<int32_t> ISELinux::setSELinuxWritable(parts::V1_0::Number enable) {
+Return<int32_t> SELinux::setSELinuxWritable(parts::V1_0::Number enable) {
     std::ofstream file;
     std::string writevalue;
     if (enable == Number::ENABLE) {
@@ -32,7 +32,7 @@ Return<int32_t> ISELinux::setSELinuxWritable(parts::V1_0::Number enable) {
     return 0;
 }
 
-Return<int32_t> ISELinux::readSELinuxstats(void) {
+Return<int32_t> SELinux::readSELinuxstats(void) {
     std::ifstream file;
     std::string value;
     int32_t intvalue;
@@ -47,7 +47,7 @@ Return<int32_t> ISELinux::readSELinuxstats(void) {
     return -1;
 }
 
-ISELinux* ISELinux::getInstance(void) {
+ISELinux* SELinux::getInstance(void) {
     return new SELinux();
 }
 }  // namespace vendor::eureka::hardware::parts::V1_0
