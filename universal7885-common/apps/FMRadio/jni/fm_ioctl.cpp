@@ -62,26 +62,6 @@ static int fm_radio_set_frequency(int fd, long channel)
     return FM_SUCCESS;
 }
 
-static int fm_radio_get_control(int fd, unsigned int id, long *val)
-{
-    struct v4l2_control ctrl{};
-    int ret;
-#ifdef DEBUG
-    printf("FmRadioController:fm_radio_get_control: id(%d)\n", id);
-#endif
-    ctrl.id = id;
-
-    ret = ioctl(fd, VIDIOC_G_CTRL, &ctrl);
-    if (ret < 0) {
-        printf("FmRadioController: failed to get control\n");
-	return FM_FAILURE;
-    }
-
-    *val = (long)ctrl.value;
-
-    return FM_SUCCESS;
-}
-
 static int fm_radio_set_control(int fd, unsigned int id, long val)
 {
     struct v4l2_control ctrl{};

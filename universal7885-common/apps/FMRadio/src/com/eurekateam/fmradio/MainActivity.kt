@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity(),
     private val mMainHandler : Handler = Handler(Looper.getMainLooper())
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        System.loadLibrary("fmradioioctl_jni")
+        System.loadLibrary("fmioctl_jni")
         setContentView(R.layout.activity_main)
         mContext = this
         mFilePath = mContext.filesDir
