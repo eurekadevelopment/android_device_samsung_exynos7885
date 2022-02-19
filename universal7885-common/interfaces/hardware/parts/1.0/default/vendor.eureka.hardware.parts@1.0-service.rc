@@ -1,4 +1,4 @@
-service vendor.parts-hal /vendor/bin/hw/vendor.eureka.hardware.parts@1.0-service
+service vendor.samsungparts-hal /vendor/bin/hw/vendor.eureka.hardware.parts@1.0-service
     interface vendor.eureka.hardware.parts@1.0::IBattery default
     interface vendor.eureka.hardware.parts@1.0::IGpu default
     interface vendor.eureka.hardware.parts@1.0::IFlashLight default
