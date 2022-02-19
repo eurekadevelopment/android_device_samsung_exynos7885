@@ -16,6 +16,9 @@ android_app {
     	"privapp_whitelist_com.eurekateam.fmradio.xml",
     	"vendor.eureka.hardware.fmradio@1.0-service",
     ],
+    optimize: {
+        proguard_flags_files: ["rules.pro"],
+    },
 }
 
 prebuilt_etc {
