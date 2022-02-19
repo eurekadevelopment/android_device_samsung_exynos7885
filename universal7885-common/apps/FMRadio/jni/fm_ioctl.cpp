@@ -107,7 +107,7 @@ static int fm_radio_channel_searching(int fd, unsigned int upward, unsigned int 
 {
     int ret;
 
-    ret = fm_radio_set_control(fd, V4L2_CID_S610_SEEK_MODE, FM_TUNER_AUTONOMOUS_SEARCH_MODE);
+    ret = fm_radio_set_control(fd, V4L2_CID_S610_SEEK_MODE, FM_TUNER_AUTONOMOUS_SEARCH_MODE_NEXT);
     if (ret < 0)
         return ret;
 

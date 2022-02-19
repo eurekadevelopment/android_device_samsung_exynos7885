@@ -292,7 +292,7 @@ class MainActivity : AppCompatActivity(),
                     mTitle.text = String.format("Volume %d", mVolume)
                     mHandler.postDelayed({
                         mTitle.text = getString(R.string.fm_radio)
-                    },1500)
+                    },4000)
                 }
                 true
             }
@@ -305,7 +305,7 @@ class MainActivity : AppCompatActivity(),
                     mTitle.text = String.format("Volume %d", mVolume)
                     mHandler.postDelayed({
                         mTitle.text = getString(R.string.fm_radio)
-                    },1500)
+                    },4000)
                 }
                 true
             }
