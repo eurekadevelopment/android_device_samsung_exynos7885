@@ -72,6 +72,7 @@ else
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.5-service
 endif
+
 # Camera app
 PRODUCT_PACKAGES += \
     Footej
@@ -95,6 +96,12 @@ PRODUCT_PACKAGES += \
 # Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.3-service.samsung
+
+ifeq ($(findstring a40, $(TARGET_PRODUCT)),)
+# Samsung FMRadio impl
+PRODUCT_PACKAGES += \
+    FMRadio
+endif
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
