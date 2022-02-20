@@ -44,7 +44,7 @@ Return<void> FMRadio::adjustFreqByStep(fmradio::V1_0::Direction dir) {
     file.close();
     return Void();
 }
-Return<int32_t> IFMRadio::isAvailable(){
+Return<V1_1::Status> FMRadio::isAvailable(){
     struct stat info;
     if(stat("/sys/devices/virtual/s610_radio/s610_radio/", &info ) != 0) {
     	return V1_1::Status::NO;

@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <cerrno>
 #include <iostream>
-#include "fm.h"
+#include "s610_radio.h"
 #include "kernel_internal.h"
 #include <algorithm>
 #include <jni.h>
@@ -117,7 +117,7 @@ static int fm_radio_channel_searching(int fd, unsigned int upward, unsigned int 
 {
     int ret;
 
-    ret = fm_radio_set_control(fd, V4L2_CID_S610_SEEK_MODE, FM_TUNER_AUTONOMOUS_SEARCH_MODE_NEXT);
+    ret = fm_radio_set_control(fd, V4L2_CID_S610_SEEK_MODE, FM_TUNER_AUTONOMOUS_SEARCH_MODE);
     if (ret < 0)
         return ret;
 
@@ -194,6 +194,8 @@ bool contains(C&& c, T e) { return std::find(std::begin(c), std::end(c), e) != s
 static long fm_radio_get_freqs(int fd){
     long ret = 0;
     fm_radio_set_mute(fd, true);
+    sp<IFMRadio> service = IFMRadio::getService();
+    bool mSysfs = service->isAvailable() == Status::YES; 
     for (long & track : tracks){
     	if (mSysfs) {
     		service->adjustFreqByStep(Direction::UP);
@@ -436,15 +438,28 @@ JNIEXPORT jint JNICALL
 Java_com_eurekateam_fmradio_NativeFMInterface_getNextChannel
 (__unused JNIEnv *env, __unused jobject thiz, jint fd) {
     long ret;
-    fm_radio_channel_searching(fd, 1, 0, FM_CHANNEL_SPACING_100KHZ, &ret);
+    sp<IFMRadio> service = IFMRadio::getService();
+    bool mSysfs = service->isAvailable() == Status::YES; 
+    if (!mSysfs){
+    	fm_radio_channel_searching(fd, 1, 0, FM_CHANNEL_SPACING_100KHZ, &ret);
+    } else {
+    	service->adjustFreqByStep(Direction::UP);
+    	ret = service->getFreqFromSysfs();
+    }
     return ret;
 }
 extern "C"
 JNIEXPORT jint JNICALL
 Java_com_eurekateam_fmradio_NativeFMInterface_getBeforeChannel
 (__unused JNIEnv *env, __unused jobject thiz, jint fd) {
-    long ret;
-    fm_radio_channel_searching(fd, 0, 0, FM_CHANNEL_SPACING_100KHZ, &ret);
+    long ret;sp<IFMRadio> service = IFMRadio::getService();
+    bool mSysfs = service->isAvailable() == Status::YES; 
+    if (!mSysfs){
+    	fm_radio_channel_searching(fd, 0, 0, FM_CHANNEL_SPACING_100KHZ, &ret);
+    } else {
+    	service->adjustFreqByStep(Direction::DOWN);
+    	ret = service->getFreqFromSysfs();
+    }
     return ret;
 }
 
