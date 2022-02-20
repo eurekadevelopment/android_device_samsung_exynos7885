@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package vendor.eureka.hardware.fmradio@1.1;
+package vendor.eureka.hardware.fmradio@1.2;
 
-import @1.0::IFMRadio;
+import @1.1::IFMRadio;
 
-interface IFMRadio extends @1.0::IFMRadio {
-	getFreqFromSysfs() generates (int32_t freq);
-	isAvailable() generates (Status	status);
+interface IFMRadio extends @1.1::IFMRadio {
+	setChannelSpacing(Space space);
+	getChannelSpacing() generates (Space space);
 };

@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#define LOG_TAG "vendor.eureka.hardware.fmradio@1.0-service"
+#define LOG_TAG "vendor.eureka.hardware.fmradio@1.2-service"
 
-#include <vendor/eureka/hardware/fmradio/1.1/IFMRadio.h>
+#include <vendor/eureka/hardware/fmradio/1.2/IFMRadio.h>
 
 #include <hidl/LegacySupport.h>
 
@@ -23,8 +23,8 @@
 using android::sp;
 using android::hardware::configureRpcThreadpool;
 using android::hardware::joinRpcThreadpool;
-using vendor::eureka::hardware::fmradio::V1_1::FMRadio;
-using vendor::eureka::hardware::fmradio::V1_1::IFMRadio;
+using vendor::eureka::hardware::fmradio::V1_2::FMRadio;
+using vendor::eureka::hardware::fmradio::V1_2::IFMRadio;
 
 int main() {
     int ret;

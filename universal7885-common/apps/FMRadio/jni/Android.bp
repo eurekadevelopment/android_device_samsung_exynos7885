@@ -4,6 +4,14 @@ cc_library_shared {
         "-Wno-unused-parameter",
     ],
     srcs: ["fm_ioctl.cpp"],
+    shared_libs: [
+        "libhidlbase",
+        "liblog",
+        "libutils",
+        "vendor.eureka.hardware.fmradio@1.0",
+        "vendor.eureka.hardware.fmradio@1.1",
+        "vendor.eureka.hardware.fmradio@1.2",
+    ],
     header_libs: ["jni_headers"],
 }
 

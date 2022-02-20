@@ -11,6 +11,16 @@
 #include "kernel_internal.h"
 #include <algorithm>
 #include <jni.h>
+#include <hardware/hardware.h>
+#include <hidl/HidlSupport.h>
+#include <hidl/LegacySupport.h>
+#include <hidl/Status.h>
+#include <vendor/eureka/hardware/fmradio/1.2/IFMRadio.h>
+
+using android::sp;
+using vendor::eureka::hardware::fmradio::V1_2::IFMRadio;
+using vendor::eureka::hardware::fmradio::V1_0::Direction;
+using vendor::eureka::hardware::fmradio::V1_1::Status;
 
 //#define DEBUG
 #define TRACK_SIZE 30
@@ -185,7 +195,12 @@ static long fm_radio_get_freqs(int fd){
     long ret = 0;
     fm_radio_set_mute(fd, true);
     for (long & track : tracks){
-    	fm_radio_channel_searching(fd, 1, 0, FM_CHANNEL_SPACING_50KHZ, &ret);
+    	if (mSysfs) {
+    		service->adjustFreqByStep(Direction::UP);
+    		ret = (long) service->getFreqFromSysfs();
+    	} else {
+    		fm_radio_channel_searching(fd, 1, 0, FM_CHANNEL_SPACING_50KHZ, &ret);
+    	}
     	if (contains(tracks, ret)) break;
     	track = ret;
     	printf("Found Freq %ld\n", ret);

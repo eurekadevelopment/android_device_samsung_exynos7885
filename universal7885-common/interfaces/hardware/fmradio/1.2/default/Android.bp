@@ -1,7 +1,7 @@
 // FIXME: your file license if you have one
 
 cc_binary {
-    name: "vendor.eureka.hardware.fmradio@1.1-service",
+    name: "vendor.eureka.hardware.fmradio@1.2-service",
     relative_install_path: "hw",
     proprietary: true,
     srcs: [
@@ -14,7 +14,8 @@ cc_binary {
         "liblog",
         "vendor.eureka.hardware.fmradio@1.0",
         "vendor.eureka.hardware.fmradio@1.1",
+        "vendor.eureka.hardware.fmradio@1.2",
     ],
-    init_rc: [ "vendor.eureka.hardware.fmradio@1.1-service.rc" ],
-    vintf_fragments: [ "vendor.eureka.hardware.fmradio@1.1.xml" ],
+    init_rc: [ "vendor.eureka.hardware.fmradio@1.2-service.rc" ],
+    vintf_fragments: [ "vendor.eureka.hardware.fmradio@1.2.xml" ],
 }

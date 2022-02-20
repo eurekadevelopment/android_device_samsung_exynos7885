@@ -1,6 +1,7 @@
-service vendor.parts-hal /vendor/bin/hw/vendor.eureka.hardware.fmradio@1.1-service
+service vendor.parts-hal /vendor/bin/hw/vendor.eureka.hardware.fmradio@1.2-service
     interface vendor.eureka.hardware.fmradio@1.0::IFMRadio default
     interface vendor.eureka.hardware.fmradio@1.1::IFMRadio default
+    interface vendor.eureka.hardware.fmradio@1.2::IFMRadio default
     class hal
     user root
     group root
