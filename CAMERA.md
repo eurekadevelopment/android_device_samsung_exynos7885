@@ -8,10 +8,10 @@
 
 ## Camera IDs reported by Exynos camera module
 
-- Camera ID 0 = Back primary camera
-- Camera ID 1 = Mixed cam which has back secondary cam's resolution and front cam's direction, therefore, ignored by us
-- Camera ID 2 = Real front camera, which has correct values (8MP)
-- Canera ID 50 = Back secondary camera
+- Camera ID 0 = Back primary camera, this camera has correct resolution and direction, no need to touch.
+- Camera ID 1 = Mixed cam which has back secondary cam's resolution and front cam's direction. But the camera hal should open this id to access front camera.
+- Camera ID 2 = Fake front camera, which has correct values, displays correct direction. But camera hal cannot open this camera, if it tries to, it throws an error.
+- Canera ID 50 = Back secondary camera, which is not shown with AOSP original camera provider HAL. Need to manually query and add it with custom provider HAL.
 
 ## Hacks
 
