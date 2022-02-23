@@ -283,7 +283,6 @@ PRODUCT_PACKAGES += \
 
 # Shims
 PRODUCT_PACKAGES += \
-    libcamera_metadata_helper \
     libshim_sensorndkbridge
 
 # Skip Mount
