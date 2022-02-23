@@ -20,6 +20,7 @@
 
 #define SAMSUNG_CAMERA_DEBUG
 
+using ::android::hardware::camera::provider::V2_5::ICameraProvider;
 using ::android::hardware::camera::provider::V2_5::implementation::LegacyCameraProviderImpl_2_5;
 using ::android::hardware::Return;
 
@@ -28,8 +29,10 @@ public:
     SamsungCameraProvider();
     ~SamsungCameraProvider();
 
+    Return<void> getCameraIdList(ICameraProvider::getCameraIdList_cb _hidl_cb);
 private:
     std::vector<int> mExtraIDs;
+    std::vector<int> mDisabledIDs;
 };
 
 #endif // SAMSUNG_CAMERA_PROVIDER_H
