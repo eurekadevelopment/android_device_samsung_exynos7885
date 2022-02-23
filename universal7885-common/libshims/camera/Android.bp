@@ -1,0 +1,35 @@
+/*
+* Copyright (c) 2022 Eureka Team.
+*      https://github.com/eurekadevelopment
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or
+* (at your option) any later version.
+*/
+
+cc_library_shared {
+    name: "libcorrectcamera",
+    defaults: ["hidl_defaults"],
+    proprietary: true,
+    srcs: [
+        "CorrectCameraID.cpp",
+    ],
+    shared_libs: [
+        "libhidlbase",
+        "libhardware",
+        "camera.device@3.2-impl",
+        "libcamera_metadata",
+        "android.hardware.camera.device@3.2",
+        "android.hardware.camera.provider@2.4",
+        "android.hardware.graphics.mapper@2.0",
+        "android.hardware.graphics.mapper@3.0",
+        "android.hardware.graphics.mapper@4.0",
+        "liblog",
+        "libutils",
+        "libcutils",
+    ],
+    static_libs: [
+        "android.hardware.camera.common@1.0-helper",
+    ],
+}
