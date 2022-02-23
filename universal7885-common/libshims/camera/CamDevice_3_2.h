@@ -82,7 +82,7 @@ struct CameraDevice : public virtual RefBase {
 
     // Open the device HAL and also return a default capture session
     Return<void> open(const sp<ICameraDeviceCallback>& callback, ICameraDevice::open_cb _hidl_cb);
-
+    Return<void> nuke(const sp<ICameraDeviceCallback>& callback, ICameraDevice::open_cb _hidl_cb);
 
     // Forward the dump call to the opened session, or do nothing
     Return<void> dumpState(const ::android::hardware::hidl_handle& fd);
@@ -97,6 +97,7 @@ protected:
 
     const sp<CameraModule> mModule;
     const std::string mCameraId;
+    std::string mCameraID;
     // const after ctor
     int   mCameraIdInt;
     int   mDeviceVersion;
