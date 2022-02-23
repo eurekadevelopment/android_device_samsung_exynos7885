@@ -8,7 +8,7 @@
 * (at your option) any later version.
 */
 
-#include "CameraDevice_3_2.h"
+#include "CamDevice_3_2.h"
 #include <include/convert.h>
 #include <log/log.h>
 
@@ -27,7 +27,7 @@ Return<void> CameraDevice::getCameraCharacteristics(ICameraDevice::getCameraChar
     if (status == Status::OK) {
         //Module 2.1+ codepath.
         struct camera_info info;
-        if (mCameraIdInt == 2) mCameraIdInt = 1;
+        if (mCameraIdInt == 1) mCameraIdInt = 2;
         int ret = mModule->getCameraInfo(mCameraIdInt, &info);
         if (ret == OK) {
             convertToHidl(info.static_camera_characteristics, &cameraCharacteristics);
@@ -40,9 +40,14 @@ Return<void> CameraDevice::getCameraCharacteristics(ICameraDevice::getCameraChar
     return Void();
 }
 
+Return<void> CameraDevice::getEurekaCharacteristics(ICameraDevice::getCameraCharacteristics_cb _hidl_cb)  {
+    return CameraDevice::getCameraCharacteristics(_hidl_cb);
+}
+
 } // namespace implementation
 }  // namespace V3_2
 }  // namespace device
 }  // namespace camera
 }  // namespace hardware
 }  // namespace android
+
