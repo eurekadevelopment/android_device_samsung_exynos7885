@@ -93,9 +93,11 @@ PRODUCT_PACKAGES += \
     android.hardware.drm@1.2.vendor \
     android.hardware.drm@1.3.vendor
 
+ifeq ($(findstring a10, $(TARGET_PRODUCT)),)
 # Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.3-service.samsung
+endif
 
 ifeq ($(findstring a40, $(TARGET_PRODUCT)),)
 # Samsung FMRadio impl
