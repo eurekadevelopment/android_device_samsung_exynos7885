@@ -79,7 +79,7 @@ Return<void> CameraDevice::open(const sp<ICameraDeviceCallback>& callback,
         status_t res;
         camera3_device_t *device;
         
-        mCameraID = mCameraId;
+        std::string mCameraID = mCameraId;
 	if (mCameraIdInt == 1) mCameraIdInt = 2;
 	if (mCameraID == "1") mCameraID = "2";
 	

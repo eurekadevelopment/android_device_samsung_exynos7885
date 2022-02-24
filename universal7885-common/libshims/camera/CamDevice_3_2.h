@@ -97,7 +97,6 @@ protected:
 
     const sp<CameraModule> mModule;
     const std::string mCameraId;
-    std::string mCameraID;
     // const after ctor
     int   mCameraIdInt;
     int   mDeviceVersion;
