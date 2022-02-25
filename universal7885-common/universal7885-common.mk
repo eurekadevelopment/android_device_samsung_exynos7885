@@ -345,3 +345,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     sgdisk \
     strace
+
+# Forcefully add messaging to build list
+PRODUCT_PACKAGES += \
+    messaging
