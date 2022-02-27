@@ -8,7 +8,7 @@
 #include <cerrno>
 #include <iostream>
 #include "s610_radio.h"
-#include "kernel_internal.h"
+#include "v4l2_api.h"
 #include <algorithm>
 #include <jni.h>
 #include <hardware/hardware.h>
@@ -452,7 +452,8 @@ extern "C"
 JNIEXPORT jint JNICALL
 Java_com_eurekateam_fmradio_NativeFMInterface_getBeforeChannel
 (__unused JNIEnv *env, __unused jobject thiz, jint fd) {
-    long ret;sp<IFMRadio> service = IFMRadio::getService();
+    long ret;
+    sp<IFMRadio> service = IFMRadio::getService();
     bool mSysfs = service->isAvailable() == Status::YES; 
     if (!mSysfs){
     	fm_radio_channel_searching(fd, 0, 0, FM_CHANNEL_SPACING_100KHZ, &ret);
@@ -491,4 +492,11 @@ JNIEXPORT void JNICALL
 Java_com_eurekateam_fmradio_NativeFMInterface_closeFMDevice
 (__unused JNIEnv *env, __unused jobject thiz, jint fd) {
     close(fd);
+}
+extern "C"
+JNIEXPORT jboolean JNICALL
+Java_com_eurekateam_fmradio_NativeFMInterface_getSysfsSupport
+(__unused JNIEnv *env, __unused jobject thiz) {
+    sp<IFMRadio> service = IFMRadio::getService();
+    return service->isAvailable() == Status::YES;
 }

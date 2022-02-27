@@ -10,15 +10,12 @@ android_app {
     static_libs: [
     	"androidx.core_core",
     	"androidx.appcompat_appcompat",
-    	"de.yanndroid.oneui",
+    	"com.google.android.material_material",
     ],
     required: [
     	"privapp_whitelist_com.eurekateam.fmradio.xml",
     	"vendor.eureka.hardware.fmradio@1.2-service",
     ],
-    optimize: {
-        proguard_flags_files: ["rules.pro"],
-    },
 }
 
 prebuilt_etc {

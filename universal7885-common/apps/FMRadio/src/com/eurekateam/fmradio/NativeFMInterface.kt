@@ -20,4 +20,5 @@ class NativeFMInterface {
     external fun stopSearching(fd: Int)
     external fun setFMRSSI(fd: Int, rssi: Long): Int
     external fun closeFMDevice(fd: Int)
+    external fun getSysfsSupport(): Boolean
 }
