@@ -159,10 +159,6 @@ class MainActivity : AppCompatActivity() {
         stopService(mIntent)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        (getSystemService(Context.AUDIO_SERVICE) as AudioManager).setParameters(FM_RADIO_OFF)
-    }
     companion object {
         private const val PACKAGENAME = "com.eurekateam.fmradio"
         private const val BEGIN_BG_SERVICE = "$PACKAGENAME.STARTBG"

@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.Icon
 import android.media.AudioManager
 import android.os.Bundle
+import android.view.Display
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,10 @@ import com.eurekateam.fmradio.NativeFMInterface
 import com.eurekateam.fmradio.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textview.MaterialTextView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.DecimalFormat
 
 
@@ -93,85 +98,100 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
                 setBackgroundColor(resources.getColor(android.R.color.system_accent1_700, requireContext().theme))
         }
         var mFMInit = false
-        if (mFreqCurrent == -1) {
-            mAudioManager.setParameters(FM_RADIO_OFF)
-            mUpdateEnableDisable(false, mRootView)
-            mFMInit = true
-        }
-        if (FileUtilities.checkIfExistFile(FileUtilities.mFMFreqFileName, requireContext())){
-            mFreqCurrent = FileUtilities.readFromFile(
-                FileUtilities.mFMFreqFileName,
-                requireContext()
-            ).toInt()
-            mFMInterface.setFMFreq(fd, mFreqCurrent)
-            requireActivity().runOnUiThread {
-                mFMFreq.text = mCleanFormat.format(mFreqCurrent.toFloat() / 1000)
-            }
-        }
-        if (FileUtilities.checkIfExistFile(FileUtilities.mFMVolumeFileName, requireContext())){
-            mVolume = FileUtilities.readFromFile(
-                FileUtilities.mFMVolumeFileName,
-                requireContext()
-            ).toInt()
-            mFMInterface.setFMVolume(fd, mVolume)
-            requireActivity().runOnUiThread {
-                mSeekBar.progress = mVolume
-            }
-        }
-        mSeekBar.min = 1
-        mSeekBar.max = 15
-        if (mVolume == -1) {
-            mVolume = 8
-            mFMInterface.setFMVolume(fd, mVolume)
-            requireActivity().runOnUiThread {
-                mSeekBar.progress = mVolume
-            }
-        }
-        if (FileUtilities.checkIfExistFile(FileUtilities.mHeadsetFileName, requireContext())){
-            mHeadset = true
-            mAudioManager.mode = AudioManager.MODE_IN_COMMUNICATION
-            mAudioManager.isSpeakerphoneOn = mHeadset
-            mAudioManager.setParameters(FM_RADIO_OFF)
-            mAudioManager.setParameters(FM_RADIO_ON)
-            mAudioManager.mode = AudioManager.MODE_NORMAL
-            if (mHeadset) {
-                mOutputSwitch.setImageIcon(
-                    Icon.createWithResource(
-                        requireContext(),
-                        R.drawable.ic_volume_up
-                    )
-                )
-                FileUtilities.createFile(FileUtilities.mHeadsetFileName, requireContext())
-            }
-        }
-        mFMInterface.setFMFreq(fd, mFMInterface.getFMLower(fd))
-        mRefreshTracks()
-        if (mFreqCurrent != -1){
-            mFMInterface.setFMFreq(fd, mFreqCurrent)
-        } else {
-            mFreqCurrent = mFMInterface.getFMLower(fd)
-        }
-        Thread {
-            mFMInterface.setFMBoot(fd)
-            if (!mFMInit && isAdded) {
-                mFreqCurrent = mFMInterface.getFMFreq(fd).toInt()
-                mFMInterface.setFMFreq(fd, mFreqCurrent)
-                requireActivity().mainExecutor.execute {
-                    mFMFreq.text = mCleanFormat.format( mFreqCurrent.toFloat() / 1000)
+        GlobalScope.launch {
+            withContext(Dispatchers.IO){
+                if (mFreqCurrent == -1) {
+                    mAudioManager.setParameters(FM_RADIO_OFF)
+                    withContext(Dispatchers.Main){
+                        mUpdateEnableDisable(false, mRootView)
+                    }
+                    mFMInit = true
                 }
-            }
-            if (mTracks.isEmpty()) return@Thread
-            if (mFreqCurrent == -1)
-                mFMInterface.setFMThread(fd, true)
-        }.start()
-        mFavButton.let {
-            if (mFavStats[mFreqCurrent] == null){
-                mFavStats.putIfAbsent(mFreqCurrent, false)
-            }
-            if (mFavStats[mFreqCurrent]!!){
-                it.setImageDrawable(mStarFilled)
-            }else {
-                it.setImageDrawable(mStar)
+
+                if (FileUtilities.checkIfExistFile(FileUtilities.mFMFreqFileName, requireContext())){
+                    mFreqCurrent = FileUtilities.readFromFile(
+                        FileUtilities.mFMFreqFileName,
+                        requireContext()
+                    ).toInt()
+                    mFMInterface.setFMFreq(fd, mFreqCurrent)
+                    withContext(Dispatchers.Main) {
+                        mFMFreq.text = mCleanFormat.format(mFreqCurrent.toFloat() / 1000)
+                    }
+                }
+                if (FileUtilities.checkIfExistFile(FileUtilities.mFMVolumeFileName, requireContext())){
+                    mVolume = FileUtilities.readFromFile(
+                        FileUtilities.mFMVolumeFileName,
+                        requireContext()
+                    ).toInt()
+                    mFMInterface.setFMVolume(fd, mVolume)
+                    withContext(Dispatchers.Main) {
+                        mSeekBar.progress = mVolume
+                    }
+                }
+                withContext(Dispatchers.Main){
+                    mSeekBar.min = 1
+                    mSeekBar.max = 15
+                }
+                withContext(Dispatchers.IO){
+                    if (mVolume == -1) {
+                        mVolume = 8
+                        mFMInterface.setFMVolume(fd, mVolume)
+                        withContext(Dispatchers.Main) {
+                            mSeekBar.progress = mVolume
+                        }
+                    }
+                }
+                withContext(Dispatchers.IO){
+                    if (FileUtilities.checkIfExistFile(FileUtilities.mHeadsetFileName, requireContext())){
+                        mHeadset = true
+                        mAudioManager.mode = AudioManager.MODE_IN_COMMUNICATION
+                        mAudioManager.isSpeakerphoneOn = mHeadset
+                        mAudioManager.setParameters(FM_RADIO_OFF)
+                        mAudioManager.setParameters(FM_RADIO_ON)
+                        mAudioManager.mode = AudioManager.MODE_NORMAL
+                        withContext(Dispatchers.Main){
+                            if (mHeadset) {
+                                mOutputSwitch.setImageIcon(
+                                    Icon.createWithResource(
+                                        requireContext(),
+                                        R.drawable.ic_volume_up
+                                    )
+                                )
+                                FileUtilities.createFile(FileUtilities.mHeadsetFileName, requireContext())
+                            }
+                        }
+                    }
+                }
+                mFMInterface.setFMFreq(fd, mFMInterface.getFMLower(fd))
+                mRefreshTracks()
+                if (mFreqCurrent != -1){
+                    mFMInterface.setFMFreq(fd, mFreqCurrent)
+                } else {
+                    mFreqCurrent = mFMInterface.getFMLower(fd)
+                }
+                mFMInterface.setFMBoot(fd)
+                if (!mFMInit && isAdded) {
+                    mFreqCurrent = mFMInterface.getFMFreq(fd).toInt()
+                    mFMInterface.setFMFreq(fd, mFreqCurrent)
+                    requireActivity().mainExecutor.execute {
+                        mFMFreq.text = mCleanFormat.format( mFreqCurrent.toFloat() / 1000)
+                    }
+                }
+                if (mTracks.isEmpty())
+                if (mFreqCurrent == -1)
+                    mFMInterface.setFMThread(fd, true)
+                withContext(Dispatchers.Main){
+                    mFavButton.let {
+                        if (mFavStats[mFreqCurrent] == null){
+                            mFavStats.putIfAbsent(mFreqCurrent, false)
+                        }
+                        if (mFavStats[mFreqCurrent]!!){
+                            it.setImageDrawable(mStarFilled)
+                        }else {
+                            it.setImageDrawable(mStar)
+                        }
+                    }
+                }
             }
         }
         return mRootView

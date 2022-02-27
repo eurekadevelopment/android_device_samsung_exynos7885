@@ -9,10 +9,10 @@ import android.media.MediaMetadata
 import android.media.session.MediaSession
 import android.media.session.PlaybackState
 import android.os.IBinder
-import android.util.Log
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import com.eurekateam.fmradio.fragments.MainFragment
+import com.eurekateam.fmradio.utils.Log
 import java.io.File
 
 
@@ -38,7 +38,7 @@ class FMRadioService : Service() {
             return super.onStartCommand(intent, flags, startId)
         }
         if (intent != null) {
-            intent.action?.let { Log.i(TAG, it) }
+            intent.action?.let { Log.i(it) }
             when (intent.action) {
                 BEGIN_BG_SERVICE -> {
                     mContext = this
@@ -59,7 +59,7 @@ class FMRadioService : Service() {
                 }
                 ACTION_BEFORE -> {
                     mIsPlaying = true
-                    Log.i(TAG, "onStartCommand: mCurrentIndex $mIndex")
+                    Log.i("onStartCommand: mCurrentIndex $mIndex")
                     if (mIndex > 0)
                         mIndex -= 1
                     if (mIndex >= 1)
@@ -68,7 +68,7 @@ class FMRadioService : Service() {
                 }
                 ACTION_NEXT -> {
                     mIsPlaying = true
-                    Log.i(TAG, "onStartCommand: mCurrentIndex $mIndex")
+                    Log.i("onStartCommand: mCurrentIndex $mIndex")
                     if (mIndex < mTracks.size - 1)
                         mIndex += 1
                     if (mIndex < mTracks.size - 1)
@@ -78,8 +78,8 @@ class FMRadioService : Service() {
                 ACTION_QUIT -> {
                     mAudioManager = getSystemService(AUDIO_SERVICE) as AudioManager
                     mAudioManager.setParameters(FM_RADIO_OFF)
-                    stopForeground(true)
                     mMediaSession.release()
+                    stopSelf()
                 }
                 else -> {
                     throw IllegalAccessException("Unexpected Intent!")
@@ -90,7 +90,7 @@ class FMRadioService : Service() {
         mFilePath = mContext.filesDir
         mNativeFMInterface = NativeFMInterface()
         mTitle = "FM ${mTracks[mIndex].toFloat() / 1000} Mhz"
-        Log.i(TAG, "onStartCommand: mTitle=$mTitle")
+        Log.i("onStartCommand: mTitle=$mTitle")
         mMediaSession = MediaSession(this, "FMRadio")
         setPlaybackState()
         sendMetaData("FM ${mTracks[mIndex].toFloat() / 1000}Mhz")

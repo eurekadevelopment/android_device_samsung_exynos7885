@@ -11,6 +11,7 @@ android_app {
     	"androidx.core_core",
     	"androidx.appcompat_appcompat",
     	"com.google.android.material_material",
+    	"kotlinx_coroutines_android",
     ],
     required: [
     	"privapp_whitelist_com.eurekateam.fmradio.xml",
