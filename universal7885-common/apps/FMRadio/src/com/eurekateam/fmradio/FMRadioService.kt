@@ -10,7 +10,7 @@ import android.media.session.MediaSession
 import android.media.session.PlaybackState
 import android.os.IBinder
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.graphics.drawable.toBitmap
+import android.graphics.BitmapFactory
 import com.eurekateam.fmradio.fragments.MainFragment
 import com.eurekateam.fmradio.utils.Log
 import java.io.File
@@ -112,9 +112,7 @@ class FMRadioService : Service() {
         val metadata = MediaMetadata.Builder()
             .putString(MediaMetadata.METADATA_KEY_TITLE, mTitle)
             .putString(MediaMetadata.METADATA_KEY_ARTIST, resources.getString(R.string.app_name))
-            .putBitmap(MediaMetadata.METADATA_KEY_ALBUM_ART,
-                ResourcesCompat.getDrawable(resources, R.drawable.ic_radio, theme)!!
-                    .toBitmap(150, 150))
+            .putBitmap(MediaMetadata.METADATA_KEY_ALBUM_ART, BitmapFactory.decodeResource(mContext.resources, R.drawable.ic_radio))
             .build()
         mMediaSession.setMetadata(metadata)
     }
