@@ -1,9 +1,12 @@
 cc_library_shared {
-    name: "libfmioctl_jni",
+    name: "libfmnative_jni",
     cflags: [
         "-Wno-unused-parameter",
     ],
-    srcs: ["fm_ioctl.cpp"],
+    srcs: [
+        "fm_ioctl.cpp",
+        "fm_route.cpp",
+    ],
     shared_libs: [
         "libhidlbase",
         "liblog",
@@ -11,7 +14,19 @@ cc_library_shared {
         "vendor.eureka.hardware.fmradio@1.0",
         "vendor.eureka.hardware.fmradio@1.1",
         "vendor.eureka.hardware.fmradio@1.2",
+        "audioflinger-aidl-cpp",
+        "audiopolicy-aidl-cpp",
+        "audiopolicy-types-aidl-cpp",
+        "libaudiofoundation",
+        "libaudioutils",
+        "libaudioclient",
+        "libutils",
+        "libaudiopolicy",
+        "libaudiomanager",
     ],
-    header_libs: ["jni_headers"],
+    header_libs: [
+        "libaudioclient_headers",
+        "jni_headers",
+    ],
 }
 

@@ -3,14 +3,16 @@ package com.eurekateam.fmradio
 import android.app.*
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.drawable.Icon
 import android.media.AudioManager
 import android.media.MediaMetadata
 import android.media.session.MediaSession
 import android.media.session.PlaybackState
 import android.os.IBinder
-import androidx.core.content.res.ResourcesCompat
-import android.graphics.BitmapFactory
+import com.eurekateam.fmradio.enums.OutputState
+import com.eurekateam.fmradio.enums.PlayState
+import com.eurekateam.fmradio.enums.PowerState
 import com.eurekateam.fmradio.fragments.MainFragment
 import com.eurekateam.fmradio.utils.Log
 import java.io.File
@@ -20,15 +22,12 @@ class FMRadioService : Service() {
     private lateinit var mContext: Context
     private lateinit var mAudioManager: AudioManager
     private lateinit var mTracks : LongArray
-    private var mTitle : String = ""
-    private var fd : Int = -1
-    private var mIndex = -1
     private lateinit var mNativeFMInterface: NativeFMInterface
-    private lateinit var mFilePath : File
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        Log.i("--- FMRadio Background (IN) ---")
         fd = MainFragment.fd
         mAudioManager = getSystemService(AUDIO_SERVICE) as AudioManager
         mTracks = MainFragment.mTracks
@@ -40,62 +39,61 @@ class FMRadioService : Service() {
         if (intent != null) {
             intent.action?.let { Log.i(it) }
             when (intent.action) {
-                BEGIN_BG_SERVICE -> {
-                    mContext = this
-                    mFilePath = mContext.filesDir
-                    mNativeFMInterface = NativeFMInterface()
-                    mTitle = "FM ${mTracks[mIndex].toFloat() / 1000} Mhz"
-                    mAudioManager = getSystemService(AUDIO_SERVICE) as AudioManager
-                    mIsPlaying = true
-                }
                 ACTION_PLAY -> {
-                    mIsPlaying = !mIsPlaying
-                    mTitle = "FM ${mTracks[mIndex].toFloat() / 1000}Mhz"
-                    if (mIsPlaying) {
-                        mAudioManager.setParameters(FM_RADIO_ON)
-                    } else {
-                        mAudioManager.setParameters(FM_RADIO_OFF)
+                    if (mPlayState == PlayState.STATE_PLAYING) {
+                        mPlayState = PlayState.STATE_STOPPED
+                        mAudioManager.setParameters(PowerState.FM_POWER_OFF.mAudioParam)
+                    }else if (mPlayState == PlayState.STATE_STOPPED){
+                        mPlayState = PlayState.STATE_PLAYING
+                        mAudioManager.setParameters(PowerState.FM_POWER_ON.mAudioParam)
                     }
                 }
                 ACTION_BEFORE -> {
-                    mIsPlaying = true
-                    Log.i("onStartCommand: mCurrentIndex $mIndex")
+                    mPlayState = PlayState.STATE_PLAYING
+                    Log.i("mCurrentIndex $mIndex")
                     if (mIndex > 0)
                         mIndex -= 1
-                    if (mIndex >= 1)
-                        mNativeFMInterface.setFMFreq(fd, mTracks[mIndex].toInt())
-                    mTitle = "FM ${mTracks[mIndex].toFloat() / 1000}Mhz"
+                    mNativeFMInterface.setFMFreq(fd, mTracks[mIndex].toInt())
+                    MainFragment.mFreqCurrent = mTracks[mIndex].toInt()
                 }
                 ACTION_NEXT -> {
-                    mIsPlaying = true
-                    Log.i("onStartCommand: mCurrentIndex $mIndex")
+                    mPlayState = PlayState.STATE_PLAYING
+                    Log.i("mCurrentIndex $mIndex")
                     if (mIndex < mTracks.size - 1)
                         mIndex += 1
-                    if (mIndex < mTracks.size - 1)
-                        mNativeFMInterface.setFMFreq(fd, mTracks[mIndex].toInt())
-                    mTitle = "FM ${mTracks[mIndex].toFloat() / 1000}Mhz"
+                    mNativeFMInterface.setFMFreq(fd, mTracks[mIndex].toInt())
+                    MainFragment.mFreqCurrent = mTracks[mIndex].toInt()
                 }
                 ACTION_QUIT -> {
                     mAudioManager = getSystemService(AUDIO_SERVICE) as AudioManager
-                    mAudioManager.setParameters(FM_RADIO_OFF)
+                    Log.i("--- FMRadio Background (OUT) ---")
+                    mAudioManager.setParameters(PowerState.FM_POWER_OFF.mAudioParam)
                     mMediaSession.release()
                     stopSelf()
                 }
-                else -> {
-                    throw IllegalAccessException("Unexpected Intent!")
+                ACTION_OUTPUT -> {
+                    changeOutputDevice(mOutput)
+                    if (mOutput == OutputState.OUTPUT_HEADSET){
+                        mOutput = OutputState.OUTPUT_SPEAKER
+                    }else if (mOutput == OutputState.OUTPUT_SPEAKER){
+                        mOutput = OutputState.OUTPUT_HEADSET
+                    }
+                }
+                ACTION_START -> {
+                    mMediaSession = MediaSession(this, "FMRadio")
+                    mNativeFMInterface = NativeFMInterface()
+                    mContext = this
+                    setPlaybackState()
+                    mMediaSession.isActive = true
                 }
             }
         }
-        mContext = this
-        mFilePath = mContext.filesDir
-        mNativeFMInterface = NativeFMInterface()
-        mTitle = "FM ${mTracks[mIndex].toFloat() / 1000} Mhz"
-        Log.i("onStartCommand: mTitle=$mTitle")
-        mMediaSession = MediaSession(this, "FMRadio")
-        setPlaybackState()
-        sendMetaData("FM ${mTracks[mIndex].toFloat() / 1000}Mhz")
-        mMediaSession.isActive = true
-        startForeground(51,pushNotification())
+        sendMetaData("FM ${mTracks[mIndex].toFloat() / 1000} Mhz")
+        startForeground(51, pushNotification())
+        if (mOutput == OutputState.OUTPUT_SPEAKER){
+            changeOutputDevice(OutputState.OUTPUT_HEADSET)
+        }
+        Log.i("--- FMRadio Background (OUT) ---")
         return START_STICKY
     }
     private fun setPlaybackState() {
@@ -112,7 +110,8 @@ class FMRadioService : Service() {
         val metadata = MediaMetadata.Builder()
             .putString(MediaMetadata.METADATA_KEY_TITLE, mTitle)
             .putString(MediaMetadata.METADATA_KEY_ARTIST, resources.getString(R.string.app_name))
-            .putBitmap(MediaMetadata.METADATA_KEY_ALBUM_ART, BitmapFactory.decodeResource(mContext.resources, R.drawable.ic_radio))
+            .putBitmap(MediaMetadata.METADATA_KEY_ALBUM_ART,
+                BitmapFactory.decodeResource(mContext.resources, R.drawable.ic_radio))
             .build()
         mMediaSession.setMetadata(metadata)
     }
@@ -132,16 +131,31 @@ class FMRadioService : Service() {
         builder.setColor(resources.getColor(android.R.color.system_accent1_200, mContext.theme))
         builder.setColorized(true)
         builder.style = mediaStyle
+        builder.setOnlyAlertOnce(true)
         builder.setChannelId(mContext.packageName)
         val togglePlay = PendingIntent.getService(mContext, 0, Intent(ACTION_PLAY), PendingIntent.FLAG_IMMUTABLE)
         val forward = PendingIntent.getService(mContext, 0, Intent(ACTION_NEXT), PendingIntent.FLAG_IMMUTABLE)
         val rewind = PendingIntent.getService(mContext, 0, Intent(ACTION_BEFORE), PendingIntent.FLAG_IMMUTABLE)
         val close = PendingIntent.getService(mContext, 0, Intent(ACTION_QUIT), PendingIntent.FLAG_IMMUTABLE)
+        val output = PendingIntent.getService(mContext, 0, Intent(ACTION_OUTPUT), PendingIntent.FLAG_IMMUTABLE)
+        val mOutputAction : Notification.Action = Notification.Action.Builder(
+            when (mOutput) {
+                OutputState.OUTPUT_HEADSET -> {
+                    Icon.createWithResource(this, R.drawable.ic_volume_up)
+                }
+                OutputState.OUTPUT_SPEAKER -> {
+                    Icon.createWithResource(this, R.drawable.ic_headphones)
+                }
+            }, "Output Configuration", output
+        ).build()
         val mPausePlayAction: Notification.Action = Notification.Action.Builder(
-            if (mIsPlaying) {
-                Icon.createWithResource(this, R.drawable.ic_pause)
-            }else{
-                Icon.createWithResource(this, R.drawable.ic_play)
+            when (mPlayState) {
+                PlayState.STATE_PLAYING -> {
+                    Icon.createWithResource(this, R.drawable.ic_pause)
+                }
+                PlayState.STATE_STOPPED -> {
+                    Icon.createWithResource(this, R.drawable.ic_play)
+                }
             }, "Start/Stop", togglePlay
 
         ).build()
@@ -157,6 +171,7 @@ class FMRadioService : Service() {
             Icon.createWithResource(this, R.drawable.ic_close),
             "Close", close
         ).build()
+        builder.addAction(mOutputAction)
         builder.addAction(mRewindAction)
         builder.addAction(mPausePlayAction)
         builder.addAction(mForwardAction)
@@ -165,15 +180,23 @@ class FMRadioService : Service() {
     }
     companion object {
         private const val PACKAGENAME = "com.eurekateam.fmradio"
-        private const val BEGIN_BG_SERVICE = "$PACKAGENAME.STARTBG"
+        private const val ACTION_START = "$PACKAGENAME.START"
         private const val ACTION_PLAY = "$PACKAGENAME.PLAY_FM"
         private const val ACTION_NEXT = "$PACKAGENAME.NEXT"
-        private var mIsPlaying = true
         private const val ACTION_BEFORE = "$PACKAGENAME.BEFORE"
         private const val ACTION_QUIT = "$PACKAGENAME.QUIT"
-        private const val FM_RADIO_ON = "l_fmradio_mode=on"
-        private const val FM_RADIO_OFF = "l_fmradio_mode=off"
-        private const val TAG = "FMRadioService"
+        private const val ACTION_OUTPUT = "$PACKAGENAME.OUTPUT"
+        private var mPlayState : PlayState = PlayState.STATE_PLAYING
+        private var mOutput : OutputState = MainFragment.mHeadset
+        private var fd : Int = -1
+        private var mIndex = -1
         lateinit var mMediaSession : MediaSession
+    }
+    private fun changeOutputDevice(output: OutputState){
+        if (output == OutputState.OUTPUT_SPEAKER){
+            mNativeFMInterface.setAudioRoute(false);
+        }else if (output == OutputState.OUTPUT_HEADSET){
+            mNativeFMInterface.setAudioRoute(true);
+        }
     }
 }

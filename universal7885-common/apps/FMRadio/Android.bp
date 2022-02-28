@@ -6,7 +6,7 @@ android_app {
     platform_apis: true,
     privileged: true,
     certificate: "platform",
-    jni_libs: ["libfmioctl_jni"],
+    jni_libs: ["libfmnative_jni"],
     static_libs: [
     	"androidx.core_core",
     	"androidx.appcompat_appcompat",

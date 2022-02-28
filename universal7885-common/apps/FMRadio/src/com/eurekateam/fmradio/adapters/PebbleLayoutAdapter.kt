@@ -10,6 +10,7 @@ import com.eurekateam.fmradio.NativeFMInterface
 import com.eurekateam.fmradio.PebbleTextView
 import com.eurekateam.fmradio.R
 import com.eurekateam.fmradio.fragments.MainFragment
+import com.eurekateam.fmradio.utils.FileUtilities
 
 
 class PebbleLayoutAdapter (private val mContext: Context) : BaseAdapter() {
@@ -21,6 +22,11 @@ class PebbleLayoutAdapter (private val mContext: Context) : BaseAdapter() {
             }
         }
         mFavoriteList.sort()
+        var mData = ""
+        for (i in mFavoriteList){
+            mData += "$i\n"
+        }
+        FileUtilities.writeToFile(FileUtilities.mFavouriteChannelFileName, mData, mContext)
     }
     override fun getCount(): Int {
         return mFavoriteList.size
@@ -47,6 +53,10 @@ class PebbleLayoutAdapter (private val mContext: Context) : BaseAdapter() {
             setOnClickListener {
                 mFMInterface.setFMFreq(MainFragment.fd, mFavoriteList[id])
                 MainFragment.mFreqCurrent = mFavoriteList[id]
+                FileUtilities.writeToFile(
+                    FileUtilities.mFMFreqFileName,
+                    MainFragment.mFreqCurrent.toString(), mContext
+                )
             }
         }
         return mAnotherConvertView

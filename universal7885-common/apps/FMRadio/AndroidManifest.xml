@@ -21,11 +21,11 @@
             android:name=".FMRadioService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.eurekateam.fmradio.STARTBG" />
                 <action android:name="com.eurekateam.fmradio.PLAY_FM"/>
                 <action android:name="com.eurekateam.fmradio.NEXT"/>
                 <action android:name="com.eurekateam.fmradio.BEFORE"/>
                 <action android:name="com.eurekateam.fmradio.QUIT"/>
+                <action android:name="com.eurekateam.fmradio.OUTPUT"/>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>

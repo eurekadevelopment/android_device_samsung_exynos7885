@@ -6,7 +6,7 @@ import java.io.*
 object FileUtilities {
     const val mFMFreqFileName = "fm_freq_current"
     const val mFMVolumeFileName = "fm_volume_current"
-    const val mHeadsetFileName = "fm_using_headset"
+    const val mFavouriteChannelFileName = "fm_fav_freqs"
 
     fun writeToFile(fileName : String, data: String, mContext: Context){
         var os: OutputStream? = null
@@ -41,12 +41,7 @@ object FileUtilities {
         }
         return String(mByteArray)
     }
-    fun createFile(fileName: String, mContext: Context){
-        File(mContext.filesDir.absolutePath + "/" + fileName).createNewFile()
-    }
-    fun removeFile(fileName: String, mContext: Context){
-        File(mContext.filesDir.absolutePath + "/" + fileName).delete()
-    }
+
     fun checkIfExistFile(fileName: String, mContext: Context): Boolean {
         return File(mContext.filesDir.absolutePath + "/" + fileName).exists()
     }

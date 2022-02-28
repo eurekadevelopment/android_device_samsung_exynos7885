@@ -12,6 +12,10 @@ import com.eurekateam.fmradio.MainActivity
 import com.eurekateam.fmradio.R
 import com.eurekateam.fmradio.adapters.ListViewAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ChannelListFragment : Fragment(R.layout.activity_channel_list),
     View.OnClickListener {
@@ -45,11 +49,17 @@ class ChannelListFragment : Fragment(R.layout.activity_channel_list),
     }
 
     override fun onClick(v: View?) {
-        MainFragment.mRefreshTracks()
-        (requireActivity() as MainActivity).getMySupportFragmentManager().apply {
-            beginTransaction().remove(this@ChannelListFragment).commit()
-            executePendingTransactions()
-            beginTransaction().add(R.id.container_view, this@ChannelListFragment).commit()
+        GlobalScope.launch {
+            withContext(Dispatchers.IO){
+                MainFragment.mRefreshTracks()
+            }
+            withContext(Dispatchers.Main){
+                (requireActivity() as MainActivity).getMySupportFragmentManager().apply {
+                    beginTransaction().remove(this@ChannelListFragment).commit()
+                    executePendingTransactions()
+                    beginTransaction().add(R.id.container_view, this@ChannelListFragment).commit()
+                }
+            }
         }
     }
 }

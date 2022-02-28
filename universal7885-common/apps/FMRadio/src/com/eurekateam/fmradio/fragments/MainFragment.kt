@@ -1,25 +1,27 @@
 package com.eurekateam.fmradio.fragments
 
+import android.content.Context
 import android.content.res.Configuration
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.Icon
 import android.media.AudioManager
 import android.os.Bundle
-import android.view.Display
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.SeekBar
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import com.eurekateam.fmradio.utils.FileUtilities
-import com.eurekateam.fmradio.utils.Log
 import com.eurekateam.fmradio.NativeFMInterface
 import com.eurekateam.fmradio.R
+import com.eurekateam.fmradio.enums.HeadsetState
+import com.eurekateam.fmradio.enums.OutputState
+import com.eurekateam.fmradio.enums.PowerState
+import com.eurekateam.fmradio.utils.FileUtilities
+import com.eurekateam.fmradio.utils.Log
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textview.MaterialTextView
 import kotlinx.coroutines.Dispatchers
@@ -56,7 +58,7 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
             R.drawable.ic_star, requireContext().theme)!!
         mStarFilled = ResourcesCompat.getDrawable(requireContext().resources,
             R.drawable.ic_star_filled, requireContext().theme)!!
-        mAudioManager = requireContext().getSystemService(AppCompatActivity.AUDIO_SERVICE) as AudioManager
+        mAudioManager = requireContext().getSystemService(Context.AUDIO_SERVICE) as AudioManager
         mVolumeUp = mRootView.findViewById(R.id.volume_up)
         mVolumeDown = mRootView.findViewById(R.id.volume_down)
         mSeekBar = mRootView.findViewById(R.id.volume_seekbar)
@@ -97,15 +99,24 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
             else
                 setBackgroundColor(resources.getColor(android.R.color.system_accent1_700, requireContext().theme))
         }
-        var mFMInit = false
         GlobalScope.launch {
             withContext(Dispatchers.IO){
+                if (FileUtilities.checkIfExistFile(FileUtilities.mFavouriteChannelFileName, requireContext())) {
+                    val mFavData = FileUtilities.readFromFile(
+                        FileUtilities.mFavouriteChannelFileName, requireContext()
+                    )
+                    for (mItem in mFavData.split("\\r?\\n".toRegex())) {
+                        if (mItem.isNotBlank())
+                            mFavStats[mItem.toInt()] = true
+                    }
+                }
+                var mMute = false
                 if (mFreqCurrent == -1) {
-                    mAudioManager.setParameters(FM_RADIO_OFF)
+                    mAudioManager.setParameters(PowerState.FM_POWER_OFF.mAudioParam)
                     withContext(Dispatchers.Main){
                         mUpdateEnableDisable(false, mRootView)
                     }
-                    mFMInit = true
+                    mMute = true
                 }
 
                 if (FileUtilities.checkIfExistFile(FileUtilities.mFMFreqFileName, requireContext())){
@@ -141,27 +152,8 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
                         }
                     }
                 }
-                withContext(Dispatchers.IO){
-                    if (FileUtilities.checkIfExistFile(FileUtilities.mHeadsetFileName, requireContext())){
-                        mHeadset = true
-                        mAudioManager.mode = AudioManager.MODE_IN_COMMUNICATION
-                        mAudioManager.isSpeakerphoneOn = mHeadset
-                        mAudioManager.setParameters(FM_RADIO_OFF)
-                        mAudioManager.setParameters(FM_RADIO_ON)
-                        mAudioManager.mode = AudioManager.MODE_NORMAL
-                        withContext(Dispatchers.Main){
-                            if (mHeadset) {
-                                mOutputSwitch.setImageIcon(
-                                    Icon.createWithResource(
-                                        requireContext(),
-                                        R.drawable.ic_volume_up
-                                    )
-                                )
-                                FileUtilities.createFile(FileUtilities.mHeadsetFileName, requireContext())
-                            }
-                        }
-                    }
-                }
+                if (!mMute)
+                    mFMInterface.setFMMute(fd, true)
                 mFMInterface.setFMFreq(fd, mFMInterface.getFMLower(fd))
                 mRefreshTracks()
                 if (mFreqCurrent != -1){
@@ -170,14 +162,13 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
                     mFreqCurrent = mFMInterface.getFMLower(fd)
                 }
                 mFMInterface.setFMBoot(fd)
-                if (!mFMInit && isAdded) {
-                    mFreqCurrent = mFMInterface.getFMFreq(fd).toInt()
-                    mFMInterface.setFMFreq(fd, mFreqCurrent)
-                    requireActivity().mainExecutor.execute {
-                        mFMFreq.text = mCleanFormat.format( mFreqCurrent.toFloat() / 1000)
-                    }
+                mFreqCurrent = mFMInterface.getFMFreq(fd).toInt()
+                mFMInterface.setFMFreq(fd, mFreqCurrent)
+                withContext(Dispatchers.Main) {
+                    mFMFreq.text = mCleanFormat.format( mFreqCurrent.toFloat() / 1000)
                 }
-                if (mTracks.isEmpty())
+                if (!mMute)
+                    mFMInterface.setFMMute(fd, false)
                 if (mFreqCurrent == -1)
                     mFMInterface.setFMThread(fd, true)
                 withContext(Dispatchers.Main){
@@ -196,14 +187,34 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
         }
         return mRootView
     }
+
+    /**
+     * Extension function for [View], for Grayed out, disabled View
+     * @param mTextView Whether the target view is touchable [FloatingActionButton] or
+     * [MaterialTextView] with useless touch attr
+     */
     private fun View.disable(mTextView : Boolean = false) {
         alpha = .7f
         if(!mTextView) isEnabled = false
     }
+    /**
+     * Extension function for [View], for reverting Grayed out, disabled View
+     * @param mTextView Whether the target view is touchable [FloatingActionButton] or
+     * [MaterialTextView] with useless touch attr
+     */
     private fun View.enable(mTextView : Boolean = false) {
         alpha = 1.0f
         if(!mTextView) isEnabled = true
     }
+
+    /**
+     * Uses array of [R] to make the [View] look disabled or enabled
+     * @param mEnabled Should we enable the Views or not
+     * @param mView The root view we should find views such as [FloatingActionButton].
+     * Defaults to [requireView]
+     * @see [enable]
+     * @see [disable]
+     */
     private fun mUpdateEnableDisable(mEnabled: Boolean, mView: View = requireView()){
         val mTextViewList = listOf(R.id.fm_freq, R.id.freq_misc)
         val mFloatButtonList = listOf(
@@ -227,29 +238,30 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
     override fun onClick(v: View) {
         when (v.id) {
             mOutputSwitch.id -> {
-                mAudioManager.mode = AudioManager.MODE_IN_COMMUNICATION
-                mAudioManager.isSpeakerphoneOn = mHeadset
-                mAudioManager.setParameters(FM_RADIO_OFF)
-                mAudioManager.setParameters(FM_RADIO_ON)
-                mAudioManager.mode = AudioManager.MODE_NORMAL
-                if (mHeadset) {
+                if (mHeadset == OutputState.OUTPUT_HEADSET) {
                     mOutputSwitch.setImageIcon(
                         Icon.createWithResource(
                             requireContext(),
                             R.drawable.ic_volume_up
                         )
                     )
-                    FileUtilities.createFile(FileUtilities.mHeadsetFileName, requireContext())
-                }else{
+                    val ret = mFMInterface.setAudioRoute(true);
+                    Log.i("mFMInterface.setAudioRoute return $ret");
+                }else if (mHeadset == OutputState.OUTPUT_SPEAKER){
                     mOutputSwitch.setImageIcon(
                         Icon.createWithResource(
                             requireContext(),
                             R.drawable.ic_headphones
                         )
                     )
-                    FileUtilities.removeFile(FileUtilities.mHeadsetFileName, requireContext())
+                    val ret = mFMInterface.setAudioRoute(false);
+                    Log.i("mFMInterface.setAudioRoute return $ret");
                 }
-                mHeadset = !mHeadset
+                if (mHeadset == OutputState.OUTPUT_HEADSET){
+                    mHeadset = OutputState.OUTPUT_SPEAKER
+                }else if (mHeadset == OutputState.OUTPUT_SPEAKER){
+                    mHeadset = OutputState.OUTPUT_HEADSET
+                }
             }
             mVolumeUp.id -> {
                 if (mVolume < 15)
@@ -302,10 +314,10 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
             }
             mPowerBtn.id -> {
                 if (mFMPower){
-                    mAudioManager.setParameters(FM_RADIO_OFF)
+                    mAudioManager.setParameters(PowerState.FM_POWER_OFF.mAudioParam)
                     mFMFreq.text = getText(R.string.inital_freq)
                 }else{
-                    mAudioManager.setParameters(FM_RADIO_ON)
+                    mAudioManager.setParameters(PowerState.FM_POWER_ON.mAudioParam)
                     mFMFreq.text = mCleanFormat.format(mFreqCurrent.toFloat() / 1000)
                 }
                 mUpdateEnableDisable(!mFMPower)
@@ -372,13 +384,11 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
     companion object {
         private var mVolume = -1
         var fd = -1
-        private var mHeadset = false
+        var mHeadset = OutputState.OUTPUT_SPEAKER
         var mFreqCurrent = -1
         private var mFMPower = false
-        var mHeadSetPlugged = false
+        var mHeadSetPlugged : HeadsetState = HeadsetState.HEADSET_STATE_DISCONNECTED
         var mTracks : LongArray = emptyArray<Long>().toLongArray()
-        private const val FM_RADIO_ON = "l_fmradio_mode=on"
-        private const val FM_RADIO_OFF = "l_fmradio_mode=off"
         fun mRefreshTracks(){
             NativeFMInterface().setFMFreq(fd, NativeFMInterface().getFMLower(fd))
             mTracks = NativeFMInterface().getFMTracks(fd)
@@ -391,9 +401,18 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
         val mFavStats = HashMap<Int, Boolean>(30)
     }
 
+    /**
+     * Helper function to remove zero values on a [LongArray].
+     * Since we don't know the channel count, we initialize it with size 30.
+     * But most likely the channel count is less then 30, so remaining values
+     * are filled with zero.
+     *
+     * @param array The target Long array
+     * @return Long array with zeros removed
+     */
     private fun removeZeros(array : LongArray): LongArray{
         val mArray : MutableList<Long> = emptyList<Long>().toMutableList()
-        Log.d("removeZeros: Got array")
+        Log.d("removeZeros: Got array size ${array.size}")
         for (i in array.indices){
             if(array[i] > 0L){
                 mArray.add(array[i])

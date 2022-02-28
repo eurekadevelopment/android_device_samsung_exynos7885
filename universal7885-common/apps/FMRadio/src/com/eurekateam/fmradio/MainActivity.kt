@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.eurekateam.fmradio.enums.HeadsetState
+import com.eurekateam.fmradio.enums.PowerState
 import com.eurekateam.fmradio.fragments.ChannelListFragment
 import com.eurekateam.fmradio.fragments.FavouriteFragment
 import com.eurekateam.fmradio.fragments.MainFragment
@@ -25,6 +27,12 @@ import com.google.android.material.textview.MaterialTextView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mIntent : Intent
+
+    /**
+     * Function to change current [Fragment] to other [Fragment]
+     * @param [fragment] [Fragment] to change to
+     * @param [tagFragmentName] Tag for the changing [fragment]
+     */
     private fun changeFragment(fragment: Fragment?, tagFragmentName: String) {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.container_view, fragment!!, tagFragmentName)
@@ -40,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mAlertImage : AppCompatImageView
     private lateinit var mAudioManager : AudioManager
     override fun onCreate(savedInstanceState: Bundle?) {
-        System.loadLibrary("fmioctl_jni")
+        System.loadLibrary("fmnative_jni")
         MainFragment.fd = mFMInterface.openFMDevice()
         mAlertView = (getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater)
             .inflate(R.layout.alertdialog, null)
@@ -65,15 +73,19 @@ class MainActivity : AppCompatActivity() {
         }
         DynamicColors.applyToActivitiesIfAvailable(application)
         mAudioManager = getSystemService(AUDIO_SERVICE) as AudioManager
+        /**
+         * Detects whether wired headphones is connected to this device or no
+         * @see AudioManager.getDevices
+         */
         val mAudioDeviceInfo = mAudioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
         for (i in mAudioDeviceInfo.indices){
             if (mAudioDeviceInfo[i].type == AudioDeviceInfo.TYPE_WIRED_HEADSET ||
                 mAudioDeviceInfo[i].type == AudioDeviceInfo.TYPE_WIRED_HEADPHONES) {
-                MainFragment.mHeadSetPlugged = true
+                MainFragment.mHeadSetPlugged = HeadsetState.HEADSET_STATE_CONNECTED
                 Log.i("Wired Headphones detected")
             }
         }
-        if (!MainFragment.mHeadSetPlugged){
+        if (MainFragment.mHeadSetPlugged != HeadsetState.HEADSET_STATE_CONNECTED){
             mAlertTitle.text = getString(R.string.no_headphones_error)
             mAlertDesc.text = getString(R.string.no_headphones_error_desc)
             mAlertImage.setImageIcon(Icon.createWithResource(mAlertView.context,
@@ -83,7 +95,7 @@ class MainActivity : AppCompatActivity() {
                 .setCancelable(false)
                 .setView(mAlertView)
                 .setNegativeButton(R.string.ok) { v: DialogInterface, _: Int ->
-                    mAudioManager.setParameters(FM_RADIO_OFF)
+                    mAudioManager.setParameters(PowerState.FM_POWER_OFF.mAudioParam)
                     v.dismiss()
                     Handler(Looper.getMainLooper()).postDelayed({
                         finish()
@@ -98,8 +110,6 @@ class MainActivity : AppCompatActivity() {
         val mFavouriteFragment = FavouriteFragment()
         changeFragment(mRadioMainFragment, MainFragment::class.java.name)
         mIntent = Intent(this, FMRadioService::class.java)
-        mIntent.action = BEGIN_BG_SERVICE
-        startService(mIntent)
         findViewById<BottomNavigationView>(R.id.bottom_nav_bar).setOnItemSelectedListener {
             when (it.itemId){
                 R.id.radio_main -> changeFragment(mRadioMainFragment, MainFragment::class.java.name)
@@ -110,18 +120,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Register a [BroadcastReceiver] for listening to headset events
+     */
     private val mWiredHeadsetReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             if (intent.action == AudioManager.ACTION_HEADSET_PLUG) {
-                MainFragment.mHeadSetPlugged = false
+                MainFragment.mHeadSetPlugged = HeadsetState.HEADSET_STATE_DISCONNECTED
                 val mAudioDeviceInfo = mAudioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
                 for (i in mAudioDeviceInfo.indices){
                     if (mAudioDeviceInfo[i].type == AudioDeviceInfo.TYPE_WIRED_HEADSET ||
                         mAudioDeviceInfo[i].type == AudioDeviceInfo.TYPE_WIRED_HEADPHONES){
-                        MainFragment.mHeadSetPlugged = true
+                        MainFragment.mHeadSetPlugged = HeadsetState.HEADSET_STATE_CONNECTED
                     }
                 }
-                if (!MainFragment.mHeadSetPlugged){
+                if (MainFragment.mHeadSetPlugged != HeadsetState.HEADSET_STATE_CONNECTED){
                     Log.w("onReceive: Headset Unplugged")
                     mAlertTitle.text = getString(R.string.no_headphones_error)
                     mAlertDesc.text = getString(R.string.no_headphones_error_desc)
@@ -134,7 +147,7 @@ class MainActivity : AppCompatActivity() {
                         .setView(mAlertView)
                         .setNegativeButton(R.string.ok) { v: DialogInterface, _: Int ->
                             v.dismiss()
-                            mAudioManager.setParameters(FM_RADIO_OFF)
+                            mAudioManager.setParameters(PowerState.FM_POWER_OFF.mAudioParam)
                             Handler(Looper.getMainLooper()).postDelayed({
                                 finish()
                             },500)
@@ -144,13 +157,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    /**
+     * Helper function to get [MainActivity]'s [FragmentManager] to sub [Fragment]
+     * @return [FragmentManager] supplied to this activity
+     */
     fun getMySupportFragmentManager(): FragmentManager {
         return supportFragmentManager
     }
 
     override fun onPause() {
         super.onPause()
-        mIntent.action = BEGIN_BG_SERVICE
+        Log.i("Application onPause")
+        mIntent.action = ACTION_START
         startService(mIntent)
     }
 
@@ -158,10 +177,7 @@ class MainActivity : AppCompatActivity() {
         super.onRestart()
         stopService(mIntent)
     }
-
     companion object {
-        private const val PACKAGENAME = "com.eurekateam.fmradio"
-        private const val BEGIN_BG_SERVICE = "$PACKAGENAME.STARTBG"
-        private const val FM_RADIO_OFF = "l_fmradio_mode=off"
+        private const val ACTION_START = "com.eurekateam.fmradio.START"
     }
 }

@@ -4,7 +4,6 @@ android_app {
         "src/**/*.kt",
     ],
     platform_apis: true,
-    privileged: true,
     certificate: "platform",
     jni_libs: ["libsamsungparts_jni"],
     static_libs: ["androidx.preference_preference"],
