@@ -1,0 +1,6 @@
+android_library_import {
+    name: "com.google.android.material_stable",
+    aars: ["material-1.5.0.aar"],
+    sdk_version: "current",
+    min_sdk_version: "21",
+}
