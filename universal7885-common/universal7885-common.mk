@@ -5,9 +5,6 @@ else ifneq ($(findstring a40, $(TARGET_PRODUCT)),)
 $(call inherit-product, vendor/samsung/universal7904-common/universal7904-common-vendor.mk)
 endif
 
-# .apex packages
-$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
-
 # Build Fingerprints
 $(call inherit-product, $(LOCAL_PATH)/fingerprint.mk)
 
