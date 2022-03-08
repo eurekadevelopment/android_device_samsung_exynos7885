@@ -16,6 +16,7 @@ set_prop(hal_camera_default, vendor_camera_prop)
 get_prop(hal_camera_default, exported_default_prop)
 get_prop(hal_camera_default, vendor_factory_prop)
 get_prop(hal_camera_default, exported_config_prop)
+get_prop(hal_camera_default, exported_system_prop)
 
 binder_call(hal_camera_default, system_server)
 binder_call(system_server, hal_camera_default)

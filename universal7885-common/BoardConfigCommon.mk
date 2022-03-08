@@ -96,6 +96,13 @@ SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += \
 BOARD_VENDOR_SEPOLICY_DIRS += \
     $(COMMON_PATH)/sepolicy/vendor
 
+TARGET_ROM := $(shell cat $(COMMON_PATH)/vendor_name)
+ifeq ($(TARGET_ROM), derp)
+$(warning Building Derpfest)
+BOARD_VENDOR_SEPOLICY_DIRS += \
+        $(COMMON_PATH)/sepolicy/derp
+endif
+
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
     $(COMMON_PATH)/sepolicy/private
     
