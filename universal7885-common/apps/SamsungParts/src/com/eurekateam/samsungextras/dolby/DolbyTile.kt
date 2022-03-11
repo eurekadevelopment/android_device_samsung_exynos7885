@@ -2,30 +2,24 @@ package com.eurekateam.samsungextras.dolby
 
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
+import android.content.Intent
 
 class DolbyTile : TileService() {
-    private var isRunning = false
-    private var dolbyCore = DolbyCore()
-    override fun onStartListening() {
-        super.onStartListening()
-        isRunning = dolbyCore.isRunning()
-        updateTile()
-    }
-
     override fun onClick() {
-        if (isRunning) {
-            dolbyCore.stopDolbyEffect()
+	val mIntent = Intent(this, DolbyCore::class.java)
+        if (DolbyCore.mAudioEffect.enabled) {
+           mIntent.putExtra(DolbyCore.DAP_ENABLED, false)
         } else {
-            dolbyCore.justStartOnly()
+           mIntent.putExtra(DolbyCore.DAP_ENABLED, true)
+	   mIntent.putExtra(DolbyCore.DAP_PROFILE, DolbyCore.mCurrentProfile)
         }
-        isRunning = !isRunning
         updateTile()
     }
 
     private fun updateTile() {
         val tile = qsTile
         tile.state =
-            if (isRunning) Tile.STATE_ACTIVE else Tile.STATE_INACTIVE
+            if (DolbyCore.mAudioEffect.enabled) Tile.STATE_ACTIVE else Tile.STATE_INACTIVE
         tile.updateTile()
     }
 }

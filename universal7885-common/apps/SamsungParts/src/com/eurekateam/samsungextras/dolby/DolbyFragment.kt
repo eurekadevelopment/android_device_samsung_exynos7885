@@ -21,48 +21,44 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.eurekateam.samsungextras.R
+import android.content.Intent
 
 class DolbyFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
     private var DolbyModesPreference: ListPreference? = null
     private var DolbyEnablePreference: SwitchPreference? = null
-    private var dolbyCore = DolbyCore()
+    private lateinit var mIntent : Intent
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.dolby_settings)
         DolbyModesPreference = findPreference(DOLBY_MODES)
         DolbyEnablePreference = findPreference(PREF_DOLBY)
-        DolbyEnablePreference!!.isChecked = dolbyCore.isRunning()
+        DolbyEnablePreference!!.isChecked = DolbyCore.mAudioEffect.enabled
         DolbyEnablePreference!!.onPreferenceChangeListener = this
         val items = arrayOf<CharSequence>(
-            "1", "2", "3", "4", "5", "6", "7", "8", "9"
+            "0", "1", "2", "3"
         )
+	mIntent = Intent(requireContext(), DolbyCore::class.java)
         DolbyModesPreference!!.entryValues = items
         DolbyModesPreference!!.onPreferenceChangeListener =
             Preference.OnPreferenceChangeListener { _: Preference?, newValue: Any ->
                 when ((newValue as String).toInt()) {
-                    1 -> dolbyCore.startDolbyEffect(DolbyCore.PROFILE_AUTO)
-                    2 -> dolbyCore.startDolbyEffect(DolbyCore.PROFILE_GAME)
-                    3 -> dolbyCore.startDolbyEffect(DolbyCore.PROFILE_GAME_1)
-                    4 -> dolbyCore.startDolbyEffect(DolbyCore.PROFILE_GAME_2)
-                    5 -> dolbyCore.startDolbyEffect(DolbyCore.PROFILE_MOVIE)
-                    6 -> dolbyCore.startDolbyEffect(DolbyCore.PROFILE_MUSIC)
-                    7 -> dolbyCore.startDolbyEffect(DolbyCore.PROFILE_OFF)
-                    8 -> dolbyCore.startDolbyEffect(DolbyCore.PROFILE_VOICE)
-                    9 -> dolbyCore.startDolbyEffect(DolbyCore.PROFILE_SPACIAL_AUDIO)
+                    0 -> mIntent.putExtra(DolbyCore.DAP_PROFILE, DolbyCore.PROFILE_AUTO)
+                    1 -> mIntent.putExtra(DolbyCore.DAP_PROFILE, DolbyCore.PROFILE_MOVIE)
+                    2 -> mIntent.putExtra(DolbyCore.DAP_PROFILE, DolbyCore.PROFILE_MUSIC)
+                    3 -> mIntent.putExtra(DolbyCore.DAP_PROFILE, DolbyCore.PROFILE_VOICE)
                     else -> {
                     }
                 }
+		mIntent.putExtra(DolbyCore.DAP_ENABLED, true)
+		requireContext().startService(mIntent)
                 true
             }
     }
 
     override fun onPreferenceChange(preference: Preference, newValue: Any): Boolean {
-        if (preference === DolbyEnablePreference) {
+        if (preference == DolbyEnablePreference) {
             val value = newValue as Boolean
-            if (value) {
-                dolbyCore.justStartOnly()
-            } else {
-                dolbyCore.stopDolbyEffect()
-            }
+            mIntent.putExtra(DolbyCore.DAP_ENABLED, value)
+	    requireContext().startService(mIntent)
             return true
         }
         return false
