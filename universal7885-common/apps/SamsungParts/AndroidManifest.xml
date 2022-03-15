@@ -97,6 +97,10 @@
             android:exported="false">
         </service>
         <service
+            android:name=".dolby.DolbyCore"
+            android:exported="false">
+        </service>
+        <service
             android:name=".fps.FPSTileService"
             android:icon="@drawable/ic_fps_info"
             android:label="@string/fps_info_title"
