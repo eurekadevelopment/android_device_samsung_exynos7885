@@ -17,7 +17,7 @@
         android:theme="@style/Theme.SubSettingsBase"
         android:fullBackupOnly="true">
         <activity
-            android:name="com.eurekateam.samsungextras.DeviceSettingsActivity"
+            android:name=".DeviceSettingsActivity"
             android:exported="true"
             android:excludeFromRecents="true"
             android:launchMode="singleTask">
@@ -45,7 +45,7 @@
                 android:resource="@drawable/ic_device" />
         </activity>
         <activity
-            android:name="com.eurekateam.samsungextras.speaker.ClearSpeakerActivity" 
+            android:name=".speaker.ClearSpeakerActivity"
             android:exported="true"
             android:label="@string/clear_speaker_title">
             <intent-filter>
@@ -54,7 +54,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.eurekateam.samsungextras.flashlight.FlashLightActivity"
+            android:name=".flashlight.FlashLightActivity"
             android:exported="true"
             android:label="@string/flashlight_title">
             <intent-filter>
@@ -63,7 +63,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.eurekateam.samsungextras.dolby.DolbyActivity"
+            android:name=".dolby.DolbyActivity"
             android:exported="true"
             android:label="@string/dolby_title">
             <intent-filter>
@@ -71,8 +71,32 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <provider
+            android:name=".dolby.DolbySearchIndexablesProvider"
+            android:exported="true"
+            android:authorities="com.eurekateam.samsungextras"
+            android:multiprocess="false"
+            android:grantUriPermissions="true"
+            android:permission="android.permission.READ_SEARCH_INDEXABLES">
+            <intent-filter>
+                <action android:name="android.content.action.SEARCH_INDEXABLES_PROVIDER" />
+            </intent-filter>
+        </provider>
+        <service
+            android:name=".dolby.DolbyTile"
+            android:exported="true"
+            android:icon="@drawable/ic_dolby"
+            android:label="@string/dolby_title"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+            <meta-data android:name="android.service.quicksettings.TOGGLEABLE_TILE"
+                       android:value="true"/>
+        </service>
         <activity
-            android:name="com.eurekateam.samsungextras.battery.BatteryActivity"
+            android:name=".battery.BatteryActivity"
             android:exported="true"
             android:label="@string/fastcharge_title">
 
@@ -82,22 +106,7 @@
             </intent-filter>
         </activity>
         <service
-            android:name=".dolby.DolbyTile"
-            android:enabled="true"
-            android:icon="@drawable/ic_speaker_cleaner_icon"
-            android:label="@string/dolby_title"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.service.quicksettings.action.QS_TILE"/>
-            </intent-filter>
-        </service>
-        <service
             android:name=".fps.FPSInfoService"
-            android:exported="false">
-        </service>
-        <service
-            android:name=".dolby.DolbyCore"
             android:exported="false">
         </service>
         <service

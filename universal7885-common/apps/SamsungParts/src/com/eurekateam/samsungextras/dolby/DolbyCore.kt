@@ -1,52 +1,71 @@
+/*
+ * Copyright (C) 2022 The LineageOS Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.eurekateam.samsungextras.dolby
 
-import android.media.audiofx.AudioEffect
-import java.util.*
 import android.content.Context
-import android.media.AudioManager
-import android.os.IBinder
-import android.content.Intent
-import android.app.Service
+import android.media.audiofx.AudioEffect
 
-class DolbyCore : Service() {
-    override fun onBind(intent: Intent?): IBinder? {
-        return null
-    }
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-	if (intent != null){
-		if (intent.getBooleanExtra(DAP_ENABLED, false)){
-			val PROFILE = intent.getIntExtra(DAP_PROFILE, PROFILE_AUTO)
-        		mAudioEffect.setParameter(EFFECT_PARAM_EFF_ENAB, 1)
-        		mAudioEffect.setParameter(EFFECT_PARAM_PROFILE, PROFILE)
-        		mCurrentProfile = PROFILE
-        		mAudioEffect.enabled = true
-			(getSystemService(Context.AUDIO_SERVICE) as AudioManager).
-				setParameters("${HW_DOLBY_ENABLE}1;${HW_DOLBY_PROFILE}${PROFILE}")
-		} else {
-			mAudioEffect.setParameter(EFFECT_PARAM_EFF_ENAB, 0)
-			mAudioEffect.enabled = false
-			(getSystemService(Context.AUDIO_SERVICE) as AudioManager).
-                                setParameters("${HW_DOLBY_ENABLE}0;${HW_DOLBY_PROFILE}" +
-                                	mCurrentProfile.toString())
-		}
-	}
-	return START_NOT_STICKY
-    }
-    
-    companion object {
-        private val EFFECT_TYPE_DAP = UUID.fromString("46d279d9-9be7-453d-9d7c-ef937f675587")
+import com.eurekateam.samsungextras.dolby.DolbyFragment.Companion.PREF_DOLBY_MODES
 
-        private const val EFFECT_PARAM_PROFILE = 0
-        private const val EFFECT_PARAM_EFF_ENAB = 19
-	const val DAP_ENABLED = "dap_enabled"
-	const val DAP_PROFILE = "dap_profile"
-        const val PROFILE_AUTO = 0
-        const val PROFILE_MOVIE = 1
-        const val PROFILE_MUSIC = 2
-        const val PROFILE_VOICE = 3
-	private const val HW_DOLBY_ENABLE = "g_effect_dolby_enable="
-	private const val HW_DOLBY_PROFILE = "g_effect_dolby_profile="
-	val mAudioEffect = AudioEffect(EFFECT_TYPE_DAP, AudioEffect.EFFECT_TYPE_NULL, 0, 0)
-	var mCurrentProfile = PROFILE_AUTO
+import java.util.UUID
+
+object DolbyCore {
+    private const val EFFECT_PARAM_PROFILE = 0
+    private const val EFFECT_PARAM_EFF_ENAB = 19
+
+    private val EFFECT_TYPE_DAP = UUID.fromString("46d279d9-9be7-453d-9d7c-ef937f675587")
+
+    const val PROFILE_AUTO = 0
+    const val PROFILE_MOVIE = 1
+    const val PROFILE_MUSIC = 2
+    const val PROFILE_VOICE = 3
+    const val PROFILE_GAME = 4
+    const val PROFILE_OFF = 5
+    const val PROFILE_GAME_1 = 6
+    const val PROFILE_GAME_2 = 7
+    const val PROFILE_SPACIAL_AUDIO = 8
+
+    private val audioEffect = runCatching {
+        AudioEffect(EFFECT_TYPE_DAP, AudioEffect.EFFECT_TYPE_NULL, 0, 0)
+    }.getOrNull()
+
+    fun getProfile(): Int {
+        val out = intArrayOf(PROFILE_AUTO)
+        audioEffect?.getParameter(EFFECT_PARAM_PROFILE, out)
+        return out.first()
     }
+
+    fun getProfileName(context: Context): String {
+        val profile = getProfile()
+        val resourceName = PREF_DOLBY_MODES.filter { it.value == profile }.keys.first()
+
+        return context.resources.getString(context.resources.getIdentifier(
+                resourceName, "string", context.packageName
+        ))
+    }
+
+    fun setProfile(profile: Int) {
+        audioEffect?.setParameter(EFFECT_PARAM_EFF_ENAB, 1)
+        audioEffect?.setParameter(EFFECT_PARAM_PROFILE, profile)
+    }
+
+    fun setEnabled(enabled: Boolean) {
+        audioEffect?.enabled = enabled
+    }
+
+    fun isEnabled() = audioEffect?.enabled ?: false
 }
