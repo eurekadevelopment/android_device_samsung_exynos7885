@@ -30,6 +30,7 @@ import android.provider.SearchIndexablesContract.COLUMN_INDEX_XML_RES_RESID
 import android.provider.SearchIndexablesContract.INDEXABLES_RAW_COLUMNS
 import android.provider.SearchIndexablesContract.INDEXABLES_XML_RES_COLUMNS
 import android.provider.SearchIndexablesContract.NON_INDEXABLES_KEYS_COLUMNS
+import com.eurekateam.samsungextras.R
 
 class DolbySearchIndexablesProvider : SearchIndexablesProvider() {
     override fun onCreate(): Boolean = true

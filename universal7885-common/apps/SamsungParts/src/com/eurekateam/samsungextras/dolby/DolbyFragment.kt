@@ -25,7 +25,7 @@ import com.android.settingslib.widget.MainSwitchPreference
 import com.android.settingslib.widget.OnMainSwitchChangeListener
 import com.android.settingslib.widget.RadioButtonPreference
 
-import com.eurekateam.samsungextras.dolby.R
+import com.eurekateam.samsungextras.R
 
 class DolbyFragment : PreferenceFragment(), OnMainSwitchChangeListener {
 

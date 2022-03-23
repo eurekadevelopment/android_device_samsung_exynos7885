@@ -4,11 +4,7 @@
     android:sharedUserId="android.uid.system">
 
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_SURFACE_FLINGER"/>
-    <uses-permission android:name="android.permission.CAMERA" />
 
     <protected-broadcast android:name="com.android.systemui.doze.pulse" />
     <application
@@ -85,7 +81,7 @@
         <service
             android:name=".dolby.DolbyTile"
             android:exported="true"
-            android:icon="@drawable/ic_dolby"
+            android:icon="@drawable/ic_speaker_cleaner_icon"
             android:label="@string/dolby_title"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
             android:enabled="true">
