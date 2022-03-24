@@ -63,9 +63,6 @@ KERNEL_LD := LD=ld.lld
 # HIDL
 include device/samsung/universal7885-common/configs/vintf/manifest.mk
 
-# LMKD stats logging
-TARGET_LMKD_STATS_LOG := true
-
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 37748736
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
@@ -98,7 +95,6 @@ BOARD_VENDOR_SEPOLICY_DIRS += \
 
 TARGET_ROM := $(shell cat $(COMMON_PATH)/vendor_name)
 ifeq ($(TARGET_ROM), derp)
-$(warning Building Derpfest)
 BOARD_VENDOR_SEPOLICY_DIRS += \
         $(COMMON_PATH)/sepolicy/derp
 endif
