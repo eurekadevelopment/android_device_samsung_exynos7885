@@ -1,7 +1,7 @@
 <device name="Android">
    <item name="none">0</item>
-   <item name="screen.on">93</item>
-   <item name="screen.full">313</item>
+   <item name="screen.on.display0">93</item>
+   <item name="screen.full.display0">313</item>
    <item name="bluetooth.active">118</item>
    <item name="bluetooth.on">0.98</item>
    <item name="wifi.on">0.43</item>
