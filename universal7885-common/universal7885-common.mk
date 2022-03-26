@@ -1,8 +1,6 @@
 # Call proprietary blob setup
 ifneq ($(findstring a20, $(TARGET_PRODUCT)),)
 $(call inherit-product, vendor/samsung/universal7885-common/universal7885-common-vendor.mk)
-else ifneq ($(findstring a40, $(TARGET_PRODUCT)),)
-$(call inherit-product, vendor/samsung/universal7904-common/universal7904-common-vendor.mk)
 endif
 
 # Build Fingerprints
