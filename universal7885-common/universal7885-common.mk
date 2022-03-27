@@ -87,11 +87,9 @@ PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.3-service.samsung
 endif
 
-ifeq ($(findstring a40, $(TARGET_PRODUCT)),)
 # Samsung FMRadio impl
 PRODUCT_PACKAGES += \
     FMRadio
-endif
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
