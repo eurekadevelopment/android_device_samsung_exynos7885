@@ -20,8 +20,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.light.xml
 
 PRODUCT_PACKAGES += \
-   fstab.exynos7904 \
-   ueventd.exynos7885.rc
+   fstab.exynos7904
    
 PRODUCT_PACKAGES += \
    android.hardware.sensors@1.0-service

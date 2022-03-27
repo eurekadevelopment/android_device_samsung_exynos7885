@@ -21,8 +21,7 @@ TARGET_SCREEN_WIDTH := 720
 PRODUCT_COPY_FILES += frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
 
 PRODUCT_PACKAGES += \
-   fstab.exynos7884B \
-   ueventd.exynos7885.rc
+   fstab.exynos7884B
    
 PRODUCT_PACKAGES += \
    android.hardware.sensors@1.0-service
