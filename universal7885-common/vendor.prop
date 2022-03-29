@@ -63,7 +63,8 @@ ro.build.PDA=A202KKKU7CUF1
 wifi.direct.interface=p2p0
 
 # Camera
-vendor.camera.aux.packagelist=com.google.android.apps.cameralite,com.eurekateam.cameralightsensor,com.android.camera
+vendor.camera.aux.packagelist=com.eurekateam.camera
+vendor.camera.aux.packageexcludelist=nothing
 
 # Samsung
 ro.product_ship=true
