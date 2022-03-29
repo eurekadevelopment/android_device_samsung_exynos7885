@@ -34,3 +34,4 @@ allow hal_power_default sysfs_sec_touchscreen:file r_file_perms;
 type hal_lineage_power_hwservice, hwservice_manager_type; 
 add_hwservice(hal_power_default, hal_power_hwservice)
 allow hal_power_default sysfs_decon:dir search;
+allow hal_power_default property_socket:sock_file write;
