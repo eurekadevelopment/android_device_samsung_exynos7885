@@ -81,7 +81,7 @@
     <!-- List of comma separated package names for 
          which we the system will not show crash, ANR,
          etc. dialogs. --> 
-    <string name="config_appsNotReportingCrashes">com.google.android.tts</string
+    <string name="config_appsNotReportingCrashes">com.google.android.tts</string>
 
     <!-- Vibrator pattern for a very short but reliable vibration for soft keyboard tap -->
     <integer-array name="config_keyboardTapVibePattern">

@@ -30,5 +30,6 @@ public class KeyHandler implements DeviceKeyHandler {
                 return event;
         }
         */
+        return event;
     }
 }
