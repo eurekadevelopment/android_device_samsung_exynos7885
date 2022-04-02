@@ -9,7 +9,7 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.1-service.exynos7885
+    android.hardware.usb@1.3-service.samsung
 
 TARGET_SCREEN_HEIGHT := 2280
 TARGET_SCREEN_WIDTH := 1080

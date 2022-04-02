@@ -12,7 +12,7 @@ DERP_BUILDTYPE := Official
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.1-service.exynos7885
+    android.hardware.usb@1.3-service.samsung
 
 TARGET_SCREEN_HEIGHT := 1560
 TARGET_SCREEN_WIDTH := 720
