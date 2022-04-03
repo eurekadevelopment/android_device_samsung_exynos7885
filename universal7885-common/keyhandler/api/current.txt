@@ -1,0 +1,6 @@
+package com.eurekateam.keyhandler {
+ public class KeyHandler {
+    ctor public KeyHandler (android.content.Context);
+    method public android.view.KeyEvent handleKeyEvent();
+  }
+}
