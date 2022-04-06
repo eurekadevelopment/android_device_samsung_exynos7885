@@ -19,7 +19,7 @@ package com.eurekateam.samsungextras.dolby
 import android.os.Bundle
 import android.widget.Switch
 
-import androidx.preference.PreferenceFragment
+import androidx.preference.PreferenceFragmentCompat
 
 import com.android.settingslib.widget.MainSwitchPreference
 import com.android.settingslib.widget.OnMainSwitchChangeListener
@@ -27,7 +27,7 @@ import com.android.settingslib.widget.RadioButtonPreference
 
 import com.eurekateam.samsungextras.R
 
-class DolbyFragment : PreferenceFragment(), OnMainSwitchChangeListener {
+class DolbyFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListener {
 
     private lateinit var switchBar: MainSwitchPreference
 
