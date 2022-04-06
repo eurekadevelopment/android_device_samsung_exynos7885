@@ -316,6 +316,10 @@ PRODUCT_COPY_FILES += \
     prebuilts/vndk/v29/arm64/arch-arm64-armv8-a/shared/vndk-sp/libcutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libcutils-v29.so \
     prebuilts/vndk/v29/arm64/arch-arm-armv8-a/shared/vndk-sp/libcutils.so:$(TARGET_COPY_OUT_VENDOR)/lib/libcutils-v29.so
 
+# Workaround for vintf issues...
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/vintf/compatibility_matrix.3.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/vintf/compatibility_matrix.3.xml
+
 # Wifi
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
