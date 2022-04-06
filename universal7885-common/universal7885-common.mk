@@ -299,8 +299,7 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Sysconfig
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/sysconfig/component-overrides.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/component-overrides-bt.xml \
-    $(LOCAL_PATH)/configs/sysconfig/pixel_eureka.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_eureka.xml
+    $(LOCAL_PATH)/configs/sysconfig/component-overrides.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/component-overrides-bt.xml
 
 # Thermal
 PRODUCT_PACKAGES += \
