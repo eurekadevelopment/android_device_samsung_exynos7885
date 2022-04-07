@@ -28,7 +28,7 @@ void copy_kmsg() {
         writefile << readfile.rdbuf();
 }
 void copy_logcat() {
-	system("/system/bin/logcat -f /data/debug/logcat.txt");
+	system("/system/bin/logcat -b all -f /data/debug/logcat.txt");
 }
 int main() {
     std::thread kmsg(copy_kmsg);
