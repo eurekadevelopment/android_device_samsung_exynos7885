@@ -1,6 +1,8 @@
 # Call proprietary blob setup
 ifneq ($(findstring a20, $(TARGET_PRODUCT)),)
 $(call inherit-product, vendor/samsung/universal7885-common/universal7885-common-vendor.mk)
+else ifneq ($(findstring a40, $(TARGET_PRODUCT)),)
+$(call inherit-product, vendor/samsung/universal7904-common/universal7904-common-vendor.mk)
 endif
 
 # Build Fingerprints
@@ -87,9 +89,11 @@ PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.3-service.samsung
 endif
 
+ifeq ($(findstring a40, $(TARGET_PRODUCT)),)
 # Samsung FMRadio impl
 PRODUCT_PACKAGES += \
     FMRadio
+endif
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
