@@ -14,37 +14,31 @@
 
 #define LOG_TAG "vendor.eureka.hardware.parts@1.0-service"
 
-#include <vendor/eureka/hardware/parts/1.0/IBattery.h>
-#include <vendor/eureka/hardware/parts/1.0/IFlashLight.h>
-#include <vendor/eureka/hardware/parts/1.0/IGpu.h>
-#include <vendor/eureka/hardware/parts/1.0/ISELinux.h>
-
+#include <vendor/eureka/hardware/parts/1.0/IBatteryStats.h>
+#include <vendor/eureka/hardware/parts/1.0/IFlashBrightness.h>
+#include <vendor/eureka/hardware/parts/1.0/IDisplayConfigs.h>
 #include <hidl/LegacySupport.h>
 
 #include "Battery.h"
 #include "FlashLight.h"
-#include "Gpu.h"
-#include "SELinux.h"
+#include "Display.h"
 
 using android::sp;
 using android::hardware::configureRpcThreadpool;
 using android::hardware::joinRpcThreadpool;
-using vendor::eureka::hardware::parts::V1_0::Battery;
-using vendor::eureka::hardware::parts::V1_0::IBattery;
-using vendor::eureka::hardware::parts::V1_0::FlashLight;
-using vendor::eureka::hardware::parts::V1_0::IFlashLight;
-using vendor::eureka::hardware::parts::V1_0::Gpu;
-using vendor::eureka::hardware::parts::V1_0::IGpu;
-using vendor::eureka::hardware::parts::V1_0::SELinux;
-using vendor::eureka::hardware::parts::V1_0::ISELinux;
+using vendor::eureka::hardware::parts::V1_0::BatteryStats;
+using vendor::eureka::hardware::parts::V1_0::IBatteryStats;
+using vendor::eureka::hardware::parts::V1_0::FlashBrightness;
+using vendor::eureka::hardware::parts::V1_0::IFlashBrightness;
+using vendor::eureka::hardware::parts::V1_0::DisplayConfigs;
+using vendor::eureka::hardware::parts::V1_0::IDisplayConfigs;
 
 int main() {
     int ret;
-    android::sp<IBattery> mBatteryService = Battery::getInstance();
-    android::sp<IFlashLight> mFlashLightService = FlashLight::getInstance();
-    android::sp<IGpu> mGPUService = Gpu::getInstance();
-    android::sp<ISELinux> mSEService = SELinux::getInstance();
-    configureRpcThreadpool(1, true /*callerWillJoin*/);
+    android::sp<IBatteryStats> mBatteryService = BatteryStats::getInstance();
+    android::sp<IFlashBrightness> mFlashLightService = FlashBrightness::getInstance();
+    android::sp<IDisplayConfigs> mDisplayService = DisplayConfigs::getInstance();
+    configureRpcThreadpool(4, true /*callerWillJoin*/);
 
     if (mBatteryService != nullptr) {
         ret = mBatteryService->registerAsService();
@@ -66,25 +60,15 @@ int main() {
     } else {
         ALOGE("Can't create instance of FlashLight HAL, nullptr");
     }
-    if (mGPUService != nullptr) {
-        ret = mGPUService->registerAsService();
+    if (mDisplayService != nullptr) {
+        ret = mDisplayService->registerAsService();
         if (ret != 0) {
-            ALOGE("Can't register instance of GPU HAL, nullptr");
+            ALOGE("Can't register instance of Display HAL, nullptr");
         } else {
-            ALOGI("registered GPU HAL");
+            ALOGI("registered Display HAL");
         }
     } else {
-        ALOGE("Can't create instance of GPU HAL, nullptr");
-    }
-    if (mSEService != nullptr) {
-        ret = mSEService->registerAsService();
-        if (ret != 0) {
-            ALOGE("Can't register instance of SELinux HAL, nullptr");
-        } else {
-            ALOGI("registered SELinux HAL");
-        }
-    } else {
-        ALOGE("Can't create instance of SELinux HAL, nullptr");
+        ALOGE("Can't create instance of Display HAL, nullptr");
     }
     joinRpcThreadpool();
 

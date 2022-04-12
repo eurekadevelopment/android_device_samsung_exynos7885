@@ -3,11 +3,10 @@ hidl_interface {
     root: "vendor.eureka",  
     srcs: [
        "types.hal",
-       "IBattery.hal",
-       "IFlashLight.hal",
-       "IGpu.hal",
-       "ISELinux.hal",
+       "IBatteryStats.hal",
+       "IFlashBrightness.hal",
+       "IDisplayConfigs.hal",
     ],
     interfaces: [ "android.hidl.base@1.0" ],
-    gen_java: true,
+    gen_java: false,
 }

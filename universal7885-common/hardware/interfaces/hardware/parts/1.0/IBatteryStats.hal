@@ -14,7 +14,7 @@
 
 package vendor.eureka.hardware.parts@1.0;
 
-interface IBattery {
+interface IBatteryStats {
 	getBatteryStats(SysfsType stats) generates (int32_t result);
-	setBatteryWritable(SysfsType stats, Number value) generates (int32_t result);
+	setBatteryWritable(SysfsType stats, Number value);
 };

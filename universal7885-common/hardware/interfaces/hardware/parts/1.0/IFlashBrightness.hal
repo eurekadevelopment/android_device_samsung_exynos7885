@@ -14,7 +14,8 @@
 
 package vendor.eureka.hardware.parts@1.0;
 
-interface IGpu {
-	setGpuWritable(Number enable) generates (int32_t result);
-	readGpustats() generates (int32_t value);
+interface IFlashBrightness {
+	setFlashlightWritable(Value value);
+	setFlashlightEnable(Number enable);
+	readFlashlightstats(Device device) generates (int32_t value);
 };

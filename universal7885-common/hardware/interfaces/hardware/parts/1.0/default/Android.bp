@@ -7,8 +7,7 @@ cc_binary {
     srcs: [
         "Battery.cpp",
         "FlashLight.cpp",
-        "Gpu.cpp",
-        "SELinux.cpp",
+        "Display.cpp",
 	"service.cpp",
     ],
     shared_libs: [

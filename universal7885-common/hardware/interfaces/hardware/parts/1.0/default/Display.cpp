@@ -12,42 +12,33 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "Gpu.h"
+#include "Display.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
 namespace vendor::eureka::hardware::parts::V1_0 {
 
-Return<int32_t> Gpu::setGpuWritable(parts::V1_0::Number enable) {
+Return<void> DisplayConfigs::writeDisplay(parts::V1_0::Number enable, parts::V1_0::Display type) {
     std::ofstream file;
     std::string writevalue;
-    if (enable == Number::ENABLE) {
-        writevalue = "1";
-    } else {
-        writevalue = "0";
+    if (type == Display::DOUBLE_TAP){
+	writevalue = "aot_enable";
+    } else if (type == Display::GLOVE_MODE){
+	writevalue = "glove_mode";
     }
-    file.open("/sys/devices/platform/11500000.mali/tmu");
+
+    if (enable == Number::ENABLE) {
+        writevalue += ",1";
+    } else {
+        writevalue += ",0";
+    }
+    file.open("/sys/class/sec/tsp/cmd");
     file << writevalue;
     file.close();
-    return 0;
+    return Void();
 }
 
-Return<int32_t> Gpu::readGpustats(void) {
-    std::ifstream file;
-    std::string value;
-    int32_t intvalue;
-    file.open("/sys/devices/platform/11500000.mali/tmu");
-    if (file.is_open()) {
-        getline(file, value);
-        file.close();
-        std::stringstream val(value);
-        val >> intvalue;
-        return intvalue;
-    }
-    return -1;
-}
-
-IGpu* Gpu::getInstance(void) {
-    return new Gpu();
+IDisplayConfigs* DisplayConfigs::getInstance(void) {
+    return new DisplayConfigs();
 }
 }  // namespace vendor::eureka::hardware::parts::V1_0

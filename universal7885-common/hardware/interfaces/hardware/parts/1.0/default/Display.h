@@ -16,7 +16,7 @@
 
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
-#include <vendor/eureka/hardware/parts/1.0/IGpu.h>
+#include <vendor/eureka/hardware/parts/1.0/IDisplayConfigs.h>
 
 namespace vendor::eureka::hardware::parts::V1_0 {
 
@@ -28,11 +28,10 @@ using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
 
-struct Gpu : public IGpu {
-    // Methods from ::vendor::eureka::hardware::parts::V1_0::IGpu follow.
-    Return<int32_t> setGpuWritable(Number enable);
-    Return<int32_t> readGpustats(void);
+struct DisplayConfigs : public IDisplayConfigs {
+    // Methods from ::vendor::eureka::hardware::parts::V1_0::IDisplayConfigs follow.
+    Return<void> writeDisplay(Number enable, Display type);
     // Methods from ::android::hidl::base::V1_0::IBase follow.
-    static IGpu* getInstance(void);
+    static IDisplayConfigs* getInstance(void);
 };
-}  // namespace vendor::eureka::hardware::parss::V1_0
+}  // namespace vendor::eureka::hardware::parts::V1_0

@@ -23,6 +23,11 @@ enum SysfsType : int32_t {
 	CHARGE,
 };
 
+enum Display : int32_t {
+	DOUBLE_TAP,
+	GLOVE_MODE,
+};
+
 enum Number : int32_t {
 	ENABLE = 1,
 	DISABLE = 0,

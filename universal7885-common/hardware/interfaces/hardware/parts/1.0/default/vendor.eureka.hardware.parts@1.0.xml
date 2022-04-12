@@ -4,19 +4,15 @@
      <transport>hwbinder</transport>
      <version>1.0</version>
      <interface>
-         <name>IBattery</name>
+         <name>IBatteryStats</name>
          <instance>default</instance>
      </interface>
      <interface>
-         <name>IFlashLight</name>
+         <name>IFlashBrightness</name>
          <instance>default</instance>
      </interface>
      <interface>
-         <name>IGpu</name>
-         <instance>default</instance>
-     </interface>
-     <interface>
-         <name>ISELinux</name>
+         <name>IDisplayConfigs</name>
          <instance>default</instance>
      </interface>
    </hal>

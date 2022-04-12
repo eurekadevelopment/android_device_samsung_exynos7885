@@ -16,7 +16,7 @@
 
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
-#include <vendor/eureka/hardware/parts/1.0/IFlashLight.h>
+#include <vendor/eureka/hardware/parts/1.0/IFlashBrightness.h>
 
 namespace vendor::eureka::hardware::parts::V1_0 {
 
@@ -28,12 +28,12 @@ using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
 
-struct FlashLight : public IFlashLight {
-    // Methods from ::vendor::eureka::hardware::flashlight::V1_0::IFlashLight follow.
-    Return<int32_t> setFlashlightEnable(Number enable);
-    Return<int32_t> setFlashlightWritable(Value value);
+struct FlashBrightness : public IFlashBrightness {
+    // Methods from ::vendor::eureka::hardware::parts::V1_0::IFlashBrightness follow.
+    Return<void> setFlashlightEnable(Number enable);
+    Return<void> setFlashlightWritable(Value value);
     Return<int32_t> readFlashlightstats(Device device);
     // Methods from ::android::hidl::base::V1_0::IBase follow.
-    static IFlashLight* getInstance(void);
+    static IFlashBrightness* getInstance(void);
 };
 }  // namespace vendor::eureka::hardware::parts::V1_0

@@ -19,7 +19,7 @@
 namespace vendor::eureka::hardware::parts::V1_0 {
 
 // Methods from ::android::hardware::parts::V1_0::IFlashLight follow.
-Return<int32_t> FlashLight::setFlashlightEnable(parts::V1_0::Number enable) {
+Return<void> FlashBrightness::setFlashlightEnable(parts::V1_0::Number enable) {
     std::ofstream file;
     std::string writevalue;
     switch (enable) {
@@ -36,10 +36,10 @@ Return<int32_t> FlashLight::setFlashlightEnable(parts::V1_0::Number enable) {
     file.open("/sys/class/camera/flash/torch_brightness_lvl_enable");
     file << writevalue;
     file.close();
-    return 0;
+    return Void();
 }
 
-Return<int32_t> FlashLight::setFlashlightWritable(parts::V1_0::Value value) {
+Return<void> FlashBrightness::setFlashlightWritable(parts::V1_0::Value value) {
     std::ofstream file;
     std::string writevalue;
     switch (value) {
@@ -80,10 +80,10 @@ Return<int32_t> FlashLight::setFlashlightWritable(parts::V1_0::Value value) {
     file.open("/sys/class/camera/flash/torch_brightness_lvl");
     file << writevalue;
     file.close();
-    return 0;
+    return Void();
 }
 
-Return<int32_t> FlashLight::readFlashlightstats(parts::V1_0::Device device) {
+Return<int32_t> FlashBrightness::readFlashlightstats(parts::V1_0::Device device) {
     std::ifstream file;
     std::string value;
     int32_t intvalue;
@@ -104,7 +104,7 @@ Return<int32_t> FlashLight::readFlashlightstats(parts::V1_0::Device device) {
     return -1;
 }
 
-IFlashLight* FlashLight::getInstance(void) {
-    return new FlashLight();
+IFlashBrightness* FlashBrightness::getInstance(void) {
+    return new FlashBrightness();
 }
 }  // namespace vendor::eureka::hardware::parts::V1_0
