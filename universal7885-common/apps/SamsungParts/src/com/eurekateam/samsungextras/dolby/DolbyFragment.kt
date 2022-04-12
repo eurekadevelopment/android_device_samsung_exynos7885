@@ -28,14 +28,15 @@ import com.android.settingslib.widget.OnMainSwitchChangeListener
 import com.android.settingslib.widget.RadioButtonPreference
 
 import com.eurekateam.samsungextras.R
+import android.content.SharedPreferences
 
 class DolbyFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListener {
 
     private lateinit var switchBar: MainSwitchPreference
-    private val mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+    private lateinit var mSharedPreferences : SharedPreferences
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.dolby_settings)
-
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         switchBar = findPreference<MainSwitchPreference>(PREF_DOLBY_ENABLE)!!
         switchBar.addOnSwitchChangeListener(this)
         switchBar.isChecked = DolbyCore.isEnabled()

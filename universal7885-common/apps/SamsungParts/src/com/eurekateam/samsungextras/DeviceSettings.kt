@@ -32,10 +32,11 @@ import com.eurekateam.samsungextras.speaker.ClearSpeakerActivity
 
 class DeviceSettings : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
 
-    private val mPrefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+    private lateinit var mPrefs : SharedPreferences
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         System.loadLibrary("samsungparts_jni")
         setPreferencesFromResource(R.xml.preferences_samsung_parts, rootKey)
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val mClearSpeakerPref = findPreference<Preference>(PREF_CLEAR_SPEAKER)!!
         mClearSpeakerPref.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
