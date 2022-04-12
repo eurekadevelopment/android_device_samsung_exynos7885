@@ -32,11 +32,11 @@ using ::android::hardware::Return;
 using ::android::hardware::Void;
 
 struct BatteryStats : public IBatteryStats {
-    // Methods from ::vendor::eureka::hardware::parts::V1_0::IBatteryStats follow.
-    Return<int32_t> getBatteryStats(SysfsType stats) override;
-    Return<void> setBatteryWritable(SysfsType stats, Number value) override;
+  // Methods from ::vendor::eureka::hardware::parts::V1_0::IBatteryStats follow.
+  Return<int32_t> getBatteryStats(SysfsType stats) override;
+  Return<void> setBatteryWritable(SysfsType stats, Number value) override;
 
-    // Methods from ::android::hidl::base::V1_0::IBase follow.
-    static IBatteryStats* getInstance(void);
+  // Methods from ::android::hidl::base::V1_0::IBase follow.
+  static IBatteryStats *getInstance(void);
 };
-}  // namespace vendor::eureka::hardware::parts::V1_0
+} // namespace vendor::eureka::hardware::parts::V1_0

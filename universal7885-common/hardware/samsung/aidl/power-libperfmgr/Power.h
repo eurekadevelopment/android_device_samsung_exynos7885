@@ -38,24 +38,24 @@ using ::aidl::android::hardware::power::Mode;
 using ::android::perfmgr::HintManager;
 
 class Power : public ::aidl::android::hardware::power::BnPower {
-  public:
-    Power(std::shared_ptr<HintManager> hm);
-    ndk::ScopedAStatus setMode(Mode type, bool enabled) override;
-    ndk::ScopedAStatus isModeSupported(Mode type, bool* _aidl_return) override;
-    ndk::ScopedAStatus setBoost(Boost type, int32_t durationMs) override;
-    ndk::ScopedAStatus isBoostSupported(Boost type, bool* _aidl_return) override;
-    binder_status_t dump(int fd, const char** args, uint32_t numArgs) override;
+public:
+  Power(std::shared_ptr<HintManager> hm);
+  ndk::ScopedAStatus setMode(Mode type, bool enabled) override;
+  ndk::ScopedAStatus isModeSupported(Mode type, bool *_aidl_return) override;
+  ndk::ScopedAStatus setBoost(Boost type, int32_t durationMs) override;
+  ndk::ScopedAStatus isBoostSupported(Boost type, bool *_aidl_return) override;
+  binder_status_t dump(int fd, const char **args, uint32_t numArgs) override;
 
-  private:
-    std::shared_ptr<HintManager> mHintManager;
-    std::unique_ptr<InteractionHandler> mInteractionHandler;
-    std::atomic<bool> mVRModeOn;
-    std::atomic<bool> mSustainedPerfModeOn;
+private:
+  std::shared_ptr<HintManager> mHintManager;
+  std::unique_ptr<InteractionHandler> mInteractionHandler;
+  std::atomic<bool> mVRModeOn;
+  std::atomic<bool> mSustainedPerfModeOn;
 };
 
-}  // namespace pixel
-}  // namespace impl
-}  // namespace power
-}  // namespace hardware
-}  // namespace google
-}  // namespace aidl
+} // namespace pixel
+} // namespace impl
+} // namespace power
+} // namespace hardware
+} // namespace google
+} // namespace aidl

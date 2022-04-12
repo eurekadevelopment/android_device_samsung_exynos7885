@@ -29,11 +29,12 @@ using ::android::hardware::Return;
 using ::android::hardware::Void;
 
 struct FlashBrightness : public IFlashBrightness {
-    // Methods from ::vendor::eureka::hardware::parts::V1_0::IFlashBrightness follow.
-    Return<void> setFlashlightEnable(Number enable);
-    Return<void> setFlashlightWritable(Value value);
-    Return<int32_t> readFlashlightstats(Device device);
-    // Methods from ::android::hidl::base::V1_0::IBase follow.
-    static IFlashBrightness* getInstance(void);
+  // Methods from ::vendor::eureka::hardware::parts::V1_0::IFlashBrightness
+  // follow.
+  Return<void> setFlashlightEnable(Number enable);
+  Return<void> setFlashlightWritable(Value value);
+  Return<int32_t> readFlashlightstats(Device device);
+  // Methods from ::android::hidl::base::V1_0::IBase follow.
+  static IFlashBrightness *getInstance(void);
 };
-}  // namespace vendor::eureka::hardware::parts::V1_0
+} // namespace vendor::eureka::hardware::parts::V1_0

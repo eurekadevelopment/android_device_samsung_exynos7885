@@ -14,63 +14,64 @@
 
 #define LOG_TAG "vendor.eureka.hardware.parts@1.0-service"
 
-#include <vendor/eureka/hardware/parts/1.0/IBatteryStats.h>
-#include <vendor/eureka/hardware/parts/1.0/IFlashBrightness.h>
-#include <vendor/eureka/hardware/parts/1.0/IDisplayConfigs.h>
 #include <hidl/LegacySupport.h>
+#include <vendor/eureka/hardware/parts/1.0/IBatteryStats.h>
+#include <vendor/eureka/hardware/parts/1.0/IDisplayConfigs.h>
+#include <vendor/eureka/hardware/parts/1.0/IFlashBrightness.h>
 
 #include "Battery.h"
-#include "FlashLight.h"
 #include "Display.h"
+#include "FlashLight.h"
 
 using android::sp;
 using android::hardware::configureRpcThreadpool;
 using android::hardware::joinRpcThreadpool;
 using vendor::eureka::hardware::parts::V1_0::BatteryStats;
-using vendor::eureka::hardware::parts::V1_0::IBatteryStats;
-using vendor::eureka::hardware::parts::V1_0::FlashBrightness;
-using vendor::eureka::hardware::parts::V1_0::IFlashBrightness;
 using vendor::eureka::hardware::parts::V1_0::DisplayConfigs;
+using vendor::eureka::hardware::parts::V1_0::FlashBrightness;
+using vendor::eureka::hardware::parts::V1_0::IBatteryStats;
 using vendor::eureka::hardware::parts::V1_0::IDisplayConfigs;
+using vendor::eureka::hardware::parts::V1_0::IFlashBrightness;
 
 int main() {
-    int ret;
-    android::sp<IBatteryStats> mBatteryService = BatteryStats::getInstance();
-    android::sp<IFlashBrightness> mFlashLightService = FlashBrightness::getInstance();
-    android::sp<IDisplayConfigs> mDisplayService = DisplayConfigs::getInstance();
-    configureRpcThreadpool(4, true /*callerWillJoin*/);
+  int ret;
+  android::sp<IBatteryStats> mBatteryService = BatteryStats::getInstance();
+  android::sp<IFlashBrightness> mFlashLightService =
+      FlashBrightness::getInstance();
+  android::sp<IDisplayConfigs> mDisplayService = DisplayConfigs::getInstance();
+  configureRpcThreadpool(4, true /*callerWillJoin*/);
 
-    if (mBatteryService != nullptr) {
-        ret = mBatteryService->registerAsService();
-        if (ret != 0) {
-            ALOGE("Can't register instance of Battery HAL, nullptr");
-        } else {
-            ALOGI("registered Battery HAL");
-        }
+  if (mBatteryService != nullptr) {
+    ret = mBatteryService->registerAsService();
+    if (ret != 0) {
+      ALOGE("Can't register instance of Battery HAL, nullptr");
     } else {
-        ALOGE("Can't create instance of Battery HAL, nullptr");
+      ALOGI("registered Battery HAL");
     }
-    if (mFlashLightService != nullptr) {
-        ret = mFlashLightService->registerAsService();
-        if (ret != 0) {
-            ALOGE("Can't register instance of FlashLight HAL, nullptr");
-        } else {
-            ALOGI("registered FlashLight HAL");
-        }
+  } else {
+    ALOGE("Can't create instance of Battery HAL, nullptr");
+  }
+  if (mFlashLightService != nullptr) {
+    ret = mFlashLightService->registerAsService();
+    if (ret != 0) {
+      ALOGE("Can't register instance of FlashLight HAL, nullptr");
     } else {
-        ALOGE("Can't create instance of FlashLight HAL, nullptr");
+      ALOGI("registered FlashLight HAL");
     }
-    if (mDisplayService != nullptr) {
-        ret = mDisplayService->registerAsService();
-        if (ret != 0) {
-            ALOGE("Can't register instance of Display HAL, nullptr");
-        } else {
-            ALOGI("registered Display HAL");
-        }
+  } else {
+    ALOGE("Can't create instance of FlashLight HAL, nullptr");
+  }
+  if (mDisplayService != nullptr) {
+    ret = mDisplayService->registerAsService();
+    if (ret != 0) {
+      ALOGE("Can't register instance of Display HAL, nullptr");
     } else {
-        ALOGE("Can't create instance of Display HAL, nullptr");
+      ALOGI("registered Display HAL");
     }
-    joinRpcThreadpool();
+  } else {
+    ALOGE("Can't create instance of Display HAL, nullptr");
+  }
+  joinRpcThreadpool();
 
-    return -1;  // should never get here
+  return -1; // should never get here
 }

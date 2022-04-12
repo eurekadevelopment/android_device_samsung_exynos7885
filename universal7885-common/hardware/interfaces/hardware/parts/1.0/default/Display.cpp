@@ -18,27 +18,28 @@
 #include <sstream>
 namespace vendor::eureka::hardware::parts::V1_0 {
 
-Return<void> DisplayConfigs::writeDisplay(parts::V1_0::Number enable, parts::V1_0::Display type) {
-    std::ofstream file;
-    std::string writevalue;
-    if (type == Display::DOUBLE_TAP){
-	writevalue = "aot_enable";
-    } else if (type == Display::GLOVE_MODE){
-	writevalue = "glove_mode";
-    }
+Return<void> DisplayConfigs::writeDisplay(parts::V1_0::Number enable,
+                                          parts::V1_0::Display type) {
+  std::ofstream file;
+  std::string writevalue;
+  if (type == Display::DOUBLE_TAP) {
+    writevalue = "aot_enable";
+  } else if (type == Display::GLOVE_MODE) {
+    writevalue = "glove_mode";
+  }
 
-    if (enable == Number::ENABLE) {
-        writevalue += ",1";
-    } else {
-        writevalue += ",0";
-    }
-    file.open("/sys/class/sec/tsp/cmd");
-    file << writevalue;
-    file.close();
-    return Void();
+  if (enable == Number::ENABLE) {
+    writevalue += ",1";
+  } else {
+    writevalue += ",0";
+  }
+  file.open("/sys/class/sec/tsp/cmd");
+  file << writevalue;
+  file.close();
+  return Void();
 }
 
-IDisplayConfigs* DisplayConfigs::getInstance(void) {
-    return new DisplayConfigs();
+IDisplayConfigs *DisplayConfigs::getInstance(void) {
+  return new DisplayConfigs();
 }
-}  // namespace vendor::eureka::hardware::parts::V1_0
+} // namespace vendor::eureka::hardware::parts::V1_0

@@ -29,16 +29,16 @@ using ::android::hardware::Return;
 using ::android::hardware::Void;
 
 struct FMRadio : public IFMRadio {
-    // Methods from ::vendor::eureka::hardware::fmradio::V1_0::IFMRadio follow.
-    Return<void> setManualFreq(float freq);
-    Return<void> adjustFreqByStep(V1_0::Direction dir);
-    // Methods from ::vendor::eureka::hardware::fmradio::V1_1::IFMRadio follow.
-    Return<V1_1::Status> isAvailable();
-    Return<int32_t> getFreqFromSysfs();
-    // Methods from ::vendor::eureka::hardware::fmradio::V1_2::IFMRadio follow.
-    Return<void> setChannelSpacing(V1_2::Space space);
-    Return<V1_2::Space> getChannelSpacing();
-    // Methods from ::android::hidl::base::V1_0::IBase follow.
-    static IFMRadio* getInstance(void);
+  // Methods from ::vendor::eureka::hardware::fmradio::V1_0::IFMRadio follow.
+  Return<void> setManualFreq(float freq);
+  Return<void> adjustFreqByStep(V1_0::Direction dir);
+  // Methods from ::vendor::eureka::hardware::fmradio::V1_1::IFMRadio follow.
+  Return<V1_1::Status> isAvailable();
+  Return<int32_t> getFreqFromSysfs();
+  // Methods from ::vendor::eureka::hardware::fmradio::V1_2::IFMRadio follow.
+  Return<void> setChannelSpacing(V1_2::Space space);
+  Return<V1_2::Space> getChannelSpacing();
+  // Methods from ::android::hidl::base::V1_0::IBase follow.
+  static IFMRadio *getInstance(void);
 };
-}  // namespace vendor::eureka::hardware::parts::V1_0
+} // namespace vendor::eureka::hardware::fmradio::V1_2

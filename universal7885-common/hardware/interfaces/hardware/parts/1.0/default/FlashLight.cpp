@@ -20,91 +20,92 @@ namespace vendor::eureka::hardware::parts::V1_0 {
 
 // Methods from ::android::hardware::parts::V1_0::IFlashLight follow.
 Return<void> FlashBrightness::setFlashlightEnable(parts::V1_0::Number enable) {
-    std::ofstream file;
-    std::string writevalue;
-    switch (enable) {
-        case Number::ENABLE:
-            writevalue = "1";
-            break;
-        case Number::DISABLE:
-            writevalue = "0";
-            break;
-        default:
-            writevalue = "";
-            break;
-    }
-    file.open("/sys/class/camera/flash/torch_brightness_lvl_enable");
-    file << writevalue;
-    file.close();
-    return Void();
+  std::ofstream file;
+  std::string writevalue;
+  switch (enable) {
+  case Number::ENABLE:
+    writevalue = "1";
+    break;
+  case Number::DISABLE:
+    writevalue = "0";
+    break;
+  default:
+    writevalue = "";
+    break;
+  }
+  file.open("/sys/class/camera/flash/torch_brightness_lvl_enable");
+  file << writevalue;
+  file.close();
+  return Void();
 }
 
 Return<void> FlashBrightness::setFlashlightWritable(parts::V1_0::Value value) {
-    std::ofstream file;
-    std::string writevalue;
-    switch (value) {
-        case Value::ONEUI:
-            writevalue = "1";
-            break;
-        case Value::TWOUI:
-            writevalue = "2";
-            break;
-        case Value::THREEUI:
-            writevalue = "3";
-            break;
-        case Value::FOURUI:
-            writevalue = "4";
-            break;
-        case Value::FIVEUI:
-            writevalue = "5";
-            break;
-        case Value::SIXUI:
-            writevalue = "6";
-            break;
-        case Value::SEVENUI:
-            writevalue = "7";
-            break;
-        case Value::EIGHTUI:
-            writevalue = "8";
-            break;
-        case Value::NINEUI:
-            writevalue = "9";
-            break;
-        case Value::TENUI:
-            writevalue = "10";
-            break;
-        default:
-            writevalue = "";
-            break;
-    }
-    file.open("/sys/class/camera/flash/torch_brightness_lvl");
-    file << writevalue;
+  std::ofstream file;
+  std::string writevalue;
+  switch (value) {
+  case Value::ONEUI:
+    writevalue = "1";
+    break;
+  case Value::TWOUI:
+    writevalue = "2";
+    break;
+  case Value::THREEUI:
+    writevalue = "3";
+    break;
+  case Value::FOURUI:
+    writevalue = "4";
+    break;
+  case Value::FIVEUI:
+    writevalue = "5";
+    break;
+  case Value::SIXUI:
+    writevalue = "6";
+    break;
+  case Value::SEVENUI:
+    writevalue = "7";
+    break;
+  case Value::EIGHTUI:
+    writevalue = "8";
+    break;
+  case Value::NINEUI:
+    writevalue = "9";
+    break;
+  case Value::TENUI:
+    writevalue = "10";
+    break;
+  default:
+    writevalue = "";
+    break;
+  }
+  file.open("/sys/class/camera/flash/torch_brightness_lvl");
+  file << writevalue;
+  file.close();
+  return Void();
+}
+
+Return<int32_t>
+FlashBrightness::readFlashlightstats(parts::V1_0::Device device) {
+  std::ifstream file;
+  std::string value;
+  int32_t intvalue;
+  file.open("/sys/class/camera/flash/torch_brightness_lvl");
+  if (file.is_open()) {
+    getline(file, value);
     file.close();
-    return Void();
-}
-
-Return<int32_t> FlashBrightness::readFlashlightstats(parts::V1_0::Device device) {
-    std::ifstream file;
-    std::string value;
-    int32_t intvalue;
-    file.open("/sys/class/camera/flash/torch_brightness_lvl");
-    if (file.is_open()) {
-        getline(file, value);
-        file.close();
-        std::stringstream val(value);
-        val >> intvalue;
-        if (device == Device::A10) {
-            return intvalue;
-        } else if (device == Device::NOTA10) {
-            return intvalue / 21;
-        }
-        // Never Here
-        return -1;
+    std::stringstream val(value);
+    val >> intvalue;
+    if (device == Device::A10) {
+      return intvalue;
+    } else if (device == Device::NOTA10) {
+      return intvalue / 21;
     }
+    // Never Here
     return -1;
+  }
+  return -1;
 }
 
-IFlashBrightness* FlashBrightness::getInstance(void) {
-    return new FlashBrightness();
+IFlashBrightness *FlashBrightness::getInstance(void) {
+  return new FlashBrightness();
 }
-}  // namespace vendor::eureka::hardware::parts::V1_0
+} // namespace vendor::eureka::hardware::parts::V1_0

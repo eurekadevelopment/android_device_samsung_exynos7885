@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #include <thread>
 
 #define KMSG_PATH "/proc/kmsg"
@@ -23,17 +23,17 @@
 #include <iostream>
 
 void copy_kmsg() {
-	std::ifstream readfile(KMSG_PATH);
-    	std::ofstream writefile(WRITE_KMSG);
-        writefile << readfile.rdbuf();
+  std::ifstream readfile(KMSG_PATH);
+  std::ofstream writefile(WRITE_KMSG);
+  writefile << readfile.rdbuf();
 }
 void copy_logcat() {
-	system("/system/bin/logcat -b all -f /data/debug/logcat.txt");
+  system("/system/bin/logcat -b all -f /data/debug/logcat.txt");
 }
 int main() {
-    std::thread kmsg(copy_kmsg);
-    std::thread logcat(copy_logcat);
-    kmsg.join();
-    logcat.join();
-    return 0;
+  std::thread kmsg(copy_kmsg);
+  std::thread logcat(copy_logcat);
+  kmsg.join();
+  logcat.join();
+  return 0;
 }

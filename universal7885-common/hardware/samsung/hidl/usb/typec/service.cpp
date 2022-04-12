@@ -17,8 +17,8 @@
 
 #define LOG_TAG "android.hardware.usb@1.3-service.samsung"
 
-#include <hidl/HidlTransportSupport.h>
 #include "Usb.h"
+#include <hidl/HidlTransportSupport.h>
 
 using android::sp;
 
@@ -34,19 +34,19 @@ using android::OK;
 using android::status_t;
 
 int main() {
-    android::sp<IUsb> service = new Usb();
+  android::sp<IUsb> service = new Usb();
 
-    configureRpcThreadpool(1, true /*callerWillJoin*/);
-    status_t status = service->registerAsService();
+  configureRpcThreadpool(1, true /*callerWillJoin*/);
+  status_t status = service->registerAsService();
 
-    if (status != OK) {
-        ALOGE("Cannot register USB HAL service");
-        return 1;
-    }
-
-    ALOGI("USB HAL Ready.");
-    joinRpcThreadpool();
-    // Under noraml cases, execution will not reach this line.
-    ALOGI("USB HAL failed to join thread pool.");
+  if (status != OK) {
+    ALOGE("Cannot register USB HAL service");
     return 1;
+  }
+
+  ALOGI("USB HAL Ready.");
+  joinRpcThreadpool();
+  // Under noraml cases, execution will not reach this line.
+  ALOGI("USB HAL failed to join thread pool.");
+  return 1;
 }

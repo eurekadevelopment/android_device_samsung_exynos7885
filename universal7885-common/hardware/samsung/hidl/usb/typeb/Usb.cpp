@@ -30,51 +30,52 @@ namespace usb {
 namespace V1_0 {
 namespace implementation {
 
-Return<void> Usb::switchRole(const hidl_string& portName __unused,
-                             const PortRole& newRole __unused) {
-    LOG(ERROR) << __func__ << ": Not supported";
-    return Void();
+Return<void> Usb::switchRole(const hidl_string &portName __unused,
+                             const PortRole &newRole __unused) {
+  LOG(ERROR) << __func__ << ": Not supported";
+  return Void();
 }
 
 Return<void> Usb::queryPortStatus() {
-    hidl_vec<PortStatus> currentPortStatus;
-    currentPortStatus.resize(1);
+  hidl_vec<PortStatus> currentPortStatus;
+  currentPortStatus.resize(1);
 
-    currentPortStatus[0].portName = "otg_default";
-    currentPortStatus[0].currentDataRole = PortDataRole::DEVICE;
-    currentPortStatus[0].currentPowerRole = PortPowerRole::SINK;
-    currentPortStatus[0].currentMode = PortMode::UFP;
-    currentPortStatus[0].canChangeMode = false;
-    currentPortStatus[0].canChangeDataRole = false;
-    currentPortStatus[0].canChangePowerRole = false;
-    currentPortStatus[0].supportedModes = PortMode::UFP;
+  currentPortStatus[0].portName = "otg_default";
+  currentPortStatus[0].currentDataRole = PortDataRole::DEVICE;
+  currentPortStatus[0].currentPowerRole = PortPowerRole::SINK;
+  currentPortStatus[0].currentMode = PortMode::UFP;
+  currentPortStatus[0].canChangeMode = false;
+  currentPortStatus[0].canChangeDataRole = false;
+  currentPortStatus[0].canChangePowerRole = false;
+  currentPortStatus[0].supportedModes = PortMode::UFP;
 
-    pthread_mutex_lock(&mLock);
-    if (mCallback != NULL) {
-        Return<void> ret = mCallback->notifyPortStatusChange(currentPortStatus, Status::SUCCESS);
-        if (!ret.isOk()) {
-            LOG(ERROR) << "queryPortStatus error " << ret.description();
-        }
-    } else {
-        LOG(INFO) << "Notifying userspace skipped. Callback is NULL";
+  pthread_mutex_lock(&mLock);
+  if (mCallback != NULL) {
+    Return<void> ret =
+        mCallback->notifyPortStatusChange(currentPortStatus, Status::SUCCESS);
+    if (!ret.isOk()) {
+      LOG(ERROR) << "queryPortStatus error " << ret.description();
     }
-    pthread_mutex_unlock(&mLock);
+  } else {
+    LOG(INFO) << "Notifying userspace skipped. Callback is NULL";
+  }
+  pthread_mutex_unlock(&mLock);
 
-    return Void();
+  return Void();
 }
 
-Return<void> Usb::setCallback(const sp<IUsbCallback>& callback) {
-    pthread_mutex_lock(&mLock);
+Return<void> Usb::setCallback(const sp<IUsbCallback> &callback) {
+  pthread_mutex_lock(&mLock);
 
-    mCallback = callback;
-    LOG(INFO) << "registering callback";
+  mCallback = callback;
+  LOG(INFO) << "registering callback";
 
-    pthread_mutex_unlock(&mLock);
-    return Void();
+  pthread_mutex_unlock(&mLock);
+  return Void();
 }
 
-}  // namespace implementation
-}  // namespace V1_0
-}  // namespace usb
-}  // namespace hardware
-}  // namespace android
+} // namespace implementation
+} // namespace V1_0
+} // namespace usb
+} // namespace hardware
+} // namespace android

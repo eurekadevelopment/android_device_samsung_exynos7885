@@ -47,80 +47,92 @@ using ::android::hardware::hidl_string;
 using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
-using ::android::hardware::biometrics::fingerprint::V2_1::FingerprintAcquiredInfo;
+using ::android::hardware::biometrics::fingerprint::V2_1::
+    FingerprintAcquiredInfo;
 using ::android::hardware::biometrics::fingerprint::V2_1::FingerprintError;
-using ::android::hardware::biometrics::fingerprint::V2_1::IBiometricsFingerprintClientCallback;
+using ::android::hardware::biometrics::fingerprint::V2_1::
+    IBiometricsFingerprintClientCallback;
 using ::android::hardware::biometrics::fingerprint::V2_1::RequestStatus;
-using ::android::hardware::biometrics::fingerprint::V2_3::IBiometricsFingerprint;
+using ::android::hardware::biometrics::fingerprint::V2_3::
+    IBiometricsFingerprint;
 
 struct BiometricsFingerprint : public IBiometricsFingerprint {
-    BiometricsFingerprint();
-    ~BiometricsFingerprint();
+  BiometricsFingerprint();
+  ~BiometricsFingerprint();
 
-    // Method to wrap legacy HAL with BiometricsFingerprint class
-    static IBiometricsFingerprint* getInstance();
+  // Method to wrap legacy HAL with BiometricsFingerprint class
+  static IBiometricsFingerprint *getInstance();
 
-    // Methods from ::android::hardware::biometrics::fingerprint::V2_3::IBiometricsFingerprint
-    // follow.
-    Return<uint64_t> setNotify(
-            const sp<IBiometricsFingerprintClientCallback>& clientCallback) override;
-    Return<uint64_t> preEnroll() override;
-    Return<RequestStatus> enroll(const hidl_array<uint8_t, 69>& hat, uint32_t gid,
-                                 uint32_t timeoutSec) override;
-    Return<RequestStatus> postEnroll() override;
-    Return<uint64_t> getAuthenticatorId() override;
-    Return<RequestStatus> cancel() override;
-    Return<RequestStatus> enumerate() override;
-    Return<RequestStatus> remove(uint32_t gid, uint32_t fid) override;
-    Return<RequestStatus> setActiveGroup(uint32_t gid, const hidl_string& storePath) override;
-    Return<RequestStatus> authenticate(uint64_t operationId, uint32_t gid) override;
-    Return<bool> isUdfps(uint32_t sensorID) override;
-    Return<void> onFingerDown(uint32_t x, uint32_t y, float minor, float major) override;
-    Return<void> onFingerUp() override;
-    Return<void> onShowUdfpsOverlay() { return Void(); }
-    Return<void> onHideUdfpsOverlay() { return Void(); }
+  // Methods from
+  // ::android::hardware::biometrics::fingerprint::V2_3::IBiometricsFingerprint
+  // follow.
+  Return<uint64_t> setNotify(
+      const sp<IBiometricsFingerprintClientCallback> &clientCallback) override;
+  Return<uint64_t> preEnroll() override;
+  Return<RequestStatus> enroll(const hidl_array<uint8_t, 69> &hat, uint32_t gid,
+                               uint32_t timeoutSec) override;
+  Return<RequestStatus> postEnroll() override;
+  Return<uint64_t> getAuthenticatorId() override;
+  Return<RequestStatus> cancel() override;
+  Return<RequestStatus> enumerate() override;
+  Return<RequestStatus> remove(uint32_t gid, uint32_t fid) override;
+  Return<RequestStatus> setActiveGroup(uint32_t gid,
+                                       const hidl_string &storePath) override;
+  Return<RequestStatus> authenticate(uint64_t operationId,
+                                     uint32_t gid) override;
+  Return<bool> isUdfps(uint32_t sensorID) override;
+  Return<void> onFingerDown(uint32_t x, uint32_t y, float minor,
+                            float major) override;
+  Return<void> onFingerUp() override;
+  Return<void> onShowUdfpsOverlay() { return Void(); }
+  Return<void> onHideUdfpsOverlay() { return Void(); }
 
-  private:
-    bool openHal();
-    int request(int cmd, int param);
-    int waitForSensor(std::chrono::milliseconds pollWait, std::chrono::milliseconds timeOut);
-    static void notify(
-            const fingerprint_msg_t* msg); /* Static callback for legacy HAL implementation */
-    void handleEvent(int eventCode);
-    static Return<RequestStatus> ErrorFilter(int32_t error);
-    static FingerprintError VendorErrorFilter(int32_t error, int32_t* vendorCode);
-    static FingerprintAcquiredInfo VendorAcquiredFilter(int32_t error, int32_t* vendorCode);
-    static BiometricsFingerprint* sInstance;
+private:
+  bool openHal();
+  int request(int cmd, int param);
+  int waitForSensor(std::chrono::milliseconds pollWait,
+                    std::chrono::milliseconds timeOut);
+  static void
+  notify(const fingerprint_msg_t
+             *msg); /* Static callback for legacy HAL implementation */
+  void handleEvent(int eventCode);
+  static Return<RequestStatus> ErrorFilter(int32_t error);
+  static FingerprintError VendorErrorFilter(int32_t error, int32_t *vendorCode);
+  static FingerprintAcquiredInfo VendorAcquiredFilter(int32_t error,
+                                                      int32_t *vendorCode);
+  static BiometricsFingerprint *sInstance;
 
-    std::mutex mClientCallbackMutex;
-    sp<IBiometricsFingerprintClientCallback> mClientCallback;
+  std::mutex mClientCallbackMutex;
+  sp<IBiometricsFingerprintClientCallback> mClientCallback;
 #ifdef HAS_FINGERPRINT_GESTURES
-    int uinputFd;
-    struct uinput_user_dev uidev {};
+  int uinputFd;
+  struct uinput_user_dev uidev {};
 #endif
 
-    int (*ss_fingerprint_close)();
-    int (*ss_fingerprint_open)(const char* id);
+  int (*ss_fingerprint_close)();
+  int (*ss_fingerprint_open)(const char *id);
 
-    int (*ss_set_notify_callback)(fingerprint_notify_t notify);
-    uint64_t (*ss_fingerprint_pre_enroll)();
-    int (*ss_fingerprint_enroll)(const hw_auth_token_t* hat, uint32_t gid, uint32_t timeout_sec);
-    int (*ss_fingerprint_post_enroll)();
-    uint64_t (*ss_fingerprint_get_auth_id)();
-    int (*ss_fingerprint_cancel)();
-    int (*ss_fingerprint_enumerate)();
-    int (*ss_fingerprint_remove)(uint32_t gid, uint32_t fid);
-    int (*ss_fingerprint_set_active_group)(uint32_t gid, const char* store_path);
-    int (*ss_fingerprint_authenticate)(uint64_t operation_id, uint32_t gid);
-    int (*ss_fingerprint_request)(uint32_t cmd, char* inBuf, uint32_t inBuf_length, char* outBuf,
-                                  uint32_t outBuf_length, uint32_t param);
+  int (*ss_set_notify_callback)(fingerprint_notify_t notify);
+  uint64_t (*ss_fingerprint_pre_enroll)();
+  int (*ss_fingerprint_enroll)(const hw_auth_token_t *hat, uint32_t gid,
+                               uint32_t timeout_sec);
+  int (*ss_fingerprint_post_enroll)();
+  uint64_t (*ss_fingerprint_get_auth_id)();
+  int (*ss_fingerprint_cancel)();
+  int (*ss_fingerprint_enumerate)();
+  int (*ss_fingerprint_remove)(uint32_t gid, uint32_t fid);
+  int (*ss_fingerprint_set_active_group)(uint32_t gid, const char *store_path);
+  int (*ss_fingerprint_authenticate)(uint64_t operation_id, uint32_t gid);
+  int (*ss_fingerprint_request)(uint32_t cmd, char *inBuf,
+                                uint32_t inBuf_length, char *outBuf,
+                                uint32_t outBuf_length, uint32_t param);
 };
 
-}  // namespace implementation
-}  // namespace V2_3
-}  // namespace fingerprint
-}  // namespace biometrics
-}  // namespace hardware
-}  // namespace android
+} // namespace implementation
+} // namespace V2_3
+} // namespace fingerprint
+} // namespace biometrics
+} // namespace hardware
+} // namespace android
 
-#endif  // ANDROID_HARDWARE_BIOMETRICS_FINGERPRINT_V2_3_BIOMETRICSFINGERPRINT_H
+#endif // ANDROID_HARDWARE_BIOMETRICS_FINGERPRINT_V2_3_BIOMETRICSFINGERPRINT_H

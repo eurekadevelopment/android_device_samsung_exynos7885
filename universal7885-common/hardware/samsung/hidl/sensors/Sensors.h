@@ -30,54 +30,56 @@ namespace V1_0 {
 namespace implementation {
 
 struct Sensors : public ::android::hardware::sensors::V1_0::ISensors {
-    Sensors();
+  Sensors();
 
-    status_t initCheck() const;
+  status_t initCheck() const;
 
-    Return<void> getSensorsList(getSensorsList_cb _hidl_cb) override;
+  Return<void> getSensorsList(getSensorsList_cb _hidl_cb) override;
 
-    Return<Result> setOperationMode(OperationMode mode) override;
+  Return<Result> setOperationMode(OperationMode mode) override;
 
-    Return<Result> activate(int32_t sensor_handle, bool enabled) override;
+  Return<Result> activate(int32_t sensor_handle, bool enabled) override;
 
-    Return<void> poll(int32_t maxCount, poll_cb _hidl_cb) override;
+  Return<void> poll(int32_t maxCount, poll_cb _hidl_cb) override;
 
-    Return<Result> batch(int32_t sensor_handle, int64_t sampling_period_ns,
-                         int64_t max_report_latency_ns) override;
+  Return<Result> batch(int32_t sensor_handle, int64_t sampling_period_ns,
+                       int64_t max_report_latency_ns) override;
 
-    Return<Result> flush(int32_t sensor_handle) override;
+  Return<Result> flush(int32_t sensor_handle) override;
 
-    Return<Result> injectSensorData(const Event& event) override;
+  Return<Result> injectSensorData(const Event &event) override;
 
-    Return<void> registerDirectChannel(const SharedMemInfo& mem,
-                                       registerDirectChannel_cb _hidl_cb) override;
+  Return<void>
+  registerDirectChannel(const SharedMemInfo &mem,
+                        registerDirectChannel_cb _hidl_cb) override;
 
-    Return<Result> unregisterDirectChannel(int32_t channelHandle) override;
+  Return<Result> unregisterDirectChannel(int32_t channelHandle) override;
 
-    Return<void> configDirectReport(int32_t sensorHandle, int32_t channelHandle, RateLevel rate,
-                                    configDirectReport_cb _hidl_cb) override;
+  Return<void> configDirectReport(int32_t sensorHandle, int32_t channelHandle,
+                                  RateLevel rate,
+                                  configDirectReport_cb _hidl_cb) override;
 
-  private:
-    static constexpr int32_t kPollMaxBufferSize = 128;
-    status_t mInitCheck;
-    sensors_module_t* mSensorModule;
-    sensors_poll_device_1_t* mSensorDevice;
-    std::mutex mPollLock;
+private:
+  static constexpr int32_t kPollMaxBufferSize = 128;
+  status_t mInitCheck;
+  sensors_module_t *mSensorModule;
+  sensors_poll_device_1_t *mSensorDevice;
+  std::mutex mPollLock;
 
-    int getHalDeviceVersion() const;
+  int getHalDeviceVersion() const;
 
-    static void convertFromSensorEvents(size_t count, const sensors_event_t* src,
-                                        hidl_vec<Event>* dst);
+  static void convertFromSensorEvents(size_t count, const sensors_event_t *src,
+                                      hidl_vec<Event> *dst);
 
-    DISALLOW_COPY_AND_ASSIGN(Sensors);
+  DISALLOW_COPY_AND_ASSIGN(Sensors);
 };
 
-extern "C" ISensors* HIDL_FETCH_ISensors(const char* name);
+extern "C" ISensors *HIDL_FETCH_ISensors(const char *name);
 
-}  // namespace implementation
-}  // namespace V1_0
-}  // namespace sensors
-}  // namespace hardware
-}  // namespace android
+} // namespace implementation
+} // namespace V1_0
+} // namespace sensors
+} // namespace hardware
+} // namespace android
 
-#endif  // HARDWARE_INTERFACES_SENSORS_V1_0_SAMSUNG_SENSORS_H_
+#endif // HARDWARE_INTERFACES_SENSORS_V1_0_SAMSUNG_SENSORS_H_

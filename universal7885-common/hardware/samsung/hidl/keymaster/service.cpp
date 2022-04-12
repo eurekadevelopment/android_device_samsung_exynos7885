@@ -32,27 +32,27 @@ using android::OK;
 using android::status_t;
 
 namespace skeymaster {
-IKeymasterDevice* CreateSKeymasterDevice(SecurityLevel securityLevel);
-}  // namespace skeymaster
+IKeymasterDevice *CreateSKeymasterDevice(SecurityLevel securityLevel);
+} // namespace skeymaster
 
 int main() {
-    IKeymasterDevice* keymaster =
-            skeymaster::CreateSKeymasterDevice(SecurityLevel::TRUSTED_ENVIRONMENT);
+  IKeymasterDevice *keymaster =
+      skeymaster::CreateSKeymasterDevice(SecurityLevel::TRUSTED_ENVIRONMENT);
 
-    configureRpcThreadpool(1, true);
+  configureRpcThreadpool(1, true);
 
-    status_t status = keymaster->registerAsService();
+  status_t status = keymaster->registerAsService();
 
-    if (status != OK) {
-        LOG(ERROR) << "Could not register service for Keymaster HAL";
-        goto shutdown;
-    }
+  if (status != OK) {
+    LOG(ERROR) << "Could not register service for Keymaster HAL";
+    goto shutdown;
+  }
 
-    LOG(INFO) << "Keymaster HAL service is Ready.";
-    joinRpcThreadpool();
+  LOG(INFO) << "Keymaster HAL service is Ready.";
+  joinRpcThreadpool();
 
 shutdown:
-    // In normal operation, we don't expect the thread pool to shutdown
-    LOG(ERROR) << "Keymaster HAL failed to join thread pool.";
-    return -1;
+  // In normal operation, we don't expect the thread pool to shutdown
+  LOG(ERROR) << "Keymaster HAL failed to join thread pool.";
+  return -1;
 }

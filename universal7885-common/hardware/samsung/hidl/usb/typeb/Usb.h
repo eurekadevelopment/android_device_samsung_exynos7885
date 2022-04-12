@@ -48,18 +48,19 @@ using ::android::hardware::usb::V1_0::PortRole;
 using ::android::hidl::base::V1_0::IBase;
 
 struct Usb : public IUsb {
-    Return<void> switchRole(const hidl_string& portName, const PortRole& role) override;
-    Return<void> setCallback(const sp<IUsbCallback>& callback) override;
-    Return<void> queryPortStatus() override;
+  Return<void> switchRole(const hidl_string &portName,
+                          const PortRole &role) override;
+  Return<void> setCallback(const sp<IUsbCallback> &callback) override;
+  Return<void> queryPortStatus() override;
 
-    sp<IUsbCallback> mCallback;
-    pthread_mutex_t mLock = PTHREAD_MUTEX_INITIALIZER;
+  sp<IUsbCallback> mCallback;
+  pthread_mutex_t mLock = PTHREAD_MUTEX_INITIALIZER;
 };
 
-}  // namespace implementation
-}  // namespace V1_0
-}  // namespace usb
-}  // namespace hardware
-}  // namespace android
+} // namespace implementation
+} // namespace V1_0
+} // namespace usb
+} // namespace hardware
+} // namespace android
 
-#endif  // ANDROID_HARDWARE_USB_V1_0_USB_H
+#endif // ANDROID_HARDWARE_USB_V1_0_USB_H

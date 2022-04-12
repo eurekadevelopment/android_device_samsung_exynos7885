@@ -26,26 +26,28 @@ using android::hardware::configureRpcThreadpool;
 using android::hardware::joinRpcThreadpool;
 
 using android::hardware::biometrics::fingerprint::V2_3::IBiometricsFingerprint;
-using android::hardware::biometrics::fingerprint::V2_3::implementation::BiometricsFingerprint;
+using android::hardware::biometrics::fingerprint::V2_3::implementation::
+    BiometricsFingerprint;
 
 using android::OK;
 using android::sp;
 
 int main() {
-    android::sp<IBiometricsFingerprint> bio = BiometricsFingerprint::getInstance();
+  android::sp<IBiometricsFingerprint> bio =
+      BiometricsFingerprint::getInstance();
 
-    configureRpcThreadpool(1, true);
+  configureRpcThreadpool(1, true);
 
-    if (bio == nullptr || bio->registerAsService() != OK) {
-        LOG(ERROR) << "Could not register service for Fingerprint HAL";
-        goto shutdown;
-    }
+  if (bio == nullptr || bio->registerAsService() != OK) {
+    LOG(ERROR) << "Could not register service for Fingerprint HAL";
+    goto shutdown;
+  }
 
-    LOG(INFO) << "Fingerprint HAL service is Ready.";
-    joinRpcThreadpool();
+  LOG(INFO) << "Fingerprint HAL service is Ready.";
+  joinRpcThreadpool();
 
 shutdown:
-    // In normal operation, we don't expect the thread pool to shutdown
-    LOG(ERROR) << "Fingerprint HAL failed to join thread pool.";
-    return 1;
+  // In normal operation, we don't expect the thread pool to shutdown
+  LOG(ERROR) << "Fingerprint HAL failed to join thread pool.";
+  return 1;
 }

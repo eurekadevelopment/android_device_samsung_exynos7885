@@ -14,24 +14,24 @@
  * limitations under the License.
  */
 #include <jni.h>
-#include <media/IAudioFlinger.h>
 #include <media/AudioSystem.h>
+#include <media/IAudioFlinger.h>
 
 #define FM_FAILURE -1
 #define FM_SUCCESS 0
 #define IOHANDLE 13
 using namespace android;
 
-extern "C"
-JNIEXPORT jboolean JNICALL
-Java_com_eurekateam_fmradio_NativeFMInterface_setAudioRoute
-(__unused JNIEnv *env, __unused jobject thiz, jboolean speaker) {
-    const sp<IAudioFlinger>& af = AudioSystem::get_audio_flinger();
-    if (af == 0) return PERMISSION_DENIED;
-    if (speaker){
-        af->setParameters(IOHANDLE, String8("routing=2"));
-    }else{
-        af->setParameters(IOHANDLE, String8("routing=8"));
-    }
-    return FM_SUCCESS;
+extern "C" JNIEXPORT jboolean JNICALL
+Java_com_eurekateam_fmradio_NativeFMInterface_setAudioRoute(
+    __unused JNIEnv *env, __unused jobject thiz, jboolean speaker) {
+  const sp<IAudioFlinger> &af = AudioSystem::get_audio_flinger();
+  if (af == 0)
+    return PERMISSION_DENIED;
+  if (speaker) {
+    af->setParameters(IOHANDLE, String8("routing=2"));
+  } else {
+    af->setParameters(IOHANDLE, String8("routing=8"));
+  }
+  return FM_SUCCESS;
 }

@@ -32,7 +32,7 @@
 #define LED_BLN_NODE "/sys/class/misc/backlightnotification/notification_led"
 
 // Uncomment to enable variable button brightness
-//#define VAR_BUTTON_BRIGHTNESS 1
+// #define VAR_BUTTON_BRIGHTNESS 1
 
 /*
  * Brightness adjustment factors
@@ -55,4 +55,4 @@
 #define LED_BRIGHTNESS_NOTIFICATION 255
 #define LED_BRIGHTNESS_ATTENTION 255
 
-#endif  // SAMSUNG_LIGHTS_H
+#endif // SAMSUNG_LIGHTS_H

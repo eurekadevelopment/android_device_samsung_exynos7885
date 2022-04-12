@@ -34,41 +34,44 @@ constexpr char kPowerHalConfigPath[] = "/vendor/etc/powerhint.json";
 constexpr char kPowerHalInitProp[] = "vendor.powerhal.init";
 
 int main() {
-    LOG(INFO) << "Pixel Power HAL AIDL Service with Extension is starting.";
+  LOG(INFO) << "Pixel Power HAL AIDL Service with Extension is starting.";
 
-    // Parse config but do not start the looper
-    std::shared_ptr<HintManager> hm = HintManager::GetFromJSON(kPowerHalConfigPath, false);
-    if (!hm) {
-        LOG(FATAL) << "Invalid config: " << kPowerHalConfigPath;
-    }
+  // Parse config but do not start the looper
+  std::shared_ptr<HintManager> hm =
+      HintManager::GetFromJSON(kPowerHalConfigPath, false);
+  if (!hm) {
+    LOG(FATAL) << "Invalid config: " << kPowerHalConfigPath;
+  }
 
-    // single thread
-    ABinderProcess_setThreadPoolMaxThreadCount(0);
+  // single thread
+  ABinderProcess_setThreadPoolMaxThreadCount(0);
 
-    // core service
-    std::shared_ptr<Power> pw = ndk::SharedRefBase::make<Power>(hm);
-    ndk::SpAIBinder pwBinder = pw->asBinder();
+  // core service
+  std::shared_ptr<Power> pw = ndk::SharedRefBase::make<Power>(hm);
+  ndk::SpAIBinder pwBinder = pw->asBinder();
 
-    // extension service
-    std::shared_ptr<PowerExt> pwExt = ndk::SharedRefBase::make<PowerExt>(hm);
+  // extension service
+  std::shared_ptr<PowerExt> pwExt = ndk::SharedRefBase::make<PowerExt>(hm);
 
-    // attach the extension to the same binder we will be registering
-    CHECK(STATUS_OK == AIBinder_setExtension(pwBinder.get(), pwExt->asBinder().get()));
+  // attach the extension to the same binder we will be registering
+  CHECK(STATUS_OK ==
+        AIBinder_setExtension(pwBinder.get(), pwExt->asBinder().get()));
 
-    const std::string instance = std::string() + Power::descriptor + "/default";
-    binder_status_t status = AServiceManager_addService(pw->asBinder().get(), instance.c_str());
-    CHECK(status == STATUS_OK);
-    LOG(INFO) << "Pixel Power HAL AIDL Service with Extension is started.";
+  const std::string instance = std::string() + Power::descriptor + "/default";
+  binder_status_t status =
+      AServiceManager_addService(pw->asBinder().get(), instance.c_str());
+  CHECK(status == STATUS_OK);
+  LOG(INFO) << "Pixel Power HAL AIDL Service with Extension is started.";
 
-    std::thread initThread([&]() {
-        ::android::base::WaitForProperty(kPowerHalInitProp, "1");
-        hm->Start();
-    });
-    initThread.detach();
+  std::thread initThread([&]() {
+    ::android::base::WaitForProperty(kPowerHalInitProp, "1");
+    hm->Start();
+  });
+  initThread.detach();
 
-    ABinderProcess_joinThreadPool();
+  ABinderProcess_joinThreadPool();
 
-    // should not reach
-    LOG(ERROR) << "Pixel Power HAL AIDL Service with Extension just died.";
-    return EXIT_FAILURE;
+  // should not reach
+  LOG(ERROR) << "Pixel Power HAL AIDL Service with Extension just died.";
+  return EXIT_FAILURE;
 }

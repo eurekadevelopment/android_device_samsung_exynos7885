@@ -29,41 +29,43 @@
 #define TELEPHONY_PROP "telephony.prop"
 
 void LoadProperties(std::string data) {
-    for (std::string line : android::base::Split(data, "\n")) {
-        if (line == "\0") break;
+  for (std::string line : android::base::Split(data, "\n")) {
+    if (line == "\0")
+      break;
 
-        std::vector<std::string> parts = android::base::Split(line, "=");
-        if (parts.size() == 2) {
-            LOG(INFO) << "Setting property: " << line;
-            android::base::SetProperty(parts.at(0), parts.at(1));
-        } else {
-            LOG(ERROR) << "Invalid data: " << line;
-        }
+    std::vector<std::string> parts = android::base::Split(line, "=");
+    if (parts.size() == 2) {
+      LOG(INFO) << "Setting property: " << line;
+      android::base::SetProperty(parts.at(0), parts.at(1));
+    } else {
+      LOG(ERROR) << "Invalid data: " << line;
     }
+  }
 }
 
-int main(int argc, char* argv[]) {
-    std::string prop = FACTORY_PROP;
+int main(int argc, char *argv[]) {
+  std::string prop = FACTORY_PROP;
 
-    if (argc > 1 && std::string(argv[1]) == "NetworkConfig") prop = TELEPHONY_PROP;
+  if (argc > 1 && std::string(argv[1]) == "NetworkConfig")
+    prop = TELEPHONY_PROP;
 
-    std::ifstream in(EFS_NEW + prop);
-    if (in.good()) {
-        in.close();
-        prop = EFS_NEW + prop;
-    } else {
-        prop = EFS_OLD + prop;
-    }
+  std::ifstream in(EFS_NEW + prop);
+  if (in.good()) {
+    in.close();
+    prop = EFS_NEW + prop;
+  } else {
+    prop = EFS_OLD + prop;
+  }
 
-    LOG(INFO) << "Loading properties from " << prop;
+  LOG(INFO) << "Loading properties from " << prop;
 
-    std::string content;
-    if (android::base::ReadFileToString(prop, &content)) {
-        LoadProperties(content.c_str());
-    } else if (prop == FACTORY_PROP) {
-        LOG(WARNING) << "Could not read " << prop << ", setting defaults!";
-        LoadProperties("ro.vendor.multisim.simslotcount=1");
-    } else {
-        LOG(WARNING) << "Could not read " << prop << "!";
-    }
+  std::string content;
+  if (android::base::ReadFileToString(prop, &content)) {
+    LoadProperties(content.c_str());
+  } else if (prop == FACTORY_PROP) {
+    LOG(WARNING) << "Could not read " << prop << ", setting defaults!";
+    LoadProperties("ro.vendor.multisim.simslotcount=1");
+  } else {
+    LOG(WARNING) << "Could not read " << prop << "!";
+  }
 }

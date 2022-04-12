@@ -29,9 +29,10 @@ using ::android::hardware::Return;
 using ::android::hardware::Void;
 
 struct DisplayConfigs : public IDisplayConfigs {
-    // Methods from ::vendor::eureka::hardware::parts::V1_0::IDisplayConfigs follow.
-    Return<void> writeDisplay(Number enable, Display type);
-    // Methods from ::android::hidl::base::V1_0::IBase follow.
-    static IDisplayConfigs* getInstance(void);
+  // Methods from ::vendor::eureka::hardware::parts::V1_0::IDisplayConfigs
+  // follow.
+  Return<void> writeDisplay(Number enable, Display type);
+  // Methods from ::android::hidl::base::V1_0::IBase follow.
+  static IDisplayConfigs *getInstance(void);
 };
-}  // namespace vendor::eureka::hardware::parts::V1_0
+} // namespace vendor::eureka::hardware::parts::V1_0

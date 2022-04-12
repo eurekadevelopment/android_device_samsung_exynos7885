@@ -28,21 +28,22 @@
 using android::status_t;
 using android::hardware::camera::provider::V2_5::ICameraProvider;
 
-int main()
-{
-    using namespace android::hardware::camera::provider::V2_5::implementation;
+int main() {
+  using namespace android::hardware::camera::provider::V2_5::implementation;
 
-    ALOGI("CameraProvider@2.5 legacy service is starting.");
+  ALOGI("CameraProvider@2.5 legacy service is starting.");
 
-    ::android::hardware::configureRpcThreadpool(/*threads*/ HWBINDER_THREAD_COUNT, /*willJoin*/ true);
+  ::android::hardware::configureRpcThreadpool(/*threads*/ HWBINDER_THREAD_COUNT,
+                                              /*willJoin*/ true);
 
-    ::android::sp<ICameraProvider> provider = new CameraProvider<SamsungCameraProvider>();
+  ::android::sp<ICameraProvider> provider =
+      new CameraProvider<SamsungCameraProvider>();
 
-    status_t status = provider->registerAsService("legacy/0");
-    LOG_ALWAYS_FATAL_IF(status != android::OK, "Error while registering provider service: %d",
-            status);
+  status_t status = provider->registerAsService("legacy/0");
+  LOG_ALWAYS_FATAL_IF(status != android::OK,
+                      "Error while registering provider service: %d", status);
 
-    ::android::hardware::joinRpcThreadpool();
+  ::android::hardware::joinRpcThreadpool();
 
-    return 0;
+  return 0;
 }

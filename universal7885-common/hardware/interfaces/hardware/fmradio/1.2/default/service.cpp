@@ -27,21 +27,21 @@ using vendor::eureka::hardware::fmradio::V1_2::FMRadio;
 using vendor::eureka::hardware::fmradio::V1_2::IFMRadio;
 
 int main() {
-    int ret;
-    android::sp<IFMRadio> mFMService = FMRadio::getInstance();
-    configureRpcThreadpool(1, true /*callerWillJoin*/);
+  int ret;
+  android::sp<IFMRadio> mFMService = FMRadio::getInstance();
+  configureRpcThreadpool(1, true /*callerWillJoin*/);
 
-    if (mFMService != nullptr) {
-        ret = mFMService->registerAsService();
-        if (ret != 0) {
-            ALOGE("Can't register instance of FMRadio HAL, nullptr");
-        } else {
-            ALOGI("registered FMRadio HAL");
-        }
+  if (mFMService != nullptr) {
+    ret = mFMService->registerAsService();
+    if (ret != 0) {
+      ALOGE("Can't register instance of FMRadio HAL, nullptr");
     } else {
-        ALOGE("Can't create instance of FMRadio HAL, nullptr");
+      ALOGI("registered FMRadio HAL");
     }
-    joinRpcThreadpool();
+  } else {
+    ALOGE("Can't create instance of FMRadio HAL, nullptr");
+  }
+  joinRpcThreadpool();
 
-    return -1;  // should never get here
+  return -1; // should never get here
 }
