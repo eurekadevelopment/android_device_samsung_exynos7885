@@ -36,7 +36,7 @@ class FlashLightFragment : PreferenceFragmentCompat(), Preference.OnPreferenceCh
         mFlashLightPref.onPreferenceChangeListener = this
         mFlashLightPref.setMax(10)
         mFlashLightPref.setMin(1)
-        mFlashLightPref.value = Flashlight.getFlash(if (Build.DEVICE == "a10") 1 else 0)
+        mFlashLightPref.value = Flashlight.getFlash(if (Build.DEVICE.contains("a10")) 1 else 0)
     }
 
     override fun onPreferenceChange(preference: Preference, newValue: Any): Boolean {

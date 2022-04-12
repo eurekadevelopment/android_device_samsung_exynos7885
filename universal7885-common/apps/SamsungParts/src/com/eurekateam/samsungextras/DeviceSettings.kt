@@ -49,11 +49,11 @@ class DeviceSettings : PreferenceFragmentCompat(), Preference.OnPreferenceChange
         mFpsInfo.onPreferenceChangeListener = this
         val mDT2W = findPreference<SwitchPreference>(PREF_DOUBLE_TAP)!!
         mDT2W.onPreferenceChangeListener = this
-        mDT2W.isEnabled = !(Build.PRODUCT == "a10" || Build.PRODUCT == "a20e")
+        mDT2W.isEnabled = !(Build.PRODUCT.contains("a10") || Build.PRODUCT.contains("a20e"))
         mDT2W.isChecked = mPrefs.getBoolean(PREF_DOUBLE_TAP, false)
         val mGloveMode = findPreference<SwitchPreference>(PREF_GLOVE_MODE)!!
         mGloveMode.onPreferenceChangeListener = this
-        mGloveMode.isEnabled = !(Build.PRODUCT == "a10" || Build.PRODUCT == "a20e")
+        mGloveMode.isEnabled = !(Build.PRODUCT.contains("a10") || Build.PRODUCT.contains("a20e"))
         mGloveMode.isChecked = mPrefs.getBoolean(PREF_GLOVE_MODE, false)
         val mFlashLight = findPreference<Preference>(PREF_FLASHLIGHT)!!
         mFlashLight.onPreferenceClickListener =
