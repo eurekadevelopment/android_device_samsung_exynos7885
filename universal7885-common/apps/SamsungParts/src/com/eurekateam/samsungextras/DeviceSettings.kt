@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 The Xiaomi-SM6250 Project
+ * Copyright (C) 2022 Eureka Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package com.eurekateam.samsungextras
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Build
 import android.widget.Toast
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -47,8 +48,10 @@ class DeviceSettings : PreferenceFragmentCompat(), Preference.OnPreferenceChange
         mFpsInfo.onPreferenceChangeListener = this
         val mDT2W = findPreference<SwitchPreference>(PREF_DOUBLE_TAP)!!
         mDT2W.onPreferenceChangeListener = this
+        mDT2W.isEnabled = !(Build.PRODUCT == "a10" || Build.PRODUCT == "a20e")
         val mGloveMode = findPreference<SwitchPreference>(PREF_GLOVE_MODE)!!
         mGloveMode.onPreferenceChangeListener = this
+        mGloveMode.isEnabled = !(Build.PRODUCT == "a10" || Build.PRODUCT == "a20e")
         val mFlashLight = findPreference<Preference>(PREF_FLASHLIGHT)!!
         mFlashLight.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
@@ -79,10 +82,12 @@ class DeviceSettings : PreferenceFragmentCompat(), Preference.OnPreferenceChange
             PREF_DOUBLE_TAP -> {
                 DT2W  = value as Boolean
             }
-	    PREF_GLOVE_MODE -> {
-	    	GloveMode = value as Boolean
-	    }
-            else -> {}
+	PREF_GLOVE_MODE -> {
+               GloveMode = value as Boolean
+	}
+            else -> {
+	return false
+	}
         }
         return true
     }
@@ -92,7 +97,7 @@ class DeviceSettings : PreferenceFragmentCompat(), Preference.OnPreferenceChange
         private const val PREF_CLEAR_SPEAKER = "clear_speaker_settings"
         private const val PREF_FLASHLIGHT = "flashlight_settings"
         const val PREF_DOUBLE_TAP = "dt2w_settings"
-	const val PREF_GLOVE_MODE = "glove_mode_settings"
+        const val PREF_GLOVE_MODE = "glove_mode_settings"
         const val PREF_BATTERY = "battery_settings"
     }
 }

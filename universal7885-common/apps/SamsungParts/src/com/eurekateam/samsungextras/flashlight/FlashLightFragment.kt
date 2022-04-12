@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 Paranoid Android
+ * Copyright (C) 2022 Eureka Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +16,13 @@
 package com.eurekateam.samsungextras.flashlight
 
 import android.os.Bundle
+import android.os.Build
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.eurekateam.samsungextras.GlobalConstants
 import com.eurekateam.samsungextras.R
 import com.eurekateam.samsungextras.interfaces.Flashlight
 import com.eurekateam.samsungextras.preferences.CustomSeekBarPreference
-import com.eurekateam.samsungextras.utils.SystemProperties
 import java.io.File
 
 class FlashLightFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
@@ -37,7 +37,7 @@ class FlashLightFragment : PreferenceFragmentCompat(), Preference.OnPreferenceCh
         }
         mFlashLightPref!!.setMax(10)
         mFlashLightPref!!.setMin(1)
-        val isa10 = SystemProperties.read("ro.product.device") == "a10"
+        val isa10 = Build.DEVICE == "a10"
         mFlashLightPref!!.value = Flashlight.getFlash(if (isa10) 1 else 0)
     }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 The Xiaomi-SM6250 Project
+ * Copyright (C) 2022 Eureka Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
