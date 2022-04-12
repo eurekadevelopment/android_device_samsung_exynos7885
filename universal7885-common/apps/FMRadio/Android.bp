@@ -11,19 +11,12 @@ android_app {
     	"androidx.core_core",
     	"androidx.appcompat_appcompat",
     	"com.google.android.material_stable",
-        "kotlinx_coroutines",
-        "androidx.transition_transition",
+	"kotlinx_coroutines",
+	"androidx.transition_transition",
     	"kotlinx_coroutines_android",
-        "androidx.coordinatorlayout_coordinatorlayout"
+	"androidx.coordinatorlayout_coordinatorlayout"
     ],
     required: [
-    	"privapp_whitelist_com.eurekateam.fmradio.xml",
     	"vendor.eureka.hardware.fmradio@1.2-service",
     ],
-}
-
-prebuilt_etc {
-    name: "privapp_whitelist_com.eurekateam.fmradio.xml",
-    src: "privapp_whitelist_com.eurekateam.fmradio.xml",
-    sub_dir: "permissions",
 }
