@@ -41,42 +41,7 @@ Return<void> FlashBrightness::setFlashlightEnable(parts::V1_0::Number enable) {
 
 Return<void> FlashBrightness::setFlashlightWritable(parts::V1_0::Value value) {
   std::ofstream file;
-  std::string writevalue;
-  switch (value) {
-  case Value::ONEUI:
-    writevalue = "1";
-    break;
-  case Value::TWOUI:
-    writevalue = "2";
-    break;
-  case Value::THREEUI:
-    writevalue = "3";
-    break;
-  case Value::FOURUI:
-    writevalue = "4";
-    break;
-  case Value::FIVEUI:
-    writevalue = "5";
-    break;
-  case Value::SIXUI:
-    writevalue = "6";
-    break;
-  case Value::SEVENUI:
-    writevalue = "7";
-    break;
-  case Value::EIGHTUI:
-    writevalue = "8";
-    break;
-  case Value::NINEUI:
-    writevalue = "9";
-    break;
-  case Value::TENUI:
-    writevalue = "10";
-    break;
-  default:
-    writevalue = "";
-    break;
-  }
+  std::string writevalue = std::to_string((int) value);
   file.open("/sys/class/camera/flash/torch_brightness_lvl");
   file << writevalue;
   file.close();

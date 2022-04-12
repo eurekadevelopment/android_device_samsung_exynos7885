@@ -39,7 +39,7 @@ enum Device : int32_t {
 };
 
 enum Value : int32_t {
-	ONEUI,
+	ONEUI = 1,
 	TWOUI,
 	THREEUI,
 	FOURUI,
@@ -48,5 +48,5 @@ enum Value : int32_t {
 	SEVENUI,
 	EIGHTUI,
 	NINEUI,
-	TENUI,
+	TENUI = 10,
 };
