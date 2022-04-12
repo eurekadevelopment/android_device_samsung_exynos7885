@@ -20,23 +20,23 @@ import android.widget.Toast
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceManager
 import androidx.preference.SwitchPreference
 import com.eurekateam.samsungextras.R
 import com.eurekateam.samsungextras.interfaces.Battery
 
 class BatteryFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
-    private var mFastChargePref: SwitchPreference? = null
-    private var mChargePref: SwitchPreference? = null
+    private lateinit var mFastChargePref: SwitchPreference
+    private lateinit var mChargePref: SwitchPreference
+    private val mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.battery_settings)
-        mFastChargePref = findPreference(PREF_FASTCHARGE)
-        assert(mFastChargePref != null)
-        mFastChargePref!!.onPreferenceChangeListener = this
-        mFastChargePref!!.isChecked = Battery.chargeSysfs == 0
-        mChargePref = findPreference(PREF_CHARGE)
-        assert(mChargePref != null)
-        mChargePref!!.onPreferenceChangeListener = this
-        mChargePref!!.isChecked = Battery.fastChargeSysfs == 0
+        mFastChargePref = findPreference(PREF_FASTCHARGE)!!
+        mFastChargePref.onPreferenceChangeListener = this
+        mFastChargePref.isChecked = mSharedPreferences.getBoolean(PREF_FASTCHARGE, true)
+        mChargePref = findPreference(PREF_CHARGE)!!
+        mChargePref.onPreferenceChangeListener = this
+        mChargePref.isChecked = mSharedPreferences.getBoolean(PREF_CHARGE, true)
         val mBatteryInfo : ListPreference = findPreference(BATTERY_INFO)!!
         val items = arrayOf<CharSequence>(
             Battery.getGeneralBatteryStats(1).toString() + " mAh",
@@ -60,21 +60,22 @@ class BatteryFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChang
         if (preference === mChargePref) {
             val value = newValue as Boolean
             Battery.chargeSysfs = if (value) 0 else 1
-            mChargePref!!.isChecked = Battery.chargeSysfs == 0
+            mChargePref.isChecked = Battery.chargeSysfs == 0
+            mSharedPreferences.edit().putBoolean(PREF_CHARGE, Battery.chargeSysfs == 0).apply()
             return true
         } else if (preference === mFastChargePref) {
             val value = newValue as Boolean
             Battery.setFastCharge(if (value) 0 else 1)
-            mFastChargePref!!.isChecked =
-                Battery.fastChargeSysfs == 0
+            mFastChargePref.isChecked = Battery.fastChargeSysfs == 0
+            mSharedPreferences.edit().putBoolean(PREF_FASTCHARGE, Battery.fastChargeSysfs == 0).apply()
             return true
         }
         return false
     }
 
     companion object {
-        private const val PREF_FASTCHARGE = "fastcharge_pref"
-        private const val PREF_CHARGE = "charge_pref"
+        const val PREF_FASTCHARGE = "fastcharge_pref"
+        const val PREF_CHARGE = "charge_pref"
         private const val BATTERY_INFO = "battery_info"
     }
 }

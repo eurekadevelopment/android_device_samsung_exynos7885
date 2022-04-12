@@ -43,6 +43,6 @@ class DolbyTile : TileService() {
         PreferenceManager.getDefaultSharedPreferences(this)
                 .edit()
                 .putBoolean(PREF_DOLBY_ENABLE, isEnabled)
-                .commit()
+                .apply()
     }
 }

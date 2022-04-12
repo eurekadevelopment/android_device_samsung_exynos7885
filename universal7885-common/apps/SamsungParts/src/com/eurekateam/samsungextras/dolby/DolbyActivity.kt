@@ -19,7 +19,7 @@ package com.eurekateam.samsungextras.dolby
 import android.os.Bundle
 
 import androidx.fragment.app.FragmentActivity
-import com.android.internal.R.id.content
+import android.R.id.content
 
 class DolbyActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +28,7 @@ class DolbyActivity : FragmentActivity() {
         val dolbyFragment: DolbyFragment
         if (fragment == null) {
             dolbyFragment = DolbyFragment()
-            this.supportFragmentManager.beginTransaction()
+            supportFragmentManager.beginTransaction()
                 .add(content, dolbyFragment)
                 .commit()
         }

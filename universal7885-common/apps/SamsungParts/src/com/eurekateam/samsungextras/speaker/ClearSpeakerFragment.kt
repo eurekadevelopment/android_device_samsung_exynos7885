@@ -15,7 +15,6 @@
  */
 package com.eurekateam.samsungextras.speaker
 
-import android.content.Context
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -29,16 +28,14 @@ import com.eurekateam.samsungextras.R
 import java.io.IOException
 
 class ClearSpeakerFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
-    private var mAudioManager: AudioManager? = null
-    private var mHandler: Handler? = null
-    private var mMediaPlayer: MediaPlayer? = null
-    private var mClearSpeakerPref: SwitchPreference? = null
+    private lateinit var mHandler: Handler
+    private lateinit var mMediaPlayer: MediaPlayer
+    private lateinit var mClearSpeakerPref: SwitchPreference
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.clear_speaker_settings)
-        mClearSpeakerPref = findPreference(PREF_CLEAR_SPEAKER)
-        mClearSpeakerPref!!.onPreferenceChangeListener = this
+        mClearSpeakerPref = findPreference(PREF_CLEAR_SPEAKER)!!
+        mClearSpeakerPref.onPreferenceChangeListener = this
         mHandler = Handler(Looper.getMainLooper())
-        mAudioManager = requireContext().getSystemService(Context.AUDIO_SERVICE) as AudioManager
     }
 
     override fun onPreferenceChange(preference: Preference, newValue: Any): Boolean {
@@ -46,8 +43,8 @@ class ClearSpeakerFragment : PreferenceFragmentCompat(), Preference.OnPreference
             val value = newValue as Boolean
             if (value) {
                 if (startPlaying()) {
-                    mHandler!!.removeCallbacksAndMessages(null)
-                    mHandler!!.postDelayed({ stopPlaying() }, 30000)
+                    mHandler.removeCallbacksAndMessages(null)
+                    mHandler.postDelayed({ stopPlaying() }, 30000)
                     return true
                 }
             }
@@ -65,23 +62,22 @@ class ClearSpeakerFragment : PreferenceFragmentCompat(), Preference.OnPreference
      * @return true on success, else false
      */
     private fun startPlaying(): Boolean {
-        mAudioManager!!.setParameters("status_earpiece_clean=on")
         mMediaPlayer = MediaPlayer()
         requireActivity().volumeControlStream = AudioManager.STREAM_MUSIC
-        mMediaPlayer!!.setAudioStreamType(AudioManager.STREAM_MUSIC)
-        mMediaPlayer!!.isLooping = true
+        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
+        mMediaPlayer.isLooping = true
         try {
             resources.openRawResourceFd(R.raw.clear_speaker_sound).use { file ->
-                mMediaPlayer!!.setDataSource(
+                mMediaPlayer.setDataSource(
                     file.fileDescriptor,
                     file.startOffset,
                     file.length
                 )
             }
-            mClearSpeakerPref!!.isEnabled = false
-            mMediaPlayer!!.setVolume(1.0f, 1.0f)
-            mMediaPlayer!!.prepare()
-            mMediaPlayer!!.start()
+            mClearSpeakerPref.isEnabled = false
+            mMediaPlayer.setVolume(1.0f, 1.0f)
+            mMediaPlayer.prepare()
+            mMediaPlayer.start()
         } catch (ioe: IOException) {
             Log.e(TAG, "Failed to play speaker clean sound!", ioe)
             return false
@@ -93,14 +89,13 @@ class ClearSpeakerFragment : PreferenceFragmentCompat(), Preference.OnPreference
      * Stops and invalidates
      */
     private fun stopPlaying() {
-        if (mMediaPlayer != null) {
-            mMediaPlayer!!.stop()
-            mMediaPlayer!!.reset()
-            mMediaPlayer!!.release()
+        if (::mMediaPlayer.isInitialized) {
+            mMediaPlayer.stop()
+            mMediaPlayer.reset()
+            mMediaPlayer.release()
         }
-        mAudioManager!!.setParameters("status_earpiece_clean=off")
-        mClearSpeakerPref!!.isEnabled = true
-        mClearSpeakerPref!!.isChecked = false
+        mClearSpeakerPref.isEnabled = true
+        mClearSpeakerPref.isChecked = false
     }
 
     companion object {

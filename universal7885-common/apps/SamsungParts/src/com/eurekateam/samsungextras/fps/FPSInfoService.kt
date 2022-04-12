@@ -28,7 +28,7 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
-import com.eurekateam.samsungextras.utils.SurfaceFlingerFPS
+import com.eurekateam.samsungextras.SurfaceFlingerFPS
 import kotlin.math.roundToInt
 
 open class FPSInfoService : Service() {

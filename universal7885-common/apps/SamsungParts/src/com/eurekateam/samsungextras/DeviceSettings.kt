@@ -16,9 +16,9 @@
 package com.eurekateam.samsungextras
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Build
-import android.widget.Toast
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
@@ -31,11 +31,11 @@ import com.eurekateam.samsungextras.interfaces.Display.DT2W
 import com.eurekateam.samsungextras.speaker.ClearSpeakerActivity
 
 class DeviceSettings : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
+
+    private val mPrefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         System.loadLibrary("samsungparts_jni")
         setPreferencesFromResource(R.xml.preferences_samsung_parts, rootKey)
-        val mContext = this.context
-        val prefs = PreferenceManager.getDefaultSharedPreferences(mContext)
         val mClearSpeakerPref = findPreference<Preference>(PREF_CLEAR_SPEAKER)!!
         mClearSpeakerPref.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
@@ -44,14 +44,16 @@ class DeviceSettings : PreferenceFragmentCompat(), Preference.OnPreferenceChange
                 true
             }
         val mFpsInfo = findPreference<SwitchPreference>(PREF_KEY_FPS_INFO)!!
-        mFpsInfo.isChecked = prefs.getBoolean(PREF_KEY_FPS_INFO, false)
+        mFpsInfo.isChecked = mPrefs.getBoolean(PREF_KEY_FPS_INFO, false)
         mFpsInfo.onPreferenceChangeListener = this
         val mDT2W = findPreference<SwitchPreference>(PREF_DOUBLE_TAP)!!
         mDT2W.onPreferenceChangeListener = this
         mDT2W.isEnabled = !(Build.PRODUCT == "a10" || Build.PRODUCT == "a20e")
+        mDT2W.isChecked = mPrefs.getBoolean(PREF_DOUBLE_TAP, false)
         val mGloveMode = findPreference<SwitchPreference>(PREF_GLOVE_MODE)!!
         mGloveMode.onPreferenceChangeListener = this
         mGloveMode.isEnabled = !(Build.PRODUCT == "a10" || Build.PRODUCT == "a20e")
+        mGloveMode.isChecked = mPrefs.getBoolean(PREF_GLOVE_MODE, false)
         val mFlashLight = findPreference<Preference>(PREF_FLASHLIGHT)!!
         mFlashLight.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
@@ -71,23 +73,26 @@ class DeviceSettings : PreferenceFragmentCompat(), Preference.OnPreferenceChange
     override fun onPreferenceChange(preference: Preference, value: Any): Boolean {
         when (preference.key) {
             PREF_KEY_FPS_INFO -> {
-                val fps_enabled = value as Boolean
-                val fpsinfo = Intent(this.context, FPSInfoService::class.java)
-                if (fps_enabled) {
-                    requireContext().startService(fpsinfo)
+                val mEnabled = value as Boolean
+                val mFPSService = Intent(this.context, FPSInfoService::class.java)
+                if (mEnabled) {
+                    requireContext().startService(mFPSService)
                 } else {
-                    requireContext().stopService(fpsinfo)
+                    requireContext().stopService(mFPSService)
                 }
+                mPrefs.edit().putBoolean(PREF_KEY_FPS_INFO, mEnabled).apply()
             }
             PREF_DOUBLE_TAP -> {
                 DT2W  = value as Boolean
+                mPrefs.edit().putBoolean(PREF_DOUBLE_TAP, value).apply()
             }
-	PREF_GLOVE_MODE -> {
-               GloveMode = value as Boolean
-	}
+            PREF_GLOVE_MODE -> {
+                GloveMode = value as Boolean
+                mPrefs.edit().putBoolean(PREF_GLOVE_MODE, value).apply()
+            }
             else -> {
-	return false
-	}
+                return false
+            }
         }
         return true
     }

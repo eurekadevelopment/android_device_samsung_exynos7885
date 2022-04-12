@@ -19,12 +19,12 @@ import android.R.id.content
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.FragmentActivity
-import com.android.internal.R.id.home
+import android.R.id.home
 
 class FlashLightActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val fragment = this.supportFragmentManager.findFragmentById(content)
+        val fragment = supportFragmentManager.findFragmentById(content)
         val flashLightFragment: FlashLightFragment
         if (fragment == null) {
             flashLightFragment = FlashLightFragment()

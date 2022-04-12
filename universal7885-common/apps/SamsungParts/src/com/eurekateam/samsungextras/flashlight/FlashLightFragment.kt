@@ -15,43 +15,39 @@
  */
 package com.eurekateam.samsungextras.flashlight
 
-import android.os.Bundle
 import android.os.Build
+import android.os.Bundle
+import android.os.PerformanceHintManager
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import com.eurekateam.samsungextras.GlobalConstants
+import androidx.preference.PreferenceManager
 import com.eurekateam.samsungextras.R
 import com.eurekateam.samsungextras.interfaces.Flashlight
 import com.eurekateam.samsungextras.preferences.CustomSeekBarPreference
-import java.io.File
 
 class FlashLightFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
-    private var mFlashLightPref: CustomSeekBarPreference? = null
+    private lateinit var mFlashLightPref: CustomSeekBarPreference
+    private val mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.flashlight_settings)
-        mFlashLightPref = findPreference(PREF_FLASHLIGHT)
-        assert(mFlashLightPref != null)
-        mFlashLightPref!!.onPreferenceChangeListener = this
-        if (!File(GlobalConstants.FLASHLIGHT_SYSFS).exists()) {
-            mFlashLightPref!!.isEnabled = false
-        }
-        mFlashLightPref!!.setMax(10)
-        mFlashLightPref!!.setMin(1)
-        val isa10 = Build.DEVICE == "a10"
-        mFlashLightPref!!.value = Flashlight.getFlash(if (isa10) 1 else 0)
+        mFlashLightPref = findPreference(PREF_FLASHLIGHT)!!
+        mFlashLightPref.onPreferenceChangeListener = this
+        mFlashLightPref.setMax(10)
+        mFlashLightPref.setMin(1)
+        mFlashLightPref.value = Flashlight.getFlash(if (Build.DEVICE == "a10") 1 else 0)
     }
 
     override fun onPreferenceChange(preference: Preference, newValue: Any): Boolean {
-        if (preference === mFlashLightPref) {
+        if (preference == mFlashLightPref) {
             val value = newValue as Int
             Flashlight.setFlash(value)
-            mFlashLightPref!!.setValue(value, true)
+            mSharedPreferences.edit().putInt(PREF_FLASHLIGHT, value).apply()
             return true
         }
         return false
     }
 
     companion object {
-        private const val PREF_FLASHLIGHT = "flashlight_pref"
+        const val PREF_FLASHLIGHT = "flashlight_pref"
     }
 }

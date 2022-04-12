@@ -17,9 +17,11 @@
 package com.eurekateam.samsungextras.dolby
 
 import android.os.Bundle
+import android.os.PerformanceHintManager
 import android.widget.Switch
 
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceManager
 
 import com.android.settingslib.widget.MainSwitchPreference
 import com.android.settingslib.widget.OnMainSwitchChangeListener
@@ -30,7 +32,7 @@ import com.eurekateam.samsungextras.R
 class DolbyFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListener {
 
     private lateinit var switchBar: MainSwitchPreference
-
+    private val mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.dolby_settings)
 
@@ -49,6 +51,7 @@ class DolbyFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListener {
 
     override fun onSwitchChanged(switchView: Switch, isChecked: Boolean) {
         DolbyCore.setEnabled(isChecked)
+        mSharedPreferences.edit().putBoolean(PREF_DOLBY_ENABLE, true).apply()
     }
 
     private fun setProfile(profile: Int) {
@@ -58,11 +61,12 @@ class DolbyFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListener {
             val preference = findPreference<RadioButtonPreference>(key)!!
             preference.isChecked = value == profile
         }
+        mSharedPreferences.edit().putInt(PREF_DOLBY_PROFILE, profile).apply()
     }
 
     companion object {
         const val PREF_DOLBY_ENABLE = "dolby_enable"
-
+        const val PREF_DOLBY_PROFILE = "dolby_profile"
         val PREF_DOLBY_MODES = mapOf(
                 "dolby_profile_auto" to DolbyCore.PROFILE_AUTO,
                 "dolby_profile_movie" to DolbyCore.PROFILE_MOVIE,

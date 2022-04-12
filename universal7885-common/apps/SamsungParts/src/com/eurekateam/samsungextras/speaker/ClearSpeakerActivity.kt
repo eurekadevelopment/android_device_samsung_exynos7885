@@ -24,11 +24,11 @@ import androidx.fragment.app.FragmentActivity
 class ClearSpeakerActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val fragment = this.supportFragmentManager.findFragmentById(content)
+        val fragment = supportFragmentManager.findFragmentById(content)
         val clearSpeakerFragment: ClearSpeakerFragment
         if (fragment == null) {
             clearSpeakerFragment = ClearSpeakerFragment()
-            this.supportFragmentManager.beginTransaction()
+            supportFragmentManager.beginTransaction()
                 .add(content, clearSpeakerFragment)
                 .commit()
         }
