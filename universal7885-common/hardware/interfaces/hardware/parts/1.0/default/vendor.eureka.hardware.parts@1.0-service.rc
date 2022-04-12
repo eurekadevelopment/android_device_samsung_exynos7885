@@ -1,4 +1,4 @@
-service vendor.parts-hal /vendor/bin/hw/vendor.eureka.hardware.parts@1.0-service
+service vendor.parts-hal /vendor/bin/vendor.eureka.hardware.parts@1.0-service
     interface vendor.eureka.hardware.parts@1.0::IBatteryStats default
     interface vendor.eureka.hardware.parts@1.0::IDisplayConfigs default
     interface vendor.eureka.hardware.parts@1.0::IFlashBrightness default
