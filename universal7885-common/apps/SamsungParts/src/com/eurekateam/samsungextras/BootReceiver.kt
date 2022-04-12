@@ -18,6 +18,7 @@ class BootReceiver : BroadcastReceiver() {
         val mSharedPreferences = p0?.let { PreferenceManager.getDefaultSharedPreferences(it) }
         if (p1 != null && mSharedPreferences != null) {
             if (p1.action == Intent.ACTION_BOOT_COMPLETED){
+	    System.loadLibrary("samsungparts_jni")
                 // Battery
                 Battery.chargeSysfs = if (mSharedPreferences
                         .getBoolean(BatteryFragment.PREF_CHARGE, true)) 0 else 1
