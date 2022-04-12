@@ -57,21 +57,6 @@
 
     <!-- GPU Category -->
     <string name="misc_category">Разное</string>
-
-    <!-- Inout Devices Settings -->
-    <string name="input_ctrl_title">Управление устройствами ввода</string>
-    <string name="input_ctrl_summary">Управление питанием датчиков. Может использоваться для экономии заряда батареи.</string>
-    <string name="input_ctrl_description">Здесь происходит управление питанием датчиков. Если у Вас разряжен аккумулятор, возможно, эти настройки помогут.</string>
-    <!-- GPU TMU -->
-    <string name="gpuexynos_title">Регулирование графики Exynos (Mali)</string>
-    <string name="gpuexynos_summary">Отключение/Включение регулирования</string>
-
-    <!-- SELinux -->
-    <string name="selinux_title">Статус SELinux</string>
-    <string name="selinux_summary">Нажмите сюда, чтобы увидеть текущий статус SELinux</string>
-
-    <string name="info_category">Информация</string>
-
     <!-- Battery -->
     <string name="fastcharge_category">Батарея</string>
     <string name="fastcharge_2nd_title">Экспресс зарядка</string>

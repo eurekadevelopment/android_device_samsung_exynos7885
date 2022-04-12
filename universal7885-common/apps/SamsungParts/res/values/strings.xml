@@ -65,23 +65,11 @@
         Flashlight Brightness. AOSP doesn\'t have this feature.\n\n
         Use this feature to adjust low or high flashlight brightness. Ranges from 0 to 10.</string>
 
-    <!-- GPU Category -->
+    <!-- Display Category -->
     <string name="misc_category">Misc</string>
 
-    <!-- Inout Devices Settings -->
-    <string name="input_ctrl_title">Input Devices Control</string>
-    <string name="input_ctrl_summary">Control sensor\'s power. Can be used to save battery.</string>
-    <string name="input_ctrl_description">Manage Sensor\'s Power here.
-        If you are really low on battery, perhaps this settings can help</string>
-    <!-- GPU TMU -->
-    <string name="gpuexynos_title">Exynos GPU (Mali) Throttling</string>
-    <string name="gpuexynos_summary">Disable/Enable GPU Throttling</string>
-
-    <!-- SELinux -->
-    <string name="selinux_title">SELinux Status</string>
-    <string name="selinux_summary">Click here to see current SELinux status</string>
-
-    <string name="info_category">Info</string>
+    <string name="dt2w_mode">Toggle for double tap to wake</string>
+    <string name="glove_mode">Toggle for glove mode</string>
 
     <!-- Battery -->
     <string name="fastcharge_category">Battery</string>

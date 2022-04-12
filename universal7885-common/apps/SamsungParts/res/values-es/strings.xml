@@ -57,22 +57,6 @@
 
     <!-- Categoría del GPU -->
     <string name="misc_category">Misc</string>
-
-    <!-- Inout Devices Settings -->
-    <string name="input_ctrl_title">Input Devices Control</string>
-    <string name="input_ctrl_summary">Control sensor\'s power. Can be used to save battery.</string>
-    <string name="input_ctrl_description">Manage Sensor\'s Power here.
-        If you are really low on battery, perhaps this settings can help</string>
-    <!-- GPU TMU -->
-    <string name="gpuexynos_title">Exynos GPU (Mali) Throttling</string>
-    <string name="gpuexynos_summary">Disable/Enable GPU Throttling</string>
-
-    <!-- SELinux -->
-    <string name="selinux_title">Estado del SELinux</string>
-    <string name="selinux_summary">Haga clic aquí para ver el estado actual de SELinux</string>
-
-    <string name="info_category">Info</string>
-
     <!-- Batería -->
     <string name="fastcharge_category">Batería</string>
     <string name="fastcharge_2nd_title">Configuración de Carga rápida</string>

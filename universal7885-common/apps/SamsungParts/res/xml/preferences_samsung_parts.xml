@@ -49,16 +49,6 @@
         </Preference>
     </PreferenceCategory>
     <PreferenceCategory
-        android:key="misc"
-        android:title="@string/misc_category">
-        <SwitchPreference
-            android:key="gpuexynos_settings"
-            android:title="@string/gpuexynos_title"
-            android:icon="@drawable/ic_gpu"
-            android:summary="@string/gpuexynos_summary"
-            android:persistent="true"/>
-    </PreferenceCategory>
-    <PreferenceCategory
         android:key="fastcharge"
         android:title="@string/fastcharge_category">
         <Preference
@@ -75,13 +65,15 @@
 
     </PreferenceCategory>
     <PreferenceCategory
-        android:key="info"
-        android:title="@string/info_category">
-        <Preference
-            android:key="selinux_settings"
-            android:title="@string/selinux_title"
-            android:icon="@drawable/ic_qs_log"
-            android:summary="@string/selinux_summary"
+	android:title="@string/misc_category">
+    	<SwitchPreference
+	    android:key="dt2w_settings"
+	    android:title="@string/dt2w_mode"
+	    android:persistent="true"/>
+	
+	<SwitchPreference
+            android:key="glove_mode_settings"
+            android:title="@string/glove_mode"
             android:persistent="true"/>
     </PreferenceCategory>
 </PreferenceScreen>

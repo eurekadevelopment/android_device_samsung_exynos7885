@@ -25,8 +25,8 @@ import androidx.preference.SwitchPreference
 import com.eurekateam.samsungextras.battery.BatteryActivity
 import com.eurekateam.samsungextras.flashlight.FlashLightActivity
 import com.eurekateam.samsungextras.fps.FPSInfoService
-import com.eurekateam.samsungextras.interfaces.GPU.GPU
-import com.eurekateam.samsungextras.interfaces.SELinux.SELinux
+import com.eurekateam.samsungextras.interfaces.Display.GloveMode
+import com.eurekateam.samsungextras.interfaces.Display.DT2W
 import com.eurekateam.samsungextras.speaker.ClearSpeakerActivity
 
 class DeviceSettings : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
@@ -45,19 +45,10 @@ class DeviceSettings : PreferenceFragmentCompat(), Preference.OnPreferenceChange
         val mFpsInfo = findPreference<SwitchPreference>(PREF_KEY_FPS_INFO)!!
         mFpsInfo.isChecked = prefs.getBoolean(PREF_KEY_FPS_INFO, false)
         mFpsInfo.onPreferenceChangeListener = this
-        val mGPUExynos = findPreference<SwitchPreference>(PREF_GPUEXYNOS)!!
-        mGPUExynos.isChecked = GPU == 1
-        mGPUExynos.onPreferenceChangeListener = this
-        val mSELinux = findPreference<Preference>(PREF_SELINUX)!!
-        mSELinux.onPreferenceClickListener =
-            Preference.OnPreferenceClickListener {
-                Toast.makeText(
-                    context,
-                    if (SELinux == 1) "SELinux is in enforcing state." else "SELinux is in permissive state.",
-                    Toast.LENGTH_SHORT
-                ).show()
-                true
-            }
+        val mDT2W = findPreference<SwitchPreference>(PREF_DOUBLE_TAP)!!
+        mDT2W.onPreferenceChangeListener = this
+        val mGloveMode = findPreference<SwitchPreference>(PREF_GLOVE_MODE)!!
+        mGloveMode.onPreferenceChangeListener = this
         val mFlashLight = findPreference<Preference>(PREF_FLASHLIGHT)!!
         mFlashLight.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
@@ -80,22 +71,18 @@ class DeviceSettings : PreferenceFragmentCompat(), Preference.OnPreferenceChange
                 val fps_enabled = value as Boolean
                 val fpsinfo = Intent(this.context, FPSInfoService::class.java)
                 if (fps_enabled) {
-                    this.requireContext().startService(fpsinfo)
+                    requireContext().startService(fpsinfo)
                 } else {
-                    this.requireContext().stopService(fpsinfo)
+                    requireContext().stopService(fpsinfo)
                 }
             }
-            PREF_GPUEXYNOS -> {
-                val gpu_enabled = value as Boolean
-                GPU = if (gpu_enabled) 1 else 0
-                Toast.makeText(
-                    context,
-                    if (gpu_enabled) "GPU Throttling is now enabled." else "GPU Throttling is now disabled.",
-                    Toast.LENGTH_SHORT
-                ).show()
+            PREF_DOUBLE_TAP -> {
+                DT2W  = value as Boolean
             }
-            else -> {
-            }
+	    PREF_GLOVE_MODE -> {
+	    	GloveMode = value as Boolean
+	    }
+            else -> {}
         }
         return true
     }
@@ -104,8 +91,8 @@ class DeviceSettings : PreferenceFragmentCompat(), Preference.OnPreferenceChange
         const val PREF_KEY_FPS_INFO = "fps_info"
         private const val PREF_CLEAR_SPEAKER = "clear_speaker_settings"
         private const val PREF_FLASHLIGHT = "flashlight_settings"
-        const val PREF_GPUEXYNOS = "gpuexynos_settings"
-        private const val PREF_SELINUX = "selinux_settings"
+        const val PREF_DOUBLE_TAP = "dt2w_settings"
+	const val PREF_GLOVE_MODE = "glove_mode_settings"
         const val PREF_BATTERY = "battery_settings"
     }
 }

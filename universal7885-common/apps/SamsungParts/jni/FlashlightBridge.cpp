@@ -2,18 +2,19 @@
 #include <hidl/HidlSupport.h>
 #include <hidl/LegacySupport.h>
 #include <hidl/Status.h>
-#include <vendor/eureka/hardware/parts/1.0/IFlashLight.h>
+#include <vendor/eureka/hardware/parts/1.0/IFlashBrightness.h>
 #include "jni.h"
 
 using android::sp;
 using vendor::eureka::hardware::parts::V1_0::Device;
 using vendor::eureka::hardware::parts::V1_0::Value;
-using vendor::eureka::hardware::parts::V1_0::IFlashLight;
+using vendor::eureka::hardware::parts::V1_0::IFlashBrightness;
 using vendor::eureka::hardware::parts::V1_0::Number;
+
+static android::sp<IFlashBrightness> service = IFlashBrightness::getService();
 
 extern "C" JNIEXPORT void JNICALL Java_com_eurekateam_samsungextras_interfaces_Flashlight_setFlash(
         JNIEnv* env, __unused jobject obj, jint value) {
-    android::sp<IFlashLight> service = IFlashLight::getService();
     service->setFlashlightEnable(Number::ENABLE);
     switch (value) {
         case 1:
@@ -52,7 +53,6 @@ extern "C" JNIEXPORT void JNICALL Java_com_eurekateam_samsungextras_interfaces_F
 }
 extern "C" JNIEXPORT jint JNICALL Java_com_eurekateam_samsungextras_interfaces_Flashlight_getFlash(
         JNIEnv* env, jobject clazz, jint isA10) {
-    android::sp<IFlashLight> service = IFlashLight::getService();
     int ret;
     if (isA10 == 1) {
         ret = service->readFlashlightstats(Device::A10);

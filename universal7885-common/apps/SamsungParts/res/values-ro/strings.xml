@@ -60,21 +60,6 @@
     <!-- GPU Category -->
     <string name="misc_category">Misc</string>
 
-    <!-- Inout Devices Settings -->
-    <string name="input_ctrl_title">Controlul dispozitivelor de intrare</string>
-    <string name="input_ctrl_summary">Controleaza puterea senzorului.Poate fi folosita sa se salveze baterie.</string>
-    <string name="input_ctrl_description">Modifica puterea senzorului aici.
-        Daca ai baterie slaba, aceasta setare poate ajuta cat de cat.</string>
-    <!-- GPU TMU -->
-    <string name="gpuexynos_title">Exynos GPU (Mali) Throttling</string>
-    <string name="gpuexynos_summary">Activeaza/Dezactiveaza GPU Throttling</string>
-
-    <!-- SELinux -->
-    <string name="selinux_title">SELinux Status</string>
-    <string name="selinux_summary">Apasa aici sa vezi statusul SELinux.</string>
-
-    <string name="info_category">Informatii</string>
-
     <!-- Battery -->
     <string name="fastcharge_category">Baterie</string>
     <string name="fastcharge_2nd_title">Setari FastCharge</string>

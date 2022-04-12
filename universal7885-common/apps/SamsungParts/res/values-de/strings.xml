@@ -60,21 +60,6 @@
     <!-- GPU Category -->
     <string name="misc_category">Sonstiges</string>
 
-    <!-- Inout Devices Settings -->
-    <string name="input_ctrl_title">Eingabegeräte Steuerung</string>
-    <string name="input_ctrl_summary">Steuer Sensor Leistung. Kann benutzt werden um Batterie zu sparen.</string>
-    <string name="input_ctrl_description">Verwalte die Sensor Leistung hier.
-        wenn deine Batterie fast leer ist, kann dir diese Einstellung helfen.</string>
-    <!-- GPU TMU -->
-    <string name="gpuexynos_title">Exynos GPU (Mali) Throttling</string>
-    <string name="gpuexynos_summary">Deaktiviere/Aktiviere GPU Throttling</string>
-
-    <!-- SELinux -->
-    <string name="selinux_title">SELinux Status</string>
-    <string name="selinux_summary">Klicke hier, um den SELinux Status anzuzeigen.</string>
-
-    <string name="info_category">Info</string>
-
     <!-- Battery -->
     <string name="fastcharge_category">Batterie</string>
     <string name="fastcharge_2nd_title">Schnellladen Einstellung</string>
