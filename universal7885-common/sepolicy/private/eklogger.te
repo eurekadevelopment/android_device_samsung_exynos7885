@@ -1,0 +1,17 @@
+type eklogger, domain, coredomain;
+type eklogger_exec, exec_type, file_type, system_file_type;
+init_daemon_domain(eklogger)
+type eklogger_data_file, file_type, data_file_type, core_data_file_type;
+
+allow eklogger eklogger_data_file:dir rw_dir_perms;
+allow eklogger eklogger_data_file:file rw_file_perms;
+allow eklogger proc_kmsg:file r_file_perms;
+allow eklogger logcat_exec:file rx_file_perms;
+allow eklogger self:capability2 syslog;
+allow eklogger kernel:system syslog_mod;
+allow eklogger eklogger_data_file:file create_file_perms;
+allow eklogger shell_exec:file rx_file_perms;
+allow eklogger self:capability sys_nice;
+allow eklogger logdr_socket:sock_file write;
+allow eklogger logd:unix_stream_socket connectto;
+

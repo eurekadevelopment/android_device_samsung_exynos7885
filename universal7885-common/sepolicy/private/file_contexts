@@ -3,6 +3,6 @@
 ### DATA
 /data/zram(/.*)?                             u:object_r:zram_data_file:s0
 
-# DEBUG DAEMON
-/system/bin/debug_daemon 					u:object_r:debug_daemon_exec:s0
-/data/debug(/.*)?   					u:object_r:debug_daemon_data_file:s0
+# Eureka Bootlogger
+/system/bin/eklogger				u:object_r:eklogger_exec:s0
+/data/debug(/.*)?   					u:object_r:eklogger_data_file:s0

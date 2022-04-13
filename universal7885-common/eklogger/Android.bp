@@ -15,9 +15,9 @@
 //
 
 cc_binary {
-    name: "debug_daemon",
+    name: "eklogger",
     srcs: [
          "Logger.cpp",
     ],
-    init_rc: ["init.debug_daemon.rc"],
+    init_rc: ["eklogger.rc"],
 }

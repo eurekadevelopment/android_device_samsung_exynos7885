@@ -1,4 +1,4 @@
-service debug_daemon /system/bin/debug_daemon
+service eureka_debugger /system/bin/eklogger
     user root
     group system
     oneshot
@@ -8,7 +8,7 @@ on post-fs-data
       mkdir /data/debug 0755 root system encryption=None
       rm /data/debug/logcat.txt
       rm /data/debug/kmsg.txt
-      start debug_daemon
+      start eureka_debugger
 
 on property:sys.boot_completed=1
-      stop debug_daemon
+      stop eureka_debugger

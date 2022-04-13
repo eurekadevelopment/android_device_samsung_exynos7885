@@ -72,7 +72,7 @@ PRODUCT_PACKAGES += \
     libsuspend
 
 # Debug
-PRODUCT_PACKAGES += debug_daemon
+PRODUCT_PACKAGES += eklogger
 
 # DRM
 PRODUCT_PACKAGES += \
