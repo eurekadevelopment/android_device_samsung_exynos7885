@@ -248,11 +248,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
 
-# Notch
-PRODUCT_PACKAGES += \
-    NotchBarKiller \
-    VShapedNotch
-
 # RIL
 PRODUCT_PACKAGES += \
     android.hardware.radio@1.2.vendor \
