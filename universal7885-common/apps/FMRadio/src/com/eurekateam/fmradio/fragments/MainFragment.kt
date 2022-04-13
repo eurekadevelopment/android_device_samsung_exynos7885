@@ -30,23 +30,24 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.DecimalFormat
 
-
-class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
+class MainFragment :
+    Fragment(R.layout.fragment_main),
+    View.OnClickListener,
     SeekBar.OnSeekBarChangeListener {
     private val mFMInterface = NativeFMInterface()
-    private lateinit var mVolumeUp : FloatingActionButton
-    private lateinit var mVolumeDown : FloatingActionButton
+    private lateinit var mVolumeUp: FloatingActionButton
+    private lateinit var mVolumeDown: FloatingActionButton
     private lateinit var mSeekBar: AppCompatSeekBar
-    private lateinit var mFavButton : FloatingActionButton
-    private lateinit var mFMFreq : MaterialTextView
+    private lateinit var mFavButton: FloatingActionButton
+    private lateinit var mFMFreq: MaterialTextView
     private val mCleanFormat: DecimalFormat = DecimalFormat("0.#")
-    private lateinit var mOutputSwitch : FloatingActionButton
-    private lateinit var mBeforeChannelBtn : FloatingActionButton
-    private lateinit var mNextChannelBtn : FloatingActionButton
-    private lateinit var mPowerBtn : FloatingActionButton
+    private lateinit var mOutputSwitch: FloatingActionButton
+    private lateinit var mBeforeChannelBtn: FloatingActionButton
+    private lateinit var mNextChannelBtn: FloatingActionButton
+    private lateinit var mPowerBtn: FloatingActionButton
     private lateinit var mAudioManager: AudioManager
-    private lateinit var mStar : Drawable
-    private lateinit var mStarFilled : Drawable
+    private lateinit var mStar: Drawable
+    private lateinit var mStarFilled: Drawable
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,10 +55,14 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
     ): View? {
         val mRootView = inflater.inflate(R.layout.fragment_main, container, false)
         super.onCreate(savedInstanceState)
-        mStar = ResourcesCompat.getDrawable(requireContext().resources,
-            R.drawable.ic_star, requireContext().theme)!!
-        mStarFilled = ResourcesCompat.getDrawable(requireContext().resources,
-            R.drawable.ic_star_filled, requireContext().theme)!!
+        mStar = ResourcesCompat.getDrawable(
+            requireContext().resources,
+            R.drawable.ic_star, requireContext().theme
+        )!!
+        mStarFilled = ResourcesCompat.getDrawable(
+            requireContext().resources,
+            R.drawable.ic_star_filled, requireContext().theme
+        )!!
         mAudioManager = requireContext().getSystemService(Context.AUDIO_SERVICE) as AudioManager
         mVolumeUp = mRootView.findViewById(R.id.volume_up)
         mVolumeDown = mRootView.findViewById(R.id.volume_down)
@@ -78,14 +83,14 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
         mFavButton.setOnClickListener(this)
         var mIsLight = true
         val nightModeFlags = requireContext().resources.configuration.uiMode and
-                Configuration.UI_MODE_NIGHT_MASK
+            Configuration.UI_MODE_NIGHT_MASK
         when (nightModeFlags) {
             Configuration.UI_MODE_NIGHT_YES -> mIsLight = false
             Configuration.UI_MODE_NIGHT_NO -> mIsLight = true
             Configuration.UI_MODE_NIGHT_UNDEFINED -> mIsLight = true
         }
         val mTextViewList = listOf(R.id.app_banner, R.id.fm_freq, R.id.freq_misc)
-        for (mResID in mTextViewList){
+        for (mResID in mTextViewList) {
             mRootView.findViewById<MaterialTextView>(mResID).apply {
                 if (mIsLight)
                     setTextColor(resources.getColor(android.R.color.system_accent2_500, requireContext().theme))
@@ -100,7 +105,7 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
                 setBackgroundColor(resources.getColor(android.R.color.system_accent1_700, requireContext().theme))
         }
         GlobalScope.launch {
-            withContext(Dispatchers.IO){
+            withContext(Dispatchers.IO) {
                 if (FileUtilities.checkIfExistFile(FileUtilities.mFavouriteChannelFileName, requireContext())) {
                     val mFavData = FileUtilities.readFromFile(
                         FileUtilities.mFavouriteChannelFileName, requireContext()
@@ -113,13 +118,13 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
                 var mMute = false
                 if (mFreqCurrent == -1) {
                     mAudioManager.setParameters(PowerState.FM_POWER_OFF.mAudioParam)
-                    withContext(Dispatchers.Main){
+                    withContext(Dispatchers.Main) {
                         mUpdateEnableDisable(false, mRootView)
                     }
                     mMute = true
                 }
 
-                if (FileUtilities.checkIfExistFile(FileUtilities.mFMFreqFileName, requireContext())){
+                if (FileUtilities.checkIfExistFile(FileUtilities.mFMFreqFileName, requireContext())) {
                     mFreqCurrent = FileUtilities.readFromFile(
                         FileUtilities.mFMFreqFileName,
                         requireContext()
@@ -129,7 +134,7 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
                         mFMFreq.text = mCleanFormat.format(mFreqCurrent.toFloat() / 1000)
                     }
                 }
-                if (FileUtilities.checkIfExistFile(FileUtilities.mFMVolumeFileName, requireContext())){
+                if (FileUtilities.checkIfExistFile(FileUtilities.mFMVolumeFileName, requireContext())) {
                     mVolume = FileUtilities.readFromFile(
                         FileUtilities.mFMVolumeFileName,
                         requireContext()
@@ -139,11 +144,11 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
                         mSeekBar.progress = mVolume
                     }
                 }
-                withContext(Dispatchers.Main){
+                withContext(Dispatchers.Main) {
                     mSeekBar.min = 1
                     mSeekBar.max = 15
                 }
-                withContext(Dispatchers.IO){
+                withContext(Dispatchers.IO) {
                     if (mVolume == -1) {
                         mVolume = 8
                         mFMInterface.setFMVolume(fd, mVolume)
@@ -156,7 +161,7 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
                     mFMInterface.setFMMute(fd, true)
                 mFMInterface.setFMFreq(fd, mFMInterface.getFMLower(fd))
                 mRefreshTracks()
-                if (mFreqCurrent != -1){
+                if (mFreqCurrent != -1) {
                     mFMInterface.setFMFreq(fd, mFreqCurrent)
                 } else {
                     mFreqCurrent = mFMInterface.getFMLower(fd)
@@ -165,20 +170,20 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
                 mFreqCurrent = mFMInterface.getFMFreq(fd).toInt()
                 mFMInterface.setFMFreq(fd, mFreqCurrent)
                 withContext(Dispatchers.Main) {
-                    mFMFreq.text = mCleanFormat.format( mFreqCurrent.toFloat() / 1000)
+                    mFMFreq.text = mCleanFormat.format(mFreqCurrent.toFloat() / 1000)
                 }
                 if (!mMute)
                     mFMInterface.setFMMute(fd, false)
                 if (mFreqCurrent == -1)
                     mFMInterface.setFMThread(fd, true)
-                withContext(Dispatchers.Main){
+                withContext(Dispatchers.Main) {
                     mFavButton.let {
-                        if (mFavStats[mFreqCurrent] == null){
+                        if (mFavStats[mFreqCurrent] == null) {
                             mFavStats.putIfAbsent(mFreqCurrent, false)
                         }
-                        if (mFavStats[mFreqCurrent]!!){
+                        if (mFavStats[mFreqCurrent]!!) {
                             it.setImageDrawable(mStarFilled)
-                        }else {
+                        } else {
                             it.setImageDrawable(mStar)
                         }
                     }
@@ -193,18 +198,18 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
      * @param mTextView Whether the target view is touchable [FloatingActionButton] or
      * [MaterialTextView] with useless touch attr
      */
-    private fun View.disable(mTextView : Boolean = false) {
+    private fun View.disable(mTextView: Boolean = false) {
         alpha = .7f
-        if(!mTextView) isEnabled = false
+        if (!mTextView) isEnabled = false
     }
     /**
      * Extension function for [View], for reverting Grayed out, disabled View
      * @param mTextView Whether the target view is touchable [FloatingActionButton] or
      * [MaterialTextView] with useless touch attr
      */
-    private fun View.enable(mTextView : Boolean = false) {
+    private fun View.enable(mTextView: Boolean = false) {
         alpha = 1.0f
-        if(!mTextView) isEnabled = true
+        if (!mTextView) isEnabled = true
     }
 
     /**
@@ -215,19 +220,19 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
      * @see [enable]
      * @see [disable]
      */
-    private fun mUpdateEnableDisable(mEnabled: Boolean, mView: View = requireView()){
+    private fun mUpdateEnableDisable(mEnabled: Boolean, mView: View = requireView()) {
         val mTextViewList = listOf(R.id.fm_freq, R.id.freq_misc)
         val mFloatButtonList = listOf(
             R.id.volume_down, R.id.volume_up,
             R.id.before_channel, R.id.next_channel, R.id.fm_output_btn
         )
-        for (i in mTextViewList){
+        for (i in mTextViewList) {
             if (mEnabled)
                 mView.findViewById<View>(i).enable(true)
             else
                 mView.findViewById<View>(i).disable(true)
         }
-        for (i in mFloatButtonList){
+        for (i in mFloatButtonList) {
             if (mEnabled)
                 mView.findViewById<View>(i).enable()
             else
@@ -245,21 +250,21 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
                             R.drawable.ic_volume_up
                         )
                     )
-                    val ret = mFMInterface.setAudioRoute(true);
-                    Log.i("mFMInterface.setAudioRoute return $ret");
-                }else if (mHeadset == OutputState.OUTPUT_SPEAKER){
+                    val ret = mFMInterface.setAudioRoute(true)
+                    Log.i("mFMInterface.setAudioRoute return $ret")
+                } else if (mHeadset == OutputState.OUTPUT_SPEAKER) {
                     mOutputSwitch.setImageIcon(
                         Icon.createWithResource(
                             requireContext(),
                             R.drawable.ic_headphones
                         )
                     )
-                    val ret = mFMInterface.setAudioRoute(false);
-                    Log.i("mFMInterface.setAudioRoute return $ret");
+                    val ret = mFMInterface.setAudioRoute(false)
+                    Log.i("mFMInterface.setAudioRoute return $ret")
                 }
-                if (mHeadset == OutputState.OUTPUT_HEADSET){
+                if (mHeadset == OutputState.OUTPUT_HEADSET) {
                     mHeadset = OutputState.OUTPUT_SPEAKER
-                }else if (mHeadset == OutputState.OUTPUT_SPEAKER){
+                } else if (mHeadset == OutputState.OUTPUT_SPEAKER) {
                     mHeadset = OutputState.OUTPUT_HEADSET
                 }
             }
@@ -290,10 +295,11 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
                 val mTempFreq = mFMInterface.getBeforeChannel(fd)
                 if (mTempFreq > mFMInterface.getFMLower(fd) && mTempFreq < mFMInterface.getFmUpper(
                         fd
-                    )){
+                    )
+                ) {
                     mFreqCurrent = mTempFreq
                 }
-                if (!mFMInterface.getSysfsSupport()){
+                if (!mFMInterface.getSysfsSupport()) {
                     mFMInterface.setFMFreq(fd, mFreqCurrent)
                 }
                 mFMInterface.setFMMute(fd, false)
@@ -302,21 +308,21 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
                     mFreqCurrent.toString(), requireContext()
                 )
                 mFavButton.let {
-                    if (mFavStats[mFreqCurrent] == null){
+                    if (mFavStats[mFreqCurrent] == null) {
                         mFavStats.putIfAbsent(mFreqCurrent, false)
                     }
-                    if (mFavStats[mFreqCurrent]!!){
+                    if (mFavStats[mFreqCurrent]!!) {
                         it.setImageDrawable(mStarFilled)
-                    }else {
+                    } else {
                         it.setImageDrawable(mStar)
                     }
                 }
             }
             mPowerBtn.id -> {
-                if (mFMPower){
+                if (mFMPower) {
                     mAudioManager.setParameters(PowerState.FM_POWER_OFF.mAudioParam)
                     mFMFreq.text = getText(R.string.inital_freq)
-                }else{
+                } else {
                     mAudioManager.setParameters(PowerState.FM_POWER_ON.mAudioParam)
                     mFMFreq.text = mCleanFormat.format(mFreqCurrent.toFloat() / 1000)
                 }
@@ -328,10 +334,11 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
                 val mTempFreq = mFMInterface.getNextChannel(fd)
                 if (mTempFreq > mFMInterface.getFMLower(fd) && mTempFreq < mFMInterface.getFmUpper(
                         fd
-                    )){
+                    )
+                ) {
                     mFreqCurrent = mTempFreq
                 }
-                if (!mFMInterface.getSysfsSupport()){
+                if (!mFMInterface.getSysfsSupport()) {
                     mFMInterface.setFMFreq(fd, mFreqCurrent)
                 }
                 mFMInterface.setFMMute(fd, false)
@@ -340,32 +347,32 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
                     mFreqCurrent.toString(), requireContext()
                 )
                 mFavButton.let {
-                    if (mFavStats[mFreqCurrent] == null){
+                    if (mFavStats[mFreqCurrent] == null) {
                         mFavStats.putIfAbsent(mFreqCurrent, false)
                     }
-                    if (mFavStats[mFreqCurrent]!!){
+                    if (mFavStats[mFreqCurrent]!!) {
                         it.setImageDrawable(mStarFilled)
-                    }else {
+                    } else {
                         it.setImageDrawable(mStar)
                     }
                 }
             }
             mFavButton.id -> {
-               val mIndex = mFreqCurrent
-                if (mFavStats[mIndex] == null){
+                val mIndex = mFreqCurrent
+                if (mFavStats[mIndex] == null) {
                     mFavStats.putIfAbsent(mIndex, false)
                 }
                 mFavStats[mIndex] = !mFavStats[mIndex]!!
                 mFavButton.let {
-                    if (mFavStats[mIndex]!!){
+                    if (mFavStats[mIndex]!!) {
                         it.setImageDrawable(mStarFilled)
-                    }else {
+                    } else {
                         it.setImageDrawable(mStar)
                     }
                 }
                 Log.d(
                     "Fav stats for $mIndex changed. " +
-                            "Current value ${mFavStats[mIndex]}"
+                        "Current value ${mFavStats[mIndex]}"
                 )
             }
         }
@@ -387,9 +394,9 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
         var mHeadset = OutputState.OUTPUT_SPEAKER
         var mFreqCurrent = -1
         private var mFMPower = false
-        var mHeadSetPlugged : HeadsetState = HeadsetState.HEADSET_STATE_DISCONNECTED
-        var mTracks : LongArray = emptyArray<Long>().toLongArray()
-        fun mRefreshTracks(){
+        var mHeadSetPlugged: HeadsetState = HeadsetState.HEADSET_STATE_DISCONNECTED
+        var mTracks: LongArray = emptyArray<Long>().toLongArray()
+        fun mRefreshTracks() {
             NativeFMInterface().setFMFreq(fd, NativeFMInterface().getFMLower(fd))
             mTracks = NativeFMInterface().getFMTracks(fd)
             mTracks = MainFragment().removeZeros(mTracks)
@@ -410,15 +417,14 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener,
      * @param array The target Long array
      * @return Long array with zeros removed
      */
-    private fun removeZeros(array : LongArray): LongArray{
-        val mArray : MutableList<Long> = emptyList<Long>().toMutableList()
+    private fun removeZeros(array: LongArray): LongArray {
+        val mArray: MutableList<Long> = emptyList<Long>().toMutableList()
         Log.d("removeZeros: Got array size ${array.size}")
-        for (i in array.indices){
-            if(array[i] > 0L){
+        for (i in array.indices) {
+            if (array[i] > 0L) {
                 mArray.add(array[i])
             }
         }
         return mArray.toLongArray()
     }
-
 }

@@ -13,38 +13,27 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.ImageFormat
 import android.hardware.camera2.*
-import android.hardware.camera2.CameraManager.AvailabilityCallback
 import android.media.Image
 import android.media.ImageReader
-import android.net.Uri
 import android.os.*
 import android.provider.Settings
 import android.provider.Settings.SettingNotFoundException
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
+import java.util.concurrent.ScheduledThreadPoolExecutor
+import java.util.concurrent.TimeUnit
 
-open class CameraLightSensorService : Service() {
-    var screenStateFilter: IntentFilter? = null
+class CameraLightSensorService : Service() {
+    private lateinit var screenStateFilter: IntentFilter
     lateinit var mContext: Context
-    private var mRegistered = false
-    var destroy = false
     private var cameraDevice: CameraDevice? = null
     private var session: CameraCaptureSession? = null
-
-    @Volatile
-    var avail = true
-    private var imageReader: ImageReader? = null
-    private var manager: CameraManager? = null
-    private var mServiceStarted = false
-
-    @Volatile
-    private var mLock = false
-    private var mThreadRunning = false
+    private lateinit var manager: CameraManager
+    private lateinit var mCameraHandler: Handler
     private fun pushNotification(): Notification {
         val nm = mContext.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         val channel = NotificationChannel(
-            mContext.basePackageName, "Useless Notification",
+            mContext.basePackageName, "CameraLightSensor",
             NotificationManager.IMPORTANCE_NONE
         )
         channel.isBlockable = true
@@ -67,20 +56,7 @@ open class CameraLightSensorService : Service() {
         if (DEBUG) Log.d(TAG, "Destroying service")
         if (mRegistered) contentResolver!!.unregisterContentObserver(mSettingsObserver)
         mRegistered = false
-        cameraDevice!!.close()
-        if (session != null && avail) {
-            try {
-                session!!.abortCaptures()
-                session!!.close()
-            } catch (e: CameraAccessException) {
-                Log.e(TAG, e.message)
-            } catch (e2: IllegalStateException) {
-                Log.e(TAG, "Session Already Closed")
-            }
-        }
-        manager!!.unregisterAvailabilityCallback(availabilityCallback)
-        avail = false
-        destroy = true
+        imageReader.close()
         stopForeground(true)
         super.onDestroy()
     }
@@ -92,14 +68,21 @@ open class CameraLightSensorService : Service() {
     private val mScreenStateReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             if (intent.action == Intent.ACTION_USER_PRESENT) {
-                onDisplayOn()
-                mServiceStarted = true
+                if (mPoolExecutor == null) {
+                    mPoolExecutor = ScheduledThreadPoolExecutor(4)
+                    mPoolExecutor!!.scheduleWithFixedDelay(
+                        mScheduler, 0, 2, TimeUnit.SECONDS
+                    )
+                }
             } else if (intent.action == Intent.ACTION_SCREEN_OFF) {
-                if (mServiceStarted) onDisplayOff()
-                mServiceStarted = false
+                if (mPoolExecutor != null) {
+                    mPoolExecutor!!.shutdown()
+                    mPoolExecutor = null
+                }
             }
         }
     }
+    private val mScheduler = Runnable { readyCamera() }
 
     // Make a listener for settings
     private var mSettingsObserver: ContentObserver =
@@ -116,11 +99,19 @@ open class CameraLightSensorService : Service() {
                     ) {
                         registerReceiver(mScreenStateReceiver, screenStateFilter)
                         mRegistered = true
-                        onDisplayOn()
+                        if (mPoolExecutor == null) {
+                            mPoolExecutor = ScheduledThreadPoolExecutor(4)
+                            mPoolExecutor!!.scheduleWithFixedDelay(
+                                mScheduler, 0, 2, TimeUnit.SECONDS
+                            )
+                        }
                     } else {
                         if (mRegistered) unregisterReceiver(mScreenStateReceiver)
                         mRegistered = false
-                        onDisplayOff()
+                        if (mPoolExecutor != null) {
+                            mPoolExecutor!!.shutdown()
+                            mPoolExecutor = null
+                        }
                     }
                 } catch (e: SettingNotFoundException) {
                     e.printStackTrace()
@@ -131,20 +122,6 @@ open class CameraLightSensorService : Service() {
                 return true
             }
         }
-
-    private fun onDisplayOn() {
-        if (DEBUG) Log.d(TAG, "Screen is on. Starting Service...")
-        avail = true
-        readyCamera()
-    }
-
-    private fun onDisplayOff() {
-        if (DEBUG) Log.d(TAG, "Screen is off. Stopping Service...")
-        thread.interrupt()
-        avail = false
-        mThreadRunning = false
-    }
-
     private var cameraStateCallback: CameraDevice.StateCallback =
         object : CameraDevice.StateCallback() {
             override fun onOpened(camera: CameraDevice) {
@@ -164,24 +141,22 @@ open class CameraLightSensorService : Service() {
     private var sessionStateCallback: CameraCaptureSession.StateCallback =
         object : CameraCaptureSession.StateCallback() {
             override fun onReady(session: CameraCaptureSession) {
-                if (!destroy) {
-                    this@CameraLightSensorService.session = session
+                this@CameraLightSensorService.session = session
+                try {
+                    if (createCaptureRequest() == null) return
                     try {
-                        if (createCaptureRequest() == null) return
-                        try {
-                            session.capture(createCaptureRequest(), captureCallback, null)
-                        } catch (e: CameraAccessException) {
-                            e.printStackTrace()
-                        } catch (e: IllegalStateException) {
-                            Log.w(TAG, "onReady: Session is NULL")
-                        }
-                    } catch (e: Exception) {
-                        Log.e(TAG, "Camera is in use")
+                        session.capture(createCaptureRequest(), null, mCameraHandler)
+                    } catch (e: CameraAccessException) {
                         e.printStackTrace()
+                    } catch (e: IllegalStateException) {
+                        Log.w(TAG, "onReady: Session is NULL")
                     }
+                    cameraDevice!!.close() session.close()
+                } catch (e: Exception) {
+                    Log.e(TAG, "Camera is in use")
+                    e.printStackTrace()
                 }
             }
-
             override fun onConfigured(session: CameraCaptureSession) {}
             override fun onConfigureFailed(session: CameraCaptureSession) {}
         }
@@ -198,12 +173,6 @@ open class CameraLightSensorService : Service() {
                     e.printStackTrace()
                 }
                 img.close()
-                if (DEBUG) Log.d(
-                    TAG,
-                    "ImageReader.OnImageAvailableListener: Closing Camera and Sessions.."
-                )
-                cameraDevice!!.close()
-                session!!.close()
             }
         }
 
@@ -212,16 +181,8 @@ open class CameraLightSensorService : Service() {
         manager = getSystemService(CAMERA_SERVICE) as CameraManager
         try {
             val pickedCamera = getCamera(manager)
-            manager!!.registerAvailabilityCallback(availabilityCallback, null)
-            manager!!.openCamera(pickedCamera, cameraStateCallback, null)
-            imageReader =
-                ImageReader.newInstance(50, 50, ImageFormat.JPEG, 2 /* images buffered */)
-            imageReader?.setOnImageAvailableListener(onImageAvailableListener, null)
-            if (!mThreadRunning) {
-                val mMyThread = Thread(thread)
-                mMyThread.start()
-                mThreadRunning = true
-            }
+            manager.openCamera(pickedCamera, cameraStateCallback, mCameraHandler)
+            imageReader.setOnImageAvailableListener(onImageAvailableListener, mCameraHandler)
             if (DEBUG) Log.d(TAG, "imageReader created")
         } catch (e: CameraAccessException) {
             Log.e(TAG, e.message)
@@ -244,13 +205,15 @@ open class CameraLightSensorService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        mContext = applicationContext
+        val mCameraHandlerThread = HandlerThread("CameraLightSensor")
+        mCameraHandlerThread.start()
+        mCameraHandler = Handler(mCameraHandlerThread.looper)
+        mContext = this
         @Suppress("SameParameterValue")
         startForeground(50, pushNotification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA)
-        batteryOptimization(mContext)
         mRegistered = false
         screenStateFilter = IntentFilter(Intent.ACTION_USER_PRESENT)
-        screenStateFilter!!.addAction(Intent.ACTION_SCREEN_OFF)
+        screenStateFilter.addAction(Intent.ACTION_SCREEN_OFF)
         try {
             if (Settings.System.getInt(contentResolver, Settings.System.SCREEN_BRIGHTNESS_MODE)
                 == Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC
@@ -264,15 +227,13 @@ open class CameraLightSensorService : Service() {
         val setting = Settings.System.getUriFor(Settings.System.SCREEN_BRIGHTNESS_MODE)
         contentResolver?.registerContentObserver(setting, false, mSettingsObserver)
         if (DEBUG) Log.d(TAG, "onStartCommand flags $flags startId $startId")
-        destroy = false
-        avail = true
         startForeground(50, pushNotification())
         return START_STICKY
     }
 
     override fun onCreate() {
         if (DEBUG) Log.d(TAG, "onCreate service")
-        mContext = applicationContext
+        mContext = this
         startForeground(50, pushNotification())
         super.onCreate()
     }
@@ -280,13 +241,12 @@ open class CameraLightSensorService : Service() {
     fun actOnReadyCameraDevice() {
         try {
             cameraDevice!!.createCaptureSession(
-                listOf(imageReader!!.surface),
+                listOf(imageReader.surface),
                 sessionStateCallback,
-                null
+                mCameraHandler
             )
         } catch (e: CameraAccessException) {
             Log.e(TAG, e.message)
-            mLock = false
         }
     }
 
@@ -307,54 +267,9 @@ open class CameraLightSensorService : Service() {
             builder.build()
         } catch (e: CameraAccessException) {
             Log.e(TAG, e.message)
-            mLock = false
             null
         }
     }
-
-    private var availabilityCallback: AvailabilityCallback = object : AvailabilityCallback() {
-        override fun onCameraOpened(cameraId: String, packageId: String) {
-            super.onCameraOpened(cameraId, packageId)
-            Log.i(
-                TAG, "CameraManager.AvailabilityCallback: Camera " + cameraId
-                        + " Opened by Package " + packageId
-            )
-            mLock = true
-            if (packageId == mContext.basePackageName) return
-            avail = false
-        }
-
-        override fun onCameraUnavailable(cameraId: String) {
-            if (DEBUG) Log.i(TAG, "CameraManager.AvailabilityCallback : Camera NOT Available. ")
-            avail = false
-            super.onCameraUnavailable(cameraId)
-        }
-
-        override fun onCameraAvailable(cameraId: String) {
-            if (DEBUG) Log.i(TAG, "CameraManager.AvailabilityCallback : Camera IS Available. ")
-            avail = true
-            mLock = false
-            super.onCameraAvailable(cameraId)
-        }
-
-        override fun onCameraClosed(cameraId: String) {
-            super.onCameraClosed(cameraId)
-        }
-    }
-    var captureCallback: CameraCaptureSession.CaptureCallback =
-        object : CameraCaptureSession.CaptureCallback() {
-            override fun onCaptureSequenceCompleted(
-                session: CameraCaptureSession,
-                sequenceId: Int,
-                frameNumber: Long
-            ) {
-                if (DEBUG) Log.d(TAG, "captureCallback: Closing Session")
-                super.onCaptureSequenceCompleted(session, sequenceId, frameNumber)
-                cameraDevice!!.close()
-                session.close()
-            }
-        }
-
     private fun calculateBrightnessEstimate(bitmap: Bitmap, pixelSpacing: Int): Int {
         var r = 0
         var g = 0
@@ -382,8 +297,9 @@ open class CameraLightSensorService : Service() {
         val oldbrightness =
             Settings.System.getInt(contentResolver, Settings.System.SCREEN_BRIGHTNESS)
         if (DEBUG) Log.i(
-            TAG, "AdjustBrightness: OldVal = " + oldbrightness + " NewVal = " +
-                    brightness + " Adjusting.."
+            TAG,
+            "AdjustBrightness: OldVal = " + oldbrightness + " NewVal = " +
+                brightness + " Adjusting.."
         )
         var newbrightness = brightness
         if (newbrightness > 255) {
@@ -398,32 +314,13 @@ open class CameraLightSensorService : Service() {
         )
     }
 
-    private var thread = Thread {
-        while (!Thread.currentThread().isInterrupted) {
-            if (avail && !mLock) {
-                SystemClock.sleep(DELAY.toLong())
-                ContextCompat.getMainExecutor(mContext).execute { if (avail) readyCamera() }
-            }else{
-                SystemClock.sleep(DELAY.toLong() / 10) // For Fast Detection
-            }
-        }
-    }
-
     companion object {
+        private val imageReader =
+            ImageReader.newInstance(50, 50, ImageFormat.JPEG, 2 /* images buffered */)
         protected val TAG: String = CameraLightSensorService::class.java.simpleName
         const val DEBUG = false
-        protected const val CAMERA_CHOICE = CameraCharacteristics.LENS_FACING_FRONT
-        private const val DELAY = 5 * 1000 // 5 Seconds
-        fun batteryOptimization(context: Context?) {
-            val intent = Intent()
-            val packageName = context!!.packageName
-            val pm = context.getSystemService(POWER_SERVICE) as PowerManager
-            if (!pm.isIgnoringBatteryOptimizations(packageName)) {
-                intent.action = Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
-                intent.data = Uri.parse("package:$packageName")
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                context.startActivity(intent)
-            }
-        }
+        const val CAMERA_CHOICE = CameraCharacteristics.LENS_FACING_FRONT
+        private var mPoolExecutor: ScheduledThreadPoolExecutor? = null
+        private var mRegistered = false
     }
 }

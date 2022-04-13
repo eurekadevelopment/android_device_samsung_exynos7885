@@ -18,9 +18,7 @@ package com.eurekateam.samsungextras.dolby
 
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
-
 import androidx.preference.PreferenceManager
-
 import com.eurekateam.samsungextras.dolby.DolbyFragment.Companion.PREF_DOLBY_ENABLE
 
 class DolbyTile : TileService() {
@@ -41,8 +39,8 @@ class DolbyTile : TileService() {
         isEnabled = !isEnabled
         DolbyCore.setEnabled(isEnabled)
         PreferenceManager.getDefaultSharedPreferences(this)
-                .edit()
-                .putBoolean(PREF_DOLBY_ENABLE, isEnabled)
-                .apply()
+            .edit()
+            .putBoolean(PREF_DOLBY_ENABLE, isEnabled)
+            .apply()
     }
 }

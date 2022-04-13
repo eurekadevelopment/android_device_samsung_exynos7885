@@ -8,7 +8,7 @@ object FileUtilities {
     const val mFMVolumeFileName = "fm_volume_current"
     const val mFavouriteChannelFileName = "fm_fav_freqs"
 
-    fun writeToFile(fileName : String, data: String, mContext: Context){
+    fun writeToFile(fileName: String, data: String, mContext: Context) {
         var os: OutputStream? = null
         try {
             os = FileOutputStream(File(mContext.filesDir.absolutePath + "/" + fileName))
@@ -23,7 +23,7 @@ object FileUtilities {
             }
         }
     }
-    fun readFromFile(fileName: String, mContext: Context): String{
+    fun readFromFile(fileName: String, mContext: Context): String {
         val mFile = File(mContext.filesDir.absolutePath + "/" + fileName)
         var os: InputStream? = null
         val mByteArray = ByteArray(mFile.length().toInt())

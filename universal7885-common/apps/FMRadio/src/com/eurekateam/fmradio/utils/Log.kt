@@ -1,6 +1,5 @@
 package com.eurekateam.fmradio.utils
 
-
 import android.util.Log
 
 /**
@@ -16,7 +15,7 @@ object Log {
         Log.e(TAG, getMessage(message))
     }
 
-    fun d(message: String){
+    fun d(message: String) {
         Log.d(TAG, getMessage(message))
     }
     private fun getMessage(message: String): String {

@@ -16,10 +16,9 @@
 
 package com.eurekateam.samsungextras.dolby
 
-import android.os.Bundle
-
-import androidx.fragment.app.FragmentActivity
 import android.R.id.content
+import android.os.Bundle
+import androidx.fragment.app.FragmentActivity
 
 class DolbyActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

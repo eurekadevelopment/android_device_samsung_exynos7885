@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridView
-import android.widget.ListView
 import androidx.fragment.app.Fragment
 import com.eurekateam.fmradio.R
 import com.eurekateam.fmradio.adapters.PebbleLayoutAdapter
@@ -22,7 +21,7 @@ class FavouriteFragment : Fragment(R.layout.fragment_fav_list) {
         mGridView.adapter = PebbleLayoutAdapter(requireContext())
         var mIsLight = true
         val nightModeFlags = requireContext().resources.configuration.uiMode and
-                Configuration.UI_MODE_NIGHT_MASK
+            Configuration.UI_MODE_NIGHT_MASK
         when (nightModeFlags) {
             Configuration.UI_MODE_NIGHT_YES -> mIsLight = false
             Configuration.UI_MODE_NIGHT_NO -> mIsLight = true

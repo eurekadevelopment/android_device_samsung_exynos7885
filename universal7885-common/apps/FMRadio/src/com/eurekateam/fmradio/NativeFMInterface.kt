@@ -1,15 +1,15 @@
 package com.eurekateam.fmradio
 
 class NativeFMInterface {
-    external fun openFMDevice() : Int
-    external fun getFMFreq(fd : Int): Long
-    external fun setFMFreq(fd : Int, freq : Int): Int
+    external fun openFMDevice(): Int
+    external fun getFMFreq(fd: Int): Long
+    external fun setFMFreq(fd: Int, freq: Int): Int
     external fun setFMVolume(fd: Int, volume: Int /* 1 - 15 */): Int
     external fun setFMMute(fd: Int, mute: Boolean): Int
     external fun getFmUpper(fd: Int): Int
     external fun getFMLower(fd: Int): Int
     external fun getRMSSI(fd: Int): Int
-    external fun getFMTracks(fd: Int) : LongArray
+    external fun getFMTracks(fd: Int): LongArray
     external fun setFMStereo(fd: Int): Int
     external fun setFMMono(fd: Int): Int
     external fun setFMThread(fd: Int, run: Boolean): Int

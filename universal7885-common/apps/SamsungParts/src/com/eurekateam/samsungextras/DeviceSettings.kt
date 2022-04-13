@@ -17,8 +17,8 @@ package com.eurekateam.samsungextras
 
 import android.content.Intent
 import android.content.SharedPreferences
-import android.os.Bundle
 import android.os.Build
+import android.os.Bundle
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
@@ -26,13 +26,13 @@ import androidx.preference.SwitchPreference
 import com.eurekateam.samsungextras.battery.BatteryActivity
 import com.eurekateam.samsungextras.flashlight.FlashLightActivity
 import com.eurekateam.samsungextras.fps.FPSInfoService
-import com.eurekateam.samsungextras.interfaces.Display.GloveMode
 import com.eurekateam.samsungextras.interfaces.Display.DT2W
+import com.eurekateam.samsungextras.interfaces.Display.GloveMode
 import com.eurekateam.samsungextras.speaker.ClearSpeakerActivity
 
 class DeviceSettings : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
 
-    private lateinit var mPrefs : SharedPreferences
+    private lateinit var mPrefs: SharedPreferences
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         System.loadLibrary("samsungparts_jni")
         setPreferencesFromResource(R.xml.preferences_samsung_parts, rootKey)
@@ -84,7 +84,7 @@ class DeviceSettings : PreferenceFragmentCompat(), Preference.OnPreferenceChange
                 mPrefs.edit().putBoolean(PREF_KEY_FPS_INFO, mEnabled).apply()
             }
             PREF_DOUBLE_TAP -> {
-                DT2W  = value as Boolean
+                DT2W = value as Boolean
                 mPrefs.edit().putBoolean(PREF_DOUBLE_TAP, value).apply()
             }
             PREF_GLOVE_MODE -> {

@@ -17,9 +17,10 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ChannelListFragment : Fragment(R.layout.activity_channel_list),
+class ChannelListFragment :
+    Fragment(R.layout.activity_channel_list),
     View.OnClickListener {
-    private lateinit var mListView : ListView
+    private lateinit var mListView: ListView
     private lateinit var mFloatingActionButton: FloatingActionButton
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +34,7 @@ class ChannelListFragment : Fragment(R.layout.activity_channel_list),
         mListView.adapter = ListViewAdapter(requireContext())
         var mIsLight = true
         val nightModeFlags = requireContext().resources.configuration.uiMode and
-                Configuration.UI_MODE_NIGHT_MASK
+            Configuration.UI_MODE_NIGHT_MASK
         when (nightModeFlags) {
             Configuration.UI_MODE_NIGHT_YES -> mIsLight = false
             Configuration.UI_MODE_NIGHT_NO -> mIsLight = true
@@ -50,10 +51,10 @@ class ChannelListFragment : Fragment(R.layout.activity_channel_list),
 
     override fun onClick(v: View?) {
         GlobalScope.launch {
-            withContext(Dispatchers.IO){
+            withContext(Dispatchers.IO) {
                 MainFragment.mRefreshTracks()
             }
-            withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main) {
                 (requireActivity() as MainActivity).getMySupportFragmentManager().apply {
                     beginTransaction().remove(this@ChannelListFragment).commit()
                     executePendingTransactions()

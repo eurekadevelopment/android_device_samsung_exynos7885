@@ -5,13 +5,12 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 
-
 class PebbleTextView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : View(context, attrs, defStyleAttr) {
     constructor (context: Context) : this(context, null)
     constructor (context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
 
-    var mText : String = "102.7"
-    var mColor : Int = Color.GREEN
+    var mText: String = "102.7"
+    var mColor: Int = Color.GREEN
 
     private val mPaint = Paint()
     private val mRectf = RectF(25F, 25F, 350F, 270F)
@@ -42,7 +41,8 @@ class PebbleTextView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) 
      * the text that should be that width
      */
     private fun setTextSizeForWidth(
-        paint: Paint, desiredWidth: Float,
+        paint: Paint,
+        desiredWidth: Float,
         text: String
     ) {
 

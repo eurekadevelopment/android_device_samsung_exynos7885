@@ -19,7 +19,6 @@ package com.eurekateam.samsungextras.dolby
 import android.database.Cursor
 import android.database.MatrixCursor
 import android.provider.SearchIndexableResource
-import android.provider.SearchIndexablesProvider
 import android.provider.SearchIndexablesContract.COLUMN_INDEX_XML_RES_CLASS_NAME
 import android.provider.SearchIndexablesContract.COLUMN_INDEX_XML_RES_ICON_RESID
 import android.provider.SearchIndexablesContract.COLUMN_INDEX_XML_RES_INTENT_ACTION
@@ -30,6 +29,7 @@ import android.provider.SearchIndexablesContract.COLUMN_INDEX_XML_RES_RESID
 import android.provider.SearchIndexablesContract.INDEXABLES_RAW_COLUMNS
 import android.provider.SearchIndexablesContract.INDEXABLES_XML_RES_COLUMNS
 import android.provider.SearchIndexablesContract.NON_INDEXABLES_KEYS_COLUMNS
+import android.provider.SearchIndexablesProvider
 import com.eurekateam.samsungextras.R
 
 class DolbySearchIndexablesProvider : SearchIndexablesProvider() {

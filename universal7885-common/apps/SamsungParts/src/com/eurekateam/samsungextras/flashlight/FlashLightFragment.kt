@@ -15,20 +15,19 @@
  */
 package com.eurekateam.samsungextras.flashlight
 
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
-import android.os.PerformanceHintManager
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
-import android.content.SharedPreferences
 import com.eurekateam.samsungextras.R
 import com.eurekateam.samsungextras.interfaces.Flashlight
 import com.eurekateam.samsungextras.preferences.CustomSeekBarPreference
 
 class FlashLightFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
     private lateinit var mFlashLightPref: CustomSeekBarPreference
-    private lateinit var mSharedPreferences : SharedPreferences
+    private lateinit var mSharedPreferences: SharedPreferences
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.flashlight_settings)
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())

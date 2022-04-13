@@ -16,24 +16,20 @@
 
 package com.eurekateam.samsungextras.dolby
 
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.PerformanceHintManager
 import android.widget.Switch
-
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
-
 import com.android.settingslib.widget.MainSwitchPreference
 import com.android.settingslib.widget.OnMainSwitchChangeListener
 import com.android.settingslib.widget.RadioButtonPreference
-
 import com.eurekateam.samsungextras.R
-import android.content.SharedPreferences
 
 class DolbyFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListener {
 
     private lateinit var switchBar: MainSwitchPreference
-    private lateinit var mSharedPreferences : SharedPreferences
+    private lateinit var mSharedPreferences: SharedPreferences
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.dolby_settings)
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
@@ -69,15 +65,15 @@ class DolbyFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListener {
         const val PREF_DOLBY_ENABLE = "dolby_enable"
         const val PREF_DOLBY_PROFILE = "dolby_profile"
         val PREF_DOLBY_MODES = mapOf(
-                "dolby_profile_auto" to DolbyCore.PROFILE_AUTO,
-                "dolby_profile_movie" to DolbyCore.PROFILE_MOVIE,
-                "dolby_profile_music" to DolbyCore.PROFILE_MUSIC,
-                "dolby_profile_voice" to DolbyCore.PROFILE_VOICE,
-                "dolby_profile_game" to DolbyCore.PROFILE_GAME,
-                "dolby_profile_off" to DolbyCore.PROFILE_OFF,
-                "dolby_profile_game_1" to DolbyCore.PROFILE_GAME_1,
-                "dolby_profile_game_2" to DolbyCore.PROFILE_GAME_2,
-                "dolby_profile_spacial_audio" to DolbyCore.PROFILE_SPACIAL_AUDIO,
+            "dolby_profile_auto" to DolbyCore.PROFILE_AUTO,
+            "dolby_profile_movie" to DolbyCore.PROFILE_MOVIE,
+            "dolby_profile_music" to DolbyCore.PROFILE_MUSIC,
+            "dolby_profile_voice" to DolbyCore.PROFILE_VOICE,
+            "dolby_profile_game" to DolbyCore.PROFILE_GAME,
+            "dolby_profile_off" to DolbyCore.PROFILE_OFF,
+            "dolby_profile_game_1" to DolbyCore.PROFILE_GAME_1,
+            "dolby_profile_game_2" to DolbyCore.PROFILE_GAME_2,
+            "dolby_profile_spacial_audio" to DolbyCore.PROFILE_SPACIAL_AUDIO,
         )
     }
 }

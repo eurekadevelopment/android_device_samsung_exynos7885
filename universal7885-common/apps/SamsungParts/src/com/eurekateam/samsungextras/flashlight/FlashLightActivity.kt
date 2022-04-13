@@ -16,10 +16,10 @@
 package com.eurekateam.samsungextras.flashlight
 
 import android.R.id.content
+import android.R.id.home
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.FragmentActivity
-import android.R.id.home
 
 class FlashLightActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

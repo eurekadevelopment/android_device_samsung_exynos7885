@@ -18,9 +18,7 @@ package com.eurekateam.samsungextras.dolby
 
 import android.content.Context
 import android.media.audiofx.AudioEffect
-
 import com.eurekateam.samsungextras.dolby.DolbyFragment.Companion.PREF_DOLBY_MODES
-
 import java.util.UUID
 
 object DolbyCore {
@@ -53,9 +51,11 @@ object DolbyCore {
         val profile = getProfile()
         val resourceName = PREF_DOLBY_MODES.filter { it.value == profile }.keys.first()
 
-        return context.resources.getString(context.resources.getIdentifier(
+        return context.resources.getString(
+            context.resources.getIdentifier(
                 resourceName, "string", context.packageName
-        ))
+            )
+        )
     }
 
     fun setProfile(profile: Int) {

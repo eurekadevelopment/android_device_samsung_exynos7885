@@ -12,18 +12,17 @@ import com.eurekateam.fmradio.R
 import com.eurekateam.fmradio.fragments.MainFragment
 import com.eurekateam.fmradio.utils.FileUtilities
 
-
-class PebbleLayoutAdapter (private val mContext: Context) : BaseAdapter() {
-    private val mFavoriteList : MutableList<Int> = emptyList<Int>().toMutableList()
+class PebbleLayoutAdapter(private val mContext: Context) : BaseAdapter() {
+    private val mFavoriteList: MutableList<Int> = emptyList<Int>().toMutableList()
     init {
-        for (mItem in MainFragment.mFavStats){
-            if (mItem.value){
+        for (mItem in MainFragment.mFavStats) {
+            if (mItem.value) {
                 mFavoriteList.add(mItem.key)
             }
         }
         mFavoriteList.sort()
         var mData = ""
-        for (i in mFavoriteList){
+        for (i in mFavoriteList) {
             mData += "$i\n"
         }
         FileUtilities.writeToFile(FileUtilities.mFavouriteChannelFileName, mData, mContext)
@@ -48,8 +47,10 @@ class PebbleLayoutAdapter (private val mContext: Context) : BaseAdapter() {
             )
         mAnotherConvertView.findViewById<PebbleTextView>(R.id.pebble_textview).apply {
             mText = (mFavoriteList[id].toFloat() / 1000).toString()
-            mColor = ResourcesCompat.getColor(mContext.resources, android.R.color.system_accent1_400,
-                mContext.theme)
+            mColor = ResourcesCompat.getColor(
+                mContext.resources, android.R.color.system_accent1_400,
+                mContext.theme
+            )
             setOnClickListener {
                 mFMInterface.setFMFreq(MainFragment.fd, mFavoriteList[id])
                 MainFragment.mFreqCurrent = mFavoriteList[id]

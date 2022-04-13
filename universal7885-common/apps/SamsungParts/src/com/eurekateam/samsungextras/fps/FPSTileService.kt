@@ -21,7 +21,7 @@ import android.service.quicksettings.TileService
 
 // TODO: Add FPS drawables
 class FPSTileService : TileService() {
-    private lateinit var fpsinfo : Intent
+    private lateinit var fpsinfo: Intent
     private var isShowing = false
     override fun onStartListening() {
         super.onStartListening()

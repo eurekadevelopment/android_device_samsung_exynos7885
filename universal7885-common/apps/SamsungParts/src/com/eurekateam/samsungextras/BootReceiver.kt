@@ -17,25 +17,33 @@ class BootReceiver : BroadcastReceiver() {
     override fun onReceive(p0: Context?, p1: Intent?) {
         val mSharedPreferences = p0?.let { PreferenceManager.getDefaultSharedPreferences(it) }
         if (p1 != null && mSharedPreferences != null) {
-            if (p1.action == Intent.ACTION_BOOT_COMPLETED){
-	    System.loadLibrary("samsungparts_jni")
+            if (p1.action == Intent.ACTION_BOOT_COMPLETED) {
+                System.loadLibrary("samsungparts_jni")
                 // Battery
                 Battery.chargeSysfs = if (mSharedPreferences
-                        .getBoolean(BatteryFragment.PREF_CHARGE, true)) 0 else 1
-                Battery.setFastCharge(if (mSharedPreferences
-                        .getBoolean(BatteryFragment.PREF_FASTCHARGE, true)) 0 else 1)
+                    .getBoolean(BatteryFragment.PREF_CHARGE, true)
+                ) 0 else 1
+                Battery.setFastCharge(
+                    if (mSharedPreferences
+                        .getBoolean(BatteryFragment.PREF_FASTCHARGE, true)
+                    ) 0 else 1
+                )
                 // Dolby
-                DolbyCore.setEnabled(mSharedPreferences
-                    .getBoolean(DolbyFragment.PREF_DOLBY_ENABLE, false))
-                DolbyCore.setProfile(mSharedPreferences
-                    .getInt(DolbyFragment.PREF_DOLBY_PROFILE, 0))
+                DolbyCore.setEnabled(
+                    mSharedPreferences
+                        .getBoolean(DolbyFragment.PREF_DOLBY_ENABLE, false)
+                )
+                DolbyCore.setProfile(
+                    mSharedPreferences
+                        .getInt(DolbyFragment.PREF_DOLBY_PROFILE, 0)
+                )
 
                 // FlashLight
                 Flashlight.setFlash(mSharedPreferences.getInt(FlashLightFragment.PREF_FLASHLIGHT, 5))
 
                 // Display
                 Display.DT2W = mSharedPreferences.getBoolean(DeviceSettings.PREF_DOUBLE_TAP, true)
-                Display.GloveMode  = mSharedPreferences.getBoolean(DeviceSettings.PREF_GLOVE_MODE, false)
+                Display.GloveMode = mSharedPreferences.getBoolean(DeviceSettings.PREF_GLOVE_MODE, false)
                 Log.i("SamsungParts", "Applied settings")
             }
         }

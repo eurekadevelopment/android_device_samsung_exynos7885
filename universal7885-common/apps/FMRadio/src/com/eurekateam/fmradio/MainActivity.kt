@@ -24,9 +24,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.textview.MaterialTextView
 
-
 class MainActivity : AppCompatActivity() {
-    private lateinit var mIntent : Intent
+    private lateinit var mIntent: Intent
 
     /**
      * Function to change current [Fragment] to other [Fragment]
@@ -43,10 +42,10 @@ class MainActivity : AppCompatActivity() {
     }
     private val mFMInterface = NativeFMInterface()
     private lateinit var mAlertView: View
-    private lateinit var mAlertTitle : MaterialTextView
-    private lateinit var mAlertDesc : MaterialTextView
-    private lateinit var mAlertImage : AppCompatImageView
-    private lateinit var mAudioManager : AudioManager
+    private lateinit var mAlertTitle: MaterialTextView
+    private lateinit var mAlertDesc: MaterialTextView
+    private lateinit var mAlertImage: AppCompatImageView
+    private lateinit var mAudioManager: AudioManager
     override fun onCreate(savedInstanceState: Bundle?) {
         System.loadLibrary("fmnative_jni")
         MainFragment.fd = mFMInterface.openFMDevice()
@@ -57,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         mAlertDesc = mAlertView.findViewById(R.id.alert_desc)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation)
-        if (MainFragment.fd == -1){
+        if (MainFragment.fd == -1) {
             Log.e("CANNOT OPEN /dev/radio0!!!")
             mAlertTitle.text = getString(R.string.radio_io_error)
             mAlertDesc.text = getString(R.string.radio_io_error_desc)
@@ -78,19 +77,23 @@ class MainActivity : AppCompatActivity() {
          * @see AudioManager.getDevices
          */
         val mAudioDeviceInfo = mAudioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
-        for (i in mAudioDeviceInfo.indices){
+        for (i in mAudioDeviceInfo.indices) {
             if (mAudioDeviceInfo[i].type == AudioDeviceInfo.TYPE_WIRED_HEADSET ||
-                mAudioDeviceInfo[i].type == AudioDeviceInfo.TYPE_WIRED_HEADPHONES) {
+                mAudioDeviceInfo[i].type == AudioDeviceInfo.TYPE_WIRED_HEADPHONES
+            ) {
                 MainFragment.mHeadSetPlugged = HeadsetState.HEADSET_STATE_CONNECTED
                 Log.i("Wired Headphones detected")
             }
         }
-        if (MainFragment.mHeadSetPlugged != HeadsetState.HEADSET_STATE_CONNECTED){
+        if (MainFragment.mHeadSetPlugged != HeadsetState.HEADSET_STATE_CONNECTED) {
             mAlertTitle.text = getString(R.string.no_headphones_error)
             mAlertDesc.text = getString(R.string.no_headphones_error_desc)
-            mAlertImage.setImageIcon(Icon.createWithResource(mAlertView.context,
-                R.drawable.ic_headphones
-            ))
+            mAlertImage.setImageIcon(
+                Icon.createWithResource(
+                    mAlertView.context,
+                    R.drawable.ic_headphones
+                )
+            )
             AlertDialog.Builder(mAlertView.context)
                 .setCancelable(false)
                 .setView(mAlertView)
@@ -99,7 +102,7 @@ class MainActivity : AppCompatActivity() {
                     v.dismiss()
                     Handler(Looper.getMainLooper()).postDelayed({
                         finish()
-                    },500)
+                    }, 500)
                 }
                 .show()
         }
@@ -111,7 +114,7 @@ class MainActivity : AppCompatActivity() {
         changeFragment(mRadioMainFragment, MainFragment::class.java.name)
         mIntent = Intent(this, FMRadioService::class.java)
         findViewById<BottomNavigationView>(R.id.bottom_nav_bar).setOnItemSelectedListener {
-            when (it.itemId){
+            when (it.itemId) {
                 R.id.radio_main -> changeFragment(mRadioMainFragment, MainFragment::class.java.name)
                 R.id.channel_list -> changeFragment(mRadioChannelListFragment, ChannelListFragment::class.java.name)
                 R.id.fav_list -> changeFragment(mFavouriteFragment, FavouriteFragment::class.java.name)
@@ -128,19 +131,23 @@ class MainActivity : AppCompatActivity() {
             if (intent.action == AudioManager.ACTION_HEADSET_PLUG) {
                 MainFragment.mHeadSetPlugged = HeadsetState.HEADSET_STATE_DISCONNECTED
                 val mAudioDeviceInfo = mAudioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
-                for (i in mAudioDeviceInfo.indices){
+                for (i in mAudioDeviceInfo.indices) {
                     if (mAudioDeviceInfo[i].type == AudioDeviceInfo.TYPE_WIRED_HEADSET ||
-                        mAudioDeviceInfo[i].type == AudioDeviceInfo.TYPE_WIRED_HEADPHONES){
+                        mAudioDeviceInfo[i].type == AudioDeviceInfo.TYPE_WIRED_HEADPHONES
+                    ) {
                         MainFragment.mHeadSetPlugged = HeadsetState.HEADSET_STATE_CONNECTED
                     }
                 }
-                if (MainFragment.mHeadSetPlugged != HeadsetState.HEADSET_STATE_CONNECTED){
+                if (MainFragment.mHeadSetPlugged != HeadsetState.HEADSET_STATE_CONNECTED) {
                     Log.w("onReceive: Headset Unplugged")
                     mAlertTitle.text = getString(R.string.no_headphones_error)
                     mAlertDesc.text = getString(R.string.no_headphones_error_desc)
-                    mAlertImage.setImageIcon(Icon.createWithResource(mAlertView.context,
-                        R.drawable.ic_headphones
-                    ))
+                    mAlertImage.setImageIcon(
+                        Icon.createWithResource(
+                            mAlertView.context,
+                            R.drawable.ic_headphones
+                        )
+                    )
                     val mAlertDialog = AlertDialog.Builder(mAlertView.context)
                     mAlertDialog
                         .setCancelable(false)
@@ -150,7 +157,7 @@ class MainActivity : AppCompatActivity() {
                             mAudioManager.setParameters(PowerState.FM_POWER_OFF.mAudioParam)
                             Handler(Looper.getMainLooper()).postDelayed({
                                 finish()
-                            },500)
+                            }, 500)
                         }
                         .show()
                 }

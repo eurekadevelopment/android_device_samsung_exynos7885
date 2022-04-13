@@ -78,8 +78,11 @@ open class FPSInfoService : Service() {
             val y = mPaddingTop - mAscent.toInt()
             val s = fPSInfoString
             canvas.drawText(
-                s, (LEFT - mPaddingLeft - mMaxWidth).toFloat(), (
-                        y - 1).toFloat(), mOnlinePaint
+                s, (LEFT - mPaddingLeft - mMaxWidth).toFloat(),
+                (
+                    y - 1
+                    ).toFloat(),
+                mOnlinePaint
             )
         }
 
@@ -154,7 +157,7 @@ open class FPSInfoService : Service() {
             WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.TYPE_SECURE_SYSTEM_OVERLAY,
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
-                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
             PixelFormat.TRANSLUCENT
         )
         params.y = 50
@@ -239,11 +242,11 @@ open class FPSInfoService : Service() {
         mCurFPSThread = null
     }
 
-    fun getRunning() : Boolean{
+    fun getRunning(): Boolean {
         return mRunning
     }
     companion object {
         private var surfaceFlingerFPS: SurfaceFlingerFPS? = null
-        private var mRunning : Boolean = false
+        private var mRunning: Boolean = false
     }
 }

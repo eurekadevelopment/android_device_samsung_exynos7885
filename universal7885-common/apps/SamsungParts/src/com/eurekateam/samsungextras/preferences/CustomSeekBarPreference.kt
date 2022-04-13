@@ -34,13 +34,18 @@ import androidx.preference.PreferenceViewHolder
 import androidx.preference.R
 
 open class CustomSeekBarPreference @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = TypedArrayUtils.getAttr(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = TypedArrayUtils.getAttr(
         context,
         R.attr.preferenceStyle,
         android.R.attr.preferenceStyle
-    ), defStyleRes: Int = 0
-) : Preference(context, attrs, defStyleAttr, defStyleRes), OnSeekBarChangeListener,
-    View.OnClickListener, OnLongClickListener {
+    ),
+    defStyleRes: Int = 0
+) : Preference(context, attrs, defStyleAttr, defStyleRes),
+    OnSeekBarChangeListener,
+    View.OnClickListener,
+    OnLongClickListener {
     private val TAG: String = javaClass.name
     private var mInterval = 1
     private var mShowSign = false
@@ -114,8 +119,10 @@ open class CustomSeekBarPreference @JvmOverloads constructor(
             mValueTextView!!.text = context.getString(
                 com.eurekateam.samsungextras.R.string.custom_seekbar_value,
                 if (!mTrackingTouch || mContinuousUpdates) getTextValue(mValue) +
-                        (if (mDefaultValueExists && mValue == mDefaultValue) " (" +
-                                context.getString(com.eurekateam.samsungextras.R.string.custom_seekbar_default_value) + ")" else "") else getTextValue(
+                    (
+                        if (mDefaultValueExists && mValue == mDefaultValue) " (" +
+                            context.getString(com.eurekateam.samsungextras.R.string.custom_seekbar_default_value) + ")" else ""
+                        ) else getTextValue(
                     mTrackingValue
                 )
             )
@@ -215,7 +222,8 @@ open class CustomSeekBarPreference @JvmOverloads constructor(
                     if (mMaxValue - mMinValue > mInterval * 2 && mMaxValue + mMinValue < mValue * 2) Math.floorDiv(
                         mMaxValue + mMinValue,
                         2
-                    ) else mMinValue, true
+                    ) else mMinValue,
+                    true
                 )
             }
             com.eurekateam.samsungextras.R.id.plus -> {
@@ -223,7 +231,8 @@ open class CustomSeekBarPreference @JvmOverloads constructor(
                     if (mMaxValue - mMinValue > mInterval * 2 && mMaxValue + mMinValue > mValue * 2) -1 * Math.floorDiv(
                         -1 * (mMaxValue + mMinValue),
                         2
-                    ) else mMaxValue, true
+                    ) else mMaxValue,
+                    true
                 )
             }
         }

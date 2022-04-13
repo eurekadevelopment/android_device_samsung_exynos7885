@@ -15,6 +15,7 @@
  */
 package com.eurekateam.samsungextras.battery
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.preference.ListPreference
@@ -22,14 +23,13 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import androidx.preference.SwitchPreference
-import android.content.SharedPreferences
 import com.eurekateam.samsungextras.R
 import com.eurekateam.samsungextras.interfaces.Battery
 
 class BatteryFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
     private lateinit var mFastChargePref: SwitchPreference
     private lateinit var mChargePref: SwitchPreference
-    private lateinit var mSharedPreferences : SharedPreferences
+    private lateinit var mSharedPreferences: SharedPreferences
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.battery_settings)
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
@@ -39,7 +39,7 @@ class BatteryFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChang
         mChargePref = findPreference(PREF_CHARGE)!!
         mChargePref.onPreferenceChangeListener = this
         mChargePref.isChecked = mSharedPreferences.getBoolean(PREF_CHARGE, true)
-        val mBatteryInfo : ListPreference = findPreference(BATTERY_INFO)!!
+        val mBatteryInfo: ListPreference = findPreference(BATTERY_INFO)!!
         val items = arrayOf<CharSequence>(
             Battery.getGeneralBatteryStats(1).toString() + " mAh",
             Battery.getGeneralBatteryStats(2).toString() + " %",
