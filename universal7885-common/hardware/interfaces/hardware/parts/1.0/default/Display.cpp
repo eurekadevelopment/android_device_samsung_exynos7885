@@ -27,11 +27,11 @@ Return<void> DisplayConfigs::writeDisplay(parts::V1_0::Number enable,
   } else if (type == Display::GLOVE_MODE) {
     writevalue = "glove_mode";
   }
-
+  writevalue += ",";
   if (enable == Number::ENABLE) {
-    writevalue += ",1";
+    writevalue += "1";
   } else {
-    writevalue += ",0";
+    writevalue += "0";
   }
   file.open("/sys/class/sec/tsp/cmd");
   file << writevalue;
