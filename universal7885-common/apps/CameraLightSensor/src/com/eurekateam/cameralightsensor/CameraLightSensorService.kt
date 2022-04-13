@@ -151,7 +151,8 @@ class CameraLightSensorService : Service() {
                     } catch (e: IllegalStateException) {
                         Log.w(TAG, "onReady: Session is NULL")
                     }
-                    cameraDevice!!.close() session.close()
+                    cameraDevice!!.close()
+	        session.close()
                 } catch (e: Exception) {
                     Log.e(TAG, "Camera is in use")
                     e.printStackTrace()
@@ -301,7 +302,7 @@ class CameraLightSensorService : Service() {
             "AdjustBrightness: OldVal = " + oldbrightness + " NewVal = " +
                 brightness + " Adjusting.."
         )
-        var newbrightness = brightness
+        var newbrightness = 2 * brightness - oldbrightness
         if (newbrightness > 255) {
             newbrightness = 255
         } else if (newbrightness < 0) {
