@@ -10,6 +10,9 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
 # Derp
 DERP_BUILDTYPE := Official
 
+PRODUCT_PACKAGES += \
+    CameraLightSensor
+
 # USB
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.3-service.samsung
