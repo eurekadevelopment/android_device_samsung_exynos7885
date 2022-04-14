@@ -3,7 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/flashlight_title">
 
-    <com.eurekateam.samsungextras.preferences.CustomSeekBarPreference
+    <com.android.settingslib.widget.MainSwitchPreference
+        android:defaultValue="false"
+        android:key="flashlight_enable"
+	android:title="@string/flash_enable_title" />
+
+    <SeekBarPreference
         android:key="flashlight_pref"
         android:title="@string/flashlight_title"
         android:icon="@drawable/ic_led"

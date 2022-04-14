@@ -25,9 +25,11 @@ import androidx.preference.PreferenceManager
 import androidx.preference.SwitchPreference
 import com.eurekateam.samsungextras.R
 import com.eurekateam.samsungextras.interfaces.Battery
+import com.android.settingslib.widget.MainSwitchPreference
+import com.android.settingslib.widget.OnMainSwitchChangeListener
 
-class BatteryFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
-    private lateinit var mFastChargePref: SwitchPreference
+class BatteryFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener, OnMainSwitchChangeListener {
+    private lateinit var mFastChargePref: MainSwitchPreference
     private lateinit var mChargePref: SwitchPreference
     private lateinit var mSharedPreferences: SharedPreferences
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -65,14 +67,14 @@ class BatteryFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChang
             mChargePref.isChecked = Battery.chargeSysfs == 0
             mSharedPreferences.edit().putBoolean(PREF_CHARGE, Battery.chargeSysfs == 0).apply()
             return true
-        } else if (preference === mFastChargePref) {
-            val value = newValue as Boolean
-            Battery.setFastCharge(if (value) 0 else 1)
-            mFastChargePref.isChecked = Battery.fastChargeSysfs == 0
-            mSharedPreferences.edit().putBoolean(PREF_FASTCHARGE, Battery.fastChargeSysfs == 0).apply()
-            return true
         }
         return false
+    }
+    override fun onSwitchChanged(switchView: Switch, isChecked: Boolean) {
+        Battery.setFastCharge(if (isChecked) 0 else 1)
+            mFastChargePref.isChecked = Battery.fastChargeSysfs
+== 0
+            mSharedPreferences.edit().putBoolean(PREF_FASTCHARGE, Battery.fastChargeSysfs == 0).apply()
     }
 
     companion object {

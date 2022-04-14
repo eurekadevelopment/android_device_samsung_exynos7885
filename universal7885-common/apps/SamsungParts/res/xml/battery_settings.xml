@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/fastcharge_title">
 
-    <SwitchPreference
+    <com.android.settingslib.widget.MainSwitchPreference
         android:key="fastcharge_pref"
         android:title="@string/fastcharge_2nd_title"
         android:icon="@drawable/ic_bolt"

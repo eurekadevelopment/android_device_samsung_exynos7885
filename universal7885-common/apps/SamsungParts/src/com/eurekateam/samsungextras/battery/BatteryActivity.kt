@@ -15,30 +15,17 @@
  */
 package com.eurekateam.samsungextras.battery
 
-import android.R.id.content
-import android.R.id.home
 import android.os.Bundle
-import android.view.MenuItem
-import androidx.fragment.app.FragmentActivity
 
-class BatteryActivity : FragmentActivity() {
+import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity
+import com.android.settingslib.collapsingtoolbar.R
+
+class BatteryActivity : CollapsingToolbarBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val fragment = supportFragmentManager.findFragmentById(content)
-        val batteryFragment: BatteryFragment
-        if (fragment == null) {
-            batteryFragment = BatteryFragment()
-            supportFragmentManager.beginTransaction()
-                .add(content, batteryFragment)
-                .commit()
-        }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == home) {
-            finish()
-            return true
-        }
-        return super.onOptionsItemSelected(item)
+        supportFragmentManager.beginTransaction().replace(
+                R.id.content_frame,
+                BatteryFragment()
+        ).commit()
     }
 }

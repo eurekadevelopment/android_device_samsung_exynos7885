@@ -15,30 +15,15 @@
  */
 package com.eurekateam.samsungextras.speaker
 
-import android.R.id.content
-import android.R.id.home
-import android.os.Bundle
-import android.view.MenuItem
-import androidx.fragment.app.FragmentActivity
+import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity
+import com.android.settingslib.collapsingtoolbar.R
 
-class ClearSpeakerActivity : FragmentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+class ClearSpeakerActivity : CollapsingToolbarBaseActivity() {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val fragment = supportFragmentManager.findFragmentById(content)
-        val clearSpeakerFragment: ClearSpeakerFragment
-        if (fragment == null) {
-            clearSpeakerFragment = ClearSpeakerFragment()
-            supportFragmentManager.beginTransaction()
-                .add(content, clearSpeakerFragment)
-                .commit()
-        }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == home) {
-            finish()
-            return true
-        }
-        return super.onOptionsItemSelected(item)
+        supportFragmentManager.beginTransaction().replace(
+                R.id.content_frame,
+                ClearSpeakerFragment()
+        ).commit()
     }
 }
