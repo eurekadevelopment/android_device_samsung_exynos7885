@@ -15,6 +15,7 @@
  */
 package com.eurekateam.samsungextras.speaker
 
+import android.os.Bundle
 import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity
 import com.android.settingslib.collapsingtoolbar.R
 
@@ -22,8 +23,8 @@ class ClearSpeakerActivity : CollapsingToolbarBaseActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportFragmentManager.beginTransaction().replace(
-                R.id.content_frame,
-                ClearSpeakerFragment()
+            R.id.content_frame,
+            ClearSpeakerFragment()
         ).commit()
     }
 }

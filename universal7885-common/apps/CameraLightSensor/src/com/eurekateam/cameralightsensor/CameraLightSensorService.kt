@@ -152,7 +152,7 @@ class CameraLightSensorService : Service() {
                         Log.w(TAG, "onReady: Session is NULL")
                     }
                     cameraDevice!!.close()
-	        session.close()
+                    session.close()
                 } catch (e: Exception) {
                     Log.e(TAG, "Camera is in use")
                     e.printStackTrace()

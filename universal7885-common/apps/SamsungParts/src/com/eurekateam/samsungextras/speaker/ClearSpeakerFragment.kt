@@ -15,16 +15,18 @@
  */
 package com.eurekateam.samsungextras.speaker
 
+import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.widget.Switch
 import androidx.preference.PreferenceFragmentCompat
-import com.eurekateam.samsungextras.R
-import java.io.IOException
 import com.android.settingslib.widget.MainSwitchPreference
 import com.android.settingslib.widget.OnMainSwitchChangeListener
+import com.eurekateam.samsungextras.R
+import java.io.IOException
 
 class ClearSpeakerFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListener {
     private lateinit var mHandler: Handler
@@ -33,18 +35,17 @@ class ClearSpeakerFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListe
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.clear_speaker_settings)
         mClearSpeakerPref = findPreference(PREF_CLEAR_SPEAKER)!!
-        mClearSpeakerPref.onPreferenceChangeListener = this
+        mClearSpeakerPref.addOnSwitchChangeListener(this)
         mHandler = Handler(Looper.getMainLooper())
     }
 
     override fun onSwitchChanged(switchView: Switch, isChecked: Boolean) {
-            if (isChecked) {
-                if (startPlaying()) {
-                    mHandler.removeCallbacksAndMessages(null)
-                    mHandler.postDelayed({ stopPlaying() }, 30000)
-                }
+        if (isChecked) {
+            if (startPlaying()) {
+                mHandler.removeCallbacksAndMessages(null)
+                mHandler.postDelayed({ stopPlaying() }, 30000)
             }
-        return false
+        }
     }
 
     override fun onStop() {

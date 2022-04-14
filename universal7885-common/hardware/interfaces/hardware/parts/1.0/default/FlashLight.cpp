@@ -41,7 +41,7 @@ Return<void> FlashBrightness::setFlashlightEnable(parts::V1_0::Number enable) {
 
 Return<void> FlashBrightness::setFlashlightWritable(parts::V1_0::Value value) {
   std::ofstream file;
-  std::string writevalue = std::to_string((int) value);
+  std::string writevalue = std::to_string((int)value);
   file.open("/sys/class/camera/flash/torch_brightness_lvl");
   file << writevalue;
   file.close();

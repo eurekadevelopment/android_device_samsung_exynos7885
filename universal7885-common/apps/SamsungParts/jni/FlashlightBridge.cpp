@@ -14,7 +14,8 @@ using vendor::eureka::hardware::parts::V1_0::Value;
 static android::sp<IFlashBrightness> service = IFlashBrightness::getService();
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_eurekateam_samsungextras_interfaces_Flashlight_setFlash(JNIEnv *env, __unused jobject obj, jboolean enabled) {
+Java_com_eurekateam_samsungextras_interfaces_Flashlight_setEnabled
+(JNIEnv *env, __unused jobject obj, jboolean enabled) {
 	if (enabled) {
 		service->setFlashlightEnable(Number::ENABLE);
 	} else {

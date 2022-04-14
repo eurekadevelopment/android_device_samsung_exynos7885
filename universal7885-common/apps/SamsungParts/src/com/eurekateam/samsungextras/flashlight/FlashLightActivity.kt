@@ -16,7 +16,6 @@
 package com.eurekateam.samsungextras.flashlight
 
 import android.os.Bundle
-
 import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity
 import com.android.settingslib.collapsingtoolbar.R
 
@@ -24,8 +23,8 @@ class FlashLightActivity : CollapsingToolbarBaseActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportFragmentManager.beginTransaction().replace(
-                R.id.content_frame,
-                FlashLightFragment()
+            R.id.content_frame,
+            FlashLightFragment()
         ).commit()
     }
 }

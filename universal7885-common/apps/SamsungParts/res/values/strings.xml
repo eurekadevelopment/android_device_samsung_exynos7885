@@ -17,7 +17,8 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="advanced_settings">SamsungParts</string>
     <string name="advanced_settings_summary">Device specific tweaks</string>
-
+    <string name="not_shown">Not shown due to user settings</string>
+    <string name="show_data">Show the battery data</string>
     <!-- Display category -->
     <string name="display_category">Display</string>
     <!-- FPS Info -->
@@ -26,7 +27,7 @@
 
     <!-- Speaker category -->
     <string name="speaker_category">Audio</string>
-
+    <string name="flash_enable_title">Enable Eureka flash control feature</string>
     <!-- Clear Speaker -->
     <string name="clear_speaker_title">Clear speaker</string>
     <string name="clear_speaker_summary">Play a 30-second audio to clear the speaker</string>
@@ -94,11 +95,4 @@
 
     <!-- Label for feature switch -->
     <string name="switch_bar_off">Off</string>
-
-    <!-- Custom seekbar -->
-    <string name="custom_seekbar_value">Value: <xliff:g id="v">%s</xliff:g></string>
-    <string name="custom_seekbar_default_value">Default</string>
-    <string name="custom_seekbar_default_value_to_set">Default value: <xliff:g id="v">%s</xliff:g>\nLong press to set</string>
-    <string name="custom_seekbar_default_value_is_set">Default value is set</string>
-
 </resources>

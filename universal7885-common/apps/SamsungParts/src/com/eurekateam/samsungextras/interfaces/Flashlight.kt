@@ -19,5 +19,4 @@ package com.eurekateam.samsungextras.interfaces
 object Flashlight {
     external fun setFlash(value: Int)
     external fun getFlash(isA10: Int): Int
-    external fun setEnabled(enable: Boolean) 
-}
+    external fun setEnabled(enable: Boolean) }
