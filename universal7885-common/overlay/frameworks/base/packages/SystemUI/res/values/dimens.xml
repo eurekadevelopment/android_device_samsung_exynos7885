@@ -16,10 +16,10 @@
 */
 -->
 <resources>
-    <dimen name="status_bar_padding_start">8.0dip</dimen>
-    <dimen name="status_bar_padding_end">8.0dip</dimen>
-    <dimen name="status_bar_padding_top">1.0dip</dimen>
-    <dimen name="rounded_corner_content_padding">23.0dip</dimen>
-    <dimen name="rounded_corner_radius_top">29.0dip</dimen>
-    <dimen name="rounded_corner_radius_top_adjustment">29.0px</dimen>
+  <dimen name="status_bar_padding_start">8.0dip</dimen>
+  <dimen name="status_bar_padding_end">8.0dip</dimen>
+  <dimen name="status_bar_padding_top">1.0dip</dimen>
+  <dimen name="rounded_corner_content_padding">23.0dip</dimen>
+  <dimen name="rounded_corner_radius_top">29.0dip</dimen>
+  <dimen name="rounded_corner_radius_top_adjustment">29.0px</dimen>
 </resources>
