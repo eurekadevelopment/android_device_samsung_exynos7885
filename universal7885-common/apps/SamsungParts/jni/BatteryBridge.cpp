@@ -10,6 +10,15 @@ using vendor::eureka::hardware::parts::V1_0::IBatteryStats;
 using vendor::eureka::hardware::parts::V1_0::Number;
 using vendor::eureka::hardware::parts::V1_0::SysfsType;
 
+enum {
+   BATTERY_CAPACITY_MAX = 1,
+   BATTERY_CAPACITY_CURRENT,
+   BATTERY_CAPACITY_CURRENT_MAH,
+   CHARGING_STATE,
+   BATTERY_TEMP,
+   BATTERY_CURRENT = 6
+};
+
 static android::sp<IBatteryStats> service = IBatteryStats::getService();
 extern "C" JNIEXPORT void JNICALL
 Java_com_eurekateam_samsungextras_interfaces_Battery_setChargeSysfs(
@@ -46,39 +55,29 @@ Java_com_eurekateam_samsungextras_interfaces_Battery_getFastChargeSysfs(
 extern "C" JNIEXPORT jint JNICALL
 Java_com_eurekateam_samsungextras_interfaces_Battery_getGeneralBatteryStats(
     JNIEnv *env, __unused jobject obj, jint id) {
-  /**
-   * id:
-   * 1 = BATTERY_CAPACITY_MAX
-   * 2 = BATTERY_CAPACITY_CURRENT (%)
-   * 3 = BATTERY_CAPACITY_CURRENT (mAh)
-   * 4 = CHARGING_STATE
-   * 5 = BATTERY_TEMP
-   * 6 = BATTERY_CURRENT
-   */
-
   int ret;
   switch (id) {
-  case 1:
+  case BATTERY_CAPACITY_MAX:
     ret = service->getBatteryStats(SysfsType::CAPACITY_MAX) / 1000;
     break;
-  case 2:
+  case BATTERY_CAPACITY_CURRENT:
     ret = service->getBatteryStats(SysfsType::CAPACITY_CURRENT);
     break;
-  case 3:
+  case BATTERY_CAPACITY_CURRENT_MAH:
     ret = (float)service->getBatteryStats(SysfsType::CAPACITY_CURRENT) *
           (float)service->getBatteryStats(SysfsType::CAPACITY_MAX) / 100000;
     break;
-  case 4:
+  case CHARGING_STATE:
     if (service->getBatteryStats(SysfsType::CURRENT) > 0) {
       ret = 1;
     } else {
       ret = 0;
     }
     break;
-  case 5:
+  case BATTERY_TEMP:
     ret = service->getBatteryStats(SysfsType::TEMP) / 10;
     break;
-  case 6:
+  case BATTERY_CURRENT:
     ret = service->getBatteryStats(SysfsType::CURRENT);
     break;
   default:
