@@ -1,4 +1,5 @@
+<?xml version="1.0"?>
 <compatibility-matrix version="1.0" type="framework" level="3">
-    <kernel version="4.4.302" level="3">
+  <kernel version="4.4.302" level="3">
     </kernel>
 </compatibility-matrix>

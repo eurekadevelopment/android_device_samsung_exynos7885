@@ -1,103 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="config_screenBrightnessSettingMinimum">1</integer>
-    <integer name="config_screenBrightnessSettingDefault">128</integer>
-    <integer name="config_screenBrightnessDim">10</integer>
-    <string-array name="config_mobile_tcp_buffers">
-        <item>lte:1048576,3145728,4194304,524288,1572864,2097152</item>
-    </string-array>
-    <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
-    <bool name="config_enableAutoPowerModes">true</bool>
-    <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">true</bool>
-    <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
-    <integer name="config_screenBrightnessDoze">20</integer>
-    <!-- The device supports freeform window management. Windows have title bars and can be moved
+  <integer name="config_screenBrightnessSettingMinimum">1</integer>
+  <integer name="config_screenBrightnessSettingDefault">128</integer>
+  <integer name="config_screenBrightnessDim">10</integer>
+  <string-array name="config_mobile_tcp_buffers">
+    <item>lte:1048576,3145728,4194304,524288,1572864,2097152</item>
+  </string-array>
+  <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
+  <bool name="config_enableAutoPowerModes">true</bool>
+  <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">true</bool>
+  <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
+  <integer name="config_screenBrightnessDoze">20</integer>
+  <!-- The device supports freeform window management. Windows have title bars and can be moved
          and resized. If you set this to true, you also need to add
          PackageManager.FEATURE_FREEFORM_WINDOW_MANAGEMENT feature to your device specification.
          The duplication is necessary, because this information is used before the features are
          available to the system.-->
-    <bool name="config_freeformWindowManagement">true</bool>
-    <string-array translatable="false" name="config_defaultPinnerServiceFiles">
-        <item>"/system/framework/framework.jar"</item>
-        <item>"/system/framework/services.jar"</item>
-        <item>"/apex/com.android.art/javalib/core-oj.jar"</item>
-        <item>"/apex/com.android.art/javalib/core-libart.jar"</item>
-        <item>"/apex/com.android.media/javalib/updatable-media.jar"</item>
-        <item>"/system_ext/priv-app/SystemUI/SystemUI.apk"</item>
-        <item>"/system/bin/surfaceflinger"</item>
-    </string-array>
-    <string-array translatable="false" name="config_jitzygoteBootImagePinnerServiceFiles">
-        <item>"/system/framework/framework.jar"</item>
-        <item>"/system/framework/services.jar"</item>
-        <item>"/apex/com.android.art/javalib/core-oj.jar"</item>
-        <item>"/apex/com.android.art/javalib/core-libart.jar"</item>
-        <item>"/apex/com.android.media/javalib/updatable-media.jar"</item>
-        <item>"/system_ext/priv-app/SystemUI/SystemUI.apk"</item>
-        <item>"/system/bin/surfaceflinger"</item>
-    </string-array>
-    <string name="config_radio_access_family">GSM|CDMA|EVDO|WCDMA|LTE</string>
-    <fraction name="config_screenAutoBrightnessDozeScaleFactor">100.0%</fraction>
-    <string name="db_default_journal_mode" translatable="false">MEMORY</string>
-    <string name="db_default_sync_mode" translatable="false">OFF</string>
-    <string name="db_wal_sync_mode" translatable="false">OFF</string>
-    
-    <!-- Whether Hearing Aid profile is supported -->
-    <bool name="config_hearing_aid_profile_supported">true</bool>
-
-    <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
-    
-    <bool name="config_showNavigationBar">true</bool>
-    
-    <!-- The max scale for the wallpaper when it's zoomed in -->
-    <item name="config_wallpaperMaxScale" format="float" type="dimen">1.00</item>
-
-    <!-- Enable system navigation keys. -->
-    <bool name="config_supportSystemNavigationKeys">true</bool>
-    <!-- If this is true, the screen will come on when you unplug usb/power/whatever. -->
-    <bool name="config_unplugTurnsOnScreen">true</bool>
-
-    <!-- Control the behavior when the user long presses the power button.
+  <bool name="config_freeformWindowManagement">true</bool>
+  <string-array translatable="false" name="config_defaultPinnerServiceFiles">
+    <item>"/system/framework/framework.jar"</item>
+    <item>"/system/framework/services.jar"</item>
+    <item>"/apex/com.android.art/javalib/core-oj.jar"</item>
+    <item>"/apex/com.android.art/javalib/core-libart.jar"</item>
+    <item>"/apex/com.android.media/javalib/updatable-media.jar"</item>
+    <item>"/system_ext/priv-app/SystemUI/SystemUI.apk"</item>
+    <item>"/system/bin/surfaceflinger"</item>
+  </string-array>
+  <string-array translatable="false" name="config_jitzygoteBootImagePinnerServiceFiles">
+    <item>"/system/framework/framework.jar"</item>
+    <item>"/system/framework/services.jar"</item>
+    <item>"/apex/com.android.art/javalib/core-oj.jar"</item>
+    <item>"/apex/com.android.art/javalib/core-libart.jar"</item>
+    <item>"/apex/com.android.media/javalib/updatable-media.jar"</item>
+    <item>"/system_ext/priv-app/SystemUI/SystemUI.apk"</item>
+    <item>"/system/bin/surfaceflinger"</item>
+  </string-array>
+  <string name="config_radio_access_family">GSM|CDMA|EVDO|WCDMA|LTE</string>
+  <fraction name="config_screenAutoBrightnessDozeScaleFactor">100.0%</fraction>
+  <string name="db_default_journal_mode" translatable="false">MEMORY</string>
+  <string name="db_default_sync_mode" translatable="false">OFF</string>
+  <string name="db_wal_sync_mode" translatable="false">OFF</string>
+  <!-- Whether Hearing Aid profile is supported -->
+  <bool name="config_hearing_aid_profile_supported">true</bool>
+  <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
+  <bool name="config_showNavigationBar">true</bool>
+  <!-- The max scale for the wallpaper when it's zoomed in -->
+  <item name="config_wallpaperMaxScale" format="float" type="dimen">1.00</item>
+  <!-- Enable system navigation keys. -->
+  <bool name="config_supportSystemNavigationKeys">true</bool>
+  <!-- If this is true, the screen will come on when you unplug usb/power/whatever. -->
+  <bool name="config_unplugTurnsOnScreen">true</bool>
+  <!-- Control the behavior when the user long presses the power button.
 	    0 - Nothing
                 1 - Global actions menu
                 2 - Power off (with confirmation)
                 3 - Power off (without confirmation)
                 4 - Go to voice assist
                 5 - Go to assistant (Settings.Secure.ASSISTANT)	        -->
-    <integer name="config_longPressOnPowerBehavior">1</integer>
-
-    <!-- Shutdown if the battery temperature exceeds (this value * 0.1) Celsius. -->
-     <integer name="config_shutdownBatteryTemperature">600</integer>
-     
-    <!-- Enable Zram writeback feature to allow unused pages in zram be written to flash. -->
-    <bool name="config_zramWriteback">true</bool>
-    
-    <!-- From Stock framework-res.apk: -->
-    <bool name="config_setColorTransformAccelerated">true</bool>
-    <bool name="config_enableNightMode">true</bool>
-    <bool name="config_pinnerAssistantApp">false</bool>
-    <bool name="config_pinnerCameraApp">false</bool>
-    <bool name="config_pinnerHomeApp">false</bool>
-    
-    <!-- List of comma separated package names for 
+  <integer name="config_longPressOnPowerBehavior">1</integer>
+  <!-- Shutdown if the battery temperature exceeds (this value * 0.1) Celsius. -->
+  <integer name="config_shutdownBatteryTemperature">600</integer>
+  <!-- Enable Zram writeback feature to allow unused pages in zram be written to flash. -->
+  <bool name="config_zramWriteback">true</bool>
+  <!-- From Stock framework-res.apk: -->
+  <bool name="config_setColorTransformAccelerated">true</bool>
+  <bool name="config_enableNightMode">true</bool>
+  <bool name="config_pinnerAssistantApp">false</bool>
+  <bool name="config_pinnerCameraApp">false</bool>
+  <bool name="config_pinnerHomeApp">false</bool>
+  <!-- List of comma separated package names for 
          which we the system will not show crash, ANR,
-         etc. dialogs. --> 
-    <string name="config_appsNotReportingCrashes">com.google.android.tts</string>
-
-    <!-- Vibrator pattern for a very short but reliable vibration for soft keyboard tap -->
-    <integer-array name="config_keyboardTapVibePattern">
-        <item>10</item>
-    </integer-array>
-
-    <!-- The list of components which should be automatically disabled for a specific device. -->
-    <string-array name="config_deviceDisabledComponents" translatable="false">
-        <item>com.google.android.gms/com.google.android.gms.nearby.discovery.service.DiscoveryService</item>
-        <item>com.google.android.gms/com.google.android.gms.nearby.messages.service.NearbyMessagesService</item>
-    </string-array>
-
-    <!-- If this is true, device supports Sustained Performance Mode. -->
-    <bool name="config_sustainedPerformanceModeSupported">true</bool>
-
-    <!-- A path similar to frameworks/base/core/res/res/values/config.xml
+         etc. dialogs. -->
+  <string name="config_appsNotReportingCrashes">com.google.android.tts</string>
+  <!-- Vibrator pattern for a very short but reliable vibration for soft keyboard tap -->
+  <integer-array name="config_keyboardTapVibePattern">
+    <item>10</item>
+  </integer-array>
+  <!-- The list of components which should be automatically disabled for a specific device. -->
+  <string-array name="config_deviceDisabledComponents" translatable="false">
+    <item>com.google.android.gms/com.google.android.gms.nearby.discovery.service.DiscoveryService</item>
+    <item>com.google.android.gms/com.google.android.gms.nearby.messages.service.NearbyMessagesService</item>
+  </string-array>
+  <!-- If this is true, device supports Sustained Performance Mode. -->
+  <bool name="config_sustainedPerformanceModeSupported">true</bool>
+  <!-- A path similar to frameworks/base/core/res/res/values/config.xml
       config_mainBuiltInDisplayCutout that describes a path larger than the exact path of a display
       cutout. If present as well as config_enableDisplayCutoutProtection is set to true, then
       SystemUI will draw this "protection path" instead of the display cutout path that is normally
@@ -105,15 +91,12 @@
       This path will only be drawn when the front-facing camera turns on, otherwise the main
       DisplayCutout path will be rendered
        -->
-    <string translatable="false" name="config_frontBuiltInDisplayCutoutProtection">M 500 52 a 37 37 0 1 0 82 0 a 37 37 0 1 0 -82 0 Z</string>
-
-    <!--  ID for the camera that needs extra protection -->
-    <string translatable="false" name="config_protectedCameraId">1</string>
-
-    <!--  Flag to turn on the rendering of the above path or not  -->
-    <bool name="config_enableDisplayCutoutProtection">true</bool>
-
-    <!-- Whether WiFi display is supported by this device.
+  <string translatable="false" name="config_frontBuiltInDisplayCutoutProtection">M 500 52 a 37 37 0 1 0 82 0 a 37 37 0 1 0 -82 0 Z</string>
+  <!--  ID for the camera that needs extra protection -->
+  <string translatable="false" name="config_protectedCameraId">1</string>
+  <!--  Flag to turn on the rendering of the above path or not  -->
+  <bool name="config_enableDisplayCutoutProtection">true</bool>
+  <!-- Whether WiFi display is supported by this device.
          There are many prerequisites for this feature to work correctly.
          Here are a few of them:
          * The WiFi radio must support WiFi P2P.
@@ -125,690 +108,676 @@
          * The remote submix module "audio.r_submix.default" must be installed on the device.
          * The device must be provisioned with HDCP keys (for protected content).
     -->
-    <bool name="config_enableWifiDisplay">true</bool>
-    
-    <!-- Vibrator pattern for feedback about a long screen/key press -->
-    <integer-array name="config_longPressVibePattern">
-        <item>0</item>
-        <item>12</item>
-        <item>7</item>
-    </integer-array>
-    
-    <!-- Vibrator pattern for feedback about touching a virtual key -->
-    <integer-array name="config_virtualKeyVibePattern">
-        <item>0</item>
-        <item>12</item>
-        <item>7</item>
-    </integer-array>
-    
-    <!-- Whether or not the device is capable of multiple levels of vibration intensity.
+  <bool name="config_enableWifiDisplay">true</bool>
+  <!-- Vibrator pattern for feedback about a long screen/key press -->
+  <integer-array name="config_longPressVibePattern">
+    <item>0</item>
+    <item>12</item>
+    <item>7</item>
+  </integer-array>
+  <!-- Vibrator pattern for feedback about touching a virtual key -->
+  <integer-array name="config_virtualKeyVibePattern">
+    <item>0</item>
+    <item>12</item>
+    <item>7</item>
+  </integer-array>
+  <!-- Whether or not the device is capable of multiple levels of vibration intensity.
          Note that this is different from whether it can control the vibration amplitude as some
          devices will be able to vary their amplitude but do not possess enough dynamic range to
          have distinct intensity levels -->
-    <bool name="config_vibration_supports_multiple_intensities">true</bool>
-    
-    <!-- If true, the screen can be rotated via the accelerometer in all 4
+  <bool name="config_vibration_supports_multiple_intensities">true</bool>
+  <!-- If true, the screen can be rotated via the accelerometer in all 4
          rotations as the default behavior. -->
-     <bool name="config_allowAllRotations">true</bool>
-   
-     <!-- Flag indicating whether we should enable the adaptive sleep.-->
-    <bool name="config_adaptive_sleep_available">true</bool>
-    
-    <!-- the number of the max cached processes in the system. -->
-    <integer name="config_customizedMaxCachedProcesses">48</integer>
-    
-    <!-- Boolean indicating if current platform supports BLE peripheral mode -->
-    <bool name="config_bluetooth_le_peripheral_mode_supported">true</bool>
-
-    <!-- Flag indicating whether round icons should be parsed from the application manifest. -->
-    <bool name="config_useRoundIcon">true</bool>
-
-   <!-- Paths to the libraries that contain device specific key handlers -->
-    <string-array name="config_deviceKeyHandlerLibs" translatable="false">
-        <item>/system/framework/keyhandler.jar</item>
-    </string-array>
-
-    <!-- Names of the key handler classes -->
-    <string-array name="config_deviceKeyHandlerClasses" translatable="false">
-        <item>com.eurekateam.keyhandler.KeyHandler</item>
-    </string-array>
-
-     <!-- Maximum number of supported users -->
-    <bool name="config_enableMultiUserUI">true</bool>
-    <integer name="config_multiuserMaximumUsers">3</integer>
-
-    <!-- Flag indicating whether the surface flinger has limited
+  <bool name="config_allowAllRotations">true</bool>
+  <!-- Flag indicating whether we should enable the adaptive sleep.-->
+  <bool name="config_adaptive_sleep_available">true</bool>
+  <!-- the number of the max cached processes in the system. -->
+  <integer name="config_customizedMaxCachedProcesses">48</integer>
+  <!-- Boolean indicating if current platform supports BLE peripheral mode -->
+  <bool name="config_bluetooth_le_peripheral_mode_supported">true</bool>
+  <!-- Flag indicating whether round icons should be parsed from the application manifest. -->
+  <bool name="config_useRoundIcon">true</bool>
+  <!-- Paths to the libraries that contain device specific key handlers -->
+  <string-array name="config_deviceKeyHandlerLibs" translatable="false">
+    <item>/system/framework/keyhandler.jar</item>
+  </string-array>
+  <!-- Names of the key handler classes -->
+  <string-array name="config_deviceKeyHandlerClasses" translatable="false">
+    <item>com.eurekateam.keyhandler.KeyHandler</item>
+  </string-array>
+  <!-- Maximum number of supported users -->
+  <bool name="config_enableMultiUserUI">true</bool>
+  <integer name="config_multiuserMaximumUsers">3</integer>
+  <!-- Flag indicating whether the surface flinger has limited
          alpha compositing functionality in hardware.  If set, the window
          manager will disable alpha trasformation in animations where not
          strictly needed. -->
-    <bool name="config_sf_limitedAlpha">true</bool>
-
-    <!-- Enables or disables fading edges when marquee is enabled in TextView.
+  <bool name="config_sf_limitedAlpha">true</bool>
+  <!-- Enables or disables fading edges when marquee is enabled in TextView.
          Off by default, since the framebuffer readback used to implement the
          fading edges is prohibitively expensive on most GPUs. -->
-    <bool name="config_ui_enableFadingMarquee">true</bool>
-    
-    <bool name="config_automatic_brightness_available">true</bool>
-    <integer name="config_autoBrightnessBrighteningLightDebounce">2000</integer>
-    <integer name="config_autoBrightnessDarkeningLightDebounce">4000</integer>
-    <integer-array name="config_autoBrightnessDisplayValuesNits">
-        <item>10</item>
-        <item>11</item>
-        <item>15</item>
-        <item>17</item>
-        <item>19</item>
-        <item>25</item>
-        <item>30</item>
-        <item>34</item>
-        <item>38</item>
-        <item>44</item>
-        <item>49</item>
-        <item>67</item>
-        <item>82</item>
-        <item>90</item>
-        <item>102</item>
-        <item>108</item>
-        <item>148</item>
-        <item>183</item>
-        <item>247</item>
-        <item>304</item>
-        <item>350</item>
-        <item>391</item>
-        <item>420</item>
-        <item>420</item>
-        <item>450</item>
-        <item>500</item>
-        <item>550</item>
-        <item>575</item>
-        <item>600</item>
-    </integer-array>
-    <!-- Array of output values for LCD backlight corresponding to the lux values
+  <bool name="config_ui_enableFadingMarquee">true</bool>
+  <bool name="config_automatic_brightness_available">true</bool>
+  <integer name="config_autoBrightnessBrighteningLightDebounce">2000</integer>
+  <integer name="config_autoBrightnessDarkeningLightDebounce">4000</integer>
+  <integer-array name="config_autoBrightnessDisplayValuesNits">
+    <item>10</item>
+    <item>11</item>
+    <item>15</item>
+    <item>17</item>
+    <item>19</item>
+    <item>25</item>
+    <item>30</item>
+    <item>34</item>
+    <item>38</item>
+    <item>44</item>
+    <item>49</item>
+    <item>67</item>
+    <item>82</item>
+    <item>90</item>
+    <item>102</item>
+    <item>108</item>
+    <item>148</item>
+    <item>183</item>
+    <item>247</item>
+    <item>304</item>
+    <item>350</item>
+    <item>391</item>
+    <item>420</item>
+    <item>420</item>
+    <item>450</item>
+    <item>500</item>
+    <item>550</item>
+    <item>575</item>
+    <item>600</item>
+  </integer-array>
+  <!-- Array of output values for LCD backlight corresponding to the lux values
          in the config_autoBrightnessLevels array.  This array should have size one greater
          than the size of the config_autoBrightnessLevels array.
          The brightness values must be between 0 and 255 and be non-decreasing.
          This must be overridden in platform specific overlays -->
-    <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>22</item>
-        <item>25</item>
-        <item>28</item>
-        <item>33</item>
-        <item>35</item>
-        <item>37</item>
-        <item>49</item>
-        <item>64</item>
-        <item>64</item>
-        <item>65</item>
-        <item>67</item>
-        <item>72</item>
-        <item>98</item>
-        <item>145</item>
-        <item>145</item>
-        <item>163</item>
-        <item>163</item>
-        <item>172</item>
-        <item>172</item>
-        <item>181</item>
-        <item>181</item>
-        <item>191</item>
-        <item>191</item>
-        <item>200</item>
-        <item>200</item>
-        <item>209</item>
-        <item>209</item>
-        <item>218</item>
-        <item>218</item>
-        <item>227</item>
-        <item>227</item>
-        <item>236</item>
-        <item>236</item>
-        <item>245</item>
-        <item>245</item>
-        <item>255</item>
-    </integer-array>
-    <integer-array name="config_autoBrightnessLevels">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>15</item>
-        <item>20</item>
-        <item>25</item>
-        <item>50</item>
-        <item>100</item>
-        <item>300</item>
-        <item>500</item>
-        <item>1000</item>
-        <item>1500</item>
-        <item>2000</item>
-        <item>3000</item>
-        <item>4000</item>
-        <item>4999</item>
-        <item>5000</item>
-        <item>10000</item>
-        <item>20000</item>
-        <item>30000</item>
-        <item>40000</item>
-    </integer-array>
-    <integer-array name="config_screenBrightnessBacklight">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
-        <item>13</item>
-        <item>14</item>
-        <item>15</item>
-        <item>16</item>
-        <item>17</item>
-        <item>18</item>
-        <item>19</item>
-        <item>20</item>
-        <item>21</item>
-        <item>22</item>
-        <item>23</item>
-        <item>24</item>
-        <item>25</item>
-        <item>26</item>
-        <item>27</item>
-        <item>28</item>
-        <item>29</item>
-        <item>30</item>
-        <item>31</item>
-        <item>32</item>
-        <item>33</item>
-        <item>34</item>
-        <item>35</item>
-        <item>36</item>
-        <item>37</item>
-        <item>38</item>
-        <item>39</item>
-        <item>40</item>
-        <item>41</item>
-        <item>42</item>
-        <item>43</item>
-        <item>44</item>
-        <item>45</item>
-        <item>46</item>
-        <item>47</item>
-        <item>48</item>
-        <item>49</item>
-        <item>50</item>
-        <item>51</item>
-        <item>52</item>
-        <item>53</item>
-        <item>54</item>
-        <item>55</item>
-        <item>56</item>
-        <item>57</item>
-        <item>58</item>
-        <item>59</item>
-        <item>60</item>
-        <item>61</item>
-        <item>62</item>
-        <item>63</item>
-        <item>64</item>
-        <item>65</item>
-        <item>66</item>
-        <item>67</item>
-        <item>68</item>
-        <item>69</item>
-        <item>70</item>
-        <item>71</item>
-        <item>72</item>
-        <item>73</item>
-        <item>74</item>
-        <item>75</item>
-        <item>76</item>
-        <item>77</item>
-        <item>78</item>
-        <item>79</item>
-        <item>80</item>
-        <item>81</item>
-        <item>82</item>
-        <item>83</item>
-        <item>84</item>
-        <item>85</item>
-        <item>86</item>
-        <item>87</item>
-        <item>88</item>
-        <item>89</item>
-        <item>90</item>
-        <item>91</item>
-        <item>92</item>
-        <item>93</item>
-        <item>94</item>
-        <item>95</item>
-        <item>96</item>
-        <item>97</item>
-        <item>98</item>
-        <item>99</item>
-        <item>100</item>
-        <item>101</item>
-        <item>102</item>
-        <item>103</item>
-        <item>104</item>
-        <item>105</item>
-        <item>106</item>
-        <item>107</item>
-        <item>108</item>
-        <item>109</item>
-        <item>110</item>
-        <item>111</item>
-        <item>112</item>
-        <item>113</item>
-        <item>114</item>
-        <item>115</item>
-        <item>116</item>
-        <item>117</item>
-        <item>118</item>
-        <item>119</item>
-        <item>120</item>
-        <item>121</item>
-        <item>122</item>
-        <item>123</item>
-        <item>124</item>
-        <item>125</item>
-        <item>126</item>
-        <item>127</item>
-        <item>128</item>
-        <item>129</item>
-        <item>130</item>
-        <item>131</item>
-        <item>132</item>
-        <item>133</item>
-        <item>134</item>
-        <item>135</item>
-        <item>136</item>
-        <item>137</item>
-        <item>138</item>
-        <item>139</item>
-        <item>140</item>
-        <item>141</item>
-        <item>142</item>
-        <item>143</item>
-        <item>144</item>
-        <item>145</item>
-        <item>146</item>
-        <item>147</item>
-        <item>148</item>
-        <item>149</item>
-        <item>150</item>
-        <item>151</item>
-        <item>152</item>
-        <item>153</item>
-        <item>154</item>
-        <item>155</item>
-        <item>156</item>
-        <item>157</item>
-        <item>158</item>
-        <item>159</item>
-        <item>160</item>
-        <item>161</item>
-        <item>162</item>
-        <item>163</item>
-        <item>164</item>
-        <item>165</item>
-        <item>166</item>
-        <item>167</item>
-        <item>168</item>
-        <item>169</item>
-        <item>170</item>
-        <item>171</item>
-        <item>172</item>
-        <item>173</item>
-        <item>174</item>
-        <item>175</item>
-        <item>176</item>
-        <item>177</item>
-        <item>178</item>
-        <item>179</item>
-        <item>180</item>
-        <item>181</item>
-        <item>182</item>
-        <item>183</item>
-        <item>184</item>
-        <item>185</item>
-        <item>186</item>
-        <item>187</item>
-        <item>188</item>
-        <item>189</item>
-        <item>190</item>
-        <item>191</item>
-        <item>192</item>
-        <item>193</item>
-        <item>194</item>
-        <item>195</item>
-        <item>196</item>
-        <item>197</item>
-        <item>198</item>
-        <item>199</item>
-        <item>200</item>
-        <item>201</item>
-        <item>202</item>
-        <item>203</item>
-        <item>204</item>
-        <item>205</item>
-        <item>206</item>
-        <item>207</item>
-        <item>208</item>
-        <item>209</item>
-        <item>210</item>
-        <item>211</item>
-        <item>212</item>
-        <item>213</item>
-        <item>214</item>
-        <item>215</item>
-        <item>216</item>
-        <item>217</item>
-        <item>218</item>
-        <item>219</item>
-        <item>220</item>
-        <item>221</item>
-        <item>222</item>
-        <item>223</item>
-        <item>224</item>
-        <item>225</item>
-        <item>226</item>
-        <item>227</item>
-        <item>228</item>
-        <item>229</item>
-        <item>230</item>
-        <item>231</item>
-        <item>232</item>
-        <item>233</item>
-        <item>234</item>
-        <item>235</item>
-        <item>236</item>
-        <item>237</item>
-        <item>238</item>
-        <item>239</item>
-        <item>240</item>
-        <item>241</item>
-        <item>242</item>
-        <item>243</item>
-        <item>244</item>
-        <item>245</item>
-        <item>246</item>
-        <item>247</item>
-        <item>248</item>
-        <item>249</item>
-        <item>250</item>
-        <item>251</item>
-        <item>252</item>
-        <item>253</item>
-        <item>254</item>
-        <item>255</item>
-    </integer-array>
-    <integer-array name="config_screenBrightnessNits">
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>12</item>
-        <item>13</item>
-        <item>14</item>
-        <item>15</item>
-        <item>16</item>
-        <item>18</item>
-        <item>19</item>
-        <item>20</item>
-        <item>22</item>
-        <item>24</item>
-        <item>25</item>
-        <item>26</item>
-        <item>28</item>
-        <item>29</item>
-        <item>31</item>
-        <item>32</item>
-        <item>34</item>
-        <item>35</item>
-        <item>36</item>
-        <item>38</item>
-        <item>39</item>
-        <item>41</item>
-        <item>42</item>
-        <item>44</item>
-        <item>45</item>
-        <item>46</item>
-        <item>48</item>
-        <item>49</item>
-        <item>51</item>
-        <item>52</item>
-        <item>54</item>
-        <item>55</item>
-        <item>57</item>
-        <item>58</item>
-        <item>60</item>
-        <item>61</item>
-        <item>62</item>
-        <item>64</item>
-        <item>65</item>
-        <item>67</item>
-        <item>68</item>
-        <item>70</item>
-        <item>71</item>
-        <item>72</item>
-        <item>74</item>
-        <item>75</item>
-        <item>77</item>
-        <item>78</item>
-        <item>80</item>
-        <item>81</item>
-        <item>83</item>
-        <item>84</item>
-        <item>86</item>
-        <item>87</item>
-        <item>88</item>
-        <item>90</item>
-        <item>91</item>
-        <item>93</item>
-        <item>94</item>
-        <item>95</item>
-        <item>97</item>
-        <item>98</item>
-        <item>100</item>
-        <item>101</item>
-        <item>103</item>
-        <item>104</item>
-        <item>105</item>
-        <item>107</item>
-        <item>109</item>
-        <item>110</item>
-        <item>111</item>
-        <item>113</item>
-        <item>114</item>
-        <item>116</item>
-        <item>117</item>
-        <item>119</item>
-        <item>120</item>
-        <item>121</item>
-        <item>123</item>
-        <item>124</item>
-        <item>126</item>
-        <item>127</item>
-        <item>129</item>
-        <item>130</item>
-        <item>131</item>
-        <item>133</item>
-        <item>135</item>
-        <item>136</item>
-        <item>137</item>
-        <item>139</item>
-        <item>140</item>
-        <item>142</item>
-        <item>143</item>
-        <item>145</item>
-        <item>146</item>
-        <item>147</item>
-        <item>149</item>
-        <item>150</item>
-        <item>152</item>
-        <item>153</item>
-        <item>155</item>
-        <item>156</item>
-        <item>157</item>
-        <item>159</item>
-        <item>161</item>
-        <item>162</item>
-        <item>163</item>
-        <item>165</item>
-        <item>166</item>
-        <item>168</item>
-        <item>169</item>
-        <item>171</item>
-        <item>172</item>
-        <item>173</item>
-        <item>175</item>
-        <item>176</item>
-        <item>178</item>
-        <item>179</item>
-        <item>181</item>
-        <item>182</item>
-        <item>183</item>
-        <item>186</item>
-        <item>188</item>
-        <item>189</item>
-        <item>191</item>
-        <item>193</item>
-        <item>195</item>
-        <item>197</item>
-        <item>198</item>
-        <item>201</item>
-        <item>202</item>
-        <item>204</item>
-        <item>206</item>
-        <item>208</item>
-        <item>210</item>
-        <item>212</item>
-        <item>214</item>
-        <item>216</item>
-        <item>217</item>
-        <item>219</item>
-        <item>221</item>
-        <item>223</item>
-        <item>225</item>
-        <item>226</item>
-        <item>229</item>
-        <item>230</item>
-        <item>232</item>
-        <item>234</item>
-        <item>236</item>
-        <item>238</item>
-        <item>240</item>
-        <item>242</item>
-        <item>244</item>
-        <item>245</item>
-        <item>247</item>
-        <item>249</item>
-        <item>251</item>
-        <item>253</item>
-        <item>254</item>
-        <item>257</item>
-        <item>258</item>
-        <item>260</item>
-        <item>262</item>
-        <item>264</item>
-        <item>266</item>
-        <item>268</item>
-        <item>270</item>
-        <item>272</item>
-        <item>273</item>
-        <item>275</item>
-        <item>277</item>
-        <item>279</item>
-        <item>281</item>
-        <item>282</item>
-        <item>285</item>
-        <item>286</item>
-        <item>288</item>
-        <item>290</item>
-        <item>292</item>
-        <item>294</item>
-        <item>296</item>
-        <item>298</item>
-        <item>300</item>
-        <item>301</item>
-        <item>303</item>
-        <item>305</item>
-        <item>307</item>
-        <item>309</item>
-        <item>310</item>
-        <item>313</item>
-        <item>314</item>
-        <item>316</item>
-        <item>318</item>
-        <item>320</item>
-        <item>322</item>
-        <item>324</item>
-        <item>326</item>
-        <item>327</item>
-        <item>329</item>
-        <item>331</item>
-        <item>333</item>
-        <item>335</item>
-        <item>337</item>
-        <item>338</item>
-        <item>341</item>
-        <item>342</item>
-        <item>344</item>
-        <item>346</item>
-        <item>348</item>
-        <item>350</item>
-        <item>352</item>
-        <item>354</item>
-        <item>355</item>
-        <item>357</item>
-        <item>359</item>
-        <item>361</item>
-        <item>363</item>
-        <item>365</item>
-        <item>366</item>
-        <item>369</item>
-        <item>370</item>
-        <item>372</item>
-        <item>374</item>
-        <item>376</item>
-        <item>378</item>
-        <item>379</item>
-        <item>382</item>
-        <item>383</item>
-        <item>385</item>
-        <item>387</item>
-        <item>389</item>
-        <item>391</item>
-        <item>393</item>
-        <item>395</item>
-        <item>397</item>
-        <item>398</item>
-        <item>400</item>
-        <item>402</item>
-        <item>404</item>
-        <item>406</item>
-        <item>407</item>
-        <item>410</item>
-        <item>411</item>
-        <item>413</item>
-        <item>415</item>
-        <item>417</item>
-        <item>419</item>
-        <item>420</item>
-    </integer-array>
+  <integer-array name="config_autoBrightnessLcdBacklightValues">
+    <item>22</item>
+    <item>25</item>
+    <item>28</item>
+    <item>33</item>
+    <item>35</item>
+    <item>37</item>
+    <item>49</item>
+    <item>64</item>
+    <item>64</item>
+    <item>65</item>
+    <item>67</item>
+    <item>72</item>
+    <item>98</item>
+    <item>145</item>
+    <item>145</item>
+    <item>163</item>
+    <item>163</item>
+    <item>172</item>
+    <item>172</item>
+    <item>181</item>
+    <item>181</item>
+    <item>191</item>
+    <item>191</item>
+    <item>200</item>
+    <item>200</item>
+    <item>209</item>
+    <item>209</item>
+    <item>218</item>
+    <item>218</item>
+    <item>227</item>
+    <item>227</item>
+    <item>236</item>
+    <item>236</item>
+    <item>245</item>
+    <item>245</item>
+    <item>255</item>
+  </integer-array>
+  <integer-array name="config_autoBrightnessLevels">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+    <item>5</item>
+    <item>6</item>
+    <item>7</item>
+    <item>8</item>
+    <item>9</item>
+    <item>10</item>
+    <item>15</item>
+    <item>20</item>
+    <item>25</item>
+    <item>50</item>
+    <item>100</item>
+    <item>300</item>
+    <item>500</item>
+    <item>1000</item>
+    <item>1500</item>
+    <item>2000</item>
+    <item>3000</item>
+    <item>4000</item>
+    <item>4999</item>
+    <item>5000</item>
+    <item>10000</item>
+    <item>20000</item>
+    <item>30000</item>
+    <item>40000</item>
+  </integer-array>
+  <integer-array name="config_screenBrightnessBacklight">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+    <item>5</item>
+    <item>6</item>
+    <item>7</item>
+    <item>8</item>
+    <item>9</item>
+    <item>10</item>
+    <item>11</item>
+    <item>12</item>
+    <item>13</item>
+    <item>14</item>
+    <item>15</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
+    <item>20</item>
+    <item>21</item>
+    <item>22</item>
+    <item>23</item>
+    <item>24</item>
+    <item>25</item>
+    <item>26</item>
+    <item>27</item>
+    <item>28</item>
+    <item>29</item>
+    <item>30</item>
+    <item>31</item>
+    <item>32</item>
+    <item>33</item>
+    <item>34</item>
+    <item>35</item>
+    <item>36</item>
+    <item>37</item>
+    <item>38</item>
+    <item>39</item>
+    <item>40</item>
+    <item>41</item>
+    <item>42</item>
+    <item>43</item>
+    <item>44</item>
+    <item>45</item>
+    <item>46</item>
+    <item>47</item>
+    <item>48</item>
+    <item>49</item>
+    <item>50</item>
+    <item>51</item>
+    <item>52</item>
+    <item>53</item>
+    <item>54</item>
+    <item>55</item>
+    <item>56</item>
+    <item>57</item>
+    <item>58</item>
+    <item>59</item>
+    <item>60</item>
+    <item>61</item>
+    <item>62</item>
+    <item>63</item>
+    <item>64</item>
+    <item>65</item>
+    <item>66</item>
+    <item>67</item>
+    <item>68</item>
+    <item>69</item>
+    <item>70</item>
+    <item>71</item>
+    <item>72</item>
+    <item>73</item>
+    <item>74</item>
+    <item>75</item>
+    <item>76</item>
+    <item>77</item>
+    <item>78</item>
+    <item>79</item>
+    <item>80</item>
+    <item>81</item>
+    <item>82</item>
+    <item>83</item>
+    <item>84</item>
+    <item>85</item>
+    <item>86</item>
+    <item>87</item>
+    <item>88</item>
+    <item>89</item>
+    <item>90</item>
+    <item>91</item>
+    <item>92</item>
+    <item>93</item>
+    <item>94</item>
+    <item>95</item>
+    <item>96</item>
+    <item>97</item>
+    <item>98</item>
+    <item>99</item>
+    <item>100</item>
+    <item>101</item>
+    <item>102</item>
+    <item>103</item>
+    <item>104</item>
+    <item>105</item>
+    <item>106</item>
+    <item>107</item>
+    <item>108</item>
+    <item>109</item>
+    <item>110</item>
+    <item>111</item>
+    <item>112</item>
+    <item>113</item>
+    <item>114</item>
+    <item>115</item>
+    <item>116</item>
+    <item>117</item>
+    <item>118</item>
+    <item>119</item>
+    <item>120</item>
+    <item>121</item>
+    <item>122</item>
+    <item>123</item>
+    <item>124</item>
+    <item>125</item>
+    <item>126</item>
+    <item>127</item>
+    <item>128</item>
+    <item>129</item>
+    <item>130</item>
+    <item>131</item>
+    <item>132</item>
+    <item>133</item>
+    <item>134</item>
+    <item>135</item>
+    <item>136</item>
+    <item>137</item>
+    <item>138</item>
+    <item>139</item>
+    <item>140</item>
+    <item>141</item>
+    <item>142</item>
+    <item>143</item>
+    <item>144</item>
+    <item>145</item>
+    <item>146</item>
+    <item>147</item>
+    <item>148</item>
+    <item>149</item>
+    <item>150</item>
+    <item>151</item>
+    <item>152</item>
+    <item>153</item>
+    <item>154</item>
+    <item>155</item>
+    <item>156</item>
+    <item>157</item>
+    <item>158</item>
+    <item>159</item>
+    <item>160</item>
+    <item>161</item>
+    <item>162</item>
+    <item>163</item>
+    <item>164</item>
+    <item>165</item>
+    <item>166</item>
+    <item>167</item>
+    <item>168</item>
+    <item>169</item>
+    <item>170</item>
+    <item>171</item>
+    <item>172</item>
+    <item>173</item>
+    <item>174</item>
+    <item>175</item>
+    <item>176</item>
+    <item>177</item>
+    <item>178</item>
+    <item>179</item>
+    <item>180</item>
+    <item>181</item>
+    <item>182</item>
+    <item>183</item>
+    <item>184</item>
+    <item>185</item>
+    <item>186</item>
+    <item>187</item>
+    <item>188</item>
+    <item>189</item>
+    <item>190</item>
+    <item>191</item>
+    <item>192</item>
+    <item>193</item>
+    <item>194</item>
+    <item>195</item>
+    <item>196</item>
+    <item>197</item>
+    <item>198</item>
+    <item>199</item>
+    <item>200</item>
+    <item>201</item>
+    <item>202</item>
+    <item>203</item>
+    <item>204</item>
+    <item>205</item>
+    <item>206</item>
+    <item>207</item>
+    <item>208</item>
+    <item>209</item>
+    <item>210</item>
+    <item>211</item>
+    <item>212</item>
+    <item>213</item>
+    <item>214</item>
+    <item>215</item>
+    <item>216</item>
+    <item>217</item>
+    <item>218</item>
+    <item>219</item>
+    <item>220</item>
+    <item>221</item>
+    <item>222</item>
+    <item>223</item>
+    <item>224</item>
+    <item>225</item>
+    <item>226</item>
+    <item>227</item>
+    <item>228</item>
+    <item>229</item>
+    <item>230</item>
+    <item>231</item>
+    <item>232</item>
+    <item>233</item>
+    <item>234</item>
+    <item>235</item>
+    <item>236</item>
+    <item>237</item>
+    <item>238</item>
+    <item>239</item>
+    <item>240</item>
+    <item>241</item>
+    <item>242</item>
+    <item>243</item>
+    <item>244</item>
+    <item>245</item>
+    <item>246</item>
+    <item>247</item>
+    <item>248</item>
+    <item>249</item>
+    <item>250</item>
+    <item>251</item>
+    <item>252</item>
+    <item>253</item>
+    <item>254</item>
+    <item>255</item>
+  </integer-array>
+  <integer-array name="config_screenBrightnessNits">
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+    <item>6</item>
+    <item>7</item>
+    <item>8</item>
+    <item>9</item>
+    <item>10</item>
+    <item>12</item>
+    <item>13</item>
+    <item>14</item>
+    <item>15</item>
+    <item>16</item>
+    <item>18</item>
+    <item>19</item>
+    <item>20</item>
+    <item>22</item>
+    <item>24</item>
+    <item>25</item>
+    <item>26</item>
+    <item>28</item>
+    <item>29</item>
+    <item>31</item>
+    <item>32</item>
+    <item>34</item>
+    <item>35</item>
+    <item>36</item>
+    <item>38</item>
+    <item>39</item>
+    <item>41</item>
+    <item>42</item>
+    <item>44</item>
+    <item>45</item>
+    <item>46</item>
+    <item>48</item>
+    <item>49</item>
+    <item>51</item>
+    <item>52</item>
+    <item>54</item>
+    <item>55</item>
+    <item>57</item>
+    <item>58</item>
+    <item>60</item>
+    <item>61</item>
+    <item>62</item>
+    <item>64</item>
+    <item>65</item>
+    <item>67</item>
+    <item>68</item>
+    <item>70</item>
+    <item>71</item>
+    <item>72</item>
+    <item>74</item>
+    <item>75</item>
+    <item>77</item>
+    <item>78</item>
+    <item>80</item>
+    <item>81</item>
+    <item>83</item>
+    <item>84</item>
+    <item>86</item>
+    <item>87</item>
+    <item>88</item>
+    <item>90</item>
+    <item>91</item>
+    <item>93</item>
+    <item>94</item>
+    <item>95</item>
+    <item>97</item>
+    <item>98</item>
+    <item>100</item>
+    <item>101</item>
+    <item>103</item>
+    <item>104</item>
+    <item>105</item>
+    <item>107</item>
+    <item>109</item>
+    <item>110</item>
+    <item>111</item>
+    <item>113</item>
+    <item>114</item>
+    <item>116</item>
+    <item>117</item>
+    <item>119</item>
+    <item>120</item>
+    <item>121</item>
+    <item>123</item>
+    <item>124</item>
+    <item>126</item>
+    <item>127</item>
+    <item>129</item>
+    <item>130</item>
+    <item>131</item>
+    <item>133</item>
+    <item>135</item>
+    <item>136</item>
+    <item>137</item>
+    <item>139</item>
+    <item>140</item>
+    <item>142</item>
+    <item>143</item>
+    <item>145</item>
+    <item>146</item>
+    <item>147</item>
+    <item>149</item>
+    <item>150</item>
+    <item>152</item>
+    <item>153</item>
+    <item>155</item>
+    <item>156</item>
+    <item>157</item>
+    <item>159</item>
+    <item>161</item>
+    <item>162</item>
+    <item>163</item>
+    <item>165</item>
+    <item>166</item>
+    <item>168</item>
+    <item>169</item>
+    <item>171</item>
+    <item>172</item>
+    <item>173</item>
+    <item>175</item>
+    <item>176</item>
+    <item>178</item>
+    <item>179</item>
+    <item>181</item>
+    <item>182</item>
+    <item>183</item>
+    <item>186</item>
+    <item>188</item>
+    <item>189</item>
+    <item>191</item>
+    <item>193</item>
+    <item>195</item>
+    <item>197</item>
+    <item>198</item>
+    <item>201</item>
+    <item>202</item>
+    <item>204</item>
+    <item>206</item>
+    <item>208</item>
+    <item>210</item>
+    <item>212</item>
+    <item>214</item>
+    <item>216</item>
+    <item>217</item>
+    <item>219</item>
+    <item>221</item>
+    <item>223</item>
+    <item>225</item>
+    <item>226</item>
+    <item>229</item>
+    <item>230</item>
+    <item>232</item>
+    <item>234</item>
+    <item>236</item>
+    <item>238</item>
+    <item>240</item>
+    <item>242</item>
+    <item>244</item>
+    <item>245</item>
+    <item>247</item>
+    <item>249</item>
+    <item>251</item>
+    <item>253</item>
+    <item>254</item>
+    <item>257</item>
+    <item>258</item>
+    <item>260</item>
+    <item>262</item>
+    <item>264</item>
+    <item>266</item>
+    <item>268</item>
+    <item>270</item>
+    <item>272</item>
+    <item>273</item>
+    <item>275</item>
+    <item>277</item>
+    <item>279</item>
+    <item>281</item>
+    <item>282</item>
+    <item>285</item>
+    <item>286</item>
+    <item>288</item>
+    <item>290</item>
+    <item>292</item>
+    <item>294</item>
+    <item>296</item>
+    <item>298</item>
+    <item>300</item>
+    <item>301</item>
+    <item>303</item>
+    <item>305</item>
+    <item>307</item>
+    <item>309</item>
+    <item>310</item>
+    <item>313</item>
+    <item>314</item>
+    <item>316</item>
+    <item>318</item>
+    <item>320</item>
+    <item>322</item>
+    <item>324</item>
+    <item>326</item>
+    <item>327</item>
+    <item>329</item>
+    <item>331</item>
+    <item>333</item>
+    <item>335</item>
+    <item>337</item>
+    <item>338</item>
+    <item>341</item>
+    <item>342</item>
+    <item>344</item>
+    <item>346</item>
+    <item>348</item>
+    <item>350</item>
+    <item>352</item>
+    <item>354</item>
+    <item>355</item>
+    <item>357</item>
+    <item>359</item>
+    <item>361</item>
+    <item>363</item>
+    <item>365</item>
+    <item>366</item>
+    <item>369</item>
+    <item>370</item>
+    <item>372</item>
+    <item>374</item>
+    <item>376</item>
+    <item>378</item>
+    <item>379</item>
+    <item>382</item>
+    <item>383</item>
+    <item>385</item>
+    <item>387</item>
+    <item>389</item>
+    <item>391</item>
+    <item>393</item>
+    <item>395</item>
+    <item>397</item>
+    <item>398</item>
+    <item>400</item>
+    <item>402</item>
+    <item>404</item>
+    <item>406</item>
+    <item>407</item>
+    <item>410</item>
+    <item>411</item>
+    <item>413</item>
+    <item>415</item>
+    <item>417</item>
+    <item>419</item>
+    <item>420</item>
+  </integer-array>
 </resources>
