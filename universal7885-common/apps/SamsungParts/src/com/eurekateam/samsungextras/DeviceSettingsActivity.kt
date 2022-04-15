@@ -16,29 +16,15 @@
 package com.eurekateam.samsungextras
 
 import android.os.Bundle
-import android.view.MenuItem
-import androidx.fragment.app.FragmentActivity
-import com.android.internal.R.id.content
-import com.android.internal.R.id.home
+import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity
+import com.android.settingslib.collapsingtoolbar.R
 
-class DeviceSettingsActivity : FragmentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+class DeviceSettingsActivity : CollapsingToolbarBaseActivity() {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val fragment = this.supportFragmentManager.findFragmentById(content)
-        val mDeviceSettingsFragment: DeviceSettings
-        if (fragment == null) {
-            mDeviceSettingsFragment = DeviceSettings()
-            this.supportFragmentManager.beginTransaction()
-                .add(content, mDeviceSettingsFragment)
-                .commit()
-        }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == home) {
-            finish()
-            return true
-        }
-        return super.onOptionsItemSelected(item)
+        supportFragmentManager.beginTransaction().replace(
+            R.id.content_frame,
+            DeviceSettingsFragment()
+        ).commit()
     }
 }

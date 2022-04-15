@@ -43,7 +43,7 @@
 
     <com.android.settingslib.widget.RadioButtonPreference
         android:key="dolby_profile_voice"
-	android:title="@string/dolby_profile_voice"/>
+        android:title="@string/dolby_profile_voice"/>
 
     <com.android.settingslib.widget.FooterPreference
         android:key="dolby_top_intro"
