@@ -24,7 +24,7 @@ class DeviceSettingsActivity : CollapsingToolbarBaseActivity() {
         super.onCreate(savedInstanceState)
         supportFragmentManager.beginTransaction().replace(
             R.id.content_frame,
-            DeviceSettingsFragment()
+            DeviceSettings()
         ).commit()
     }
 }
