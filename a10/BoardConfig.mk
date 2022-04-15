@@ -17,3 +17,5 @@ BOARD_VENDORIMAGE_PARTITION_SIZE   := 394264576
 
 # Inherit common board flags
 include device/samsung/universal7885-common/BoardConfigCommon.mk
+
+TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
