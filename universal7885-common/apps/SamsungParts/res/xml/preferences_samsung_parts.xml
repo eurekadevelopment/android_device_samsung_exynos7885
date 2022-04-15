@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:title="@string/advanced_settings">
     <PreferenceCategory
         android:key="display"
         android:title="@string/display_category">
@@ -62,18 +64,19 @@
             android:targetClass="com.eurekateam.samsungextras.battery.BatteryActivity"
             android:targetPackage="com.eurekateam.samsungextras" />
         </Preference>
-
     </PreferenceCategory>
     <PreferenceCategory
-	android:title="@string/misc_category">
+    	android:title="@string/misc_category">
     	<SwitchPreference
-	    android:key="dt2w_settings"
-	    android:title="@string/dt2w_mode"
-	    android:persistent="true"/>
-	
-	<SwitchPreference
-            android:key="glove_mode_settings"
-            android:title="@string/glove_mode"
-            android:persistent="true"/>
+    		android:key="dt2w_settings"
+	    	android:title="@string/dt2w_mode"
+	    	android:persistent="true"/>
+		<SwitchPreference
+			android:key="glove_mode_settings"
+			android:title="@string/glove_mode"
+			android:persistent="true"/>
     </PreferenceCategory>
+    <com.android.settingslib.widget.FooterPreference
+        android:title="@string/advanced_settings_summary"
+        android:selectable="false" />
 </PreferenceScreen>

@@ -21,39 +21,39 @@
 
     <Preference
         android:key="battery_capacity"
-	android:title="@string/battery_max_capa"
-	android:summary="@string/not_shown"
+        android:title="@string/battery_max_capa"
+        android:summary="@string/not_shown"
         android:selectable="false"/>
 
     <Preference
         android:key="battery_charged_up_to"
         android:title="@string/battery_chrged_up_to"
-	android:summary="@string/not_shown"
+        android:summary="@string/not_shown"
         android:selectable="false"/>
 
     <Preference
         android:key="battery_charged_up_to_mah"
         android:title="@string/battery_chrged_up_to_mah"
-	android:summary="@string/not_shown"
+        android:summary="@string/not_shown"
         android:selectable="false"/>
 
     <Preference
         android:key="battery_current"
         android:title="@string/battery_current"
-	android:summary="@string/not_shown"
+        android:summary="@string/not_shown"
         android:selectable="false"/>
 
     <Preference
         android:key="battery_status"
         android:title="@string/battery_status"
-	android:summary="@string/not_shown"
-	android:selectable="false"/>
+        android:summary="@string/not_shown"
+        android:selectable="false"/>
 
     <Preference
         android:key="battery_temp"
         android:title="@string/battery_temp"
-	android:summary="@string/not_shown"
-	android:selectable="false"/>
+        android:summary="@string/not_shown"
+        android:selectable="false"/>
 
     <com.android.settingslib.widget.FooterPreference
         android:key="footer_preference"
