@@ -11,6 +11,7 @@
 /dev/block/platform/13500000.dwmmc0/by-name/userdata   /data    f2fs     nosuid,nodev,discard,noatime,lazytime,data_flush    wait,check,quota
 /dev/block/platform/13500000.dwmmc0/by-name/efs	/mnt/vendor/efs	ext4	noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic	wait,check
 /dev/block/platform/13500000.dwmmc0/by-name/misc	/misc	emmc      defaults  defaults
+/dev/block/platform/13500000.dwmmc0/by-name/omr            /metadata       ext4    noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic wait,first_stage_mount,formattable,check
 
 # VOLD :: fstab.a20e
 /dev/block/platform/13500000.dwmmc0/by-name/hidden	/preload	ext4	noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic	voldmanaged=preload:auto,check
