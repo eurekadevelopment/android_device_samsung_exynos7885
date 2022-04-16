@@ -1,5 +1,7 @@
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
+BOARD_SUPPORTS_EUREKA_FMRADIO := false
+
 # Inherit common device configuration
 $(call inherit-product, device/samsung/universal7885-common/universal7885-common.mk)
 

@@ -55,7 +55,8 @@ PRODUCT_COPY_FILES += \
     hardware/samsung_slsi/libbt/conf/bt_vendor.conf:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_vendor.conf
 
 # Camera
-ifeq ($(findstring a10, $(TARGET_PRODUCT)),)
+TARGET_BOARD_CAMERA_COUNT ?= 3
+ifeq ($(TARGET_BOARD_CAMERA_COUNT), 3)
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.5-service.exynos7885
 else
@@ -83,14 +84,16 @@ PRODUCT_PACKAGES += \
     android.hardware.drm@1.2.vendor \
     android.hardware.drm@1.3.vendor
 
-ifeq ($(findstring a10, $(TARGET_PRODUCT)),)
 # Fingerprint
+TARGET_BOARD_HAS_FP ?= true
+ifeq ($(TARGET_BOARD_HAS_FP), true)
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.3-service.samsung
 endif
 
-ifeq ($(findstring a40, $(TARGET_PRODUCT)),)
 # Samsung FMRadio impl
+BOARD_SUPPORTS_EUREKA_FMRADIO ?= true
+ifeq ($(BOARD_SUPPORTS_EUREKA_FMRADIO), true)
 PRODUCT_PACKAGES += \
     FMRadio
 endif
