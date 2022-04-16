@@ -36,13 +36,13 @@
 /dev/block/platform/.+/by-name/metadata      u:object_r:metadata_block_device:s0
 /dev/block/platform/.+/by-name/misc          u:object_r:misc_block_device:s0
 /dev/block/platform/.+/by-name/modem         u:object_r:modem_block_device:s0
-/dev/block/platform/.+/by-name/omr           u:object_r:omr_block_device:s0
 /dev/block/platform/.+/by-name/persistent    u:object_r:frp_block_device:s0
 /dev/block/platform/.+/by-name/radio         u:object_r:radio_block_device:s0
 /dev/block/platform/.+/by-name/recovery      u:object_r:recovery_block_device:s0
 /dev/block/platform/.+/by-name/sec_efs       u:object_r:sec_efs_block_device:s0
 /dev/block/platform/.+/by-name/super         u:object_r:super_block_device:s0
 /dev/block/platform/.+/by-name/userdata      u:object_r:userdata_block_device:s0
+/dev/block/platform/.+/by-name/omr      u:object_r:metadata_block_device:s0
 
 /dev/esfp[0-9]                               u:object_r:fp_sensor_device:s0
 /dev/batch_io                                u:object_r:io_device:s0

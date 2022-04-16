@@ -62,6 +62,8 @@ TARGET_KERNEL_SOURCE := kernel/samsung/exynos7885
 TARGET_KERNEL_CLANG_COMPILE := true
 KERNEL_LD := LD=ld.lld
 
+BOARD_USES_METADATA_PARTITION := true
+
 # Keymaster
 TARGET_KEYMASTER_VARIANT := samsung
 
