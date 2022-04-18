@@ -22,6 +22,9 @@
 		</Preference>
 	</PreferenceCategory>
 	<PreferenceCategory android:title="@string/misc_category">
+		<Preference android:key="swap_settings" android:title="@string/swap_title" android:icon="@drawable/ic_memory" android:summary="@string/swap_description" android:persistent="true">
+			<intent android:action="android.intent.action.MAIN" android:targetClass="com.eurekateam.samsungextras.swap.SwapActivity" android:targetPackage="com.eurekateam.samsungextras"/>
+		</Preference>
 		<SwitchPreference android:key="dt2w_settings" android:title="@string/dt2w_mode" android:persistent="true"/>
 		<SwitchPreference android:key="glove_mode_settings" android:title="@string/glove_mode" android:persistent="true"/>
 	</PreferenceCategory>

@@ -24,3 +24,12 @@ allow hal_parts_default sysfs_virtual:dir search;
 # Display
 allow hal_parts_default sysfs_sec_touchscreen:dir search;
 allow hal_parts_default sysfs_touchscreen_writable:file rw_file_perms;
+
+# Swap
+type parts_data_file, file_type, data_file_type;
+allow hal_parts_default parts_data_file:dir rw_dir_perms;
+allow hal_parts_default parts_data_file:file rw_file_perms;
+allow hal_parts_default parts_data_file:file create_file_perms;
+allow hal_parts_default vendor_shell_exec:file rx_file_perms;
+allow hal_parts_default vendor_toolbox_exec:file rx_file_perms;
+allow hal_parts_default self:capability sys_admin;

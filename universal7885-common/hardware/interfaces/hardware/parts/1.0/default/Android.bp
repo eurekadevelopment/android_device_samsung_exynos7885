@@ -7,7 +7,8 @@ cc_binary {
         "Battery.cpp",
         "FlashLight.cpp",
         "Display.cpp",
-	"service.cpp",
+        "Swap.cpp",
+        "service.cpp",
     ],
     shared_libs: [
         "libhidlbase",
