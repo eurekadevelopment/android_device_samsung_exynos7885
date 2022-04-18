@@ -6,6 +6,7 @@ hidl_interface {
        "IBatteryStats.hal",
        "IFlashBrightness.hal",
        "IDisplayConfigs.hal",
+       "ISwapOnData.hal",
     ],
     interfaces: [ "android.hidl.base@1.0" ],
     gen_java: false,

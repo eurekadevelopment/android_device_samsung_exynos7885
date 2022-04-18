@@ -56,6 +56,11 @@
 	<string name="flashlight_description">Samsung\'s OneUI Has An Option to Adjust
         Flashlight Brightness. AOSP doesn\'t have this feature.\n\n
         Use this feature to adjust low or high flashlight brightness. Ranges from 0 to 10.</string>
+	<string name="swap_title">Swap on userdata</string>
+	<string name="swap_enable_title">Enable swap on EMMC</string>
+	<string name="swap_size_title">Swap size</string>
+	<string name="swap_size_summary">Adjust the size of swap</string>
+	<string name="swap_description">Creates the swap (not zram) on /data partiton. Useful for low memory devices.</string>
 	<!-- Display Category -->
 	<string name="misc_category">Misc</string>
 	<string name="dt2w_mode">Toggle for double tap to wake</string>

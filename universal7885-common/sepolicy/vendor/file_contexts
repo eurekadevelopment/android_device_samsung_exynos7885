@@ -24,6 +24,7 @@
 /data/vendor/log(/.*)?                       u:object_r:log_vendor_data_file:s0
 /data/vendor/log/cbd(/.*)?                   u:object_r:log_cbd_vendor_data_file:s0
 /data/vendor/secradio(/.*)?                  u:object_r:radio_vendor_data_file:s0
+/data/swap(/.*)?			     u:object_r:parts_data_file:s0
 
 ### DEV
 /dev/block/platform/.+/by-name/boot          u:object_r:boot_block_device:s0

@@ -40,6 +40,12 @@
 				<category android:name="android.intent.category.DEFAULT"/>
 			</intent-filter>
 		</activity>
+		<activity android:name=".swap.SwapActivity" android:exported="true" android:label="@string/swap_title">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+			</intent-filter>
+		</activity>
 		<provider android:name=".dolby.DolbySearchIndexablesProvider" android:exported="true" android:authorities="com.eurekateam.samsungextras" android:multiprocess="false" android:grantUriPermissions="true" android:permission="android.permission.READ_SEARCH_INDEXABLES">
 			<intent-filter>
 				<action android:name="android.content.action.SEARCH_INDEXABLES_PROVIDER"/>

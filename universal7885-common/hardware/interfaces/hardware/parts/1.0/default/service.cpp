@@ -18,10 +18,12 @@
 #include <vendor/eureka/hardware/parts/1.0/IBatteryStats.h>
 #include <vendor/eureka/hardware/parts/1.0/IDisplayConfigs.h>
 #include <vendor/eureka/hardware/parts/1.0/IFlashBrightness.h>
+#include <vendor/eureka/hardware/parts/1.0/ISwapOnData.h>
 
 #include "Battery.h"
 #include "Display.h"
 #include "FlashLight.h"
+#include "Swap.h"
 
 using android::sp;
 using android::hardware::configureRpcThreadpool;
@@ -29,9 +31,11 @@ using android::hardware::joinRpcThreadpool;
 using vendor::eureka::hardware::parts::V1_0::BatteryStats;
 using vendor::eureka::hardware::parts::V1_0::DisplayConfigs;
 using vendor::eureka::hardware::parts::V1_0::FlashBrightness;
+using vendor::eureka::hardware::parts::V1_0::SwapOnData;
 using vendor::eureka::hardware::parts::V1_0::IBatteryStats;
 using vendor::eureka::hardware::parts::V1_0::IDisplayConfigs;
 using vendor::eureka::hardware::parts::V1_0::IFlashBrightness;
+using vendor::eureka::hardware::parts::V1_0::ISwapOnData;
 
 int main() {
   int ret;
@@ -39,6 +43,7 @@ int main() {
   android::sp<IFlashBrightness> mFlashLightService =
       FlashBrightness::getInstance();
   android::sp<IDisplayConfigs> mDisplayService = DisplayConfigs::getInstance();
+  android::sp<ISwapOnData> mSwapService = SwapOnData::getInstance();
   configureRpcThreadpool(4, true /*callerWillJoin*/);
 
   if (mBatteryService != nullptr) {
@@ -70,6 +75,16 @@ int main() {
     }
   } else {
     ALOGE("Can't create instance of Display HAL, nullptr");
+  }
+  if (mSwapService != nullptr) {
+    ret = mSwapService->registerAsService();
+    if (ret != 0) {
+      ALOGE("Can't register instance of Swap HAL, nullptr");
+    } else {
+      ALOGI("registered Swap HAL");
+    }
+  } else {
+    ALOGE("Can't create instance of Swap HAL, nullptr");
   }
   joinRpcThreadpool();
 

@@ -16,5 +16,9 @@
 			<name>IDisplayConfigs</name>
 			<instance>default</instance>
 		</interface>
+		<interface>
+			<name>ISwapOnData</name>
+			<instance>default</instance>
+		</interface>
 	</hal>
 </manifest>
