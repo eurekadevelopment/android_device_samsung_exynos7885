@@ -29,7 +29,7 @@ Return<void> SwapOnData::setSwapSize(int32_t size) {
 
 Return<void> SwapOnData::setSwapOn(){
 	string cmd = string("dd if=/dev/zero of=") + string(SWAP_PATH) + string(" bs=") + std::to_string(mSwapSize) 
-		+ " count=10";
+		+ "M count=10";
 	system(cmd.c_str());
 	cmd = string("mkswap ") + string(SWAP_PATH);
 	system(cmd.c_str());
