@@ -9,9 +9,11 @@ import com.eurekateam.samsungextras.battery.BatteryFragment
 import com.eurekateam.samsungextras.dolby.DolbyCore
 import com.eurekateam.samsungextras.dolby.DolbyFragment
 import com.eurekateam.samsungextras.flashlight.FlashLightFragment
+import com.eurekateam.samsungextras.swap.SwapFragment
 import com.eurekateam.samsungextras.interfaces.Battery
 import com.eurekateam.samsungextras.interfaces.Display
 import com.eurekateam.samsungextras.interfaces.Flashlight
+import com.eurekateam.samsungextras.interfaces.Swap
 
 class BootReceiver : BroadcastReceiver() {
     override fun onReceive(p0: Context?, p1: Intent?) {
@@ -40,6 +42,9 @@ class BootReceiver : BroadcastReceiver() {
 
                 // FlashLight
                 Flashlight.setFlash(mSharedPreferences.getInt(FlashLightFragment.PREF_FLASHLIGHT, 5))
+	   // ZRAM
+	    Swap.setSize(mSharedPreferences.getInt(SwapFragment.PREF_SWAP_SIZE, 50))
+	    Swap.setSwapOn(mSharedPreferences.getBoolean(SwapFragment.PREF_SWAP_ENABLE, false))
 
                 // Display
                 Display.DT2W = mSharedPreferences.getBoolean(DeviceSettings.PREF_DOUBLE_TAP, true)

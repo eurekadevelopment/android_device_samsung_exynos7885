@@ -33,7 +33,7 @@ Return<void> SwapOnData::setSwapOn(){
 	system(cmd.c_str());
 	cmd = string("mkswap ") + string(SWAP_PATH);
 	system(cmd.c_str());
-	cmd = string("swapon ") + string(SWAP_PATH);
+	cmd = string("swapon -p 99 ") + string(SWAP_PATH);
 	system(cmd.c_str());
 	return Void();
 }

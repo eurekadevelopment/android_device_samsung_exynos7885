@@ -58,7 +58,7 @@ class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeLi
 
     override fun onSwitchChanged(switchView: Switch, isChecked: Boolean) {
     	Swap.setSwapOn(isChecked)
-        mSharedPreferences.edit().putBoolean(PREF_SWAP_ENABLE, isChecked)
+        mSharedPreferences.edit().putBoolean(PREF_SWAP_ENABLE, isChecked).apply()
         mSwapSizePref.isEnabled = !isChecked
     } 
     
