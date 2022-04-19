@@ -126,9 +126,6 @@
          devices will be able to vary their amplitude but do not possess enough dynamic range to
          have distinct intensity levels -->
 	<bool name="config_vibration_supports_multiple_intensities">true</bool>
-	<!-- If true, the screen can be rotated via the accelerometer in all 4
-         rotations as the default behavior. -->
-	<bool name="config_allowAllRotations">true</bool>
 	<!-- Flag indicating whether we should enable the adaptive sleep.-->
 	<bool name="config_adaptive_sleep_available">true</bool>
 	<!-- the number of the max cached processes in the system. -->
