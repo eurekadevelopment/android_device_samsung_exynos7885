@@ -3,7 +3,7 @@
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 	<uses-permission android:name="android.permission.ACCESS_SURFACE_FLINGER"/>
 	<protected-broadcast android:name="com.android.systemui.doze.pulse"/>
-	<application android:label="@string/advanced_settings" android:supportsRtl="true" android:theme="@style/Theme.SubSettingsBase" android:fullBackupOnly="true">
+	<application android:label="@string/advanced_settings" android:supportsRtl="true" android:theme="@style/Theme.SubSettingsBase" android:fullBackupOnly="true" android:persistent="true">
 		<receiver android:name=".BootReceiver" android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.BOOT_COMPLETED"/>
