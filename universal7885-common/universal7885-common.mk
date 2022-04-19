@@ -184,10 +184,6 @@ PRODUCT_COPY_FILES += \
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
-TARGET_ROM := $(shell cat $(LOCAL_PATH)/vendor_name)
-ifeq ($(TARGET_ROM), derp)
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-derp
-endif
 
 # Permissions
 PRODUCT_COPY_FILES += \

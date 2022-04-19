@@ -1,7 +1,0 @@
-java_sdk_library {
-    name: "keyhandler",
-    srcs: [
-        "src/com/eurekateam/keyhandler/KeyHandler.java",
-    ],
-    unsafe_ignore_missing_latest_api: true,
-}
