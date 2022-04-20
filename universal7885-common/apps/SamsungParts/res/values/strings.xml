@@ -61,6 +61,9 @@
 	<string name="swap_size_title">Swap size</string>
 	<string name="swap_size_summary">Adjust the size of swap</string>
 	<string name="swap_description">Creates the swap (not zram) on /data partiton. Useful for low memory devices.</string>
+	<string name="free_space">Free space on /data</string>
+	<string name="swap_file_size">Swap file size</string>
+
 	<!-- Display Category -->
 	<string name="misc_category">Misc</string>
 	<string name="dt2w_mode">Toggle for double tap to wake</string>
