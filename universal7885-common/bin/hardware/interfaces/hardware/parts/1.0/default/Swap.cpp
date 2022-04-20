@@ -27,26 +27,24 @@ Return<void> SwapOnData::setSwapSize(int32_t size) {
   return Void();
 }
 
-Return<void> SwapOnData::setSwapOn(){
-	string cmd = string("dd if=/dev/zero of=") + string(SWAP_PATH) + string(" bs=") + std::to_string(mSwapSize) 
-		+ "M count=10";
-	system(cmd.c_str());
-	cmd = string("mkswap ") + string(SWAP_PATH);
-	system(cmd.c_str());
-	cmd = string("swapon -p 99 ") + string(SWAP_PATH);
-	system(cmd.c_str());
-	return Void();
+Return<void> SwapOnData::setSwapOn() {
+  string cmd = string("dd if=/dev/zero of=") + string(SWAP_PATH) +
+               string(" bs=") + std::to_string(mSwapSize) + "M count=10";
+  system(cmd.c_str());
+  cmd = string("mkswap ") + string(SWAP_PATH);
+  system(cmd.c_str());
+  cmd = string("swapon -p 99 ") + string(SWAP_PATH);
+  system(cmd.c_str());
+  return Void();
 }
 
-Return<void> SwapOnData::setSwapOff(){
-	std::string cmd = string("swapoff ") + string(SWAP_PATH);
-	system(cmd.c_str());
-	cmd = string("rm ") + string(SWAP_PATH);
-	system(cmd.c_str());
-	return Void();
+Return<void> SwapOnData::setSwapOff() {
+  std::string cmd = string("swapoff ") + string(SWAP_PATH);
+  system(cmd.c_str());
+  cmd = string("rm ") + string(SWAP_PATH);
+  system(cmd.c_str());
+  return Void();
 }
 
-ISwapOnData *SwapOnData::getInstance(void) {
-  return new SwapOnData();
-}
+ISwapOnData *SwapOnData::getInstance(void) { return new SwapOnData(); }
 } // namespace vendor::eureka::hardware::parts::V1_0

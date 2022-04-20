@@ -19,6 +19,6 @@ package com.eurekateam.samsungextras.interfaces
 object Swap {
     external fun setSwapOn(mEnabled: Boolean)
     external fun setSize(mSize: Int)
-    external fun getFreeSize(): Double
+    external fun getFreeSpace(): Double
     external fun getSwapSize(): Long
 }

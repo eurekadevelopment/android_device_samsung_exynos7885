@@ -31,11 +31,11 @@ using android::hardware::joinRpcThreadpool;
 using vendor::eureka::hardware::parts::V1_0::BatteryStats;
 using vendor::eureka::hardware::parts::V1_0::DisplayConfigs;
 using vendor::eureka::hardware::parts::V1_0::FlashBrightness;
-using vendor::eureka::hardware::parts::V1_0::SwapOnData;
 using vendor::eureka::hardware::parts::V1_0::IBatteryStats;
 using vendor::eureka::hardware::parts::V1_0::IDisplayConfigs;
 using vendor::eureka::hardware::parts::V1_0::IFlashBrightness;
 using vendor::eureka::hardware::parts::V1_0::ISwapOnData;
+using vendor::eureka::hardware::parts::V1_0::SwapOnData;
 
 int main() {
   int ret;
