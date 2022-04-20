@@ -72,6 +72,8 @@ class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeLi
                 mSwapEnable.isEnabled = true
                 mSharedPreferences.edit().putBoolean(PREF_SWAP_ENABLE, isChecked).apply()
                 mSwapSizePref.isEnabled = !isChecked
+		mFreeSpace.summary = "${Swap.getFreeSpace()} GB"
+		mSwapFileSize.summary = "${Swap.getSwapSize()} MB"
             }
         }.start()
     } 
