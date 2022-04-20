@@ -16,8 +16,9 @@ allow system_app hal_parts_hwservice:hwservice_manager find;
 
 allow system_app hal_parts_default:binder call;
 
-# FMRadio
+r_dir_file(system_app, parts_data_file)
 
+# FMRadio
 allow system_app hal_fmradio_hwservice:hwservice_manager find;
 
 allow system_app hal_fmradio_default:binder call;
