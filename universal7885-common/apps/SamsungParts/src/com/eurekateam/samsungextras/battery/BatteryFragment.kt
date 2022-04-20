@@ -61,8 +61,7 @@ class BatteryFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChang
             mSharedPreferences.edit().putBoolean(PREF_CHARGE, Battery.chargeSysfs == 0).apply()
             return true
         } else if (preference == mFastChargePref) {
-            Battery.setFastCharge(if (newValue as Boolean) 0 else 1) 
-	mFastChargePref.isChecked = Battery.fastChargeSysfs == 0
+            Battery.setFastCharge(if (newValue as Boolean) 0 else 1) mFastChargePref.isChecked = Battery.fastChargeSysfs == 0
             mSharedPreferences.edit().putBoolean(PREF_FASTCHARGE, Battery.fastChargeSysfs == 0).apply()
         }
         return false
