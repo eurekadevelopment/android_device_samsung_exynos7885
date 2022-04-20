@@ -74,7 +74,8 @@ class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeLi
                 mSwapSizePref.isEnabled = !isChecked
             }
         }.start()
-    } companion object {
+    } 
+    companion object {
         const val PREF_SWAP_SIZE = "swap_size"
         const val PREF_SWAP_ENABLE = "swap_enable"
         const val INFO_FREE_SPACE = "free_space"

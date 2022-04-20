@@ -12,6 +12,7 @@ cc_library_shared {
         "libhidlbase",
         "liblog",
         "libutils",
+	"libc++fs",
         "vendor.eureka.hardware.parts@1.0",
     ]
 }

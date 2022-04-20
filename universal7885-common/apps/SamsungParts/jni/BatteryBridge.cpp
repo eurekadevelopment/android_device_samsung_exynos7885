@@ -11,12 +11,12 @@ using vendor::eureka::hardware::parts::V1_0::Number;
 using vendor::eureka::hardware::parts::V1_0::SysfsType;
 
 enum {
-   BATTERY_CAPACITY_MAX = 1,
-   BATTERY_CAPACITY_CURRENT,
-   BATTERY_CAPACITY_CURRENT_MAH,
-   CHARGING_STATE,
-   BATTERY_TEMP,
-   BATTERY_CURRENT = 6
+  BATTERY_CAPACITY_MAX = 1,
+  BATTERY_CAPACITY_CURRENT,
+  BATTERY_CAPACITY_CURRENT_MAH,
+  CHARGING_STATE,
+  BATTERY_TEMP,
+  BATTERY_CURRENT = 6
 };
 
 static android::sp<IBatteryStats> service = IBatteryStats::getService();

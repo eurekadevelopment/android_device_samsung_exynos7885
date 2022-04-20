@@ -12,17 +12,18 @@ static sp<ISwapOnData> service = ISwapOnData::getService();
 
 extern "C" JNIEXPORT void JNICALL
 Java_com_eurekateam_samsungextras_interfaces_Swap_setSize(JNIEnv *env,
-                                                             jclass clazz,
-                                                             jint size) {
+                                                          jclass clazz,
+                                                          jint size) {
   service->setSwapSize(size);
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_eurekateam_samsungextras_interfaces_Swap_setSwapOn(
-    JNIEnv *env, jclass clazz, jboolean enable) {
-	if (enable){
-		service->setSwapOn();
-	} else {
-		service->setSwapOff();
-	}
+Java_com_eurekateam_samsungextras_interfaces_Swap_setSwapOn(JNIEnv *env,
+                                                            jclass clazz,
+                                                            jboolean enable) {
+  if (enable) {
+    service->setSwapOn();
+  } else {
+    service->setSwapOff();
+  }
 }
