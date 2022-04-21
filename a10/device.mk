@@ -6,7 +6,7 @@ TARGET_BOARD_HAS_FP := false
 # Inherit common device configuration
 $(call inherit-product, device/samsung/universal7885-common/universal7885-common.mk)
 
-$(call inherit-product, vendor/samsung/a10-arm64/a10-vendor.mk)
+$(call inherit-product, vendor/samsung/a10/a10-vendor.mk)
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
