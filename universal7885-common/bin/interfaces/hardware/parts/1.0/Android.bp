@@ -1,0 +1,13 @@
+hidl_interface { 
+    name: "vendor.eureka.hardware.parts@1.0",
+    root: "vendor.eureka",  
+    srcs: [
+       "types.hal",
+       "IBatteryStats.hal",
+       "IFlashBrightness.hal",
+       "IDisplayConfigs.hal",
+       "ISwapOnData.hal",
+    ],
+    interfaces: [ "android.hidl.base@1.0" ],
+    gen_java: false,
+}
