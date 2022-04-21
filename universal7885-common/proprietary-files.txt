@@ -1,5 +1,9 @@
 # All blobs below are extracted from samsung/a20ektt/a20e:11/RP1A.200720.012/A202KKKU8CUL3:user/release-keys, unless otherwise stated.
 
+vendor/lib64/libstagefrighthw.so
+vendor/lib/libstagefrighthw.so
+vendor/lib64/libuuid.so
+vendor/lib/libuuid.so
 vendor/lib64/vendor.samsung.hardware.radio@2.1.so
 vendor/lib64/omx/libOMX.Exynos.MPEG4.Decoder.so
 vendor/lib64/omx/libOMX.Exynos.HEVC.Decoder.so
