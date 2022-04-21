@@ -88,11 +88,8 @@ PRODUCT_PACKAGES += \
 endif
 
 # Samsung FMRadio impl
-BOARD_SUPPORTS_EUREKA_FMRADIO ?= true
-ifeq ($(BOARD_SUPPORTS_EUREKA_FMRADIO), true)
 PRODUCT_PACKAGES += \
     FMRadio
-endif
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
