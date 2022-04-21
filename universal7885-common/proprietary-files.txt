@@ -2,6 +2,8 @@
 
 vendor/lib64/libstagefrighthw.so
 vendor/lib/libstagefrighthw.so
+vendor/lib/libsec-ril-dsds.so
+vendor/lib/libsec-ril.so
 vendor/lib64/libuuid.so
 vendor/lib/libuuid.so
 vendor/lib64/vendor.samsung.hardware.radio@2.1.so
