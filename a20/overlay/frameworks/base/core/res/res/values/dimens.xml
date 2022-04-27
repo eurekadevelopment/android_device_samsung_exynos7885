@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<dimen name="status_bar_height">31.0dip</dimen>
-	<dimen name="status_bar_height_portrait">31.0dip</dimen>
-	<dimen name="status_bar_height_landscape">31.0dip</dimen>
-	<dimen name="quick_qs_offset_height">48.0dip</dimen>
-	<dimen name="rounded_corner_radius">0.0dip</dimen>
-	<dimen name="rounded_corner_radius_adjustment">0.0px</dimen>
-	<dimen name="rounded_corner_radius_bottom">0.0dip</dimen>
-	<dimen name="rounded_corner_radius_bottom_adjustment">0.0px</dimen>
-	<dimen name="rounded_corner_radius_top">29.0dip</dimen>
-	<dimen name="rounded_corner_radius_top_adjustment">29.0px</dimen>
+   <dimen name="status_bar_height">31.0dip</dimen>
+   <dimen name="status_bar_height_portrait">31.0dip</dimen>
+   <dimen name="status_bar_height_landscape">31.0dip</dimen>
+   <dimen name="quick_qs_offset_height">48.0dip</dimen>
+   <dimen name="rounded_corner_radius">0.0dip</dimen>
+   <dimen name="rounded_corner_radius_adjustment">0.0px</dimen>
+   <dimen name="rounded_corner_radius_bottom">0.0dip</dimen>
+   <dimen name="rounded_corner_radius_bottom_adjustment">0.0px</dimen>
+   <dimen name="rounded_corner_radius_top">29.0dip</dimen>
+   <dimen name="rounded_corner_radius_top_adjustment">29.0px</dimen>
 </resources>
