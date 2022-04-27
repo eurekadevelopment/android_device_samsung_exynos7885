@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
  * Copyright (c) 2009, The Android Open Source Project
@@ -19,7 +18,7 @@
 <!-- These resources are around just to allow their values to be customized
      for different hardware and product builds.  Do not translate. -->
 <resources>
-	<!-- The bounding path of the cutout region of the main built-in display.
+   <!-- The bounding path of the cutout region of the main built-in display.
          Must either be empty if there is no cutout region, or a string that is parsable by
          {@link android.util.PathParser}.
          The path is assumed to be specified in display coordinates with pixel units and in
@@ -34,29 +33,29 @@
                 <string ...>M -5,0 L -5,10 L 5,10 L 5,0 Z @dp</string>
          @see https://www.w3.org/TR/SVG/paths.html#PathData
          -->
-	<string translatable="false" name="config_mainBuiltInDisplayCutout">M62,0l-3.8,0l-3.9,0.2l-3.9,0.4l-4,0.8l-3.9,1.2l-3.8,1.6l-3.7,2l-3.4,2.4l-3.1,2.8l-2.9,3l-2.7,3.1l-2.6,3.1 l-2.7,2.8C12.5,28,6.2,30.3,0,30.3c-6.3,0-12.5-2.3-17.5-6.8l-2.7-2.8l-2.6-3.1l-2.7-3.1l-2.9-3l-3.2-2.8 L-35,6.2l-3.7-2l-3.8-1.6l-3.9-1.2l-4-0.8L-54.3,0.2L-58.2,0L-62,0Z @dp</string>
-	<string translatable="false" name="config_mainBuiltInDisplayCutoutRectApproximation">@*android:string/config_mainBuiltInDisplayCutout</string>
-	<!-- If supported, are dreams enabled? (by default) -->
-	<bool name="config_dreamsEnabledByDefault">false</bool>
-	<bool name="config_dozeAlwaysOnDisplayAvailable">true</bool>
-	<bool name="config_displayBlanksAfterDoze">false</bool>
-	<bool name="config_dozePulsePickup">false</bool>
-	<bool name="config_supportDoubleTapWake">false</bool>
-	<bool name="config_enableBurnInProtection">true</bool>
-	<!-- List of biometric sensors on the device, in decreasing strength. Consumed by AuthService
+   <string translatable="false" name="config_mainBuiltInDisplayCutout">M62,0l-3.8,0l-3.9,0.2l-3.9,0.4l-4,0.8l-3.9,1.2l-3.8,1.6l-3.7,2l-3.4,2.4l-3.1,2.8l-2.9,3l-2.7,3.1l-2.6,3.1 l-2.7,2.8C12.5,28,6.2,30.3,0,30.3c-6.3,0-12.5-2.3-17.5-6.8l-2.7-2.8l-2.6-3.1l-2.7-3.1l-2.9-3l-3.2-2.8 L-35,6.2l-3.7-2l-3.8-1.6l-3.9-1.2l-4-0.8L-54.3,0.2L-58.2,0L-62,0Z @dp</string>
+   <string translatable="false" name="config_mainBuiltInDisplayCutoutRectApproximation">@*android:string/config_mainBuiltInDisplayCutout</string>
+   <!-- If supported, are dreams enabled? (by default) -->
+   <bool name="config_dreamsEnabledByDefault">false</bool>
+   <bool name="config_dozeAlwaysOnDisplayAvailable">true</bool>
+   <bool name="config_displayBlanksAfterDoze">false</bool>
+   <bool name="config_dozePulsePickup">false</bool>
+   <bool name="config_supportDoubleTapWake">false</bool>
+   <bool name="config_enableBurnInProtection">true</bool>
+   <!-- List of biometric sensors on the device, in decreasing strength. Consumed by AuthService
          when registering authenticators with BiometricService. Format must be ID:Modality:Strength,
          where: IDs are unique per device, Modality as defined in BiometricAuthenticator.java,
          and Strength as defined in Authenticators.java -->
-	<string-array name="config_biometric_sensors" translatable="false">
-		<item>0:2:15</item>
-		<!-- ID0:Fingerprint:Strong -->
-	</string-array>
-	<!-- For performance and storage reasons, limit the number of fingerprints per user -->
-	<integer name="config_fingerprintMaxTemplatesPerUser">4</integer>
-	<!-- Specify if the fingerprint hardware support gestures-->
-	<bool name="config_fingerprintSupportsGestures">true</bool>
-	<!-- True if the device supports system navigation keys. -->
-	<bool name="config_supportSystemNavigationKeys">true</bool>
-	<!-- Limit for the number of face templates per user -->
-	<integer name="config_faceMaxTemplatesPerUser">2</integer>
+   <string-array name="config_biometric_sensors" translatable="false">
+      <item>0:2:15</item>
+      <!-- ID0:Fingerprint:Strong -->
+   </string-array>
+   <!-- For performance and storage reasons, limit the number of fingerprints per user -->
+   <integer name="config_fingerprintMaxTemplatesPerUser">4</integer>
+   <!-- Specify if the fingerprint hardware support gestures-->
+   <bool name="config_fingerprintSupportsGestures">true</bool>
+   <!-- True if the device supports system navigation keys. -->
+   <bool name="config_supportSystemNavigationKeys">true</bool>
+   <!-- Limit for the number of face templates per user -->
+   <integer name="config_faceMaxTemplatesPerUser">2</integer>
 </resources>

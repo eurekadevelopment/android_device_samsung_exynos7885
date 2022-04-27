@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
      Copyright (C) 2021 Eureka Team
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,7 +11,7 @@
      limitations under the License.
 -->
 <permissions>
-	<privapp-permissions package="com.eurekateam.cameralightsensor">
-		<permission name="android.permission.WRITE_SECURE_SETTINGS"/>
-	</privapp-permissions>
+   <privapp-permissions package="com.eurekateam.cameralightsensor">
+      <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+   </privapp-permissions>
 </permissions>

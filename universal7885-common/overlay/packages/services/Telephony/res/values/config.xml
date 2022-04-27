@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2009 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,8 +19,8 @@
 <!-- Phone app resources that may need to be customized
      for different hardware or product builds. -->
 <resources>
-	<!-- Flag indicating if hac is enabled -->
-	<bool name="hac_enabled">true</bool>
-	<!-- String indicating the package name of the device ImsService implementation for RCS. -->
-	<string name="config_ims_rcs_package" translatable="false">com.android.service.ims</string>
+   <!-- Flag indicating if hac is enabled -->
+   <bool name="hac_enabled">true</bool>
+   <!-- String indicating the package name of the device ImsService implementation for RCS. -->
+   <string name="config_ims_rcs_package" translatable="false">com.android.service.ims</string>
 </resources>

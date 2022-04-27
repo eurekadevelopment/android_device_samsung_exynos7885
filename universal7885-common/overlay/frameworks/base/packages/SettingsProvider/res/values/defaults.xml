@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
  * Copyright (c) 2009, The Android Open Source Project
@@ -17,19 +16,19 @@
  */
 -->
 <resources>
-	<bool name="def_screen_brightness_automatic_mode">false</bool>
-	<!-- Comma-separated list of bluetooth, wifi, and cell. -->
-	<string name="def_airplane_mode_radios" translatable="false">cell</string>
-	<!-- 60 seconds for default screen timeout -->
-	<integer name="def_screen_off_timeout">60000</integer>
-	<!-- Disable bluetooth by default -->
-	<bool name="def_bluetooth_on">false</bool>
-	<!-- Disable dial pad tones by default -->
-	<bool name="def_dtmf_tones_enabled">false</bool>
-	<!-- Disable screen locking sounds by default -->
-	<integer name="def_lockscreen_sounds_enabled">1</integer>
-	<!-- Enable vibrate for calls by default -->
-	<bool name="def_vibrate_when_ringing">true</bool>
-	<!-- Enable UI touch haptic feedback by default -->
-	<bool name="def_haptic_feedback">true</bool>
+   <bool name="def_screen_brightness_automatic_mode">false</bool>
+   <!-- Comma-separated list of bluetooth, wifi, and cell. -->
+   <string name="def_airplane_mode_radios" translatable="false">cell</string>
+   <!-- 60 seconds for default screen timeout -->
+   <integer name="def_screen_off_timeout">60000</integer>
+   <!-- Disable bluetooth by default -->
+   <bool name="def_bluetooth_on">false</bool>
+   <!-- Disable dial pad tones by default -->
+   <bool name="def_dtmf_tones_enabled">false</bool>
+   <!-- Disable screen locking sounds by default -->
+   <integer name="def_lockscreen_sounds_enabled">1</integer>
+   <!-- Enable vibrate for calls by default -->
+   <bool name="def_vibrate_when_ringing">true</bool>
+   <!-- Enable UI touch haptic feedback by default -->
+   <bool name="def_haptic_feedback">true</bool>
 </resources>
