@@ -1,4 +1,4 @@
-type hal_fmradio_default, domain;
+type hal_fmradio_default, domain, coredomain;
 type hal_fmradio_default_exec, exec_type, file_type,  system_file_type;
 add_hwservice(hal_fmradio_default, hal_fmradio_hwservice);
 init_daemon_domain(hal_fmradio_default);
