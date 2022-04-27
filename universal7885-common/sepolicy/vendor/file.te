@@ -28,7 +28,6 @@ type epicd_socket, file_type, data_file_type;
 
 ### SYSFS
 type sysfs_argos, sysfs_type, r_fs_type, fs_type;
-type sysfs_battery, sysfs_type, r_fs_type, fs_type;
 type sysfs_bbd, sysfs_type, r_fs_type, fs_type;
 type sysfs_fingerprint, sysfs_type, r_fs_type, fs_type;
 type sysfs_iio, sysfs_type, r_fs_type, fs_type;
@@ -36,14 +35,11 @@ type sysfs_input, sysfs_type, r_fs_type, fs_type;
 type sysfs_sec_gps, sysfs_type, r_fs_type, fs_type;
 type sysfs_sec_key, sysfs_type, r_fs_type, fs_type;
 type sysfs_sec_sensors, sysfs_type, r_fs_type, fs_type;
-type sysfs_sec_switch, sysfs_type, r_fs_type, fs_type;
-type sysfs_sec_touchscreen, sysfs_type, r_fs_type, fs_type;
 type sysfs_sim, sysfs_type, r_fs_type, fs_type;
 type sysfs_sensors, sysfs_type, r_fs_type, fs_type;
 type sysfs_wifi, sysfs_type, r_fs_type, fs_type;
 type sysfs_gpu, sysfs_type, r_fs_type, fs_type;
 type sysfs_backlight_writable, sysfs_type, rw_fs_type, fs_type;
-type sysfs_battery_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_bt_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_gps_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_lcd_writable, sysfs_type, rw_fs_type, fs_type;
@@ -53,8 +49,6 @@ type sysfs_sensorhub_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_sensors_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_sim_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_spi_writeable, sysfs_type, rw_fs_type, fs_type;
-type sysfs_sec_switch_writable, sysfs_type, rw_fs_type, fs_type;
-type sysfs_touchscreen_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_wifi_writable, sysfs_type, rw_fs_type, fs_type;
 
 ### VENDOR
@@ -65,6 +59,7 @@ type tee_vendor_data_file, file_type, data_file_type;
 
 # DEV SOCKET
 type tz_socket, file_type;
+
 ### efs types
 type radio_factoryapp_efs_file, file_type;
 type factoryprop_efs_file, file_type;
@@ -110,7 +105,6 @@ type sysfs_multipdp, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_sec, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_gps, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_brightness, fs_type, sysfs_type, mlstrustedobject;
-type sysfs_virtual, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_fuelgauge, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_charger, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_modem, fs_type, sysfs_type, mlstrustedobject;
