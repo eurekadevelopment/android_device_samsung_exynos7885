@@ -1,0 +1,8 @@
+# SamsungParts
+vendor.eureka.hardware.parts::IBatteryStats u:object_r:hal_parts_hwservice:s0
+vendor.eureka.hardware.parts::IFlashBrightness u:object_r:hal_parts_hwservice:s0
+vendor.eureka.hardware.parts::IDisplayConfigs u:object_r:hal_parts_hwservice:s0
+vendor.eureka.hardware.parts::ISwapOnData u:object_r:hal_parts_hwservice:s0
+
+# FMRadio
+vendor.eureka.hardware.fmradio::IFMRadio u:object_r:hal_fmradio_hwservice:s0

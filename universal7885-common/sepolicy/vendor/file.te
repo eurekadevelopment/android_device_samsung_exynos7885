@@ -41,7 +41,7 @@ type sysfs_sec_touchscreen, sysfs_type, r_fs_type, fs_type;
 type sysfs_sim, sysfs_type, r_fs_type, fs_type;
 type sysfs_sensors, sysfs_type, r_fs_type, fs_type;
 type sysfs_wifi, sysfs_type, r_fs_type, fs_type;
-
+type sysfs_gpu, sysfs_type, r_fs_type, fs_type;
 type sysfs_backlight_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_battery_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_bt_writable, sysfs_type, rw_fs_type, fs_type;
@@ -100,9 +100,7 @@ type sysfs_input_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_batteryinfo_charger_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_camera_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_decon, sysfs_type, r_fs_type, fs_type;
-type sysfs_gpu, sysfs_type, r_fs_type, fs_type;
 type sysfs_socinfo, sysfs_type, r_fs_type, fs_type;
-type sysfs_fmradio_tune, sysfs_type, rw_fs_type, fs_type;
 type sysfs_v4l, sysfs_type, r_fs_type, fs_type;
 type sysfs_v4l_mfc, sysfs_type, r_fs_type, fs_type;
 type sysfs_v4l_smfc, sysfs_type, r_fs_type, fs_type;

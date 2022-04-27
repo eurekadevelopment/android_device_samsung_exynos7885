@@ -4,14 +4,5 @@ vendor.samsung.hardware.radio.bridge::ISehBridge            u:object_r:rild_hwse
 vendor.samsung.hardware.radio.channel::ISehChannel          u:object_r:rild_hwservice:s0
 vendor.lineage.power::ILineagePower			      u:object_r:hal_power_hwservice:s0
 
-# SamsungParts
-vendor.eureka.hardware.parts::IBatteryStats u:object_r:hal_parts_hwservice:s0
-vendor.eureka.hardware.parts::IFlashBrightness u:object_r:hal_parts_hwservice:s0
-vendor.eureka.hardware.parts::IDisplayConfigs u:object_r:hal_parts_hwservice:s0
-vendor.eureka.hardware.parts::ISwapOnData u:object_r:hal_parts_hwservice:s0
-
-# FMRadio
-vendor.eureka.hardware.fmradio::IFMRadio u:object_r:hal_fmradio_hwservice:s0
-
 vendor.samsung_slsi.hardware.ExynosHWCServiceTW::IExynosHWCServiceTW u:object_r:hal_vendor_surfaceflinger_hwservice:s0
 vendor.samsung_slsi.hardware.configstore::IExynosHWCConfigs          u:object_r:hal_vendor_configstore_hwservice:s0

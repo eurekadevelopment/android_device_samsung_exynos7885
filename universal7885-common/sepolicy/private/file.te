@@ -1,0 +1,1 @@
+type sysfs_fmradio_tune, sysfs_type, rw_fs_type, fs_type;
