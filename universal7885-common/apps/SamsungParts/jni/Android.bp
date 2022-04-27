@@ -8,11 +8,11 @@ cc_library_shared {
     ],
     srcs: ["*.cpp"],
     header_libs: ["jni_headers"],
+    static_libs: [ "libc++fs" ],
     shared_libs: [
         "libhidlbase",
         "liblog",
         "libutils",
-	"libc++fs",
         "vendor.eureka.hardware.parts@1.0",
     ]
 }
