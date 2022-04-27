@@ -2,7 +2,6 @@
 
 cc_binary {
     name: "vendor.eureka.hardware.fmradio@1.2-service",
-    proprietary: true,
     srcs: [
         "FMRadio.cpp",
 	"service.cpp",

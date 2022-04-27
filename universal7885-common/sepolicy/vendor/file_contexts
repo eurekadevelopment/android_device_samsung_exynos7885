@@ -24,7 +24,6 @@
 /data/vendor/log(/.*)?                       u:object_r:log_vendor_data_file:s0
 /data/vendor/log/cbd(/.*)?                   u:object_r:log_cbd_vendor_data_file:s0
 /data/vendor/secradio(/.*)?                  u:object_r:radio_vendor_data_file:s0
-/data/swap(/.*)?			     u:object_r:parts_data_file:s0
 
 ### DEV
 /dev/block/platform/.+/by-name/boot          u:object_r:boot_block_device:s0
@@ -216,11 +215,5 @@
 /(vendor|system/vendor)/bin/hw/vendor\.samsung\.hardware\.gnss@[0-9]\.[0-9]-service           u:object_r:hal_gnss_default_exec:s0
 /(vendor|system/vendor)/firmware(/.*)?       u:object_r:vendor_firmware_file:s0
 
-# SamsungParts
-/(vendor|system/vendor)/bin/vendor\.eureka\.hardware\.parts@[0-9]\.[0-9]-service          u:object_r:hal_parts_default_exec:s0
-# FMRadio
-/(vendor|system/vendor)/bin/vendor\.eureka\.hardware\.fmradio@[0-9]\.[0-9]-service          u:object_r:hal_fmradio_default_exec:s0
-
-/dev/radio0										u:object_r:fm_radio_device:s0	
 /factory(/.*)?									u:object_r:sec_efs_file:s0
 
