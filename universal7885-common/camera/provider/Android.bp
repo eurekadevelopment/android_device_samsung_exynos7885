@@ -18,7 +18,6 @@ cc_binary {
     defaults: [
         "hidl_defaults",
     ],
-    compile_multilib: "32",
     proprietary: true,
     relative_install_path: "hw",
     srcs: [
