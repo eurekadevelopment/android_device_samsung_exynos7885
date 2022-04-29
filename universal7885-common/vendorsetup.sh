@@ -17,7 +17,7 @@ git clone --depth=1 https://github.com/eurekadevelopment/android_vendor_samsung_
 if test -f device/samsung/universal7885-common/vendor_name; then
 rm device/samsung/universal7885-common/vendor_name
 fi
-python3 device/samsung/universal7885-common/vendor_detect/main.py -d 0
+python3 device/samsung/universal7885-common/vendor_detect/main.py
 echo "Generating A10 Makefiles"
 ./device/samsung/a10/setup.sh
 
