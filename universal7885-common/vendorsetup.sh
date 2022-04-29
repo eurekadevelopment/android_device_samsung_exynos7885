@@ -10,7 +10,9 @@ git clone --depth=1 "$MODE"github.com"$SPERATOR"eurekadevelopment/Eureka-Kernel-
 git clone https://github.com/lineageos/android_hardware_samsung_slsi_libbt hardware/samsung_slsi/libbt
 git clone https://github.com/eurekadevelopment/android_hardware_samsung_slsi_scsc_wifibt_wifi_hal.git hardware/samsung_slsi/scsc_wifibt/wifi_hal
 git clone https://github.com/lineageos/android_hardware_samsung_slsi_scsc_wifibt_wpa_supplicant_lib hardware/samsung_slsi/scsc_wifibt/wpa_supplicant_lib
-# Vendors
+mv hardware/samsung/nfc .
+git clone https://github.com/lineageos/android_hardware_samsung hardware/samsung
+mv nfc hardware/samsung
 git clone --depth=1 https://github.com/eurekadevelopment/android_vendor_samsung_exynos7885.git -b master vendor/samsung
 if test -f device/samsung/universal7885-common/vendor_name; then
 rm device/samsung/universal7885-common/vendor_name
