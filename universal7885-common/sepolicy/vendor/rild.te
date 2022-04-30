@@ -91,6 +91,8 @@ allow rild hal_radio_default:binder call;
 # audio
 allow rild hal_audio_default:dir search;
 allow rild hal_audio_default:file r_file_perms;
+allow rild efs_file:lnk_file read;
+
 # hwservice
 add_hwservice(rild, rild_hwservice)
 set_prop(rild, radio_prop)

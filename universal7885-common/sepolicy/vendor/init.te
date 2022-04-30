@@ -40,8 +40,6 @@ allow init kernel:system module_request;
 allow init logd:unix_stream_socket connectto;
 allow init logdr_socket:sock_file write;
 allow init self:capability sys_nice;
-allow init boot_logcat_file:file rw_file_perms;
-allow init logcat_exec:file { execute getattr open read };
 
 allow init proc:file setattr;
 allow init proc_swapiness:file write;
@@ -49,7 +47,6 @@ allow init proc_extra:file setattr;
 allow init proc_reset_reason:file setattr;
 allow init proc_swapiness:file open;
 allow init self:netlink_generic_socket { bind create getattr read setopt write };
-# init.te
 
 allow init proc_last_kmsg:file setattr;
 allow init mnt_vendor_file:dir mounton;
@@ -57,6 +54,6 @@ allow init mnt_vendor_file:dir mounton;
 unix_socket_connect(init, property, rild)
 
 allow init sec_efs_file:dir mounton;
-
+allow init sysfs_mmc_queue:file { open write };
 get_prop(init, vendor_radio_prop)
 get_prop(init, radio_prop)

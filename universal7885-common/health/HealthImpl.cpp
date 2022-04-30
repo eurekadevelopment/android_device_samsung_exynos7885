@@ -65,13 +65,12 @@ class HealthImpl : public Health {
 	file.open(sysfs);
 	Result result = Result::SUCCESS;
 	if (file.is_open()){
-		std::string value;
-		getline(file, value);
+		getline(file, ret);
     		file.close();
 	} else {
 		result = Result::NOT_FOUND;
 	}
-	ALOGI ("%s: sysfs : %s, returns : %s", __func__, sysfs, ret.c_str());
+	ALOGI ("%s: sysfs : %s, returns : %s", __func__, sysfs.c_str(), ret.c_str());
 	struct callBack cb = { result, ret };
     	return cb;
     }

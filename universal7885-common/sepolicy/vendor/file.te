@@ -27,6 +27,7 @@ type proc_last_kmsg, fs_type, proc_type;
 type epicd_socket, file_type, data_file_type;
 
 ### SYSFS
+type sysfs_sec_ccic, sysfs_type, rw_fs_type, fs_type;
 type sysfs_argos, sysfs_type, r_fs_type, fs_type;
 type sysfs_bbd, sysfs_type, r_fs_type, fs_type;
 type sysfs_fingerprint, sysfs_type, r_fs_type, fs_type;
@@ -39,8 +40,10 @@ type sysfs_sim, sysfs_type, r_fs_type, fs_type;
 type sysfs_sensors, sysfs_type, r_fs_type, fs_type;
 type sysfs_wifi, sysfs_type, r_fs_type, fs_type;
 type sysfs_gpu, sysfs_type, r_fs_type, fs_type;
+type sysfs_mmc, sysfs_type, r_fs_type, fs_type;
 type sysfs_backlight_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_bt_writable, sysfs_type, rw_fs_type, fs_type;
+type sysfs_mmc_queue, sysfs_type, rw_fs_type, fs_type;
 type sysfs_gps_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_lcd_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_power_writable, sysfs_type, rw_fs_type, fs_type;
