@@ -62,6 +62,9 @@ TARGET_KERNEL_SOURCE := kernel/samsung/exynos7885
 TARGET_KERNEL_CLANG_COMPILE := true
 KERNEL_LD := LD=ld.lld
 
+# Keymaster
+TARGET_KEYMASTER_VARIANT := samsung
+
 # HIDL
 include device/samsung/universal7885-common/configs/vintf/manifest.mk
 
