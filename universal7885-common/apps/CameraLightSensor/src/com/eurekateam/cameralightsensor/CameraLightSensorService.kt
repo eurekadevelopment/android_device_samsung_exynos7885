@@ -2,10 +2,7 @@ package com.eurekateam.cameralightsensor
 
 import android.annotation.SuppressLint
 import android.app.*
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.*
 import android.content.pm.ServiceInfo
 import android.database.ContentObserver
 import android.graphics.Bitmap
@@ -13,6 +10,8 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.ImageFormat
 import android.hardware.camera2.*
+import android.hardware.camera2.params.OutputConfiguration
+import android.hardware.camera2.params.SessionConfiguration
 import android.media.Image
 import android.media.ImageReader
 import android.os.*
@@ -20,25 +19,29 @@ import android.provider.Settings
 import android.provider.Settings.SettingNotFoundException
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledThreadPoolExecutor
 import java.util.concurrent.TimeUnit
 
 class CameraLightSensorService : Service() {
     private lateinit var screenStateFilter: IntentFilter
-    lateinit var mContext: Context
-    private var cameraDevice: CameraDevice? = null
-    private var session: CameraCaptureSession? = null
-    private lateinit var manager: CameraManager
+    private lateinit var mContext: Context
+    private lateinit var cameraDevice: CameraDevice
+    private lateinit var mSession: CameraCaptureSession
+    private val manager: CameraManager by lazy {
+        getSystemService(CAMERA_SERVICE) as CameraManager
+    }
     private lateinit var mCameraHandler: Handler
+    private val mExecutor = Executors.newSingleThreadExecutor()
     private fun pushNotification(): Notification {
         val nm = mContext.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         val channel = NotificationChannel(
-            mContext.basePackageName, "CameraLightSensor",
+            mContext.packageName, "CameraLightSensor",
             NotificationManager.IMPORTANCE_NONE
         )
         channel.isBlockable = true
         nm.createNotificationChannel(channel)
-        val builder = NotificationCompat.Builder(mContext, mContext.basePackageName)
+        val builder = NotificationCompat.Builder(mContext, mContext.packageName)
         val notificationIntent = Intent(mContext, CameraLightSensorService::class.java)
         val contentIntent = PendingIntent.getActivity(
             mContext, 50,
@@ -48,7 +51,7 @@ class CameraLightSensorService : Service() {
         builder.setContentIntent(contentIntent)
         builder.setSmallIcon(R.drawable.ic_brightness)
         builder.setContentTitle("Camera Light Sensor Service")
-        builder.setChannelId(mContext.basePackageName)
+        builder.setChannelId(mContext.packageName)
         return builder.build()
     }
 
@@ -58,11 +61,24 @@ class CameraLightSensorService : Service() {
         mRegistered = false
         imageReader.close()
         stopForeground(true)
+        unbindService(mConnection)
         super.onDestroy()
     }
 
     override fun onBind(intent: Intent): IBinder? {
         return null
+    }
+
+    private var mIAutoBrightness: IAutoBrightness? = null
+
+    private val mConnection = object : ServiceConnection {
+        override fun onServiceConnected(p0: ComponentName?, service: IBinder?) {
+            mIAutoBrightness = IAutoBrightness.Stub.asInterface(service)
+        }
+
+        override fun onServiceDisconnected(p0: ComponentName?) {
+            mIAutoBrightness = null
+        }
     }
 
     private val mScreenStateReceiver: BroadcastReceiver = object : BroadcastReceiver() {
@@ -141,17 +157,17 @@ class CameraLightSensorService : Service() {
     private var sessionStateCallback: CameraCaptureSession.StateCallback =
         object : CameraCaptureSession.StateCallback() {
             override fun onReady(session: CameraCaptureSession) {
-                this@CameraLightSensorService.session = session
+                this@CameraLightSensorService.mSession = session
                 try {
                     if (createCaptureRequest() == null) return
                     try {
-                        session.capture(createCaptureRequest(), null, mCameraHandler)
+                        session.capture(createCaptureRequest()!!, null, mCameraHandler)
                     } catch (e: CameraAccessException) {
                         e.printStackTrace()
                     } catch (e: IllegalStateException) {
                         Log.w(TAG, "onReady: Session is NULL")
                     }
-                    cameraDevice!!.close()
+                    cameraDevice.close()
                     session.close()
                 } catch (e: Exception) {
                     Log.e(TAG, "Camera is in use")
@@ -179,30 +195,16 @@ class CameraLightSensorService : Service() {
 
     @SuppressLint("MissingPermission")
     fun readyCamera() {
-        manager = getSystemService(CAMERA_SERVICE) as CameraManager
+        if (mIAutoBrightness != null){
+            if (!mIAutoBrightness!!.CameraIsFree()) return
+        }
         try {
-            val pickedCamera = getCamera(manager)
-            manager.openCamera(pickedCamera, cameraStateCallback, mCameraHandler)
+            manager.openCamera("1", cameraStateCallback, mCameraHandler)
             imageReader.setOnImageAvailableListener(onImageAvailableListener, mCameraHandler)
             if (DEBUG) Log.d(TAG, "imageReader created")
         } catch (e: CameraAccessException) {
-            Log.e(TAG, e.message)
-        }
-    }
-
-    private fun getCamera(manager: CameraManager?): String? {
-        try {
-            for (cameraId in manager!!.cameraIdList) {
-                val characteristics = manager.getCameraCharacteristics(cameraId)
-                val cOrientation = characteristics.get(CameraCharacteristics.LENS_FACING)
-                if (cOrientation == CAMERA_CHOICE) {
-                    return cameraId
-                }
-            }
-        } catch (e: CameraAccessException) {
             e.printStackTrace()
         }
-        return null
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -210,6 +212,9 @@ class CameraLightSensorService : Service() {
         mCameraHandlerThread.start()
         mCameraHandler = Handler(mCameraHandlerThread.looper)
         mContext = this
+        bindService(Intent(mContext, IAutoBrightness::class.java).apply {
+            setClassName("com.eurekateam.camera", "CameraAIDL")
+        }, mConnection, Context.BIND_AUTO_CREATE)
         @Suppress("SameParameterValue")
         startForeground(50, pushNotification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA)
         mRegistered = false
@@ -241,13 +246,11 @@ class CameraLightSensorService : Service() {
 
     fun actOnReadyCameraDevice() {
         try {
-            cameraDevice!!.createCaptureSession(
-                listOf(imageReader.surface),
-                sessionStateCallback,
-                mCameraHandler
-            )
+            cameraDevice.createCaptureSession(
+                SessionConfiguration(SessionConfiguration.SESSION_REGULAR,
+                    listOf(OutputConfiguration(imageReader.surface)), mExecutor, sessionStateCallback))
         } catch (e: CameraAccessException) {
-            Log.e(TAG, e.message)
+            e.printStackTrace()
         }
     }
 
@@ -261,13 +264,13 @@ class CameraLightSensorService : Service() {
         adjustBrightness(brightness)
     }
 
-    protected fun createCaptureRequest(): CaptureRequest? {
+    fun createCaptureRequest(): CaptureRequest? {
         return try {
-            val builder = cameraDevice!!.createCaptureRequest(CameraDevice.TEMPLATE_RECORD)
-            builder.addTarget(imageReader!!.surface)
+            val builder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_RECORD)
+            builder.addTarget(imageReader.surface)
             builder.build()
         } catch (e: CameraAccessException) {
-            Log.e(TAG, e.message)
+            e.printStackTrace()
             null
         }
     }
@@ -318,9 +321,8 @@ class CameraLightSensorService : Service() {
     companion object {
         private val imageReader =
             ImageReader.newInstance(50, 50, ImageFormat.JPEG, 2 /* images buffered */)
-        protected val TAG: String = CameraLightSensorService::class.java.simpleName
+        val TAG: String = CameraLightSensorService::class.java.simpleName
         const val DEBUG = false
-        const val CAMERA_CHOICE = CameraCharacteristics.LENS_FACING_FRONT
         private var mPoolExecutor: ScheduledThreadPoolExecutor? = null
         private var mRegistered = false
     }
