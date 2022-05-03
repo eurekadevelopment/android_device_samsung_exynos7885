@@ -17,6 +17,7 @@ BOARD_VENDORIMAGE_PARTITION_SIZE   := 645922816
 
 # FOD
 TARGET_SEC_FP_REQUEST_TOUCH_EVENT := true
+TARGET_SEC_FP_REQUEST_FORCE_CALIBRATE := true
 
 # Inherit common board flags
 include device/samsung/universal7885-common/BoardConfigCommon.mk
