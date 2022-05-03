@@ -19,6 +19,7 @@ import android.provider.Settings
 import android.provider.Settings.SettingNotFoundException
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.eurekateam.camera.IAutoBrightness
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledThreadPoolExecutor
 import java.util.concurrent.TimeUnit
@@ -213,7 +214,7 @@ class CameraLightSensorService : Service() {
         mCameraHandler = Handler(mCameraHandlerThread.looper)
         mContext = this
         bindService(Intent(mContext, IAutoBrightness::class.java).apply {
-            setClassName("com.eurekateam.camera", "CameraAIDL")
+            setClassName("com.eurekateam.camera", "com.eurekateam.camera.CameraAIDL")
         }, mConnection, Context.BIND_AUTO_CREATE)
         @Suppress("SameParameterValue")
         startForeground(50, pushNotification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA)
