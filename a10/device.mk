@@ -17,6 +17,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service.a10
 
+# Sensors
+PRODUCT_PACKAGES += \
+    android.hardware.sensors@1.0-service.a10
+
 TARGET_SCREEN_HEIGHT := 1560
 TARGET_SCREEN_WIDTH := 720
 
