@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-service vendor.fm-hal /vendor/bin/vendor.eureka.hardware.fmradio@1.2-service
-=======
 service fm-hal /system/bin/vendor.eureka.hardware.fmradio@1.2-service
->>>>>>> e53d5db (universal7885: Remove LineageOS hardware samsung deps)
     interface vendor.eureka.hardware.fmradio@1.0::IFMRadio default
     interface vendor.eureka.hardware.fmradio@1.1::IFMRadio default
     interface vendor.eureka.hardware.fmradio@1.2::IFMRadio default

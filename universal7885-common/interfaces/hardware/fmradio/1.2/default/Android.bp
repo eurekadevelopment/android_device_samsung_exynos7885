@@ -2,10 +2,6 @@
 
 cc_binary {
     name: "vendor.eureka.hardware.fmradio@1.2-service",
-<<<<<<< HEAD
-    proprietary: true,
-=======
->>>>>>> e53d5db (universal7885: Remove LineageOS hardware samsung deps)
     srcs: [
         "FMRadio.cpp",
 	"service.cpp",

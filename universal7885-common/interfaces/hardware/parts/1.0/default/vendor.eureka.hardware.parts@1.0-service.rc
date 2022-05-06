@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-service vendor.parts-hal /vendor/bin/vendor.eureka.hardware.parts@1.0-service
-=======
 service parts-hal /system/bin/vendor.eureka.hardware.parts@1.0-service
->>>>>>> e53d5db (universal7885: Remove LineageOS hardware samsung deps)
     interface vendor.eureka.hardware.parts@1.0::IBatteryStats default
     interface vendor.eureka.hardware.parts@1.0::IDisplayConfigs default
     interface vendor.eureka.hardware.parts@1.0::IFlashBrightness default
