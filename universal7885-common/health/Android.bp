@@ -21,7 +21,6 @@ cc_library_shared {
         "libbatterymonitor",
         "libhealthloop",
         "libhealth2impl",
-	"libc++fs"
     ],
 
     srcs: [

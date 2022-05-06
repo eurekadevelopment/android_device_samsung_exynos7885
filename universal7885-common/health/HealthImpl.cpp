@@ -3,7 +3,6 @@
 #include <unordered_map>
 #include <fstream>
 #include <sstream>
-#include <filesystem> // C++17
 
 #include <health/utils.h>
 #include <health2impl/Health.h>
@@ -19,9 +18,6 @@ using ::android::hardware::health::V2_0::Result;
 using ::android::hardware::health::V1_0::BatteryStatus;
 using ::android::hidl::base::V1_0::IBase;
 using namespace std::literals;
-namespace fs = std::filesystem;
-
-static int charge_cnt = 0;
 
 enum battery_stats {
 	CHARGE_CNT,
