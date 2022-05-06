@@ -1,6 +1,3 @@
-# Call proprietary blob setup
-$(call inherit-product, vendor/samsung/universal7885-common/universal7885-common-vendor.mk)
-
 # Build Fingerprints
 $(call inherit-product, $(LOCAL_PATH)/fingerprint.mk)
 
