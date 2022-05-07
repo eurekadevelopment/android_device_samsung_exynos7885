@@ -301,10 +301,6 @@ on boot
 	chown system system /dev/ttySAC2
 	chmod 0660 /dev/ttySAC2
 
-    # Set up kernel tracing, but disable it by default
-    chmod 0222 /sys/kernel/debug/tracing/trace_marker
-    write /sys/kernel/debug/tracing/tracing_on 0
-
     # DVFS & Hotplug
     chown system system /sys/power/cpuhotplug/enabled
     chown system system /sys/power/cpuhotplug/min_online_cpu
