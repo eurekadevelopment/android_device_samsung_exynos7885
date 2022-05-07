@@ -27,6 +27,8 @@ genfscon sysfs /devices/platform/argos                                    u:obje
 genfscon sysfs /devices/platform/13500000.dwmmc0/mmc_host/mmc0/ u:object_r:sysfs_mmc:s0
 genfscon sysfs /devices/platform/13500000.dwmmc0/mmc_host/mmc0/mmc0:0001/block/mmcblk0/queue/ u:object_r:sysfs_mmc_queue:s0
 
+genfscon sysfs /devices/platform/13500000.dwmmc0/mmc_host/mmc0/mmc0:0001/block/mmcblk0/uevent u:object_r:sysfs_mmc_uevent:s0
+
 genfscon sysfs /devices/virtual/fingerprint/fingerprint                   u:object_r:sysfs_fingerprint:s0
 genfscon sysfs /devices/virtual/input                                     u:object_r:sysfs_input:s0
 genfscon sysfs /devices/virtual/lcd/panel                                 u:object_r:sysfs_lcd_writable:s0
