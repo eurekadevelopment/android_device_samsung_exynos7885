@@ -42,11 +42,6 @@ Return<void> CameraDevice::getCameraCharacteristics(
   return Void();
 }
 
-Return<void> CameraDevice::getEurekaCharacteristics(
-    ICameraDevice::getCameraCharacteristics_cb _hidl_cb) {
-  return CameraDevice::getCameraCharacteristics(_hidl_cb);
-}
-
 Return<void> CameraDevice::open(const sp<ICameraDeviceCallback> &callback,
                                 ICameraDevice::open_cb _hidl_cb) {
   Status status = initStatus();
@@ -150,10 +145,6 @@ Return<void> CameraDevice::open(const sp<ICameraDeviceCallback> &callback,
   }
   _hidl_cb(status, session->getInterface());
   return Void();
-}
-Return<void> CameraDevice::nuke(const sp<ICameraDeviceCallback> &callback,
-                                ICameraDevice::open_cb _hidl_cb) {
-  return CameraDevice::open(callback, _hidl_cb);
 }
 } // namespace implementation
 } // namespace V3_2
