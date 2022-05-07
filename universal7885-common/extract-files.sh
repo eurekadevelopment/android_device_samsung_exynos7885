@@ -22,11 +22,6 @@ source "${HELPER}"
 
 function blob_fixup {
 	case "$1" in
-	vendor/lib*/camera.device@3.2-impl.so)
-		"$PATCHELF" --add-needed "libcorrectcamera.so" "$2"
-		sed -i 's/_ZN7android8hardware6camera6device4V3_214implementation12CameraDevice24getCameraCharacteristicsENSt3__18functionIFvNS1_6common4V1_06StatusERKNS0_8hidl_vecIhEEEEE/_ZN7android8hardware6camera6device4V3_214implementation12CameraDevice24getEurekaCharacteristicsENSt3__18functionIFvNS1_6common4V1_06StatusERKNS0_8hidl_vecIhEEEEE/g' "$2"
-		sed -i 's/_ZN7android8hardware6camera6device4V3_214implementation12CameraDevice4openERKNS_2spINS3_21ICameraDeviceCallbackEEENSt3__18functionIFvNS1_6common4V1_06StatusERKNS6_INS3_20ICameraDeviceSessionEEEEEE/_ZN7android8hardware6camera6device4V3_214implementation12CameraDevice4nukeERKNS_2spINS3_21ICameraDeviceCallbackEEENSt3__18functionIFvNS1_6common4V1_06StatusERKNS6_INS3_20ICameraDeviceSessionEEEEEE/g' "$2"
-		;;
 	vendor/lib*/libsensorlistener.so)
 		grep -q libshim_sensorndkbridge.so "$2" || "$PATCHELF" --add-needed "libshim_sensorndkbridge.so" "$2"
 		;;
