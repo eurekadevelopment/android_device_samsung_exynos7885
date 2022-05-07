@@ -80,14 +80,10 @@ struct CameraDevice : public virtual RefBase {
   Return<void> getResourceCost(ICameraDevice::getResourceCost_cb _hidl_cb);
   Return<void>
   getCameraCharacteristics(ICameraDevice::getCameraCharacteristics_cb _hidl_cb);
-  Return<void>
-  getEurekaCharacteristics(ICameraDevice::getCameraCharacteristics_cb _hidl_cb);
   Return<Status> setTorchMode(TorchMode mode);
 
   // Open the device HAL and also return a default capture session
   Return<void> open(const sp<ICameraDeviceCallback> &callback,
-                    ICameraDevice::open_cb _hidl_cb);
-  Return<void> nuke(const sp<ICameraDeviceCallback> &callback,
                     ICameraDevice::open_cb _hidl_cb);
 
   // Forward the dump call to the opened session, or do nothing
