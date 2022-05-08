@@ -54,7 +54,7 @@ persist.ril.                u:object_r:radio_prop:s0
 vendor.gsm.                 u:object_r:vendor_radio_prop:s0
 persist.radio.         	 u:object_r:radio_prop:s0
 ril.clatd.               u:object_r:vendor_radio_prop:s0
-
+vendor.powerhal.             u:object_r:vendor_powerhal_prop:s0
 # FACTORY
 ro.factory.factory_binary   u:object_r:vendor_factory_prop:s0
 
