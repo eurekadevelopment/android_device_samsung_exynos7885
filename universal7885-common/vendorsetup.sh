@@ -29,13 +29,6 @@ echo "Generating A30 Makefiles"
 echo "Generating A40 Makefiles"
 ./device/samsung/a40/setup.sh
 
-# BT Call patch
-if ! grep -q ESCO_TRANSPORT_UNIT_SIZE system/bt/device/src/esco_parameters.cc; then
-echo "Applying BT call patch";
-cd system/bt;
-git apply ../../device/samsung/universal7885-common/.patch/BTCalls-On-Samsung.patch;
-cd -
-fi
 # For FM Radio
 if grep -q isAudioServerUid\(callingUid\) frameworks/av/services/audioflinger/AudioFlinger.cpp; then
 echo "Applying FM routing patch"
