@@ -21,13 +21,6 @@ python3 device/samsung/universal7885-common/vendor_detect/main.py
 echo "Generating A10 Makefiles"
 ./device/samsung/a10/setup.sh
 
-# BT Call patch
-if ! grep -q ESCO_TRANSPORT_UNIT_SIZE system/bt/device/src/esco_parameters.cc; then
-echo "Applying BT call patch";
-cd system/bt;
-git apply ../../device/samsung/universal7885-common/.patch/BTCalls-On-Samsung.patch;
-cd -
-fi
 # For FM Radio
 if grep -q isAudioServerUid\(callingUid\) frameworks/av/services/audioflinger/AudioFlinger.cpp; then
 echo "Applying FM routing patch"
