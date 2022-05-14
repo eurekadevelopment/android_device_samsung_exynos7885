@@ -7,3 +7,6 @@ allow hal_wifi_default wifi_vendor_data_file:dir search;
 
 get_prop(hal_wifi_default, persist_vendor_debug_wifi_prop)
 
+allow hal_wifi_default efs_file:dir search;
+allow hal_wifi_default wifi_efs_file:dir search;
+allow hal_wifi_default wifi_efs_file:file r_file_perms;
