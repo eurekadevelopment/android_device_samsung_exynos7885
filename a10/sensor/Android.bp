@@ -1,4 +1,3 @@
-
 cc_binary {
     name: "android.hardware.sensors@1.0-service.a10",
     relative_install_path: "hw",

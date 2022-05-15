@@ -2,12 +2,12 @@ android_app {
     name: "CameraLightSensor",
     srcs: [
         "src/**/*.kt",
-	"src/**/I*.aidl",
+        "src/**/I*.aidl",
     ],
     platform_apis: true,
     privileged: true,
     certificate: "platform",
-    static_libs: [ "androidx.core_core" ],
+    static_libs: ["androidx.core_core"],
     required: ["privapp_whitelist_com.eurekateam.cameralightsensor.xml"],
 }
 
@@ -16,4 +16,3 @@ prebuilt_etc {
     src: "privapp_whitelist_com.eurekateam.cameralightsensor.xml",
     sub_dir: "permissions",
 }
-

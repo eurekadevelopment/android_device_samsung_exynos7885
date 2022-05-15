@@ -29,4 +29,3 @@ cc_library_shared {
         "jni_headers",
     ],
 }
-

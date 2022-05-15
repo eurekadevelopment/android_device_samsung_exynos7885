@@ -18,5 +18,5 @@ cc_library_static {
     whole_static_libs: ["libbase"],
     header_libs: ["libbase_headers"],
     srcs: ["init_universal7885.cpp"],
-    include_dirs: ["system/core/init"]
+    include_dirs: ["system/core/init"],
 }
