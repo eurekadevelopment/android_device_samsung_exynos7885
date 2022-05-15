@@ -22,7 +22,7 @@ cc_binary {
     relative_install_path: "hw",
     srcs: [
         "SamsungCameraProvider.cpp",
-        "service.cpp"
+        "service.cpp",
     ],
     init_rc: ["android.hardware.camera.provider@2.5-service.exynos7885.rc"],
     shared_libs: [

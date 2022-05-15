@@ -17,7 +17,7 @@
 cc_binary {
     name: "eklogger",
     srcs: [
-         "Logger.cpp",
+        "Logger.cpp",
     ],
     init_rc: ["eklogger.rc"],
 }

@@ -15,6 +15,6 @@ cc_binary {
         "liblog",
         "vendor.eureka.hardware.parts@1.0",
     ],
-    init_rc: [ "vendor.eureka.hardware.parts@1.0-service.rc" ],
-    vintf_fragments: [ "vendor.eureka.hardware.parts@1.0.xml" ],
+    init_rc: ["vendor.eureka.hardware.parts@1.0-service.rc"],
+    vintf_fragments: ["vendor.eureka.hardware.parts@1.0.xml"],
 }

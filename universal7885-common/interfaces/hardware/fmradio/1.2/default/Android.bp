@@ -4,7 +4,7 @@ cc_binary {
     name: "vendor.eureka.hardware.fmradio@1.2-service",
     srcs: [
         "FMRadio.cpp",
-	"service.cpp",
+        "service.cpp",
     ],
     shared_libs: [
         "libhidlbase",
@@ -14,6 +14,6 @@ cc_binary {
         "vendor.eureka.hardware.fmradio@1.1",
         "vendor.eureka.hardware.fmradio@1.2",
     ],
-    init_rc: [ "vendor.eureka.hardware.fmradio@1.2-service.rc" ],
-    vintf_fragments: [ "vendor.eureka.hardware.fmradio@1.2.xml" ],
+    init_rc: ["vendor.eureka.hardware.fmradio@1.2-service.rc"],
+    vintf_fragments: ["vendor.eureka.hardware.fmradio@1.2.xml"],
 }
