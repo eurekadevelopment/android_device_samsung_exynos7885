@@ -234,13 +234,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.radio@1.4.vendor \
     android.hardware.radio.config@1.2.vendor \
-    android.hardware.radio.deprecated@1.0.vendor
-
-# RCS
-PRODUCT_PACKAGES += \
-    com.android.ims.rcsmanager \
-    PresencePolling \
-    RcsService
+    android.hardware.radio.deprecated@1.0.vendor \
+    vendor.samsung.hardware.radio@2.1.vendor \
+    vendor.samsung.hardware.radio.channel@2.0.vendor
 
 PRODUCT_PACKAGES += \
     secril_config_svc
