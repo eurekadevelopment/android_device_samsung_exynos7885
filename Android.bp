@@ -1,0 +1,71 @@
+// From system/apex/apexd/Android.bp
+
+tidy_errors = [
+  "android-*",
+  "bugprone-infinite-loop",
+  "bugprone-macro-parentheses",
+  "bugprone-misplaced-widening-cast",
+  "bugprone-move-forwarding-reference",
+  "bugprone-sizeof-container",
+  "bugprone-sizeof-expression",
+  "bugprone-string-constructor",
+  "bugprone-terminating-continue",
+  "bugprone-undefined-memory-manipulation",
+  "bugprone-undelegated-constructor",
+  "bugprone-unhandled-self-assignment",
+  "bugprone-unused-raii",
+  "cert-err34-c",
+  "google-default-arguments",
+  "google-explicit-constructor",
+  "google-readability-avoid-underscore-in-googletest-name",
+  "google-readability-todo",
+  "google-runtime-int",
+  "google-runtime-member-string-references",
+  "misc-move-const-arg",
+  "misc-move-forwarding-reference",
+  "misc-unused-parameters",
+  "misc-unused-using-decls",
+  "misc-use-after-move",
+  "modernize-pass-by-value",
+  "performance-faster-string-find",
+  "performance-for-range-copy",
+  "performance-implicit-conversion-in-loop",
+  "performance-inefficient-vector-operation",
+  "performance-move-const-arg",
+  "performance-move-constructor-init",
+  "performance-noexcept-move-constructor",
+  "performance-unnecessary-copy-initialization",
+  "performance-unnecessary-value-param",
+  "readability-avoid-const-params-in-decls",
+]
+
+cc_defaults {
+  name: "eureka_defaults",
+  cflags: [
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wno-unused-parameter",
+
+    // Some extra flags.
+    "-fstrict-aliasing",
+    "-Wredundant-decls",
+    "-Wshadow",
+    "-Wstrict-aliasing",
+    "-Wthread-safety",
+    "-Wthread-safety-negative",
+    "-Wunreachable-code",
+    "-Wunreachable-code-break",
+    "-Wunreachable-code-return",
+    "-Wunused",
+    "-Wused-but-marked-unused",
+  ],
+  tidy: true,
+  tidy_checks: tidy_errors,
+  tidy_checks_as_errors: tidy_errors,
+  tidy_flags: [
+    "-format-style=file",
+  ],
+}
+
+

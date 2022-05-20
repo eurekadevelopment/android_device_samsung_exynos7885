@@ -6,6 +6,7 @@ cc_binary {
         "FMRadio.cpp",
         "service.cpp",
     ],
+    defaults: ["eureka_defaults"],
     shared_libs: [
         "libhidlbase",
         "libutils",

@@ -15,6 +15,7 @@
 cc_library_static {
     name: "libinit_universal7885",
     recovery_available: true,
+    defaults: ["eureka_defaults"],
     whole_static_libs: ["libbase"],
     header_libs: ["libbase_headers"],
     srcs: ["init_universal7885.cpp"],

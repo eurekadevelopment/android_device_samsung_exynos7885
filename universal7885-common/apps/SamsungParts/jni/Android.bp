@@ -1,5 +1,6 @@
 cc_library_shared {
     name: "libsamsungparts_jni",
+    defaults: ["eureka_defaults"],
     cflags: [
         "-Wall",
         "-Wextra",
