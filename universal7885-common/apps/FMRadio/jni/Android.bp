@@ -7,6 +7,7 @@ cc_library_shared {
         "fm_ioctl.cpp",
         "fm_route.cpp",
     ],
+    defaults: ["eureka_defaults"],
     shared_libs: [
         "libhidlbase",
         "liblog",

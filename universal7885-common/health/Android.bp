@@ -5,7 +5,7 @@ cc_library_shared {
     proprietary: true,
     recovery_available: true,
     relative_install_path: "hw",
-
+    defaults: ["eureka_defaults"],
     shared_libs: [
         "libbase",
         "libcutils",
