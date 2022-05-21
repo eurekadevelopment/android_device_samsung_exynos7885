@@ -8,6 +8,7 @@ cc_binary {
         "FlashLight.cpp",
         "Display.cpp",
         "Swap.cpp",
+        "SwapHelpers.cpp",
         "service.cpp",
     ],
     shared_libs: [
