@@ -15,11 +15,15 @@
 #include "Swap.h"
 #include <fstream>
 #include <iostream>
+#include <sys/swap.h>
+#include <stdio.h>
 
 static int mSwapSize = 100;
+extern int mkswap (const std::string filename);
+extern void mkfile(const int filesize, const std::string name);
 
 #define SWAP_PATH "/data/swap/swapfile"
-using namespace std;
+
 namespace vendor::eureka::hardware::parts::V1_0 {
 
 Return<void> SwapOnData::setSwapSize(int32_t size) {
@@ -28,21 +32,15 @@ Return<void> SwapOnData::setSwapSize(int32_t size) {
 }
 
 Return<void> SwapOnData::setSwapOn() {
-  string cmd = string("dd if=/dev/zero of=") + string(SWAP_PATH) +
-               string(" bs=") + std::to_string(mSwapSize) + "M count=10";
-  system(cmd.c_str());
-  cmd = string("mkswap ") + string(SWAP_PATH);
-  system(cmd.c_str());
-  cmd = string("swapon -p 99 ") + string(SWAP_PATH);
-  system(cmd.c_str());
+  mkfile(mSwapSize * 1024 * 1024 * 10, SWAP_PATH);
+  mkswap(SWAP_PATH);
+  swapon(SWAP_PATH, (10 << SWAP_FLAG_PRIO_SHIFT) & SWAP_FLAG_PRIO_MASK);
   return Void();
 }
 
 Return<void> SwapOnData::setSwapOff() {
-  std::string cmd = string("swapoff ") + string(SWAP_PATH);
-  system(cmd.c_str());
-  cmd = string("rm ") + string(SWAP_PATH);
-  system(cmd.c_str());
+  swapoff(SWAP_PATH);
+  remove(SWAP_PATH);
   return Void();
 }
 
