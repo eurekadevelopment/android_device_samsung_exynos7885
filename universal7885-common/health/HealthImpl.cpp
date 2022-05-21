@@ -8,15 +8,12 @@
 #include <health2impl/Health.h>
 #include <hidl/Status.h>
 
-using ::android::sp;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
-using ::android::hardware::hidl_vec;
 using ::android::hardware::health::InitHealthdConfig;
 using ::android::hardware::health::V2_1::IHealth;
 using ::android::hardware::health::V2_0::Result;
 using ::android::hardware::health::V1_0::BatteryStatus;
-using ::android::hidl::base::V1_0::IBase;
 using namespace std::literals;
 
 enum battery_stats {
@@ -52,10 +49,10 @@ namespace implementation {
 // defaults. Uncomment functions that you need to override.
 class HealthImpl : public Health {
   public:
-    HealthImpl(std::unique_ptr<healthd_config>&& config)
+    explicit HealthImpl(std::unique_ptr<healthd_config>&& config)
         : Health(std::move(config)) {}
     
-    static struct callBack ReadFile(const std::string sysfs, const std::string def) {
+    static struct callBack ReadFile(const std::string &sysfs, const std::string &def) {
 	std::string ret = def;
 	std::ifstream file;
 	file.open(sysfs);
@@ -71,7 +68,7 @@ class HealthImpl : public Health {
     	return cb;
     }
 
-    static struct callBack ReadBattFile(battery_stats type, const std::string def) {
+    static struct callBack ReadBattFile(battery_stats type, const std::string &def) {
     	return ReadFile(battery_sysfs[type], def);
     }
 

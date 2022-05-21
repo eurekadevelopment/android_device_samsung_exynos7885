@@ -11,15 +11,15 @@ using vendor::eureka::hardware::parts::V1_0::ISwapOnData;
 static sp<ISwapOnData> service = ISwapOnData::getService();
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_eurekateam_samsungextras_interfaces_Swap_setSize(JNIEnv *env,
-                                                          jclass clazz,
+Java_com_eurekateam_samsungextras_interfaces_Swap_setSize(JNIEnv /*env*/,
+                                                          jclass /*clazz*/,
                                                           jint size) {
   service->setSwapSize(size);
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_eurekateam_samsungextras_interfaces_Swap_setSwapOn(JNIEnv *env,
-                                                            jclass clazz,
+Java_com_eurekateam_samsungextras_interfaces_Swap_setSwapOn(JNIEnv /*env*/,
+                                                            jclass /*clazz*/,
                                                             jboolean enable) {
   if (enable) {
     service->setSwapOn();
