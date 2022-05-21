@@ -13,8 +13,8 @@ using vendor::eureka::hardware::parts::V1_0::Number;
 static android::sp<IDisplayConfigs> service = IDisplayConfigs::getService();
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_eurekateam_samsungextras_interfaces_Display_setDT2W(JNIEnv *env,
-                                                             jclass clazz,
+Java_com_eurekateam_samsungextras_interfaces_Display_setDT2W(JNIEnv /*env*/,
+                                                             jclass /*clazz*/,
                                                              jboolean enable) {
   if (enable) {
     service->writeDisplay(Number::ENABLE, Display::DOUBLE_TAP);
@@ -25,7 +25,7 @@ Java_com_eurekateam_samsungextras_interfaces_Display_setDT2W(JNIEnv *env,
 
 extern "C" JNIEXPORT void JNICALL
 Java_com_eurekateam_samsungextras_interfaces_Display_setGloveMode(
-    JNIEnv *env, jclass clazz, jboolean enable) {
+    JNIEnv /**env*/, jclass /*clazz*/, jboolean enable) {
   if (enable) {
     service->writeDisplay(Number::ENABLE, Display::GLOVE_MODE);
   } else {

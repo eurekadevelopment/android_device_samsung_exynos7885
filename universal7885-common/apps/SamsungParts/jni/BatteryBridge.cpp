@@ -22,7 +22,7 @@ enum {
 static android::sp<IBatteryStats> service = IBatteryStats::getService();
 extern "C" JNIEXPORT void JNICALL
 Java_com_eurekateam_samsungextras_interfaces_Battery_setChargeSysfs(
-    JNIEnv *env, __unused jclass obj, jint enable) {
+    JNIEnv /*env*/, __unused jclass obj, jint enable) {
   if (enable == 1) {
     service->setBatteryWritable(SysfsType::CHARGE, Number::ENABLE);
   } else {
@@ -32,14 +32,14 @@ Java_com_eurekateam_samsungextras_interfaces_Battery_setChargeSysfs(
 
 extern "C" JNIEXPORT jint JNICALL
 Java_com_eurekateam_samsungextras_interfaces_Battery_getChargeSysfs(
-    JNIEnv *env, __unused jclass obj) {
+    JNIEnv /*env*/, __unused jclass obj) {
   int ret = service->getBatteryStats(SysfsType::CHARGE);
   return ret;
 }
 
 extern "C" JNIEXPORT void JNICALL
 Java_com_eurekateam_samsungextras_interfaces_Battery_setFastCharge(
-    JNIEnv *env, __unused jobject obj, jint enable) {
+    JNIEnv /*env*/, __unused jobject obj, jint enable) {
   if (enable == 1) {
     service->setBatteryWritable(SysfsType::FASTCHARGE, Number::ENABLE);
   } else {
@@ -48,13 +48,13 @@ Java_com_eurekateam_samsungextras_interfaces_Battery_setFastCharge(
 }
 extern "C" JNIEXPORT jint JNICALL
 Java_com_eurekateam_samsungextras_interfaces_Battery_getFastChargeSysfs(
-    JNIEnv *env, __unused jclass obj) {
+    JNIEnv /*env*/, __unused jclass obj) {
   int ret = service->getBatteryStats(SysfsType::FASTCHARGE);
   return ret;
 }
 extern "C" JNIEXPORT jint JNICALL
 Java_com_eurekateam_samsungextras_interfaces_Battery_getGeneralBatteryStats(
-    JNIEnv *env, __unused jobject obj, jint id) {
+    JNIEnv /*env*/, __unused jobject obj, jint id) {
   int ret;
   switch (id) {
   case BATTERY_CAPACITY_MAX:
