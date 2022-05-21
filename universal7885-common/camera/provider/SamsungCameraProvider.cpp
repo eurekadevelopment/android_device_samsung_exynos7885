@@ -65,7 +65,7 @@ SamsungCameraProvider::SamsungCameraProvider()
 }
 
 Return<void> SamsungCameraProvider::getCameraIdList(
-    ICameraProvider::getCameraIdList_cb _hidl_cb) {
+    const ICameraProvider::getCameraIdList_cb &_hidl_cb) {
   std::vector<hidl_string> deviceNameList;
   for (auto const &deviceNamePair : mCameraDeviceNames) {
     int id = std::stoi(deviceNamePair.first);

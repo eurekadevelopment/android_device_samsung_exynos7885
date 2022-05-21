@@ -95,7 +95,7 @@ struct v4l2_buffer {
   __u32 memory;
   union {
     __u32 offset;
-    unsigned long userptr;
+    uint64_t userptr;
     struct v4l2_plane *planes;
     __s32 fd;
   } m;

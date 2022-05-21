@@ -18,7 +18,7 @@ struct linux_swap_header {
   u_int32_t padding[117];
   u_int32_t badpages[1];
 };
-void mkfile(const int filesize, const std::string& name){
+void mkfile(int filesize, std::string name){
         FILE *fp = fopen(name.c_str(), "we");
         fseek(fp, filesize , SEEK_SET);
         fputc('\0', fp);
@@ -27,7 +27,7 @@ void mkfile(const int filesize, const std::string& name){
 #define MAGIC_SWAP_HEADER "SWAPSPACE2"
 #define MAGIC_SWAP_HEADER_LEN 10
 #define MIN_PAGES 10
-int mkswap(const std::string& filename) {
+int mkswap(std::string filename) {
   int err = 0;
   int fd;
   ssize_t len;

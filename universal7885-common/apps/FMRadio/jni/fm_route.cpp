@@ -17,7 +17,7 @@
 #include <media/AudioSystem.h>
 #include <media/IAudioFlinger.h>
 
-#define FM_FAILURE -1
+#define FM_FAILURE (-1)
 #define FM_SUCCESS 0
 #define IOHANDLE 13
 using namespace android;

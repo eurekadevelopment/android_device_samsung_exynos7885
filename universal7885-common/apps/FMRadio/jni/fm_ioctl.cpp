@@ -3,6 +3,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <fcntl.h>
+#include <stdint.h>
 #include <cstring>
 #include <unistd.h>
 #include <cerrno>
@@ -25,18 +26,18 @@ using vendor::eureka::hardware::fmradio::V1_2::IFMRadio;
 
 // #define DEBUG
 #define TRACK_SIZE 30
-long tracks[TRACK_SIZE] = {0};
+int64_t tracks[TRACK_SIZE] = {0};
 bool FMThread = false;
 
 int open_fm_device() {
   int fd;
-  if ((fd = open("/dev/radio0", O_RDWR)) < 0) {
+  if ((fd = open("/dev/radio0", O_RDWR | O_CLOEXEC)) < 0) {
     printf("Cannot open /dev/radio0.\n");
     return -1;
   }
   return fd;
 }
-static int fm_radio_get_frequency(int fd, long *channel) {
+static int fm_radio_get_frequency(int fd, int64_t *channel) {
   struct v4l2_frequency freq {};
   int ret;
 
@@ -49,12 +50,12 @@ static int fm_radio_get_frequency(int fd, long *channel) {
     return FM_FAILURE;
   }
 
-  *channel = (long)freq.frequency / 16000;
+  *channel = (int64_t)freq.frequency / 16000;
 
   return FM_SUCCESS;
 }
 
-static int fm_radio_set_frequency(int fd, long channel) {
+static int fm_radio_set_frequency(int fd, int64_t channel) {
   struct v4l2_frequency freq {};
   int ret;
 
@@ -71,7 +72,7 @@ static int fm_radio_set_frequency(int fd, long channel) {
   return FM_SUCCESS;
 }
 
-static int fm_radio_set_control(int fd, unsigned int id, long val) {
+static int fm_radio_set_control(int fd, unsigned int id, int64_t val) {
   struct v4l2_control ctrl {};
   int ret;
 #ifdef DEBUG
@@ -114,7 +115,7 @@ static int fm_radio_seek_frequency(int fd, unsigned int upward,
 }
 static int fm_radio_channel_searching(int fd, unsigned int upward,
                                       unsigned int wrap_around,
-                                      unsigned int spacing, long *channel) {
+                                      unsigned int spacing, int64_t *channel) {
   int ret;
 
   ret = fm_radio_set_control(fd, V4L2_CID_S610_SEEK_MODE,
@@ -190,15 +191,15 @@ template <class C, typename T> bool contains(C &&c, T e) {
   return std::find(std::begin(c), std::end(c), e) != std::end(c);
 }
 
-static long fm_radio_get_freqs(int fd) {
-  long ret = 0;
+static int64_t fm_radio_get_freqs(int fd) {
+  int64_t ret = 0;
   fm_radio_set_mute(fd, true);
   sp<IFMRadio> service = IFMRadio::getService();
   bool mSysfs = service->isAvailable() == Status::YES;
-  for (long &track : tracks) {
+  for (int64_t &track : tracks) {
     if (mSysfs) {
       service->adjustFreqByStep(Direction::UP);
-      ret = (long)service->getFreqFromSysfs();
+      ret = (int64_t)service->getFreqFromSysfs();
     } else {
       fm_radio_channel_searching(fd, 1, 0, FM_CHANNEL_SPACING_50KHZ, &ret);
     }
@@ -298,10 +299,10 @@ static unsigned int fm_radio_get_lowerband_limit(int fd) {
     return freq;
   }
 }
-static long fm_radio_get_rmssi(int fd) {
+static int64_t fm_radio_get_rmssi(int fd) {
   struct v4l2_tuner tuner {};
   int ret;
-  long rmssi;
+  int64_t rmssi;
   tuner.index = 0;
   tuner.signal = 0;
   ret = ioctl(fd, VIDIOC_G_TUNER, &tuner);
@@ -313,7 +314,7 @@ static long fm_radio_get_rmssi(int fd) {
   }
   return ret;
 }
-static int fm_radio_set_rssi(int fd, long rssi) {
+static int fm_radio_set_rssi(int fd, int64_t rssi) {
   int ret = fm_radio_set_control(fd, V4L2_CID_S610_RSSI_TH, rssi);
   if (ret < 0) {
     return FM_FAILURE;
@@ -329,7 +330,7 @@ extern "C" JNIEXPORT jlong JNICALL
 Java_com_eurekateam_fmradio_NativeFMInterface_getFMFreq(__unused JNIEnv *env,
                                                         __unused jobject thiz,
                                                         jint fd) {
-  long freq;
+  int64_t freq;
   fm_radio_get_frequency(fd, &freq);
   return freq;
 }
@@ -372,7 +373,7 @@ Java_com_eurekateam_fmradio_NativeFMInterface_getRMSSI(__unused JNIEnv *env,
   return fm_radio_get_rmssi(fd);
 }
 extern "C" JNIEXPORT jlongArray JNICALL
-Java_com_eurekateam_fmradio_NativeFMInterface_getFMTracks(__unused JNIEnv *env,
+Java_com_eurekateam_fmradio_NativeFMInterface_getFMTracks(JNIEnv *env,
                                                           __unused jobject thiz,
                                                           jint fd) {
   fm_radio_get_freqs(fd);
@@ -383,7 +384,7 @@ Java_com_eurekateam_fmradio_NativeFMInterface_getFMTracks(__unused JNIEnv *env,
   }
   int i;
   // fill a temp structure to use to populate the java int array
-  jlong fill[TRACK_SIZE];
+  int64_t fill[TRACK_SIZE];
   for (i = 0; i < TRACK_SIZE; i++) {
     fill[i] =
         tracks[i]; // put whatever logic you want to populate the values here.
@@ -437,7 +438,7 @@ Java_com_eurekateam_fmradio_NativeFMInterface_setFMBoot(__unused JNIEnv *env,
 extern "C" JNIEXPORT jint JNICALL
 Java_com_eurekateam_fmradio_NativeFMInterface_getNextChannel(
     __unused JNIEnv *env, __unused jobject thiz, jint fd) {
-  long ret;
+  int64_t ret;
   sp<IFMRadio> service = IFMRadio::getService();
   bool mSysfs = service->isAvailable() == Status::YES;
   if (!mSysfs) {
@@ -451,7 +452,7 @@ Java_com_eurekateam_fmradio_NativeFMInterface_getNextChannel(
 extern "C" JNIEXPORT jint JNICALL
 Java_com_eurekateam_fmradio_NativeFMInterface_getBeforeChannel(
     __unused JNIEnv *env, __unused jobject thiz, jint fd) {
-  long ret;
+  int64_t ret;
   sp<IFMRadio> service = IFMRadio::getService();
   bool mSysfs = service->isAvailable() == Status::YES;
   if (!mSysfs) {
@@ -481,7 +482,7 @@ Java_com_eurekateam_fmradio_NativeFMInterface_stopSearching(
 extern "C" JNIEXPORT jint JNICALL
 Java_com_eurekateam_fmradio_NativeFMInterface_setFMRSSI(__unused JNIEnv *env,
                                                         __unused jobject thiz,
-                                                        jint fd, jlong rssi) {
+                                                        jint fd, jint rssi) {
   return fm_radio_set_rssi(fd, rssi);
 }
 extern "C" JNIEXPORT void JNICALL
