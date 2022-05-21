@@ -19,8 +19,8 @@
 #include <stdio.h>
 
 static int mSwapSize = 100;
-extern int mkswap (const std::string filename);
-extern void mkfile(const int filesize, const std::string name);
+extern int mkswap (std::string filename);
+extern void mkfile(int filesize, std::string name);
 
 #define SWAP_PATH "/data/swap/swapfile"
 
