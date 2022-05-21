@@ -30,7 +30,7 @@ public:
   SamsungCameraProvider();
   ~SamsungCameraProvider();
 
-  Return<void> getCameraIdList(ICameraProvider::getCameraIdList_cb _hidl_cb);
+  Return<void> getCameraIdList(const ICameraProvider::getCameraIdList_cb &_hidl_cb);
 
 private:
   std::vector<int> mExtraIDs;

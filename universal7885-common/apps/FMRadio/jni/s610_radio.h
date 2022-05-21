@@ -1,4 +1,4 @@
-#define FM_FAILURE -1
+#define FM_FAILURE (-1)
 #define FM_SUCCESS 0
 
 #define V4L2_CID_USER_S610_BASE (0x00980900 + 0x1070)

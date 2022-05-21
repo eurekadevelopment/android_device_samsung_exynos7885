@@ -22,7 +22,7 @@ static int mSwapSize = 100;
 extern int mkswap (std::string filename);
 extern void mkfile(int filesize, std::string name);
 
-#define SWAP_PATH "/data/swap/swapfile"
+static std::string SWAP_PATH = "/data/swap/swapfile";
 
 namespace vendor::eureka::hardware::parts::V1_0 {
 
@@ -34,13 +34,13 @@ Return<void> SwapOnData::setSwapSize(int32_t size) {
 Return<void> SwapOnData::setSwapOn() {
   mkfile(mSwapSize * 1024 * 1024 * 10, SWAP_PATH);
   mkswap(SWAP_PATH);
-  swapon(SWAP_PATH, (10 << SWAP_FLAG_PRIO_SHIFT) & SWAP_FLAG_PRIO_MASK);
+  swapon(SWAP_PATH.c_str(), (10 << SWAP_FLAG_PRIO_SHIFT) & SWAP_FLAG_PRIO_MASK);
   return Void();
 }
 
 Return<void> SwapOnData::setSwapOff() {
-  swapoff(SWAP_PATH);
-  remove(SWAP_PATH);
+  swapoff(SWAP_PATH.c_str());
+  remove(SWAP_PATH.c_str());
   return Void();
 }
 
