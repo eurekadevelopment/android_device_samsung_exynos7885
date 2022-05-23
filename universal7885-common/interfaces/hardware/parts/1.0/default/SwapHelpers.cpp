@@ -1,12 +1,14 @@
 #include <cstring>
-#include <errno.h>
+#include <cerrno>
 #include <fcntl.h>
 #include <iostream>
-#include <stdio.h>
+#include <cstdio>
 #include <sys/stat.h>
 #include <sys/swap.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <fstream>
+#include <vector>
 /* XXX This needs to be obtained from kernel headers. See b/9336527 */
 struct linux_swap_header {
   char bootbits[1024]; /* Space for disklabel etc. */
@@ -19,10 +21,13 @@ struct linux_swap_header {
   u_int32_t badpages[1];
 };
 void mkfile(int filesize, std::string name){
-        FILE *fp = fopen(name.c_str(), "we");
-        fseek(fp, filesize , SEEK_SET);
-        fputc('\0', fp);
-        fclose(fp);
+    std::vector<char> empty(1024, 0);
+    std::ofstream ofs(name, std::ios::binary | std::ios::out);
+
+    for(int i = 0; i < 1024 * filesize; i++)
+    {
+        ofs.write(&empty[0], empty.size());
+    }
 }
 #define MAGIC_SWAP_HEADER "SWAPSPACE2"
 #define MAGIC_SWAP_HEADER_LEN 10

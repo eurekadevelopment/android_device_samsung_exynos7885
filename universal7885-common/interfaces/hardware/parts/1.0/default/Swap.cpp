@@ -32,7 +32,7 @@ Return<void> SwapOnData::setSwapSize(int32_t size) {
 }
 
 Return<void> SwapOnData::setSwapOn() {
-  mkfile(mSwapSize * 1024 * 1024 * 10, SWAP_PATH);
+  mkfile(mSwapSize * 10, SWAP_PATH);
   mkswap(SWAP_PATH);
   swapon(SWAP_PATH.c_str(), (10 << SWAP_FLAG_PRIO_SHIFT) & SWAP_FLAG_PRIO_MASK);
   return Void();
