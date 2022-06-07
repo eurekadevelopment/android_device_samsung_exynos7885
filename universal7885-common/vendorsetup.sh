@@ -26,6 +26,8 @@ echo "Generating A20e Makefiles"
 ./device/samsung/a20e/setup.sh
 echo "Generating A30 Makefiles"
 ./device/samsung/a30/setup.sh
+echo "Generating A30s Makefiles"
+./device/samsung/a30s/setup.sh
 echo "Generating A40 Makefiles"
 ./device/samsung/a40/setup.sh
 
