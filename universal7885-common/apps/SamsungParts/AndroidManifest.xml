@@ -1,15 +1,28 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.eurekateam.samsungextras" android:sharedUserId="android.uid.system">
    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
    <uses-permission android:name="android.permission.ACCESS_SURFACE_FLINGER"/>
+
    <protected-broadcast android:name="com.android.systemui.doze.pulse"/>
-   <application android:label="@string/advanced_settings" android:supportsRtl="true" android:theme="@style/Theme.SubSettingsBase" android:fullBackupOnly="true" android:persistent="true">
+   <application
+	   android:label="@string/advanced_settings"
+	   android:supportsRtl="true"
+	   android:theme="@style/Theme.SubSettingsBase"
+	   android:fullBackupOnly="true"
+	   android:persistent="true"
+	   android:defaultToDeviceProtectedStorage="true"
+	   android:directBootAware="true">
+
       <receiver android:name=".BootReceiver" android:exported="true">
          <intent-filter>
-            <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED"/>
             <category android:name="android.intent.category.DEFAULT"/>
          </intent-filter>
       </receiver>
-      <activity android:name=".DeviceSettingsActivity" android:exported="true" android:excludeFromRecents="true" android:launchMode="singleTask">
+      <activity
+	      android:name=".DeviceSettingsActivity"
+	      android:exported="true"
+	      android:excludeFromRecents="true"
+	      android:launchMode="singleTask">
          <intent-filter>
             <action android:name="android.intent.action.MAIN"/>
             <category android:name="android.intent.category.DEFAULT"/>
@@ -21,7 +34,9 @@
          <meta-data android:name="com.android.settings.summary" android:resource="@string/advanced_settings_summary"/>
          <meta-data android:name="com.android.settings.icon" android:resource="@drawable/ic_device"/>
       </activity>
-      <activity android:name=".speaker.ClearSpeakerActivity" android:exported="true" android:label="@string/clear_speaker_title">
+      <activity android:name=".speaker.ClearSpeakerActivity"
+	      android:exported="true"
+	      android:label="@string/clear_speaker_title">
          <intent-filter>
             <action android:name="android.intent.action.MAIN"/>
             <category android:name="android.intent.category.DEFAULT"/>
