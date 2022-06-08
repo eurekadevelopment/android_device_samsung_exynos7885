@@ -31,7 +31,9 @@ const int kMaxCameraIdLen = 16;
 
 SamsungCameraProvider::SamsungCameraProvider()
     : LegacyCameraProviderImpl_2_5() {
+  mExtraIDs.push_back(23);
   mExtraIDs.push_back(50);
+  mExtraIDs.push_back(52);
   mDisabledIDs.push_back(2);
   if (!mInitFailed) {
     for (int i : mExtraIDs) {
