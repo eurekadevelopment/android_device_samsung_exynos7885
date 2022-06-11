@@ -10,11 +10,10 @@ allow vendor_init wifi_data_file:dir search;
 allow vendor_init system_data_file:dir create_dir_perms;
 # mkdir /data/camera/*
 allow vendor_init camera_data_file:dir create_dir_perms;
-allow vendor_init cache_file:dir { remove_name write };
-allow vendor_init boot_logcat_file:file unlink;
 set_prop(vendor_init, persist_data_df_prop)
 set_prop(vendor_init, persist_data_wda_prop)
 set_prop(vendor_init, persist_rmnet_prop)
 get_prop(vendor_init, system_prop)
 get_prop(vendor_init, vendor_radio_prop)
 allow vendor_init efs_file:lnk_file read;
+set_prop(vendor_init, vendor_powerhal_prop)
