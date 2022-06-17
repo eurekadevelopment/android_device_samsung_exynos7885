@@ -46,7 +46,7 @@ genfscon sysfs /devices/virtual/timed_output/vibrator/intensity           u:obje
 genfscon sysfs /devices/virtual/timed_output/vibrator/multi_freq          u:object_r:sysfs_vibrator:s0
 
 genfscon sysfs /module/dhd/parameters                                     u:object_r:sysfs_wifi_writable:s0
-
+genfscon sysfs /module/printk/parameters/enabled			u:object_r:sysfs_printk:s0
 genfscon sysfs /power/cpufreq_max_limit                                   u:object_r:sysfs_power_writable:s0
 genfscon sysfs /power/cpufreq_min_limit                                   u:object_r:sysfs_power_writable:s0
 genfscon sysfs /power/cpuhotplug/max_online_cpu                           u:object_r:sysfs_power_writable:s0

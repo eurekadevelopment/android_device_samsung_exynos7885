@@ -40,7 +40,7 @@ allow init kernel:system module_request;
 allow init logd:unix_stream_socket connectto;
 allow init logdr_socket:sock_file write;
 allow init self:capability sys_nice;
-
+allow init sysfs_printk:file write;
 allow init proc:file setattr;
 allow init proc_swapiness:file write;
 allow init proc_extra:file setattr;
