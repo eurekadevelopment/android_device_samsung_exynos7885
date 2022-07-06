@@ -19,6 +19,7 @@ cc_binary {
         "hidl_defaults",
         "eureka_defaults",
     ],
+    compile_multilib: "32",
     proprietary: true,
     relative_install_path: "hw",
     srcs: [

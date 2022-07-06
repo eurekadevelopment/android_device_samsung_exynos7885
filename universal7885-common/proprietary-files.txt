@@ -48,6 +48,11 @@ vendor/lib/omx/libOMX.Exynos.VP9.Decoder.so
 vendor/lib/omx/libOMX.Exynos.WMV.Decoder.so
 vendor/lib/soundfx/libaudioeffectoffload.so
 vendor/lib/vndk/libtinyalsa.so
+vendor/lib/camera.device@1.0-impl.so
+vendor/lib/camera.device@3.2-impl.so
+vendor/lib/camera.device@3.3-impl.so
+vendor/lib/camera.device@3.4-impl.so
+vendor/lib/camera.device@3.5-impl.so
 vendor/lib/libExynosOMX_Core.so
 vendor/lib/libExynosOMX_Resourcemanager.so
 vendor/lib/libGrallocWrapper.so
@@ -99,6 +104,11 @@ vendor/lib64/omx/libOMX.Exynos.VP8.Encoder.so
 vendor/lib64/omx/libOMX.Exynos.VP9.Decoder.so
 vendor/lib64/omx/libOMX.Exynos.WMV.Decoder.so
 vendor/lib64/soundfx/libaudioeffectoffload.so
+vendor/lib64/camera.device@1.0-impl.so
+vendor/lib64/camera.device@3.2-impl.so
+vendor/lib64/camera.device@3.3-impl.so
+vendor/lib64/camera.device@3.4-impl.so
+vendor/lib64/camera.device@3.5-impl.so
 vendor/lib64/libExynosOMX_Core.so
 vendor/lib64/libExynosOMX_Resourcemanager.so
 vendor/lib64/libGrallocWrapper.so
