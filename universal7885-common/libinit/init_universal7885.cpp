@@ -88,6 +88,11 @@ void vendor_load_properties() {
       model == "SM-A202F") {
     property_override("ro.boot.product.hardware.sku", "NFC");
   }
+   
+  if (hasEnding(model, "N") || hasEnding(model, "M") ||
+      model == "SM-A405F") {
+    property_override("ro.boot.product.hardware.sku", "NFC");
+  }
 
   set_ro_build_prop("model", model);
   set_ro_build_prop("product", model, false);
