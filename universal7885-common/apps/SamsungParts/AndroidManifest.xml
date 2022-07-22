@@ -17,7 +17,7 @@
             <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES"/>
          </intent-filter>
          <meta-data android:name="com.android.settings.dismiss" android:value="9,13,30"/>
-         <meta-data android:name="com.android.settings.category" android:value="com.android.settings.category.ia.homepage"/>
+         <meta-data android:name="com.android.settings.category" android:value="com.android.settings.category.ia.system"/>
          <meta-data android:name="com.android.settings.summary" android:resource="@string/advanced_settings_summary"/>
          <meta-data android:name="com.android.settings.icon" android:resource="@drawable/ic_device"/>
       </activity>
