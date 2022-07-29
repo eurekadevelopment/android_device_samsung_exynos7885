@@ -7,7 +7,7 @@ $(call inherit-product, device/samsung/universal7885-common/universal7885-common
 
 $(call inherit-product, vendor/samsung/a20e/a20e-vendor.mk)
 
-$(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 # Derp
 DERP_BUILDTYPE := Official
