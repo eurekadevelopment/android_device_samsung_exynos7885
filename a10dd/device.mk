@@ -15,7 +15,7 @@ PRODUCT_PACKAGES += \
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.0-service.a10
+    android.hardware.usb@1.0-service.a10dd
 
 TARGET_SCREEN_HEIGHT := 1520
 TARGET_SCREEN_WIDTH := 720
