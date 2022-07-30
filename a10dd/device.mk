@@ -24,3 +24,5 @@ TARGET_SCREEN_WIDTH := 720
 PRODUCT_PACKAGES += \
    fstab.exynos7884B
 
+PRODUCT_PACKAGES += \
+   android.hardware.sensors@1.0-service
