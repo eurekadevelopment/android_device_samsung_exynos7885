@@ -1,5 +1,5 @@
 # Call proprietary blob setup
-ifeq ($(TARGET_ARCH),arm64)
+ifeq ($(TARGET_LOCAL_ARCH),arm64)
 $(call inherit-product, vendor/samsung/universal7885-common/universal7885-common-vendor.mk)
 endif
 
@@ -291,7 +291,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     prebuilts/vndk/v29/arm64/arch-arm-armv8-a/shared/vndk-sp/libcutils.so:$(TARGET_COPY_OUT_VENDOR)/lib/libcutils-v29.so
 
-ifeq ($(TARGET_ARCH),arm64)
+ifeq ($(TARGET_LOCAL_ARCH),arm64)
 PRODUCT_COPY_FILES += \
     prebuilts/vndk/v29/arm64/arch-arm64-armv8-a/shared/vndk-sp/libcutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libcutils-v29.so
 endif

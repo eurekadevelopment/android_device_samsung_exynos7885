@@ -2,6 +2,7 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 TARGET_BOARD_CAMERA_COUNT := 2
 TARGET_BOARD_HAS_FP := false
+TARGET_LOCAL_ARCH := arm64
 
 # Inherit common device configuration
 $(call inherit-product, device/samsung/universal7885-common/universal7885-common.mk)
