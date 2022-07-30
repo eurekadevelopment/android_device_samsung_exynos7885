@@ -20,6 +20,8 @@ fi
 python3 device/samsung/universal7885-common/vendor_detect/main.py
 echo "Generating A10 Makefiles"
 ./device/samsung/a10/setup.sh
+echo "Generating A10 ARM Makefiles"
+./device/samsung/a10dd/setup.sh
 echo "Generating A20 Makefiles"
 ./device/samsung/a20/setup.sh
 echo "Generating A20e Makefiles"
