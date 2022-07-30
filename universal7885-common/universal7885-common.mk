@@ -1,5 +1,7 @@
 # Call proprietary blob setup
+ifeq ($(TARGET_ARCH),arm64)
 $(call inherit-product, vendor/samsung/universal7885-common/universal7885-common-vendor.mk)
+endif
 
 # Build Fingerprints
 $(call inherit-product, $(LOCAL_PATH)/fingerprint.mk)
