@@ -206,7 +206,7 @@ static int64_t fm_radio_get_freqs(int fd) {
     if (contains(tracks, ret))
       break;
     track = ret;
-    printf("Found Freq %lld\n", ret);
+//    printf("Found Freq %ld\n", ret);
   }
   fm_radio_set_mute(fd, false);
   return ret;
