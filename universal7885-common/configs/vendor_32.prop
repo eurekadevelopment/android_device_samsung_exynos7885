@@ -1,0 +1,3 @@
+## RIL
+vendor.sec.rild.libpath=/vendor/lib/libsec-ril.so
+vendor.sec.rild.libpath2=/vendor/lib/libsec-ril-dsds.so

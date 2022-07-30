@@ -3,7 +3,7 @@ COMMON_PATH := device/samsung/universal7885-common
 BOARD_VENDOR := samsung
 
 # Platform
-ifeq ($(TARGET_DEVICE), $(filter $(TARGET_DEVICE),a10 a20 a20e))
+ifeq ($(TARGET_DEVICE), $(filter $(TARGET_DEVICE),a10dd a10 a20 a20e))
 TARGET_SOC := exynos7884B
 TARGET_BOARD_PLATFORM := universal7884B
 TARGET_BOOTLOADER_BOARD_NAME := universal7884B
@@ -17,17 +17,26 @@ TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 # Architecture
+ifeq ($(TARGET_DEVICE),a10dd)
+TARGET_ARCH := arm
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_CPU_VARIANT := cortex-a53
+TARGET_CPU_SMP := true
+TARGET_USES_64_BIT_BINDER := true
+else
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := cortex-a53
-
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv8-a
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
+endif
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_PATH)/bluetooth
@@ -80,6 +89,11 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
 TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
+ifeq ($(TARGET_ARCH),arm64)
+TARGET_VENDOR_PROP += $(COMMON_PATH)/configs/vendor_64.prop
+else
+TARGET_VENDOR_PROP += $(COMMON_PATH)/configs/vendor_32.prop
+endif
 
 # Recovery
 BOARD_HAS_DOWNLOAD_MODE := true

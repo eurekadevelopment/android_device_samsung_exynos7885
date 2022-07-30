@@ -25,10 +25,6 @@ ro.hwui.use_vulkan=true
 graphics.gpu.profiler.support=true
 debug.hwui.renderer=skiavk
 
-## RIL
-vendor.sec.rild.libpath=/vendor/lib64/libsec-ril.so
-vendor.sec.rild.libpath2=/vendor/lib64/libsec-ril-dsds.so
-
 # LTE, GSM and WCDMA
 ro.telephony.default_network=9,9
 
