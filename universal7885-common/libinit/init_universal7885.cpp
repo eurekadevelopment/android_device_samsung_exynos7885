@@ -85,12 +85,7 @@ void vendor_load_properties() {
   }
 
   if (hasEnding(model, "N") || hasEnding(model, "S") || hasEnding(model, "K") ||
-      model == "SM-A202F") {
-    property_override("ro.boot.product.hardware.sku", "NFC");
-  }
-   
-  if (hasEnding(model, "N") || hasEnding(model, "M") ||
-      model == "SM-A405F") {
+      model == "SM-A202F" || model == "SM-A405FM" || model == "SM-A405F") {
     property_override("ro.boot.product.hardware.sku", "NFC");
   }
 
