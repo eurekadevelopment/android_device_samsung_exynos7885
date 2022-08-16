@@ -22,14 +22,12 @@ PRODUCT_PACKAGES += \
     android.hardware.audio.effect@7.0-impl \
     libtinycompress \
     audio.r_submix.default \
-    audio.usb.default \
-    audio.hearing_aid.default
+    audio.usb.default
 
 # Audio (BT)
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth.audio@2.2-impl \
-    audio.bluetooth.default \
-    audio.a2dp.default
+    audio.bluetooth.default
 
 # Audio Configs
 PRODUCT_COPY_FILES += \
@@ -47,7 +45,6 @@ PRODUCT_COPY_FILES += \
 # Bluetooth
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.1-service \
-    audio.a2dp.default \
     libbt-vendor
 
 PRODUCT_COPY_FILES += \
