@@ -1,10 +1,11 @@
+UNIVERSAL="device/samsung/universal7885-common"
 FM_PATH="packages/apps/FMRadio"
 if [ -e ~/.git-credentials ]; then
-MODE="https://"
-SPERATOR="/"
+	MODE="https://"
+	SPERATOR="/"
 else
-MODE="git@"
-SPERATOR=":"
+	MODE="git@"
+	SPERATOR=":"
 fi
 git clone --depth=1 "$MODE"github.com"$SPERATOR"eurekadevelopment/Eureka-Kernel-Exynos7885-Q-R-S-private.git -b R10.1_rom kernel/samsung/exynos7885
 git clone https://github.com/lineageos/android_hardware_samsung_slsi_libbt hardware/samsung_slsi/libbt
@@ -14,32 +15,22 @@ mv hardware/samsung/nfc .
 git clone https://github.com/eurekadevelopment/android_hardware_samsung hardware/samsung
 mv nfc hardware/samsung
 git clone --depth=1 https://github.com/eurekadevelopment/android_vendor_samsung_exynos7885.git -b master vendor/samsung
-if test -f device/samsung/universal7885-common/vendor_name; then
-rm device/samsung/universal7885-common/vendor_name
+if test -f ${UNIVERSAL}/vendor_name; then
+	rm ${UNIVERSAL}/vendor_name
 fi
-python3 device/samsung/universal7885-common/vendor_detect/main.py
-echo "Generating A10 Makefiles"
-./device/samsung/a10/setup.sh
-echo "Generating A10 ARM Makefiles"
-./device/samsung/a10dd/setup.sh
-echo "Generating A20 Makefiles"
-./device/samsung/a20/setup.sh
-echo "Generating A20e Makefiles"
-./device/samsung/a20e/setup.sh
-echo "Generating A30 Makefiles"
-./device/samsung/a30/setup.sh
-echo "Generating A30s Makefiles"
-./device/samsung/a30s/setup.sh
-echo "Generating A40 Makefiles"
-./device/samsung/a40/setup.sh
+python3 ${UNIVERSAL}/vendor_detect/main.py
+for dev in a10dd a10 a20 a20e a30 a30s a40; do
+	echo "Generating ${dev} Makefiles..."
+	bash ${UNIVERSAL}/setup.sh "$dev"
+done
 
 # For FM Radio
 if grep -q isAudioServerUid\(callingUid\) frameworks/av/services/audioflinger/AudioFlinger.cpp; then
-echo "Applying FM routing patch"
-sed -i 's/isAudioServerUid(callingUid)/isAudioServerOrSystemServerUid(callingUid)/g' frameworks/av/services/audioflinger/AudioFlinger.cpp
+	echo "Applying FM routing patch"
+	sed -i 's/isAudioServerUid(callingUid)/isAudioServerOrSystemServerUid(callingUid)/g' frameworks/av/services/audioflinger/AudioFlinger.cpp
 fi
 # Remove multiple declared FMRadio path (we have our own FMRadio and this cause build error)
-if [ -d "$FM_PATH" ]; then 
-echo "Remove FMRadio from ROM Source"
-rm -Rf $FM_PATH; 
+if [ -d "$FM_PATH" ]; then
+	echo "Remove FMRadio from ROM Source"
+	rm -Rf $FM_PATH
 fi
