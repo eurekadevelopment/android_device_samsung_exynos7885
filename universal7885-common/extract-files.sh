@@ -25,6 +25,9 @@ function blob_fixup {
 	vendor/lib*/libsensorlistener.so)
 		grep -q libshim_sensorndkbridge.so "$2" || "$PATCHELF" --add-needed "libshim_sensorndkbridge.so" "$2"
 		;;
+        vendor/lib*/libexynosdisplay.so)
+            "${PATCHELF}" --replace-needed "libutils.so" "libutils-v32.so" "${2}"
+            ;;
 	esac
 }
 
