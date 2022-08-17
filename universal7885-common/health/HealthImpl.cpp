@@ -9,7 +9,6 @@
 #include <hidl/Status.h>
 
 using ::android::hardware::Return;
-using ::android::hardware::Void;
 using ::android::hardware::health::InitHealthdConfig;
 using ::android::hardware::health::V2_1::IHealth;
 using ::android::hardware::health::V2_0::Result;
