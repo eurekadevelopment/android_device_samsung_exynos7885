@@ -30,14 +30,18 @@ def AddImage(info, folder, basename, dest):
   common.ZipWriteStr(info.output_zip, name, data)
   info.script.AppendExtra('package_extract_file("%s", "%s");' % (name, dest))
 
+def AddFile(info, folder, basename):
+  name = basename
+  data = info.input_zip.read(folder + basename)
+  common.ZipWriteStr(info.output_zip, name, data)
+
 def PrintInfo(info, dest):
   info.script.Print("Patching {} image unconditionally...".format(dest.split('/')[-1]))
 
 def OTA_InstallEnd(info):
   AddImage(info, "RADIO/", "eureka_dtb.img", "/dev/block/platform/13500000.dwmmc0/by-name/dtb")
   AddImage(info, "RADIO/", "eureka_dtbo.img", "/dev/block/platform/13500000.dwmmc0/by-name/dtbo")
-  info.script.AppendExtra('run_program("/sbin/mount", "/vendor");')
-  info.script.AppendExtra('run_program("/sbin/mount", "-o", "rw,remount", "/vendor");')
-  info.script.AppendExtra('run_program("/sbin/rm", "-rf", "/vendor/recovery-from-boot.p");')
-  info.script.AppendExtra('run_program("/sbin/umount", "/vendor");')
+  AddFile(info, "RADIO/", "eureka_install.sh")
+  info.script.AppendExtra('package_extract_file("eureka_install.sh", "/tmp/eureka_install.sh");')
+  info.script.AppendExtra('run_program("/sbin/sh", "/tmp/eureka_install.sh");')
   return
