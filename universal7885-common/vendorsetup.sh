@@ -34,3 +34,11 @@ if [ -d "$FM_PATH" ]; then
 	echo "Remove FMRadio from ROM Source"
 	rm -Rf $FM_PATH
 fi
+
+if [ -d external/faceunlock ]; then
+    if [ -e external/faceunlock/Android.bp ]; then
+        rm -rf external/faceunlock/Android.bp
+        rm -rf external/faceunlock/prebuilt*
+        rm -rf external/faceunlock/dependencies
+    fi
+fi

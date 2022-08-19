@@ -25,6 +25,9 @@ PRODUCT_PACKAGES += \
     audio.usb.default \
     audio.hearing_aid.default
 
+# FaceUnlock libs
+PRODUCT_PACKAGES += faceunlock_vendor_dependencies
+
 # Audio (BT)
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth.audio@2.1-impl \
