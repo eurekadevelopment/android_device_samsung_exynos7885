@@ -82,8 +82,6 @@
             <route type="mix" sink="primary-in" sources="Built-In Mic,Built-In Back Mic,Wired Headset Mic,Bt Sco Headset Mic,Aux Device In,Voice Call Mic,FM Mic"/>
          </routes>
       </module>
-      <!-- A2dp Audio HAL -->
-      <xi:include href="a2dp_in_audio_policy_configuration.xml"/>
       <!-- Bluetooth Audio HAL -->
       <xi:include href="bluetooth_audio_policy_configuration.xml"/>
       <!-- Usb Audio HAL -->
