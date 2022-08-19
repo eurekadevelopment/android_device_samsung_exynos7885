@@ -131,8 +131,6 @@
    <bool name="config_adaptive_sleep_available">true</bool>
    <!-- the number of the max cached processes in the system. -->
    <integer name="config_customizedMaxCachedProcesses">48</integer>
-   <!-- Boolean indicating if current platform supports BLE peripheral mode -->
-   <bool name="config_bluetooth_le_peripheral_mode_supported">true</bool>
    <!-- Flag indicating whether round icons should be parsed from the application manifest. -->
    <bool name="config_useRoundIcon">true</bool>
    <!-- Maximum number of supported users -->
