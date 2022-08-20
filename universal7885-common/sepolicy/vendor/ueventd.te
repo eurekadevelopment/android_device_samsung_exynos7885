@@ -1,1 +1,2 @@
 allow ueventd self:capability sys_nice;
+allow ueventd metadata_file:dir search;
