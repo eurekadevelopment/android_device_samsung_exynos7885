@@ -1,0 +1,3 @@
+allow charger_vendor device:dir r_file_perms;
+allow charger_vendor sysfs_battery:file r_file_perms;
+allow charger_vendor sysfs_battery_writable:file r_file_perms;

@@ -102,7 +102,7 @@ PRODUCT_PACKAGES += \
 
 # Charger
 PRODUCT_PACKAGES += \
-    libsuspend
+    charger_res_images_vendor
 
 # Debug
 PRODUCT_PACKAGES += eklogger dlopener
@@ -142,9 +142,8 @@ PRODUCT_PACKAGES += \
 
 # Health
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl-exynos7885 \
-    android.hardware.health@2.1-impl-exynos7885.recovery \
-    android.hardware.health@2.1-service
+    android.hardware.health-service.samsung \
+    android.hardware.health-service.samsung-recovery
 
 # HIDL
 PRODUCT_PACKAGES += \
