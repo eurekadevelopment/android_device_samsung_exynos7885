@@ -14,7 +14,7 @@ TARGET_SCREEN_WIDTH := 1080
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.3-service.samsung
+    android.hardware.usb-service.samsung
 
 # Feature Permissions
 PRODUCT_COPY_FILES += \
