@@ -1,0 +1,16 @@
+cc_binary {
+    name: "android.hardware.power.stats-service.exynos7",
+    srcs: [
+        "*.cc",
+    ],
+    relative_install_path: "hw",
+    vendor: true,
+    defaults: [
+        "eureka_defaults",
+        "powerstats_pixel_defaults",
+    ],
+    cflags: ["-Wno-thread-safety-negative"],
+    shared_libs: ["android.hardware.power.stats-impl.pixel"],
+    init_rc: ["android.hardware.power.stats-service.exynos7.rc"],
+    vintf_fragments: ["android.hardware.power.stats-service.exynos7.xml"],
+}
