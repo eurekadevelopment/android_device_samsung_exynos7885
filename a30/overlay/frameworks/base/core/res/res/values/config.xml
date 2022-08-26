@@ -57,6 +57,7 @@
       <item>0:2:15</item>
       <!-- ID0:Fingerprint:Strong -->
    </string-array>
+   <bool name="config_automatic_brightness_available">true</bool>
    <!-- For performance and storage reasons, limit the number of fingerprints per user -->
    <integer name="config_fingerprintMaxTemplatesPerUser">4</integer>
    <!-- Specify if the fingerprint hardware support gestures-->

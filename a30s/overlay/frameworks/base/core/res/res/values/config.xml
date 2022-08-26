@@ -65,4 +65,5 @@
    <bool name="config_supportSystemNavigationKeys">true</bool>
    <!-- Limit for the number of face templates per user -->
    <integer name="config_faceMaxTemplatesPerUser">2</integer>
+   <bool name="config_automatic_brightness_available">true</bool>
 </resources>
