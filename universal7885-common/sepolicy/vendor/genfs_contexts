@@ -122,7 +122,6 @@ genfscon sysfs /devices/platform/11ce0000.speedy/i2c-5/5-0000/s2mpu08-rtc/rtc   
 genfscon sysfs /devices/platform/11ce0000.speedy/i2c-6/6-0000/s2mpu08-rtc/rtc     u:object_r:sysfs_rtc:s0
 # A40 RTC
 genfscon sysfs /devices/platform/11ce0000.speedy/i2c-7/7-0000/s2mpu08-rtc/rtc     u:object_r:sysfs_rtc:s0
-#genfscon sysfs /devices/platform/11ce0000.speedy/i2c-6/6-0000/s2mpu08-rtc/rtc     u:object_r:sysfs_rtc:s0
 
 # A20e Display
 genfscon sysfs /devices/platform/13870000.i2c/i2c-11/11-0048/input/            u:object_r:sysfs_touchscreen_writable:s0
@@ -148,6 +147,14 @@ genfscon sysfs /devices/soc0/machine                                            
 genfscon sysfs /devices/soc0/revision                                             u:object_r:sysfs_sec_gps:s0
 genfscon sysfs /devices/virtual/block/zram0/mm_stat                               u:object_r:sysfs_zram:s0
 genfscon sysfs /devices/system/chip-id/revision                                   u:object_r:sysfs_ss_writable:s0
+
+# Devfreq
+genfscon sysfs /devices/platform/17000010.devfreq_mif/devfreq/17000010.devfreq_mif 			u:object_r:sysfs_devfreq:s0
+genfscon sysfs /devices/platform/17000020.devfreq_int/devfreq/17000020.devfreq_int                  u:object_r:sysfs_devfreq:s0
+genfscon sysfs /devices/platform/17000040.devfreq_disp/devfreq/17000040.devfreq_disp                  u:object_r:sysfs_devfreq:s0
+genfscon sysfs /devices/platform/17000050.devfreq_cam/devfreq/17000050.devfreq_cam                  u:object_r:sysfs_devfreq:s0
+genfscon sysfs /devices/platform/17000060.devfreq_aud/devfreq/17000060.devfreq_aud                  u:object_r:sysfs_devfreq:s0
+genfscon sysfs /devices/platform/17000070.devfreq_fsys/devfreq/17000070.devfreq_fsys                  u:object_r:sysfs_devfreq:s0
 
 # S2MU005 CHARGER (A10)
 genfscon sysfs /devices/platform/13840000.i2c/i2c-9/9-003d/s2mu004-charger/power_supply/s2mu004-charger u:object_r:sysfs_charger:s0
