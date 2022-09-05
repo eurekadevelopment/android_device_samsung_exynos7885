@@ -98,7 +98,7 @@ endif
 
 # Camera app
 PRODUCT_PACKAGES += \
-    Footej
+    Camera
 
 # Charger
 PRODUCT_PACKAGES += \

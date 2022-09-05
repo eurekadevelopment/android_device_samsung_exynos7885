@@ -1,7 +1,7 @@
 android_app_import {
-    name: "Footej",
+    name: "Camera",
     owner: "me",
-    apk: "Footej.apk",
+    apk: "Camera.apk",
     presigned: true,
     dex_preopt: {
         enabled: false,
@@ -10,6 +10,5 @@ android_app_import {
     overrides: [
         "Camera2",
         "Snap",
-        "Camera",
     ],
 }
