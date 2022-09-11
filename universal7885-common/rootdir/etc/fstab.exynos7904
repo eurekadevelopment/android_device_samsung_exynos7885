@@ -7,8 +7,8 @@
 # /dev/block/platform/13500000.dwmmc0/by-name/system	/system		ext4	ro	wait
 /dev/block/platform/13500000.dwmmc0/by-name/cache      /cache  ext4   nosuid,nodev,noatime,barrier=1                   wait
 /dev/block/platform/13500000.dwmmc0/by-name/cache      /cache   f2fs   nosuid,nodev,noatime,inline_xattr,flush_merge,data_flush   wait
-/dev/block/platform/13500000.dwmmc0/by-name/userdata	/data	ext4	nosuid,nodev,barrier=1,noauto_da_alloc,discard,noatime,lazytime   wait,check,quota,reservedsize=128M
-/dev/block/platform/13500000.dwmmc0/by-name/userdata   /data    f2fs     nosuid,nodev,discard,noatime,lazytime,data_flush    wait,check,quota
+/dev/block/platform/13500000.dwmmc0/by-name/userdata	/data	ext4	nosuid,nodev,barrier=1,noauto_da_alloc,discard,noatime,lazytime   wait,check,reservedsize=128M
+/dev/block/platform/13500000.dwmmc0/by-name/userdata   /data    f2fs     nosuid,nodev,discard,noatime,lazytime,data_flush    wait,check
 /dev/block/platform/13500000.dwmmc0/by-name/efs	/mnt/vendor/efs	ext4	noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic	wait,check
 /dev/block/platform/13500000.dwmmc0/by-name/misc	/misc	emmc      defaults  defaults
 /dev/block/platform/13500000.dwmmc0/by-name/omr            /metadata       ext4    noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic wait,first_stage_mount,formattable,check
