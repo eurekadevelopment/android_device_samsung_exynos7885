@@ -10,12 +10,6 @@ ro.lmk.use_minfree_levels=true
 # Binary XML
 persist.sys.binary_xml=false
 
-# DSDS Settings
-persist.sys.fflag.override.settings_provider_model=false
-
-# RCS
-persist.rcs.supported=1
-
 # Rendering
 debug.renderengine.backend=skiaglthreaded
 renderthread.skia.reduceopstasksplitting=true
