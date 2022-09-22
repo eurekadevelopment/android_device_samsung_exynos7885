@@ -18,7 +18,7 @@ git clone --depth=1 https://github.com/eurekadevelopment/android_vendor_samsung_
 if test -f ${UNIVERSAL}/vendor_name; then
 	rm ${UNIVERSAL}/vendor_name
 fi
-python3 ${UNIVERSAL}/vendor_detect/main.py
+python3 ${UNIVERSAL}/host-tools/makefile_generator.py
 for dev in a10dd a10 a20 a20e a30 a30s a40; do
 	echo "Generating ${dev} Makefiles..."
 	bash ${UNIVERSAL}/setup.sh "$dev"
