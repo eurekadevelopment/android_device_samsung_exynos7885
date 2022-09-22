@@ -5,120 +5,130 @@
 #include <sstream>
 #include <vector>
 #include <fstream>
+#include <memory>
 
 // Tracking Evolution-X's PixelPropsUtils
-#define UPSTREAM_URL "https://raw.githubusercontent.com/Evolution-X/frameworks_base/tiramisu/core/java/com/android/internal/util/evolution/PixelPropsUtils.java"
+constexpr const char *UPSTREAM_URL = "https://raw.githubusercontent.com/Evolution-X/frameworks_base/tiramisu/core/java/com/android/internal/util/evolution/PixelPropsUtils.java";
 
 // Use Pixel 6 Pro's fingerprint
-#define DEVICE_CODENAME "raven"
-#define DEVICE_VENDOR "google"
+constexpr const char *DEVICE_CODENAME = "raven";
+constexpr const char *DEVICE_VENDOR = "google";
 
-#define STD_STRING_CONTAINS(str, search) (str.find(search) != std::string::npos)
+constexpr bool STD_STRING_CONTAINS(const std::string& str, const std::string& search) {
+	return str.find(search) != std::string::npos;
+}
 		
-typedef struct result {
+struct __attribute__((aligned(64))) result {
 	bool vaild = false;
-	std::string data = "";
-} result_t;
+	std::string data;
+}; 
 
-struct build_data {
+using result_t = struct result;
+
+struct __attribute__((aligned(128))) build_data {
 	std::string vendor;
 	std::string codename;
-	int android_version;
+	int android_version = -1;
 	std::string buildid;
 	std::string vendordata;
 };
 
-static size_t WriteCallback(void *contents, size_t size, size_t nmemb,
+static auto WriteCallback(void *contents, size_t size, size_t nmemb,
                             void *userp) {
   static_cast<std::string *>(userp)->append(static_cast<char *>(contents), size * nmemb);
   return size * nmemb;
 }
 
-static std::vector<std::string> splitNewLines (const std::string& buffer) 
+static auto splitNewLines (const std::string& buffer) 
 {
     auto result = std::vector<std::string>{};
-    auto ss = std::stringstream{buffer};
+    auto sstream = std::stringstream{buffer};
 
-    for (std::string line; std::getline(ss, line, '\n');)
+    for (std::string line; std::getline(sstream, line, '\n');) {
 	    result.push_back(line);
+    }
 
     return result;
 }
 
-static result_t *checkIfVaild(const std::string& line)
+static auto checkIfVaild(const std::string& line)
 {
-	auto res = new result_t;
+	auto res = std::make_unique<result_t>();
 
 	// Is it related to <codename>?
-	if (!STD_STRING_CONTAINS(line, DEVICE_CODENAME))
+	if (!STD_STRING_CONTAINS(line, DEVICE_CODENAME)) {
 		return res;
+	}
 
 	// Remove non-fingerprint stuff.
 	// It should be <vendor>/<codename>/.. format
-	if (!STD_STRING_CONTAINS(line, DEVICE_VENDOR))
+	if (!STD_STRING_CONTAINS(line, DEVICE_VENDOR)) {
 		return res;
+	}
 
 	res->vaild = true;
 	res->data = line;
 	return res;
 }
 
-static result_t *parseJavaFile(const std::string& buffer)
+static auto parseJavaFile(const std::string& buffer)
 {
 	auto kLines = splitNewLines(buffer);
-	for (const auto line : kLines) {
-		const auto res = checkIfVaild(line);
-		if (res->vaild) {
+	for (const auto &line : kLines) {
+		auto res = checkIfVaild(line);
+		if (!res->vaild) {
+			res.reset();
+		} else {
 			std::string data = res->data;
 			res->data = data.substr(data.find(DEVICE_VENDOR));
 			data = res->data;
 			res->data = data.substr(0, data.find_last_of('"'));
 			return res;
-		} else
-			delete res;
+		}
 	}
 	// We failed to find the line. return nothing.
-	return new result_t;
+	return std::make_unique<result_t>();
 }
 
-static std::string dirname(const std::string& arg)
+static auto dirname(const std::string& arg)
 {
 	auto idx = arg.find_last_of("/\\");
 	return arg.substr(0, idx);
 }
 
-static std::string fromBuildDataToFP(struct build_data *data)
+static auto fromBuildDataToFP(struct build_data *data)
 {
 	const char *fmt = "%s/%s/%s:%d/%s/%s:user/release-keys";
-	int size = std::snprintf(nullptr, 0, fmt, data->vendor.c_str(), data->codename.c_str(), data->codename.c_str(), data->android_version, data->buildid.c_str(), data->vendordata.c_str());
+	const int size = std::snprintf(nullptr, 0, fmt, data->vendor.c_str(), data->codename.c_str(), data->codename.c_str(), data->android_version, data->buildid.c_str(), data->vendordata.c_str());
 	std::vector<char> buf(size + 1);
-	std::snprintf(&buf[0], buf.size(), fmt, data->vendor.c_str(), data->codename.c_str(), data->codename.c_str(), data->android_version, data->buildid.c_str(), data->vendordata.c_str());
+	(void) std::snprintf(buf.data(), buf.size(), fmt, data->vendor.c_str(), data->codename.c_str(), data->codename.c_str(), data->android_version, data->buildid.c_str(), data->vendordata.c_str());
 
 	return std::string(buf.begin(), buf.end());
 }
 
-static std::string fromBuildDataToDesc(struct build_data *data)
+static auto fromBuildDataToDesc(struct build_data *data)
 {
 	const char *fmt = "%s-user %d %s %s release-keys";
-	int size = std::snprintf(nullptr, 0, fmt, data->codename.c_str(), data->android_version, data->buildid.c_str(), data->vendordata.c_str());
+	const int size = std::snprintf(nullptr, 0, fmt, data->codename.c_str(), data->android_version, data->buildid.c_str(), data->vendordata.c_str());
 	std::vector<char> buf(size + 1);
-	std::snprintf(&buf[0], buf.size(), fmt, data->codename.c_str(), data->android_version, data->buildid.c_str(), data->vendordata.c_str());
+	(void) std::snprintf(buf.data(), buf.size(), fmt, data->codename.c_str(), data->android_version, data->buildid.c_str(), data->vendordata.c_str());
 
 	return std::string(buf.begin(), buf.end());
 }
 
-static struct build_data *serialize(const std::string& fpdata)
+static auto serialize(const std::string& fpdata)
 {
 	auto split = std::vector<std::string>{};
 	auto ss = std::stringstream{fpdata};
-	auto data = new struct build_data;
-	for (std::string line; std::getline(ss, line, '/');)
+	auto data = std::make_unique<struct build_data>();
+	for (std::string line; std::getline(ss, line, '/');) {
 		split.push_back(line);
+	}
 
 	// Fingerprint: "<VENDOR>/<CODENAME>/<CODENAME>:<AND_VER>/<BUILDID>/<VENDORDATA>:user/release-keys"
 	data->vendor = split[0];
 	std::string mixed = split[2];
-	int idx = mixed.find(':');
+	auto idx = mixed.find(':');
 	data->codename = mixed.substr(0, idx);
 	data->android_version = stoi(mixed.substr(idx + 1));
 	data->buildid = split[3];
@@ -128,21 +138,21 @@ static struct build_data *serialize(const std::string& fpdata)
 	return data;
 }
 
-static void apply(const std::string& path, struct build_data *data)
+static void apply(const std::string& path, const std::unique_ptr<struct build_data> data)
 {
-	std::remove(path.c_str());
+	(void) std::remove(path.c_str());
 	std::ofstream file(path);
 	if (file.is_open()) {
 		std::string str;
 		file << "# Autogenerated by " << __FILE__ << std::endl;
 		file << "PRODUCT_GMS_CLIENTID_BASE := android-google" << std::endl;
 		file << std::endl;
-		str = fromBuildDataToFP(data);
+		str = fromBuildDataToFP(data.get());
 		str.resize(str.find('\0'));
 		file << "BUILD_FINGERPRINT := \"" << str << "\"" << std::endl;
 		file << std::endl;
 		file << "PRODUCT_BUILD_PROP_OVERRIDES += \\" << std::endl;
-		str = fromBuildDataToDesc(data);
+		str = fromBuildDataToDesc(data.get());
 		str.resize(str.find('\0'));
 		file << "\tPRIVATE_BUILD_DESC=\"" << str << "\"" << std::endl;
 		file.close();
@@ -150,10 +160,10 @@ static void apply(const std::string& path, struct build_data *data)
 }
 
 int main(int argc, const char **argv) {
-  CURL *curl;
+  CURL *curl = nullptr;
   CURLcode res;
-  std::string readBuffer = "";
-  std::string execDir = dirname(argv[0]);
+  std::string readBuffer;
+  const std::string execDir = dirname(argv[0]);
 
   curl = curl_easy_init();
   if (curl != nullptr) {
@@ -162,17 +172,19 @@ int main(int argc, const char **argv) {
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
     res = curl_easy_perform(curl);
     curl_easy_cleanup(curl);
-    if (res)
+    if (res != 0u) {
 	    return res;
+    }
   }
 
   auto parseRes = parseJavaFile(readBuffer);
-  if (!parseRes->vaild)
+  if (!parseRes->vaild) {
+	  parseRes.reset();
 	  return 1;
+  }
 
-  auto build = serialize(parseRes->data);
-  delete parseRes;
-  apply(execDir + "/../fingerprint.mk", build);
-  
+  auto build = std::move(serialize(parseRes->data));
+  parseRes.reset();
+  apply(execDir + "/../fingerprint.mk", std::move(build));
   return 0;
 }
