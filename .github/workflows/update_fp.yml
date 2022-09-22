@@ -1,0 +1,17 @@
+name: check fp update
+
+on:
+  schedule:
+    - cron: '0 7 * * 2,5'
+  push:
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+    
+      - name: Install dependencies
+        run: bash universal7885-common/host-tools/update_fp.sh
