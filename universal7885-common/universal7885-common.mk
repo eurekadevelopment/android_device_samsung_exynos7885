@@ -272,6 +272,7 @@ PRODUCT_COPY_FILES += \
 # RIL
 PRODUCT_PACKAGES += \
     android.hardware.radio@1.4.vendor \
+    android.hardware.radio@1.0 \
     android.hardware.radio.config@1.2.vendor \
     android.hardware.radio.deprecated@1.0.vendor \
     vendor.samsung.hardware.radio@2.1.vendor \
