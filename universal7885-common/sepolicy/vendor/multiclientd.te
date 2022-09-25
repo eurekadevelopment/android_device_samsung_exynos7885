@@ -5,5 +5,7 @@ init_daemon_domain(multiclientd)
 
 allow multiclientd rild:binder { call transfer };
 allow multiclientd rild_hwservice:hwservice_manager find;
+binder_call(multiclientd, hwservicemanager)
+binder_call(hwservicemanager, multiclientd)
 get_prop(multiclientd, hwservicemanager_prop);
 allow multiclientd same_process_hal_file:file execute;
