@@ -96,3 +96,7 @@ allow rild efs_file:lnk_file read;
 # hwservice
 add_hwservice(rild, rild_hwservice)
 set_prop(rild, radio_prop)
+
+binder_call(rild, multiclientd)
+binder_call(multiclientd, rild)
+allow rild imei_efs_file:file w_file_perms;
