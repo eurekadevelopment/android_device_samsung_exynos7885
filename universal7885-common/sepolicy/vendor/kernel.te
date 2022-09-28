@@ -11,7 +11,7 @@ allow kernel efs_file:dir search;
 allow kernel device:chr_file { getattr setattr unlink create };
 allow kernel device:dir create_dir_perms;
 allow kernel self:capability { sys_rawio mknod };
-
+allow kernel device:blk_file { create setattr };
 allow kernel block_device:dir search;
 
 allow kernel sysfs_sec_key:dir search;
