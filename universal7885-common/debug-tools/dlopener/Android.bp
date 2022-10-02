@@ -1,12 +1,10 @@
 cc_binary {
     name: "dlopener",
+    compile_multilib: "both",
+    multilib: {
+	lib32: {
+	    suffix: "32",
+	},
+    },
     srcs: ["dlopener.c"],
-    vendor_available: true,
-}
-
-cc_binary {
-    name: "dlopener32", 
-    srcs: ["dlopener.c"],
-    compile_multilib: "32",
-    vendor_available: true,
 }
