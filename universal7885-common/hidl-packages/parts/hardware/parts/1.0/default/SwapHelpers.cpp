@@ -1,13 +1,13 @@
-#include <cstring>
 #include <cerrno>
-#include <fcntl.h>
-#include <iostream>
 #include <cstdio>
+#include <cstring>
+#include <fcntl.h>
+#include <fstream>
+#include <iostream>
 #include <sys/stat.h>
 #include <sys/swap.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include <fstream>
 #include <vector>
 /* XXX This needs to be obtained from kernel headers. See b/9336527 */
 struct linux_swap_header {
@@ -20,19 +20,18 @@ struct linux_swap_header {
   u_int32_t padding[117];
   u_int32_t badpages[1];
 };
-void mkfile(int filesize, const char* path){
-    std::vector<char> empty(1024, 0);
-    std::ofstream ofs(std::string(path), std::ios::binary | std::ios::out);
+void mkfile(int filesize, const char *path) {
+  std::vector<char> empty(1024, 0);
+  std::ofstream ofs(std::string(path), std::ios::binary | std::ios::out);
 
-    for(int i = 0; i < 1024 * filesize; i++)
-    {
-        ofs.write(&empty[0], empty.size());
-    }
+  for (int i = 0; i < 1024 * filesize; i++) {
+    ofs.write(&empty[0], empty.size());
+  }
 }
 #define MAGIC_SWAP_HEADER "SWAPSPACE2"
 #define MAGIC_SWAP_HEADER_LEN 10
 #define MIN_PAGES 10
-int mkswap(const char* filename) {
+int mkswap(const char *filename) {
   int err = 0;
   int fd;
   ssize_t len;

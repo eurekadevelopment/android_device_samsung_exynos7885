@@ -18,6 +18,7 @@ cc_binary {
         "libhidlbase",
         "libutils",
         "liblog",
+        "libfileio",
         "vendor.eureka.hardware.parts@1.0",
     ],
     init_rc: ["vendor.eureka.hardware.parts@1.0-service.rc"],

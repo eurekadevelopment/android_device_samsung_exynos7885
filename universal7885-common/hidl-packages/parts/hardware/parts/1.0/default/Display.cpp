@@ -13,18 +13,20 @@
 // limitations under the License.
 
 #include "Display.h"
-#include <fstream>
-#include <iostream>
-#include <sstream>
 #include "CachedClass.h"
+
+#include <string>
+
+#include <FileIO.h>
 
 namespace vendor::eureka::hardware::parts::V1_0 {
 
 static DisplayConfigs *kCached;
 
+constexpr const char *SEC_TSP_CMD = "/sys/class/sec/tsp/cmd";
+
 Return<void> DisplayConfigs::writeDisplay(parts::V1_0::Status enable,
                                           parts::V1_0::DisplaySys type) {
-  std::ofstream file;
   std::string writevalue;
   if (type == DisplaySys::DOUBLE_TAP) {
     writevalue = "aot_enable";
@@ -37,13 +39,9 @@ Return<void> DisplayConfigs::writeDisplay(parts::V1_0::Status enable,
   } else {
     writevalue += "0";
   }
-  file.open("/sys/class/sec/tsp/cmd");
-  file << writevalue;
-  file.close();
+  FileIO::writeline(SEC_TSP_CMD, writevalue);
   return Void();
 }
 
-IDisplayConfigs *DisplayConfigs::getInstance(void) {
-  USE_CACHED(kCached);
-}
+IDisplayConfigs *DisplayConfigs::getInstance(void) { USE_CACHED(kCached); }
 } // namespace vendor::eureka::hardware::parts::V1_0

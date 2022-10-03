@@ -13,62 +13,35 @@
 // limitations under the License.
 
 #include "FlashLight.h"
-#include <fstream>
-#include <iostream>
-#include <sstream>
 #include "CachedClass.h"
+
+#include <FileIO.h>
 
 namespace vendor::eureka::hardware::parts::V1_0 {
 
 static FlashBrightness *kCached;
 
+constexpr const char *TORCH_ENABLE =
+    "/sys/class/camera/flash/torch_brightness_lvl_enable";
+constexpr const char *TORCH_LVL =
+    "/sys/class/camera/flash/torch_brightness_lvl";
+
 // Methods from ::android::hardware::parts::V1_0::IFlashLight follow.
 Return<void> FlashBrightness::setFlashlightEnable(parts::V1_0::Status enable) {
-  std::ofstream file;
-  std::string writevalue;
-  switch (enable) {
-  case Status::ENABLE:
-    writevalue = "1";
-    break;
-  case Status::DISABLE:
-    writevalue = "0";
-    break;
-  default:
-    writevalue = "";
-    break;
-  }
-  file.open("/sys/class/camera/flash/torch_brightness_lvl_enable");
-  file << writevalue;
-  file.close();
+  FileIO::writeline(TORCH_ENABLE, static_cast<int32_t>(enable));
   return Void();
 }
 
 Return<void> FlashBrightness::setFlashlightWritable(int32_t value) {
-  std::ofstream file;
-  std::string writevalue = std::to_string(value);
-  file.open("/sys/class/camera/flash/torch_brightness_lvl");
-  file << writevalue;
-  file.close();
+  FileIO::writeline(TORCH_LVL, value);
   return Void();
 }
 
 Return<int32_t> FlashBrightness::readFlashlightstats(bool s2mu106) {
-  std::ifstream file;
-  std::string value;
-  file.open("/sys/class/camera/flash/torch_brightness_lvl");
-  if (file.is_open()) {
-    getline(file, value);
-    file.close();
-    if (s2mu106) {
-      return stoi(value);
-    } else {
-      return stoi(value) / 21;
-    }
-  }
-  return -1;
+  return s2mu106 ? FileIO::readline(TORCH_LVL) / 21
+                 : FileIO::readline(TORCH_LVL);
 }
 
-IFlashBrightness *FlashBrightness::getInstance(void) {
-  USE_CACHED(kCached);
-}
+IFlashBrightness *FlashBrightness::getInstance(void) { USE_CACHED(kCached); }
+
 } // namespace vendor::eureka::hardware::parts::V1_0

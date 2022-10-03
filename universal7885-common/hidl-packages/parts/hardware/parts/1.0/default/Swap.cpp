@@ -13,19 +13,19 @@
 // limitations under the License.
 
 #include "Swap.h"
+#include "CachedClass.h"
 #include <fstream>
 #include <iostream>
-#include <sys/swap.h>
-#include <unistd.h>
 #include <mutex>
+#include <sys/swap.h>
 #include <thread>
-#include "CachedClass.h"
+#include <unistd.h>
 
 static int mSwapSize = 100;
-extern int mkswap (const char *filename);
+extern int mkswap(const char *filename);
 extern void mkfile(int filesize, const char *name);
 
-constexpr const char* SWAP_PATH = "/data/swap/swapfile";
+constexpr const char *SWAP_PATH = "/data/swap/swapfile";
 
 namespace vendor::eureka::hardware::parts::V1_0 {
 
@@ -52,7 +52,8 @@ static void mkfile_swapon_thread(void) {
     mkfile(mSwapSize * 10, SWAP_PATH);
     mkswap(SWAP_PATH);
   }
-  int res = swapon(SWAP_PATH, (10 << SWAP_FLAG_PRIO_SHIFT) & SWAP_FLAG_PRIO_MASK);
+  int res =
+      swapon(SWAP_PATH, (10 << SWAP_FLAG_PRIO_SHIFT) & SWAP_FLAG_PRIO_MASK);
   swapOnRes = res == 0;
 }
 
@@ -77,8 +78,6 @@ Return<bool> SwapOnData::getSwapOnResult(void) { return swapOnRes; }
 
 Return<bool> SwapOnData::isMutexLocked() { return !thread_lock.try_lock(); }
 
-ISwapOnData *SwapOnData::getInstance(void) { 
-  USE_CACHED(kCached);
-}
+ISwapOnData *SwapOnData::getInstance(void) { USE_CACHED(kCached); }
 
 } // namespace vendor::eureka::hardware::parts::V1_0

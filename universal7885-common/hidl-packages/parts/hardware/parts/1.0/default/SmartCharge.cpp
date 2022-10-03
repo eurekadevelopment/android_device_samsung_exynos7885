@@ -13,11 +13,11 @@
 // limitations under the License.
 
 #include "SmartCharge.h"
+#include "CachedClass.h"
 #include "SmartChargingImpl.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
-#include "CachedClass.h"
 
 namespace vendor::eureka::hardware::parts::V1_0 {
 
@@ -55,15 +55,9 @@ Return<void> SmartCharge::setConfig(int32_t limit_user, int32_t restart_user) {
   return Void();
 }
 
-Return<int32_t> SmartCharge::getLimitCnt(void) {
-  return limit_stat;
-}
+Return<int32_t> SmartCharge::getLimitCnt(void) { return limit_stat; }
 
-Return<int32_t> SmartCharge::getRestartCnt(void) {
-  return restart_stat;
-}
+Return<int32_t> SmartCharge::getRestartCnt(void) { return restart_stat; }
 
-ISmartCharge *SmartCharge::getInstance(void) {
-  USE_CACHED(kCached);
-}
+ISmartCharge *SmartCharge::getInstance(void) { USE_CACHED(kCached); }
 } // namespace vendor::eureka::hardware::parts::V1_0

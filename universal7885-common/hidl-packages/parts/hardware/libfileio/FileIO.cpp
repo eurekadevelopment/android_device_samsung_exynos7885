@@ -25,15 +25,14 @@ int readline(const char *path) {
   try {
     return stoi(value);
   } catch (std::invalid_argument const &ex) {
-    ALOGE("%s: stoi(): invalid argument: for %s", __func__, value);
+    ALOGE("%s: stoi(): invalid argument: for %s", __func__, value.c_str());
   } catch (std::out_of_range const &ex) {
-    ALOGE("%s: stoi(): out of range: for %s", __func__, value);
+    ALOGE("%s: stoi(): out of range: for %s", __func__, value.c_str());
   }
   return EXIT_ERR;
 }
 
-template <typename T>
-void writeline(const char *path, const T data) {
+void writeline(const char *path, const std::string& data) {
   std::ofstream file;
   file.open(path);
   ALOGD("%s: Opening %s", __func__, path);
@@ -43,6 +42,10 @@ void writeline(const char *path, const T data) {
     return;
   }
   ALOGE("%s: Failed to open %s", __func__, path);
+}
+
+void writeline(const char *path, const int data) {
+  writeline(path, std::to_string(data));
 }
 
 } // namespace FileIO

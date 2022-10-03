@@ -18,14 +18,14 @@
 #include <vendor/eureka/hardware/parts/1.0/IBatteryStats.h>
 #include <vendor/eureka/hardware/parts/1.0/IDisplayConfigs.h>
 #include <vendor/eureka/hardware/parts/1.0/IFlashBrightness.h>
-#include <vendor/eureka/hardware/parts/1.0/ISwapOnData.h>
 #include <vendor/eureka/hardware/parts/1.0/ISmartCharge.h>
+#include <vendor/eureka/hardware/parts/1.0/ISwapOnData.h>
 
 #include "Battery.h"
 #include "Display.h"
 #include "FlashLight.h"
-#include "Swap.h"
 #include "SmartCharge.h"
+#include "Swap.h"
 
 using android::sp;
 using android::hardware::configureRpcThreadpool;
@@ -36,13 +36,12 @@ using vendor::eureka::hardware::parts::V1_0::FlashBrightness;
 using vendor::eureka::hardware::parts::V1_0::IBatteryStats;
 using vendor::eureka::hardware::parts::V1_0::IDisplayConfigs;
 using vendor::eureka::hardware::parts::V1_0::IFlashBrightness;
-using vendor::eureka::hardware::parts::V1_0::ISwapOnData;
-using vendor::eureka::hardware::parts::V1_0::SwapOnData;
 using vendor::eureka::hardware::parts::V1_0::ISmartCharge;
+using vendor::eureka::hardware::parts::V1_0::ISwapOnData;
 using vendor::eureka::hardware::parts::V1_0::SmartCharge;
+using vendor::eureka::hardware::parts::V1_0::SwapOnData;
 
-template <class C>
-static inline int registerAsService(C kClass) {
+template <class C> static inline int registerAsService(C kClass) {
   int ret = -1;
   if (kClass != nullptr) {
     ret = kClass->registerAsService();
@@ -52,7 +51,8 @@ static inline int registerAsService(C kClass) {
 
 int main() {
   android::sp<IBatteryStats> mBatteryService = BatteryStats::getInstance();
-  android::sp<IFlashBrightness> mFlashLightService = FlashBrightness::getInstance();
+  android::sp<IFlashBrightness> mFlashLightService =
+      FlashBrightness::getInstance();
   android::sp<IDisplayConfigs> mDisplayService = DisplayConfigs::getInstance();
   android::sp<ISwapOnData> mSwapService = SwapOnData::getInstance();
   android::sp<ISmartCharge> mSmartChargeService = SmartCharge::getInstance();

@@ -12,61 +12,53 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "Battery.h"
-#include <fstream>
-#include <iostream>
-#include <sstream>
 #include <unistd.h>
-#include "CachedClass.h"
+
+#include "Battery.h"
 #include "BatteryConstants.h"
+#include "CachedClass.h"
+
+#include <FileIO.h>
 
 namespace vendor::eureka::hardware::parts::V1_0 {
 
 static BatteryStats *kCached = nullptr;
 
-static inline const char* BatterySysToPath (parts::V1_0::BatterySys type) {
-	switch (type) {
-		case BatterySys::CAPACITY_MAX:
-			return BATTERY_CAPACITY_MAX;
-		case BatterySys::TEMP:
-			return BATTERY_TEMP;
-		case BatterySys::CAPACITY_CURRENT:
-			return BATTERY_CAPACITY_CURRENT;
-		case BatterySys::CURRENT:
-			return BATTERY_CURRENT;
-		case BatterySys::FASTCHARGE:
-			return BATTERY_FASTCHARGE;
-		case BatterySys::CHARGE:
-			return BATTERY_CHARGE;
-		default:
-			return "";
-	}
+static inline const char *BatterySysToPath(parts::V1_0::BatterySys type) {
+  switch (type) {
+  case BatterySys::CAPACITY_MAX:
+    return BATTERY_CAPACITY_MAX;
+  case BatterySys::TEMP:
+    return BATTERY_TEMP;
+  case BatterySys::CAPACITY_CURRENT:
+    return BATTERY_CAPACITY_CURRENT;
+  case BatterySys::CURRENT:
+    return BATTERY_CURRENT;
+  case BatterySys::FASTCHARGE:
+    return BATTERY_FASTCHARGE;
+  case BatterySys::CHARGE:
+    return BATTERY_CHARGE;
+  default:
+    return "";
+  }
 }
 
 // Methods from ::android::hardware::battery::V1_0::IBattery follow.
 Return<int32_t> BatteryStats::getBatteryStats(parts::V1_0::BatterySys stats) {
-  std::ifstream file;
-  std::string value;
-  file.open(BatterySysToPath(stats));
-  if (file.is_open()) {
-    getline(file, value);
-    file.close();
-    return stoi(value);
-  }
-  return -1;
+  return FileIO::readline(BatterySysToPath(stats));
 }
 
 Return<void> BatteryStats::setBatteryWritable(parts::V1_0::BatterySys stats,
                                               parts::V1_0::Status value) {
-  std::ofstream file;
   bool FastCharge = false;
   if (FastCharge)
     seteuid(ANDROID_SYSTEM_UID);
-  file.open(BatterySysToPath(stats));
-  file << static_cast<int32_t>(value);
-  file.close();
+
+  FileIO::writeline(BatterySysToPath(stats), static_cast<int32_t>(value));
+
   if (FastCharge)
     seteuid(ANDROID_ROOT_UID);
+
   return Void();
 }
 
