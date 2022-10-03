@@ -1,0 +1,7 @@
+cc_library_shared {
+   name: "libfileio",
+   srcs: ["FileIO.cpp"],
+   include_dirs: ["include"],
+   export_include_dirs: ["include"],
+}
+   
