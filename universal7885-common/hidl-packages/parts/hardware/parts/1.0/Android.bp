@@ -7,6 +7,7 @@ hidl_interface {
         "IFlashBrightness.hal",
         "IDisplayConfigs.hal",
         "ISwapOnData.hal",
+	"ISmartCharge.hal"
     ],
     interfaces: ["android.hidl.base@1.0"],
     gen_java: false,

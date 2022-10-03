@@ -16,33 +16,69 @@
 #include <fstream>
 #include <iostream>
 #include <sys/swap.h>
-#include <stdio.h>
+#include <unistd.h>
+#include <mutex>
+#include <thread>
+#include "CachedClass.h"
 
 static int mSwapSize = 100;
-extern int mkswap (std::string filename);
-extern void mkfile(int filesize, std::string name);
+extern int mkswap (const char *filename);
+extern void mkfile(int filesize, const char *name);
 
-static std::string SWAP_PATH = "/data/swap/swapfile";
+constexpr const char* SWAP_PATH = "/data/swap/swapfile";
 
 namespace vendor::eureka::hardware::parts::V1_0 {
+
+static SwapOnData *kCached = nullptr;
+
+static std::mutex thread_lock;
+
+static bool swapOnRes = false;
 
 Return<void> SwapOnData::setSwapSize(int32_t size) {
   mSwapSize = size;
   return Void();
 }
 
-Return<void> SwapOnData::setSwapOn() {
-  mkfile(mSwapSize * 10, SWAP_PATH);
-  mkswap(SWAP_PATH);
-  swapon(SWAP_PATH.c_str(), (10 << SWAP_FLAG_PRIO_SHIFT) & SWAP_FLAG_PRIO_MASK);
+Return<void> SwapOnData::removeSwapFile(void) {
+  const std::lock_guard<std::mutex> lock(thread_lock);
+  std::remove(SWAP_PATH);
   return Void();
+}
+
+static void mkfile_swapon_thread(void) {
+  const std::lock_guard<std::mutex> lock(thread_lock);
+  if (access(SWAP_PATH, F_OK) == 0) {
+    mkfile(mSwapSize * 10, SWAP_PATH);
+    mkswap(SWAP_PATH);
+  }
+  int res = swapon(SWAP_PATH, (10 << SWAP_FLAG_PRIO_SHIFT) & SWAP_FLAG_PRIO_MASK);
+  swapOnRes = res == 0;
+}
+
+Return<void> SwapOnData::setSwapOn() {
+  const std::lock_guard<std::mutex> lock(thread_lock);
+  std::thread mkswapfile(mkfile_swapon_thread);
+  mkswapfile.join();
+  return Void();
+}
+
+static void swapoff_thread(void) {
+  const std::lock_guard<std::mutex> lock(thread_lock);
+  swapoff(SWAP_PATH);
 }
 
 Return<void> SwapOnData::setSwapOff() {
-  swapoff(SWAP_PATH.c_str());
-  remove(SWAP_PATH.c_str());
+  std::thread swapoff(swapoff_thread);
+  swapoff.join();
   return Void();
 }
+Return<bool> SwapOnData::getSwapOnResult(void) { return swapOnRes; }
 
-ISwapOnData *SwapOnData::getInstance(void) { return new SwapOnData(); }
+Return<bool> SwapOnData::isMutexLocked() { return !thread_lock.try_lock(); }
+
+ISwapOnData *SwapOnData::getInstance(void) { 
+  USE_CACHED(kCached);
+}
+
 } // namespace vendor::eureka::hardware::parts::V1_0

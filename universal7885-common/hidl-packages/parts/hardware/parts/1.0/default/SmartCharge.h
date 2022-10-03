@@ -16,7 +16,7 @@
 
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
-#include <vendor/eureka/hardware/parts/1.0/IDisplayConfigs.h>
+#include <vendor/eureka/hardware/parts/1.0/ISmartCharge.h>
 
 namespace vendor::eureka::hardware::parts::V1_0 {
 
@@ -24,11 +24,15 @@ using ::android::sp;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
 
-struct DisplayConfigs : public IDisplayConfigs {
-  // Methods from ::vendor::eureka::hardware::parts::V1_0::IDisplayConfigs
+struct SmartCharge : public ISmartCharge {
+  // Methods from ::vendor::eureka::hardware::parts::V1_0::ISmartCharge
   // follow.
-  Return<void> writeDisplay(Status enable, DisplaySys type);
+  Return<void> start(void);
+  Return<void> stop(void);
+  Return<void> setConfig(int32_t limit, int32_t restart);
+  Return<int32_t> getLimitCnt(void);
+  Return<int32_t> getRestartCnt(void);
   // Methods from ::android::hidl::base::V1_0::IBase follow.
-  static IDisplayConfigs *getInstance(void);
+  static ISmartCharge *getInstance(void);
 };
 } // namespace vendor::eureka::hardware::parts::V1_0

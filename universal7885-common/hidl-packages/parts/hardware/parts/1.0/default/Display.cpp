@@ -16,19 +16,23 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include "CachedClass.h"
+
 namespace vendor::eureka::hardware::parts::V1_0 {
 
-Return<void> DisplayConfigs::writeDisplay(parts::V1_0::Number enable,
-                                          parts::V1_0::Display type) {
+static DisplayConfigs *kCached;
+
+Return<void> DisplayConfigs::writeDisplay(parts::V1_0::Status enable,
+                                          parts::V1_0::DisplaySys type) {
   std::ofstream file;
   std::string writevalue;
-  if (type == Display::DOUBLE_TAP) {
+  if (type == DisplaySys::DOUBLE_TAP) {
     writevalue = "aot_enable";
-  } else if (type == Display::GLOVE_MODE) {
+  } else if (type == DisplaySys::GLOVE_MODE) {
     writevalue = "glove_mode";
   }
   writevalue += ",";
-  if (enable == Number::ENABLE) {
+  if (enable == Status::ENABLE) {
     writevalue += "1";
   } else {
     writevalue += "0";
@@ -40,6 +44,6 @@ Return<void> DisplayConfigs::writeDisplay(parts::V1_0::Number enable,
 }
 
 IDisplayConfigs *DisplayConfigs::getInstance(void) {
-  return new DisplayConfigs();
+  USE_CACHED(kCached);
 }
 } // namespace vendor::eureka::hardware::parts::V1_0

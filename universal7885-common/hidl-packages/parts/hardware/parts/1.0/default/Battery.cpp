@@ -17,95 +17,58 @@
 #include <iostream>
 #include <sstream>
 #include <unistd.h>
+#include "CachedClass.h"
+#include "BatteryConstants.h"
 
 namespace vendor::eureka::hardware::parts::V1_0 {
 
+static BatteryStats *kCached = nullptr;
+
+static inline const char* BatterySysToPath (parts::V1_0::BatterySys type) {
+	switch (type) {
+		case BatterySys::CAPACITY_MAX:
+			return BATTERY_CAPACITY_MAX;
+		case BatterySys::TEMP:
+			return BATTERY_TEMP;
+		case BatterySys::CAPACITY_CURRENT:
+			return BATTERY_CAPACITY_CURRENT;
+		case BatterySys::CURRENT:
+			return BATTERY_CURRENT;
+		case BatterySys::FASTCHARGE:
+			return BATTERY_FASTCHARGE;
+		case BatterySys::CHARGE:
+			return BATTERY_CHARGE;
+		default:
+			return "";
+	}
+}
+
 // Methods from ::android::hardware::battery::V1_0::IBattery follow.
-Return<int32_t> BatteryStats::getBatteryStats(parts::V1_0::SysfsType stats) {
+Return<int32_t> BatteryStats::getBatteryStats(parts::V1_0::BatterySys stats) {
   std::ifstream file;
-  std::string filename;
-  switch (stats) {
-  case SysfsType::CAPACITY_MAX:
-    filename = "/sys/devices/platform/battery/power_supply/battery/charge_full";
-    break;
-  case SysfsType::TEMP:
-    filename = "/sys/devices/platform/battery/power_supply/battery/batt_temp";
-    break;
-  case SysfsType::CAPACITY_CURRENT:
-    filename = "/sys/devices/platform/battery/power_supply/battery/capacity";
-    break;
-  case SysfsType::CURRENT:
-    filename = "/sys/devices/platform/battery/power_supply/battery/current_now";
-    break;
-  case SysfsType::FASTCHARGE:
-    filename = "/sys/class/sec/switch/afc_disable";
-    break;
-  case SysfsType::CHARGE:
-    filename =
-        "/sys/devices/platform/battery/power_supply/battery/batt_slate_mode";
-    break;
-  default:
-    filename = "";
-    break;
-  }
   std::string value;
-  int32_t intvalue;
-  file.open(filename);
+  file.open(BatterySysToPath(stats));
   if (file.is_open()) {
     getline(file, value);
     file.close();
-    std::stringstream val(value);
-    val >> intvalue;
-    return intvalue;
+    return stoi(value);
   }
   return -1;
 }
 
-Return<void> BatteryStats::setBatteryWritable(parts::V1_0::SysfsType stats,
-                                              parts::V1_0::Number value) {
+Return<void> BatteryStats::setBatteryWritable(parts::V1_0::BatterySys stats,
+                                              parts::V1_0::Status value) {
   std::ofstream file;
-  std::string filename;
   bool FastCharge = false;
-  switch (stats) {
-  case SysfsType::CAPACITY_MAX:
-    filename = "/sys/devices/platform/battery/power_supply/battery/charge_full";
-    break;
-  case SysfsType::TEMP:
-    filename = "/sys/devices/platform/battery/power_supply/battery/batt_temp";
-    break;
-  case SysfsType::CAPACITY_CURRENT:
-    filename = "/sys/devices/platform/battery/power_supply/battery/capacity";
-    break;
-  case SysfsType::CURRENT:
-    filename = "/sys/devices/platform/battery/power_supply/battery/current_now";
-    break;
-  case SysfsType::FASTCHARGE:
-    filename = "/sys/class/sec/switch/afc_disable";
-    FastCharge = true;
-    break;
-  case SysfsType::CHARGE:
-    filename =
-        "/sys/devices/platform/battery/power_supply/battery/batt_slate_mode";
-    break;
-  default:
-    filename = "";
-    break;
-  }
   if (FastCharge)
     seteuid(ANDROID_SYSTEM_UID);
-  file.open(filename);
-  int write;
-  if (value == Number::ENABLE) {
-    write = 1;
-  } else {
-    write = 0;
-  }
-  file << write;
+  file.open(BatterySysToPath(stats));
+  file << static_cast<int32_t>(value);
   file.close();
   if (FastCharge)
     seteuid(ANDROID_ROOT_UID);
   return Void();
 }
 
-IBatteryStats *BatteryStats::getInstance(void) { return new BatteryStats(); }
+IBatteryStats *BatteryStats::getInstance(void) { USE_CACHED(kCached); }
 } // namespace vendor::eureka::hardware::parts::V1_0

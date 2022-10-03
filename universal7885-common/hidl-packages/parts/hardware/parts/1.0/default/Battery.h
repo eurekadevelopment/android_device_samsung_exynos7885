@@ -24,17 +24,13 @@
 namespace vendor::eureka::hardware::parts::V1_0 {
 
 using ::android::sp;
-using ::android::hardware::hidl_array;
-using ::android::hardware::hidl_memory;
-using ::android::hardware::hidl_string;
-using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
 
 struct BatteryStats : public IBatteryStats {
   // Methods from ::vendor::eureka::hardware::parts::V1_0::IBatteryStats follow.
-  Return<int32_t> getBatteryStats(SysfsType stats) override;
-  Return<void> setBatteryWritable(SysfsType stats, Number value) override;
+  Return<int32_t> getBatteryStats(BatterySys stats) override;
+  Return<void> setBatteryWritable(BatterySys stats, Status value) override;
 
   // Methods from ::android::hidl::base::V1_0::IBase follow.
   static IBatteryStats *getInstance(void);

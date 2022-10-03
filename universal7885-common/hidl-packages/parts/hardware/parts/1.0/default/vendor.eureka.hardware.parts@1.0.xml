@@ -19,5 +19,9 @@
          <name>ISwapOnData</name>
          <instance>default</instance>
       </interface>
+      <interface>
+	 <name>ISmartCharge</name>
+	 <instance>default</instance>
+      </interface>
    </hal>
 </manifest>

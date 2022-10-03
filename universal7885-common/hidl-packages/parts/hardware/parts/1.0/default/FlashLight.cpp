@@ -16,17 +16,21 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include "CachedClass.h"
+
 namespace vendor::eureka::hardware::parts::V1_0 {
 
+static FlashBrightness *kCached;
+
 // Methods from ::android::hardware::parts::V1_0::IFlashLight follow.
-Return<void> FlashBrightness::setFlashlightEnable(parts::V1_0::Number enable) {
+Return<void> FlashBrightness::setFlashlightEnable(parts::V1_0::Status enable) {
   std::ofstream file;
   std::string writevalue;
   switch (enable) {
-  case Number::ENABLE:
+  case Status::ENABLE:
     writevalue = "1";
     break;
-  case Number::DISABLE:
+  case Status::DISABLE:
     writevalue = "0";
     break;
   default:
@@ -39,38 +43,32 @@ Return<void> FlashBrightness::setFlashlightEnable(parts::V1_0::Number enable) {
   return Void();
 }
 
-Return<void> FlashBrightness::setFlashlightWritable(parts::V1_0::Value value) {
+Return<void> FlashBrightness::setFlashlightWritable(int32_t value) {
   std::ofstream file;
-  std::string writevalue = std::to_string((int)value);
+  std::string writevalue = std::to_string(value);
   file.open("/sys/class/camera/flash/torch_brightness_lvl");
   file << writevalue;
   file.close();
   return Void();
 }
 
-Return<int32_t>
-FlashBrightness::readFlashlightstats(parts::V1_0::Device device) {
+Return<int32_t> FlashBrightness::readFlashlightstats(bool s2mu106) {
   std::ifstream file;
   std::string value;
-  int32_t intvalue;
   file.open("/sys/class/camera/flash/torch_brightness_lvl");
   if (file.is_open()) {
     getline(file, value);
     file.close();
-    std::stringstream val(value);
-    val >> intvalue;
-    if (device == Device::A10) {
-      return intvalue;
-    } else if (device == Device::NOTA10) {
-      return intvalue / 21;
+    if (s2mu106) {
+      return stoi(value);
+    } else {
+      return stoi(value) / 21;
     }
-    // Never Here
-    return -1;
   }
   return -1;
 }
 
 IFlashBrightness *FlashBrightness::getInstance(void) {
-  return new FlashBrightness();
+  USE_CACHED(kCached);
 }
 } // namespace vendor::eureka::hardware::parts::V1_0

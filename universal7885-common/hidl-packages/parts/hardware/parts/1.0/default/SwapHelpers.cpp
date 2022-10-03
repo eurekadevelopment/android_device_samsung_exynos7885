@@ -20,9 +20,9 @@ struct linux_swap_header {
   u_int32_t padding[117];
   u_int32_t badpages[1];
 };
-void mkfile(int filesize, std::string name){
+void mkfile(int filesize, const char* path){
     std::vector<char> empty(1024, 0);
-    std::ofstream ofs(name, std::ios::binary | std::ios::out);
+    std::ofstream ofs(std::string(path), std::ios::binary | std::ios::out);
 
     for(int i = 0; i < 1024 * filesize; i++)
     {
@@ -32,14 +32,14 @@ void mkfile(int filesize, std::string name){
 #define MAGIC_SWAP_HEADER "SWAPSPACE2"
 #define MAGIC_SWAP_HEADER_LEN 10
 #define MIN_PAGES 10
-int mkswap(std::string filename) {
+int mkswap(const char* filename) {
   int err = 0;
   int fd;
   ssize_t len;
   off_t swap_size;
   int pagesize;
   struct linux_swap_header sw_hdr;
-  fd = open(filename.c_str(), O_WRONLY | O_CLOEXEC);
+  fd = open(filename, O_WRONLY | O_CLOEXEC);
   if (fd < 0) {
     err = errno;
     return err;

@@ -19,11 +19,13 @@
 #include <vendor/eureka/hardware/parts/1.0/IDisplayConfigs.h>
 #include <vendor/eureka/hardware/parts/1.0/IFlashBrightness.h>
 #include <vendor/eureka/hardware/parts/1.0/ISwapOnData.h>
+#include <vendor/eureka/hardware/parts/1.0/ISmartCharge.h>
 
 #include "Battery.h"
 #include "Display.h"
 #include "FlashLight.h"
 #include "Swap.h"
+#include "SmartCharge.h"
 
 using android::sp;
 using android::hardware::configureRpcThreadpool;
@@ -36,56 +38,33 @@ using vendor::eureka::hardware::parts::V1_0::IDisplayConfigs;
 using vendor::eureka::hardware::parts::V1_0::IFlashBrightness;
 using vendor::eureka::hardware::parts::V1_0::ISwapOnData;
 using vendor::eureka::hardware::parts::V1_0::SwapOnData;
+using vendor::eureka::hardware::parts::V1_0::ISmartCharge;
+using vendor::eureka::hardware::parts::V1_0::SmartCharge;
+
+template <class C>
+static inline int registerAsService(C kClass) {
+  int ret = -1;
+  if (kClass != nullptr) {
+    ret = kClass->registerAsService();
+  }
+  return ret;
+}
 
 int main() {
-  int ret;
   android::sp<IBatteryStats> mBatteryService = BatteryStats::getInstance();
-  android::sp<IFlashBrightness> mFlashLightService =
-      FlashBrightness::getInstance();
+  android::sp<IFlashBrightness> mFlashLightService = FlashBrightness::getInstance();
   android::sp<IDisplayConfigs> mDisplayService = DisplayConfigs::getInstance();
   android::sp<ISwapOnData> mSwapService = SwapOnData::getInstance();
+  android::sp<ISmartCharge> mSmartChargeService = SmartCharge::getInstance();
+
   configureRpcThreadpool(4, true /*callerWillJoin*/);
 
-  if (mBatteryService != nullptr) {
-    ret = mBatteryService->registerAsService();
-    if (ret != 0) {
-      ALOGE("Can't register instance of Battery HAL, nullptr");
-    } else {
-      ALOGI("registered Battery HAL");
-    }
-  } else {
-    ALOGE("Can't create instance of Battery HAL, nullptr");
-  }
-  if (mFlashLightService != nullptr) {
-    ret = mFlashLightService->registerAsService();
-    if (ret != 0) {
-      ALOGE("Can't register instance of FlashLight HAL, nullptr");
-    } else {
-      ALOGI("registered FlashLight HAL");
-    }
-  } else {
-    ALOGE("Can't create instance of FlashLight HAL, nullptr");
-  }
-  if (mDisplayService != nullptr) {
-    ret = mDisplayService->registerAsService();
-    if (ret != 0) {
-      ALOGE("Can't register instance of Display HAL, nullptr");
-    } else {
-      ALOGI("registered Display HAL");
-    }
-  } else {
-    ALOGE("Can't create instance of Display HAL, nullptr");
-  }
-  if (mSwapService != nullptr) {
-    ret = mSwapService->registerAsService();
-    if (ret != 0) {
-      ALOGE("Can't register instance of Swap HAL, nullptr");
-    } else {
-      ALOGI("registered Swap HAL");
-    }
-  } else {
-    ALOGE("Can't create instance of Swap HAL, nullptr");
-  }
+  registerAsService(mBatteryService);
+  registerAsService(mFlashLightService);
+  registerAsService(mDisplayService);
+  registerAsService(mSwapService);
+  registerAsService(mSmartChargeService);
+
   joinRpcThreadpool();
 
   return -1; // should never get here

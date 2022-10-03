@@ -21,10 +21,6 @@
 namespace vendor::eureka::hardware::parts::V1_0 {
 
 using ::android::sp;
-using ::android::hardware::hidl_array;
-using ::android::hardware::hidl_memory;
-using ::android::hardware::hidl_string;
-using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
 
@@ -32,8 +28,11 @@ struct SwapOnData : public ISwapOnData {
   // Methods from ::vendor::eureka::hardware::parts::V1_0::ISwapOnData
   // follow.
   Return<void> setSwapSize(int32_t size);
-  Return<void> setSwapOn();
-  Return<void> setSwapOff();
+  Return<void> setSwapOn(void);
+  Return<void> removeSwapFile(void);
+  Return<void> setSwapOff(void);
+  Return<bool> getSwapOnResult(void);
+  Return<bool> isMutexLocked(void);
   // Methods from ::android::hidl::base::V2_0::IBase follow.
   static ISwapOnData *getInstance(void);
 };

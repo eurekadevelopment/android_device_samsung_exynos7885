@@ -21,19 +21,15 @@
 namespace vendor::eureka::hardware::parts::V1_0 {
 
 using ::android::sp;
-using ::android::hardware::hidl_array;
-using ::android::hardware::hidl_memory;
-using ::android::hardware::hidl_string;
-using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
 
 struct FlashBrightness : public IFlashBrightness {
   // Methods from ::vendor::eureka::hardware::parts::V1_0::IFlashBrightness
   // follow.
-  Return<void> setFlashlightEnable(Number enable);
-  Return<void> setFlashlightWritable(Value value);
-  Return<int32_t> readFlashlightstats(Device device);
+  Return<void> setFlashlightEnable(Status enable);
+  Return<void> setFlashlightWritable(int32_t value);
+  Return<int32_t> readFlashlightstats(bool s2mu106);
   // Methods from ::android::hidl::base::V1_0::IBase follow.
   static IFlashBrightness *getInstance(void);
 };

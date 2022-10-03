@@ -14,6 +14,10 @@
 
 package vendor.eureka.hardware.parts@1.0;
 
-interface IDisplayConfigs {
-	writeDisplay(Status enable, DisplaySys type);
+interface ISmartCharge {
+	start();
+	stop();
+	setConfig(int32_t limit, int32_t restart);
+	getLimitCnt() generates (int32_t cnt);
+	getRestartCnt() generates (int32_t cnt);
 };

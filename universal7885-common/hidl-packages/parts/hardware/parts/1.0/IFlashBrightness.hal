@@ -15,7 +15,7 @@
 package vendor.eureka.hardware.parts@1.0;
 
 interface IFlashBrightness {
-	setFlashlightWritable(Value value);
-	setFlashlightEnable(Number enable);
-	readFlashlightstats(Device device) generates (int32_t value);
+	setFlashlightWritable(int32_t value);
+	setFlashlightEnable(Status enable);
+	readFlashlightstats(bool s2mu106) generates (int32_t value);
 };

@@ -9,8 +9,11 @@ cc_binary {
         "Display.cpp",
         "Swap.cpp",
         "SwapHelpers.cpp",
+	"SmartChargingImpl.cpp",
+	"SmartCharge.cpp",
         "service.cpp",
     ],
+    cflags: ["-Wno-thread-safety-negative"],
     shared_libs: [
         "libhidlbase",
         "libutils",
