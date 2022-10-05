@@ -1,0 +1,9 @@
+aidl_interface {
+    name: "vendor.eureka.hardware.fmradio",
+    srcs: ["vendor/eureka/hardware/fmradio/*.aidl"],
+    backend: {
+        ndk: {
+            enabled: true,
+        },
+    },
+}
