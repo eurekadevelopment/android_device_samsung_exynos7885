@@ -1,0 +1,17 @@
+cc_binary {
+    name: "vendor.eureka.hardware.fmradio-service",
+    srcs: [
+        "FMRadio.cpp",
+        "service.cpp",
+    ],
+    defaults: ["eureka_defaults"],
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+        "liblog",
+        "libfileio",
+        "vendor.eureka.hardware.fmradio-ndk",
+    ],
+    init_rc: ["vendor.eureka.hardware.fmradio-service.rc"],
+    vintf_fragments: ["vendor.eureka.hardware.fmradio.xml"],
+}

@@ -1,0 +1,4 @@
+service fm-hal-aidl /system/bin/vendor.eureka.hardware.fmradio-service
+    class hal
+    user root
+    group root

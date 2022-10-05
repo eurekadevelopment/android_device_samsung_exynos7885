@@ -1,0 +1,6 @@
+<manifest version="1.0" type="framework">
+   <hal format="aidl">
+       <name>vendor.eureka.hardware.fmradio</name>
+       <fqname>IFMRadio/default</fqname>
+   </hal>
+</manifest>
