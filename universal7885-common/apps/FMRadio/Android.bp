@@ -16,6 +16,6 @@ android_app {
         "androidx.coordinatorlayout_coordinatorlayout",
     ],
     required: [
-        "vendor.eureka.hardware.fmradio@1.2-service",
+        "vendor.eureka.hardware.fmradio-service",
     ],
 }
