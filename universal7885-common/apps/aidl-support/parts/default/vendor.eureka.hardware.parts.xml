@@ -1,0 +1,10 @@
+<manifest version="1.0" type="framework">
+   <hal format="aidl">
+       <name>vendor.eureka.hardware.fmradio</name>
+       <fqname>IBatteryStats/default</fqname>
+       <fqname>IDisplayConfigs/default</fqname>
+       <fqname>IFlashBrightness/default</fqname>
+       <fqname>ISwapOnData/default</fqname>
+       <fqname>ISmartCharge/default</fqname>
+   </hal>
+</manifest>

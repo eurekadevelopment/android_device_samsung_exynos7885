@@ -1,0 +1,22 @@
+cc_binary {
+    name: "vendor.eureka.hardware.parts-service",
+    defaults: ["eureka_defaults"],    
+    srcs: [
+        "Battery.cpp",
+        "FlashLight.cpp",
+        "Display.cpp",
+        "Swap.cpp",
+        "SwapHelpers.cpp",
+	"SmartChargingImpl.cpp",
+	"SmartCharge.cpp",
+        "service.cpp",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+        "libfileio",
+        "vendor.eureka.hardware.parts-ndk",
+    ],
+    init_rc: ["vendor.eureka.hardware.parts-service.rc"],
+    vintf_fragments: ["vendor.eureka.hardware.parts.xml"],
+}
