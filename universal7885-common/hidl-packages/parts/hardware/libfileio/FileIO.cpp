@@ -3,7 +3,6 @@
 #include <log/log.h>
 
 #include <fstream>
-#include <memory>
 #include <string>
 
 namespace FileIO {

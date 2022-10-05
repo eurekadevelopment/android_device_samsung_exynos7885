@@ -25,7 +25,7 @@ static void battery_monitor(const int limit_percent, const int restart_percent,
       enableSysfs(BATTERY_CHARGE);
       *restart_cnt += 1;
     }
-    std::this_thread::sleep_for(std::chrono::seconds(5));
+    std::this_thread::sleep_for(std::chrono::minutes(5));
   }
 }
 
