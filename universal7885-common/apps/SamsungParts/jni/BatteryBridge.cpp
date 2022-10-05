@@ -7,8 +7,8 @@
 
 using android::sp;
 using vendor::eureka::hardware::parts::V1_0::IBatteryStats;
-using vendor::eureka::hardware::parts::V1_0::Number;
-using vendor::eureka::hardware::parts::V1_0::SysfsType;
+using vendor::eureka::hardware::parts::V1_0::Status;
+using vendor::eureka::hardware::parts::V1_0::BatterySys;
 
 enum {
   BATTERY_CAPACITY_MAX = 1,
@@ -24,16 +24,16 @@ extern "C" JNIEXPORT void JNICALL
 Java_com_eurekateam_samsungextras_interfaces_Battery_setChargeSysfs(
     JNIEnv /*env*/, __unused jclass obj, jint enable) {
   if (enable == 1) {
-    service->setBatteryWritable(SysfsType::CHARGE, Number::ENABLE);
+    service->setBatteryWritable(BatterySys::CHARGE, Status::ENABLE);
   } else {
-    service->setBatteryWritable(SysfsType::CHARGE, Number::DISABLE);
+    service->setBatteryWritable(BatterySys::CHARGE, Status::DISABLE);
   }
 }
 
 extern "C" JNIEXPORT jint JNICALL
 Java_com_eurekateam_samsungextras_interfaces_Battery_getChargeSysfs(
     JNIEnv /*env*/, __unused jclass obj) {
-  int ret = service->getBatteryStats(SysfsType::CHARGE);
+  int ret = service->getBatteryStats(BatterySys::CHARGE);
   return ret;
 }
 
@@ -41,15 +41,15 @@ extern "C" JNIEXPORT void JNICALL
 Java_com_eurekateam_samsungextras_interfaces_Battery_setFastCharge(
     JNIEnv /*env*/, __unused jobject obj, jint enable) {
   if (enable == 1) {
-    service->setBatteryWritable(SysfsType::FASTCHARGE, Number::ENABLE);
+    service->setBatteryWritable(BatterySys::FASTCHARGE, Status::ENABLE);
   } else {
-    service->setBatteryWritable(SysfsType::FASTCHARGE, Number::DISABLE);
+    service->setBatteryWritable(BatterySys::FASTCHARGE, Status::DISABLE);
   }
 }
 extern "C" JNIEXPORT jint JNICALL
 Java_com_eurekateam_samsungextras_interfaces_Battery_getFastChargeSysfs(
     JNIEnv /*env*/, __unused jclass obj) {
-  int ret = service->getBatteryStats(SysfsType::FASTCHARGE);
+  int ret = service->getBatteryStats(BatterySys::FASTCHARGE);
   return ret;
 }
 extern "C" JNIEXPORT jint JNICALL
@@ -58,27 +58,27 @@ Java_com_eurekateam_samsungextras_interfaces_Battery_getGeneralBatteryStats(
   int ret;
   switch (id) {
   case BATTERY_CAPACITY_MAX:
-    ret = service->getBatteryStats(SysfsType::CAPACITY_MAX) / 1000;
+    ret = service->getBatteryStats(BatterySys::CAPACITY_MAX) / 1000;
     break;
   case BATTERY_CAPACITY_CURRENT:
-    ret = service->getBatteryStats(SysfsType::CAPACITY_CURRENT);
+    ret = service->getBatteryStats(BatterySys::CAPACITY_CURRENT);
     break;
   case BATTERY_CAPACITY_CURRENT_MAH:
-    ret = (float)service->getBatteryStats(SysfsType::CAPACITY_CURRENT) *
-          (float)service->getBatteryStats(SysfsType::CAPACITY_MAX) / 100000;
+    ret = (float)service->getBatteryStats(BatterySys::CAPACITY_CURRENT) *
+          (float)service->getBatteryStats(BatterySys::CAPACITY_MAX) / 100000;
     break;
   case CHARGING_STATE:
-    if (service->getBatteryStats(SysfsType::CURRENT) > 0) {
+    if (service->getBatteryStats(BatterySys::CURRENT) > 0) {
       ret = 1;
     } else {
       ret = 0;
     }
     break;
   case BATTERY_TEMP:
-    ret = service->getBatteryStats(SysfsType::TEMP) / 10;
+    ret = service->getBatteryStats(BatterySys::TEMP) / 10;
     break;
   case BATTERY_CURRENT:
-    ret = service->getBatteryStats(SysfsType::CURRENT);
+    ret = service->getBatteryStats(BatterySys::CURRENT);
     break;
   default:
     ret = -1;

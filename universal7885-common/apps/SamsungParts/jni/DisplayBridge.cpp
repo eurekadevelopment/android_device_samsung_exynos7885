@@ -6,9 +6,9 @@
 #include <vendor/eureka/hardware/parts/1.0/IDisplayConfigs.h>
 
 using android::sp;
-using vendor::eureka::hardware::parts::V1_0::Display;
+using vendor::eureka::hardware::parts::V1_0::DisplaySys;
 using vendor::eureka::hardware::parts::V1_0::IDisplayConfigs;
-using vendor::eureka::hardware::parts::V1_0::Number;
+using vendor::eureka::hardware::parts::V1_0::Status;
 
 static android::sp<IDisplayConfigs> service = IDisplayConfigs::getService();
 
@@ -17,9 +17,9 @@ Java_com_eurekateam_samsungextras_interfaces_Display_setDT2W(JNIEnv /*env*/,
                                                              jclass /*clazz*/,
                                                              jboolean enable) {
   if (enable) {
-    service->writeDisplay(Number::ENABLE, Display::DOUBLE_TAP);
+    service->writeDisplay(Status::ENABLE, DisplaySys::DOUBLE_TAP);
   } else {
-    service->writeDisplay(Number::DISABLE, Display::DOUBLE_TAP);
+    service->writeDisplay(Status::DISABLE, DisplaySys::DOUBLE_TAP);
   }
 }
 
@@ -27,8 +27,8 @@ extern "C" JNIEXPORT void JNICALL
 Java_com_eurekateam_samsungextras_interfaces_Display_setGloveMode(
     JNIEnv /**env*/, jclass /*clazz*/, jboolean enable) {
   if (enable) {
-    service->writeDisplay(Number::ENABLE, Display::GLOVE_MODE);
+    service->writeDisplay(Status::ENABLE, DisplaySys::GLOVE_MODE);
   } else {
-    service->writeDisplay(Number::DISABLE, Display::GLOVE_MODE);
+    service->writeDisplay(Status::DISABLE, DisplaySys::GLOVE_MODE);
   }
 }
