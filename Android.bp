@@ -52,7 +52,6 @@ cc_defaults {
     "-Wshadow",
     "-Wstrict-aliasing",
     "-Wthread-safety",
-    "-Wthread-safety-negative",
     "-Wunreachable-code",
     "-Wunreachable-code-break",
     "-Wunreachable-code-return",
