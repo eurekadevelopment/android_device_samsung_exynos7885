@@ -15,10 +15,9 @@
 package vendor.eureka.hardware.parts;
 
 import vendor.eureka.hardware.parts.BatterySys;
-import vendor.eureka.hardware.parts.Status;
 
 interface IBatteryStats {
     int getBatteryStats(in BatterySys stats);
 
-    void setBatteryWritable(in BatterySys stats, in Status value);
+    void setBatteryWritable(in BatterySys stats, in boolean value);
 }

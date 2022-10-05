@@ -1,0 +1,11 @@
+aidl_interface {
+    name: "vendor.eureka.hardware.parts",
+    srcs: ["vendor/eureka/hardware/parts/*.aidl"],
+    backend: {
+        ndk: {
+            enabled: true,
+        },
+    },
+    unstable: true,
+}
+

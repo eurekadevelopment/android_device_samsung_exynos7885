@@ -11,22 +11,3 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-package vendor.eureka.hardware.fmradio;
-
-import vendor.eureka.hardware.fmradio.Direction;
-import vendor.eureka.hardware.fmradio.Space;
-
-interface IFMRadio {
-    void adjustFreqByStep(in Direction dir);
-
-    Space getChannelSpacing();
-
-    int getFreqFromSysfs();
-
-    boolean isAvailable();
-
-    void setChannelSpacing(in Space space);
-
-    void setManualFreq(in float freq);
-}
