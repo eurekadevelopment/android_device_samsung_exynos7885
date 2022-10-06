@@ -1,11 +1,10 @@
 type hal_parts_default, domain, coredomain;
 type hal_parts_default_exec, exec_type, file_type, system_file_type;
 
-add_hwservice(hal_parts_default, hal_parts_service);
+add_service(hal_parts_default, hal_parts_service);
 init_daemon_domain(hal_parts_default);
 
 binder_use(hal_parts_default);
-get_prop(hal_parts_default, servicemanager_prop);
 
 # Battery
 allow hal_parts_default sysfs_sec_switch:dir { search };

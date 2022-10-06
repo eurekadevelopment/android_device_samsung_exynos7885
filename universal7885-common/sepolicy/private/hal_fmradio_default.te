@@ -5,7 +5,6 @@ add_service(hal_fmradio_default, hal_fmradio_service);
 init_daemon_domain(hal_fmradio_default);
 
 binder_use(hal_fmradio_default);
-get_prop(hal_fmradio_default, servicemanager_prop);
 
 allow hal_fmradio_default sysfs_fmradio_tune:file rw_file_perms;
 allow hal_fmradio_default sysfs_fmradio_tune:dir search;
