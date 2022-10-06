@@ -10,12 +10,7 @@
 #include <iostream>
 #include "S610_FMRadio.h"
 #include "V4L2_4_4_API.h"
-#include <algorithm>
-#include <jni.h>
-
-#include <memory>
 #include <vector>
-#include <thread>
 
 namespace fm_radio_slsi {
 
@@ -81,7 +76,7 @@ static int set_control(const int fd, unsigned int id, int64_t val) {
   return FM_SUCCESS;
 }
 
-int seek_frequency(int fd, unsigned int upward,
+static int seek_frequency(int fd, unsigned int upward,
                                    unsigned int wrap_around,
                                    unsigned int spacing) {
   struct v4l2_hw_freq_seek seek {};
@@ -100,7 +95,7 @@ int seek_frequency(int fd, unsigned int upward,
   return FM_SUCCESS;
 }
 
-int channel_search(const int fd, unsigned int upward,
+static int channel_search(const int fd, unsigned int upward,
                                       unsigned int wrap_around,
                                       unsigned int spacing, int64_t *channel) {
   int ret;
@@ -120,7 +115,16 @@ int channel_search(const int fd, unsigned int upward,
 
   return ret;
 }
-
+int next_channel(const int fd) {
+	int64_t ret;
+	channel_search(fd, 1, 0, FM_CHANNEL_SPACING_100KHZ, &ret);
+	return ret;
+}
+int before_channel(const int fd) {
+	int64_t ret;
+	channel_search(fd, 0, 0, FM_CHANNEL_SPACING_100KHZ, &ret);
+	return ret;
+}
 int set_mute(const int fd, bool mute) {
   int ret = set_control(fd, V4L2_CID_AUDIO_MUTE, !mute);
   if (ret < 0) {
@@ -137,7 +141,7 @@ int set_volume(int fd, int volume /* 1 ~ 15 */) {
   return FM_SUCCESS;
 }
 
-std::unique_ptr<int64_t[]> get_freqs(const int fd) {
+std::vector<int64_t> get_freqs(const int fd) {
   set_mute(fd, true);
 
   auto map = std::vector<int64_t>();
@@ -151,13 +155,8 @@ std::unique_ptr<int64_t[]> get_freqs(const int fd) {
     map.push_back(found);    
   }
 
-  auto ptr = std::make_unique<int64_t[]>(map.size());
-  for (unsigned long i = 0; i < map.size(); i++) {
-    ptr[i] = map[i];
-  }
-
   set_mute(fd, false);
-  return std::move(ptr);
+  return map;
 }
 
 static int fm_poll(int fd, struct pollfd *poll_fd) {

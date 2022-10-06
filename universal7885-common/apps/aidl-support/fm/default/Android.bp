@@ -1,10 +1,12 @@
 cc_binary {
     name: "vendor.eureka.hardware.fmradio-service",
     srcs: [
-        "FMRadio.cpp",
+        "FMSupport.cpp",
+        "FMDevControl.cpp",
         "service.cpp",
     ],
     defaults: ["eureka_defaults"],
+    static_libs: ["libfm_slsi-impl"],
     shared_libs: [
         "libbase",
         "libbinder_ndk",

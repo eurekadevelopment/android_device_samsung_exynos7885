@@ -5,26 +5,7 @@ cc_library_static {
     ],
     srcs: [
         "FM_Device_ctl.cpp",
-        "FM_AudioRoute_ctl.cpp",
     ],
     export_include_dirs: ["public"],
     defaults: ["eureka_defaults"],
-    shared_libs: [
-        "libhidlbase",
-        "liblog",
-        "libutils",
-        "audioflinger-aidl-cpp",
-        "audiopolicy-aidl-cpp",
-        "audiopolicy-types-aidl-cpp",
-        "libaudiofoundation",
-        "libaudioutils",
-        "libaudioclient",
-        "libutils",
-        "libaudiopolicy",
-        "libaudiomanager",
-    ],
-    header_libs: [
-        "libaudioclient_headers",
-        "jni_headers",
-    ],
 }

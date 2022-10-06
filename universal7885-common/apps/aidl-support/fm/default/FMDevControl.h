@@ -14,19 +14,18 @@
 
 #pragma once
 
-#include <aidl/vendor/eureka/hardware/fmradio/BnFMRadio.h>
+#include <aidl/vendor/eureka/hardware/fmradio/BnFMDevControl.h>
 
 namespace aidl::vendor::eureka::hardware::fmradio {
 
-struct FMRadio : public BnFMRadio {
+struct FMDevControl : public BnFMDevControl {
 public:
-  FMRadio() = default;
+  FMDevControl() = default;
   // Methods from aidl::vendor::eureka::hardware::fmradio::IFMRadio follow.
-  ::ndk::ScopedAStatus setManualFreq(float freq) override;
-  ::ndk::ScopedAStatus adjustFreqByStep(Direction dir) override;
-  ::ndk::ScopedAStatus isAvailable(bool *aidl_return) override;
-  ::ndk::ScopedAStatus getFreqFromSysfs(int32_t *aidl_return) override;
-  ::ndk::ScopedAStatus setChannelSpacing(Space space) override;
-  ::ndk::ScopedAStatus getChannelSpacing(Space *_aidl_return) override;
+  ::ndk::ScopedAStatus open(void) override;
+  ::ndk::ScopedAStatus getValue(GetType type, int *_aidl_return) override;
+  ::ndk::ScopedAStatus setValue(SetType type, int value) override;
+  ::ndk::ScopedAStatus getFreqsList(std::vector<int> *_aidl_return) override;
+  ::ndk::ScopedAStatus close(void) override;
 };
 } // namespace aidl::vendor::eureka::hardware::fmradio

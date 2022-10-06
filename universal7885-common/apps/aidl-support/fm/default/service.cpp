@@ -12,22 +12,29 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <android-base/logging.h>
 #include <android/binder_manager.h>
 #include <android/binder_process.h>
-#include <android-base/logging.h>
 
-#include "FMRadio.h"
+#include "FMSupport.h"
+#include "FMDevControl.h"
 
-using ::aidl::vendor::eureka::hardware::fmradio::FMRadio;
+using ::aidl::vendor::eureka::hardware::fmradio::FMDevControl;
+using ::aidl::vendor::eureka::hardware::fmradio::FMSupport;
+
+template <class C> static void registerAsService(std::shared_ptr<C> service) {
+  const std::string instance = std::string() + C::descriptor + "/default";
+  binder_status_t status =
+      AServiceManager_addService(service->asBinder().get(), instance.c_str());
+  CHECK(status == STATUS_OK);
+  LOG(INFO) << "Register done for " << C::descriptor;
+}
 
 int main() {
   ABinderProcess_setThreadPoolMaxThreadCount(0);
 
-  std::shared_ptr<FMRadio> fm_service = ndk::SharedRefBase::make<FMRadio>();
+  registerAsService(ndk::SharedRefBase::make<FMSupport>());
+  registerAsService(ndk::SharedRefBase::make<FMDevControl>());
 
-  const std::string instance = std::string() + FMRadio::descriptor + "/default";
-  binder_status_t status = AServiceManager_addService(fm_service->asBinder().get(), instance.c_str());
-  CHECK(status == STATUS_OK);
-  ABinderProcess_joinThreadPool();
   return -1; // should never get here
 }

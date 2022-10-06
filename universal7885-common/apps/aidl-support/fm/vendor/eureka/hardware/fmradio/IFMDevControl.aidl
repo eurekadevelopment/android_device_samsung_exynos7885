@@ -14,19 +14,17 @@
 
 package vendor.eureka.hardware.fmradio;
 
-import vendor.eureka.hardware.fmradio.Direction;
-import vendor.eureka.hardware.fmradio.Space;
+import vendor.eureka.hardware.fmradio.GetType;
+import vendor.eureka.hardware.fmradio.SetType;
 
-interface IFMRadio {
-    void adjustFreqByStep(in Direction dir);
+interface IFMDevControl {
+    void open();
 
-    Space getChannelSpacing();
+    int getValue(in GetType type);
 
-    int getFreqFromSysfs();
+    void setValue(in SetType type, int value);
 
-    boolean isAvailable();
+    int[] getFreqsList();
 
-    void setChannelSpacing(in Space space);
-
-    void setManualFreq(in float freq);
+    void close();
 }

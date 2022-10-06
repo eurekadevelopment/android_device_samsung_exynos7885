@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "FMRadio.h"
+#include "FMSupport.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -30,12 +30,12 @@ constexpr const char *FM_FREQ_CTL =
 constexpr const char *FM_FREQ_SEEK =
     "/sys/devices/virtual/s610_radio/s610_radio/radio_freq_seek";
 
-::ndk::ScopedAStatus FMRadio::setManualFreq(float freq) {
+::ndk::ScopedAStatus FMSupport::setManualFreq(float freq) {
   FileIO::writeline(FM_FREQ_CTL, freq * 1000);
   return ndk::ScopedAStatus::ok();
 }
 
-::ndk::ScopedAStatus FMRadio::adjustFreqByStep(Direction dir) {
+::ndk::ScopedAStatus FMSupport::adjustFreqByStep(Direction dir) {
   std::string value = "";
   if (dir == Direction::UP) {
     value = "1 " + std::to_string(mChannelSpacing * 10);
@@ -45,21 +45,21 @@ constexpr const char *FM_FREQ_SEEK =
   FileIO::writeline(FM_FREQ_SEEK, value);
   return ndk::ScopedAStatus::ok();
 }
-::ndk::ScopedAStatus FMRadio::isAvailable(bool *_aidl_return) {
+::ndk::ScopedAStatus FMSupport::isAvailable(bool *_aidl_return) {
   struct stat info;
   *_aidl_return =
       stat("/sys/devices/virtual/s610_radio/s610_radio/", &info) != 0;
   return ndk::ScopedAStatus::ok();
 }
-::ndk::ScopedAStatus FMRadio::setChannelSpacing(Space space) {
+::ndk::ScopedAStatus FMSupport::setChannelSpacing(Space space) {
   mChannelSpacing = static_cast<int>(space);
   return ndk::ScopedAStatus::ok();
 }
-::ndk::ScopedAStatus FMRadio::getFreqFromSysfs(int32_t *_aidl_return) {
+::ndk::ScopedAStatus FMSupport::getFreqFromSysfs(int32_t *_aidl_return) {
   *_aidl_return = FileIO::readline(FM_FREQ_CTL);
   return ndk::ScopedAStatus::ok();
 }
-::ndk::ScopedAStatus FMRadio::getChannelSpacing(Space *_aidl_return) {
+::ndk::ScopedAStatus FMSupport::getChannelSpacing(Space *_aidl_return) {
   switch (mChannelSpacing) {
   case 1:
     *_aidl_return = Space::CHANNEL_SPACING_10HZ;
