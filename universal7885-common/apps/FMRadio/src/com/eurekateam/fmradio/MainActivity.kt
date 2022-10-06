@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mAlertImage: AppCompatImageView
     private lateinit var mAudioManager: AudioManager
     override fun onCreate(savedInstanceState: Bundle?) {
-        System.loadLibrary("fmnative_jni")
+        System.loadLibrary("audiohack")
         MainFragment.fd = mFMInterface.openFMDevice()
         mAlertView = (getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater)
             .inflate(R.layout.alertdialog, null)

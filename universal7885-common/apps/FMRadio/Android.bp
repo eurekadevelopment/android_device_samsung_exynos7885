@@ -4,6 +4,7 @@ android_app {
         "src/**/*.kt",
     ],
     platform_apis: true,
+    jni_libs: ["libaudiohack"],
     certificate: "platform",
     static_libs: [
         "androidx.core_core",

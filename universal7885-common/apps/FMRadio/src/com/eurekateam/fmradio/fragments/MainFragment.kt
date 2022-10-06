@@ -166,7 +166,6 @@ class MainFragment :
                 } else {
                     mFreqCurrent = mFMInterface.getFMLower(fd)
                 }
-                mFMInterface.setFMBoot(fd)
                 mFreqCurrent = mFMInterface.getFMFreq(fd).toInt()
                 mFMInterface.setFMFreq(fd, mFreqCurrent)
                 withContext(Dispatchers.Main) {
@@ -395,7 +394,7 @@ class MainFragment :
         var mFreqCurrent = -1
         private var mFMPower = false
         var mHeadSetPlugged: HeadsetState = HeadsetState.HEADSET_STATE_DISCONNECTED
-        var mTracks: LongArray = emptyArray<Long>().toLongArray()
+        var mTracks: IntArray = emptyArray<Int>().toIntArray()
         fun mRefreshTracks() {
             NativeFMInterface().setFMFreq(fd, NativeFMInterface().getFMLower(fd))
             mTracks = NativeFMInterface().getFMTracks(fd)
@@ -403,13 +402,13 @@ class MainFragment :
             (mFreqCurrent != -1).let { NativeFMInterface().setFMFreq(fd, mFreqCurrent) }
         }
         fun getIndex(): Int {
-            return mTracks.indexOf(mFreqCurrent.toLong())
+            return mTracks.indexOf(mFreqCurrent)
         }
         val mFavStats = HashMap<Int, Boolean>(30)
     }
 
     /**
-     * Helper function to remove zero values on a [LongArray].
+     * Helper function to remove zero values on a [IntArray].
      * Since we don't know the channel count, we initialize it with size 30.
      * But most likely the channel count is less then 30, so remaining values
      * are filled with zero.
@@ -417,14 +416,14 @@ class MainFragment :
      * @param array The target Long array
      * @return Long array with zeros removed
      */
-    private fun removeZeros(array: LongArray): LongArray {
-        val mArray: MutableList<Long> = emptyList<Long>().toMutableList()
+    private fun removeZeros(array: IntArray): IntArray {
+        val mArray: MutableList<Int> = emptyList<Int>().toMutableList()
         Log.d("removeZeros: Got array size ${array.size}")
         for (i in array.indices) {
             if (array[i] > 0L) {
                 mArray.add(array[i])
             }
         }
-        return mArray.toLongArray()
+        return mArray.toIntArray()
     }
 }

@@ -19,7 +19,7 @@ import com.eurekateam.fmradio.utils.Log
 class FMRadioService : Service() {
     private lateinit var mContext: Context
     private lateinit var mAudioManager: AudioManager
-    private lateinit var mTracks: LongArray
+    private lateinit var mTracks: IntArray
     private lateinit var mNativeFMInterface: NativeFMInterface
     override fun onBind(intent: Intent?): IBinder? {
         return null
