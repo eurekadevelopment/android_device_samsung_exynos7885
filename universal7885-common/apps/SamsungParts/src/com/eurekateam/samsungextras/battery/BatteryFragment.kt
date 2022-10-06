@@ -26,6 +26,7 @@ import com.android.settingslib.widget.MainSwitchPreference
 import com.android.settingslib.widget.OnMainSwitchChangeListener
 import com.eurekateam.samsungextras.R
 import com.eurekateam.samsungextras.interfaces.Battery
+import com.eurekateam.samsungextras.interfaces.BatteryIds
 import java.util.concurrent.ScheduledThreadPoolExecutor
 import java.util.concurrent.TimeUnit
 
@@ -54,27 +55,30 @@ class BatteryFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChang
     }
 
     override fun onPreferenceChange(preference: Preference, newValue: Any): Boolean {
+        val mBattery = Battery()
         if (preference == mChargePref) {
             val value = newValue as Boolean
-            Battery.chargeSysfs = if (value) 0 else 1
-            mChargePref.isChecked = Battery.chargeSysfs == 0
-            mSharedPreferences.edit().putBoolean(PREF_CHARGE, Battery.chargeSysfs == 0).apply()
+            mBattery.Charge = value
+            mChargePref.isChecked = mBattery.Charge
+            mSharedPreferences.edit().putBoolean(PREF_CHARGE, mBattery.Charge).apply()
             return true
         } else if (preference == mFastChargePref) {
-            Battery.setFastCharge(if (newValue as Boolean) 0 else 1) 
-	    mFastChargePref.isChecked = Battery.fastChargeSysfs == 0
-            mSharedPreferences.edit().putBoolean(PREF_FASTCHARGE, Battery.fastChargeSysfs == 0).apply()
+            mBattery.FastCharge = newValue as Boolean
+	    mFastChargePref.isChecked = mBattery.FastCharge
+            mSharedPreferences.edit().putBoolean(PREF_FASTCHARGE, mBattery.FastCharge).apply()
+            return true
         }
         return false
     }
     private val mScheduler = Runnable {
+        val mBattery = Battery()
         requireActivity().runOnUiThread {
-            findPreference<Preference>(INFO_MAX_CAP)!!.summary = Battery.getGeneralBatteryStats(1).toString() + " mAh"
-            findPreference<Preference>(INFO_CHARGED_UP_TO)!!.summary = Battery.getGeneralBatteryStats(2).toString() + " %"
-            findPreference<Preference>(INFO_CHARGED_MAH)!!.summary = Battery.getGeneralBatteryStats(3).toString() + " mAh"
-            findPreference<Preference>(INFO_CURRENT)!!.summary = Battery.getGeneralBatteryStats(6).toString() + " mA"
-            findPreference<Preference>(INFO_STATUS)!!.summary = if (Battery.getGeneralBatteryStats(4) == 1) "Charging" else "Discharging"
-            findPreference<Preference>(INFO_TEMP)!!.summary = Battery.getGeneralBatteryStats(5).toString() + " \u2103"
+            findPreference<Preference>(INFO_MAX_CAP)!!.summary = mBattery.getGeneralBatteryStats(BatteryIds.BATTERY_CAPACITY_MAX).toString() + " mAh"
+            findPreference<Preference>(INFO_CHARGED_UP_TO)!!.summary = mBattery.getGeneralBatteryStats(BatteryIds.BATTERY_CAPACITY_CURRENT).toString() + " %"
+            findPreference<Preference>(INFO_CHARGED_MAH)!!.summary = mBattery.getGeneralBatteryStats(BatteryIds.BATTERY_CAPACITY_CURRENT_MAH).toString() + " mAh"
+            findPreference<Preference>(INFO_CURRENT)!!.summary = mBattery.getGeneralBatteryStats(BatteryIds.BATTERY_CURRENT).toString() + " mA"
+            findPreference<Preference>(INFO_STATUS)!!.summary = if (mBattery.getGeneralBatteryStats(BatteryIds.CHARGING_STATE) == 1) "Charging" else "Discharging"
+            findPreference<Preference>(INFO_TEMP)!!.summary = mBattery.getGeneralBatteryStats(BatteryIds.BATTERY_TEMP).toString() + " \u2103"
         }
     }
     override fun onSwitchChanged(switchView: Switch, isChecked: Boolean) {

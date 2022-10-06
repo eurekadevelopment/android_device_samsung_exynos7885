@@ -20,16 +20,11 @@ class BootReceiver : BroadcastReceiver() {
         val mSharedPreferences = p0?.let { PreferenceManager.getDefaultSharedPreferences(it) }
         if (p1 != null && mSharedPreferences != null) {
             if (p1.action == Intent.ACTION_BOOT_COMPLETED) {
-                System.loadLibrary("samsungparts_jni")
+                System.loadLibrary("SwapStorageHelper")
                 // Battery
-                Battery.chargeSysfs = if (mSharedPreferences
-                    .getBoolean(BatteryFragment.PREF_CHARGE, true)
-                ) 0 else 1
-                Battery.setFastCharge(
-                    if (mSharedPreferences
-                        .getBoolean(BatteryFragment.PREF_FASTCHARGE, true)
-                    ) 0 else 1
-                )
+                val mBattery = Battery()
+                mBattery.Charge = mSharedPreferences.getBoolean(BatteryFragment.PREF_CHARGE, true)
+                mBattery.FastCharge = mSharedPreferences.getBoolean(BatteryFragment.PREF_FASTCHARGE, true)
                 // Dolby
                 DolbyCore.setEnabled(
                     mSharedPreferences
@@ -41,14 +36,18 @@ class BootReceiver : BroadcastReceiver() {
                 )
 
                 // FlashLight
-                Flashlight.setFlash(mSharedPreferences.getInt(FlashLightFragment.PREF_FLASHLIGHT, 5))
+                val mFlash = Flashlight()
+                mFlash.setFlash(mSharedPreferences.getInt(FlashLightFragment.PREF_FLASHLIGHT, 5))
+
                 // ZRAM
-                Swap.setSize(mSharedPreferences.getInt(SwapFragment.PREF_SWAP_SIZE, 50))
-                Swap.setSwapOn(mSharedPreferences.getBoolean(SwapFragment.PREF_SWAP_ENABLE, false))
+                val mSwap = Swap()
+                mSwap.setSize(mSharedPreferences.getInt(SwapFragment.PREF_SWAP_SIZE, 50))
+                mSwap.setSwapOn(mSharedPreferences.getBoolean(SwapFragment.PREF_SWAP_ENABLE, false))
 
                 // Display
-                Display.DT2W = mSharedPreferences.getBoolean(DeviceSettings.PREF_DOUBLE_TAP, true)
-                Display.GloveMode = mSharedPreferences.getBoolean(DeviceSettings.PREF_GLOVE_MODE, false)
+                val mDisplay = Display()
+                mDisplay.DT2W = mSharedPreferences.getBoolean(DeviceSettings.PREF_DOUBLE_TAP, true)
+                mDisplay.GloveMode = mSharedPreferences.getBoolean(DeviceSettings.PREF_GLOVE_MODE, false)
                 Log.i("SamsungParts", "Applied settings")
             }
         }

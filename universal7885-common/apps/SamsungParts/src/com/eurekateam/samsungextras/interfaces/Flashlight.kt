@@ -16,8 +16,19 @@
 
 package com.eurekateam.samsungextras.interfaces
 
-object Flashlight {
-    external fun setFlash(value: Int)
-    external fun getFlash(isA10: Int): Int
-    external fun setEnabled(enable: Boolean)
+import vendor.eureka.hardware.parts.IFlashBrightness
+
+import android.os.ServiceManager
+
+class Flashlight {
+    private val mFlash : IFlashBrightness
+
+    init {
+       mFlash = IFlashBrightness.Stub.asInterface(ServiceManager.waitForDeclaredService("vendor.eureka.hardware.parts.IFlashBrightness/default"))
+    }
+
+    fun setFlash(value: Int) = mFlash.setFlashlightWritable(value)
+     
+    fun getFlash(a10: Boolean): Int = mFlash.readFlashlightstats(!a10)
+    fun setEnabled(enable: Boolean) = mFlash.setFlashlightEnable(enable)
 }

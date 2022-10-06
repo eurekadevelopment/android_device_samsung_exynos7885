@@ -1,5 +1,5 @@
 cc_library_shared {
-    name: "libsamsungparts_jni",
+    name: "libSwapStorageHelper",
     defaults: ["eureka_defaults"],
     cflags: [
         "-Wall",
@@ -10,10 +10,4 @@ cc_library_shared {
     srcs: ["*.cpp"],
     header_libs: ["jni_headers"],
     static_libs: ["libc++fs"],
-    shared_libs: [
-        "libhidlbase",
-        "liblog",
-        "libutils",
-        "vendor.eureka.hardware.parts@1.0",
-    ],
 }

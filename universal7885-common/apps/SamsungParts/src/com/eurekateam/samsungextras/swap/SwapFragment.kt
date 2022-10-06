@@ -35,6 +35,7 @@ class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeLi
     private lateinit var mFreeSpace: Preference
     private lateinit var mSwapFileSize: Preference
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        val mSwap = Swap()
         addPreferencesFromResource(R.xml.swap_settings)
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         mSwapSizePref = findPreference(PREF_SWAP_SIZE)!!
@@ -47,18 +48,19 @@ class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeLi
         mSwapEnable.addOnSwitchChangeListener(this)
         mSwapSizePref.isEnabled = !mSwapEnable.isChecked
         mFreeSpace = findPreference(INFO_FREE_SPACE)!!
-        mFreeSpace.summary = "${Swap.getFreeSpace()} GB"
+        mFreeSpace.summary = "${mSwap.getFreeSpace()} GB"
         mSwapFileSize = findPreference(INFO_SWAP_FILE_SIZE)!!
-        mSwapFileSize.summary = "${Swap.getSwapSize()} MB"
+        mSwapFileSize.summary = "${mSwap.getSwapSize()} MB"
     }
 
     override fun onPreferenceChange(preference: Preference, newValue: Any): Boolean {
+        val mSwap = Swap()
         if (preference == mSwapSizePref) {
             val value = newValue as Int
-            Swap.setSize(value)
+            mSwap.setSize(value)
             mSharedPreferences.edit().putInt(PREF_SWAP_SIZE, value).apply()
-            mFreeSpace.summary = "${Swap.getFreeSpace()} GB"
-            mSwapFileSize.summary = "${Swap.getSwapSize()} MB"
+            mFreeSpace.summary = "${mSwap.getFreeSpace()} GB"
+            mSwapFileSize.summary = "${mSwap.getSwapSize()} MB"
             return true
         }
         return false
@@ -66,16 +68,13 @@ class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeLi
 
     override fun onSwitchChanged(switchView: Switch, isChecked: Boolean) {
         mSwapEnable.isEnabled = false
-        Thread {
-            Swap.setSwapOn(isChecked)
-            requireActivity().runOnUiThread {
-                mSwapEnable.isEnabled = true
-                mSharedPreferences.edit().putBoolean(PREF_SWAP_ENABLE, isChecked).apply()
-                mSwapSizePref.isEnabled = !isChecked
-		mFreeSpace.summary = "${Swap.getFreeSpace()} GB"
-		mSwapFileSize.summary = "${Swap.getSwapSize()} MB"
-            }
-        }.start()
+        val mSwap = Swap()
+        mSwap.setSwapOn(isChecked)
+        mSwapEnable.isEnabled = true
+        mSharedPreferences.edit().putBoolean(PREF_SWAP_ENABLE, isChecked).apply()
+        mSwapSizePref.isEnabled = !isChecked
+	mFreeSpace.summary = "${mSwap.getFreeSpace()} GB"
+	mSwapFileSize.summary = "${mSwap.getSwapSize()} MB"
     } 
     companion object {
         const val PREF_SWAP_SIZE = "swap_size"

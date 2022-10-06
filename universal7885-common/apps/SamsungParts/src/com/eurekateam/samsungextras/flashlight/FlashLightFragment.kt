@@ -39,7 +39,8 @@ class FlashLightFragment : PreferenceFragmentCompat(), Preference.OnPreferenceCh
         mFlashLightPref.onPreferenceChangeListener = this
         mFlashLightPref.setMax(10)
         mFlashLightPref.setMin(1)
-        mFlashLightPref.value = Flashlight.getFlash(if (Build.DEVICE.contains("a10")) 1 else 0)
+        val mFlashLight = Flashlight()
+        mFlashLightPref.value = mFlashLight.getFlash(Build.DEVICE.contains("a10"))
         mFlashLightEnable = findPreference(PREF_FLASHLIGHT_ENABLE)!!
         mFlashLightEnable.isChecked = mSharedPreferences.getBoolean(PREF_FLASHLIGHT_ENABLE, true)
         mFlashLightEnable.addOnSwitchChangeListener(this)
@@ -49,7 +50,8 @@ class FlashLightFragment : PreferenceFragmentCompat(), Preference.OnPreferenceCh
     override fun onPreferenceChange(preference: Preference, newValue: Any): Boolean {
         if (preference == mFlashLightPref) {
             val value = newValue as Int
-            Flashlight.setFlash(value)
+            val mFlash = Flashlight()
+            mFlash.setFlash(value)
             mSharedPreferences.edit().putInt(PREF_FLASHLIGHT, value).apply()
             return true
         }
@@ -57,10 +59,13 @@ class FlashLightFragment : PreferenceFragmentCompat(), Preference.OnPreferenceCh
     }
 
     override fun onSwitchChanged(switchView: Switch, isChecked: Boolean) {
-        Flashlight.setEnabled(isChecked)
+        val mFlash = Flashlight()
+        mFlash.setEnabled(isChecked)
         mSharedPreferences.edit().putBoolean(PREF_FLASHLIGHT_ENABLE, isChecked)
         mFlashLightPref.isEnabled = isChecked
-    } companion object {
+    } 
+
+    companion object {
         const val PREF_FLASHLIGHT = "flashlight_pref"
         const val PREF_FLASHLIGHT_ENABLE = "flashlight_enable"
     }

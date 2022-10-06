@@ -5,8 +5,11 @@ android_app {
     ],
     platform_apis: true,
     certificate: "platform",
-    jni_libs: ["libsamsungparts_jni"],
-    static_libs: ["androidx.preference_preference"],
+    jni_libs: ["libSwapStorageHelper"],
+    static_libs: [
+        "androidx.preference_preference",
+        "vendor.eureka.hardware.parts-java",
+    ],
     defaults: ["SettingsLibDefaults"],
     required: ["vendor.eureka.hardware.parts-service"],
 }

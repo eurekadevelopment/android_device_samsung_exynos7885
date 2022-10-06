@@ -15,14 +15,40 @@
  */
 package com.eurekateam.samsungextras.interfaces
 
-object Battery {
-    var chargeSysfs: Int
-        external get
-        external set
+import vendor.eureka.hardware.parts.IBatteryStats
+import vendor.eureka.hardware.parts.BatterySys
 
-    external fun setFastCharge(enable: Int)
-    val fastChargeSysfs: Int
-        external get
+import android.os.ServiceManager
 
-    external fun getGeneralBatteryStats(id: Int): Int
+class Battery {
+    private val mBattery : IBatteryStats
+
+    init {
+        mBattery = IBatteryStats.Stub.asInterface(ServiceManager.waitForDeclaredService("vendor.eureka.hardware.parts.IBatteryStats/default"))
+    }
+
+    var Charge: Boolean
+        get() {
+            return mBattery.getBatteryStats(BatterySys.CHARGE) == 0
+        }
+        set(k) {
+            mBattery.setBatteryWritable(BatterySys.CHARGE, k)
+        }
+
+    var FastCharge: Boolean
+        get() {
+            return mBattery.getBatteryStats(BatterySys.FASTCHARGE) == 1
+        }
+        set(k) {
+            mBattery.setBatteryWritable(BatterySys.FASTCHARGE, k)
+        }
+
+    fun getGeneralBatteryStats(id: BatteryIds): Int = when (id) {
+         BatteryIds.BATTERY_CAPACITY_MAX -> mBattery.getBatteryStats(BatterySys.CAPACITY_MAX) / 1000
+         BatteryIds.BATTERY_CAPACITY_CURRENT -> mBattery.getBatteryStats(BatterySys.CAPACITY_CURRENT)
+         BatteryIds.BATTERY_CAPACITY_CURRENT_MAH -> (mBattery.getBatteryStats(BatterySys.CAPACITY_CURRENT).toFloat() * mBattery.getBatteryStats(BatterySys.CAPACITY_MAX).toFloat() / 100000).toInt()
+         BatteryIds.CHARGING_STATE -> if (mBattery.getBatteryStats(BatterySys.CURRENT) > 0) 1 else 0
+         BatteryIds.BATTERY_TEMP -> mBattery.getBatteryStats(BatterySys.TEMP) / 10
+         BatteryIds.BATTERY_CURRENT -> mBattery.getBatteryStats(BatterySys.CURRENT)
+    }
 }

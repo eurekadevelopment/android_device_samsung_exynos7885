@@ -16,10 +16,21 @@
 
 package com.eurekateam.samsungextras.interfaces
 
-object Display {
+import vendor.eureka.hardware.parts.IDisplayConfigs
+import vendor.eureka.hardware.parts.DisplaySys
+
+import android.os.ServiceManager
+
+class Display {
+    private val mDisplay : IDisplayConfigs
+
+    init {
+       mDisplay = IDisplayConfigs.Stub.asInterface(ServiceManager.waitForDeclaredService("vendor.eureka.hardware.parts.IDisplayConfigs/default"))
+    }
+
     var DT2W: Boolean = false
-        external set
+        set(k) = mDisplay.writeDisplay(k, DisplaySys.DOUBLE_TAP)
 
     var GloveMode: Boolean = false
-        external set
+        set(k) = mDisplay.writeDisplay(k, DisplaySys.GLOVE_MODE)
 }

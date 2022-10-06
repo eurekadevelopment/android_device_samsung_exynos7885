@@ -26,15 +26,14 @@ import androidx.preference.SwitchPreference
 import com.eurekateam.samsungextras.battery.BatteryActivity
 import com.eurekateam.samsungextras.flashlight.FlashLightActivity
 import com.eurekateam.samsungextras.fps.FPSInfoService
-import com.eurekateam.samsungextras.interfaces.Display.DT2W
-import com.eurekateam.samsungextras.interfaces.Display.GloveMode
+import com.eurekateam.samsungextras.interfaces.Display
 import com.eurekateam.samsungextras.speaker.ClearSpeakerActivity
 
 class DeviceSettings : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
 
     private lateinit var mPrefs: SharedPreferences
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        System.loadLibrary("samsungparts_jni")
+        System.loadLibrary("SwapStorageHelper")
         setPreferencesFromResource(R.xml.preferences_samsung_parts, rootKey)
         mPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val mClearSpeakerPref = findPreference<Preference>(PREF_CLEAR_SPEAKER)!!
@@ -72,6 +71,7 @@ class DeviceSettings : PreferenceFragmentCompat(), Preference.OnPreferenceChange
     }
 
     override fun onPreferenceChange(preference: Preference, value: Any): Boolean {
+        val mDisplay = Display()
         when (preference.key) {
             PREF_KEY_FPS_INFO -> {
                 val mEnabled = value as Boolean
@@ -84,11 +84,11 @@ class DeviceSettings : PreferenceFragmentCompat(), Preference.OnPreferenceChange
                 mPrefs.edit().putBoolean(PREF_KEY_FPS_INFO, mEnabled).apply()
             }
             PREF_DOUBLE_TAP -> {
-                DT2W = value as Boolean
+                mDisplay.DT2W = value as Boolean
                 mPrefs.edit().putBoolean(PREF_DOUBLE_TAP, value).apply()
             }
             PREF_GLOVE_MODE -> {
-                GloveMode = value as Boolean
+                mDisplay.GloveMode = value as Boolean
                 mPrefs.edit().putBoolean(PREF_GLOVE_MODE, value).apply()
             }
             else -> {
