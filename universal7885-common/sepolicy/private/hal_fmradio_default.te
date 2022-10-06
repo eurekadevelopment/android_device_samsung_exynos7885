@@ -1,5 +1,5 @@
 type hal_fmradio_default, domain, coredomain;
-type hal_fmradio_default_exec, exec_type, file_type,  system_file_type;
+type hal_fmradio_default_exec, exec_type, file_type, system_file_type;
 
 add_service(hal_fmradio_default, hal_fmradio_service);
 init_daemon_domain(hal_fmradio_default);
@@ -11,3 +11,4 @@ allow hal_fmradio_default sysfs_fmradio_tune:file rw_file_perms;
 allow hal_fmradio_default sysfs_fmradio_tune:dir search;
 
 allow hal_fmradio_default sysfs_virtual:dir search;
+allow hal_fmradio_default fm_radio_device:chr_file { read write open ioctl };
