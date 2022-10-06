@@ -36,5 +36,6 @@ int main() {
   registerAsService(ndk::SharedRefBase::make<FMSupport>());
   registerAsService(ndk::SharedRefBase::make<FMDevControl>());
 
+  ABinderProcess_joinThreadPool();
   return -1; // should never get here
 }
