@@ -5,7 +5,6 @@ android_app {
     ],
     platform_apis: true,
     certificate: "platform",
-    jni_libs: ["libfmnative_jni"],
     static_libs: [
         "androidx.core_core",
         "androidx.appcompat_appcompat",
@@ -14,6 +13,7 @@ android_app {
         "androidx.transition_transition",
         "kotlinx_coroutines_android",
         "androidx.coordinatorlayout_coordinatorlayout",
+        "vendor.eureka.hardware.fmradio-java",
     ],
     required: [
         "vendor.eureka.hardware.fmradio-service",

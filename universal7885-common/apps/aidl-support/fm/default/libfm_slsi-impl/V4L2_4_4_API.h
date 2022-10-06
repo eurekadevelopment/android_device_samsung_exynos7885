@@ -1,3 +1,4 @@
+#include <cstdint>
 
 typedef u_int8_t __u8;
 typedef int32_t __s32;

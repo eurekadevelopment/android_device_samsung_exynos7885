@@ -1,20 +1,18 @@
-cc_library_shared {
-    name: "libfmnative_jni",
+cc_library_static {
+    name: "libfm_slsi-impl",
     cflags: [
         "-Wno-unused-parameter",
     ],
     srcs: [
-        "fm_ioctl.cpp",
-        "fm_route.cpp",
+        "FM_Device_ctl.cpp",
+        "FM_AudioRoute_ctl.cpp",
     ],
+    export_include_dirs: ["public"],
     defaults: ["eureka_defaults"],
     shared_libs: [
         "libhidlbase",
         "liblog",
         "libutils",
-        "vendor.eureka.hardware.fmradio@1.0",
-        "vendor.eureka.hardware.fmradio@1.1",
-        "vendor.eureka.hardware.fmradio@1.2",
         "audioflinger-aidl-cpp",
         "audiopolicy-aidl-cpp",
         "audiopolicy-types-aidl-cpp",
