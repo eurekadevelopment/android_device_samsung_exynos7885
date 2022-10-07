@@ -16,8 +16,12 @@
 
 #include <fm_slsi-impl.h>
 
+#include <unistd.h>
 #include <cassert>
 #include <fcntl.h>
+
+// FMAudioRouteControl.cpp
+extern int audioflinger_exynos7885_forceroute(bool speaker);
 
 namespace aidl::vendor::eureka::hardware::fmradio {
 
@@ -80,6 +84,11 @@ static int fd = -1;
 			break;
 		case SetType::SET_TYPE_FM_SEARCH_CANCEL:
 			fm_radio_slsi::stop_search(fd);
+			break;
+		case SetType::SET_TYPE_FM_SPEAKER_ROUTE:
+			seteuid(1041 /* AudioServer UID */);
+			audioflinger_exynos7885_forceroute(value);
+			seteuid(0);
 			break;
 		default:
 			break;

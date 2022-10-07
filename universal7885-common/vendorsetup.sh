@@ -24,11 +24,6 @@ for dev in a10dd a10 a20 a20e a30 a30s a40; do
 	bash ${UNIVERSAL}/setup.sh "$dev"
 done
 
-# For FM Radio
-if grep -q isAudioServerUid\(callingUid\) frameworks/av/services/audioflinger/AudioFlinger.cpp; then
-	echo "Applying FM routing patch"
-	sed -i 's/isAudioServerUid(callingUid)/isAudioServerOrSystemServerUid(callingUid)/g' frameworks/av/services/audioflinger/AudioFlinger.cpp
-fi
 # Remove multiple declared FMRadio path (we have our own FMRadio and this cause build error)
 if [ -d "$FM_PATH" ]; then
 	echo "Remove FMRadio from ROM Source"

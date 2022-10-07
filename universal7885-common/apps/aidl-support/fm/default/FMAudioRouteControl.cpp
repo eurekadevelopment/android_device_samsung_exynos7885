@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include <jni.h>
+
 #include <media/AudioSystem.h>
 #include <media/IAudioFlinger.h>
 
@@ -23,9 +23,7 @@
 
 using namespace android;
 
-extern "C" JNIEXPORT jboolean JNICALL
-Java_com_eurekateam_fmradio_NativeFMInterface_setAudioRoute(
-    __unused JNIEnv *env, __unused jobject thiz, jboolean speaker) {
+int audioflinger_exynos7885_forceroute (bool speaker) {
   const sp<IAudioFlinger> &af = AudioSystem::get_audio_flinger();
   if (af == 0)
     return PERMISSION_DENIED;

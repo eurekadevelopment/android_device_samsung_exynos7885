@@ -74,6 +74,7 @@ constexpr const char *FM_FREQ_SEEK =
   case SetType::SET_TYPE_FM_THREAD:
   case SetType::SET_TYPE_FM_RMSSI:
   case SetType::SET_TYPE_FM_SEARCH_CANCEL:
+  case SetType::SET_TYPE_FM_SPEAKER_ROUTE:
     NOT_SUPPORTED;
   default:
     break;

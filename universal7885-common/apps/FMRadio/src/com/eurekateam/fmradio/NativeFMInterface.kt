@@ -37,5 +37,5 @@ class NativeFMInterface {
     fun setFMRSSI(a: Int, rssi: Long) = mDevCtl.setValue(SetType.SET_TYPE_FM_RMSSI, rssi.toInt())
     fun closeFMDevice(fd: Int) = mDevCtl.close()
     fun getSysfsSupport(): Boolean = mSysfsCtl.getValue(GetType.GET_TYPE_FM_SYSFS_IF) == 0
-    external fun setAudioRoute(speaker: Boolean): Int 
+    fun setAudioRoute(speaker: Boolean)  = mDevCtl.setValue(SetType.SET_TYPE_FM_SPEAKER_ROUTE, if (speaker) 1 else 0)
 }
