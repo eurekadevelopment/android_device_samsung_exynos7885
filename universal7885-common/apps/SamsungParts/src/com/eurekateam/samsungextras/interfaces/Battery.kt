@@ -32,7 +32,7 @@ class Battery {
             return mBattery.getBatteryStats(BatterySys.CHARGE) == 0
         }
         set(k) {
-            mBattery.setBatteryWritable(BatterySys.CHARGE, k)
+            mBattery.setBatteryWritable(BatterySys.CHARGE, !k)
         }
 
     var FastCharge: Boolean

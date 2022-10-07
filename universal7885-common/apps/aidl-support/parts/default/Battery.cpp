@@ -49,15 +49,7 @@ static inline const char *BatterySysToPath(BatterySys type) {
 
 ::ndk::ScopedAStatus BatteryStats::setBatteryWritable(BatterySys stats,
                                                       bool value) {
-  bool FastCharge = false;
-  if (FastCharge)
-    seteuid(ANDROID_SYSTEM_UID);
-
   FileIO::writeline(BatterySysToPath(stats), value ? 1 : 0);
-
-  if (FastCharge)
-    seteuid(ANDROID_ROOT_UID);
-
   return ::ndk::ScopedAStatus::ok();
 }
 

@@ -58,12 +58,13 @@ constexpr const char *FM_FREQ_SEEK =
     break;
   case GetType::GET_TYPE_FM_SYSFS_IF:
     *_aidl_return = access("/sys/devices/virtual/s610_radio/s610_radio/", F_OK);
+    break;
   default:
     break;
   };
   return ndk::ScopedAStatus::ok();
 }
-:ndk::ScopedAStatus FMSupport::setValue(SetType type, int value) {
+::ndk::ScopedAStatus FMSupport::setValue(SetType type, int value) {
   switch (type) {
   case SetType::SET_TYPE_FM_FREQ:
     FileIO::writeline(FM_FREQ_CTL, freq * 1000);

@@ -8,9 +8,6 @@ on early-init
 on init
     start watchdogd
 
-    # Fastcharge
-    chown system radio /sys/class/sec/switch/afc_disable
-
     write /proc/sys/vm/swappiness 160
 
     # ZRAM setup
