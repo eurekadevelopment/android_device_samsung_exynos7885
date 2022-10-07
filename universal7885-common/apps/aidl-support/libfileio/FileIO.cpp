@@ -34,7 +34,7 @@ int readline(const char *path) {
 void writeline(const char *path, const std::string& data) {
   std::ofstream file;
   file.open(path);
-  ALOGD("%s: Opening %s", __func__, path);
+  ALOGD("%s: Opening %s, will write '%s'", __func__, path, data.c_str());
   if (file.is_open()) {
     file << data;
     file.close();
