@@ -14,8 +14,6 @@
 
 namespace fm_radio_slsi {
 
-constexpr const int TRACK_SIZE = 30;
-
 static bool FMThread = false;
 
 int open_device(void) {
