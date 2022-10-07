@@ -37,7 +37,7 @@ template <class C> static void registerAsService(std::shared_ptr<C> service) {
 }
 
 int main() {
-  ABinderProcess_setThreadPoolMaxThreadCount(0);
+  ABinderProcess_setThreadPoolMaxThreadCount(3);
 
   registerAsService(ndk::SharedRefBase::make<BatteryStats>());
   registerAsService(ndk::SharedRefBase::make<DisplayConfigs>());

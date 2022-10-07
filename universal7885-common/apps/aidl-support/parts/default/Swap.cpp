@@ -45,19 +45,17 @@ static bool swapOnRes = false;
 
 static void mkfile_swapon_thread(void) {
   const std::lock_guard<std::mutex> lock(thread_lock);
-  if (access(SWAP_PATH, F_OK) == 0) {
+  if (access(SWAP_PATH, F_OK) != 0) {
     mkfile(mSwapSize * 10, SWAP_PATH);
     mkswap(SWAP_PATH);
   }
-  int res =
-      swapon(SWAP_PATH, (10 << SWAP_FLAG_PRIO_SHIFT) & SWAP_FLAG_PRIO_MASK);
+  int res = swapon(SWAP_PATH, (10 << SWAP_FLAG_PRIO_SHIFT) & SWAP_FLAG_PRIO_MASK);
   swapOnRes = res == 0;
 }
 
 ::ndk::ScopedAStatus SwapOnData::setSwapOn() {
   const std::lock_guard<std::mutex> lock(thread_lock);
   std::thread mkswapfile(mkfile_swapon_thread);
-  mkswapfile.join();
   return ::ndk::ScopedAStatus::ok();
 }
 
@@ -67,8 +65,8 @@ static void swapoff_thread(void) {
 }
 
 ::ndk::ScopedAStatus SwapOnData::setSwapOff() {
+  const std::lock_guard<std::mutex> lock(thread_lock);
   std::thread swapoff(swapoff_thread);
-  swapoff.join();
   return ::ndk::ScopedAStatus::ok();
 }
 
