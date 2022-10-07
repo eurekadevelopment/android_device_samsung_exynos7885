@@ -1,7 +1,7 @@
 <manifest version="1.0" type="framework">
    <hal format="aidl">
        <name>vendor.eureka.hardware.fmradio</name>
-       <fqname>IFMSysfsSupport/default</fqname>
+       <fqname>IFMDevControl/support</fqname>
        <fqname>IFMDevControl/default</fqname>
    </hal>
 </manifest>

@@ -13,15 +13,22 @@
 // limitations under the License.
 
 #include "FMSupport.h"
-#include <fstream>
+
 #include <iostream>
-#include <sstream>
+
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <unistd.h>
 
 #include <FileIO.h>
 
-static int mChannelSpacing = 3;
+#include <android-base/logging.h>
+
+#define NOT_SUPPORTED                                                          \
+  ({                                                                           \
+    LOG(ERROR) << __func__ << ": Attempted to invoke unsupported operation";   \
+    return ::ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);  \
+  })
 
 namespace aidl::vendor::eureka::hardware::fmradio {
 
@@ -30,55 +37,67 @@ constexpr const char *FM_FREQ_CTL =
 constexpr const char *FM_FREQ_SEEK =
     "/sys/devices/virtual/s610_radio/s610_radio/radio_freq_seek";
 
-::ndk::ScopedAStatus FMSupport::setManualFreq(float freq) {
-  FileIO::writeline(FM_FREQ_CTL, freq * 1000);
-  return ndk::ScopedAStatus::ok();
-}
+::ndk::ScopedAStatus FMSupport::open(void) { NOT_SUPPORTED; }
 
-::ndk::ScopedAStatus FMSupport::adjustFreqByStep(Direction dir) {
-  std::string value = "";
-  if (dir == Direction::UP) {
-    value = "1 " + std::to_string(mChannelSpacing * 10);
-  } else if (dir == Direction::DOWN) {
-    value = "0 " + std::to_string(mChannelSpacing * 10);
-  }
-  FileIO::writeline(FM_FREQ_SEEK, value);
-  return ndk::ScopedAStatus::ok();
-}
-::ndk::ScopedAStatus FMSupport::isAvailable(bool *_aidl_return) {
-  struct stat info;
-  *_aidl_return =
-      stat("/sys/devices/virtual/s610_radio/s610_radio/", &info) != 0;
-  return ndk::ScopedAStatus::ok();
-}
-::ndk::ScopedAStatus FMSupport::setChannelSpacing(Space space) {
-  mChannelSpacing = static_cast<int>(space);
-  return ndk::ScopedAStatus::ok();
-}
-::ndk::ScopedAStatus FMSupport::getFreqFromSysfs(int32_t *_aidl_return) {
-  *_aidl_return = FileIO::readline(FM_FREQ_CTL);
-  return ndk::ScopedAStatus::ok();
-}
-::ndk::ScopedAStatus FMSupport::getChannelSpacing(Space *_aidl_return) {
-  switch (mChannelSpacing) {
-  case 1:
-    *_aidl_return = Space::CHANNEL_SPACING_10HZ;
+::ndk::ScopedAStatus FMSupport::getValue(GetType type, int *_aidl_return) {
+  switch (type) {
+  case GetType::GET_TYPE_FM_FREQ:
+    *_aidl_return = FileIO::readline(FM_FREQ_CTL);
     break;
-  case 2:
-    *_aidl_return = Space::CHANNEL_SPACING_20HZ;
+  case GetType::GET_TYPE_FM_UPPER_LIMIT:
+  case GetType::GET_TYPE_FM_LOWER_LIMIT:
+  case GetType::GET_TYPE_FM_RMSSI:
+    NOT_SUPPORTED;
+  case GetType::GET_TYPE_FM_BEFORE_CHANNEL:
+    FileIO::writeline(FM_FREQ_SEEK, "0 " + std::to_string(3 * 10));
+    *_aidl_return = FileIO::readline(FM_FREQ_CTL);
     break;
-  case 3:
-    *_aidl_return = Space::CHANNEL_SPACING_30HZ;
+  case GetType::GET_TYPE_FM_NEXT_CHANNEL:
+    FileIO::writeline(FM_FREQ_SEEK, "1 " + std::to_string(3 * 10));
+    *_aidl_return = FileIO::readline(FM_FREQ_CTL);
     break;
-  case 4:
-    *_aidl_return = Space::CHANNEL_SPACING_40HZ;
-    break;
-  case 5:
-    *_aidl_return = Space::CHANNEL_SPACING_50HZ;
-    break;
+  case GetType::GET_TYPE_FM_SYSFS_IF:
+    *_aidl_return = access("/sys/devices/virtual/s610_radio/s610_radio/", F_OK);
   default:
     break;
-  }
+  };
   return ndk::ScopedAStatus::ok();
 }
-} // namespace vendor::eureka::hardware::fmradio::V1_2
+:ndk::ScopedAStatus FMSupport::setValue(SetType type, int value) {
+  switch (type) {
+  case SetType::SET_TYPE_FM_FREQ:
+    FileIO::writeline(FM_FREQ_CTL, freq * 1000);
+    break;
+  case SetType::SET_TYPE_FM_MUTE:
+  case SetType::SET_TYPE_FM_VOLUME:
+  case SetType::SET_TYPE_FM_THREAD:
+  case SetType::SET_TYPE_FM_RMSSI:
+  case SetType::SET_TYPE_FM_SEARCH_CANCEL:
+    NOT_SUPPORTED;
+  default:
+    break;
+  };
+  return ::ndk::ScopedAStatus::ok();
+}
+
+static inline bool vector_contains(const std::vector<int> vec,
+                                   const int search) {
+  for (auto i : vec) {
+    if (i == search)
+      return true;
+  }
+  return false;
+}
+
+::ndk::ScopedAStatus FMSupport::getFreqsList(std::vector<int> *_aidl_return) {
+  for (int i = 0; i < TRACK_SIZE; i++) {
+    FileIO::writeline(FM_FREQ_SEEK, "1 " + std::to_string(3 * 10));
+    int freq = FileIO::readline(FM_FREQ_CTL);
+    if (vector_contains(*_aidl_return, freq))
+      continue;
+    _aidl_return->push_back(freq);
+  }
+  return ::ndk::ScopedAStatus::ok();
+}
+::ndk::ScopedAStatus FMSupport::close() { NOT_SUPPORTED; }
+} // namespace aidl::vendor::eureka::hardware::fmradio

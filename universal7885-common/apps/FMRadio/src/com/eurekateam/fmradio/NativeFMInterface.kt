@@ -1,22 +1,20 @@
 package com.eurekateam.fmradio
 
 import vendor.eureka.hardware.fmradio.IFMDevControl
-import vendor.eureka.hardware.fmradio.IFMSysfsSupport
 import vendor.eureka.hardware.fmradio.GetType
 import vendor.eureka.hardware.fmradio.SetType
-import vendor.eureka.hardware.fmradio.Direction
 
 import android.os.ServiceManager
 
 class NativeFMInterface {
     private val mDevCtl : IFMDevControl
-    private val mSysfsCtl : IFMSysfsSupport
-    private var mSysfs = false
+    private val mSysfsCtl : IFMDevControl
+    private val mDefaultCtl : IFMDevControl
 
     init {
         mDevCtl = IFMDevControl.Stub.asInterface(ServiceManager.waitForDeclaredService("vendor.eureka.hardware.fmradio.IFMDevControl/default"))
-        mSysfsCtl = IFMSysfsSupport.Stub.asInterface(ServiceManager.waitForDeclaredService("vendor.eureka.hardware.fmradio.IFMSysfsSupport/default"))
-        mSysfs = mSysfsCtl.isAvailable() 
+        mSysfsCtl = IFMDevControl.Stub.asInterface(ServiceManager.waitForDeclaredService("vendor.eureka.hardware.fmradio.IFMDevControl/support"))
+        mDefaultCtl = if (mSysfsCtl.getValue(GetType.GET_TYPE_FM_SYSFS_IF) == 0) mSysfsCtl else mDevCtl
     }
 
     fun openFMDevice(): Int {
@@ -31,27 +29,13 @@ class NativeFMInterface {
     fun getFmUpper(a: Int) : Int = mDevCtl.getValue(GetType.GET_TYPE_FM_UPPER_LIMIT)
     fun getFMLower(a: Int): Int = mDevCtl.getValue(GetType.GET_TYPE_FM_LOWER_LIMIT)
     fun getRMSSI(a: Int): Int = mDevCtl.getValue(GetType.GET_TYPE_FM_RMSSI)
-    fun getFMTracks(fd: Int): IntArray = if (mSysfs) {
-         var mRes = intArrayOf()
-         for (a in 1..30) {
-            mSysfsCtl.adjustFreqByStep(Direction.UP)
-            var freq = mSysfsCtl.getFreqFromSysfs()
-            if (mRes.contains(freq)) continue else mRes += freq
-         }
-         mRes 
-    } else mDevCtl.getFreqsList()
+    fun getFMTracks(fd: Int): IntArray = mDefaultCtl.getFreqsList()
     fun setFMThread(a: Int, run: Boolean) = mDevCtl.setValue(SetType.SET_TYPE_FM_THREAD, if (run) 1 else 0)
-    fun getNextChannel(a: Int): Int = if (mSysfs) {
-        mSysfsCtl.adjustFreqByStep(Direction.UP)
-        mSysfsCtl.getFreqFromSysfs()
-    } else mDevCtl.getValue(GetType.GET_TYPE_FM_NEXT_CHANNEL)
-    fun getBeforeChannel(a: Int): Int = if (mSysfs) {
-        mSysfsCtl.adjustFreqByStep(Direction.DOWN)
-        mSysfsCtl.getFreqFromSysfs()
-    } else mDevCtl.getValue(GetType.GET_TYPE_FM_BEFORE_CHANNEL)
+    fun getNextChannel(a: Int): Int = mDefaultCtl.getValue(GetType.GET_TYPE_FM_NEXT_CHANNEL)
+    fun getBeforeChannel(a: Int): Int = mDefaultCtl.getValue(GetType.GET_TYPE_FM_BEFORE_CHANNEL)
     fun stopSearching(a: Int) = mDevCtl.setValue(SetType.SET_TYPE_FM_SEARCH_CANCEL, 0)
     fun setFMRSSI(a: Int, rssi: Long) = mDevCtl.setValue(SetType.SET_TYPE_FM_RMSSI, rssi.toInt())
     fun closeFMDevice(fd: Int) = mDevCtl.close()
-    fun getSysfsSupport(): Boolean = mSysfs
+    fun getSysfsSupport(): Boolean = mSysfsCtl.getValue(GetType.GET_TYPE_FM_SYSFS_IF) == 0
     external fun setAudioRoute(speaker: Boolean): Int 
 }

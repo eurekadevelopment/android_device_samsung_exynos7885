@@ -7,4 +7,3 @@ vendor.eureka.hardware.parts.ISmartCharge u:object_r:hal_parts_service:s0
 
 # FMRadio
 vendor.eureka.hardware.fmradio.IFMDevControl u:object_r:hal_fmradio_service:s0
-vendor.eureka.hardware.fmradio.IFMSysfsSupport u:object_r:hal_fmradio_service:s0

@@ -22,19 +22,19 @@
 using ::aidl::vendor::eureka::hardware::fmradio::FMDevControl;
 using ::aidl::vendor::eureka::hardware::fmradio::FMSupport;
 
-template <class C> static void registerAsService(std::shared_ptr<C> service) {
-  const std::string instance = std::string() + C::descriptor + "/default";
+template <class C> static void registerAsService(std::shared_ptr<C> service, const char *inst) {
+  const std::string instance = std::string() + C::descriptor + "/" + inst;
   binder_status_t status =
       AServiceManager_addService(service->asBinder().get(), instance.c_str());
   CHECK(status == STATUS_OK);
-  LOG(INFO) << "Register done for " << C::descriptor;
+  LOG(INFO) << "Register done for instance " << inst;
 }
 
 int main() {
   ABinderProcess_setThreadPoolMaxThreadCount(0);
 
-  registerAsService(ndk::SharedRefBase::make<FMSupport>());
-  registerAsService(ndk::SharedRefBase::make<FMDevControl>());
+  registerAsService(ndk::SharedRefBase::make<FMSupport>(), "support");
+  registerAsService(ndk::SharedRefBase::make<FMDevControl>(), "default");
 
   ABinderProcess_joinThreadPool();
   return -1; // should never get here

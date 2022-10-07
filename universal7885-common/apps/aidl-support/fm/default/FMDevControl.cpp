@@ -52,6 +52,8 @@ static int fd = -1;
 		case GetType::GET_TYPE_FM_NEXT_CHANNEL:
 			*_aidl_return = fm_radio_slsi::next_channel(fd);
 			break;
+		case GetType::GET_TYPE_FM_SYSFS_IF:
+			[[fallthrough]];
 		default:
 			break;
 	};
