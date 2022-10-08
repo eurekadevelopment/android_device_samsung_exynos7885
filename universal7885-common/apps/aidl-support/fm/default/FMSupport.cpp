@@ -67,7 +67,7 @@ constexpr const char *FM_FREQ_SEEK =
 ::ndk::ScopedAStatus FMSupport::setValue(SetType type, int value) {
   switch (type) {
   case SetType::SET_TYPE_FM_FREQ:
-    FileIO::writeline(FM_FREQ_CTL, freq * 1000);
+    FileIO::writeline(FM_FREQ_CTL, value * 1000);
     break;
   case SetType::SET_TYPE_FM_MUTE:
   case SetType::SET_TYPE_FM_VOLUME:
