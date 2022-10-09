@@ -6,6 +6,9 @@ aidl_interface {
         ndk: {
             enabled: true,
         },
+        java: {
+            platform_apis: true,
+        },
     },
     versions_with_info: [
         {
