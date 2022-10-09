@@ -1,10 +1,17 @@
 aidl_interface {
     name: "vendor.eureka.hardware.fmradio",
     srcs: ["vendor/eureka/hardware/fmradio/*.aidl"],
+    stability: "vintf",
     backend: {
         ndk: {
             enabled: true,
         },
     },
- unstable: true,
+    versions_with_info: [
+        {
+            version: "1",
+            imports: [],
+        },
+    ],
+
 }

@@ -15,7 +15,7 @@ cc_binary {
         "libbase",
         "libbinder_ndk",
         "libfileio",
-        "vendor.eureka.hardware.parts-ndk",
+        "vendor.eureka.hardware.parts-V1-ndk",
     ],
     init_rc: ["vendor.eureka.hardware.parts-service.rc"],
     vintf_fragments: ["vendor.eureka.hardware.parts.xml"],

@@ -1,11 +1,17 @@
 aidl_interface {
     name: "vendor.eureka.hardware.parts",
     srcs: ["vendor/eureka/hardware/parts/*.aidl"],
+    stability: "vintf",
     backend: {
         ndk: {
             enabled: true,
         },
     },
-    unstable: true,
-}
+    versions_with_info: [
+        {
+            version: "1",
+            imports: [],
+        },
+    ],
 
+}

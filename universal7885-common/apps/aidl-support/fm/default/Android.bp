@@ -30,7 +30,7 @@ cc_binary {
         "libaudioclient",
         "libaudiopolicy",
         "libaudiomanager",
-        "vendor.eureka.hardware.fmradio-ndk",
+        "vendor.eureka.hardware.fmradio-V1-ndk",
     ],
     header_libs: ["libaudioclient_headers"],
     init_rc: ["vendor.eureka.hardware.fmradio-service.rc"],

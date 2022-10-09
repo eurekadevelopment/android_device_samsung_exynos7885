@@ -13,7 +13,7 @@ android_app {
         "androidx.transition_transition",
         "kotlinx_coroutines_android",
         "androidx.coordinatorlayout_coordinatorlayout",
-        "vendor.eureka.hardware.fmradio-java",
+        "vendor.eureka.hardware.fmradio-V1-java",
     ],
     required: [
         "vendor.eureka.hardware.fmradio-service",
