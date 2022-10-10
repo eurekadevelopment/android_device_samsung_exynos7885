@@ -17,6 +17,8 @@ package com.eurekateam.samsungextras.swap
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Switch
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -34,6 +36,8 @@ class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeLi
     private lateinit var mSwapEnable: MainSwitchPreference
     private lateinit var mFreeSpace: Preference
     private lateinit var mSwapFileSize: Preference
+    private var mSwapSize = 0
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         val mSwap = Swap()
         addPreferencesFromResource(R.xml.swap_settings)
@@ -57,10 +61,12 @@ class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeLi
         val mSwap = Swap()
         if (preference == mSwapSizePref) {
             val value = newValue as Int
-            mSwap.setSize(value)
+            mSwapSize = value
             mSharedPreferences.edit().putInt(PREF_SWAP_SIZE, value).apply()
             mFreeSpace.summary = "${mSwap.getFreeSpace()} GB"
-            mSwapFileSize.summary = "${mSwap.getSwapSize()} MB"
+            val mHandler = Handler(Looper.getMainLooper())
+            mSwapFileSize.summary = "${mSwapSize * 10} MB applied on next enable"
+            mHandler.postDelayed({ mSwapFileSize.summary = "${mSwap.getSwapSize()} MB" }, 1500)
             return true
         }
         return false
@@ -69,13 +75,15 @@ class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeLi
     override fun onSwitchChanged(switchView: Switch, isChecked: Boolean) {
         mSwapEnable.isEnabled = false
         val mSwap = Swap()
+        if (isChecked) mSwap.mkFile(mSwapSize) else mSwap.delFile()
         mSwap.setSwapOn(isChecked)
         mSwapEnable.isEnabled = true
         mSharedPreferences.edit().putBoolean(PREF_SWAP_ENABLE, isChecked).apply()
         mSwapSizePref.isEnabled = !isChecked
 	mFreeSpace.summary = "${mSwap.getFreeSpace()} GB"
 	mSwapFileSize.summary = "${mSwap.getSwapSize()} MB"
-    } 
+    }
+
     companion object {
         const val PREF_SWAP_SIZE = "swap_size"
         const val PREF_SWAP_ENABLE = "swap_enable"

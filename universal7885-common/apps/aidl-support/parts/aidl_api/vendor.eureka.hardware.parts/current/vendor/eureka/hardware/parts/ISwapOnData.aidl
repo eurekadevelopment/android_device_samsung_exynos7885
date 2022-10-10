@@ -37,5 +37,5 @@ interface ISwapOnData {
   oneway void removeSwapFile();
   oneway void setSwapOff();
   oneway void setSwapOn();
-  oneway void setSwapSize(in int size);
+  oneway void makeSwapFile(in int size);
 }

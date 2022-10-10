@@ -20,7 +20,6 @@
 #include <thread>
 #include <unistd.h>
 
-static int mSwapSize = 100;
 extern int mkswap(const char *filename);
 extern void mkfile(int filesize, const char *name);
 
@@ -32,41 +31,58 @@ static std::mutex thread_lock;
 
 static bool swapOnRes = false;
 
-::ndk::ScopedAStatus SwapOnData::setSwapSize(int32_t size) {
-  mSwapSize = size;
+static inline bool swapfile_exist(void) {
+  return access(SWAP_PATH, F_OK) == 0;
+}
+
+static void makeFile(int32_t mSwapSize) {
+  const std::lock_guard<std::mutex> lock(thread_lock);
+  mkfile(mSwapSize * 10, SWAP_PATH);
+  mkswap(SWAP_PATH);
+}
+
+::ndk::ScopedAStatus SwapOnData::makeSwapFile(int32_t size) {
+  if (swapfile_exist()) return ::ndk::ScopedAStatus::ok();
+  std::thread makefile_thread(makeFile, size);
+  makefile_thread.detach();
+
   return ::ndk::ScopedAStatus::ok();
+}
+
+static void rmswap(void) {
+  const std::lock_guard<std::mutex> lock(thread_lock);
+  std::remove(SWAP_PATH);
 }
 
 ::ndk::ScopedAStatus SwapOnData::removeSwapFile(void) {
-  const std::lock_guard<std::mutex> lock(thread_lock);
-  std::remove(SWAP_PATH);
+  if (!swapfile_exist()) return ::ndk::ScopedAStatus::ok();
+  std::thread rmswap_thread(rmswap);
+  rmswap_thread.detach();
   return ::ndk::ScopedAStatus::ok();
 }
 
-static void mkfile_swapon_thread(void) {
+static void swapon_func(void) {
   const std::lock_guard<std::mutex> lock(thread_lock);
-  if (access(SWAP_PATH, F_OK) != 0) {
-    mkfile(mSwapSize * 10, SWAP_PATH);
-    mkswap(SWAP_PATH);
-  }
   int res = swapon(SWAP_PATH, (10 << SWAP_FLAG_PRIO_SHIFT) & SWAP_FLAG_PRIO_MASK);
   swapOnRes = res == 0;
 }
 
 ::ndk::ScopedAStatus SwapOnData::setSwapOn() {
-  const std::lock_guard<std::mutex> lock(thread_lock);
-  std::thread mkswapfile(mkfile_swapon_thread);
+  if (!swapfile_exist()) return ::ndk::ScopedAStatus::ok();
+  std::thread swapon_thread(swapon_func);
+  swapon_thread.detach();
   return ::ndk::ScopedAStatus::ok();
 }
 
-static void swapoff_thread(void) {
+static void swapoff_func(void) {
+  if (!swapfile_exist()) return;
   const std::lock_guard<std::mutex> lock(thread_lock);
   swapoff(SWAP_PATH);
 }
 
 ::ndk::ScopedAStatus SwapOnData::setSwapOff() {
-  const std::lock_guard<std::mutex> lock(thread_lock);
-  std::thread swapoff(swapoff_thread);
+  std::thread swapoff_thread(swapoff_func);
+  swapoff_thread.detach();
   return ::ndk::ScopedAStatus::ok();
 }
 

@@ -27,7 +27,8 @@ class Swap {
     }
 
     fun setSwapOn(mEnabled: Boolean) = if (mEnabled) mSwap.setSwapOn() else mSwap.setSwapOff()
-    fun setSize(mSize: Int) = mSwap.setSwapSize(mSize)
+    fun mkFile(mSize: Int) = mSwap.makeSwapFile(mSize)
+    fun delFile() = mSwap.removeSwapFile()
     external fun getFreeSpace(): Double
     external fun getSwapSize(): Long
 }

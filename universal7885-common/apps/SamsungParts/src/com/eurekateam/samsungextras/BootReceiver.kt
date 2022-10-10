@@ -41,7 +41,6 @@ class BootReceiver : BroadcastReceiver() {
 
                 // ZRAM
                 val mSwap = Swap()
-                mSwap.setSize(mSharedPreferences.getInt(SwapFragment.PREF_SWAP_SIZE, 50))
                 mSwap.setSwapOn(mSharedPreferences.getBoolean(SwapFragment.PREF_SWAP_ENABLE, false))
 
                 // Display

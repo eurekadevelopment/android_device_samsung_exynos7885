@@ -21,7 +21,7 @@ namespace aidl::vendor::eureka::hardware::parts {
 struct SwapOnData : public BnSwapOnData {
   // Methods from ::aidl::vendor::eureka::hardware::parts::ISwapOnData
   // follow.
-  ::ndk::ScopedAStatus setSwapSize(int32_t size);
+  ::ndk::ScopedAStatus makeSwapFile(int32_t size);
   ::ndk::ScopedAStatus setSwapOn(void);
   ::ndk::ScopedAStatus removeSwapFile(void);
   ::ndk::ScopedAStatus setSwapOff(void);
