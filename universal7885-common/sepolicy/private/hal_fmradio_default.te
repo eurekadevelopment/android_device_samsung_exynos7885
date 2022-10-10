@@ -13,3 +13,6 @@ allow hal_fmradio_default sysfs_virtual:dir search;
 allow hal_fmradio_default fm_radio_device:chr_file { read write open ioctl };
 
 allow hal_fmradio_default self:capability setuid;
+
+binder_call(hal_fmradio_default, audioserver)
+binder_call(audioserver, hal_fmradio_default)
