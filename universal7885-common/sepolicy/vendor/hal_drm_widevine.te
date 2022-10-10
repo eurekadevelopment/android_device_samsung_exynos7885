@@ -19,6 +19,7 @@ allow hal_drm_widevine vendor_data_file:file create_file_perms;
 
 allow hal_drm_widevine cpk_efs_file:file r_file_perms;
 allow hal_drm_widevine efs_file:dir search;
+allow hal_drm_widevine efs_file:lnk_file r_file_perms;
 
 allow hal_drm_widevine drm_device:chr_file { read write open ioctl };
 
