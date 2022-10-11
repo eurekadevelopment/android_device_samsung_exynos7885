@@ -40,9 +40,9 @@ class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeLi
     private lateinit var mSwapFileSize: Preference
     private var mPoolExecutor = ScheduledThreadPoolExecutor(3)
     private var mSwapSize = 0
+    private val mSwap = Swap()
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        val mSwap = Swap()
         addPreferencesFromResource(R.xml.swap_settings)
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         mSwapSizePref = findPreference(PREF_SWAP_SIZE)!!
@@ -64,7 +64,6 @@ class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeLi
     private val mScheduler = Runnable { requireActivity().runOnUiThread { mSwapEnable.isEnabled = !mSwap.isLocked() } }
 
     override fun onPreferenceChange(preference: Preference, newValue: Any): Boolean {
-        val mSwap = Swap()
         if (preference == mSwapSizePref) {
             val value = newValue as Int
             mSwapSize = value
