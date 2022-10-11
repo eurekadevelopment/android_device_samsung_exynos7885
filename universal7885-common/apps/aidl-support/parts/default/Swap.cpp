@@ -92,7 +92,12 @@ static void swapoff_func(void) {
 }
 
 ::ndk::ScopedAStatus SwapOnData::isMutexLocked(bool *_aidl_return) {
-  *_aidl_return = !thread_lock.try_lock();
+  if (thread_lock.try_lock()) { 
+	  thread_lock.unlock(); 
+	  *_aidl_return = false; 
+  } else { 
+	  *_aidl_return = true; 
+  }
   return ::ndk::ScopedAStatus::ok();
 }
 
