@@ -29,6 +29,7 @@ class Swap {
     fun setSwapOn(mEnabled: Boolean) = if (mEnabled) mSwap.setSwapOn() else mSwap.setSwapOff()
     fun mkFile(mSize: Int) = mSwap.makeSwapFile(mSize)
     fun delFile() = mSwap.removeSwapFile()
+    fun isLocked() : Boolean = mSwap.isMutexLocked()
     external fun getFreeSpace(): Double
     external fun getSwapSize(): Long
 }

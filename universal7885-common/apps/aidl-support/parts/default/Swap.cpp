@@ -75,12 +75,12 @@ static void swapon_func(void) {
 }
 
 static void swapoff_func(void) {
-  if (!swapfile_exist()) return;
   const std::lock_guard<std::mutex> lock(thread_lock);
   swapoff(SWAP_PATH);
 }
 
 ::ndk::ScopedAStatus SwapOnData::setSwapOff() {
+  if (!swapfile_exist()) return ::ndk::ScopedAStatus::ok();
   std::thread swapoff_thread(swapoff_func);
   swapoff_thread.detach();
   return ::ndk::ScopedAStatus::ok();

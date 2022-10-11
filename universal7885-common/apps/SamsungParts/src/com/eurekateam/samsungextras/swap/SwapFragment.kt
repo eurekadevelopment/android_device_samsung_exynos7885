@@ -29,6 +29,8 @@ import com.android.settingslib.widget.OnMainSwitchChangeListener
 import com.eurekateam.samsungextras.R
 import com.eurekateam.samsungextras.interfaces.Swap
 import java.lang.Thread
+import java.util.concurrent.ScheduledThreadPoolExecutor
+import java.util.concurrent.TimeUnit
 
 class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener, OnMainSwitchChangeListener {
     private lateinit var mSwapSizePref: SeekBarPreference
@@ -36,6 +38,7 @@ class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeLi
     private lateinit var mSwapEnable: MainSwitchPreference
     private lateinit var mFreeSpace: Preference
     private lateinit var mSwapFileSize: Preference
+    private var mPoolExecutor = ScheduledThreadPoolExecutor(3)
     private var mSwapSize = 0
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -55,7 +58,10 @@ class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeLi
         mFreeSpace.summary = "${mSwap.getFreeSpace()} GB"
         mSwapFileSize = findPreference(INFO_SWAP_FILE_SIZE)!!
         mSwapFileSize.summary = "${mSwap.getSwapSize()} MB"
+        mPoolExecutor.scheduleWithFixedDelay(mScheduler, 0, 2, TimeUnit.SECONDS)
     }
+
+    private val mScheduler = Runnable { requireActivity().runOnUiThread { mSwapEnable.isEnabled = !mSwap.isLocked() } }
 
     override fun onPreferenceChange(preference: Preference, newValue: Any): Boolean {
         val mSwap = Swap()

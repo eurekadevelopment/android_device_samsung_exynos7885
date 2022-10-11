@@ -33,7 +33,7 @@ void SmartChargeImpl::start(void) {
   shouldRun = true;
   monitor = new std::thread(battery_monitor, limit_percent, restart_percent,
                             &charge_limit_cnt, &restart_cnt);
-  monitor->join();
+  monitor->detach();
 }
 
 void SmartChargeImpl::stop(void) {
