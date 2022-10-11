@@ -1,4 +1,4 @@
-// Copyright (C) 2022 Eureka Team
+// Copyright (C) 2021 Eureka Team
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,20 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package vendor.eureka.hardware.parts;
+#include "SwapCallbackImpl.h"
 
-import vendor.eureka.hardware.parts.IBoolCallback;
-
-@VintfStability
-interface ISwapOnData {
-
-    boolean isMutexLocked();
-
-    oneway void removeSwapFile();
-
-    oneway void setSwapOff();
-
-    oneway void setSwapOn(in IBoolCallback cb);
-
-    oneway void makeSwapFile(in int size);
+::ndk::ScopedAStatus SwapCallbackImpl::respondToBool(bool result) {
+   jmethodID mid_callback = env->GetMethodID(cls, "reactToCallbackNative", "()V");
+   env->CallBooleanMethod(cls, mid_callback, result);
+   return ::ndk::ScopedAStatus::ok();
 }

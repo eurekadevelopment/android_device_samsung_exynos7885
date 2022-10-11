@@ -1,4 +1,4 @@
-// Copyright (C) 2022 Eureka Team
+// Copyright (C) 2021 Eureka Team
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,20 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package vendor.eureka.hardware.parts;
+#pragma once
 
-import vendor.eureka.hardware.parts.IBoolCallback;
+#include <aidl/vendor/eureka/hardware/parts/BnBoolCallback.h>
 
-@VintfStability
-interface ISwapOnData {
+#include <jni.h>
 
-    boolean isMutexLocked();
+using namespace aidl::vendor::eureka::hardware::parts;
 
-    oneway void removeSwapFile();
+struct SwapCallbackImpl : public BnBoolCallback {
+ public:
+  SwapCallbackImpl(JNIEnv *_env, jclass _cls) {
+     env = _env;
+     cls = _cls;
+  };
 
-    oneway void setSwapOff();
+  // Methods from aidl::vendor::eureka::hardware::parts::IBoolCallback follow.
+  ::ndk::ScopedAStatus respondToBool(bool result) override;
 
-    oneway void setSwapOn(in IBoolCallback cb);
-
-    oneway void makeSwapFile(in int size);
-}
+ private:
+  JNIEnv *env;
+  jclass cls;
+};

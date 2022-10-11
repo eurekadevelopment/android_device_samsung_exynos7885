@@ -29,8 +29,6 @@ namespace aidl::vendor::eureka::hardware::parts {
 
 static std::mutex thread_lock;
 
-static bool swapOnRes = false;
-
 static inline bool swapfile_exist(void) {
   return access(SWAP_PATH, F_OK) == 0;
 }
@@ -61,15 +59,15 @@ static void rmswap(void) {
   return ::ndk::ScopedAStatus::ok();
 }
 
-static void swapon_func(void) {
+static void swapon_func(cb_t cb) {
   const std::lock_guard<std::mutex> lock(thread_lock);
   int res = swapon(SWAP_PATH, (10 << SWAP_FLAG_PRIO_SHIFT) & SWAP_FLAG_PRIO_MASK);
-  swapOnRes = res == 0;
+  if (cb != nullptr) cb->respondToBool(res == 0);
 }
 
-::ndk::ScopedAStatus SwapOnData::setSwapOn() {
+::ndk::ScopedAStatus SwapOnData::setSwapOn(cb_t cb) {
   if (!swapfile_exist()) return ::ndk::ScopedAStatus::ok();
-  std::thread swapon_thread(swapon_func);
+  std::thread swapon_thread(swapon_func, cb);
   swapon_thread.detach();
   return ::ndk::ScopedAStatus::ok();
 }
@@ -83,11 +81,6 @@ static void swapoff_func(void) {
   if (!swapfile_exist()) return ::ndk::ScopedAStatus::ok();
   std::thread swapoff_thread(swapoff_func);
   swapoff_thread.detach();
-  return ::ndk::ScopedAStatus::ok();
-}
-
-::ndk::ScopedAStatus SwapOnData::getSwapOnResult(bool *_aidl_return) {
-  *_aidl_return = swapOnRes;
   return ::ndk::ScopedAStatus::ok();
 }
 

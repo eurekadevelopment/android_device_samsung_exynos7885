@@ -19,8 +19,9 @@ class BootReceiver : BroadcastReceiver() {
     override fun onReceive(p0: Context?, p1: Intent?) {
         val mSharedPreferences = p0?.let { PreferenceManager.getDefaultSharedPreferences(it) }
         if (p1 != null && mSharedPreferences != null) {
-            if (p1.action == Intent.ACTION_BOOT_COMPLETED) {
-                System.loadLibrary("SwapStorageHelper")
+            if (p1.action == Intent.ACTION_LOCKED_BOOT_COMPLETED) {
+                System.loadLibrary("StorageHelper")
+                System.loadLibrary("SwapCallback")
                 // Battery
                 val mBattery = Battery()
                 mBattery.Charge = mSharedPreferences.getBoolean(BatteryFragment.PREF_CHARGE, true)
@@ -41,7 +42,8 @@ class BootReceiver : BroadcastReceiver() {
 
                 // ZRAM
                 val mSwap = Swap()
-                mSwap.setSwapOn(mSharedPreferences.getBoolean(SwapFragment.PREF_SWAP_ENABLE, false))
+                if (mSharedPreferences.getBoolean(SwapFragment.PREF_SWAP_ENABLE, false)) 
+                    mSwap.setSwapOn(false) else mSwap.setSwapOff()
 
                 // Display
                 val mDisplay = Display()

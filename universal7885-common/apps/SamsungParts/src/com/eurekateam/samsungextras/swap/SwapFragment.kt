@@ -31,6 +31,7 @@ import com.eurekateam.samsungextras.interfaces.Swap
 import java.lang.Thread
 import java.util.concurrent.ScheduledThreadPoolExecutor
 import java.util.concurrent.TimeUnit
+import vendor.eureka.hardware.parts.IBoolCallback
 
 class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener, OnMainSwitchChangeListener {
     private lateinit var mSwapSizePref: SeekBarPreference
@@ -77,11 +78,26 @@ class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeLi
         return false
     }
 
+    // This is called from native - DO NOT CHANGE SIGNATURE
+    fun reactToCallbackNative(res : Boolean) {
+        if (!res) {
+            mSwap.delFile()
+            mSharedPreferences.edit().putBoolean(PREF_SWAP_ENABLE, false).apply()
+            mSwapSizePref.isEnabled = true
+        }
+        mSwapFileSize.summary = "${mSwap.getSwapSize()} MB"
+    }
+
     override fun onSwitchChanged(switchView: Switch, isChecked: Boolean) {
         mSwapEnable.isEnabled = false
         val mSwap = Swap()
-        if (isChecked) mSwap.mkFile(mSwapSize) else mSwap.delFile()
-        mSwap.setSwapOn(isChecked)
+        if (isChecked) {
+            mSwap.mkFile(mSwapSize)
+            mSwap.setSwapOn(true)
+        } else {
+            mSwap.setSwapOff()
+            mSwap.delFile()
+        }
         mSwapEnable.isEnabled = true
         mSharedPreferences.edit().putBoolean(PREF_SWAP_ENABLE, isChecked).apply()
         mSwapSizePref.isEnabled = !isChecked

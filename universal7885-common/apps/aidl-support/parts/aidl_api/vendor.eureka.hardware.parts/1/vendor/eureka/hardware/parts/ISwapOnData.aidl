@@ -14,9 +14,10 @@
 
 package vendor.eureka.hardware.parts;
 
+import vendor.eureka.hardware.parts.IBoolCallback;
+
 @VintfStability
 interface ISwapOnData {
-    boolean getSwapOnResult();
 
     boolean isMutexLocked();
 
@@ -24,7 +25,7 @@ interface ISwapOnData {
 
     oneway void setSwapOff();
 
-    oneway void setSwapOn();
+    oneway void setSwapOn(in IBoolCallback cb);
 
     oneway void makeSwapFile(in int size);
 }

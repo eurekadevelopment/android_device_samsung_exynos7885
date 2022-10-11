@@ -18,14 +18,15 @@
 
 namespace aidl::vendor::eureka::hardware::parts {
 
+using cb_t = const std::shared_ptr<IBoolCallback>&;
+
 struct SwapOnData : public BnSwapOnData {
   // Methods from ::aidl::vendor::eureka::hardware::parts::ISwapOnData
   // follow.
   ::ndk::ScopedAStatus makeSwapFile(int32_t size);
-  ::ndk::ScopedAStatus setSwapOn(void);
+  ::ndk::ScopedAStatus setSwapOn(cb_t cb);
   ::ndk::ScopedAStatus removeSwapFile(void);
   ::ndk::ScopedAStatus setSwapOff(void);
-  ::ndk::ScopedAStatus getSwapOnResult(bool *_aidl_return);
   ::ndk::ScopedAStatus isMutexLocked(bool *_aidl_return);
 };
 } // namespace vendor::eureka::hardware::parts::V1_0

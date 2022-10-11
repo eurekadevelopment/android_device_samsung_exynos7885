@@ -17,6 +17,7 @@
 package com.eurekateam.samsungextras.interfaces
 
 import vendor.eureka.hardware.parts.ISwapOnData
+import vendor.eureka.hardware.parts.IBoolCallback
 
 import android.os.ServiceManager
 
@@ -26,7 +27,8 @@ class Swap {
        mSwap = ISwapOnData.Stub.asInterface(ServiceManager.waitForDeclaredService("vendor.eureka.hardware.parts.ISwapOnData/default"))
     }
 
-    fun setSwapOn(mEnabled: Boolean) = if (mEnabled) mSwap.setSwapOn() else mSwap.setSwapOff()
+    external fun setSwapOn(mCallBackEnabled: Boolean)
+    fun setSwapOff() = mSwap.setSwapOff()
     fun mkFile(mSize: Int) = mSwap.makeSwapFile(mSize)
     fun delFile() = mSwap.removeSwapFile()
     fun isLocked() : Boolean = mSwap.isMutexLocked()
