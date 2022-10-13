@@ -41,10 +41,11 @@ class ChannelListFragment :
             Configuration.UI_MODE_NIGHT_UNDEFINED -> mIsLight = true
         }
         mRootView.findViewById<FrameLayout>(R.id.channel_list_layout).apply {
-            if (mIsLight)
+            if (mIsLight) {
                 setBackgroundColor(resources.getColor(android.R.color.system_accent1_50, requireContext().theme))
-            else
+            } else {
                 setBackgroundColor(resources.getColor(android.R.color.system_accent1_100, requireContext().theme))
+            }
         }
         return mRootView
     }

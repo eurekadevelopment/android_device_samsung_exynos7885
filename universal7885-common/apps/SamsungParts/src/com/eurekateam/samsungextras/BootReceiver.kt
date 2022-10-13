@@ -42,8 +42,11 @@ class BootReceiver : BroadcastReceiver() {
 
                 // ZRAM
                 val mSwap = Swap()
-                if (mSharedPreferences.getBoolean(SwapFragment.PREF_SWAP_ENABLE, false)) 
-                    mSwap.setSwapOn(false) else mSwap.setSwapOff()
+                if (mSharedPreferences.getBoolean(SwapFragment.PREF_SWAP_ENABLE, false)) {
+                    mSwap.setSwapOn(false)
+                } else {
+                    mSwap.setSwapOff()
+                }
 
                 // Display
                 val mDisplay = Display()

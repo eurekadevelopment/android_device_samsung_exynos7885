@@ -57,11 +57,13 @@ class MainFragment :
         super.onCreate(savedInstanceState)
         mStar = ResourcesCompat.getDrawable(
             requireContext().resources,
-            R.drawable.ic_star, requireContext().theme
+            R.drawable.ic_star,
+            requireContext().theme
         )!!
         mStarFilled = ResourcesCompat.getDrawable(
             requireContext().resources,
-            R.drawable.ic_star_filled, requireContext().theme
+            R.drawable.ic_star_filled,
+            requireContext().theme
         )!!
         mAudioManager = requireContext().getSystemService(Context.AUDIO_SERVICE) as AudioManager
         mVolumeUp = mRootView.findViewById(R.id.volume_up)
@@ -92,27 +94,31 @@ class MainFragment :
         val mTextViewList = listOf(R.id.app_banner, R.id.fm_freq, R.id.freq_misc)
         for (mResID in mTextViewList) {
             mRootView.findViewById<MaterialTextView>(mResID).apply {
-                if (mIsLight)
+                if (mIsLight) {
                     setTextColor(resources.getColor(android.R.color.system_accent2_500, requireContext().theme))
-                else
+                } else {
                     setTextColor(resources.getColor(android.R.color.system_accent2_100, requireContext().theme))
+                }
             }
         }
         mRootView.findViewById<FrameLayout>(R.id.main_fragment).apply {
-            if (mIsLight)
+            if (mIsLight) {
                 setBackgroundColor(resources.getColor(android.R.color.system_accent1_100, requireContext().theme))
-            else
+            } else {
                 setBackgroundColor(resources.getColor(android.R.color.system_accent1_700, requireContext().theme))
+            }
         }
         GlobalScope.launch {
             withContext(Dispatchers.IO) {
                 if (FileUtilities.checkIfExistFile(FileUtilities.mFavouriteChannelFileName, requireContext())) {
                     val mFavData = FileUtilities.readFromFile(
-                        FileUtilities.mFavouriteChannelFileName, requireContext()
+                        FileUtilities.mFavouriteChannelFileName,
+                        requireContext()
                     )
                     for (mItem in mFavData.split("\\r?\\n".toRegex())) {
-                        if (mItem.isNotBlank())
+                        if (mItem.isNotBlank()) {
                             mFavStats[mItem.toInt()] = true
+                        }
                     }
                 }
                 var mMute = false
@@ -157,8 +163,9 @@ class MainFragment :
                         }
                     }
                 }
-                if (!mMute)
+                if (!mMute) {
                     mFMInterface.setFMMute(fd, true)
+                }
                 mFMInterface.setFMFreq(fd, mFMInterface.getFMLower(fd))
                 mRefreshTracks()
                 if (mFreqCurrent != -1) {
@@ -171,10 +178,12 @@ class MainFragment :
                 withContext(Dispatchers.Main) {
                     mFMFreq.text = mCleanFormat.format(mFreqCurrent.toFloat() / 1000)
                 }
-                if (!mMute)
+                if (!mMute) {
                     mFMInterface.setFMMute(fd, false)
-                if (mFreqCurrent == -1)
+                }
+                if (mFreqCurrent == -1) {
                     mFMInterface.setFMThread(fd, true)
+                }
                 withContext(Dispatchers.Main) {
                     mFavButton.let {
                         if (mFavStats[mFreqCurrent] == null) {
@@ -201,6 +210,7 @@ class MainFragment :
         alpha = .7f
         if (!mTextView) isEnabled = false
     }
+
     /**
      * Extension function for [View], for reverting Grayed out, disabled View
      * @param mTextView Whether the target view is touchable [FloatingActionButton] or
@@ -222,20 +232,25 @@ class MainFragment :
     private fun mUpdateEnableDisable(mEnabled: Boolean, mView: View = requireView()) {
         val mTextViewList = listOf(R.id.fm_freq, R.id.freq_misc)
         val mFloatButtonList = listOf(
-            R.id.volume_down, R.id.volume_up,
-            R.id.before_channel, R.id.next_channel, R.id.fm_output_btn
+            R.id.volume_down,
+            R.id.volume_up,
+            R.id.before_channel,
+            R.id.next_channel,
+            R.id.fm_output_btn
         )
         for (i in mTextViewList) {
-            if (mEnabled)
+            if (mEnabled) {
                 mView.findViewById<View>(i).enable(true)
-            else
+            } else {
                 mView.findViewById<View>(i).disable(true)
+            }
         }
         for (i in mFloatButtonList) {
-            if (mEnabled)
+            if (mEnabled) {
                 mView.findViewById<View>(i).enable()
-            else
+            } else {
                 mView.findViewById<View>(i).disable()
+            }
         }
     }
 
@@ -268,25 +283,29 @@ class MainFragment :
                 }
             }
             mVolumeUp.id -> {
-                if (mVolume < 15)
+                if (mVolume < 15) {
                     mVolume += 1
+                }
                 mFMInterface.setFMVolume(fd, mVolume)
                 mSeekBar.progress = mVolume
                 Toast.makeText(requireContext(), "Volume set to $mVolume", Toast.LENGTH_SHORT).show()
                 FileUtilities.writeToFile(
                     FileUtilities.mFMVolumeFileName,
-                    mVolume.toString(), requireContext()
+                    mVolume.toString(),
+                    requireContext()
                 )
             }
             mVolumeDown.id -> {
-                if (mVolume > 0)
+                if (mVolume > 0) {
                     mVolume -= 1
+                }
                 mFMInterface.setFMVolume(fd, mVolume)
                 mSeekBar.progress = mVolume
                 Toast.makeText(requireContext(), "Volume set to $mVolume", Toast.LENGTH_SHORT).show()
                 FileUtilities.writeToFile(
                     FileUtilities.mFMVolumeFileName,
-                    mVolume.toString(), requireContext()
+                    mVolume.toString(),
+                    requireContext()
                 )
             }
             mBeforeChannelBtn.id -> {
@@ -304,7 +323,8 @@ class MainFragment :
                 mFMInterface.setFMMute(fd, false)
                 FileUtilities.writeToFile(
                     FileUtilities.mFMFreqFileName,
-                    mFreqCurrent.toString(), requireContext()
+                    mFreqCurrent.toString(),
+                    requireContext()
                 )
                 mFavButton.let {
                     if (mFavStats[mFreqCurrent] == null) {
@@ -343,7 +363,8 @@ class MainFragment :
                 mFMInterface.setFMMute(fd, false)
                 FileUtilities.writeToFile(
                     FileUtilities.mFMFreqFileName,
-                    mFreqCurrent.toString(), requireContext()
+                    mFreqCurrent.toString(),
+                    requireContext()
                 )
                 mFavButton.let {
                     if (mFavStats[mFreqCurrent] == null) {

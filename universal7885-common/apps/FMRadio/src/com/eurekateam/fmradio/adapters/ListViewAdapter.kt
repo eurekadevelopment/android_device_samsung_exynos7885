@@ -32,7 +32,9 @@ class ListViewAdapter(private val mContext: Context) : BaseAdapter() {
     override fun getView(id: Int, mConvertView: View?, parent: ViewGroup?): View {
         val mAnotherConvertView = mConvertView
             ?: (mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(
-                R.layout.channel_list_items, parent, false
+                R.layout.channel_list_items,
+                parent,
+                false
             )
         mAnotherConvertView.findViewById<MaterialTextView>(R.id.channel_list_title).text =
             String.format(
@@ -44,7 +46,8 @@ class ListViewAdapter(private val mContext: Context) : BaseAdapter() {
             MainFragment.mFreqCurrent = MainFragment.mTracks[id].toInt()
             FileUtilities.writeToFile(
                 FileUtilities.mFMFreqFileName,
-                MainFragment.mFreqCurrent.toString(), mContext
+                MainFragment.mFreqCurrent.toString(),
+                mContext
             )
             setCurrentFMChannel(id)
         }
@@ -52,7 +55,8 @@ class ListViewAdapter(private val mContext: Context) : BaseAdapter() {
             val mStar = ResourcesCompat.getDrawable(mContext.resources, R.drawable.ic_star, mContext.theme)
             val mStarFilled = ResourcesCompat.getDrawable(
                 mContext.resources,
-                R.drawable.ic_star_filled, mContext.theme
+                R.drawable.ic_star_filled,
+                mContext.theme
             )
             val mIndex = MainFragment.mTracks[id].toInt()
             if (MainFragment.mFavStats[mIndex] == null) {
@@ -77,14 +81,16 @@ class ListViewAdapter(private val mContext: Context) : BaseAdapter() {
             mItem.value.setBackgroundColor(
                 ResourcesCompat.getColor(
                     mContext.resources,
-                    android.R.color.system_accent2_100, mContext.theme
+                    android.R.color.system_accent2_100,
+                    mContext.theme
                 )
             )
         }
         mListofViews[mPosition]?.setBackgroundColor(
             ResourcesCompat.getColor(
                 mContext.resources,
-                android.R.color.system_accent3_400, mContext.theme
+                android.R.color.system_accent3_400,
+                mContext.theme
             )
         )
     }

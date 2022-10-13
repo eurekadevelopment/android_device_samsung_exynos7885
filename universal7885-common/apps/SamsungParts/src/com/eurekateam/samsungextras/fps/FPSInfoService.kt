@@ -78,7 +78,8 @@ open class FPSInfoService : Service() {
             val y = mPaddingTop - mAscent.toInt()
             val s = fPSInfoString
             canvas.drawText(
-                s, (LEFT - mPaddingLeft - mMaxWidth).toFloat(),
+                s,
+                (LEFT - mPaddingLeft - mMaxWidth).toFloat(),
                 (
                     y - 1
                     ).toFloat(),

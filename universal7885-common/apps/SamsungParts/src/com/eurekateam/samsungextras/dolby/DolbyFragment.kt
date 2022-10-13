@@ -73,7 +73,7 @@ class DolbyFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListener {
             "dolby_profile_off" to DolbyCore.PROFILE_OFF,
             "dolby_profile_game_1" to DolbyCore.PROFILE_GAME_1,
             "dolby_profile_game_2" to DolbyCore.PROFILE_GAME_2,
-            "dolby_profile_spacial_audio" to DolbyCore.PROFILE_SPACIAL_AUDIO,
+            "dolby_profile_spacial_audio" to DolbyCore.PROFILE_SPACIAL_AUDIO
         )
     }
 }

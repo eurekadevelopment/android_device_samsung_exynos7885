@@ -28,10 +28,11 @@ class FavouriteFragment : Fragment(R.layout.fragment_fav_list) {
             Configuration.UI_MODE_NIGHT_UNDEFINED -> mIsLight = true
         }
         mRootView.findViewById<GridView>(R.id.fav_list_grid).apply {
-            if (mIsLight)
+            if (mIsLight) {
                 setBackgroundColor(resources.getColor(android.R.color.system_accent1_50, requireContext().theme))
-            else
+            } else {
                 setBackgroundColor(resources.getColor(android.R.color.system_accent1_100, requireContext().theme))
+            }
         }
         return mRootView
     }

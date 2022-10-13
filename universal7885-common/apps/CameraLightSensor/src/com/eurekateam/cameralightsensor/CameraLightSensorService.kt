@@ -37,7 +37,8 @@ class CameraLightSensorService : Service() {
     private fun pushNotification(): Notification {
         val nm = mContext.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         val channel = NotificationChannel(
-            mContext.packageName, "CameraLightSensor",
+            mContext.packageName,
+            "CameraLightSensor",
             NotificationManager.IMPORTANCE_NONE
         )
         channel.isBlockable = true
@@ -45,8 +46,10 @@ class CameraLightSensorService : Service() {
         val builder = NotificationCompat.Builder(mContext, mContext.packageName)
         val notificationIntent = Intent(mContext, CameraLightSensorService::class.java)
         val contentIntent = PendingIntent.getActivity(
-            mContext, 50,
-            notificationIntent, PendingIntent.FLAG_IMMUTABLE
+            mContext,
+            50,
+            notificationIntent,
+            PendingIntent.FLAG_IMMUTABLE
         )
 
         builder.setContentIntent(contentIntent)
@@ -88,7 +91,10 @@ class CameraLightSensorService : Service() {
                 if (mPoolExecutor == null) {
                     mPoolExecutor = ScheduledThreadPoolExecutor(4)
                     mPoolExecutor!!.scheduleWithFixedDelay(
-                        mScheduler, 0, 2, TimeUnit.SECONDS
+                        mScheduler,
+                        0,
+                        2,
+                        TimeUnit.SECONDS
                     )
                 }
             } else if (intent.action == Intent.ACTION_SCREEN_OFF) {
@@ -119,7 +125,10 @@ class CameraLightSensorService : Service() {
                         if (mPoolExecutor == null) {
                             mPoolExecutor = ScheduledThreadPoolExecutor(4)
                             mPoolExecutor!!.scheduleWithFixedDelay(
-                                mScheduler, 0, 2, TimeUnit.SECONDS
+                                mScheduler,
+                                0,
+                                2,
+                                TimeUnit.SECONDS
                             )
                         }
                     } else {
@@ -196,7 +205,7 @@ class CameraLightSensorService : Service() {
 
     @SuppressLint("MissingPermission")
     fun readyCamera() {
-        if (mIAutoBrightness != null){
+        if (mIAutoBrightness != null) {
             if (!mIAutoBrightness!!.CameraIsFree()) return
         }
         try {
@@ -213,9 +222,13 @@ class CameraLightSensorService : Service() {
         mCameraHandlerThread.start()
         mCameraHandler = Handler(mCameraHandlerThread.looper)
         mContext = this
-        bindService(Intent(mContext, IAutoBrightness::class.java).apply {
-            setClassName("com.eurekateam.camera", "com.eurekateam.camera.CameraAIDL")
-        }, mConnection, Context.BIND_AUTO_CREATE)
+        bindService(
+            Intent(mContext, IAutoBrightness::class.java).apply {
+                setClassName("com.eurekateam.camera", "com.eurekateam.camera.CameraAIDL")
+            },
+            mConnection,
+            Context.BIND_AUTO_CREATE
+        )
         @Suppress("SameParameterValue")
         startForeground(50, pushNotification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA)
         mRegistered = false
@@ -248,8 +261,13 @@ class CameraLightSensorService : Service() {
     fun actOnReadyCameraDevice() {
         try {
             cameraDevice.createCaptureSession(
-                SessionConfiguration(SessionConfiguration.SESSION_REGULAR,
-                    listOf(OutputConfiguration(imageReader.surface)), mExecutor, sessionStateCallback))
+                SessionConfiguration(
+                    SessionConfiguration.SESSION_REGULAR,
+                    listOf(OutputConfiguration(imageReader.surface)),
+                    mExecutor,
+                    sessionStateCallback
+                )
+            )
         } catch (e: CameraAccessException) {
             e.printStackTrace()
         }
@@ -301,11 +319,13 @@ class CameraLightSensorService : Service() {
         if (DEBUG) Log.i(TAG, "AdjustBrightness: Received Brightness Value $brightness")
         val oldbrightness =
             Settings.System.getInt(contentResolver, Settings.System.SCREEN_BRIGHTNESS)
-        if (DEBUG) Log.i(
-            TAG,
-            "AdjustBrightness: OldVal = " + oldbrightness + " NewVal = " +
-                brightness + " Adjusting.."
-        )
+        if (DEBUG) {
+            Log.i(
+                TAG,
+                "AdjustBrightness: OldVal = " + oldbrightness + " NewVal = " +
+                    brightness + " Adjusting.."
+            )
+        }
         var newbrightness = 2 * brightness - oldbrightness
         if (newbrightness > 255) {
             newbrightness = 255

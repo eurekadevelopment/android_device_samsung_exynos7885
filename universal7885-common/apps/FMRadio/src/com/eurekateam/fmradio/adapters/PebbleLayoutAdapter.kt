@@ -43,12 +43,15 @@ class PebbleLayoutAdapter(private val mContext: Context) : BaseAdapter() {
     override fun getView(id: Int, mConvertView: View?, parent: ViewGroup?): View {
         val mAnotherConvertView = mConvertView
             ?: (mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(
-                R.layout.favorite_channel_items, parent, false
+                R.layout.favorite_channel_items,
+                parent,
+                false
             )
         mAnotherConvertView.findViewById<PebbleTextView>(R.id.pebble_textview).apply {
             mText = (mFavoriteList[id].toFloat() / 1000).toString()
             mColor = ResourcesCompat.getColor(
-                mContext.resources, android.R.color.system_accent1_400,
+                mContext.resources,
+                android.R.color.system_accent1_400,
                 mContext.theme
             )
             setOnClickListener {
@@ -56,7 +59,8 @@ class PebbleLayoutAdapter(private val mContext: Context) : BaseAdapter() {
                 MainFragment.mFreqCurrent = mFavoriteList[id]
                 FileUtilities.writeToFile(
                     FileUtilities.mFMFreqFileName,
-                    MainFragment.mFreqCurrent.toString(), mContext
+                    MainFragment.mFreqCurrent.toString(),
+                    mContext
                 )
             }
         }

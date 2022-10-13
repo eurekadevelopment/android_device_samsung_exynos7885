@@ -15,13 +15,12 @@
  */
 package com.eurekateam.samsungextras.interfaces
 
-import vendor.eureka.hardware.parts.IBatteryStats
-import vendor.eureka.hardware.parts.BatterySys
-
 import android.os.ServiceManager
+import vendor.eureka.hardware.parts.BatterySys
+import vendor.eureka.hardware.parts.IBatteryStats
 
 class Battery {
-    private val mBattery : IBatteryStats
+    private val mBattery: IBatteryStats
 
     init {
         mBattery = IBatteryStats.Stub.asInterface(ServiceManager.waitForDeclaredService("vendor.eureka.hardware.parts.IBatteryStats/default"))
@@ -44,11 +43,11 @@ class Battery {
         }
 
     fun getGeneralBatteryStats(id: BatteryIds): Int = when (id) {
-         BatteryIds.BATTERY_CAPACITY_MAX -> mBattery.getBatteryStats(BatterySys.CAPACITY_MAX) / 1000
-         BatteryIds.BATTERY_CAPACITY_CURRENT -> mBattery.getBatteryStats(BatterySys.CAPACITY_CURRENT)
-         BatteryIds.BATTERY_CAPACITY_CURRENT_MAH -> (mBattery.getBatteryStats(BatterySys.CAPACITY_CURRENT).toFloat() * mBattery.getBatteryStats(BatterySys.CAPACITY_MAX).toFloat() / 100000).toInt()
-         BatteryIds.CHARGING_STATE -> if (mBattery.getBatteryStats(BatterySys.CURRENT) > 0) 1 else 0
-         BatteryIds.BATTERY_TEMP -> mBattery.getBatteryStats(BatterySys.TEMP) / 10
-         BatteryIds.BATTERY_CURRENT -> mBattery.getBatteryStats(BatterySys.CURRENT)
+        BatteryIds.BATTERY_CAPACITY_MAX -> mBattery.getBatteryStats(BatterySys.CAPACITY_MAX) / 1000
+        BatteryIds.BATTERY_CAPACITY_CURRENT -> mBattery.getBatteryStats(BatterySys.CAPACITY_CURRENT)
+        BatteryIds.BATTERY_CAPACITY_CURRENT_MAH -> (mBattery.getBatteryStats(BatterySys.CAPACITY_CURRENT).toFloat() * mBattery.getBatteryStats(BatterySys.CAPACITY_MAX).toFloat() / 100000).toInt()
+        BatteryIds.CHARGING_STATE -> if (mBattery.getBatteryStats(BatterySys.CURRENT) > 0) 1 else 0
+        BatteryIds.BATTERY_TEMP -> mBattery.getBatteryStats(BatterySys.TEMP) / 10
+        BatteryIds.BATTERY_CURRENT -> mBattery.getBatteryStats(BatterySys.CURRENT)
     }
 }

@@ -53,7 +53,9 @@ object DolbyCore {
 
         return context.resources.getString(
             context.resources.getIdentifier(
-                resourceName, "string", context.packageName
+                resourceName,
+                "string",
+                context.packageName
             )
         )
     }

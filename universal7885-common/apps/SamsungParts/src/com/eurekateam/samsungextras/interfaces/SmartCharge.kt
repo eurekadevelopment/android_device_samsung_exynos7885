@@ -17,19 +17,21 @@
 package com.eurekateam.samsungextras.interfaces
 
 import android.os.ServiceManager
-import vendor.eureka.hardware.parts.DisplaySys
-import vendor.eureka.hardware.parts.IDisplayConfigs
+import vendor.eureka.hardware.parts.ISmartCharge
 
-class Display {
-    private val mDisplay: IDisplayConfigs
+class SmartCharge {
+    private val mSmartCharge: ISmartCharge
 
     init {
-        mDisplay = IDisplayConfigs.Stub.asInterface(ServiceManager.waitForDeclaredService("vendor.eureka.hardware.parts.IDisplayConfigs/default"))
+        mSmartCharge = ISmartCharge.Stub.asInterface(ServiceManager.waitForDeclaredService("vendor.eureka.hardware.parts.ISmartCharge/default"))
     }
 
-    var DT2W: Boolean = false
-        set(k) = mDisplay.writeDisplay(k, DisplaySys.DOUBLE_TAP)
+    fun start() = mSmartCharge.start()
+    fun stop() = mSmartCharge.stop()
+    fun setConfig(limit: Int, restart: Int) = mSmartCharge.setConfig(limit, restart)
 
-    var GloveMode: Boolean = false
-        set(k) = mDisplay.writeDisplay(k, DisplaySys.GLOVE_MODE)
+    fun getStats(type: StatsType): Int = when (type) {
+        StatsType.TYPE_LIMITED_CNT -> mSmartCharge.getLimitCnt()
+        StatsType.TYPE_RESTARTED_CNT -> mSmartCharge.getRestartCnt()
+    }
 }

@@ -13,23 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.eurekateam.samsungextras.smartcharge
 
-package com.eurekateam.samsungextras.interfaces
+import android.os.Bundle
+import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity
+import com.android.settingslib.collapsingtoolbar.R
 
-import android.os.ServiceManager
-import vendor.eureka.hardware.parts.DisplaySys
-import vendor.eureka.hardware.parts.IDisplayConfigs
-
-class Display {
-    private val mDisplay: IDisplayConfigs
-
-    init {
-        mDisplay = IDisplayConfigs.Stub.asInterface(ServiceManager.waitForDeclaredService("vendor.eureka.hardware.parts.IDisplayConfigs/default"))
+class SmartChargeActivity : CollapsingToolbarBaseActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        supportFragmentManager.beginTransaction().replace(
+            R.id.content_frame,
+            SmartChargeFragment()
+        ).commit()
     }
-
-    var DT2W: Boolean = false
-        set(k) = mDisplay.writeDisplay(k, DisplaySys.DOUBLE_TAP)
-
-    var GloveMode: Boolean = false
-        set(k) = mDisplay.writeDisplay(k, DisplaySys.GLOVE_MODE)
 }

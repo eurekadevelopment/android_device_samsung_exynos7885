@@ -64,7 +64,7 @@ class BatteryFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChang
             return true
         } else if (preference == mFastChargePref) {
             mBattery.FastCharge = newValue as Boolean
-	    mFastChargePref.isChecked = mBattery.FastCharge
+            mFastChargePref.isChecked = mBattery.FastCharge
             mSharedPreferences.edit().putBoolean(PREF_FASTCHARGE, mBattery.FastCharge).apply()
             return true
         }
@@ -86,7 +86,10 @@ class BatteryFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChang
             if (mPoolExecutor == null) {
                 mPoolExecutor = ScheduledThreadPoolExecutor(2)
                 mPoolExecutor!!.scheduleWithFixedDelay(
-                    mScheduler, 0, 2, TimeUnit.SECONDS
+                    mScheduler,
+                    0,
+                    2,
+                    TimeUnit.SECONDS
                 )
             }
         } else {

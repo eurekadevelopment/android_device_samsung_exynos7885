@@ -28,10 +28,8 @@ import com.android.settingslib.widget.MainSwitchPreference
 import com.android.settingslib.widget.OnMainSwitchChangeListener
 import com.eurekateam.samsungextras.R
 import com.eurekateam.samsungextras.interfaces.Swap
-import java.lang.Thread
 import java.util.concurrent.ScheduledThreadPoolExecutor
 import java.util.concurrent.TimeUnit
-import vendor.eureka.hardware.parts.IBoolCallback
 
 class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener, OnMainSwitchChangeListener {
     private lateinit var mSwapSizePref: SeekBarPreference
@@ -79,7 +77,7 @@ class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeLi
     }
 
     // This is called from native - DO NOT CHANGE SIGNATURE
-    fun reactToCallbackNative(res : Boolean) {
+    fun reactToCallbackNative(res: Boolean) {
         if (!res) {
             mSwap.delFile()
             mSharedPreferences.edit().putBoolean(PREF_SWAP_ENABLE, false).apply()
@@ -101,8 +99,8 @@ class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeLi
         mSwapEnable.isEnabled = true
         mSharedPreferences.edit().putBoolean(PREF_SWAP_ENABLE, isChecked).apply()
         mSwapSizePref.isEnabled = !isChecked
-	mFreeSpace.summary = "${mSwap.getFreeSpace()} GB"
-	mSwapFileSize.summary = "${mSwap.getSwapSize()} MB"
+        mFreeSpace.summary = "${mSwap.getFreeSpace()} GB"
+        mSwapFileSize.summary = "${mSwap.getSwapSize()} MB"
     }
 
     companion object {

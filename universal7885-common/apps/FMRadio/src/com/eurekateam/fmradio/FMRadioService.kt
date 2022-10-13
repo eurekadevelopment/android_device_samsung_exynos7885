@@ -48,16 +48,18 @@ class FMRadioService : Service() {
                 ACTION_BEFORE -> {
                     mPlayState = PlayState.STATE_PLAYING
                     Log.i("mCurrentIndex $mIndex")
-                    if (mIndex > 0)
+                    if (mIndex > 0) {
                         mIndex -= 1
+                    }
                     mNativeFMInterface.setFMFreq(fd, mTracks[mIndex].toInt())
                     MainFragment.mFreqCurrent = mTracks[mIndex].toInt()
                 }
                 ACTION_NEXT -> {
                     mPlayState = PlayState.STATE_PLAYING
                     Log.i("mCurrentIndex $mIndex")
-                    if (mIndex < mTracks.size - 1)
+                    if (mIndex < mTracks.size - 1) {
                         mIndex += 1
+                    }
                     mNativeFMInterface.setFMFreq(fd, mTracks[mIndex].toInt())
                     MainFragment.mFreqCurrent = mTracks[mIndex].toInt()
                 }
@@ -118,7 +120,8 @@ class FMRadioService : Service() {
     private fun pushNotification(): Notification {
         val nm = mContext.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         val channel = NotificationChannel(
-            mContext.packageName, "FM Radio Playing",
+            mContext.packageName,
+            "FM Radio Playing",
             NotificationManager.IMPORTANCE_HIGH
         )
         nm.createNotificationChannel(channel)
@@ -146,7 +149,8 @@ class FMRadioService : Service() {
                     Icon.createWithResource(this, R.drawable.ic_headphones)
                 }
             },
-            "Output Configuration", output
+            "Output Configuration",
+            output
         ).build()
         val mPausePlayAction: Notification.Action = Notification.Action.Builder(
             when (mPlayState) {
@@ -157,20 +161,24 @@ class FMRadioService : Service() {
                     Icon.createWithResource(this, R.drawable.ic_play)
                 }
             },
-            "Start/Stop", togglePlay
+            "Start/Stop",
+            togglePlay
 
         ).build()
         val mRewindAction: Notification.Action = Notification.Action.Builder(
             Icon.createWithResource(this, R.drawable.ic_rewind),
-            "Rewind", rewind
+            "Rewind",
+            rewind
         ).build()
         val mForwardAction: Notification.Action = Notification.Action.Builder(
             Icon.createWithResource(this, R.drawable.ic_forward),
-            "Forward", forward
+            "Forward",
+            forward
         ).build()
         val mCloseAction: Notification.Action = Notification.Action.Builder(
             Icon.createWithResource(this, R.drawable.ic_close),
-            "Close", close
+            "Close",
+            close
         ).build()
         builder.addAction(mOutputAction)
         builder.addAction(mRewindAction)

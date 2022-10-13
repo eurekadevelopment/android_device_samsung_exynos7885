@@ -68,7 +68,10 @@ class DolbySearchIndexablesProvider : SearchIndexablesProvider() {
 
         private val INDEXABLE_RES = arrayOf<SearchIndexableResource>(
             SearchIndexableResource(
-                1, R.xml.dolby_settings, DolbyActivity::class.java.name, 0
+                1,
+                R.xml.dolby_settings,
+                DolbyActivity::class.java.name,
+                0
             )
         )
     }

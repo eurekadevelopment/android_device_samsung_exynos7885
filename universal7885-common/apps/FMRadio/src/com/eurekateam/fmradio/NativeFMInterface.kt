@@ -1,15 +1,14 @@
 package com.eurekateam.fmradio
 
-import vendor.eureka.hardware.fmradio.IFMDevControl
+import android.os.ServiceManager
 import vendor.eureka.hardware.fmradio.GetType
+import vendor.eureka.hardware.fmradio.IFMDevControl
 import vendor.eureka.hardware.fmradio.SetType
 
-import android.os.ServiceManager
-
 class NativeFMInterface {
-    private val mDevCtl : IFMDevControl
-    private val mSysfsCtl : IFMDevControl
-    private val mDefaultCtl : IFMDevControl
+    private val mDevCtl: IFMDevControl
+    private val mSysfsCtl: IFMDevControl
+    private val mDefaultCtl: IFMDevControl
 
     init {
         mDevCtl = IFMDevControl.Stub.asInterface(ServiceManager.waitForDeclaredService("vendor.eureka.hardware.fmradio.IFMDevControl/default"))
@@ -26,7 +25,7 @@ class NativeFMInterface {
     fun setFMFreq(a: Int, freq: Int) = mDevCtl.setValue(SetType.SET_TYPE_FM_FREQ, freq)
     fun setFMVolume(a: Int, volume: Int) = mDevCtl.setValue(SetType.SET_TYPE_FM_VOLUME, volume)
     fun setFMMute(a: Int, mute: Boolean) = mDevCtl.setValue(SetType.SET_TYPE_FM_MUTE, if (mute) 1 else 0)
-    fun getFmUpper(a: Int) : Int = mDevCtl.getValue(GetType.GET_TYPE_FM_UPPER_LIMIT)
+    fun getFmUpper(a: Int): Int = mDevCtl.getValue(GetType.GET_TYPE_FM_UPPER_LIMIT)
     fun getFMLower(a: Int): Int = mDevCtl.getValue(GetType.GET_TYPE_FM_LOWER_LIMIT)
     fun getRMSSI(a: Int): Int = mDevCtl.getValue(GetType.GET_TYPE_FM_RMSSI)
     fun getFMTracks(fd: Int): IntArray = mDefaultCtl.getFreqsList()
@@ -37,5 +36,5 @@ class NativeFMInterface {
     fun setFMRSSI(a: Int, rssi: Long) = mDevCtl.setValue(SetType.SET_TYPE_FM_RMSSI, rssi.toInt())
     fun closeFMDevice(fd: Int) = mDevCtl.close()
     fun getSysfsSupport(): Boolean = mSysfsCtl.getValue(GetType.GET_TYPE_FM_SYSFS_IF) == 0
-    fun setAudioRoute(speaker: Boolean)  = mDevCtl.setValue(SetType.SET_TYPE_FM_SPEAKER_ROUTE, if (speaker) 1 else 0)
+    fun setAudioRoute(speaker: Boolean) = mDevCtl.setValue(SetType.SET_TYPE_FM_SPEAKER_ROUTE, if (speaker) 1 else 0)
 }

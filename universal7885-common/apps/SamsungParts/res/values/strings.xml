@@ -86,4 +86,20 @@
    <string name="switch_bar_on">On</string>
    <!-- Label for feature switch -->
    <string name="switch_bar_off">Off</string>
+   <!-- SmartCharge -->
+   <string name="smartcharge_title">Simple SmartCharge Implementation</string>
+   <string name="smartcharge_switch">Enable The Implementation</string>
+   <string name="choose_limit_title">Adjust Charge Limit %</string>
+   <string name="choose_summary">Tap here to adjust the settings</string>
+   <string name="choose_restart_title">Adjust Charge Restart %</string>
+   <string name="limit_title">Current Limit Charge % Setting</string>
+   <string name="restart_title">Current Restart Charge % Setting</string>
+   <string name="limit_stat_title">Stats of limited charging count since last boot</string>
+   <string name="restart_stat_title">Stats of restarted charging count since last boot</string>
+   <string name="apply">Apply current settings</string>
+   <string name="adjust_title">Move the seekbar to adjust values</string>
+   <string name="adjust_summary">From the most left, the value will move by -10 -1 0 1 10</string>
+   <string name="smartcharge_description">This is a simple smartcharge implementation based on
+	   battery percentage. If the battery percent is above limit, the charging stops, or if it is 
+	   below restart, it charges again. Said to improve battery life in long term</string>
 </resources>

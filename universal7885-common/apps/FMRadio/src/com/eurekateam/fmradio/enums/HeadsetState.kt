@@ -7,5 +7,5 @@ package com.eurekateam.fmradio.enums
  */
 enum class HeadsetState {
     HEADSET_STATE_CONNECTED,
-    HEADSET_STATE_DISCONNECTED,
+    HEADSET_STATE_DISCONNECTED
 }

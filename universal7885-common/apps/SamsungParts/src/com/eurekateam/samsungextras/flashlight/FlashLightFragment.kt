@@ -63,9 +63,7 @@ class FlashLightFragment : PreferenceFragmentCompat(), Preference.OnPreferenceCh
         mFlash.setEnabled(isChecked)
         mSharedPreferences.edit().putBoolean(PREF_FLASHLIGHT_ENABLE, isChecked)
         mFlashLightPref.isEnabled = isChecked
-    } 
-
-    companion object {
+    } companion object {
         const val PREF_FLASHLIGHT = "flashlight_pref"
         const val PREF_FLASHLIGHT_ENABLE = "flashlight_enable"
     }

@@ -45,7 +45,6 @@ class PebbleTextView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) 
         desiredWidth: Float,
         text: String
     ) {
-
         // Pick a reasonably large value for the test. Larger values produce
         // more accurate results, but may cause problems with hardware
         // acceleration. But there are workarounds for that, too; refer to
