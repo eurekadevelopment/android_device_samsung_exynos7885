@@ -9,10 +9,12 @@
 	   android:theme="@style/Theme.SubSettingsBase"
 	   android:fullBackupOnly="true"
 	   android:persistent="true"
-	   android:defaultToDeviceProtectedStorage="true"
-	   android:directBootAware="true">
+	   android:defaultToDeviceProtectedStorage="true">
 
-      <receiver android:name=".BootReceiver" android:exported="true">
+   <receiver
+	   android:name=".BootReceiver"
+	   android:exported="true"
+	   android:directBootAware="true">
          <intent-filter>
             <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED"/>
             <category android:name="android.intent.category.DEFAULT"/>
