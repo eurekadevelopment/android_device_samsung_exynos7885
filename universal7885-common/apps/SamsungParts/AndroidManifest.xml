@@ -76,7 +76,13 @@
             <action android:name="android.intent.action.MAIN"/>
             <category android:name="android.intent.category.DEFAULT"/>
          </intent-filter>
-      </activity>
+ 	</activity>
+ 	<activity android:name=".smartcharge.SmartChargeActivity" android:exported="true">
+		<intent-filter>
+			<action android:name="android.intent.action.MAIN"/>
+			<category android:name="android.intent.category.DEFAULT"/>
+		</intent-filter>
+	</activity>
       <service android:name=".fps.FPSInfoService" android:exported="false">
         </service>
       <service android:name=".fps.FPSTileService" android:icon="@drawable/ic_fps_info" android:label="@string/fps_info_title" android:permission="android.permission.BIND_QUICK_SETTINGS_TILE" android:exported="true">
