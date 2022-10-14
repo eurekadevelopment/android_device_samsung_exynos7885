@@ -41,6 +41,7 @@ class FlashLightFragment : PreferenceFragmentCompat(), Preference.OnPreferenceCh
         mFlashLightPref.setMin(1)
         val mFlashLight = Flashlight()
         mFlashLightPref.value = mFlashLight.getFlash(Build.DEVICE.contains("a10"))
+        mFlashLightPref.showSeekBarValue = true
         mFlashLightEnable = findPreference(PREF_FLASHLIGHT_ENABLE)!!
         mFlashLightEnable.isChecked = mSharedPreferences.getBoolean(PREF_FLASHLIGHT_ENABLE, true)
         mFlashLightEnable.addOnSwitchChangeListener(this)
