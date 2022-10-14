@@ -105,7 +105,7 @@ PRODUCT_PACKAGES += \
     charger_res_images_vendor
 
 # Debug
-PRODUCT_PACKAGES += eklogger dlopener
+PRODUCT_PACKAGES += eklogger dlopener dlopener.vendor
 
 # DRM
 PRODUCT_PACKAGES += \

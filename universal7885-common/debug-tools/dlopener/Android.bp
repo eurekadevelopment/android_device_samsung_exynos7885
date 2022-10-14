@@ -7,4 +7,5 @@ cc_binary {
 	},
     },
     srcs: ["dlopener.c"],
+    vendor_available: true,
 }
