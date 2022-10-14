@@ -17,11 +17,10 @@
 
 #include <fstream>
 #include <iostream>
-#include <memory>
 
 namespace aidl::vendor::eureka::hardware::parts {
 
-static std::unique_ptr<SmartChargeImpl> kInst;
+static SmartChargeImpl *kInst;
 
 static int limit = 0;
 static int restart = 0;
@@ -33,7 +32,7 @@ static int restart_stat = 0;
   if (limit == 0 || restart == 0)
     return ::ndk::ScopedAStatus::fromExceptionCodeWithMessage(
         EX_ILLEGAL_ARGUMENT, "Start called without configuring.");
-  kInst = std::make_unique<SmartChargeImpl>(limit, restart);
+  kInst = new SmartChargeImpl(limit, restart);
   kInst->start();
   return ::ndk::ScopedAStatus::ok();
 }
@@ -43,7 +42,8 @@ static int restart_stat = 0;
     kInst->stop();
     limit_stat += kInst->charge_limit_cnt;
     restart_stat += kInst->restart_cnt;
-    kInst.reset();
+    delete kInst;
+    kInst = nullptr;
   }
   return ::ndk::ScopedAStatus::ok();
 }
