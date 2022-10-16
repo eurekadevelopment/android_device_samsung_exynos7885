@@ -8,3 +8,4 @@ vendor.eureka.hardware.parts.ISmartCharge/default u:object_r:hal_parts_service:s
 # FMRadio
 vendor.eureka.hardware.fmradio.IFMDevControl/default u:object_r:hal_fmradio_service:s0
 vendor.eureka.hardware.fmradio.IFMDevControl/support u:object_r:hal_fmradio_service:s0
+vendor.eureka.hardware.audio_route.IAudioRoute/default u:object_r:hal_audio_route_service:s0

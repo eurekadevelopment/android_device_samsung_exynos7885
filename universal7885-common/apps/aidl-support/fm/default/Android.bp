@@ -8,7 +8,6 @@ cc_binary {
     srcs: [
         "FMSupport.cpp",
         "FMDevControl.cpp",
-        "FMAudioRouteControl.cpp",
         "service.cpp",
     ],
     defaults: [
@@ -21,15 +20,13 @@ cc_binary {
         "libbinder_ndk",
         "liblog",
         "libfileio",
-        "libutils",
-        "audioflinger-aidl-cpp",
-        "libaudiofoundation",
-        "libaudioutils",
-        "libaudioclient",
-        "libaudiomanager",
         "vendor.eureka.hardware.fmradio-V1-ndk",
+        "vendor.eureka.hardware.audio_route-V1-ndk",
     ],
     header_libs: ["libaudioclient_headers"],
     init_rc: ["vendor.eureka.hardware.fmradio-service.rc"],
     vintf_fragments: ["vendor.eureka.hardware.fmradio.xml"],
+    required: [
+        "vendor.eureka.hardware.audio_route-service",
+    ],
 }

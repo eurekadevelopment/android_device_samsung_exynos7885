@@ -17,34 +17,16 @@
 #include <media/AudioSystem.h>
 #include <media/IAudioFlinger.h>
 
-#include <unistd.h>
+#include "AudioRoute.h"
 
-#define FM_FAILURE (-1)
-#define FM_SUCCESS 0
 #define IOHANDLE 13
 
 using namespace android;
 
-static int audioflinger_exynos7885_forceroute(bool speaker) {
+ndk::ScopedAStatus AudioRoute::setParam(std::string param) {
   const sp<IAudioFlinger> &af = AudioSystem::get_audio_flinger();
   if (af == 0)
-    return PERMISSION_DENIED;
-  if (speaker) {
-    af->setParameters(IOHANDLE, String8("routing=2"));
-  } else {
-    af->setParameters(IOHANDLE, String8("routing=8"));
-  }
-  return FM_SUCCESS;
-}
-
-void setAudioFlingerSpeaker(bool enable) {
-  pid_t pid;
-
-  if ((pid = fork()) < 0) {
-    return;
-  }
-  if (pid == 0) {
-    setuid(1041);
-    audioflinger_exynos7885_forceroute(enable);
-  }
+    return ndk::ScopedAStatus::fromExceptionCode(EX_SECURITY);
+  af->setParameters(IOHANDLE, String8(param.c_str()));
+  return ndk::ScopedAStatus::ok();;
 }

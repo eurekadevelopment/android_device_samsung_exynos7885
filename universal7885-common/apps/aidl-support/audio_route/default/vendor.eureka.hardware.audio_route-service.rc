@@ -1,0 +1,4 @@
+service audioroute-hal-aidl /system/bin/vendor.eureka.hardware.audio_route-service
+    class hal
+    user audioserver
+    group audio

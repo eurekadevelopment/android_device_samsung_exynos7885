@@ -1,0 +1,17 @@
+aidl_interface {
+    name: "vendor.eureka.hardware.audio_route",
+    srcs: ["vendor/eureka/hardware/audio_route/*.aidl"],
+    stability: "vintf",
+    backend: {
+        ndk: {
+            enabled: true,
+        },
+    },
+    versions_with_info: [
+        {
+            version: "1",
+            imports: [],
+        },
+    ],
+
+}

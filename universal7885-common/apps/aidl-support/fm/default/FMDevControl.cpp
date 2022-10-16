@@ -19,8 +19,7 @@
 #include <cassert>
 #include <fcntl.h>
 
-// FMAudioRouteControl.cpp
-extern void setAudioFlingerSpeaker(bool enable);
+#include <vendor/eureka/hardware/audio_route/BnAudioRoute.h>
 
 namespace aidl::vendor::eureka::hardware::fmradio {
 
@@ -85,7 +84,8 @@ static int fd = -1;
 			fm_radio_slsi::stop_search(fd);
 			break;
 		case SetType::SET_TYPE_FM_SPEAKER_ROUTE:
-			setAudioFlingerSpeaker(value);
+			auto svc = IAudioRoute::fromBinder(ndk::SpAIBinder(AServiceManager_waitForService("vendor.eureka.hardware.audio_route.IAudioRoute/default")));
+			svc->setParam(value ? "routing=2": "routing=8");
 			break;
 		default:
 			break;

@@ -1,0 +1,10 @@
+type hal_audio_route_default, domain, coredomain;
+type hal_audio_route_default_exec, exec_type, file_type, system_file_type;
+
+add_service(hal_audio_route_default, hal_fmradio_service);
+init_daemon_domain(hal_audio_route_default);
+
+binder_use(hal_audio_route_default);
+
+binder_call(hal_audio_route_default, audioserver)
+binder_call(audioserver, hal_audio_route_default)
