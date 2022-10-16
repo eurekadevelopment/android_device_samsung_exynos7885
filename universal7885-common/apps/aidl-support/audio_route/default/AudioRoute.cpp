@@ -23,10 +23,14 @@
 
 using namespace android;
 
-ndk::ScopedAStatus AudioRoute::setParam(std::string param) {
+namespace aidl::vendor::eureka::hardware::audio_route {
+
+ndk::ScopedAStatus AudioRoute::setParam(const std::string& param) {
   const sp<IAudioFlinger> &af = AudioSystem::get_audio_flinger();
   if (af == 0)
     return ndk::ScopedAStatus::fromExceptionCode(EX_SECURITY);
   af->setParameters(IOHANDLE, String8(param.c_str()));
   return ndk::ScopedAStatus::ok();;
+}
+
 }

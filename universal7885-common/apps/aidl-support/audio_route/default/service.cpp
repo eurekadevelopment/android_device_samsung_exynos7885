@@ -24,7 +24,7 @@ int main() {
   ABinderProcess_setThreadPoolMaxThreadCount(3);
 
   auto service = ndk::SharedRefBase::make<AudioRoute>();
-  const std::string instance = std::string() + C::descriptor + "/default";
+  const std::string instance = std::string() + AudioRoute::descriptor + "/default";
   binder_status_t status =
       AServiceManager_addService(service->asBinder().get(), instance.c_str());
   CHECK(status == STATUS_OK);

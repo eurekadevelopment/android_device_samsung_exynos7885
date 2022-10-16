@@ -16,10 +16,12 @@
 
 #include <fm_slsi-impl.h>
 
+#include <android/binder_manager.h>
+
 #include <cassert>
 #include <fcntl.h>
 
-#include <vendor/eureka/hardware/audio_route/BnAudioRoute.h>
+#include <aidl/vendor/eureka/hardware/audio_route/BnAudioRoute.h>
 
 namespace aidl::vendor::eureka::hardware::fmradio {
 
@@ -64,6 +66,7 @@ static int fd = -1;
 
 ::ndk::ScopedAStatus FMDevControl::setValue(SetType type, int value) {
 	assert(fd > 0);
+	std::shared_ptr<audio_route::IAudioRoute> svc;
 	switch (type) {
 		case SetType::SET_TYPE_FM_FREQ:
 			fm_radio_slsi::set_frequency(fd, value);
@@ -84,7 +87,7 @@ static int fd = -1;
 			fm_radio_slsi::stop_search(fd);
 			break;
 		case SetType::SET_TYPE_FM_SPEAKER_ROUTE:
-			auto svc = IAudioRoute::fromBinder(ndk::SpAIBinder(AServiceManager_waitForService("vendor.eureka.hardware.audio_route.IAudioRoute/default")));
+			svc = audio_route::IAudioRoute::fromBinder(ndk::SpAIBinder(AServiceManager_waitForService("vendor.eureka.hardware.audio_route.IAudioRoute/default")));
 			svc->setParam(value ? "routing=2": "routing=8");
 			break;
 		default:

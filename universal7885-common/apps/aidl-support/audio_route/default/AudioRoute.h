@@ -22,6 +22,6 @@ struct AudioRoute : public BnAudioRoute {
  public:
   AudioRoute() = default;
   // Methods from aidl::vendor::eureka::hardware::fmradio::IFMRadio follow.
-  ::ndk::ScopedAStatus setParam(std::string param) override;
+  ::ndk::ScopedAStatus setParam(const std::string& param) override;
 };
 } // namespace aidl::vendor::eureka::hardware::fmradio
