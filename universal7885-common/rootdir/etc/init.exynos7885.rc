@@ -134,8 +134,8 @@ on post-fs-data
     chown audioserver system /sys/devices/platform/14a50000.abox/14a50000.abox:abox_debug@0/calliope_iva
 
 # FM Radio
-    chown system audio /dev/radio0
-    chmod 0660 /dev/radio0
+#    chown system audio /dev/radio0
+#    chmod 0660 /dev/radio0
 
 # Permissions for backlight
     chown system system /sys/class/backlight/panel/brightness
