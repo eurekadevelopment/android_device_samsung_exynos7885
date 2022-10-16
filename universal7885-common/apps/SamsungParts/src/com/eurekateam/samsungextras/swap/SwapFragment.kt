@@ -58,20 +58,20 @@ class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeLi
         mFreeSpace.summary = "${mSwap.getFreeSpace()} GB"
         mSwapFileSize = findPreference(INFO_SWAP_FILE_SIZE)!!
         mSwapFileSize.summary = "${mSwap.getSwapSize()} MB"
-        mPoolExecutor.scheduleWithFixedDelay(mScheduler, 0, 2, TimeUnit.SECONDS)
+        mPoolExecutor.scheduleWithFixedDelay(mScheduler, 0, 3, TimeUnit.SECONDS)
     }
 
-    private val mScheduler = Runnable { requireActivity().runOnUiThread { mSwapEnable.isEnabled = !mSwap.isLocked() } }
+    private val mScheduler = Runnable { requireActivity().runOnUiThread {
+       mSwapEnable.isEnabled = !mSwap.isLocked()
+       mFreeSpace.summary = "${mSwap.getFreeSpace()} GB"
+       mSwapFileSize.summary = "${mSwap.getSwapSize()} MB"
+      } }
 
     override fun onPreferenceChange(preference: Preference, newValue: Any): Boolean {
         if (preference == mSwapSizePref) {
             val value = newValue as Int
             mSwapSize = value
             mSharedPreferences.edit().putInt(PREF_SWAP_SIZE, value).apply()
-            mFreeSpace.summary = "${mSwap.getFreeSpace()} GB"
-            val mHandler = Handler(Looper.getMainLooper())
-            mSwapFileSize.summary = "${mSwapSize * 10} MB applied on next enable"
-            mHandler.postDelayed({ mSwapFileSize.summary = "${mSwap.getSwapSize()} MB" }, 1500)
             return true
         }
         return false
@@ -84,7 +84,6 @@ class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeLi
             mSharedPreferences.edit().putBoolean(PREF_SWAP_ENABLE, false).apply()
             mSwapSizePref.isEnabled = true
         }
-        mSwapFileSize.summary = "${mSwap.getSwapSize()} MB"
     }
 
     override fun onSwitchChanged(switchView: Switch, isChecked: Boolean) {
@@ -100,8 +99,6 @@ class SwapFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeLi
         mSwapEnable.isEnabled = true
         mSharedPreferences.edit().putBoolean(PREF_SWAP_ENABLE, isChecked).apply()
         mSwapSizePref.isEnabled = !isChecked
-        mFreeSpace.summary = "${mSwap.getFreeSpace()} GB"
-        mSwapFileSize.summary = "${mSwap.getSwapSize()} MB"
     }
 
     companion object {
