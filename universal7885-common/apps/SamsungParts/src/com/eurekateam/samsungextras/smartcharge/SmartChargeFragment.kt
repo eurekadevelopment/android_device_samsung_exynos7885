@@ -146,7 +146,7 @@ class SmartChargeFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListen
                 mMainHandler.post({ mSmartChargeBtn.isEnabled = true })
                 mMainHandler.post({ mApplyBtn.isEnabled = false })
             } else {
-	        Toast.makeText(this, "Limit percent should be bigger than restart percent", Toast.LENGTH_SHORT).show()
+	        Toast.makeText(requireContext(), "Limit percent should be bigger than restart percent", Toast.LENGTH_SHORT).show()
 	    }
         }
     }
