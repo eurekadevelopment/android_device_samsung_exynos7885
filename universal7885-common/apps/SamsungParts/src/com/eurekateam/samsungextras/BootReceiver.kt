@@ -9,6 +9,7 @@ import com.eurekateam.samsungextras.battery.BatteryFragment
 import com.eurekateam.samsungextras.dolby.DolbyCore
 import com.eurekateam.samsungextras.dolby.DolbyFragment
 import com.eurekateam.samsungextras.flashlight.FlashLightFragment
+import com.eurekateam.samsungextras.smartcharge.SmartChargeFragment
 import com.eurekateam.samsungextras.interfaces.Battery
 import com.eurekateam.samsungextras.interfaces.Display
 import com.eurekateam.samsungextras.interfaces.Flashlight
@@ -54,8 +55,8 @@ class BootReceiver : BroadcastReceiver() {
                 mDisplay.DT2W = mSharedPreferences.getBoolean(DeviceSettings.PREF_DOUBLE_TAP, true)
                 mDisplay.GloveMode = mSharedPreferences.getBoolean(DeviceSettings.PREF_GLOVE_MODE, false)
 
-                val limit = mSharedPreferences.getInt(PREF_LIMIT, 20)
-                val restart = mSharedPreferences.getInt(PREF_RESTART, 80)
+                val limit = mSharedPreferences.getInt(SmartChargeFragment.PREF_LIMIT, 20)
+                val restart = mSharedPreferences.getInt(SmartChargeFragment.PREF_RESTART, 80)
                 val mSmartCharge = SmartCharge()
                 mSmartCharge.setConfig(limit, restart)
 
