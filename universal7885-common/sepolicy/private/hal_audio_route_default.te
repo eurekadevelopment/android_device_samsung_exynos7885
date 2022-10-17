@@ -8,3 +8,5 @@ binder_use(hal_audio_route_default);
 
 binder_call(hal_audio_route_default, audioserver)
 binder_call(audioserver, hal_audio_route_default)
+
+allow hal_audio_route_default audioserver_service:service_manager find;

@@ -12,3 +12,6 @@ allow hal_fmradio_default sysfs_fmradio_tune:dir search;
 allow hal_fmradio_default sysfs_virtual:dir search;
 allow hal_fmradio_default fm_radio_device:chr_file { read write open ioctl };
 
+allow hal_fmradio_default hal_audio_route_service:service_manager find;
+
+binder_call(hal_fmradio_default, hal_audio_route_default)
