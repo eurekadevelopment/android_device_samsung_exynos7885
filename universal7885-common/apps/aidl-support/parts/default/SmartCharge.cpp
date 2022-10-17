@@ -13,14 +13,11 @@
 // limitations under the License.
 
 #include "SmartCharge.h"
-#include "SmartChargingImpl.h"
 
-#include <fstream>
-#include <iostream>
+#include <chrono>
+#include <thread>
 
 namespace aidl::vendor::eureka::hardware::parts {
-
-static SmartChargeImpl *kInst;
 
 static int limit = 0;
 static int restart = 0;
@@ -28,22 +25,34 @@ static int restart = 0;
 static int limit_stat = 0;
 static int restart_stat = 0;
 
+static std::thread monitor_th = nullptr;
+
+static void battery_monitor(void) {
+  while (true) {
+    auto batt = FileIO::readline(BATTERY_CAPACITY_CURRENT);
+    if (batt >= limit) {
+      FileIO::writeline(BATTERY_CHARGE, 0);
+      limit_stat += 1;
+    } else if (batt <= restart) {
+      FileIO::writeline(BATTERY_CHARGE, 1);
+      restart_stat += 1;
+    }
+    std::this_thread::sleep_for(std::chrono::seconds(5));
+  }
+}
+
 ::ndk::ScopedAStatus SmartCharge::start(void) {
   if (limit == 0 || restart == 0)
     return ::ndk::ScopedAStatus::fromExceptionCodeWithMessage(
         EX_ILLEGAL_ARGUMENT, "Start called without configuring.");
-  kInst = new SmartChargeImpl(limit, restart);
-  kInst->start();
+
+  monitor_th = std::thread(battery_monitor);
   return ::ndk::ScopedAStatus::ok();
 }
 
 ::ndk::ScopedAStatus SmartCharge::stop(void) {
-  if (kInst != nullptr) {
-    kInst->stop();
-    limit_stat += kInst->charge_limit_cnt;
-    restart_stat += kInst->restart_cnt;
-    delete kInst;
-    kInst = nullptr;
+  if (monitor_th != nullptr) {
+    monitor_th = nullptr;
   }
   return ::ndk::ScopedAStatus::ok();
 }

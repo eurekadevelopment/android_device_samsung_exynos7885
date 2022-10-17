@@ -7,7 +7,6 @@ cc_binary {
         "Display.cpp",
         "Swap.cpp",
         "SwapHelpers.cpp",
-	"SmartChargingImpl.cpp",
 	"SmartCharge.cpp",
         "service.cpp",
     ],

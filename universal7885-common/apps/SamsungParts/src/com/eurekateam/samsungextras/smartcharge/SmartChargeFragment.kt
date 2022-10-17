@@ -164,7 +164,6 @@ class SmartChargeFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListen
             mPoolExecutor.scheduleWithFixedDelay(mScheduler, 0, 5, TimeUnit.MINUTES)
         } else {
             mSmartCharge.stop()
-            mPoolExecutor.shutdown()
         }
         mSharedPreferences.edit().putBoolean(PREF_SMARTCHARGE_MAIN, isChecked).apply()
     } 
