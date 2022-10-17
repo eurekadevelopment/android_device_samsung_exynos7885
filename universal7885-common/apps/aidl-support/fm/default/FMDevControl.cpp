@@ -19,13 +19,15 @@
 #include <android/binder_manager.h>
 
 #include <cassert>
+#include <cerrno>
+
 #include <fcntl.h>
+
+#include "CommonMacro.h"
 
 #include <aidl/vendor/eureka/hardware/audio_route/BnAudioRoute.h>
 
 namespace aidl::vendor::eureka::hardware::fmradio {
-
-static int fd = -1;
 
 ::ndk::ScopedAStatus FMDevControl::open(void) {
 	fd = fm_radio_slsi::open_device();
@@ -33,7 +35,9 @@ static int fd = -1;
 	fm_radio_slsi::bootctrl(fd);
 	return ::ndk::ScopedAStatus::ok();
 }
+
 ::ndk::ScopedAStatus FMDevControl::getValue(GetType type, int *_aidl_return) {
+	RETURN_IF_FAILED_LOCK;
 	assert(fd > 0);
 	switch (type) {
 		case GetType::GET_TYPE_FM_FREQ:
@@ -57,14 +61,16 @@ static int fd = -1;
 			*_aidl_return = fm_radio_slsi::next_channel(fd);
 			break;
 		case GetType::GET_TYPE_FM_SYSFS_IF:
-			[[fallthrough]];
+			NOT_SUPPORTED;
 		default:
 			break;
 	};
+	lock.unlock();
 	return ::ndk::ScopedAStatus::ok();
 }
 
 ::ndk::ScopedAStatus FMDevControl::setValue(SetType type, int value) {
+	RETURN_IF_FAILED_LOCK;
 	assert(fd > 0);
 	std::shared_ptr<audio_route::IAudioRoute> svc;
 	switch (type) {
@@ -93,13 +99,17 @@ static int fd = -1;
 		default:
 			break;
 	};
+	lock.unlock();
 	return ::ndk::ScopedAStatus::ok();
 }
 
 ::ndk::ScopedAStatus FMDevControl::getFreqsList(std::vector<int> *_aidl_return){
+	RETURN_IF_FAILED_LOCK;
 	auto vec = fm_radio_slsi::get_freqs(fd);
 	for (auto i : vec)
 		_aidl_return->push_back(i);
+
+	lock.unlock();
 	return ::ndk::ScopedAStatus::ok();
 }
 

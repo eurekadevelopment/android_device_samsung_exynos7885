@@ -22,13 +22,7 @@
 
 #include <FileIO.h>
 
-#include <android-base/logging.h>
-
-#define NOT_SUPPORTED                                                          \
-  ({                                                                           \
-    LOG(ERROR) << __func__ << ": Attempted to invoke unsupported operation";   \
-    return ::ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);  \
-  })
+#include "CommonMacro.h"
 
 namespace aidl::vendor::eureka::hardware::fmradio {
 
@@ -40,6 +34,7 @@ constexpr const char *FM_FREQ_SEEK =
 ::ndk::ScopedAStatus FMSupport::open(void) { NOT_SUPPORTED; }
 
 ::ndk::ScopedAStatus FMSupport::getValue(GetType type, int *_aidl_return) {
+  RETURN_IF_FAILED_LOCK;
   switch (type) {
   case GetType::GET_TYPE_FM_FREQ:
     *_aidl_return = FileIO::readline(FM_FREQ_CTL);
@@ -62,9 +57,11 @@ constexpr const char *FM_FREQ_SEEK =
   default:
     break;
   };
+  lock.unlock();
   return ndk::ScopedAStatus::ok();
 }
 ::ndk::ScopedAStatus FMSupport::setValue(SetType type, int value) {
+  RETURN_IF_FAILED_LOCK;
   switch (type) {
   case SetType::SET_TYPE_FM_FREQ:
     FileIO::writeline(FM_FREQ_CTL, value * 1000);
@@ -79,6 +76,7 @@ constexpr const char *FM_FREQ_SEEK =
   default:
     break;
   };
+  lock.unlock();
   return ::ndk::ScopedAStatus::ok();
 }
 
@@ -92,6 +90,7 @@ static inline bool vector_contains(const std::vector<int> vec,
 }
 
 ::ndk::ScopedAStatus FMSupport::getFreqsList(std::vector<int> *_aidl_return) {
+  RETURN_IF_FAILED_LOCK;
   for (int i = 0; i < TRACK_SIZE; i++) {
     FileIO::writeline(FM_FREQ_SEEK, "1 " + std::to_string(3 * 10));
     int freq = FileIO::readline(FM_FREQ_CTL);
@@ -99,6 +98,7 @@ static inline bool vector_contains(const std::vector<int> vec,
       continue;
     _aidl_return->push_back(freq);
   }
+  lock.unlock();
   return ::ndk::ScopedAStatus::ok();
 }
 ::ndk::ScopedAStatus FMSupport::close() { NOT_SUPPORTED; }

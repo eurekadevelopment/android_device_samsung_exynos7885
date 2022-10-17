@@ -16,6 +16,8 @@
 
 #include <aidl/vendor/eureka/hardware/fmradio/BnFMDevControl.h>
 
+#include <mutex>
+
 namespace aidl::vendor::eureka::hardware::fmradio {
 
 struct FMSupport : public BnFMDevControl {
@@ -27,5 +29,7 @@ public:
   ::ndk::ScopedAStatus setValue(SetType type, int value) override;
   ::ndk::ScopedAStatus getFreqsList(std::vector<int> *_aidl_return) override;
   ::ndk::ScopedAStatus close(void) override;
+ private:
+  std::timed_mutex lock;
 };
 } // namespace aidl::vendor::eureka::hardware::fmradio

@@ -16,6 +16,8 @@
 
 #include <chrono>
 #include <thread>
+#include <FileIO.h>
+#include "BatteryConstants.h"
 
 namespace aidl::vendor::eureka::hardware::parts {
 
@@ -25,7 +27,7 @@ static int restart = 0;
 static int limit_stat = 0;
 static int restart_stat = 0;
 
-static std::thread monitor_th = nullptr;
+static std::thread *monitor_th = nullptr;
 
 static void battery_monitor(void) {
   while (true) {
@@ -46,7 +48,7 @@ static void battery_monitor(void) {
     return ::ndk::ScopedAStatus::fromExceptionCodeWithMessage(
         EX_ILLEGAL_ARGUMENT, "Start called without configuring.");
 
-  monitor_th = std::thread(battery_monitor);
+  monitor_th = new std::thread(battery_monitor);
   return ::ndk::ScopedAStatus::ok();
 }
 
