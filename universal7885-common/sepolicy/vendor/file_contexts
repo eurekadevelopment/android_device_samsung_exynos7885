@@ -206,7 +206,6 @@
 /(vendor|system/vendor)/bin/hw/macloader                    u:object_r:macloader_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.power(@[0-9]\.[0-9])?-service\.samsung-libperfmgr   u:object_r:hal_power_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.vibrator(@[0-9].[0-9])?-service\.samsung    u:object_r:hal_vibrator_default_exec:s0
-/(vendor|system/vendor)/bin/hw/android\.hardware\.health-service\.samsung			u:object_r:hal_health_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.drm@[0-9]\.[0-9]-service\.clearkey          u:object_r:hal_drm_clearkey_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.drm@[0-9]\.[0-9]-service\.widevine          u:object_r:hal_drm_widevine_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.memtrack-service\.samsung-mali	       u:object_r:hal_memtrack_default_exec:s0
