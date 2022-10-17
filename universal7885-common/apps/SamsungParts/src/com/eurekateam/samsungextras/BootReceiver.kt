@@ -13,6 +13,7 @@ import com.eurekateam.samsungextras.interfaces.Battery
 import com.eurekateam.samsungextras.interfaces.Display
 import com.eurekateam.samsungextras.interfaces.Flashlight
 import com.eurekateam.samsungextras.interfaces.Swap
+import com.eurekateam.samsungextras.interfaces.SmartCharge
 import com.eurekateam.samsungextras.swap.SwapFragment
 
 class BootReceiver : BroadcastReceiver() {
@@ -52,6 +53,12 @@ class BootReceiver : BroadcastReceiver() {
                 val mDisplay = Display()
                 mDisplay.DT2W = mSharedPreferences.getBoolean(DeviceSettings.PREF_DOUBLE_TAP, true)
                 mDisplay.GloveMode = mSharedPreferences.getBoolean(DeviceSettings.PREF_GLOVE_MODE, false)
+
+                val limit = mSharedPreferences.getInt(PREF_LIMIT, 20)
+                val restart = mSharedPreferences.getInt(PREF_RESTART, 80)
+                val mSmartCharge = SmartCharge()
+                mSmartCharge.setConfig(limit, restart)
+
                 Log.i("SamsungParts", "Applied settings")
             }
         }
