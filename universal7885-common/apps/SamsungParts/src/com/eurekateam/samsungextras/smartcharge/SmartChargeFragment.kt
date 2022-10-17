@@ -79,7 +79,7 @@ class SmartChargeFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListen
         mRestart.setOnClickListener(this)
         mLimitShow.summary = "${mSharedPreferences.getInt(PREF_LIMIT, 20)} %"
         mRestartShow.summary = "${mSharedPreferences.getInt(PREF_RESTART, 80)} %"
-        mLimit.isChecked = true
+        if (!mRestart.isChecked) mLimit.isChecked = true
     }
 
     override fun onRadioButtonClicked(btn: SelectorWithWidgetPreference) {
