@@ -47,7 +47,7 @@ sleep:
         EX_ILLEGAL_ARGUMENT, "Start called without configuring.");
 
   kShouldRun = true;
-  monitor_th = new std::thread(battery_monitor);
+  monitor_th = new std::thread([this] {battery_monitor();});
   return ::ndk::ScopedAStatus::ok();
 }
 
