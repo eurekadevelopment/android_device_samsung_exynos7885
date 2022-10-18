@@ -96,7 +96,6 @@
    <string name="restart_title">Current Restart Charge % Setting</string>
    <string name="limit_stat_title">Stats of limited charging count since last boot</string>
    <string name="restart_stat_title">Stats of restarted charging count since last boot</string>
-   <string name="apply">Apply current settings</string>
    <string name="adjust_title">Move the seekbar to adjust values</string>
    <string name="adjust_summary">From the most left, the value will move by -10 -1 0 1 10</string>
    <string name="smartcharge_description">This is a simple smartcharge implementation based on

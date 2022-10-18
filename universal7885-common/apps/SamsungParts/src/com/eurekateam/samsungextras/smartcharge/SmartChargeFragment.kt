@@ -26,7 +26,6 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import androidx.preference.SeekBarPreference
-import com.android.settingslib.widget.ButtonPreference
 import com.android.settingslib.widget.MainSwitchPreference
 import com.android.settingslib.widget.OnMainSwitchChangeListener
 import com.android.settingslib.widget.SelectorWithWidgetPreference
@@ -36,13 +35,12 @@ import com.eurekateam.samsungextras.interfaces.SmartCharge
 import java.util.concurrent.ScheduledThreadPoolExecutor
 import java.util.concurrent.TimeUnit
 
-class SmartChargeFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListener, Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener, SelectorWithWidgetPreference.OnClickListener {
+class SmartChargeFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListener, Preference.OnPreferenceChangeListener, SelectorWithWidgetPreference.OnClickListener {
     private lateinit var mLimit: SelectorWithWidgetPreference
     private lateinit var mRestart: SelectorWithWidgetPreference
     private lateinit var mSharedPreferences: SharedPreferences
     private lateinit var mSmartChargeBtn: MainSwitchPreference
     private lateinit var mAdjust: SeekBarPreference
-    private lateinit var mApplyBtn: ButtonPreference
     private lateinit var mLimitShow: Preference
     private lateinit var mRestartShow: Preference
     private lateinit var mLimitStat: Preference
@@ -65,10 +63,7 @@ class SmartChargeFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListen
         mRestartShow = findPreference(PREF_RESTART)!!
         mLimitStat = findPreference(PREF_LIMIT_STAT)!!
         mRestartStat = findPreference(PREF_RESTART_STAT)!!
-        mApplyBtn = findPreference(PREF_APPLY)!!
 
-        mApplyBtn.setOnPreferenceClickListener(this)
-        mApplyBtn.isEnabled = false
         mSmartChargeBtn.addOnSwitchChangeListener(this)
         mSmartChargeBtn.isChecked = mSharedPreferences.getBoolean(PREF_SMARTCHARGE_MAIN, false)
         mAdjust.min = 1
@@ -121,34 +116,16 @@ class SmartChargeFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListen
             mSharedPreferences.edit().putInt(fromSelectedToId(), tmp).apply()
             when (mSelected) {
                 SelectedOption.SELECTED_LIMIT -> {
-                    mSharedPreferences.edit().putInt(PREF_LIMIT, tmp).apply()
                     mLimitShow
                 }
                 SelectedOption.SELECTED_RESTART -> {
-                    mSharedPreferences.edit().putInt(PREF_RESTART, tmp).apply()
                     mRestartShow
                 }
             }.summary = "$tmp %"
-            mMainHandler.post({ mSmartChargeBtn.isEnabled = false })
-            mMainHandler.post({ mApplyBtn.isEnabled = true })
             mMainHandler.post({ mAdjust.value = 3 })
             return true
         }
         return false
-    }
-
-    override fun onPreferenceClick(pref : Preference) {
-        if (pref == mApplyBtn) {
-            val limit = mSharedPreferences.getInt(PREF_LIMIT, 80)
-            val restart = mSharedPreferences.getInt(PREF_RESTART, 20)
-            if (limit > restart) {
-                mSmartCharge.setConfig(limit, restart)
-                mMainHandler.post({ mSmartChargeBtn.isEnabled = true })
-                mMainHandler.post({ mApplyBtn.isEnabled = false })
-            } else {
-	        Toast.makeText(requireContext(), "Limit percent should be bigger than restart percent", Toast.LENGTH_SHORT).show()
-	    }
-        }
     }
 
     private val mScheduler = Runnable {
@@ -160,10 +137,27 @@ class SmartChargeFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListen
 
     override fun onSwitchChanged(switchView: Switch, isChecked: Boolean) {
         if (isChecked) {
+            val limit = mSharedPreferences.getInt(PREF_LIMIT, 80)
+            val restart = mSharedPreferences.getInt(PREF_RESTART, 20)
+            if (limit > restart) {
+                mSmartCharge.setConfig(limit, restart)
+                mMainHandler.post({
+                    for (i in listOf(mAdjust, mLimit, mRestart))
+                        i.isEnabled = false
+                })
+            } else {
+                Toast.makeText(requireContext(), "Limit percent should be bigger than restart percent", Toast.LENGTH_SHORT).show()
+                mMainHandler.post({ mSmartChargeBtn.isEnabled = false })
+                return
+            }
             mSmartCharge.start()
-            mPoolExecutor.scheduleWithFixedDelay(mScheduler, 0, 5, TimeUnit.MINUTES)
+            mPoolExecutor.scheduleWithFixedDelay(mScheduler, 0, 3, TimeUnit.MINUTES)
         } else {
             mSmartCharge.stop()
+            mMainHandler.post({
+                for (i in listOf(mAdjust, mLimit, mRestart))
+                    i.isEnabled = true
+            })
         }
         mSharedPreferences.edit().putBoolean(PREF_SMARTCHARGE_MAIN, isChecked).apply()
     } 
@@ -176,7 +170,6 @@ class SmartChargeFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListen
         const val PREF_RESTART = "restart"
         const val PREF_LIMIT_STAT = "limit_stat"
         const val PREF_RESTART_STAT = "restart_stat"
-        const val PREF_APPLY = "apply"
         const val PREF_ADJUST = "adjust"
     }
 }

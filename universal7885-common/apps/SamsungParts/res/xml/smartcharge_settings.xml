@@ -45,10 +45,6 @@
 	   android:icon="@drawable/ic_charge"
 	   android:selectable="false"/>
 
-   <com.android.settingslib.widget.ButtonPreference
-	   android:key="apply"
-	   android:title="@string/apply"/>
-
    <com.android.settingslib.widget.FooterPreference
 	   android:title="@string/smartcharge_description"
 	   android:selectable="false"/>

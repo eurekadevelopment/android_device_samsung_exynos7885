@@ -81,7 +81,6 @@
    <string name="restart_title">reanudación de la carga actual % Setting</string>
    <string name="limit_stat_title">Estadisticas del conteo del limite de carga desde el ultimo inicio</string>
    <string name="restart_stat_title">Estadisticas del conteo de reanudaciónes de carga desde el ultimo inicio</string>
-   <string name="apply">Aplicar ajuste actual</string>
    <string name="adjust_title">Mueva la barra para ajustar los valores</string>
    <string name="adjust_summary">desde la izquierda el valor se movera de -10 -1 0 1 10</string>
    <string name="smartcharge_description">Testa es una implementación simple de la carga inteligente
