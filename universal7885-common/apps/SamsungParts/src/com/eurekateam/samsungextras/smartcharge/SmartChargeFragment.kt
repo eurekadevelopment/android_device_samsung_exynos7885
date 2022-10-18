@@ -36,7 +36,7 @@ import com.eurekateam.samsungextras.interfaces.SmartCharge
 import java.util.concurrent.ScheduledThreadPoolExecutor
 import java.util.concurrent.TimeUnit
 
-class SmartChargeFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListener, View.OnClickListener, Preference.OnPreferenceChangeListener, SelectorWithWidgetPreference.OnClickListener {
+class SmartChargeFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListener, Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener, SelectorWithWidgetPreference.OnClickListener {
     private lateinit var mLimit: SelectorWithWidgetPreference
     private lateinit var mRestart: SelectorWithWidgetPreference
     private lateinit var mSharedPreferences: SharedPreferences
@@ -67,7 +67,7 @@ class SmartChargeFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListen
         mRestartStat = findPreference(PREF_RESTART_STAT)!!
         mApplyBtn = findPreference(PREF_APPLY)!!
 
-        mApplyBtn.setOnClickListener(this)
+        mApplyBtn.setOnPreferenceClickListener(this)
         mApplyBtn.isEnabled = false
         mSmartChargeBtn.addOnSwitchChangeListener(this)
         mSmartChargeBtn.isChecked = mSharedPreferences.getBoolean(PREF_SMARTCHARGE_MAIN, false)
@@ -137,10 +137,10 @@ class SmartChargeFragment : PreferenceFragmentCompat(), OnMainSwitchChangeListen
         return false
     }
 
-    override fun onClick(v: View) {
-        if (v == mApplyBtn) {
-            val limit = mSharedPreferences.getInt(PREF_LIMIT, 20)
-            val restart = mSharedPreferences.getInt(PREF_RESTART, 80)
+    override fun onPreferenceClick(pref : Preference) {
+        if (pref == mApplyBtn) {
+            val limit = mSharedPreferences.getInt(PREF_LIMIT, 80)
+            val restart = mSharedPreferences.getInt(PREF_RESTART, 20)
             if (limit > restart) {
                 mSmartCharge.setConfig(limit, restart)
                 mMainHandler.post({ mSmartChargeBtn.isEnabled = true })

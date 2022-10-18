@@ -15,30 +15,28 @@
 #include "SmartCharge.h"
 
 #include <chrono>
-#include <thread>
 #include <FileIO.h>
 #include "BatteryConstants.h"
 
 namespace aidl::vendor::eureka::hardware::parts {
 
-static int limit = 0;
-static int restart = 0;
-
-static int limit_stat = 0;
-static int restart_stat = 0;
-
-static std::thread *monitor_th = nullptr;
-
-static void battery_monitor(void) {
-  while (true) {
+void SmartCharge::battery_monitor(void) {
+  while (kShouldRun) {
     auto batt = FileIO::readline(BATTERY_CAPACITY_CURRENT);
     if (batt >= limit) {
+      if (kTookAction) goto sleep;
       FileIO::writeline(BATTERY_CHARGE, 0);
+      kTookAction = true;
       limit_stat += 1;
     } else if (batt <= restart) {
+      if (kTookAction) goto sleep;
       FileIO::writeline(BATTERY_CHARGE, 1);
+      kTookAction = true;
       restart_stat += 1;
+    } else {
+      kTookAction = false;
     }
+sleep:
     std::this_thread::sleep_for(std::chrono::seconds(5));
   }
 }
@@ -48,14 +46,17 @@ static void battery_monitor(void) {
     return ::ndk::ScopedAStatus::fromExceptionCodeWithMessage(
         EX_ILLEGAL_ARGUMENT, "Start called without configuring.");
 
+  kShouldRun = true;
   monitor_th = new std::thread(battery_monitor);
   return ::ndk::ScopedAStatus::ok();
 }
 
 ::ndk::ScopedAStatus SmartCharge::stop(void) {
+  kShouldRun = false;
   if (monitor_th != nullptr) {
     monitor_th = nullptr;
   }
+  FileIO::writeline(BATTERY_CHARGE, 1);
   return ::ndk::ScopedAStatus::ok();
 }
 

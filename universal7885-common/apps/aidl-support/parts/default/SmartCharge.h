@@ -15,10 +15,12 @@
 #pragma once
 
 #include <aidl/vendor/eureka/hardware/parts/BnSmartCharge.h>
+#include <thread>
 
 namespace aidl::vendor::eureka::hardware::parts {
 
 struct SmartCharge : public BnSmartCharge {
+ public:
   // Methods from ::aidl::vendor::eureka::hardware::parts::ISmartCharge
   // follow.
   ::ndk::ScopedAStatus start(void);
@@ -26,5 +28,14 @@ struct SmartCharge : public BnSmartCharge {
   ::ndk::ScopedAStatus setConfig(int32_t limit, int32_t restart);
   ::ndk::ScopedAStatus getLimitCnt(int32_t *_aidl_return);
   ::ndk::ScopedAStatus getRestartCnt(int32_t *_aidl_return);
+ private:
+  int limit;
+  int restart;
+  int limit_stat;
+  int restart_stat;
+  bool kShouldRun;
+  bool kTookAction;
+  std::thread *monitor_th;
+  void battery_monitor(void);
 };
 } // namespace aidl::vendor::eureka::hardware::parts
