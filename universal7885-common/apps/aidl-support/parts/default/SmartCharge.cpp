@@ -25,12 +25,12 @@ void SmartCharge::battery_monitor(void) {
     auto batt = FileIO::readline(BATTERY_CAPACITY_CURRENT);
     if (batt >= limit) {
       if (kTookAction) goto sleep;
-      FileIO::writeline(BATTERY_CHARGE, 0);
+      FileIO::writeline(BATTERY_CHARGE, 1);
       kTookAction = true;
       limit_stat += 1;
     } else if (batt <= restart) {
       if (kTookAction) goto sleep;
-      FileIO::writeline(BATTERY_CHARGE, 1);
+      FileIO::writeline(BATTERY_CHARGE, 0);
       kTookAction = true;
       restart_stat += 1;
     } else {
@@ -56,7 +56,7 @@ sleep:
   if (monitor_th != nullptr) {
     monitor_th = nullptr;
   }
-  FileIO::writeline(BATTERY_CHARGE, 1);
+  FileIO::writeline(BATTERY_CHARGE, 0);
   return ::ndk::ScopedAStatus::ok();
 }
 
