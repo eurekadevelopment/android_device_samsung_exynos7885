@@ -34,6 +34,7 @@ void SmartCharge::battery_monitor(void) {
       kTookAction = true;
       restart_stat += 1;
     } else {
+      if (!kTookAction) goto sleep;
       kTookAction = false;
     }
 sleep:
