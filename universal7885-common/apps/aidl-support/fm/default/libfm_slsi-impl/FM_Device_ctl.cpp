@@ -25,7 +25,7 @@ int open_device(void) {
   return fd;
 }
 
-int get_frequency(const int fd, int64_t *channel) {
+int get_frequency(const int fd, int *channel) {
   struct v4l2_frequency freq {};
   int ret;
 
@@ -36,12 +36,12 @@ int get_frequency(const int fd, int64_t *channel) {
   if (ret < 0)
      return FM_FAILURE;
 
-  *channel = static_cast<int64_t>(freq.frequency) / 16000;
+  *channel = static_cast<int>(freq.frequency) / 16000;
 
   return FM_SUCCESS;
 }
 
-int set_frequency(const int fd, int64_t channel) {
+int set_frequency(const int fd, int channel) {
   struct v4l2_frequency freq {};
   int ret;
 
@@ -58,7 +58,7 @@ int set_frequency(const int fd, int64_t channel) {
   return FM_SUCCESS;
 }
 
-static int set_control(const int fd, unsigned int id, int64_t val) {
+static int set_control(const int fd, unsigned int id, int val) {
   struct v4l2_control ctrl {};
   int ret;
   ctrl.id = id;
@@ -95,7 +95,7 @@ static int seek_frequency(int fd, unsigned int upward,
 
 static int channel_search(const int fd, unsigned int upward,
                                       unsigned int wrap_around,
-                                      unsigned int spacing, int64_t *channel) {
+                                      unsigned int spacing, int *channel) {
   int ret;
 
   ret = set_control(fd, V4L2_CID_S610_SEEK_MODE,
@@ -114,12 +114,12 @@ static int channel_search(const int fd, unsigned int upward,
   return ret;
 }
 int next_channel(const int fd) {
-	int64_t ret;
+	int ret;
 	channel_search(fd, 1, 0, FM_CHANNEL_SPACING_100KHZ, &ret);
 	return ret;
 }
 int before_channel(const int fd) {
-	int64_t ret;
+	int ret;
 	channel_search(fd, 0, 0, FM_CHANNEL_SPACING_100KHZ, &ret);
 	return ret;
 }
@@ -139,12 +139,12 @@ int set_volume(int fd, int volume /* 1 ~ 15 */) {
   return FM_SUCCESS;
 }
 
-std::vector<int64_t> get_freqs(const int fd) {
+std::vector<int> get_freqs(const int fd) {
   set_mute(fd, true);
 
-  auto map = std::vector<int64_t>();
+  auto map = std::vector<int>();
   for (int i = 0; i < TRACK_SIZE; i++) {
-    int64_t found = 0;
+    int found = 0;
     channel_search(fd, 1, 0, FM_CHANNEL_SPACING_50KHZ, &found);
     for (auto k : map) {
 	if (k == found)
@@ -245,10 +245,10 @@ unsigned int get_lowerband_limit(int fd) {
   }
 }
 
-int64_t get_rmssi(int fd) {
+int get_rmssi(int fd) {
   struct v4l2_tuner tuner {};
   int ret;
-  int64_t rmssi;
+  int rmssi;
   tuner.index = 0;
   tuner.signal = 0;
   ret = ioctl(fd, VIDIOC_G_TUNER, &tuner);
@@ -261,7 +261,7 @@ int64_t get_rmssi(int fd) {
   return ret;
 }
 
-int set_rssi(int fd, int64_t rssi) {
+int set_rssi(int fd, int rssi) {
   int ret = set_control(fd, V4L2_CID_S610_RSSI_TH, rssi);
   if (ret < 0) {
     return FM_FAILURE;
