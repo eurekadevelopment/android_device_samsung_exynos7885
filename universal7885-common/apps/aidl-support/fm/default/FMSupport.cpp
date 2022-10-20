@@ -44,11 +44,11 @@ constexpr const char *FM_FREQ_SEEK =
   case GetType::GET_TYPE_FM_RMSSI:
     NOT_SUPPORTED;
   case GetType::GET_TYPE_FM_BEFORE_CHANNEL:
-    FileIO::writeline(FM_FREQ_SEEK, "0 " + std::to_string(3 * 10));
+    FileIO::writeline(FM_FREQ_SEEK, "0 " + std::to_string(SYSFS_SPACING * 10));
     *_aidl_return = FileIO::readline(FM_FREQ_CTL);
     break;
   case GetType::GET_TYPE_FM_NEXT_CHANNEL:
-    FileIO::writeline(FM_FREQ_SEEK, "1 " + std::to_string(3 * 10));
+    FileIO::writeline(FM_FREQ_SEEK, "1 " + std::to_string(SYSFS_SPACING * 10));
     *_aidl_return = FileIO::readline(FM_FREQ_CTL);
     break;
   case GetType::GET_TYPE_FM_SYSFS_IF:
@@ -92,7 +92,7 @@ static inline bool vector_contains(const std::vector<int> vec,
 ::ndk::ScopedAStatus FMSupport::getFreqsList(std::vector<int> *_aidl_return) {
   RETURN_IF_FAILED_LOCK;
   for (int i = 0; i < TRACK_SIZE; i++) {
-    FileIO::writeline(FM_FREQ_SEEK, "1 " + std::to_string(3 * 10));
+    FileIO::writeline(FM_FREQ_SEEK, "1 " + std::to_string(SYSFS_SPACING * 10));
     int freq = FileIO::readline(FM_FREQ_CTL);
     if (vector_contains(*_aidl_return, freq))
       continue;

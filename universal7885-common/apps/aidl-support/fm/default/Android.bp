@@ -1,6 +1,8 @@
 cc_defaults {
   name: "fm_aidl_defaults",
-  cflags: ["-DTRACK_SIZE=30"],
+  cflags: [
+     "-DTRACK_SIZE=30",
+     "-DSYSFS_SPACING=3",],
 }
 
 cc_binary {
