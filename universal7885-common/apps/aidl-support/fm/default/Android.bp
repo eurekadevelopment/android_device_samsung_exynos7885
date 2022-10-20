@@ -2,7 +2,8 @@ cc_defaults {
   name: "fm_aidl_defaults",
   cflags: [
      "-DTRACK_SIZE=30",
-     "-DSYSFS_SPACING=3",],
+     "-DSYSFS_SPACING=3",
+  ],
 }
 
 cc_binary {
@@ -22,7 +23,7 @@ cc_binary {
         "libbinder_ndk",
         "liblog",
         "libfileio",
-        "vendor.eureka.hardware.fmradio-V1-ndk",
+        "vendor.eureka.hardware.fmradio-V2-ndk",
         "vendor.eureka.hardware.audio_route-V1-ndk",
     ],
     header_libs: ["libaudioclient_headers"],

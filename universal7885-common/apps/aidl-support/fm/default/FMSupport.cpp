@@ -14,7 +14,7 @@
 
 #include "FMSupport.h"
 
-#include <iostream>
+#include <algorithm>
 
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -26,10 +26,9 @@
 
 namespace aidl::vendor::eureka::hardware::fmradio {
 
-constexpr const char *FM_FREQ_CTL =
-    "/sys/devices/virtual/s610_radio/s610_radio/radio_freq_ctrl";
-constexpr const char *FM_FREQ_SEEK =
-    "/sys/devices/virtual/s610_radio/s610_radio/radio_freq_seek";
+#define FM_SYSFS_BASE "/sys/devices/virtual/s610_radio/s610_radio"
+constexpr const char *FM_FREQ_CTL = FM_SYSFS_BASE "/radio_freq_ctrl";
+constexpr const char *FM_FREQ_SEEK = FM_SYSFS_BASE "/radio_freq_seek";
 
 ::ndk::ScopedAStatus FMSupport::open(void) { NOT_SUPPORTED; }
 
@@ -52,7 +51,15 @@ constexpr const char *FM_FREQ_SEEK =
     *_aidl_return = FileIO::readline(FM_FREQ_CTL);
     break;
   case GetType::GET_TYPE_FM_SYSFS_IF:
-    *_aidl_return = access("/sys/devices/virtual/s610_radio/s610_radio/", F_OK);
+    *_aidl_return = access(FM_SYSFS_BASE, F_OK);
+    break;
+  case GetType::GET_TYPE_FM_MUTEX_LOCKED:
+    if (lock.try_lock()) {
+       *_aidl_return = false;
+       lock.unlock();
+    } else {
+       *_aidl_return = true;
+    }
     break;
   default:
     break;
@@ -73,31 +80,27 @@ constexpr const char *FM_FREQ_SEEK =
   case SetType::SET_TYPE_FM_SEARCH_CANCEL:
   case SetType::SET_TYPE_FM_SPEAKER_ROUTE:
     NOT_SUPPORTED;
+  case SetType::SET_TYPE_FM_SEARCH_START:
+    search_thread = std::thread([this] {
+        for (int i = 0; i < TRACK_SIZE; i++) {
+              FileIO::writeline(FM_FREQ_SEEK, "1 " + std::to_string(SYSFS_SPACING * 10));
+              int freq = FileIO::readline(FM_FREQ_CTL);
+              if (std::find(freqs_list.begin(), freqs_list.end(), freq) != freqs_list.end()) continue;
+              freqs_list.push_back(freq);
+        }
+        lock.unlock();
+    });
+    break;
   default:
     break;
   };
-  lock.unlock();
+  if (type != SetType::SET_TYPE_FM_SEARCH_START) lock.unlock();
   return ::ndk::ScopedAStatus::ok();
-}
-
-static inline bool vector_contains(const std::vector<int> vec,
-                                   const int search) {
-  for (auto i : vec) {
-    if (i == search)
-      return true;
-  }
-  return false;
 }
 
 ::ndk::ScopedAStatus FMSupport::getFreqsList(std::vector<int> *_aidl_return) {
   RETURN_IF_FAILED_LOCK;
-  for (int i = 0; i < TRACK_SIZE; i++) {
-    FileIO::writeline(FM_FREQ_SEEK, "1 " + std::to_string(SYSFS_SPACING * 10));
-    int freq = FileIO::readline(FM_FREQ_CTL);
-    if (vector_contains(*_aidl_return, freq))
-      continue;
-    _aidl_return->push_back(freq);
-  }
+  *_aidl_return = freqs_list;
   lock.unlock();
   return ::ndk::ScopedAStatus::ok();
 }

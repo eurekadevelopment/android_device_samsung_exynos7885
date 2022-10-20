@@ -17,12 +17,15 @@
 #include <aidl/vendor/eureka/hardware/fmradio/BnFMDevControl.h>
 
 #include <mutex>
+#include <thread>
 
 namespace aidl::vendor::eureka::hardware::fmradio {
 
 struct FMDevControl : public BnFMDevControl {
  public:
-  FMDevControl() = default;
+  FMDevControl(void) {
+    index = 0;
+  }
   // Methods from aidl::vendor::eureka::hardware::fmradio::IFMRadio follow.
   ::ndk::ScopedAStatus open(void) override;
   ::ndk::ScopedAStatus getValue(GetType type, int *_aidl_return) override;
@@ -31,6 +34,9 @@ struct FMDevControl : public BnFMDevControl {
   ::ndk::ScopedAStatus close(void) override;
  private:
   int fd;
+  unsigned int index;
   std::timed_mutex lock;
+  std::thread search_thread;
+  std::vector<int> freqs_list;
 };
 } // namespace aidl::vendor::eureka::hardware::fmradio

@@ -41,9 +41,7 @@ namespace aidl::vendor::eureka::hardware::fmradio {
 	assert(fd > 0);
 	switch (type) {
 		case GetType::GET_TYPE_FM_FREQ:
-			int64_t freq;
-			fm_radio_slsi::get_frequency(fd, &freq);
-			*_aidl_return = freq;
+			fm_radio_slsi::get_frequency(fd, _aidl_return);
 			break;
 		case GetType::GET_TYPE_FM_UPPER_LIMIT:
 			*_aidl_return = fm_radio_slsi::get_upperband_limit(fd);
@@ -55,13 +53,25 @@ namespace aidl::vendor::eureka::hardware::fmradio {
 			*_aidl_return = fm_radio_slsi::get_rmssi(fd);
 			break;
 		case GetType::GET_TYPE_FM_BEFORE_CHANNEL:
-			*_aidl_return = fm_radio_slsi::before_channel(fd);
+			if (index > 0) index -= 1;
+			fm_radio_slsi::set_frequency(fd, freqs_list[index]);
+			*_aidl_return = freqs_list[index];
 			break;
 		case GetType::GET_TYPE_FM_NEXT_CHANNEL:
-			*_aidl_return = fm_radio_slsi::next_channel(fd);
+			if (index < freqs_list.size() - 1) index += 1;
+			fm_radio_slsi::set_frequency(fd, freqs_list[index]);
+			*_aidl_return = freqs_list[index];
 			break;
 		case GetType::GET_TYPE_FM_SYSFS_IF:
 			NOT_SUPPORTED;
+		case GetType::GET_TYPE_FM_MUTEX_LOCKED:
+			if (lock.try_lock()){
+				*_aidl_return = false;
+				lock.unlock();
+			} else {
+				*_aidl_return = true;
+			}
+			break;
 		default:
 			break;
 	};
@@ -96,19 +106,22 @@ namespace aidl::vendor::eureka::hardware::fmradio {
 			svc = audio_route::IAudioRoute::fromBinder(ndk::SpAIBinder(AServiceManager_waitForService("vendor.eureka.hardware.audio_route.IAudioRoute/default")));
 			svc->setParam(value ? "routing=2": "routing=8");
 			break;
+		case SetType::SET_TYPE_FM_SEARCH_START:
+			search_thread = std::thread([this] {
+				freqs_list = fm_radio_slsi::get_freqs(fd);
+				lock.unlock();
+			});
+			break;
 		default:
 			break;
 	};
-	lock.unlock();
+	if (type != SetType::SET_TYPE_FM_SEARCH_START) lock.unlock();
 	return ::ndk::ScopedAStatus::ok();
 }
 
 ::ndk::ScopedAStatus FMDevControl::getFreqsList(std::vector<int> *_aidl_return){
 	RETURN_IF_FAILED_LOCK;
-	auto vec = fm_radio_slsi::get_freqs(fd);
-	for (auto i : vec)
-		_aidl_return->push_back(i);
-
+	*_aidl_return = freqs_list;
 	lock.unlock();
 	return ::ndk::ScopedAStatus::ok();
 }
