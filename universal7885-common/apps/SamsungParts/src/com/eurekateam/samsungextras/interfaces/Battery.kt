@@ -39,7 +39,7 @@ class Battery {
             return mBattery.getBatteryStats(BatterySys.FASTCHARGE) == 1
         }
         set(k) {
-            mBattery.setBatteryWritable(BatterySys.FASTCHARGE, k)
+            mBattery.setBatteryWritable(BatterySys.FASTCHARGE, !k)
         }
 
     fun getGeneralBatteryStats(id: BatteryIds): Int = when (id) {
