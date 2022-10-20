@@ -7,8 +7,8 @@ namespace fm_radio_slsi {
 int open_device(void);
 int get_frequency(const int fd, int *channel);
 int set_frequency(const int fd, int channel);
-int next_channel(const int fd);
-int before_channel(const int fd);
+//int next_channel(const int fd);
+//int before_channel(const int fd);
 int set_mute(const int fd, bool mute);
 int set_volume(int fd, int volume);
 std::vector<int> get_freqs(const int fd);

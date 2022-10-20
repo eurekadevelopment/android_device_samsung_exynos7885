@@ -113,6 +113,7 @@ static int channel_search(const int fd, unsigned int upward,
 
   return ret;
 }
+/*
 int next_channel(const int fd) {
 	int ret;
 	channel_search(fd, 1, 0, FM_CHANNEL_SPACING_100KHZ, &ret);
@@ -123,6 +124,7 @@ int before_channel(const int fd) {
 	channel_search(fd, 0, 0, FM_CHANNEL_SPACING_100KHZ, &ret);
 	return ret;
 }
+*/
 int set_mute(const int fd, bool mute) {
   int ret = set_control(fd, V4L2_CID_AUDIO_MUTE, !mute);
   if (ret < 0) {
