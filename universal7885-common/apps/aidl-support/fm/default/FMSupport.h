@@ -18,6 +18,7 @@
 
 #include <mutex>
 #include <thread>
+#include "MiddleState.h"
 
 namespace aidl::vendor::eureka::hardware::fmradio {
 
@@ -36,6 +37,7 @@ public:
   std::timed_mutex lock;
   std::thread search_thread;
   std::vector<int> freqs_list;
-  int index;
+  unsigned int index;
+  middlestate_t *kMiddleState;
 };
 } // namespace aidl::vendor::eureka::hardware::fmradio

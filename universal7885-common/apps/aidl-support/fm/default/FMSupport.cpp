@@ -43,12 +43,24 @@ constexpr const char *FM_FREQ_SEEK = FM_SYSFS_BASE "/radio_freq_seek";
   case GetType::GET_TYPE_FM_RMSSI:
     NOT_SUPPORTED;
   case GetType::GET_TYPE_FM_BEFORE_CHANNEL:
-    FileIO::writeline(FM_FREQ_SEEK, "0 " + std::to_string(SYSFS_SPACING * 10));
-    *_aidl_return = FileIO::readline(FM_FREQ_CTL);
+    if (index > 0) index -= 1;
+    if (kMiddleState != nullptr) {
+       index = kMiddleState->first;
+       delete kMiddleState;
+       kMiddleState = nullptr;
+    }
+    FileIO::writeline(FM_FREQ_CTL, freqs_list[index]);
+    *_aidl_return = freqs_list[index];
     break;
   case GetType::GET_TYPE_FM_NEXT_CHANNEL:
-    FileIO::writeline(FM_FREQ_SEEK, "1 " + std::to_string(SYSFS_SPACING * 10));
-    *_aidl_return = FileIO::readline(FM_FREQ_CTL);
+    if (index < freqs_list.size() - 1) index += 1;
+    if (kMiddleState != nullptr) {
+       index = kMiddleState->second;
+       delete kMiddleState;
+       kMiddleState = nullptr;
+    }
+    FileIO::writeline(FM_FREQ_CTL, freqs_list[index]);
+    *_aidl_return = freqs_list[index];
     break;
   case GetType::GET_TYPE_FM_SYSFS_IF:
     *_aidl_return = access(FM_SYSFS_BASE, F_OK);
@@ -72,6 +84,8 @@ constexpr const char *FM_FREQ_SEEK = FM_SYSFS_BASE "/radio_freq_seek";
   switch (type) {
   case SetType::SET_TYPE_FM_FREQ:
     FileIO::writeline(FM_FREQ_CTL, value * 1000);
+    if (std::find(freqs_list.begin(), freqs_list.end(), value) == freqs_list.end())
+       kMiddleState = saveMiddleState(value, freqs_list);
     break;
   case SetType::SET_TYPE_FM_MUTE:
   case SetType::SET_TYPE_FM_VOLUME:

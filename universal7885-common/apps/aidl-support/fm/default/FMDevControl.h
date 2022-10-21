@@ -19,6 +19,8 @@
 #include <mutex>
 #include <thread>
 
+#include "MiddleState.h"
+
 namespace aidl::vendor::eureka::hardware::fmradio {
 
 struct FMDevControl : public BnFMDevControl {
@@ -38,5 +40,6 @@ struct FMDevControl : public BnFMDevControl {
   std::timed_mutex lock;
   std::thread search_thread;
   std::vector<int> freqs_list;
+  middlestate_t *kMiddleState;
 };
 } // namespace aidl::vendor::eureka::hardware::fmradio

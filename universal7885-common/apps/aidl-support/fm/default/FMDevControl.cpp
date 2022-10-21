@@ -54,11 +54,21 @@ namespace aidl::vendor::eureka::hardware::fmradio {
 			break;
 		case GetType::GET_TYPE_FM_BEFORE_CHANNEL:
 			if (index > 0) index -= 1;
+			if (kMiddleState != nullptr) {
+				index = kMiddleState->first;
+				delete kMiddleState;
+				kMiddleState = nullptr;
+			}
 			fm_radio_slsi::set_frequency(fd, freqs_list[index]);
 			*_aidl_return = freqs_list[index];
 			break;
 		case GetType::GET_TYPE_FM_NEXT_CHANNEL:
 			if (index < freqs_list.size() - 1) index += 1;
+			if (kMiddleState != nullptr) {
+                                index = kMiddleState->second;
+                                delete kMiddleState;
+                                kMiddleState = nullptr;
+                        }
 			fm_radio_slsi::set_frequency(fd, freqs_list[index]);
 			*_aidl_return = freqs_list[index];
 			break;
@@ -86,6 +96,8 @@ namespace aidl::vendor::eureka::hardware::fmradio {
 	switch (type) {
 		case SetType::SET_TYPE_FM_FREQ:
 			fm_radio_slsi::set_frequency(fd, value);
+			if (std::find(freqs_list.begin(), freqs_list.end(), value) == freqs_list.end())
+				kMiddleState = saveMiddleState(value, freqs_list);
 			break;
 		case SetType::SET_TYPE_FM_MUTE:
 			fm_radio_slsi::set_mute(fd, value);
