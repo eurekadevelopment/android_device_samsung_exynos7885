@@ -7,26 +7,28 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.res.ResourcesCompat
-import com.eurekateam.fmradio.*
+import androidx.preference.PreferenceManager
 import com.eurekateam.fmradio.NativeFMInterface
-import com.eurekateam.fmradio.fragments.MainFragment
-import com.eurekateam.fmradio.utils.FileUtilities
 import com.eurekateam.fmradio.utils.Log
+import com.eurekateam.fmradio.R
 import com.google.android.material.textview.MaterialTextView
+import vendor.eureka.hardware.fmradio.GetType
+import vendor.eureka.hardware.fmradio.SetType
 
 class ListViewAdapter(private val mContext: Context) : BaseAdapter() {
     private val mFMInterface = NativeFMInterface()
+    private val mListChannel = mFMInterface.mDefaultCtl.getFreqsList()
     private var mListofViews = HashMap<Int, View>(30)
     override fun getCount(): Int {
-        return MainFragment.mTracks.size
+        return 30
     }
 
-    override fun getItem(p0: Int): Any {
-        return MainFragment.mTracks[p0]
+    override fun getItem(p: Int): Any {
+        return mListChannel[p]
     }
 
-    override fun getItemId(p0: Int): Long {
-        return p0.toLong()
+    override fun getItemId(p: Int): Long {
+        return p.toLong()
     }
 
     override fun getView(id: Int, mConvertView: View?, parent: ViewGroup?): View {
@@ -39,16 +41,10 @@ class ListViewAdapter(private val mContext: Context) : BaseAdapter() {
         mAnotherConvertView.findViewById<MaterialTextView>(R.id.channel_list_title).text =
             String.format(
                 mContext.getString(R.string.fm_radio_freq),
-                MainFragment.mTracks[id].toFloat() / 1000
+                mListChannel[id].toFloat() / 1000
             )
         mAnotherConvertView.findViewById<MaterialTextView>(R.id.channel_list_title).setOnClickListener {
-            mFMInterface.setFMFreq(MainFragment.fd, MainFragment.mTracks[id].toInt())
-            MainFragment.mFreqCurrent = MainFragment.mTracks[id].toInt()
-            FileUtilities.writeToFile(
-                FileUtilities.mFMFreqFileName,
-                MainFragment.mFreqCurrent.toString(),
-                mContext
-            )
+            mFMInterface.mDefaultCtl.setValue(SetType.SET_TYPE_FM_FREQ, mListChannel[id])
             setCurrentFMChannel(id)
         }
         mAnotherConvertView.findViewById<AppCompatImageView>(R.id.star_button_list).let {
@@ -58,17 +54,17 @@ class ListViewAdapter(private val mContext: Context) : BaseAdapter() {
                 R.drawable.ic_star_filled,
                 mContext.theme
             )
-            val mIndex = MainFragment.mTracks[id].toInt()
-            if (MainFragment.mFavStats[mIndex] == null) {
-                MainFragment.mFavStats.putIfAbsent(mIndex, false)
-            }
-            if (MainFragment.mFavStats[mIndex]!!) {
-                it.setImageDrawable(mStarFilled)
-            } else {
+            val mIndex = mListChannel[id]
+            val mSharedPref = PreferenceManager.getDefaultSharedPreferences(mContext)
+            val mBefore = mSharedPref.getBoolean("fav_$mIndex", false)
+            if (mBefore) {
                 it.setImageDrawable(mStar)
+            } else {
+                it.setImageDrawable(mStarFilled)
             }
+            mSharedPref.edit().putBoolean("fav_$mIndex", !mBefore).apply()
         }
-        if (MainFragment.mFreqCurrent == MainFragment.mTracks[id].toInt()) {
+        if (mFMInterface.mDefaultCtl.getValue(GetType.GET_TYPE_FM_FREQ) == mListChannel[id]) {
             setCurrentFMChannel(id)
         }
         mListofViews[id] = mAnotherConvertView!!
@@ -89,7 +85,7 @@ class ListViewAdapter(private val mContext: Context) : BaseAdapter() {
         mListofViews[mPosition]?.setBackgroundColor(
             ResourcesCompat.getColor(
                 mContext.resources,
-                android.R.color.system_accent3_400,
+                android.R.color.system_accent2_400,
                 mContext.theme
             )
         )

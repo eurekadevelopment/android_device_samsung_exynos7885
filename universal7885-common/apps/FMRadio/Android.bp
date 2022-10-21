@@ -8,12 +8,11 @@ android_app {
     static_libs: [
         "androidx.core_core",
         "androidx.appcompat_appcompat",
+        "androidx.preference_preference",
         "com.google.android.material_stable",
-        "kotlinx_coroutines",
         "androidx.transition_transition",
-        "kotlinx_coroutines_android",
         "androidx.coordinatorlayout_coordinatorlayout",
-        "vendor.eureka.hardware.fmradio-V1-java",
+        "vendor.eureka.hardware.fmradio-V2-java",
     ],
     required: [
         "vendor.eureka.hardware.fmradio-service",

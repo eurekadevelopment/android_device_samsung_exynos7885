@@ -10,29 +10,23 @@ import android.media.MediaMetadata
 import android.media.session.MediaSession
 import android.media.session.PlaybackState
 import android.os.IBinder
-import com.eurekateam.fmradio.enums.OutputState
+import androidx.preference.PreferenceManager
 import com.eurekateam.fmradio.enums.PlayState
 import com.eurekateam.fmradio.enums.PowerState
-import com.eurekateam.fmradio.fragments.MainFragment
 import com.eurekateam.fmradio.utils.Log
+import vendor.eureka.hardware.fmradio.SetType
+import vendor.eureka.hardware.fmradio.GetType
 
 class FMRadioService : Service() {
     private lateinit var mContext: Context
     private lateinit var mAudioManager: AudioManager
-    private lateinit var mTracks: IntArray
-    private lateinit var mNativeFMInterface: NativeFMInterface
+    private val mNativeFMInterface = NativeFMInterface()
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Log.i("--- FMRadio Background (IN) ---")
-        fd = MainFragment.fd
         mAudioManager = getSystemService(AUDIO_SERVICE) as AudioManager
-        mTracks = MainFragment.mTracks
-        mIndex = MainFragment.getIndex()
-        if (mTracks.isEmpty() || mIndex == -1) {
-            return super.onStartCommand(intent, flags, startId)
-        }
         if (intent != null) {
             intent.action?.let { Log.i(it) }
             when (intent.action) {
@@ -47,51 +41,37 @@ class FMRadioService : Service() {
                 }
                 ACTION_BEFORE -> {
                     mPlayState = PlayState.STATE_PLAYING
-                    Log.i("mCurrentIndex $mIndex")
-                    if (mIndex > 0) {
-                        mIndex -= 1
-                    }
-                    mNativeFMInterface.setFMFreq(fd, mTracks[mIndex].toInt())
-                    MainFragment.mFreqCurrent = mTracks[mIndex].toInt()
+                    mNativeFMInterface.mDefaultCtl.getValue(GetType.GET_TYPE_FM_BEFORE_CHANNEL)
                 }
                 ACTION_NEXT -> {
                     mPlayState = PlayState.STATE_PLAYING
-                    Log.i("mCurrentIndex $mIndex")
-                    if (mIndex < mTracks.size - 1) {
-                        mIndex += 1
-                    }
-                    mNativeFMInterface.setFMFreq(fd, mTracks[mIndex].toInt())
-                    MainFragment.mFreqCurrent = mTracks[mIndex].toInt()
+                    mNativeFMInterface.mDefaultCtl.getValue(GetType.GET_TYPE_FM_NEXT_CHANNEL)
                 }
                 ACTION_QUIT -> {
                     mAudioManager = getSystemService(AUDIO_SERVICE) as AudioManager
                     Log.i("--- FMRadio Background (OUT) ---")
+                    mNativeFMInterface.mDevCtl.setValue(SetType.SET_TYPE_FM_THREAD, 0)
+                    mNativeFMInterface.mDevCtl.close()
                     mAudioManager.setParameters(PowerState.FM_POWER_OFF.mAudioParam)
                     mMediaSession.release()
                     stopSelf()
                 }
                 ACTION_OUTPUT -> {
-                    changeOutputDevice(mOutput)
-                    if (mOutput == OutputState.OUTPUT_HEADSET) {
-                        mOutput = OutputState.OUTPUT_SPEAKER
-                    } else if (mOutput == OutputState.OUTPUT_SPEAKER) {
-                        mOutput = OutputState.OUTPUT_HEADSET
-                    }
+                    var mSpeaker = PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean("speaker", false)
+                    mSpeaker = !mSpeaker
+                    changeOutputDevice(mSpeaker)
+                    PreferenceManager.getDefaultSharedPreferences(mContext).edit().putBoolean("speaker", mSpeaker).apply()
                 }
                 ACTION_START -> {
                     mMediaSession = MediaSession(this, "FMRadio")
-                    mNativeFMInterface = NativeFMInterface()
                     mContext = this
                     setPlaybackState()
                     mMediaSession.isActive = true
                 }
             }
         }
-        sendMetaData("FM ${mTracks[mIndex].toFloat() / 1000} Mhz")
+        sendMetaData("FM ${mNativeFMInterface.mDefaultCtl.getValue(GetType.GET_TYPE_FM_FREQ).toFloat() / 1000} Mhz")
         startForeground(51, pushNotification())
-        if (mOutput == OutputState.OUTPUT_SPEAKER) {
-            changeOutputDevice(OutputState.OUTPUT_HEADSET)
-        }
         Log.i("--- FMRadio Background (OUT) ---")
         return START_STICKY
     }
@@ -141,13 +121,10 @@ class FMRadioService : Service() {
         val close = PendingIntent.getService(mContext, 0, Intent(ACTION_QUIT), PendingIntent.FLAG_IMMUTABLE)
         val output = PendingIntent.getService(mContext, 0, Intent(ACTION_OUTPUT), PendingIntent.FLAG_IMMUTABLE)
         val mOutputAction: Notification.Action = Notification.Action.Builder(
-            when (mOutput) {
-                OutputState.OUTPUT_HEADSET -> {
-                    Icon.createWithResource(this, R.drawable.ic_volume_up)
-                }
-                OutputState.OUTPUT_SPEAKER -> {
-                    Icon.createWithResource(this, R.drawable.ic_headphones)
-                }
+            if (PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean("speaker", false)) {
+                Icon.createWithResource(this, R.drawable.ic_volume_up)
+            } else {
+                Icon.createWithResource(this, R.drawable.ic_headphones)
             },
             "Output Configuration",
             output
@@ -196,16 +173,9 @@ class FMRadioService : Service() {
         private const val ACTION_QUIT = "$PACKAGENAME.QUIT"
         private const val ACTION_OUTPUT = "$PACKAGENAME.OUTPUT"
         private var mPlayState: PlayState = PlayState.STATE_PLAYING
-        private var mOutput: OutputState = MainFragment.mHeadset
-        private var fd: Int = -1
-        private var mIndex = -1
         lateinit var mMediaSession: MediaSession
     }
-    private fun changeOutputDevice(output: OutputState) {
-        if (output == OutputState.OUTPUT_SPEAKER) {
-            mNativeFMInterface.setAudioRoute(false)
-        } else if (output == OutputState.OUTPUT_HEADSET) {
-            mNativeFMInterface.setAudioRoute(true)
-        }
+    private fun changeOutputDevice(speaker: Boolean) {
+        mNativeFMInterface.mDevCtl.setValue(SetType.SET_TYPE_FM_SPEAKER_ROUTE, if (speaker) 1 else 0)
     }
 }

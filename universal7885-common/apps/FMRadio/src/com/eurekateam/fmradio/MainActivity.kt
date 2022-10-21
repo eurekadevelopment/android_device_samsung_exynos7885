@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mAlertImage: AppCompatImageView
     private lateinit var mAudioManager: AudioManager
     override fun onCreate(savedInstanceState: Bundle?) {
-        MainFragment.fd = mFMInterface.openFMDevice()
         mAlertView = (getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater)
             .inflate(R.layout.alertdialog, null)
         mAlertTitle = mAlertView.findViewById(R.id.alert_title)
@@ -55,27 +54,16 @@ class MainActivity : AppCompatActivity() {
         mAlertDesc = mAlertView.findViewById(R.id.alert_desc)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation)
-        if (MainFragment.fd == -1) {
-            Log.e("CANNOT OPEN /dev/radio0!!!")
-            mAlertTitle.text = getString(R.string.radio_io_error)
-            mAlertDesc.text = getString(R.string.radio_io_error_desc)
-            mAlertImage.setImageIcon(Icon.createWithResource(this, R.drawable.ic_error))
-            val mAlertDialog = AlertDialog.Builder(this)
-            mAlertDialog
-                .setCancelable(false)
-                .setView(mAlertView)
-                .setNegativeButton(R.string.ok) { _: DialogInterface, _: Int ->
-                    finish()
-                }
-                .show()
-        }
         DynamicColors.applyToActivitiesIfAvailable(application)
+        mFMInterface.mDevCtl.open()
         mAudioManager = getSystemService(AUDIO_SERVICE) as AudioManager
+
         /**
          * Detects whether wired headphones is connected to this device or no
          * @see AudioManager.getDevices
          */
         val mAudioDeviceInfo = mAudioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
+
         for (i in mAudioDeviceInfo.indices) {
             if (mAudioDeviceInfo[i].type == AudioDeviceInfo.TYPE_WIRED_HEADSET ||
                 mAudioDeviceInfo[i].type == AudioDeviceInfo.TYPE_WIRED_HEADPHONES
@@ -84,6 +72,7 @@ class MainActivity : AppCompatActivity() {
                 Log.i("Wired Headphones detected")
             }
         }
+
         if (MainFragment.mHeadSetPlugged != HeadsetState.HEADSET_STATE_CONNECTED) {
             mAlertTitle.text = getString(R.string.no_headphones_error)
             mAlertDesc.text = getString(R.string.no_headphones_error_desc)
@@ -183,6 +172,7 @@ class MainActivity : AppCompatActivity() {
         super.onRestart()
         stopService(mIntent)
     }
+
     companion object {
         private const val ACTION_START = "com.eurekateam.fmradio.START"
     }

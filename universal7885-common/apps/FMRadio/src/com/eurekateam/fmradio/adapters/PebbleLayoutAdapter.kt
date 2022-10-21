@@ -6,38 +6,34 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import androidx.core.content.res.ResourcesCompat
+import androidx.preference.PreferenceManager
 import com.eurekateam.fmradio.NativeFMInterface
 import com.eurekateam.fmradio.PebbleTextView
 import com.eurekateam.fmradio.R
-import com.eurekateam.fmradio.fragments.MainFragment
-import com.eurekateam.fmradio.utils.FileUtilities
+import vendor.eureka.hardware.fmradio.SetType
 
 class PebbleLayoutAdapter(private val mContext: Context) : BaseAdapter() {
-    private val mFavoriteList: MutableList<Int> = emptyList<Int>().toMutableList()
+    private var mFavoriteList: List<Int> = emptyList()
+    private val mFMInterface = NativeFMInterface()
+    private val mListChannel = mFMInterface.mDefaultCtl.getFreqsList()
+    private val mSharedPref = PreferenceManager.getDefaultSharedPreferences(mContext)
+
     init {
-        for (mItem in MainFragment.mFavStats) {
-            if (mItem.value) {
-                mFavoriteList.add(mItem.key)
-            }
+        for (k in mListChannel) {
+            if (mSharedPref.getBoolean("fav_$k", false)) mFavoriteList += k
         }
-        mFavoriteList.sort()
-        var mData = ""
-        for (i in mFavoriteList) {
-            mData += "$i\n"
-        }
-        FileUtilities.writeToFile(FileUtilities.mFavouriteChannelFileName, mData, mContext)
     }
+
     override fun getCount(): Int {
         return mFavoriteList.size
     }
 
-    override fun getItem(p0: Int): Any {
-        return mFavoriteList[p0]
+    override fun getItem(p: Int): Any {
+        return mFavoriteList[p]
     }
 
-    private val mFMInterface = NativeFMInterface()
-    override fun getItemId(p0: Int): Long {
-        return p0.toLong()
+    override fun getItemId(p: Int): Long {
+        return p.toLong()
     }
 
     override fun getView(id: Int, mConvertView: View?, parent: ViewGroup?): View {
@@ -55,13 +51,7 @@ class PebbleLayoutAdapter(private val mContext: Context) : BaseAdapter() {
                 mContext.theme
             )
             setOnClickListener {
-                mFMInterface.setFMFreq(MainFragment.fd, mFavoriteList[id])
-                MainFragment.mFreqCurrent = mFavoriteList[id]
-                FileUtilities.writeToFile(
-                    FileUtilities.mFMFreqFileName,
-                    MainFragment.mFreqCurrent.toString(),
-                    mContext
-                )
+                mFMInterface.mDefaultCtl.setValue(SetType.SET_TYPE_FM_FREQ, mFavoriteList[id])
             }
         }
         return mAnotherConvertView
