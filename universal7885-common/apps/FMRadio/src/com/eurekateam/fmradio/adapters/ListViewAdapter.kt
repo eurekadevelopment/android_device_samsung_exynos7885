@@ -20,7 +20,7 @@ class ListViewAdapter(private val mContext: Context) : BaseAdapter() {
     private val mListChannel = mFMInterface.mDefaultCtl.getFreqsList()
     private var mListofViews = HashMap<Int, View>(30)
     override fun getCount(): Int {
-        return 30
+        return mListChannel.size
     }
 
     override fun getItem(p: Int): Any {
