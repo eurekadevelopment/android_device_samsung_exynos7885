@@ -33,7 +33,9 @@ constexpr const char *FM_FREQ_SEEK = FM_SYSFS_BASE "/radio_freq_seek";
 ::ndk::ScopedAStatus FMSupport::open(void) { NOT_SUPPORTED; }
 
 ::ndk::ScopedAStatus FMSupport::getValue(GetType type, int *_aidl_return) {
-  RETURN_IF_FAILED_LOCK;
+  if (type != GetType::GET_TYPE_FM_MUTEX_LOCKED) {
+    RETURN_IF_FAILED_LOCK;
+  }
   switch (type) {
   case GetType::GET_TYPE_FM_FREQ:
     *_aidl_return = FileIO::readline(FM_FREQ_CTL);
@@ -76,7 +78,9 @@ constexpr const char *FM_FREQ_SEEK = FM_SYSFS_BASE "/radio_freq_seek";
   default:
     break;
   };
-  lock.unlock();
+  if (type != GetType::GET_TYPE_FM_MUTEX_LOCKED) {
+    lock.unlock();
+  }
   return ndk::ScopedAStatus::ok();
 }
 ::ndk::ScopedAStatus FMSupport::setValue(SetType type, int value) {
