@@ -37,7 +37,6 @@ TARGET_2ND_CPU_VARIANT := cortex-a53
 endif
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_PATH)/bluetooth
 BOARD_HAVE_BLUETOOTH_SLSI := true
 
 # Build system
