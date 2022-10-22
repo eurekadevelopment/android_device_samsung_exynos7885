@@ -4,11 +4,13 @@ cc_library_static {
         "-Wno-unused-parameter",
     ],
     srcs: [
-        "FM_Device_ctl.cpp",
+        "FMDeviceControl.cpp",
     ],
+    shared_libs: ["libbase"],
     export_include_dirs: ["public"],
     defaults: [
        "eureka_defaults",
-       "fm_aidl_defaults",
+       "fm_aidl_defaults"
     ],
+    header_libs: ["logformat"],
 }

@@ -1,8 +1,9 @@
 #include <cstdint>
+#include <sys/time.h>
 
-typedef u_int8_t __u8;
+typedef uint8_t __u8;
 typedef int32_t __s32;
-typedef u_int32_t __u32;
+typedef uint32_t __u32;
 
 struct v4l2_tuner {
   __u32 index;

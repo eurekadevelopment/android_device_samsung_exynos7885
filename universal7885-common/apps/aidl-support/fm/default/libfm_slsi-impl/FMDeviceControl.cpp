@@ -1,27 +1,51 @@
+#include <LogFormat.h>
+#include <android-base/logging.h>
+#include <fcntl.h>
 #include <sys/ioctl.h>
 #include <sys/poll.h>
-#include <cstdio>
-#include <cstdlib>
-#include <fcntl.h>
-#include <stdint.h>
-#include <cstring>
 #include <unistd.h>
+
 #include <cerrno>
-#include <iostream>
-#include "S610_FMRadio.h"
-#include "V4L2_4_4_API.h"
+#include <cstring>
+#include <thread>
 #include <vector>
+
+#include "Radio_S610.h"
+#include "V4L2_API.h"
 
 namespace fm_radio_slsi {
 
 static bool FMThread = false;
 
+constexpr const char *FM_DEV_PATH = "/dev/radio0";
+
+#define LOG_IOCTL_ERR(cmd) \
+  LOG(ERROR) << make_str(std::string("Failed to call" cmd "ioctl(), %d (%s)"),  \
+		errno, strerror(-errno))
+
+#define LOG_IOCTL_ERR_ON_COND_NORETURN(cmd, cond) \
+({									\
+ 	if ((cond)) {							\
+		LOG_IOCTL_ERR(cmd);					\
+ 	}								\
+})
+
+#define LOG_IOCTL_ERR_ON_COND(cmd, cond) \
+({                                                                      \
+	if ((cond)) {                                                   \
+		LOG_IOCTL_ERR(cmd); 					\
+		return;                                                 \
+	}                                                               \
+})
+
 int open_device(void) {
   int fd;
-  if ((fd = open("/dev/radio0", O_RDWR | O_CLOEXEC)) < 0) {
-    printf("Cannot open /dev/radio0.\n");
+  if ((fd = open(FM_DEV_PATH, O_RDWR | O_CLOEXEC)) < 0) {
+    LOG(ERROR) << make_str("Failed to open %s, %d (%s)", FM_DEV_PATH, errno,
+                           strerror(-errno));
     return -1;
   }
+  LOG(DEBUG) << make_str("Opened %s, fd %d", FM_DEV_PATH, fd);
   return fd;
 }
 
@@ -33,50 +57,54 @@ int get_frequency(const int fd, int *channel) {
   freq.type = V4L2_TUNER_RADIO;
 
   ret = ioctl(fd, VIDIOC_G_FREQUENCY, &freq);
-  if (ret < 0)
-     return FM_FAILURE;
+  if (ret < 0) {
+    LOG_IOCTL_ERR("VIDIOC_G_FREQUENCY");
+    *channel = FM_FAILURE;
+    return ret;
+  }
 
   *channel = static_cast<int>(freq.frequency) / 16000;
 
-  return FM_SUCCESS;
+  LOG(DEBUG) << make_str("Channel freq: %d", *channel);
+  return ret;
 }
 
-int set_frequency(const int fd, int channel) {
+void set_frequency(const int fd, int channel) {
   struct v4l2_frequency freq {};
   int ret;
+
+  LOG(DEBUG) << make_str("Channel freq: %d", channel);
 
   freq.tuner = 0;
   freq.type = V4L2_TUNER_RADIO;
   freq.frequency = (unsigned int)channel * 16000;
 
   ret = ioctl(fd, VIDIOC_S_FREQUENCY, &freq);
-  if (ret < 0) {
-    printf("FmRadioController: failed to set frequency\n");
-    return FM_FAILURE;
-  }
 
-  return FM_SUCCESS;
+  LOG_IOCTL_ERR_ON_COND("VIDIOC_S_FREQUENCY", ret < 0);
 }
 
 static int set_control(const int fd, unsigned int id, int val) {
   struct v4l2_control ctrl {};
   int ret;
   ctrl.id = id;
+
+  LOG(DEBUG) << make_str("Control value: %d", val);
+
   if (val)
     ctrl.value = static_cast<unsigned int>(val);
   else
     ctrl.value = 0;
 
   ret = ioctl(fd, VIDIOC_S_CTRL, &ctrl);
-  if (ret < 0) {
-    return FM_FAILURE;
-  }
-  return FM_SUCCESS;
+
+  LOG_IOCTL_ERR_ON_COND_NORETURN("VIDIOC_S_CTRL", ret < 0);
+
+  return ret;
 }
 
-static int seek_frequency(int fd, unsigned int upward,
-                                   unsigned int wrap_around,
-                                   unsigned int spacing) {
+static int seek_frequency(int fd, unsigned int upward, unsigned int wrap_around,
+                          unsigned int spacing) {
   struct v4l2_hw_freq_seek seek {};
   int ret;
 
@@ -87,58 +115,49 @@ static int seek_frequency(int fd, unsigned int upward,
   seek.spacing = spacing;
 
   ret = ioctl(fd, VIDIOC_S_HW_FREQ_SEEK, &seek);
-  if (ret < 0) {
-    return FM_FAILURE;
-  }
-  return FM_SUCCESS;
-}
 
-static int channel_search(const int fd, unsigned int upward,
-                                      unsigned int wrap_around,
-                                      unsigned int spacing, int *channel) {
-  int ret;
-
-  ret = set_control(fd, V4L2_CID_S610_SEEK_MODE,
-                             FM_TUNER_AUTONOMOUS_SEARCH_MODE);
-  if (ret < 0)
-    return ret;
-
-  ret = seek_frequency(fd, upward, wrap_around, spacing);
-  if (ret < 0)
-    return ret;
-
-  ret = get_frequency(fd, channel);
-  if (ret < 0)
-    return ret;
+  LOG_IOCTL_ERR_ON_COND_NORETURN("VIDIOC_S_HW_FREQ_SEEK", ret < 0);
 
   return ret;
 }
-/*
-int next_channel(const int fd) {
-	int ret;
-	channel_search(fd, 1, 0, FM_CHANNEL_SPACING_100KHZ, &ret);
-	return ret;
-}
-int before_channel(const int fd) {
-	int ret;
-	channel_search(fd, 0, 0, FM_CHANNEL_SPACING_100KHZ, &ret);
-	return ret;
-}
-*/
-int set_mute(const int fd, bool mute) {
-  int ret = set_control(fd, V4L2_CID_AUDIO_MUTE, !mute);
-  if (ret < 0) {
-    return FM_FAILURE;
-  }
-  return FM_SUCCESS;
+
+static void channel_search(const int fd, unsigned int upward,
+                           unsigned int wrap_around, unsigned int spacing,
+                           int *channel) {
+  int ret;
+
+  ret = set_control(fd, V4L2_CID_S610_SEEK_MODE, FM_TUNER_AUTONOMOUS_SEARCH_MODE);
+  
+  LOG_IOCTL_ERR_ON_COND("V4L2_CID_S610_SEEK_MODE", ret < 0);
+
+  ret = seek_frequency(fd, upward, wrap_around, spacing);
+  if (ret < 0) return;
+
+  ret = get_frequency(fd, channel);
+  if (ret < 0) return;
 }
 
-int set_volume(int fd, int volume /* 1 ~ 15 */) {
+/*
+int next_channel(const int fd) {
+        int ret;
+        channel_search(fd, 1, 0, FM_CHANNEL_SPACING_100KHZ, &ret);
+        return ret;
+}
+int before_channel(const int fd) {
+        int ret;
+        channel_search(fd, 0, 0, FM_CHANNEL_SPACING_100KHZ, &ret);
+        return ret;
+}
+*/
+
+void set_mute(const int fd, bool mute) {
+  int ret = set_control(fd, V4L2_CID_AUDIO_MUTE, !mute);
+  LOG_IOCTL_ERR_ON_COND("V4L2_CID_AUDIO_MUTE", ret < 0);
+}
+
+void set_volume(int fd, int volume /* 1 ~ 15 */) {
   int ret = set_control(fd, V4L2_CID_AUDIO_VOLUME, volume);
-  if (ret < 0) {
-    return FM_FAILURE;
-  }
-  return FM_SUCCESS;
+  LOG_IOCTL_ERR_ON_COND("V4L2_CID_AUDIO_VOLUME", ret < 0);
 }
 
 std::vector<int> get_freqs(const int fd) {
@@ -149,10 +168,9 @@ std::vector<int> get_freqs(const int fd) {
     int found = 0;
     channel_search(fd, 1, 0, FM_CHANNEL_SPACING_50KHZ, &found);
     for (auto k : map) {
-	if (k == found)
-            continue;
+      if (k == found) continue;
     }
-    map.push_back(found);    
+    map.push_back(found);
   }
 
   set_mute(fd, false);
@@ -171,22 +189,18 @@ static int fm_poll(int fd, struct pollfd *poll_fd) {
     if (poll_fd->revents & POLLIN) {
       return FM_SUCCESS;
     }
-    return FM_FAILURE;
+  } else if (ret < 0) {
+    return FM_FAILURE - 1;
   }
-
-  if (!ret) {
-    return FM_FAILURE;
-  }
-
-  return FM_FAILURE - 1;
+  return FM_FAILURE;
 }
 
 static int fm_read(int fd, unsigned char *buf) {
   int ret;
 
   ret = read(fd, buf, FM_RADIO_RDS_DATA_MAX);
+
   if (ret < 0) {
-    printf("FmRadioController: failed to read\n");
     return FM_FAILURE;
   }
 
@@ -208,14 +222,16 @@ static void fm_thread(int fd) {
     }
 
     ret = fm_read(fd, read_buf);
-    if (ret < 0)
-      break;
+    if (ret < 0) break;
   }
 }
 
 void fm_thread_set(const int fd, const bool enable) {
   FMThread = enable;
-  if (enable) fm_thread(fd);
+  if (enable) {
+    std::thread thread = std::thread(fm_thread, fd);
+    thread.detach();
+  }
 }
 
 unsigned int get_upperband_limit(int fd) {
@@ -225,6 +241,7 @@ unsigned int get_upperband_limit(int fd) {
   tuner.index = 0;
   ret = ioctl(fd, VIDIOC_G_TUNER, &tuner);
   if (ret < 0) {
+    LOG_IOCTL_ERR("VIDIOC_G_TUNER");
     return FM_FAILURE;
   } else {
     freq = (tuner.rangehigh / 16000);
@@ -240,6 +257,7 @@ unsigned int get_lowerband_limit(int fd) {
   tuner.index = 0;
   ret = ioctl(fd, VIDIOC_G_TUNER, &tuner);
   if (ret < 0) {
+    LOG_IOCTL_ERR("VIDIOC_G_TUNER");
     return FM_FAILURE;
   } else {
     freq = (tuner.rangelow / 16000);
@@ -250,43 +268,39 @@ unsigned int get_lowerband_limit(int fd) {
 int get_rmssi(int fd) {
   struct v4l2_tuner tuner {};
   int ret;
-  int rmssi;
   tuner.index = 0;
   tuner.signal = 0;
   ret = ioctl(fd, VIDIOC_G_TUNER, &tuner);
   if (ret < 0) {
+    LOG_IOCTL_ERR("VIDIOC_G_TUNER");
     ret = FM_FAILURE;
   } else {
-    rmssi = tuner.signal;
-    ret = rmssi;
+    ret = tuner.signal;
   }
   return ret;
 }
 
-int set_rssi(int fd, int rssi) {
+void set_rssi(int fd, int rssi) {
   int ret = set_control(fd, V4L2_CID_S610_RSSI_TH, rssi);
-  if (ret < 0) {
-    return FM_FAILURE;
-  }
-  return FM_SUCCESS;
+  LOG_IOCTL_ERR_ON_COND("V4L2_CID_S610_RSSI_TH", ret < 0);
 }
 
 void bootctrl(const int fd) {
-  set_control(fd, V4L2_CID_S610_IF_COUNT1, 4800); // SetIFCount 1
-  set_control(fd, V4L2_CID_S610_IF_COUNT2, 5600); // SetIFCount 2
+  set_control(fd, V4L2_CID_S610_IF_COUNT1, 4800);  // SetIFCount 1
+  set_control(fd, V4L2_CID_S610_IF_COUNT2, 5600);  // SetIFCount 2
   set_control(fd, V4L2_CID_S610_SOFT_STEREO_BLEND,
-                       3172); // Set Soft Stereo Blend
+              3172);  // Set Soft Stereo Blend
   set_control(fd, V4L2_CID_S610_SOFT_MUTE_COEFF,
-                       16); // SetSoftMuteCoeff
+              16);  // SetSoftMuteCoeff
   set_control(fd, V4L2_CID_S610_CH_BAND,
-                       S610_BAND_FM); // Set Band (To FM)
+              S610_BAND_FM);  // Set Band (To FM)
   set_control(fd, V4L2_CID_S610_CH_SPACING,
-                       FM_CHANNEL_SPACING_50KHZ);                // Spacing 5kHz
-  set_control(fd, V4L2_CID_S610_RDS_ON, FM_RDS_ENABLE); // RDS on
+              FM_CHANNEL_SPACING_50KHZ);                 // Spacing 5kHz
+  set_control(fd, V4L2_CID_S610_RDS_ON, FM_RDS_ENABLE);  // RDS on
 }
 
 void stop_search(const int fd) {
   set_control(fd, V4L2_CID_S610_SEEK_CANCEL, 1);
 }
 
-}
+}  // namespace fm_radio_slsi
