@@ -88,8 +88,8 @@ constexpr const char *FM_FREQ_SEEK = FM_SYSFS_BASE "/radio_freq_seek";
   switch (type) {
   case SetType::SET_TYPE_FM_FREQ:
     FileIO::writeline(FM_FREQ_CTL, value * 1000);
-    if (std::find(freqs_list.begin(), freqs_list.end(), value) == freqs_list.end())
-       kMiddleState = saveMiddleState(value, freqs_list);
+    if (std::find(freqs_list.begin(), freqs_list.end(), value * 1000) == freqs_list.end())
+       kMiddleState = saveMiddleState(value * 1000, freqs_list);
     break;
   case SetType::SET_TYPE_FM_MUTE:
   case SetType::SET_TYPE_FM_VOLUME:
