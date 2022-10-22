@@ -123,9 +123,10 @@ namespace aidl::vendor::eureka::hardware::fmradio {
 			svc->setParam(value ? "routing=2": "routing=8");
 			break;
 		case SetType::SET_TYPE_FM_SEARCH_START:
+			lock.unlock();
 			search_thread = std::thread([this] {
+				const std::lock_guard<std::timed_mutex> guard(lock);
 				freqs_list = fm_radio_slsi::get_freqs(fd);
-				lock.unlock();
 			});
 			break;
 		default:
