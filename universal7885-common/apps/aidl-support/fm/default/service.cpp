@@ -31,7 +31,7 @@ template <class C> static void registerAsService(std::shared_ptr<C> service, con
 }
 
 int main() {
-  ABinderProcess_setThreadPoolMaxThreadCount(3);
+  ABinderProcess_setThreadPoolMaxThreadCount(8);
 
   registerAsService(ndk::SharedRefBase::make<FMSupport>(), "support");
   registerAsService(ndk::SharedRefBase::make<FMDevControl>(), "default");
