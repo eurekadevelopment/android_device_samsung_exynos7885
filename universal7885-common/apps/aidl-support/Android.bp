@@ -1,0 +1,5 @@
+cc_library_headers {
+  name: "logformat",
+  local_include_dirs: ["include"],
+  export_include_dirs: ["include"],
+}
