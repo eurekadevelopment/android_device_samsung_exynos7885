@@ -128,6 +128,7 @@ namespace aidl::vendor::eureka::hardware::fmradio {
 				const std::lock_guard<std::timed_mutex> guard(lock);
 				freqs_list = fm_radio_slsi::get_freqs(fd);
 			});
+			search_thread.detach();
 			break;
 		default:
 			break;

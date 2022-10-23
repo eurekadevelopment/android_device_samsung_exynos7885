@@ -109,6 +109,7 @@ constexpr const char *FM_FREQ_SEEK = FM_SYSFS_BASE "/radio_freq_seek";
               freqs_list.push_back(freq);
         }
     });
+    search_thread.detach();
     break;
   default:
     break;
