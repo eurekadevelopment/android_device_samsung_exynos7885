@@ -1,6 +1,5 @@
 cc_binary {
     name: "vendor.eureka.hardware.parts-service",
-    defaults: ["eureka_defaults"],    
     srcs: [
         "Battery.cpp",
         "FlashLight.cpp",

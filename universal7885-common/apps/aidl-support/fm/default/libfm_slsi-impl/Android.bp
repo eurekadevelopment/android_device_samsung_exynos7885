@@ -9,7 +9,6 @@ cc_library_static {
     shared_libs: ["libbase"],
     export_include_dirs: ["public"],
     defaults: [
-       "eureka_defaults",
        "fm_aidl_defaults"
     ],
     header_libs: ["logformat"],

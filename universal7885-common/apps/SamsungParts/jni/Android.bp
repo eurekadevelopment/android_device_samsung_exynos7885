@@ -1,6 +1,5 @@
 cc_library_shared {
     name: "libStorageHelper",
-    defaults: ["eureka_defaults"],
     cflags: [
         "-Wall",
         "-Wextra",
@@ -14,7 +13,6 @@ cc_library_shared {
 
 cc_library_shared {
     name: "libSwapCallback",
-    defaults: ["eureka_defaults"],
     srcs: [
        "SwapCallbackImpl.cpp",
        "SwapCallbackNative.cpp",

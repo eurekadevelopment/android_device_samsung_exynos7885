@@ -4,9 +4,6 @@ cc_binary {
         "AudioRoute.cpp",
         "service.cpp",
     ],
-    defaults: [
-        "eureka_defaults",
-    ],
     shared_libs: [
         "libbase",
         "libbinder_ndk",

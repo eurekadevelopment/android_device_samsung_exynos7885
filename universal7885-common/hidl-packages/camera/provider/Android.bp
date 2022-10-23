@@ -17,7 +17,6 @@ cc_binary {
     name: "android.hardware.camera.provider@2.5-service.exynos7885",
     defaults: [
         "hidl_defaults",
-        "eureka_defaults",
     ],
     compile_multilib: "32",
     proprietary: true,

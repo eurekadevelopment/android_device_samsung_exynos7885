@@ -15,7 +15,6 @@ cc_binary {
         "service.cpp",
     ],
     defaults: [
-        "eureka_defaults",
         "fm_aidl_defaults",
     ],
     static_libs: ["libfm_slsi-impl"],

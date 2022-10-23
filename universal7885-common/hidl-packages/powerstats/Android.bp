@@ -6,7 +6,6 @@ cc_binary {
     relative_install_path: "hw",
     vendor: true,
     defaults: [
-        "eureka_defaults",
         "powerstats_pixel_defaults",
     ],
     cflags: ["-Wno-thread-safety-negative"],
