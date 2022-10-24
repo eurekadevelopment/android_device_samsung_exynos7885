@@ -6,7 +6,7 @@ import java.util.Timer
 import java.util.TimerTask
 
 object WaitUntil {
-    fun setTimer(act: Activity, todo: IWaitUntil, timeout: Long = 15000) {
+    fun setTimer(act: Activity, todo: IWaitUntil, initdelay: Long = 5000, delay: Long = 500) {
         Timer().schedule(
             object : TimerTask() {
                 override fun run() {
@@ -18,7 +18,7 @@ object WaitUntil {
                     })
                 }
             },
-            timeout
+            initdelay, delay
         )
     }
 }
