@@ -49,7 +49,7 @@ class MainFragment :
     private lateinit var mAudioManager: AudioManager
     private lateinit var mStar: Drawable
     private lateinit var mStarFilled: Drawable
-    private lateinit var mFavList: List<Int>
+    private var mFavList : List<Int> = emptyList()
     private lateinit var  mSharedPref: SharedPreferences
 
     override fun onCreateView(
@@ -121,24 +121,28 @@ class MainFragment :
         val mRestoreFreq = mSharedPref.getInt("freq", mFMInterface.mDevCtl.getValue(GetType.GET_TYPE_FM_LOWER_LIMIT))
         mFMInterface.mDefaultCtl.setValue(SetType.SET_TYPE_FM_FREQ, mRestoreFreq)
         mFMFreq.text = mCleanFormat.format(mRestoreFreq.toFloat() / 1000)
-        mFMInterface.mDevCtl.setValue(SetType.SET_TYPE_FM_THREAD, 1)
-        Toast.makeText(requireContext(), "Updating freqs list... Please wait", Toast.LENGTH_LONG).show()
-        requireActivity().window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-        mFMInterface.mDefaultCtl.setValue(SetType.SET_TYPE_FM_SEARCH_START, 0)
-        WaitUntil.setTimer(
-            requireActivity(),
-            object : IWaitUntil {
-                override fun cond(): Boolean = mFMInterface.mDefaultCtl.getValue(GetType.GET_TYPE_FM_MUTEX_LOCKED) == 0
-                override fun todo() {
-                    val mList = mFMInterface.mDefaultCtl.getFreqsList()
-                    for (i in mList) {
-                        if (mSharedPref.getBoolean("fav_$i", false)) mFavList += i
-                    }
-                    requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-                    Toast.makeText(requireContext(), "Done", Toast.LENGTH_SHORT).show()
-                }
-            }
-        )
+        if (!mFreqSearchDone) {
+           mFMInterface.mDevCtl.setValue(SetType.SET_TYPE_FM_THREAD, 1)
+           Toast.makeText(requireContext(), "Updating freqs list... Please wait", Toast.LENGTH_LONG).show()
+           requireActivity().window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+           mFMInterface.mDefaultCtl.setValue(SetType.SET_TYPE_FM_SEARCH_START, 0)
+           WaitUntil.setTimer(
+               requireActivity(),
+               object : IWaitUntil {
+                   override fun cond(): Boolean = mFMInterface.mDefaultCtl.getValue(GetType.GET_TYPE_FM_MUTEX_LOCKED) == 0
+                   override fun todo() {
+                       val mList = mFMInterface.mDefaultCtl.getFreqsList()
+                       for (i in mList) {
+                           if (mSharedPref.getBoolean("fav_$i", false)) mFavList += i
+                       }
+                       if (!mFMPower) mUpdateEnableDisable(false)
+                       requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+                       Toast.makeText(requireContext(), "Done", Toast.LENGTH_SHORT).show()
+                   }
+               }
+           )
+           mFreqSearchDone = true
+        }
         // Update track list and fav button
         return mRootView
     }
@@ -288,6 +292,7 @@ class MainFragment :
 
     companion object {
         var mFMPower = false
+        var mFreqSearchDone = false
         var mHeadSetPlugged: HeadsetState = HeadsetState.HEADSET_STATE_DISCONNECTED
     }
 
