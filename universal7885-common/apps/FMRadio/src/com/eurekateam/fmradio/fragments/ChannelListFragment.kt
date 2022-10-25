@@ -62,12 +62,14 @@ class ChannelListFragment :
             object : IWaitUntil {
                 override fun cond(): Boolean = mNativeIF.mDefaultCtl.getValue(GetType.GET_TYPE_FM_MUTEX_LOCKED) == 0
                 override fun todo() {
-                    (requireActivity() as MainActivity).getMySupportFragmentManager().apply {
-                        beginTransaction().remove(this@ChannelListFragment).commit()
-                        executePendingTransactions()
-                        beginTransaction().add(R.id.container_view, this@ChannelListFragment).commit()
+                    if (isAdded()) {
+                        (requireActivity() as MainActivity).getMySupportFragmentManager().apply {
+                            beginTransaction().remove(this@ChannelListFragment).commit()
+                            executePendingTransactions()
+                             beginTransaction().add(R.id.container_view, this@ChannelListFragment).commit()
+                        }
+                        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                     }
-                    requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                 }
             }
         )

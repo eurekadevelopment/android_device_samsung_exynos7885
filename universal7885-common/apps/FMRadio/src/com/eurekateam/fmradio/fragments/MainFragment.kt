@@ -142,6 +142,9 @@ class MainFragment :
                }
            )
            mFreqSearchDone = true
+        } else {
+           val mNewFreq = mFMInterface.mDefaultCtl.getValue(GetType.GET_TYPE_FM_FREQ)
+           mFMFreq.text = mCleanFormat.format(mNewFreq.toFloat() / 1000)
         }
         // Update track list and fav button
         return mRootView
