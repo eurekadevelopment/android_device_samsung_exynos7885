@@ -17,8 +17,10 @@ import vendor.eureka.hardware.fmradio.SetType
 
 class ListViewAdapter(private val mContext: Context) : BaseAdapter() {
     private val mFMInterface = NativeFMInterface()
-    private val mListChannel = mFMInterface.mDefaultCtl.getFreqsList()
+    private val mListChannel = mFMInterface.mDefaultCtl.getFreqsList().sort()
     private var mListofViews = HashMap<Int, View>(30)
+    private var mInitDoneArray = Array(30){ false }
+
     override fun getCount(): Int {
         return mListChannel.size
     }
@@ -63,9 +65,10 @@ class ListViewAdapter(private val mContext: Context) : BaseAdapter() {
                 it.setImageDrawable(mStar)
             }
         }
-        if (mFMInterface.mDefaultCtl.getValue(GetType.GET_TYPE_FM_FREQ) == mListChannel[id]) {
+        if (!mInitDoneArray[id] && mFMInterface.mDefaultCtl.getValue(GetType.GET_TYPE_FM_FREQ) == mListChannel[id]) {
             setCurrentFMChannel(id)
         }
+        mInitDoneArray[id] = true
         mListofViews[id] = mAnotherConvertView!!
         return mAnotherConvertView
     }
@@ -76,7 +79,7 @@ class ListViewAdapter(private val mContext: Context) : BaseAdapter() {
             mItem.value.setBackgroundColor(
                 ResourcesCompat.getColor(
                     mContext.resources,
-                    android.R.color.system_accent2_100,
+                    android.R.color.system_accent1_50,
                     mContext.theme
                 )
             )
@@ -84,7 +87,7 @@ class ListViewAdapter(private val mContext: Context) : BaseAdapter() {
         mListofViews[mPosition]?.setBackgroundColor(
             ResourcesCompat.getColor(
                 mContext.resources,
-                android.R.color.system_accent2_400,
+                android.R.color.system_accent1_300,
                 mContext.theme
             )
         )

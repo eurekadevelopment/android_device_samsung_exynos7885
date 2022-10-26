@@ -118,10 +118,10 @@ class MainFragment :
         mSeekBar.min = 1
         mSeekBar.max = 15
         mSeekBar.progress = mVolume
-        val mRestoreFreq = mSharedPref.getInt("freq", mFMInterface.mDevCtl.getValue(GetType.GET_TYPE_FM_LOWER_LIMIT))
-        mFMInterface.mDefaultCtl.setValue(SetType.SET_TYPE_FM_FREQ, mRestoreFreq)
-        mFMFreq.text = mCleanFormat.format(mRestoreFreq.toFloat() / 1000)
         if (!mFreqSearchDone) {
+           val mRestoreFreq = mSharedPref.getInt("freq", mFMInterface.mDevCtl.getValue(GetType.GET_TYPE_FM_LOWER_LIMIT))
+           mFMInterface.mDefaultCtl.setValue(SetType.SET_TYPE_FM_FREQ, mRestoreFreq)
+           mFMFreq.text = mCleanFormat.format(mRestoreFreq.toFloat() / 1000)
            mFMInterface.mDevCtl.setValue(SetType.SET_TYPE_FM_THREAD, 1)
            Toast.makeText(requireContext(), "Updating freqs list... Please wait", Toast.LENGTH_LONG).show()
            requireActivity().window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
