@@ -56,13 +56,12 @@ class ListViewAdapter(private val mContext: Context) : BaseAdapter() {
             )
             val mIndex = mListChannel[id]
             val mSharedPref = PreferenceManager.getDefaultSharedPreferences(mContext)
-            val mBefore = mSharedPref.getBoolean("fav_$mIndex", false)
-            if (mBefore) {
-                it.setImageDrawable(mStar)
-            } else {
+            val mFav = mSharedPref.getBoolean("fav_$mIndex", false)
+            if (mFav) {
                 it.setImageDrawable(mStarFilled)
+            } else {
+                it.setImageDrawable(mStar)
             }
-            mSharedPref.edit().putBoolean("fav_$mIndex", !mBefore).apply()
         }
         if (mFMInterface.mDefaultCtl.getValue(GetType.GET_TYPE_FM_FREQ) == mListChannel[id]) {
             setCurrentFMChannel(id)
