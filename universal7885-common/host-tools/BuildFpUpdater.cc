@@ -10,8 +10,8 @@
 // Tracking Evolution-X's PixelPropsUtils
 constexpr const char *UPSTREAM_URL = "https://raw.githubusercontent.com/Evolution-X/frameworks_base/tiramisu/core/java/com/android/internal/util/evolution/PixelPropsUtils.java";
 
-// Use Pixel 6 Pro's fingerprint
-constexpr const char *DEVICE_CODENAME = "raven";
+// Use Pixel 7's fingerprint
+constexpr const char *DEVICE_CODENAME = "cheetah";
 constexpr const char *DEVICE_VENDOR = "google";
 
 constexpr bool STD_STRING_CONTAINS(const std::string& str, const std::string& search) {
