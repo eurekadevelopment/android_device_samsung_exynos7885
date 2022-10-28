@@ -97,6 +97,7 @@ constexpr const char *FM_FREQ_SEEK = FM_SYSFS_BASE "/radio_freq_seek";
   case SetType::SET_TYPE_FM_RMSSI:
   case SetType::SET_TYPE_FM_SEARCH_CANCEL:
   case SetType::SET_TYPE_FM_SPEAKER_ROUTE:
+  case SetType::SET_TYPE_FM_APP_PID:
     NOT_SUPPORTED;
   case SetType::SET_TYPE_FM_SEARCH_START:
     lock.unlock();

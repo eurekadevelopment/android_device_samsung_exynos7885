@@ -20,8 +20,10 @@
 
 #include <cassert>
 #include <cerrno>
+#include <chrono>
 
 #include <fcntl.h>
+#include <signal.h>
 
 #include "CommonMacro.h"
 
@@ -94,9 +96,10 @@ namespace aidl::vendor::eureka::hardware::fmradio {
 }
 
 ::ndk::ScopedAStatus FMDevControl::setValue(SetType type, int value) {
+	using audio_route::IAudioRoute;
+
 	RETURN_IF_FAILED_LOCK;
 	assert(fd > 0);
-	std::shared_ptr<audio_route::IAudioRoute> svc;
 	switch (type) {
 		case SetType::SET_TYPE_FM_FREQ:
 			fm_radio_slsi::set_frequency(fd, value);
@@ -119,7 +122,7 @@ namespace aidl::vendor::eureka::hardware::fmradio {
 			fm_radio_slsi::stop_search(fd);
 			break;
 		case SetType::SET_TYPE_FM_SPEAKER_ROUTE:
-			svc = audio_route::IAudioRoute::fromBinder(ndk::SpAIBinder(AServiceManager_waitForService("vendor.eureka.hardware.audio_route.IAudioRoute/default")));
+			std::shared_ptr<IAudioRoute> svc = IAudioRoute::fromBinder(ndk::SpAIBinder(AServiceManager_waitForService("vendor.eureka.hardware.audio_route.IAudioRoute/default")));
 			svc->setParam(value ? "routing=2": "routing=8");
 			break;
 		case SetType::SET_TYPE_FM_SEARCH_START:
@@ -130,6 +133,22 @@ namespace aidl::vendor::eureka::hardware::fmradio {
 			});
 			search_thread.detach();
 			break;
+		case SetType::SET_TYPE_FM_APP_PID:
+			client_observe_thread = std::thread([=] {
+				std::shared_ptr<IAudioRoute> svc;
+				pid_t pid = value;
+
+				while (true) {
+					if (kill(pid, 0) < 0 && errno == ESRCH) break;
+					std::this_thread::sleep_for(std::chrono::seconds(2));
+				}
+
+				fm_radio_slsi::fm_thread_set(fd, 0);
+				svc = IAudioRoute::fromBinder(ndk::SpAIBinder(AServiceManager_waitForService("vendor.eureka.hardware.audio_route.IAudioRoute/default")));
+				svc->setParam("l_fmradio_mode=off");
+				close();
+			}
+			client_observe_thread.detach();
 		default:
 			break;
 	};

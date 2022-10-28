@@ -23,7 +23,7 @@ cc_binary {
         "libbinder_ndk",
         "liblog",
         "libfileio",
-        "vendor.eureka.hardware.fmradio-V2-ndk",
+        "vendor.eureka.hardware.fmradio-V3-ndk",
         "vendor.eureka.hardware.audio_route-V1-ndk",
     ],
     header_libs: ["libaudioclient_headers"],
