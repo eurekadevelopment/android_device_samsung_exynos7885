@@ -30,15 +30,11 @@
 // later when a module using the interface is updated, e.g., Mainline modules.
 
 package vendor.eureka.hardware.fmradio;
-@Backing(type="int") @VintfStability
-enum SetType {
-  SET_TYPE_FM_FREQ = 0,
-  SET_TYPE_FM_MUTE = 1,
-  SET_TYPE_FM_VOLUME = 2,
-  SET_TYPE_FM_THREAD = 3,
-  SET_TYPE_FM_RMSSI = 4,
-  SET_TYPE_FM_SEARCH_CANCEL = 5,
-  SET_TYPE_FM_SPEAKER_ROUTE = 6,
-  SET_TYPE_FM_SEARCH_START = 7,
-  SET_TYPE_FM_APP_PID = 8,
+@VintfStability
+interface IFMDevControl {
+  oneway void open();
+  int getValue(in vendor.eureka.hardware.fmradio.GetType type);
+  oneway void setValue(in vendor.eureka.hardware.fmradio.SetType type, int value);
+  int[] getFreqsList();
+  oneway void close();
 }
