@@ -17,7 +17,7 @@ import vendor.eureka.hardware.fmradio.SetType
 
 class ListViewAdapter(private val mContext: Context) : BaseAdapter() {
     private val mFMInterface = NativeFMInterface()
-    private val mListChannel = mFMInterface.mDefaultCtl.getFreqsList().sort()
+    private val mListChannel = mFMInterface.mDefaultCtl.getFreqsList().apply{ sort() }
     private var mListofViews = HashMap<Int, View>(30)
     private var mInitDoneArray = Array(30){ false }
 

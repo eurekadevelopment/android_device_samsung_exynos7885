@@ -7,6 +7,7 @@ import android.media.AudioManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.os.Process
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AlertDialog
@@ -23,6 +24,7 @@ import com.eurekateam.fmradio.utils.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.textview.MaterialTextView
+import vendor.eureka.hardware.fmradio.SetType
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mIntent: Intent
@@ -55,6 +57,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation)
         DynamicColors.applyToActivitiesIfAvailable(application)
+        mFMInterface.mDevCtl.setValue(SetType.SET_TYPE_FM_APP_PID, Process.myPid())
         mFMInterface.mDevCtl.open()
         mAudioManager = getSystemService(AUDIO_SERVICE) as AudioManager
 

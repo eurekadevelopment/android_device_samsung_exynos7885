@@ -12,7 +12,7 @@ android_app {
         "com.google.android.material_stable",
         "androidx.transition_transition",
         "androidx.coordinatorlayout_coordinatorlayout",
-        "vendor.eureka.hardware.fmradio-V2-java",
+        "vendor.eureka.hardware.fmradio-V3-java",
     ],
     required: [
         "vendor.eureka.hardware.fmradio-service",
