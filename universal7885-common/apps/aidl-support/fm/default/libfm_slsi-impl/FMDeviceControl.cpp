@@ -1,5 +1,7 @@
+#define LOG_TAG "FMHAL-impl-lib"
+
 #include <LogFormat.h>
-#include <android-base/logging.h>
+
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <sys/poll.h>
@@ -20,8 +22,7 @@ static bool FMThread = false;
 constexpr const char *FM_DEV_PATH = "/dev/radio0";
 
 #define LOG_IOCTL_ERR(cmd) \
-  LOG(ERROR) << make_str(std::string("Failed to call" cmd "ioctl(), %d (%s)"),  \
-		errno, strerror(-errno))
+  LOG_E(std::string("Failed to call" cmd "ioctl(), %d (%s)"), errno, strerror(-errno))
 
 #define LOG_IOCTL_ERR_ON_COND_NORETURN(cmd, cond) \
 ({									\

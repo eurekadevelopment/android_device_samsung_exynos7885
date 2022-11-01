@@ -43,7 +43,7 @@ namespace aidl::vendor::eureka::hardware::fmradio {
 }
 
 ::ndk::ScopedAStatus FMDevControl::getValue(GetType type, int *_aidl_return) {
-	ALOGD(make_str("%s: type %d", __func__, type));
+	LOG_D("%s: type %d", __func__, type);
 	if (type != GetType::GET_TYPE_FM_MUTEX_LOCKED) {
 		RETURN_IF_FAILED_LOCK;
 	}
@@ -97,7 +97,7 @@ namespace aidl::vendor::eureka::hardware::fmradio {
 	if (type != GetType::GET_TYPE_FM_MUTEX_LOCKED) {
 		lock.unlock();
 	}
-	ALOGD(make_str("%s: returning %d", __func__, *_aidl_return));
+	LOG_D("%s: returning %d", __func__, *_aidl_return);
 
 	return ::ndk::ScopedAStatus::ok();
 }
@@ -105,7 +105,7 @@ namespace aidl::vendor::eureka::hardware::fmradio {
 ::ndk::ScopedAStatus FMDevControl::setValue(SetType type, int value) {
 	using audio_route::IAudioRoute;
 
-	ALOGD(make_str("%s: type %d, value %d", __func__, type, value));
+	LOG_D("%s: type %d, value %d", __func__, type, value);
 
 	RETURN_IF_FAILED_LOCK;
 	assert(fd > 0);
@@ -146,14 +146,14 @@ namespace aidl::vendor::eureka::hardware::fmradio {
 			client_observe_thread = std::thread([=] {
 				pid_t pid = value;
 
-				ALOGD(make_str("%s: FM_APP_PID: recieved value %d", __func__, pid));
+				LOG_D("%s: FM_APP_PID: recieved value %d", __func__, pid);
 
 				while (true) {
 					if (kill(pid, 0) < 0 && errno == ESRCH) break;
 					std::this_thread::sleep_for(std::chrono::seconds(2));
 				}
 
-				ALOGW(make_str("%s: FM_APP_PID: Starting client death receiver", __func__));
+				LOG_W("%s: FM_APP_PID: Starting client death receiver", __func__);
 
 				fm_radio_slsi::fm_thread_set(fd, 0);
 				auto svc = IAudioRoute::fromBinder(ndk::SpAIBinder(AServiceManager_waitForService("vendor.eureka.hardware.audio_route.IAudioRoute/default")));
