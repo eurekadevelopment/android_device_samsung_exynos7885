@@ -1,11 +1,8 @@
 android_app_import {
-    name: "Camera",
-    owner: "me",
-    apk: "Camera.apk",
+    name: "Aperture",
+    owner: "LineageOS",
+    apk: "Aperture.apk",
     presigned: true,
-    dex_preopt: {
-        enabled: false,
-    },
     product_specific: true,
     overrides: [
         "Camera2",
