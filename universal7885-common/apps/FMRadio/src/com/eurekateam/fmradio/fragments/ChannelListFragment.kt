@@ -1,5 +1,6 @@
 package com.eurekateam.fmradio.fragments
 
+import android.app.ProgressDialog
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -56,19 +57,23 @@ class ChannelListFragment :
 
     override fun onClick(v: View?) {
         mNativeIF.mDefaultCtl.setValue(SetType.SET_TYPE_FM_SEARCH_START, 0)
-        requireActivity().window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+	val loading = ProgressDialog(requireContext())
+	loading.setMessage(requireContext().resources.getString(R.string.update_freq))
+	loading.setCancelable(false)
+	loading.setInverseBackgroundForced(false)
+	loading.show()
         WaitUntil.setTimer(
             requireActivity(),
             object : IWaitUntil {
                 override fun cond(): Boolean = mNativeIF.mDefaultCtl.getValue(GetType.GET_TYPE_FM_MUTEX_LOCKED) == 0
                 override fun todo() {
                     if (isAdded()) {
+                        loading.hide()
                         (requireActivity() as MainActivity).getMySupportFragmentManager().apply {
                             beginTransaction().remove(this@ChannelListFragment).commit()
                             executePendingTransactions()
-                             beginTransaction().add(R.id.container_view, this@ChannelListFragment).commit()
+                            beginTransaction().add(R.id.container_view, this@ChannelListFragment).commit()
                         }
-                        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                     }
                 }
             }

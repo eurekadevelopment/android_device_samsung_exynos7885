@@ -25,6 +25,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.textview.MaterialTextView
 import vendor.eureka.hardware.fmradio.SetType
+import vendor.eureka.hardware.fmradio.GetType
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mIntent: Intent
@@ -96,6 +97,7 @@ class MainActivity : AppCompatActivity() {
                     }, 500)
                 }
                 .show()
+		return
         }
         val receiverFilter = IntentFilter(Intent.ACTION_HEADSET_PLUG)
         registerReceiver(mWiredHeadsetReceiver, receiverFilter)
@@ -167,16 +169,23 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         Log.i("Application onPause")
-        mIntent.action = ACTION_START
-        startService(mIntent)
+	if (mFMInterface.mDefaultCtl.getValue(GetType.GET_TYPE_FM_MUTEX_LOCKED) == 0) {
+            mIntent.action = ACTION_START
+            startService(mIntent)
+	    mStartedService = true
+	}
     }
 
     override fun onRestart() {
         super.onRestart()
-        stopService(mIntent)
+	if (mStartedService) {
+	   stopService(mIntent)
+	   mStartedService = false
+	}
     }
 
     companion object {
         private const val ACTION_START = "com.eurekateam.fmradio.START"
+	private var mStartedService = false
     }
 }

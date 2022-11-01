@@ -40,4 +40,5 @@
    <string name="retry">Retry</string>
    <string name="exit_app">Exit App</string>
    <string name="fm_radio_freq">FM %s Mhz</string>
+   <string name="update_freq">Updating channel freqs list</string>
 </resources>

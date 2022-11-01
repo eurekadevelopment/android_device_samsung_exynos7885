@@ -1,5 +1,6 @@
 package com.eurekateam.fmradio.fragments
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Configuration
@@ -123,9 +124,12 @@ class MainFragment :
            mFMInterface.mDefaultCtl.setValue(SetType.SET_TYPE_FM_FREQ, mRestoreFreq)
            mFMFreq.text = mCleanFormat.format(mRestoreFreq.toFloat() / 1000)
            mFMInterface.mDevCtl.setValue(SetType.SET_TYPE_FM_THREAD, 1)
-           Toast.makeText(requireContext(), "Updating freqs list... Please wait", Toast.LENGTH_LONG).show()
-           requireActivity().window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-           mFMInterface.mDefaultCtl.setValue(SetType.SET_TYPE_FM_SEARCH_START, 0)
+           val loading = ProgressDialog(requireContext())
+	   loading.setMessage(requireContext().resources.getString(R.string.update_freq))
+	   loading.setCancelable(false)
+	   loading.setInverseBackgroundForced(false)
+	   loading.show()
+	   mFMInterface.mDefaultCtl.setValue(SetType.SET_TYPE_FM_SEARCH_START, 0)
            WaitUntil.setTimer(
                requireActivity(),
                object : IWaitUntil {
@@ -136,8 +140,7 @@ class MainFragment :
                            if (mSharedPref.getBoolean("fav_$i", false)) mFavList += i
                        }
                        if (!mFMPower) mUpdateEnableDisable(false)
-                       requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-                       Toast.makeText(requireContext(), "Done", Toast.LENGTH_SHORT).show()
+                       loading.hide()
                    }
                }
            )
