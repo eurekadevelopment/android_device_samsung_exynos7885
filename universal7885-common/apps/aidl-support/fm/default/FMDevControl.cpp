@@ -130,10 +130,11 @@ namespace aidl::vendor::eureka::hardware::fmradio {
 		case SetType::SET_TYPE_FM_SEARCH_CANCEL:
 			fm_radio_slsi::stop_search(fd);
 			break;
-		case SetType::SET_TYPE_FM_SPEAKER_ROUTE:
+		case SetType::SET_TYPE_FM_SPEAKER_ROUTE: {
 			auto svc = IAudioRoute::fromBinder(ndk::SpAIBinder(AServiceManager_waitForService("vendor.eureka.hardware.audio_route.IAudioRoute/default")));
 			svc->setParam(value ? "routing=2": "routing=8");
 			break;
+		}
 		case SetType::SET_TYPE_FM_SEARCH_START:
 			lock.unlock();
 			search_thread = std::thread([this] {
@@ -142,25 +143,24 @@ namespace aidl::vendor::eureka::hardware::fmradio {
 			});
 			search_thread.detach();
 			break;
-		case SetType::SET_TYPE_FM_APP_PID:
+		case SetType::SET_TYPE_FM_APP_PID: {
 			client_observe_thread = std::thread([=] {
 				pid_t pid = value;
 
 				LOG_D("%s: FM_APP_PID: recieved value %d", __func__, pid);
-
 				while (true) {
 					if (kill(pid, 0) < 0 && errno == ESRCH) break;
 					std::this_thread::sleep_for(std::chrono::seconds(2));
 				}
-
 				LOG_W("%s: FM_APP_PID: Starting client death receiver", __func__);
-
 				fm_radio_slsi::fm_thread_set(fd, 0);
 				auto svc = IAudioRoute::fromBinder(ndk::SpAIBinder(AServiceManager_waitForService("vendor.eureka.hardware.audio_route.IAudioRoute/default")));
 				svc->setParam("l_fmradio_mode=off");
 				close();
-			}
+			});
 			client_observe_thread.detach();
+			break;
+		}
 		default:
 			break;
 	};

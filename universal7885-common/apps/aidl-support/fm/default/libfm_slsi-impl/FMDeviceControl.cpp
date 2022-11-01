@@ -42,11 +42,10 @@ constexpr const char *FM_DEV_PATH = "/dev/radio0";
 int open_device(void) {
   int fd;
   if ((fd = open(FM_DEV_PATH, O_RDWR | O_CLOEXEC)) < 0) {
-    LOG(ERROR) << make_str("Failed to open %s, %d (%s)", FM_DEV_PATH, errno,
-                           strerror(-errno));
+    LOG_E("Failed to open %s, %d (%s)", FM_DEV_PATH, errno, strerror(-errno));
     return -1;
   }
-  LOG(DEBUG) << make_str("Opened %s, fd %d", FM_DEV_PATH, fd);
+  LOG_D("Opened %s, fd %d", FM_DEV_PATH, fd);
   return fd;
 }
 
@@ -66,7 +65,7 @@ int get_frequency(const int fd, int *channel) {
 
   *channel = static_cast<int>(freq.frequency) / 16000;
 
-  LOG(DEBUG) << make_str("Channel freq: %d", *channel);
+  LOG_D("Channel freq: %d", *channel);
   return ret;
 }
 
@@ -74,7 +73,7 @@ void set_frequency(const int fd, int channel) {
   struct v4l2_frequency freq {};
   int ret;
 
-  LOG(DEBUG) << make_str("Channel freq: %d", channel);
+  LOG_D("Channel freq: %d", channel);
 
   freq.tuner = 0;
   freq.type = V4L2_TUNER_RADIO;
@@ -90,7 +89,7 @@ static int set_control(const int fd, unsigned int id, int val) {
   int ret;
   ctrl.id = id;
 
-  LOG(DEBUG) << make_str("Control value: %d", val);
+  LOG_D("Control value: %d", val);
 
   if (val)
     ctrl.value = static_cast<unsigned int>(val);

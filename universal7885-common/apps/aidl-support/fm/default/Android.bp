@@ -26,7 +26,10 @@ cc_binary {
         "vendor.eureka.hardware.fmradio-V3-ndk",
         "vendor.eureka.hardware.audio_route-V1-ndk",
     ],
-    header_libs: ["libaudioclient_headers"],
+    header_libs: [
+        "libaudioclient_headers",
+        "logformat"
+    ],
     init_rc: ["vendor.eureka.hardware.fmradio-service.rc"],
     vintf_fragments: ["vendor.eureka.hardware.fmradio.xml"],
     required: [
