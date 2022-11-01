@@ -1,4 +1,6 @@
-#include <android-base/logging.h>
+#define LOG_TAG "libFileIO"
+
+#include <log/log.h>
 
 #include <fstream>
 #include <string>
@@ -13,20 +15,20 @@ int readline(const char *path) {
   std::ifstream file;
   std::string value;
   file.open(path);
-  LOG(DEBUG) << make_str("%s: Opening %s", __func__, path);
+  ALOGD(make_str("%s: Opening %s", __func__, path));
   if (file.is_open()) {
     getline(file, value);
     file.close();
   } else {
-    LOG(ERROR) << make_str("%s: Failed to open %s", __func__, path);
+    ALOGE(make_str("%s: Failed to open %s", __func__, path));
     return EXIT_ERR;
   }
   try {
     return stoi(value);
   } catch (std::invalid_argument const &ex) {
-    LOG(ERROR) << make_str("%s: stoi(): invalid argument: for %s", __func__, value.c_str());
+    ALOGE(make_str("%s: stoi(): invalid argument: for %s", __func__, value.c_str()));
   } catch (std::out_of_range const &ex) {
-    LOG(ERROR) << make_str("%s: stoi(): out of range: for %s", __func__, value.c_str());
+    ALOGE(make_str("%s: stoi(): out of range: for %s", __func__, value.c_str()));
   }
   return EXIT_ERR;
 }
@@ -34,13 +36,13 @@ int readline(const char *path) {
 void writeline(const char *path, const std::string& data) {
   std::ofstream file;
   file.open(path);
-  LOG(DEBUG) << make_str("%s: Opening %s, will write '%s'", __func__, path, data.c_str());
+  ALOGD(make_str("%s: Opening %s, will write '%s'", __func__, path, data.c_str()));
   if (file.is_open()) {
     file << data;
     file.close();
     return;
   }
-  LOG(ERROR) << make_str("%s: Failed to open %s", __func__, path);
+  ALOGE(make_str("%s: Failed to open %s", __func__, path));
 }
 
 void writeline(const char *path, const int data) {

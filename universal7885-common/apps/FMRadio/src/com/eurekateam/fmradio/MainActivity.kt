@@ -57,8 +57,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation)
         DynamicColors.applyToActivitiesIfAvailable(application)
-        mFMInterface.mDevCtl.setValue(SetType.SET_TYPE_FM_APP_PID, Process.myPid())
         mFMInterface.mDevCtl.open()
+        mFMInterface.mDevCtl.setValue(SetType.SET_TYPE_FM_APP_PID, Process.myPid())
         mAudioManager = getSystemService(AUDIO_SERVICE) as AudioManager
 
         /**

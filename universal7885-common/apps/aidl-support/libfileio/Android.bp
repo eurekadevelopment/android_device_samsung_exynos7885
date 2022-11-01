@@ -4,7 +4,7 @@ cc_library_shared {
    cppflags: ["-fexceptions"],
    local_include_dirs: ["include"],
    export_include_dirs: ["include"],
-   shared_libs: ["libbase"],
+   shared_libs: ["liblog"],
    header_libs: ["logformat"],
 }
    
