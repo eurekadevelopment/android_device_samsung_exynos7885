@@ -97,7 +97,7 @@ endif
 
 # Camera app
 PRODUCT_PACKAGES += \
-    Aperture
+    AperturePrebuilt
 
 # Charger
 PRODUCT_PACKAGES += \
