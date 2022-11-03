@@ -109,6 +109,7 @@ constexpr const char *FM_FREQ_SEEK = FM_SYSFS_BASE "/radio_freq_seek";
               if (std::find(freqs_list.begin(), freqs_list.end(), freq) != freqs_list.end()) continue;
               freqs_list.push_back(freq);
         }
+	std::sort(freqs_list.begin(), freqs_list.end(), std::less<int>());
     });
     search_thread.detach();
     break;

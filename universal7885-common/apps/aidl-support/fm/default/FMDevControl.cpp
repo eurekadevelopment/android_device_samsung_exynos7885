@@ -25,6 +25,7 @@
 #include <cassert>
 #include <cerrno>
 #include <chrono>
+#include <algorithm>
 
 #include <fcntl.h>
 #include <signal.h>
@@ -140,6 +141,7 @@ namespace aidl::vendor::eureka::hardware::fmradio {
 			search_thread = std::thread([this] {
 				const std::lock_guard<std::timed_mutex> guard(lock);
 				freqs_list = fm_radio_slsi::get_freqs(fd);
+				std::sort(freqs_list.begin(), freqs_list.end(), std::less<int>());
 			});
 			search_thread.detach();
 			break;
