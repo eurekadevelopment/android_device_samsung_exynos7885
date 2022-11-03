@@ -10,7 +10,8 @@
       <service android:name=".FMRadioService" android:exported="false">
          <intent-filter>
             <action android:name="com.eurekateam.fmradio.PLAY_FM"/>
-            <action android:name="com.eurekateam.fmradio.NEXT"/>
+	    <action android:name="com.eurekateam.fmradio.NEXT"/>
+	    <action android:name="com.eurekateam.fmradio.START"/>
             <action android:name="com.eurekateam.fmradio.BEFORE"/>
             <action android:name="com.eurekateam.fmradio.QUIT"/>
             <action android:name="com.eurekateam.fmradio.OUTPUT"/>

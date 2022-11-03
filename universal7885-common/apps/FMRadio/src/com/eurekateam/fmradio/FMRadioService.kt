@@ -66,10 +66,10 @@ class FMRadioService : Service() {
                     mMediaSession = MediaSession(this, "FMRadio")
                     setPlaybackState()
                     mMediaSession.isActive = true
+                    mContext = this
                 }
             }
         }
-        mContext = this
         sendMetaData("FM ${mNativeFMInterface.mDefaultCtl.getValue(GetType.GET_TYPE_FM_FREQ).toFloat() / 1000} Mhz")
         startForeground(51, pushNotification())
         Log.i("--- FMRadio Background (OUT) ---")
