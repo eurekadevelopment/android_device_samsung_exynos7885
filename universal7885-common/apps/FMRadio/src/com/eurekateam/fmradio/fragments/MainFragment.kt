@@ -119,6 +119,7 @@ class MainFragment :
         mSeekBar.min = 1
         mSeekBar.max = 15
         mSeekBar.progress = mVolume
+        updateOutputStatus(false)
         if (!mFreqSearchDone) {
            val mRestoreFreq = mSharedPref.getInt("freq", mFMInterface.mDevCtl.getValue(GetType.GET_TYPE_FM_LOWER_LIMIT))
            mFMInterface.mDefaultCtl.setValue(SetType.SET_TYPE_FM_FREQ, mRestoreFreq)
@@ -206,27 +207,33 @@ class MainFragment :
         }
     }
 
+    private fun updateOutputStatus(mInverted : Boolean) {
+        var mCurrent = mSharedPref.getBoolean("speaker", false)
+        if (mInverted) mCurrent = !mCurrent
+        if (mCurrent) {
+            mOutputSwitch.setImageIcon(
+                 Icon.createWithResource(
+                       requireContext(),
+                       R.drawable.ic_volume_up
+                 )
+            )
+            mFMInterface.mDevCtl.setValue(SetType.SET_TYPE_FM_SPEAKER_ROUTE, 1)
+        } else {
+            mOutputSwitch.setImageIcon(
+                Icon.createWithResource(
+                     requireContext(),
+                     R.drawable.ic_headphones
+                )
+            )
+            mFMInterface.mDevCtl.setValue(SetType.SET_TYPE_FM_SPEAKER_ROUTE, 0)
+        }
+    }
+
     override fun onClick(v: View) {
         when (v.id) {
             mOutputSwitch.id -> {
                 val mCurrent = mSharedPref.getBoolean("speaker", false)
-                if (!mCurrent) {
-                    mOutputSwitch.setImageIcon(
-                        Icon.createWithResource(
-                            requireContext(),
-                            R.drawable.ic_volume_up
-                        )
-                    )
-                    mFMInterface.mDevCtl.setValue(SetType.SET_TYPE_FM_SPEAKER_ROUTE, 1)
-                } else {
-                    mOutputSwitch.setImageIcon(
-                        Icon.createWithResource(
-                            requireContext(),
-                            R.drawable.ic_headphones
-                        )
-                    )
-                    mFMInterface.mDevCtl.setValue(SetType.SET_TYPE_FM_SPEAKER_ROUTE, 0)
-                }
+                updateOutputStatus(true)
                 mSharedPref.edit().putBoolean("speaker", !mCurrent).apply()
             }
             mVolumeUp.id -> {
