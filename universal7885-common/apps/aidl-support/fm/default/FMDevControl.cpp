@@ -149,15 +149,13 @@ namespace aidl::vendor::eureka::hardware::fmradio {
 			client_observe_thread = std::thread([=] {
 				pid_t pid = value;
 
-				LOG_D("%s: FM_APP_PID: recieved value %d", __func__, pid);
+				LOG_D("FM_APP_PID: received value %d", pid);
 				while (true) {
 					if (kill(pid, 0) < 0 && errno == ESRCH) break;
 					std::this_thread::sleep_for(std::chrono::seconds(2));
 				}
-				LOG_W("%s: FM_APP_PID: Starting client death receiver", __func__);
+				LOG_W("FM_APP_PID: Starting client death receiver");
 				fm_radio_slsi::fm_thread_set(fd, 0);
-				auto svc = IAudioRoute::fromBinder(ndk::SpAIBinder(AServiceManager_waitForService("vendor.eureka.hardware.audio_route.IAudioRoute/default")));
-				svc->setParam("l_fmradio_mode=off");
 				close();
 			});
 			client_observe_thread.detach();

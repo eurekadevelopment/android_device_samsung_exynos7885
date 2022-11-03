@@ -65,7 +65,7 @@ int get_frequency(const int fd, int *channel) {
 
   *channel = static_cast<int>(freq.frequency) / 16000;
 
-  LOG_D("Channel freq: %d", *channel);
+  LOG_D("%s: Channel freq: %d", __func__, *channel);
   return ret;
 }
 
@@ -73,7 +73,7 @@ void set_frequency(const int fd, int channel) {
   struct v4l2_frequency freq {};
   int ret;
 
-  LOG_D("Channel freq: %d", channel);
+  LOG_D("%s: Channel freq: %d", __func__, channel);
 
   freq.tuner = 0;
   freq.type = V4L2_TUNER_RADIO;
@@ -88,8 +88,6 @@ static int set_control(const int fd, unsigned int id, int val) {
   struct v4l2_control ctrl {};
   int ret;
   ctrl.id = id;
-
-  LOG_D("Control value: %d", val);
 
   if (val)
     ctrl.value = static_cast<unsigned int>(val);
