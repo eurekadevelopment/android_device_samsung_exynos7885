@@ -119,7 +119,7 @@ PRODUCT_PACKAGES += \
 endif
 
 # Samsung FMRadio impl
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     FMRadio
 
 # Gatekeeper
