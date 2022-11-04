@@ -170,22 +170,14 @@ class MainActivity : AppCompatActivity() {
         super.onPause()
         Log.i("Application onPause")
 	if (mFMInterface.mDefaultCtl.getValue(GetType.GET_TYPE_FM_MUTEX_LOCKED) == 0) {
-            mIntent.action = ACTION_START
+            mIntent.action = null
             startService(mIntent)
-	    mStartedService = true
 	}
     }
 
     override fun onRestart() {
         super.onRestart()
-	if (mStartedService) {
-	   stopService(mIntent)
-	   mStartedService = false
-	}
-    }
-
-    companion object {
-        private const val ACTION_START = "com.eurekateam.fmradio.START"
-	private var mStartedService = false
+        mIntent.action = "com.eurekateam.fmradio.STOP"
+        startService(mIntent)
     }
 }
