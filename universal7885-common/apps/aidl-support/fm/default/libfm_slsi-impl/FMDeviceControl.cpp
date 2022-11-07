@@ -22,7 +22,7 @@ static bool FMThread = false;
 constexpr const char *FM_DEV_PATH = "/dev/radio0";
 
 #define LOG_IOCTL_ERR(cmd) \
-  LOG_E(std::string("Failed to call" cmd "ioctl(), %d (%s)"), errno, strerror(-errno))
+  LOG_E(std::string("Failed to call" cmd "ioctl(), %d (%s)"), errno, strerror(errno))
 
 #define LOG_IOCTL_ERR_ON_COND_NORETURN(cmd, cond) \
 ({									\
