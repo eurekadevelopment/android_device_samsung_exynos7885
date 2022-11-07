@@ -34,7 +34,6 @@ SamsungCameraProvider::SamsungCameraProvider()
   mExtraIDs.push_back(23);
   mExtraIDs.push_back(50);
   mExtraIDs.push_back(52);
-  mDisabledIDs.push_back(2);
   if (!mInitFailed) {
     for (int i : mExtraIDs) {
       struct camera_info info;
@@ -65,29 +64,3 @@ SamsungCameraProvider::SamsungCameraProvider()
     }
   }
 }
-
-Return<void> SamsungCameraProvider::getCameraIdList(
-    const ICameraProvider::getCameraIdList_cb &_hidl_cb) {
-  std::vector<hidl_string> deviceNameList;
-  for (auto const &deviceNamePair : mCameraDeviceNames) {
-    int id = std::stoi(deviceNamePair.first);
-    if (id >= mNumberOfLegacyCameras ||
-        std::find(mDisabledIDs.begin(), mDisabledIDs.end(), id) !=
-            mDisabledIDs.end()) {
-      // External camera devices must be reported through the device status
-      // change callback, not in this list. Linux4: Also skip disabled camera
-      // IDs.
-      continue;
-    }
-    if (mCameraStatusMap[deviceNamePair.first] ==
-        CAMERA_DEVICE_STATUS_PRESENT) {
-      deviceNameList.push_back(deviceNamePair.second);
-    }
-  }
-  hidl_vec<hidl_string> hidlDeviceNameList(deviceNameList);
-  _hidl_cb(::android::hardware::camera::common::V1_0::Status::OK,
-           hidlDeviceNameList);
-  return Void();
-}
-
-SamsungCameraProvider::~SamsungCameraProvider() {}

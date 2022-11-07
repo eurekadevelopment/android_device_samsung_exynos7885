@@ -28,13 +28,9 @@ using ::android::hardware::camera::provider::V2_5::implementation::
 class SamsungCameraProvider : public LegacyCameraProviderImpl_2_5 {
 public:
   SamsungCameraProvider();
-  ~SamsungCameraProvider();
-
-  Return<void> getCameraIdList(const ICameraProvider::getCameraIdList_cb &_hidl_cb);
 
 private:
   std::vector<int> mExtraIDs;
-  std::vector<int> mDisabledIDs;
 };
 
 #endif // SAMSUNG_CAMERA_PROVIDER_H

@@ -12,6 +12,38 @@
 #include <include/convert.h>
 #include <log/log.h>
 
+#include <utility>
+
+namespace remapper {
+
+// Reversed means changing second to first
+static void applyRemap(std::pair<int, int> config, int *intversion, std::string *stringversion)
+{
+	int cameraid = 0, selectedFromConfig = 0;
+
+	if (intversion != nullptr)
+		cameraid = *intversion;
+	else if (stringversion != nullptr)
+		cameraid = std::stoi(*stringversion);
+	else return;
+
+	if (config.first == cameraid)
+		selectedFromConfig = config.second;
+	else if (config.second == cameraid)
+		selectedFromConfig = config.first;
+	else return;
+
+	if (intversion != nullptr)
+		*intversion = selectedFromConfig;
+	if (stringversion != nullptr) {
+		std::vector<char> buf(2 /* single digit and null char */);
+		std::snprintf(buf.data(), buf.size(), "%d", selectedFromConfig);
+		*stringversion = std::string(buf.begin(), buf.end());
+	}
+}
+
+} // namespace remapper
+
 namespace android {
 namespace hardware {
 namespace camera {
@@ -28,8 +60,7 @@ Return<void> CameraDevice::getCameraCharacteristics(
   if (status == Status::OK) {
     // Module 2.1+ codepath.
     struct camera_info info;
-    if (mCameraIdInt == 1)
-      mCameraIdInt = 2;
+    remapper::applyRemap(std::make_pair(1, 2), &mCameraIdInt, nullptr);
     int ret = mModule->getCameraInfo(mCameraIdInt, &info);
     if (ret == OK) {
       convertToHidl(info.static_camera_characteristics, &cameraCharacteristics);
@@ -78,10 +109,7 @@ Return<void> CameraDevice::open(const sp<ICameraDeviceCallback> &callback,
     camera3_device_t *device;
 
     std::string mCameraID = mCameraId;
-    if (mCameraIdInt == 1)
-      mCameraIdInt = 2;
-    if (mCameraID == "1")
-      mCameraID = "2";
+    remapper::applyRemap(std::make_pair(1, 2), &mCameraIdInt, &mCameraID);
 
     res = mModule->open(mCameraID.c_str(),
                         reinterpret_cast<hw_device_t **>(&device));
