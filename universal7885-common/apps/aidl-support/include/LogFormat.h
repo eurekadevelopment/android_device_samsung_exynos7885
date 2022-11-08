@@ -27,6 +27,18 @@ std::string _make_str(const std::string& filename, int line, const std::string& 
   return ss.str();
 }
 
+#ifndef __NEED_VERBOSE_LOG__
+
+#undef LOG_I
+#undef LOG_D
+#undef LOG_V
+
+#define LOG_I(...) do {} while(0)
+#define LOG_D(...) do {} while(0)
+#define LOG_V(...) do {} while(0)
+
+#endif
+
 #else
 
 #warning LOG_TAG is not defined, disabling logging.
