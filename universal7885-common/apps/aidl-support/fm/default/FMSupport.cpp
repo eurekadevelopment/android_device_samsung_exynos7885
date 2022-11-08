@@ -101,7 +101,7 @@ constexpr const char *FM_FREQ_SEEK = FM_SYSFS_BASE "/radio_freq_seek";
     NOT_SUPPORTED;
   case SetType::SET_TYPE_FM_SEARCH_START:
     lock.unlock();
-    search_thread = std::thread([this] {
+    search_thread = new std::thread([this] {
         const std::lock_guard<std::timed_mutex> guard(lock);
         for (int i = 0; i < TRACK_SIZE; i++) {
               FileIO::writeline(FM_FREQ_SEEK, "1 " + std::to_string(SYSFS_SPACING * 10));
@@ -111,7 +111,6 @@ constexpr const char *FM_FREQ_SEEK = FM_SYSFS_BASE "/radio_freq_seek";
         }
 	std::sort(freqs_list.begin(), freqs_list.end(), std::less<int>());
     });
-    search_thread.detach();
     break;
   default:
     break;

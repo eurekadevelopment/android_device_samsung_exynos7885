@@ -35,7 +35,7 @@ public:
   ::ndk::ScopedAStatus close(void) override;
  private:
   std::timed_mutex lock;
-  std::thread search_thread;
+  std::thread *search_thread;
   std::vector<int> freqs_list;
   unsigned int index;
   middlestate_t *kMiddleState;

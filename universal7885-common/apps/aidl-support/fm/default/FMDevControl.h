@@ -38,7 +38,7 @@ struct FMDevControl : public BnFMDevControl {
   int fd;
   unsigned int index;
   std::timed_mutex lock;
-  std::thread search_thread, client_observe_thread;
+  std::thread *search_thread, *client_observe_thread;
   std::vector<int> freqs_list;
   middlestate_t *kMiddleState;
 };

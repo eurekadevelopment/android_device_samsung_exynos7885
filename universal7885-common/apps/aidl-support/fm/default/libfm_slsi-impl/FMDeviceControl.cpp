@@ -18,6 +18,7 @@
 namespace fm_radio_slsi {
 
 static bool FMThread = false;
+static std::thread *poll_thread = nullptr;
 
 constexpr const char *FM_DEV_PATH = "/dev/radio0";
 
@@ -227,8 +228,9 @@ static void fm_thread(int fd) {
 void fm_thread_set(const int fd, const bool enable) {
   FMThread = enable;
   if (enable) {
-    std::thread thread = std::thread(fm_thread, fd);
-    thread.detach();
+    poll_thread = new std::thread(fm_thread, fd);
+  } else {
+    poll_thread = nullptr;
   }
 }
 

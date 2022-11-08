@@ -138,15 +138,14 @@ namespace aidl::vendor::eureka::hardware::fmradio {
 		}
 		case SetType::SET_TYPE_FM_SEARCH_START:
 			lock.unlock();
-			search_thread = std::thread([this] {
+			search_thread = new std::thread([this] {
 				const std::lock_guard<std::timed_mutex> guard(lock);
 				freqs_list = fm_radio_slsi::get_freqs(fd);
 				std::sort(freqs_list.begin(), freqs_list.end(), std::less<int>());
 			});
-			search_thread.detach();
 			break;
 		case SetType::SET_TYPE_FM_APP_PID: {
-			client_observe_thread = std::thread([=] {
+			client_observe_thread = new std::thread([=] {
 				pid_t pid = value;
 
 				LOG_D("FM_APP_PID: received value %d", pid);
@@ -158,7 +157,6 @@ namespace aidl::vendor::eureka::hardware::fmradio {
 				fm_radio_slsi::fm_thread_set(fd, 0);
 				close();
 			});
-			client_observe_thread.detach();
 			break;
 		}
 		default:
