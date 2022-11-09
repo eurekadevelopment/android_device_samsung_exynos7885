@@ -18,7 +18,7 @@
 
 namespace aidl::vendor::eureka::hardware::parts {
 
-using cb_t = const std::shared_ptr<IBoolCallback>&;
+using cb_t = const std::shared_ptr<IBoolCallback> &;
 
 struct SwapOnData : public BnSwapOnData {
   // Methods from ::aidl::vendor::eureka::hardware::parts::ISwapOnData
@@ -29,4 +29,4 @@ struct SwapOnData : public BnSwapOnData {
   ::ndk::ScopedAStatus setSwapOff(void);
   ::ndk::ScopedAStatus isMutexLocked(bool *_aidl_return);
 };
-} // namespace vendor::eureka::hardware::parts::V1_0
+} // namespace aidl::vendor::eureka::hardware::parts

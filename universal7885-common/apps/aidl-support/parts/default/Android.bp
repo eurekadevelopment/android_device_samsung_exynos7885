@@ -5,7 +5,6 @@ cc_binary {
         "FlashLight.cpp",
         "Display.cpp",
         "Swap.cpp",
-        "SwapHelpers.cpp",
 	"SmartCharge.cpp",
         "service.cpp",
     ],
