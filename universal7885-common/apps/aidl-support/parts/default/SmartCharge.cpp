@@ -14,9 +14,9 @@
 
 #include "SmartCharge.h"
 
-#include <chrono>
-#include <FileIO.h>
 #include "BatteryConstants.h"
+#include <FileIO.h>
+#include <chrono>
 
 namespace aidl::vendor::eureka::hardware::parts {
 
@@ -24,20 +24,23 @@ void SmartCharge::battery_monitor(void) {
   while (kShouldRun) {
     auto batt = FileIO::readline(BATTERY_CAPACITY_CURRENT);
     if (batt >= limit) {
-      if (kTookAction) goto sleep;
+      if (kTookAction)
+        goto sleep;
       FileIO::writeline(BATTERY_CHARGE, 1);
       kTookAction = true;
       limit_stat += 1;
     } else if (batt <= restart) {
-      if (kTookAction) goto sleep;
+      if (kTookAction)
+        goto sleep;
       FileIO::writeline(BATTERY_CHARGE, 0);
       kTookAction = true;
       restart_stat += 1;
     } else {
-      if (!kTookAction) goto sleep;
+      if (!kTookAction)
+        goto sleep;
       kTookAction = false;
     }
-sleep:
+  sleep:
     std::this_thread::sleep_for(std::chrono::seconds(5));
   }
 }
@@ -48,7 +51,7 @@ sleep:
         EX_ILLEGAL_ARGUMENT, "Start called without configuring.");
 
   kShouldRun = true;
-  monitor_th = new std::thread([this] {battery_monitor();});
+  monitor_th = new std::thread([this] { battery_monitor(); });
   return ::ndk::ScopedAStatus::ok();
 }
 
