@@ -45,21 +45,23 @@ constexpr const char *FM_FREQ_SEEK = FM_SYSFS_BASE "/radio_freq_seek";
   case GetType::GET_TYPE_FM_RMSSI:
     NOT_SUPPORTED;
   case GetType::GET_TYPE_FM_BEFORE_CHANNEL:
-    if (index > 0) index -= 1;
+    if (index > 0)
+      index -= 1;
     if (kMiddleState != nullptr) {
-       index = kMiddleState->first;
-       delete kMiddleState;
-       kMiddleState = nullptr;
+      index = kMiddleState->first;
+      delete kMiddleState;
+      kMiddleState = nullptr;
     }
     FileIO::writeline(FM_FREQ_CTL, freqs_list[index]);
     *_aidl_return = freqs_list[index];
     break;
   case GetType::GET_TYPE_FM_NEXT_CHANNEL:
-    if (index < freqs_list.size() - 1) index += 1;
+    if (index < freqs_list.size() - 1)
+      index += 1;
     if (kMiddleState != nullptr) {
-       index = kMiddleState->second;
-       delete kMiddleState;
-       kMiddleState = nullptr;
+      index = kMiddleState->second;
+      delete kMiddleState;
+      kMiddleState = nullptr;
     }
     FileIO::writeline(FM_FREQ_CTL, freqs_list[index]);
     *_aidl_return = freqs_list[index];
@@ -69,10 +71,10 @@ constexpr const char *FM_FREQ_SEEK = FM_SYSFS_BASE "/radio_freq_seek";
     break;
   case GetType::GET_TYPE_FM_MUTEX_LOCKED:
     if (lock.try_lock()) {
-       *_aidl_return = false;
-       lock.unlock();
+      *_aidl_return = false;
+      lock.unlock();
     } else {
-       *_aidl_return = true;
+      *_aidl_return = true;
     }
     break;
   default:
@@ -88,8 +90,9 @@ constexpr const char *FM_FREQ_SEEK = FM_SYSFS_BASE "/radio_freq_seek";
   switch (type) {
   case SetType::SET_TYPE_FM_FREQ:
     FileIO::writeline(FM_FREQ_CTL, value);
-    if (std::find(freqs_list.begin(), freqs_list.end(), value) == freqs_list.end())
-       kMiddleState = saveMiddleState(value, freqs_list);
+    if (std::find(freqs_list.begin(), freqs_list.end(), value) ==
+        freqs_list.end())
+      kMiddleState = saveMiddleState(value, freqs_list);
     break;
   case SetType::SET_TYPE_FM_MUTE:
   case SetType::SET_TYPE_FM_VOLUME:
@@ -102,20 +105,24 @@ constexpr const char *FM_FREQ_SEEK = FM_SYSFS_BASE "/radio_freq_seek";
   case SetType::SET_TYPE_FM_SEARCH_START:
     lock.unlock();
     search_thread = new std::thread([this] {
-        const std::lock_guard<std::timed_mutex> guard(lock);
-        for (int i = 0; i < TRACK_SIZE; i++) {
-              FileIO::writeline(FM_FREQ_SEEK, "1 " + std::to_string(SYSFS_SPACING * 10));
-              int freq = FileIO::readline(FM_FREQ_CTL);
-              if (std::find(freqs_list.begin(), freqs_list.end(), freq) != freqs_list.end()) continue;
-              freqs_list.push_back(freq);
-        }
-	std::sort(freqs_list.begin(), freqs_list.end(), std::less<int>());
+      const std::lock_guard<std::timed_mutex> guard(lock);
+      for (int i = 0; i < TRACK_SIZE; i++) {
+        FileIO::writeline(FM_FREQ_SEEK,
+                          "1 " + std::to_string(SYSFS_SPACING * 10));
+        int freq = FileIO::readline(FM_FREQ_CTL);
+        if (std::find(freqs_list.begin(), freqs_list.end(), freq) !=
+            freqs_list.end())
+          continue;
+        freqs_list.push_back(freq);
+      }
+      std::sort(freqs_list.begin(), freqs_list.end(), std::less<int>());
     });
     break;
   default:
     break;
   };
-  if (type != SetType::SET_TYPE_FM_SEARCH_START) lock.unlock();
+  if (type != SetType::SET_TYPE_FM_SEARCH_START)
+    lock.unlock();
   return ::ndk::ScopedAStatus::ok();
 }
 

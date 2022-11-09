@@ -3,8 +3,8 @@
 #pragma once
 
 struct pair {
-	unsigned int first;
-	unsigned int second;
+  unsigned int first;
+  unsigned int second;
 };
 
 using middlestate_t = struct pair;

@@ -16,13 +16,14 @@
 #include <android/binder_manager.h>
 #include <android/binder_process.h>
 
-#include "FMSupport.h"
 #include "FMDevControl.h"
+#include "FMSupport.h"
 
 using ::aidl::vendor::eureka::hardware::fmradio::FMDevControl;
 using ::aidl::vendor::eureka::hardware::fmradio::FMSupport;
 
-template <class C> static void registerAsService(std::shared_ptr<C> service, const char *inst) {
+template <class C>
+static void registerAsService(std::shared_ptr<C> service, const char *inst) {
   const std::string instance = std::string() + C::descriptor + "/" + inst;
   binder_status_t status =
       AServiceManager_addService(service->asBinder().get(), instance.c_str());

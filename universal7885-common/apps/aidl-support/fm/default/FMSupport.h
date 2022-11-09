@@ -16,24 +16,23 @@
 
 #include <aidl/vendor/eureka/hardware/fmradio/BnFMDevControl.h>
 
+#include "MiddleState.h"
 #include <mutex>
 #include <thread>
-#include "MiddleState.h"
 
 namespace aidl::vendor::eureka::hardware::fmradio {
 
 struct FMSupport : public BnFMDevControl {
 public:
-  FMSupport(void) {
-    index = 0;
-  };
+  FMSupport(void) { index = 0; };
   // Methods from aidl::vendor::eureka::hardware::fmradio::IFMRadio follow.
   ::ndk::ScopedAStatus open(void) override;
   ::ndk::ScopedAStatus getValue(GetType type, int *_aidl_return) override;
   ::ndk::ScopedAStatus setValue(SetType type, int value) override;
   ::ndk::ScopedAStatus getFreqsList(std::vector<int> *_aidl_return) override;
   ::ndk::ScopedAStatus close(void) override;
- private:
+
+private:
   std::timed_mutex lock;
   std::thread *search_thread;
   std::vector<int> freqs_list;
