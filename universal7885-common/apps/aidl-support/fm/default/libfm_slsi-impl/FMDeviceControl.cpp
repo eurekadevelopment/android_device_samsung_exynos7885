@@ -7,6 +7,7 @@
 #include <sys/poll.h>
 #include <unistd.h>
 
+#include <atomic>
 #include <cerrno>
 #include <cstring>
 #include <thread>
@@ -17,7 +18,7 @@
 
 namespace fm_radio_slsi {
 
-static bool FMThread = false;
+static atomic_bool kShouldRun;
 static std::thread *poll_thread = nullptr;
 
 constexpr const char *FM_DEV_PATH = "/dev/radio0";
@@ -211,7 +212,7 @@ static void fm_thread(int fd) {
   unsigned char read_buf[FM_RADIO_RDS_DATA_MAX];
   int ret;
 
-  while (FMThread) {
+  while (kShouldRun.load()) {
     ret = fm_poll(fd, &radio_poll);
     if (ret < 0) {
       if (ret < FM_FAILURE)
@@ -226,7 +227,7 @@ static void fm_thread(int fd) {
 }
 
 void fm_thread_set(const int fd, const bool enable) {
-  FMThread = enable;
+  kShouldRun.store(enable);
   if (enable) {
     poll_thread = new std::thread(fm_thread, fd);
   } else {
