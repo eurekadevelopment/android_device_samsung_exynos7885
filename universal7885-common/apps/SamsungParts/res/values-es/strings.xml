@@ -10,12 +10,12 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-   <string name="advanced_settings">SamsungParts</string>
+   <string name="advanced_settings">Partes de Samsung</string>
    <string name="advanced_settings_summary">Ajustes específicos del dispositivo</string>
    <!-- Categoría Pantalla -->
    <string name="display_category">Pantalla</string>
    <!-- FPS Info -->
-   <string name="fps_info_title">Superposición FPS</string>
+   <string name="fps_info_title">Superposición de FPS</string>
    <string name="fps_info_summary">Muestra una superposición con los fotogramas actuales por segundo </string>
    <!-- Categoría Altavoz -->
    <string name="speaker_category">Audio</string>
@@ -29,23 +29,23 @@
    <string name="dolby_description">Habilita el audio Dolby, como en One UI.</string>
    <string name="dolby_modes_title">Modos Dolby disponibles</string>
    <string name="dolby_modes_summary">Elige uno de estos</string>
-   <string name="dolby_profile_auto">Auto Profile</string>
-   <string name="dolby_profile_movie">Movie Profile</string>
-   <string name="dolby_profile_music">Music Profile</string>
-   <string name="dolby_profile_voice">Voice Profile</string>
-   <string name="dolby_profile_game">Game Profile</string>
-   <string name="dolby_profile_off">No Profile</string>
-   <string name="dolby_profile_game_1">Game 1 Profile</string>
-   <string name="dolby_profile_game_2">Game 2 Profile</string>
-   <string name="dolby_profile_special_audio">Special Audio Profile</string>
+   <string name="dolby_profile_auto">Perfil Automático</string>
+   <string name="dolby_profile_movie">Perfil de Pelicula</string>
+   <string name="dolby_profile_music">Perfil de Musica</string>
+   <string name="dolby_profile_voice">Perfil de Voz</string>
+   <string name="dolby_profile_game">Perfil de Juego</string>
+   <string name="dolby_profile_off">Sin Perfil</string>
+   <string name="dolby_profile_game_1">Perfil de Juego 1</string>
+   <string name="dolby_profile_game_2">Perfil de Juego 2</string>
+   <string name="dolby_profile_special_audio">Perfil de audio especial</string>
    <!-- Categoría de características de Eureka Kernel -->
    <string name="eureka_kernel_features">Características de Eureka Kernel</string>
    <!-- Linterna -->
    <string name="flashlight_title">Brillo de la linterna</string>
    <string name="flashlight_summary">Ajusta el brillo de la linterna</string>
-   <string name="flashlight_description">Samsung OneUI Tiene una opción para ajustar el brillo de la linterna. AOSP no tiene esta función.\n\nUtilice esta función para ajustar el brillo de la linterna bajo o alto. Va de 1 a 10.</string>
+   <string name="flashlight_description">Samsung OneUI Tiene una opción para ajustar el brillo de la linterna. AOSP no tiene esta función.\n\nUtilice esta función para ajustar el brillo de la linterna bajo o alto. el rango es del 1 a 10.</string>
    <!-- Categoría del GPU -->
-   <string name="misc_category">Misc</string>
+   <string name="misc_category">Varios</string>
    <!-- Batería -->
    <string name="fastcharge_category">Batería</string>
    <string name="fastcharge_2nd_title">Configuración de Carga rápida</string>
@@ -63,28 +63,28 @@
    <string name="battery_temp">Temperatura actual de la batería</string>
    <string name="battery_current">Corriente de la batería (mA)</string>
    <!-- Label for feature switch -->
-   <string name="switch_bar_on">On</string>
+   <string name="switch_bar_on">Encendido</string>
    <!-- Label for feature switch -->
-   <string name="switch_bar_off">Off</string>
+   <string name="switch_bar_off">Apagado</string>
    <!-- Custom seekbar -->
-   <string name="custom_seekbar_value">Value: <xliff:g id="v">%s</xliff:g></string>
-   <string name="custom_seekbar_default_value">Default</string>
-   <string name="custom_seekbar_default_value_to_set">Default value: <xliff:g id="v">%s</xliff:g>\nLong press to set</string>
-   <string name="custom_seekbar_default_value_is_set">Default value is set</string>
+   <string name="custom_seekbar_value">Valor: <xliff:g id="v">%s</xliff:g></string>
+   <string name="custom_seekbar_default_value">Por defecto</string>
+   <string name="custom_seekbar_default_value_to_set">Valor por defecto: <xliff:g id="v">%s</xliff:g>\nMantenga presionado para establecer</string>
+   <string name="custom_seekbar_default_value_is_set">Se establece el valor predeterminado</string>
    <!-- Carga Inteligente -->
    <string name="smartcharge_title">Implementación simple de carga inteligente</string>
    <string name="smartcharge_switch">Habilitar la implementación</string>
    <string name="choose_limit_title">Ajustar el limite de carga %</string>
    <string name="choose_summary">Toque aqui para modificar el ajuste</string>
-   <string name="choose_restart_title">limite de readunación de carga%</string>
-   <string name="limit_title">Limite de carga actual % Setting</string>
-   <string name="restart_title">reanudación de la carga actual % Setting</string>
+   <string name="choose_restart_title">limite de readunación de carga</string>
+   <string name="limit_title">Limite de carga actual</string>
+   <string name="restart_title">reanudación de la carga actual</string>
    <string name="limit_stat_title">Estadisticas del conteo del limite de carga desde el ultimo inicio</string>
    <string name="restart_stat_title">Estadisticas del conteo de reanudaciónes de carga desde el ultimo inicio</string>
    <string name="adjust_title">Mueva la barra para ajustar los valores</string>
    <string name="adjust_summary">desde la izquierda el valor se movera de -10 -1 0 1 10</string>
-   <string name="smartcharge_description">Testa es una implementación simple de la carga inteligente
-           basada en el porcentaje de la bateria. Si el porcentaje esta por encima del limite
-           la carga se detendra y si el porcentaje baja del limite la carga se readunará.
+   <string name="smartcharge_description">'Testa' es una implementación simple de la carga inteligente
+           basada en el porcentaje de la bateria, Si el porcentaje esta por encima del limite
+           la carga se detendra y si el porcentaje baja del limite la carga se readunará,
            el objetivo de esta herramienta es mejorar la salud y la vida de la bateria a largo plazo</string>
 </resources>
