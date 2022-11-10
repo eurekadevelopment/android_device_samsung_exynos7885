@@ -83,7 +83,7 @@
    <string name="restart_stat_title">Estadisticas del conteo de reanudaciónes de carga desde el ultimo inicio</string>
    <string name="adjust_title">Mueva la barra para ajustar los valores</string>
    <string name="adjust_summary">desde la izquierda el valor se movera de -10 -1 0 1 10</string>
-   <string name="smartcharge_description">'Testa' es una implementación simple de la carga inteligente
+   <string name="smartcharge_description">\'Testa\' es una implementación simple de la carga inteligente
            basada en el porcentaje de la bateria, Si el porcentaje esta por encima del limite
            la carga se detendra y si el porcentaje baja del limite la carga se readunará,
            el objetivo de esta herramienta es mejorar la salud y la vida de la bateria a largo plazo</string>
