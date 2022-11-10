@@ -2,6 +2,7 @@ aidl_interface {
     name: "vendor.eureka.hardware.fmradio",
     srcs: ["vendor/eureka/hardware/fmradio/*.aidl"],
     stability: "vintf",
+    owner: "Eureka Team",
     backend: {
         ndk: {
             enabled: true,
