@@ -18,7 +18,7 @@
 
 namespace fm_radio_slsi {
 
-static atomic_bool kShouldRun;
+static std::atomic_bool kShouldRun;
 static std::thread *poll_thread = nullptr;
 
 constexpr const char *FM_DEV_PATH = "/dev/radio0";
