@@ -26,6 +26,7 @@ import com.eurekateam.fmradio.enums.HeadsetState
 import com.eurekateam.fmradio.enums.PowerState
 import com.eurekateam.fmradio.utils.IWaitUntil
 import com.eurekateam.fmradio.utils.Log
+import com.eurekateam.fmradio.utils.MaterialHelper
 import com.eurekateam.fmradio.utils.WaitUntil
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textview.MaterialTextView
@@ -90,29 +91,21 @@ class MainFragment :
         mOutputSwitch.setOnClickListener(this)
         mFavButton.setOnClickListener(this)
         mSharedPref = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        var mIsLight = true
-        val nightModeFlags = requireContext().resources.configuration.uiMode and
-            Configuration.UI_MODE_NIGHT_MASK
-        when (nightModeFlags) {
-            Configuration.UI_MODE_NIGHT_YES -> mIsLight = false
-            Configuration.UI_MODE_NIGHT_NO -> mIsLight = true
-            Configuration.UI_MODE_NIGHT_UNDEFINED -> mIsLight = true
-        }
         for (mResID in listOf(R.id.app_banner, R.id.fm_freq, R.id.freq_misc)) {
             mRootView.findViewById<MaterialTextView>(mResID).apply {
-                if (mIsLight) {
-                    setTextColor(resources.getColor(android.R.color.system_accent2_500, requireContext().theme))
-                } else {
-                    setTextColor(resources.getColor(android.R.color.system_accent2_100, requireContext().theme))
-                }
+                setTextColor(MaterialHelper.build {
+                     context = requireContext()
+                     light = android.R.color.system_accent2_500
+                     dark = android.R.color.system_accent2_100
+                }.getValue())
             }
         }
         mRootView.findViewById<FrameLayout>(R.id.main_fragment).apply {
-            if (mIsLight) {
-                setBackgroundColor(resources.getColor(android.R.color.system_accent1_100, requireContext().theme))
-            } else {
-                setBackgroundColor(resources.getColor(android.R.color.system_accent1_700, requireContext().theme))
-            }
+            setBackgroundColor(MaterialHelper.build {
+                context = requireContext()
+                light = android.R.color.system_accent1_100
+                dark = android.R.color.system_accent1_700
+            }.getValue())
         }
         val mVolume = mSharedPref.getInt(SharedPreferencesConst.PREF_VOLUME, 8)
         mFMInterface.mDevCtl.setValue(SetType.SET_TYPE_FM_VOLUME, mVolume)
@@ -320,7 +313,7 @@ class MainFragment :
      * @return Long array with zeros removed
      */
     private fun removeZeros(array: IntArray): IntArray {
-        val mArray: MutableList<Int> = emptyMutableList()
+        val mArray: MutableList<Int> = mutableListOf()
         Log.d("removeZeros: Got array size ${array.size}")
         for (i in array.indices) {
             if (array[i] > 0L) {

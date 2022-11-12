@@ -18,7 +18,7 @@ import androidx.fragment.app.FragmentManager
 import com.eurekateam.fmradio.enums.HeadsetState
 import com.eurekateam.fmradio.enums.PowerState
 import com.eurekateam.fmradio.fragments.ChannelListFragment
-import com.eurekateam.fmradio.fragments.FavouriteFragment
+import com.eurekateam.fmradio.fragments.FavoriteFragment
 import com.eurekateam.fmradio.fragments.MainFragment
 import com.eurekateam.fmradio.utils.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -103,14 +103,14 @@ class MainActivity : AppCompatActivity() {
         registerReceiver(mWiredHeadsetReceiver, receiverFilter)
         val mRadioMainFragment = MainFragment()
         val mRadioChannelListFragment = ChannelListFragment()
-        val mFavouriteFragment = FavouriteFragment()
+        val mFavoriteFragment = FavoriteFragment()
         changeFragment(mRadioMainFragment, MainFragment::class.java.name)
         mIntent = Intent(this, FMRadioService::class.java)
         findViewById<BottomNavigationView>(R.id.bottom_nav_bar).setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.radio_main -> changeFragment(mRadioMainFragment, MainFragment::class.java.name)
                 R.id.channel_list -> changeFragment(mRadioChannelListFragment, ChannelListFragment::class.java.name)
-                R.id.fav_list -> changeFragment(mFavouriteFragment, FavouriteFragment::class.java.name)
+                R.id.fav_list -> changeFragment(mFavoriteFragment, FavoriteFragment::class.java.name)
             }
             true
         }

@@ -1,7 +1,6 @@
 package com.eurekateam.fmradio.fragments
 
 import android.app.ProgressDialog
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +13,7 @@ import com.eurekateam.fmradio.NativeFMInterface
 import com.eurekateam.fmradio.R
 import com.eurekateam.fmradio.MainActivity
 import com.eurekateam.fmradio.adapters.ListViewAdapter
+import com.eurekateam.fmradio.utils.MaterialHelper
 import com.eurekateam.fmradio.utils.IWaitUntil
 import com.eurekateam.fmradio.utils.WaitUntil
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -37,21 +37,13 @@ class ChannelListFragment :
         mFloatingActionButton = mRootView.findViewById(R.id.refresh_channel_list)
         mFloatingActionButton.setOnClickListener(this)
         mListView.adapter = ListViewAdapter(requireContext())
-        var mIsLight = true
-        val nightModeFlags = requireContext().resources.configuration.uiMode and
-            Configuration.UI_MODE_NIGHT_MASK
-        when (nightModeFlags) {
-            Configuration.UI_MODE_NIGHT_YES -> mIsLight = false
-            Configuration.UI_MODE_NIGHT_NO -> mIsLight = true
-            Configuration.UI_MODE_NIGHT_UNDEFINED -> mIsLight = true
-        }
-        mRootView.findViewById<FrameLayout>(R.id.channel_list_layout).apply {
-            if (mIsLight) {
-                setBackgroundColor(resources.getColor(android.R.color.system_accent1_50, requireContext().theme))
-            } else {
-                setBackgroundColor(resources.getColor(android.R.color.system_accent1_100, requireContext().theme))
-            }
-        }
+        mRootView.findViewById<FrameLayout>(R.id.channel_list_layout).setBackgroundColor(
+                MaterialHelper.build {
+                     context = requireContext()
+                     light = android.R.color.system_accent1_50
+                     dark = android.R.color.system_accent1_100
+                }.getValue()
+        )
         return mRootView
     }
 
