@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import androidx.core.content.res.ResourcesCompat
 import androidx.preference.PreferenceManager
+import com.eurekateam.fmradio.SharedPreferencesConst
 import com.eurekateam.fmradio.NativeFMInterface
 import com.eurekateam.fmradio.PebbleTextView
 import com.eurekateam.fmradio.R
@@ -20,7 +21,7 @@ class PebbleLayoutAdapter(private val mContext: Context) : BaseAdapter() {
 
     init {
         for (k in mListChannel) {
-            if (mSharedPref.getBoolean("fav_$k", false)) mFavoriteList += k
+            if (mSharedPref.getBoolean(SharedPreferencesConst.assembleFavFreq(k), false)) mFavoriteList += k
         }
     }
 

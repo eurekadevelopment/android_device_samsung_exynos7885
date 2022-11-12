@@ -19,6 +19,7 @@ import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
+import com.eurekateam.fmradio.SharedPreferencesConst
 import com.eurekateam.fmradio.NativeFMInterface
 import com.eurekateam.fmradio.R
 import com.eurekateam.fmradio.enums.HeadsetState
@@ -97,8 +98,7 @@ class MainFragment :
             Configuration.UI_MODE_NIGHT_NO -> mIsLight = true
             Configuration.UI_MODE_NIGHT_UNDEFINED -> mIsLight = true
         }
-        val mTextViewList = listOf(R.id.app_banner, R.id.fm_freq, R.id.freq_misc)
-        for (mResID in mTextViewList) {
+        for (mResID in listOf(R.id.app_banner, R.id.fm_freq, R.id.freq_misc)) {
             mRootView.findViewById<MaterialTextView>(mResID).apply {
                 if (mIsLight) {
                     setTextColor(resources.getColor(android.R.color.system_accent2_500, requireContext().theme))
@@ -114,14 +114,14 @@ class MainFragment :
                 setBackgroundColor(resources.getColor(android.R.color.system_accent1_700, requireContext().theme))
             }
         }
-        val mVolume = mSharedPref.getInt("volume", 8)
+        val mVolume = mSharedPref.getInt(SharedPreferencesConst.PREF_VOLUME, 8)
         mFMInterface.mDevCtl.setValue(SetType.SET_TYPE_FM_VOLUME, mVolume)
         mSeekBar.min = 1
         mSeekBar.max = 15
         mSeekBar.progress = mVolume
         updateOutputStatus(false)
         if (!mFreqSearchDone) {
-           val mRestoreFreq = mSharedPref.getInt("freq", mFMInterface.mDevCtl.getValue(GetType.GET_TYPE_FM_LOWER_LIMIT))
+           val mRestoreFreq = mSharedPref.getInt(SharedPreferencesConst.PREF_FREQ, mFMInterface.mDevCtl.getValue(GetType.GET_TYPE_FM_LOWER_LIMIT))
            mFMInterface.mDefaultCtl.setValue(SetType.SET_TYPE_FM_FREQ, mRestoreFreq)
            mFMFreq.text = mCleanFormat.format(mRestoreFreq.toFloat() / 1000)
            mFMInterface.mDevCtl.setValue(SetType.SET_TYPE_FM_THREAD, 1)
@@ -138,7 +138,8 @@ class MainFragment :
                    override fun todo() {
                        val mList = mFMInterface.mDefaultCtl.getFreqsList()
                        for (i in mList) {
-                           if (mSharedPref.getBoolean("fav_$i", false)) mFavList += i
+                           if (mSharedPref.getBoolean(SharedPreferencesConst.assembleFavFreq(i), false))
+                               mFavList += i
                        }
                        if (!mFMPower) mUpdateEnableDisable(false)
                        loading.hide()
@@ -208,7 +209,7 @@ class MainFragment :
     }
 
     private fun updateOutputStatus(mInverted : Boolean) {
-        var mCurrent = mSharedPref.getBoolean("speaker", false)
+        var mCurrent = mSharedPref.getBoolean(SharedPreferencesConst.PREF_AUDIO_OUTPUT, false)
         if (mInverted) mCurrent = !mCurrent
         if (mCurrent) {
             mOutputSwitch.setImageIcon(
@@ -232,39 +233,39 @@ class MainFragment :
     override fun onClick(v: View) {
         when (v.id) {
             mOutputSwitch.id -> {
-                val mCurrent = mSharedPref.getBoolean("speaker", false)
+                val mCurrent = mSharedPref.getBoolean(SharedPreferencesConst.PREF_AUDIO_OUTPUT, false)
                 updateOutputStatus(true)
-                mSharedPref.edit().putBoolean("speaker", !mCurrent).apply()
+                mSharedPref.edit().putBoolean(SharedPreferencesConst.PREF_AUDIO_OUTPUT, !mCurrent).apply()
             }
             mVolumeUp.id -> {
-                var mCurrentVolume = mSharedPref.getInt("volume", 8)
+                var mCurrentVolume = mSharedPref.getInt(SharedPreferencesConst.PREF_VOLUME, 8)
                 if (mCurrentVolume < 15) {
                     mCurrentVolume = mCurrentVolume + 1
                 }
                 mFMInterface.mDevCtl.setValue(SetType.SET_TYPE_FM_VOLUME, mCurrentVolume)
                 mSeekBar.progress = mCurrentVolume
                 Toast.makeText(requireContext(), "Volume set to $mCurrentVolume", Toast.LENGTH_SHORT).show()
-                mSharedPref.edit().putInt("volume", mCurrentVolume).apply()
+                mSharedPref.edit().putInt(SharedPreferencesConst.PREF_VOLUME, mCurrentVolume).apply()
             }
             mVolumeDown.id -> {
-                var mCurrentVolume = mSharedPref.getInt("volume", 8)
+                var mCurrentVolume = mSharedPref.getInt(SharedPreferencesConst.PREF_VOLUME, 8)
                 if (mCurrentVolume > 0) {
                     mCurrentVolume = mCurrentVolume - 1
                 }
                 mFMInterface.mDevCtl.setValue(SetType.SET_TYPE_FM_VOLUME, mCurrentVolume)
                 mSeekBar.progress = mCurrentVolume
                 Toast.makeText(requireContext(), "Volume set to $mCurrentVolume", Toast.LENGTH_SHORT).show()
-                mSharedPref.edit().putInt("volume", mCurrentVolume).apply()
+                mSharedPref.edit().putInt(SharedPreferencesConst.PREF_VOLUME, mCurrentVolume).apply()
             }
             mBeforeChannelBtn.id -> {
                 mFMInterface.mDevCtl.setValue(SetType.SET_TYPE_FM_MUTE, 1)
                 val mNewFreq = mFMInterface.mDefaultCtl.getValue(GetType.GET_TYPE_FM_BEFORE_CHANNEL)
                 mFMFreq.text = mCleanFormat.format(mNewFreq.toFloat() / 1000)
                 mFMInterface.mDevCtl.setValue(SetType.SET_TYPE_FM_MUTE, 0)
-                if (mSharedPref.getBoolean("fav_$mNewFreq", false)) {
+                if (mSharedPref.getBoolean(SharedPreferencesConst.assembleFavFreq(mNewFreq), false)) {
                     mFavButton.setImageDrawable(mStarFilled)
                 }
-                mSharedPref.edit().putInt("freq", mNewFreq).apply()
+                mSharedPref.edit().putInt(SharedPreferencesConst.PREF_FREQ, mNewFreq).apply()
             }
             mPowerBtn.id -> {
                 if (mFMPower) {
@@ -282,16 +283,16 @@ class MainFragment :
                 val mNewFreq = mFMInterface.mDefaultCtl.getValue(GetType.GET_TYPE_FM_NEXT_CHANNEL)
                 mFMFreq.text = mCleanFormat.format(mNewFreq.toFloat() / 1000)
                 mFMInterface.mDevCtl.setValue(SetType.SET_TYPE_FM_MUTE, 0)
-                if (mSharedPref.getBoolean("fav_$mNewFreq", false)) {
+                if (mSharedPref.getBoolean(SharedPreferencesConst.assembleFavFreq(mNewFreq), false)) {
                     mFavButton.setImageDrawable(mStarFilled)
                 }
-                mSharedPref.edit().putInt("freq", mNewFreq).apply()
+                mSharedPref.edit().putInt(SharedPreferencesConst.PREF_FREQ, mNewFreq).apply()
             }
             mFavButton.id -> {
                 val mCurrFreq = mFMInterface.mDefaultCtl.getValue(GetType.GET_TYPE_FM_FREQ)
-                val mCurr = mSharedPref.getBoolean("fav_$mCurrFreq", false)
+                val mCurr = mSharedPref.getBoolean(SharedPreferencesConst.assembleFavFreq(mCurrFreq), false)
                 if (mCurr) { mFavButton.setImageDrawable(mStar) } else { mFavButton.setImageDrawable(mStarFilled) }
-                mSharedPref.edit().putBoolean("fav_$mCurrFreq", !mCurr).apply()
+                mSharedPref.edit().putBoolean(SharedPreferencesConst.assembleFavFreq(mCurrFreq), !mCurr).apply()
             }
         }
     }
@@ -319,7 +320,7 @@ class MainFragment :
      * @return Long array with zeros removed
      */
     private fun removeZeros(array: IntArray): IntArray {
-        val mArray: MutableList<Int> = emptyList<Int>().toMutableList()
+        val mArray: MutableList<Int> = emptyMutableList()
         Log.d("removeZeros: Got array size ${array.size}")
         for (i in array.indices) {
             if (array[i] > 0L) {

@@ -8,6 +8,7 @@ import android.widget.BaseAdapter
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.res.ResourcesCompat
 import androidx.preference.PreferenceManager
+import com.eurekateam.fmradio.SharedPreferencesConst
 import com.eurekateam.fmradio.NativeFMInterface
 import com.eurekateam.fmradio.utils.Log
 import com.eurekateam.fmradio.R
@@ -58,7 +59,7 @@ class ListViewAdapter(private val mContext: Context) : BaseAdapter() {
             )
             val mIndex = mListChannel[id]
             val mSharedPref = PreferenceManager.getDefaultSharedPreferences(mContext)
-            val mFav = mSharedPref.getBoolean("fav_$mIndex", false)
+            val mFav = mSharedPref.getBoolean(SharedPreferencesConst.assembleFavFreq(mIndex), false)
             if (mFav) {
                 it.setImageDrawable(mStarFilled)
             } else {
