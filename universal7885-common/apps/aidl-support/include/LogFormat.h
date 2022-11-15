@@ -3,9 +3,12 @@
 
 #ifdef LOG_TAG
 
+#include <cstring>
 #include <log/log.h>
 
-#define make_str(a, ...) _make_str(__FILE__, __LINE__, a, ##__VA_ARGS__).c_str()
+#define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
+
+#define make_str(a, ...) _make_str(__FILENAME__, __LINE__, a, ##__VA_ARGS__).c_str()
 
 // Helpers to avoid -Wformat-security
 #define LOG_E(fmt, ...) ALOGE("%s", make_str(fmt, ##__VA_ARGS__))
