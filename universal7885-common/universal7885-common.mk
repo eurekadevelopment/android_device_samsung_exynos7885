@@ -116,6 +116,9 @@ TARGET_BOARD_HAS_FP ?= true
 ifeq ($(TARGET_BOARD_HAS_FP), true)
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.3-service.samsung
+
+PRODUCT_PACKAGES += \
+    libquietlog
 endif
 
 # Samsung FMRadio impl
@@ -296,8 +299,7 @@ PRODUCT_PACKAGES += \
 # Shims
 PRODUCT_PACKAGES += \
     libshim_sensorndkbridge \
-    libcorrectcamera \
-    libquietlog
+    libcorrectcamera
 
 # Skip Mount
 PRODUCT_PACKAGES += \
