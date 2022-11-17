@@ -64,9 +64,6 @@ vendor.wlbtd.              u:object_r:vendor_wlbtd_prop:s0
 # Wlan
 vendor.wlan.               u:object_r:vendor_wlan_prop:s0
 
-# Hwc
-hwc.exynos.vsync_mode      u:object_r:vendor_hwc_prop:s0
-
 # TEEGRIS
 vendor.secureos.               u:object_r:vendor_secureos_prop:s0
 vendor.tzdaemon                u:object_r:vendor_tzdaemon_prop:s0

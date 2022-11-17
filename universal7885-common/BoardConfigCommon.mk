@@ -6,12 +6,14 @@ BOARD_VENDOR := samsung
 ifeq ($(TARGET_DEVICE), $(filter $(TARGET_DEVICE),a10dd a10 a20 a20e))
 TARGET_SOC := exynos7884B
 TARGET_BOARD_PLATFORM := universal7884B
-TARGET_BOOTLOADER_BOARD_NAME := universal7884B
+TARGET_BOOTLOADER_BOARD_NAME := exynos7884B
 else ifeq ($(TARGET_DEVICE), $(filter $(TARGET_DEVICE),a30 a40))
 TARGET_SOC := exynos7904
 TARGET_BOARD_PLATFORM := universal7904
-TARGET_BOOTLOADER_BOARD_NAME := universal7904
+TARGET_BOOTLOADER_BOARD_NAME := exynos7904
 endif
+
+include hardware/samsung_slsi-linaro/config/BoardConfig7904.mk
 
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true

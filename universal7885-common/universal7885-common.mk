@@ -98,6 +98,9 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.5-service
 endif
 
+PRODUCT_PACKAGES += \
+    libhwjpeg
+
 # Camera app
 PRODUCT_PACKAGES += \
     AperturePrebuilt
@@ -144,9 +147,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
     android.hardware.graphics.allocator@2.0-service \
-    android.hardware.graphics.composer@2.2-service \
     android.hardware.graphics.mapper@2.0-impl \
     libgui_vendor
+
+PRODUCT_PACKAGES += \
+    android.hardware.composer.hwc3-service.slsi \
+    gralloc.exynos7904 \
+    gralloc.exynos7884B \
+    libion_exynos
 
 # Health
 PRODUCT_PACKAGES += \
@@ -181,10 +189,6 @@ PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.0-service.samsung \
     libkeymaster4_1support.vendor
 
-# Light
-PRODUCT_PACKAGES += \
-    android.hardware.light-service.samsung
-
 # Media
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_audio.xml \
@@ -210,6 +214,22 @@ PRODUCT_COPY_FILES += \
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 # DEVICE_PACAKGE_OVERLAYS += $(LOCAL_PATH)/overlay-rom
+
+# OMX
+PRODUCT_PACKAGES += \
+    libstagefrighthw \
+    libExynosOMX_Core \
+    libExynosOMX_Resourcemanager \
+    libOMX.Exynos.AVC.Decoder \
+    libOMX.Exynos.AVC.Encoder \
+    libOMX.Exynos.HEVC.Decoder \
+    libOMX.Exynos.HEVC.Encoder \
+    libOMX.Exynos.MPEG4.Decoder \
+    libOMX.Exynos.MPEG4.Encoder \
+    libOMX.Exynos.VP8.Decoder \
+    libOMX.Exynos.VP8.Encoder \
+    libOMX.Exynos.VP9.Decoder \
+    libOMX.Exynos.WMV.Decoder
 
 # Permissions
 PRODUCT_COPY_FILES += \
