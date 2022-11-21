@@ -4,3 +4,9 @@ cc_library_shared {
    srcs: ["AIDLInterface.cpp"],
    export_include_dirs: ["."],
 }
+
+java_library {
+    name: "aidl-vintf",
+    installable: true,
+    srcs: ["AIDLInterface.kt"],
+}
