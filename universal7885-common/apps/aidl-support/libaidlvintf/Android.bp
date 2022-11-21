@@ -1,0 +1,6 @@
+// Simple all-in-one aidl interface builder
+cc_library_shared {
+   name: "libaidlvintf",
+   srcs: ["AIDLInterface.cpp"],
+   export_include_dirs: ["."],
+}
