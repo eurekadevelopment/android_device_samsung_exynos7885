@@ -14,6 +14,7 @@ android_app {
         "androidx.coordinatorlayout_coordinatorlayout",
         "vendor.eureka.hardware.fmradio-V3-java",
     ],
+    libs: ["aidl-vintf"],
     required: [
         "vendor.eureka.hardware.fmradio-service",
     ],
