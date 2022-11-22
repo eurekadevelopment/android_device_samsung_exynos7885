@@ -18,6 +18,7 @@
 
 #include <LogFormat.h>
 #include <fm_slsi-impl.h>
+#include <AIDLInterface.h>
 
 #include <android/binder_manager.h>
 #include <log/log.h>
@@ -135,10 +136,22 @@ namespace aidl::vendor::eureka::hardware::fmradio {
     fm_radio_slsi::stop_search(fd);
     break;
   case SetType::SET_TYPE_FM_SPEAKER_ROUTE: {
-    auto svc =
-        IAudioRoute::fromBinder(ndk::SpAIBinder(AServiceManager_waitForService(
-            "vendor.eureka.hardware.audio_route.IAudioRoute/default")));
-    svc->setParam(value ? "routing=2" : "routing=8");
+    static const struct aidl_vintf AudioRouteVintf = {
+        .name = "vendor.eureka.hardware.audio_route",
+        .interface = "IAudioRoute",
+    };
+
+    auto svc = IAudioRoute::fromBinder(ndk::SpAIBinder(
+	AServiceManager_waitForService(MKAIDLSTR(&AudioRouteVintf))));
+    std::stringstream kAudioParamBuilder;
+    kAudioParamBuilder << "routing=";
+
+    if (value)
+       kAudioParamBuilder << 2;
+    else
+       kAudioParamBuilder << 8;
+
+    svc->setParam(kAudioParamBuilder.str());
     break;
   }
   case SetType::SET_TYPE_FM_SEARCH_START:

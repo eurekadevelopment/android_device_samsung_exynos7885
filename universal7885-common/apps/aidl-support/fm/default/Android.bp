@@ -23,6 +23,7 @@ cc_binary {
         "libbinder_ndk",
         "liblog",
         "libfileio",
+        "libaidlvintf",
         "vendor.eureka.hardware.fmradio-V3-ndk",
         "vendor.eureka.hardware.audio_route-V1-ndk",
     ],
