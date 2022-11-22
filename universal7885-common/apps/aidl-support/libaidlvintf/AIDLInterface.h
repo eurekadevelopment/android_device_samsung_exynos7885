@@ -7,3 +7,5 @@ struct aidl_vintf {
 };
 
 std::string makeAIDLInterfaceString(const struct aidl_vintf *info);
+
+#define MKAIDLSTR(info) makeAIDLInterfaceString(info).c_str()
