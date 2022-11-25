@@ -21,6 +21,7 @@ cc_library_shared {
     shared_libs: [
        "vendor.eureka.hardware.parts-V1-ndk",
        "libbase",
+       "libaidlvintf",
        "libbinder_ndk",
     ],
 }
