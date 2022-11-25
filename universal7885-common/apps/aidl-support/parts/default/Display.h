@@ -22,5 +22,6 @@ struct DisplayConfigs : public BnDisplayConfigs {
   // Methods from ::aidl::vendor::eureka::hardware::parts::IDisplayConfigs
   // follow.
   ::ndk::ScopedAStatus writeDisplay(bool enable, DisplaySys type);
+  ::ndk::ScopedAStatus readDisplay(DisplaySys type, bool *_aidl_return);
 };
 } // namespace aidl::vendor::eureka::hardware::parts

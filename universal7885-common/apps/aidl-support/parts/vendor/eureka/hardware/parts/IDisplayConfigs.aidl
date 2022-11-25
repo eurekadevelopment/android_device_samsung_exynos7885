@@ -21,3 +21,4 @@ interface IDisplayConfigs {
     oneway void writeDisplay(in boolean enable, in DisplaySys type);
     boolean readDisplay(in DisplaySys type);
 }
+
