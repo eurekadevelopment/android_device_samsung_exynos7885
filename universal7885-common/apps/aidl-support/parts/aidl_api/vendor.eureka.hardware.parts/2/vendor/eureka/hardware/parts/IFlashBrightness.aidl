@@ -31,7 +31,8 @@
 
 package vendor.eureka.hardware.parts;
 @VintfStability
-interface IDisplayConfigs {
-  oneway void writeDisplay(in boolean enable, in vendor.eureka.hardware.parts.DisplaySys type);
-  boolean readDisplay(in vendor.eureka.hardware.parts.DisplaySys type);
+interface IFlashBrightness {
+  int readFlashlightstats(in boolean s2mu106);
+  oneway void setFlashlightEnable(in boolean enable);
+  oneway void setFlashlightWritable(in int value);
 }

@@ -31,7 +31,10 @@
 
 package vendor.eureka.hardware.parts;
 @VintfStability
-interface IDisplayConfigs {
-  oneway void writeDisplay(in boolean enable, in vendor.eureka.hardware.parts.DisplaySys type);
-  boolean readDisplay(in vendor.eureka.hardware.parts.DisplaySys type);
+interface ISmartCharge {
+  int getLimitCnt();
+  int getRestartCnt();
+  oneway void setConfig(in int limit, in int restart);
+  oneway void start();
+  oneway void stop();
 }

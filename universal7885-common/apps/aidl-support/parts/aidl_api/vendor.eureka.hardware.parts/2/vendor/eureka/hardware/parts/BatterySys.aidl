@@ -30,8 +30,12 @@
 // later when a module using the interface is updated, e.g., Mainline modules.
 
 package vendor.eureka.hardware.parts;
-@VintfStability
-interface IDisplayConfigs {
-  oneway void writeDisplay(in boolean enable, in vendor.eureka.hardware.parts.DisplaySys type);
-  boolean readDisplay(in vendor.eureka.hardware.parts.DisplaySys type);
+@Backing(type="int") @VintfStability
+enum BatterySys {
+  CAPACITY_MAX = 0,
+  TEMP = 1,
+  CAPACITY_CURRENT = 2,
+  CURRENT = 3,
+  FASTCHARGE = 4,
+  CHARGE = 5,
 }
