@@ -7,9 +7,9 @@
 
 namespace FileIO {
 
-constexpr const int EXIT_ERR = -1;
+constexpr int ERR = -1;
 
-int readline(const char *path) {
+std::string readline(const char *path) {
   std::ifstream file;
   std::string value;
   file.open(path);
@@ -19,8 +19,13 @@ int readline(const char *path) {
     file.close();
   } else {
     LOG_E("%s: Failed to open %s", __func__, path);
-    return EXIT_ERR;
+    value = std::to_string(ERR);
   }
+  return value;
+}
+
+int readline(const char *path) {
+  const std::string value = readline(path);
   try {
     return stoi(value);
   } catch (std::invalid_argument const &ex) {
@@ -28,7 +33,7 @@ int readline(const char *path) {
   } catch (std::out_of_range const &ex) {
     LOG_E("%s: stoi(): out of range: for %s", __func__, value.c_str());
   }
-  return EXIT_ERR;
+  return ERR;
 }
 
 void writeline(const char *path, const std::string& data) {
