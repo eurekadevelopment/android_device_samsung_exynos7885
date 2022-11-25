@@ -23,7 +23,7 @@ class Battery {
     private val mBattery: IBatteryStats
 
     init {
-        mBattery = IBatteryStats.Stub.asInterface(ServiceManager.waitForDeclaredService("vendor.eureka.hardware.parts.IBatteryStats/default"))
+        mBattery = IBatteryStats.Stub.asInterface(ServiceManager.waitForDeclaredService(AIDLStringFactory.IBattery))
     }
 
     var Charge: Boolean

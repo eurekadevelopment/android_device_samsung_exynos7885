@@ -23,7 +23,7 @@ class SmartCharge {
     private val mSmartCharge: ISmartCharge
 
     init {
-        mSmartCharge = ISmartCharge.Stub.asInterface(ServiceManager.waitForDeclaredService("vendor.eureka.hardware.parts.ISmartCharge/default"))
+        mSmartCharge = ISmartCharge.Stub.asInterface(ServiceManager.waitForDeclaredService(AIDLStringFactory.ICharge))
     }
 
     fun start() = mSmartCharge.start()

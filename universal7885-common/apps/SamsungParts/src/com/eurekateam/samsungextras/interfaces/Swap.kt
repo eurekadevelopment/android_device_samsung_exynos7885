@@ -22,7 +22,7 @@ import vendor.eureka.hardware.parts.ISwapOnData
 class Swap {
     private val mSwap: ISwapOnData
     init {
-        mSwap = ISwapOnData.Stub.asInterface(ServiceManager.waitForDeclaredService("vendor.eureka.hardware.parts.ISwapOnData/default"))
+        mSwap = ISwapOnData.Stub.asInterface(ServiceManager.waitForDeclaredService(AIDLStringFactory.ISwap))
     }
 
     external fun setSwapOn(mCallBackEnabled: Boolean)

@@ -24,7 +24,7 @@ class Display {
     private val mDisplay: IDisplayConfigs
 
     init {
-        mDisplay = IDisplayConfigs.Stub.asInterface(ServiceManager.waitForDeclaredService("vendor.eureka.hardware.parts.IDisplayConfigs/default"))
+        mDisplay = IDisplayConfigs.Stub.asInterface(ServiceManager.waitForDeclaredService(AIDLStringFactory.IDisplay))
     }
 
     var DT2W: Boolean = false

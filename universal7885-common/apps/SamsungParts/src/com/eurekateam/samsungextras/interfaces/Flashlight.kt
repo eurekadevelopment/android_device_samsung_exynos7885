@@ -23,7 +23,7 @@ class Flashlight {
     private val mFlash: IFlashBrightness
 
     init {
-        mFlash = IFlashBrightness.Stub.asInterface(ServiceManager.waitForDeclaredService("vendor.eureka.hardware.parts.IFlashBrightness/default"))
+        mFlash = IFlashBrightness.Stub.asInterface(ServiceManager.waitForDeclaredService(AIDLStringFactory.IFlashLight))
     }
 
     fun setFlash(value: Int) = mFlash.setFlashlightWritable(value)
