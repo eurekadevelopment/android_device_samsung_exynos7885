@@ -31,7 +31,7 @@
 
 package vendor.eureka.hardware.parts;
 @VintfStability
-interface IDisplayConfigs {
-  oneway void writeDisplay(in boolean enable, in vendor.eureka.hardware.parts.DisplaySys type);
-  boolean readDisplay(in vendor.eureka.hardware.parts.DisplaySys type);
+interface IBatteryStats {
+  int getBatteryStats(in vendor.eureka.hardware.parts.BatterySys stats);
+  oneway void setBatteryWritable(in vendor.eureka.hardware.parts.BatterySys stats, in boolean value);
 }

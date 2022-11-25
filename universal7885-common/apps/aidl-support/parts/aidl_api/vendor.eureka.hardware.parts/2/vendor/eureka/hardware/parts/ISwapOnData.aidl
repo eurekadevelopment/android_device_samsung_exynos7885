@@ -31,7 +31,10 @@
 
 package vendor.eureka.hardware.parts;
 @VintfStability
-interface IDisplayConfigs {
-  oneway void writeDisplay(in boolean enable, in vendor.eureka.hardware.parts.DisplaySys type);
-  boolean readDisplay(in vendor.eureka.hardware.parts.DisplaySys type);
+interface ISwapOnData {
+  boolean isMutexLocked();
+  oneway void removeSwapFile();
+  oneway void setSwapOff();
+  oneway void setSwapOn(in vendor.eureka.hardware.parts.IBoolCallback cb);
+  oneway void makeSwapFile(in int size);
 }

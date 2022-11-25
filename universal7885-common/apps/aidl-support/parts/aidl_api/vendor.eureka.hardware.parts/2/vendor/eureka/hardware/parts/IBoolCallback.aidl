@@ -31,7 +31,6 @@
 
 package vendor.eureka.hardware.parts;
 @VintfStability
-interface IDisplayConfigs {
-  oneway void writeDisplay(in boolean enable, in vendor.eureka.hardware.parts.DisplaySys type);
-  boolean readDisplay(in vendor.eureka.hardware.parts.DisplaySys type);
+interface IBoolCallback {
+  void respondToBool(in boolean result);
 }
