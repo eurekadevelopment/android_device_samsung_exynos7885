@@ -22,7 +22,7 @@ namespace aidl::vendor::eureka::hardware::parts {
 
 void SmartCharge::battery_monitor(void) {
   while (kShouldRun) {
-    auto batt = FileIO::readline(BATTERY_CAPACITY_CURRENT);
+    auto batt = FileIO::readint(BATTERY_CAPACITY_CURRENT);
     if (batt >= limit) {
       if (kTookAction)
         goto sleep;

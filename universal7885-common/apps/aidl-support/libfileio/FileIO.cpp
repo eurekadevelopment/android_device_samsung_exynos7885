@@ -24,7 +24,7 @@ std::string readline(const char *path) {
   return value;
 }
 
-int readline(const char *path) {
+int readint(const char *path) {
   const std::string value = readline(path);
   try {
     return stoi(value);
