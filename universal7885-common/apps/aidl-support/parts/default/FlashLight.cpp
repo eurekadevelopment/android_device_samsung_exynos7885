@@ -37,7 +37,7 @@ constexpr const char *TORCH_LVL =
 ::ndk::ScopedAStatus
 FlashBrightness::readFlashlightstats(bool s2mu106, int32_t *_aidl_return) {
   *_aidl_return =
-      s2mu106 ? FileIO::readline(TORCH_LVL) / 21 : FileIO::readline(TORCH_LVL);
+      s2mu106 ? FileIO::readint(TORCH_LVL) / 21 : FileIO::readint(TORCH_LVL);
   return ::ndk::ScopedAStatus::ok();
 }
 

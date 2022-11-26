@@ -43,7 +43,7 @@ static inline const char *BatterySysToPath(BatterySys type) {
 // Methods from ::android::hardware::battery::V1_0::IBattery follow.
 ::ndk::ScopedAStatus BatteryStats::getBatteryStats(BatterySys stats,
                                                    int32_t *_aidl_return) {
-  *_aidl_return = FileIO::readline(BatterySysToPath(stats));
+  *_aidl_return = FileIO::readint(BatterySysToPath(stats));
   return ::ndk::ScopedAStatus::ok();
 }
 

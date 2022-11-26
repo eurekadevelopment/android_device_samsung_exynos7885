@@ -38,7 +38,7 @@ constexpr const char *FM_FREQ_SEEK = FM_SYSFS_BASE "/radio_freq_seek";
   }
   switch (type) {
   case GetType::GET_TYPE_FM_FREQ:
-    *_aidl_return = FileIO::readline(FM_FREQ_CTL);
+    *_aidl_return = FileIO::readint(FM_FREQ_CTL);
     break;
   case GetType::GET_TYPE_FM_UPPER_LIMIT:
   case GetType::GET_TYPE_FM_LOWER_LIMIT:
@@ -109,7 +109,7 @@ constexpr const char *FM_FREQ_SEEK = FM_SYSFS_BASE "/radio_freq_seek";
       for (int i = 0; i < TRACK_SIZE; i++) {
         FileIO::writeline(FM_FREQ_SEEK,
                           "1 " + std::to_string(SYSFS_SPACING * 10));
-        int freq = FileIO::readline(FM_FREQ_CTL);
+        int freq = FileIO::readint(FM_FREQ_CTL);
         if (std::find(freqs_list.begin(), freqs_list.end(), freq) !=
             freqs_list.end())
           continue;
