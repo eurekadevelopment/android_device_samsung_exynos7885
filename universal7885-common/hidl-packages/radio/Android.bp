@@ -1,0 +1,21 @@
+cc_binary {
+    name: "android.hardware.radio@1.4-service.samsung",
+    init_rc: ["android.hardware.radio@1.4-service.samsung.rc"],
+    relative_install_path: "hw",
+    vendor: true,
+    srcs: [
+        "service.cpp",
+    ],
+    shared_libs: [
+        "libhidlbase",
+        "liblog",
+        "libutils",
+        "android.hardware.radio@1.0",
+        "android.hardware.radio@1.1",
+        "android.hardware.radio@1.2",
+        "android.hardware.radio@1.3",
+        "android.hardware.radio@1.4",
+        "vendor.samsung.hardware.radio@2.1",
+        "android.hidl.safe_union@1.0",
+    ],
+}
