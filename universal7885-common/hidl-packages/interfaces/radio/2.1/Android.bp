@@ -7,12 +7,14 @@ hidl_interface {
         "ISehRadio.hal",
         "ISehRadioIndication.hal",
         "ISehRadioResponse.hal",
-        "types.hal"
     ],
     interfaces: [
         "android.hardware.radio@1.0",
+        "android.hardware.radio@1.1",
+        "android.hardware.radio@1.2",
+        "android.hardware.radio@1.3",
+        "android.hardware.radio@1.4",
         "android.hidl.base@1.0",
-        "vendor.samsung.hardware.radio@2.0",
     ],
     gen_java: true,
 }
