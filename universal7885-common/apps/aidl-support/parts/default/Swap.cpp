@@ -112,7 +112,7 @@ namespace aidl::vendor::eureka::hardware::parts {
 
 static std::mutex thread_lock;
 
-static inline bool swapfile_exist(void) { return access(SWAP_PATH, F_OK) == 0; }
+static inline bool swapfile_exist(void) { return access(SWAP_PATH, R_OK | W_OK) == 0; }
 
 static void makeFile(int32_t mSwapSize) {
   const std::lock_guard<std::mutex> lock(thread_lock);
