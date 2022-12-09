@@ -5,6 +5,7 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <sys/poll.h>
+#include <linux/videodev2.h>
 #include <unistd.h>
 
 #include <atomic>
@@ -14,7 +15,6 @@
 #include <vector>
 
 #include "Radio_S610.h"
-#include "V4L2_API.h"
 
 namespace fm_radio_slsi {
 
