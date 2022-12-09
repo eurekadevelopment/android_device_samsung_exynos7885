@@ -44,7 +44,7 @@ constexpr const char *FM_DEV_PATH = "/dev/radio0";
 int open_device(void) {
   int fd;
   if ((fd = open(FM_DEV_PATH, O_RDWR | O_CLOEXEC)) < 0) {
-    LOG_E("Failed to open %s, %d (%s)", FM_DEV_PATH, errno, strerror(-errno));
+    LOG_E("Failed to open %s, %d (%s)", FM_DEV_PATH, errno, strerror(errno));
     return -1;
   }
   LOG_D("Opened %s, fd %d", FM_DEV_PATH, fd);
