@@ -20,11 +20,13 @@ import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity
 import com.android.settingslib.collapsingtoolbar.R
 
 class SmartChargeActivity : CollapsingToolbarBaseActivity() {
+    private var mInstance : SmartChargeFragment? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (mInstance == null) mInstance = SmartChargeFragment()
         supportFragmentManager.beginTransaction().replace(
             R.id.content_frame,
-            SmartChargeFragment()
+            mInstance!!
         ).commit()
     }
 }

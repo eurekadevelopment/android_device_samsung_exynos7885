@@ -26,12 +26,14 @@ import androidx.preference.SeekBarPreference
 import com.android.settingslib.widget.MainSwitchPreference
 import com.android.settingslib.widget.OnMainSwitchChangeListener
 import com.eurekateam.samsungextras.R
-import com.eurekateam.samsungextras.interfaces.Flashlight
+import com.eurekateam.samsungextras.interfaces.FlashLight
 
 class FlashLightFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener, OnMainSwitchChangeListener {
     private lateinit var mFlashLightPref: SeekBarPreference
     private lateinit var mSharedPreferences: SharedPreferences
     private lateinit var mFlashLightEnable: MainSwitchPreference
+    private val mFlashLight = FlashLight()
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.flashlight_settings)
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
@@ -39,7 +41,6 @@ class FlashLightFragment : PreferenceFragmentCompat(), Preference.OnPreferenceCh
         mFlashLightPref.onPreferenceChangeListener = this
         mFlashLightPref.setMax(10)
         mFlashLightPref.setMin(1)
-        val mFlashLight = Flashlight()
         mFlashLightPref.value = mFlashLight.getFlash(Build.DEVICE.contains("a10"))
         mFlashLightPref.showSeekBarValue = true
         mFlashLightEnable = findPreference(PREF_FLASHLIGHT_ENABLE)!!
@@ -51,8 +52,7 @@ class FlashLightFragment : PreferenceFragmentCompat(), Preference.OnPreferenceCh
     override fun onPreferenceChange(preference: Preference, newValue: Any): Boolean {
         if (preference == mFlashLightPref) {
             val value = newValue as Int
-            val mFlash = Flashlight()
-            mFlash.setFlash(value)
+            mFlashLight.setFlash(value)
             mSharedPreferences.edit().putInt(PREF_FLASHLIGHT, value).apply()
             return true
         }
@@ -60,11 +60,12 @@ class FlashLightFragment : PreferenceFragmentCompat(), Preference.OnPreferenceCh
     }
 
     override fun onSwitchChanged(switchView: Switch, isChecked: Boolean) {
-        val mFlash = Flashlight()
-        mFlash.setEnabled(isChecked)
+        mFlashLight.setEnabled(isChecked)
         mSharedPreferences.edit().putBoolean(PREF_FLASHLIGHT_ENABLE, isChecked)
         mFlashLightPref.isEnabled = isChecked
-    } companion object {
+    }
+
+    companion object {
         const val PREF_FLASHLIGHT = "flashlight_pref"
         const val PREF_FLASHLIGHT_ENABLE = "flashlight_enable"
     }

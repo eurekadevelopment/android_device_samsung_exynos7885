@@ -19,7 +19,7 @@ package com.eurekateam.samsungextras.interfaces
 import android.os.ServiceManager
 import vendor.eureka.hardware.parts.IFlashBrightness
 
-class Flashlight {
+class FlashLight {
     private val mFlash: IFlashBrightness
 
     init {

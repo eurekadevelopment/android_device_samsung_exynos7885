@@ -36,6 +36,8 @@ class BatteryFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChang
     private lateinit var mChargePref: SwitchPreference
     private lateinit var mShowDataPref: MainSwitchPreference
     private lateinit var mSharedPreferences: SharedPreferences
+    private val mBattery = Battery()
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.battery_settings)
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
@@ -55,10 +57,8 @@ class BatteryFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChang
     }
 
     override fun onPreferenceChange(preference: Preference, newValue: Any): Boolean {
-        val mBattery = Battery()
         if (preference == mChargePref) {
-            val value = newValue as Boolean
-            mBattery.Charge = value
+            mBattery.Charge = newValue as Boolean
             mChargePref.isChecked = mBattery.Charge
             mSharedPreferences.edit().putBoolean(PREF_CHARGE, mBattery.Charge).apply()
             return true
@@ -71,7 +71,6 @@ class BatteryFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChang
         return false
     }
     private val mScheduler = Runnable {
-        val mBattery = Battery()
         requireActivity().runOnUiThread {
             findPreference<Preference>(INFO_MAX_CAP)!!.summary = mBattery.getGeneralBatteryStats(BatteryIds.BATTERY_CAPACITY_MAX).toString() + " mAh"
             findPreference<Preference>(INFO_CHARGED_UP_TO)!!.summary = mBattery.getGeneralBatteryStats(BatteryIds.BATTERY_CAPACITY_CURRENT).toString() + " %"

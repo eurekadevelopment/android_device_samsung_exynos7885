@@ -12,7 +12,7 @@ import com.eurekateam.samsungextras.flashlight.FlashLightFragment
 import com.eurekateam.samsungextras.smartcharge.SmartChargeFragment
 import com.eurekateam.samsungextras.interfaces.Battery
 import com.eurekateam.samsungextras.interfaces.Display
-import com.eurekateam.samsungextras.interfaces.Flashlight
+import com.eurekateam.samsungextras.interfaces.FlashLight
 import com.eurekateam.samsungextras.interfaces.Swap
 import com.eurekateam.samsungextras.interfaces.SmartCharge
 import com.eurekateam.samsungextras.swap.SwapFragment
@@ -39,15 +39,13 @@ class BootReceiver : BroadcastReceiver() {
                 )
 
                 // FlashLight
-                val mFlash = Flashlight()
+                val mFlash = FlashLight()
                 mFlash.setFlash(mSharedPreferences.getInt(FlashLightFragment.PREF_FLASHLIGHT, 5))
 
                 // ZRAM
                 val mSwap = Swap()
                 if (mSharedPreferences.getBoolean(SwapFragment.PREF_SWAP_ENABLE, false)) {
                     mSwap.setSwapOn(false)
-                } else {
-                    mSwap.setSwapOff()
                 }
 
                 // Display

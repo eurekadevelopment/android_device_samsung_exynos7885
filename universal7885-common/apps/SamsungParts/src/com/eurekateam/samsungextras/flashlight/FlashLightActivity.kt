@@ -20,11 +20,13 @@ import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity
 import com.android.settingslib.collapsingtoolbar.R
 
 class FlashLightActivity : CollapsingToolbarBaseActivity() {
-    public override fun onCreate(savedInstanceState: Bundle?) {
+    private var mInstance : FlashLightFragment? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (mInstance == null) mInstance = FlashLightFragment()
         supportFragmentManager.beginTransaction().replace(
             R.id.content_frame,
-            FlashLightFragment()
+            mInstance!!
         ).commit()
     }
 }

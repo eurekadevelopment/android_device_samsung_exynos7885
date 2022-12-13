@@ -20,11 +20,13 @@ import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity
 import com.android.settingslib.collapsingtoolbar.R
 
 class BatteryActivity : CollapsingToolbarBaseActivity() {
+    private var mInstance : BatteryFragment? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (mInstance == null) mInstance = BatteryFragment()
         supportFragmentManager.beginTransaction().replace(
             R.id.content_frame,
-            BatteryFragment()
+            mInstance!!
         ).commit()
     }
 }

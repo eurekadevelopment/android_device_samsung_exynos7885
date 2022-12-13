@@ -20,11 +20,13 @@ import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity
 import com.android.settingslib.collapsingtoolbar.R
 
 class SwapActivity : CollapsingToolbarBaseActivity() {
+    private var mInstance : SwapFragment? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (mInstance == null) mInstance = SwapFragment()
         supportFragmentManager.beginTransaction().replace(
             R.id.content_frame,
-            SwapFragment()
+            mInstance!!
         ).commit()
     }
 }
