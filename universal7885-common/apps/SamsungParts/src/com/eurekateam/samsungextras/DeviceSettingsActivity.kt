@@ -17,7 +17,7 @@ package com.eurekateam.samsungextras
 
 import android.os.Bundle
 import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity
-import com.android.settingslib.collapsingtoolbar.R
+import com.android.settingslib.widget.R
 
 class DeviceSettingsActivity : CollapsingToolbarBaseActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
