@@ -58,3 +58,4 @@ allow init sec_efs_file:dir mounton;
 allow init sysfs_mmc_queue:file { open write };
 get_prop(init, vendor_radio_prop)
 get_prop(init, radio_prop)
+allow init property_type:file { append create getattr map open read relabelto rename setattr unlink write };

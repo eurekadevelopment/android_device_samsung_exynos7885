@@ -62,7 +62,7 @@ allow rild proc_net:file rw_file_perms;
 get_prop(rild, exported_config_prop);
 
 # ro.boot.cpboot, ril.NwNmId[0-9]
-get_prop(rild, telephony_config_prop)
+get_prop(rild, exported_radio_prop)
 
 get_prop(rild, vendor_radio_prop)
 # vendor.cbd.

@@ -110,15 +110,9 @@ BOARD_ROOT_EXTRA_FOLDERS := factory
 BOARD_ROOT_EXTRA_SYMLINKS := /factory:/efs
 
 # Sepolicy
-SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += \
-    $(COMMON_PATH)/sepolicy/public
-
 BOARD_VENDOR_SEPOLICY_DIRS += \
     $(COMMON_PATH)/sepolicy/vendor
 
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
-    $(COMMON_PATH)/sepolicy/private
-    
 # Vendor
 TARGET_COPY_OUT_VENDOR := vendor
 VENDOR_SECURITY_PATCH := 2021-11-05

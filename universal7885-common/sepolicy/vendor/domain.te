@@ -14,3 +14,5 @@ allow domain debugfs_ion:dir search;
 
 # /sys/kernel/debug/tracing/trace_marker
 allow domain debugfs_trace_marker:file getattr;
+
+neverallow { domain -vendor_init -ueventd } r_fs_type:file write;

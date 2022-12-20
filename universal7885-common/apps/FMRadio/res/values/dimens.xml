@@ -1,6 +1,0 @@
-<resources>
-   <dimen name="seek_bar_thickness">10dp</dimen>
-   <dimen name="seek_bar_thumb_size">20dp</dimen>
-   <dimen name="noti_btn_default_size">25dp</dimen>
-   <dimen name="power_btn_default_size">35dp</dimen>
-</resources>

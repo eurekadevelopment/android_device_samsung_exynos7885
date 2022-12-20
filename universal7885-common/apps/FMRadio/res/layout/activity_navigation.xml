@@ -1,4 +1,0 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
-   <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/container_view"/>
-   <com.google.android.material.bottomnavigation.BottomNavigationView android:layout_width="match_parent" android:layout_gravity="bottom" android:layout_height="wrap_content" android:background="@android:color/system_accent1_300" style="@style/Widget.MaterialComponents.BottomNavigationView.Colored" app:menu="@menu/bottom_navigation_menu" android:id="@+id/bottom_nav_bar"/>
-</FrameLayout>

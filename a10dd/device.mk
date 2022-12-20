@@ -11,12 +11,9 @@ $(call inherit-product, vendor/samsung/a10-arm/a10-vendor.mk)
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
-PRODUCT_PACKAGES += \
-    CameraLightSensor
-
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.0-service.a10dd
+    android.hardware.usb@1.0-service.a10
 
 TARGET_SCREEN_HEIGHT := 1520
 TARGET_SCREEN_WIDTH := 720

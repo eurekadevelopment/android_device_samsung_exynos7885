@@ -1,2 +1,0 @@
-type hal_parts_hwservice, hwservice_manager_type;
-type hal_fmradio_hwservice, hwservice_manager_type;

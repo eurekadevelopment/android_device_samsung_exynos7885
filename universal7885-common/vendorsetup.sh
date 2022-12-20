@@ -7,14 +7,13 @@ else
 	MODE="git@"
 	SPERATOR=":"
 fi
-git clone --depth=1 "$MODE"github.com"$SPERATOR"eurekadevelopment/Eureka-Kernel-Exynos7885-Q-R-S-private.git -b R10.1_rom kernel/samsung/exynos7885
-git clone https://github.com/lineageos/android_hardware_samsung_slsi_libbt hardware/samsung_slsi/libbt
-git clone https://github.com/eurekadevelopment/android_hardware_samsung_slsi_scsc_wifibt_wifi_hal.git hardware/samsung_slsi/scsc_wifibt/wifi_hal
-git clone https://github.com/lineageos/android_hardware_samsung_slsi_scsc_wifibt_wpa_supplicant_lib hardware/samsung_slsi/scsc_wifibt/wpa_supplicant_lib
-mv hardware/samsung/nfc .
-git clone https://github.com/eurekadevelopment/android_hardware_samsung hardware/samsung -b lineage-19.1
-mv nfc hardware/samsung
+git clone --depth=1 "$MODE"github.com"$SPERATOR"eurekadevelopment/Eureka-Kernel-Exynos7885-Q-R-S-private.git -b R10.1-T_rom kernel/samsung/exynos7885
+git clone https://github.com/lineageos/android_hardware_samsung_slsi_libbt hardware/samsung_slsi/libbt -b lineage-18.1
+git clone https://github.com/lineageos/android_hardware_samsung_slsi_scsc_wifibt_wifi_hal.git hardware/samsung_slsi/scsc_wifibt/wifi_hal -b lineage-18.1
+git clone https://github.com/lineageos/android_hardware_samsung_slsi_scsc_wifibt_wpa_supplicant_lib hardware/samsung_slsi/scsc_wifibt/wpa_supplicant_lib -b lineage-18.1
+git clone https://github.com/lineageos/android_hardware_samsung hardware/samsung -b lineage-18.1
 git clone --depth=1 https://github.com/eurekadevelopment/android_vendor_samsung_exynos7885.git -b master vendor/samsung
+git clone https://github.com/LineageOS/android_hardware_samsung_nfc hardware/samsung/nfc -b lineage-18.1
 if test -f ${UNIVERSAL}/vendor_name; then
 	rm ${UNIVERSAL}/vendor_name
 fi
@@ -35,10 +34,3 @@ if [ -d "$FM_PATH" ]; then
 	rm -Rf $FM_PATH
 fi
 
-if [ -d external/faceunlock ]; then
-    if [ -e external/faceunlock/Android.bp ]; then
-        rm -rf external/faceunlock/Android.bp
-        rm -rf external/faceunlock/prebuilt*
-        rm -rf external/faceunlock/dependencies
-    fi
-fi
