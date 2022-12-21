@@ -16,7 +16,6 @@
 
 #include "Display.h"
 
-#include <functional>
 #include <sstream>
 #include <string>
 
@@ -52,14 +51,14 @@ enum DisplayResult {
 constexpr const char *OK_STR = "OK";
 constexpr const char *NOOP_STR = "NOOP";
 
-static DisplayResult parseResult(std::string *result, DisplaySys from) {
+static DisplayResult parseResult(std::string *result, DisplaySys from, bool enabled) {
   std::stringstream ss;
   std::string parsed;
-  const std::function<void(std::string *)> addEmpty = [](std::string *str) {
+  auto addEmpty = [](std::string *str) {
     if (str->empty())
       *str = std::string("(empty)");
   };
-  ss << DisplayStrBuilder(true, from);
+  ss << DisplayStrBuilder(enabled, from);
   ss << ":";
   if (result->find(ss.str()) == std::string::npos) {
     LOG_E("Unexpected: Failed to find built string in result string");
@@ -99,7 +98,7 @@ error:
   std::string res;
   writeDisplay(true, type);
   res = FileIO::readline(SEC_TSP_CMD_RESULT);
-  switch (parseResult(&res, type)) {
+  switch (parseResult(&res, type, true)) {
   case DisplayResult::NOOP: {
     *_aidl_return = true;
     break;
@@ -107,7 +106,7 @@ error:
   case DisplayResult::OK: {
     writeDisplay(true, type);
     res = FileIO::readline(SEC_TSP_CMD_RESULT);
-    switch (parseResult(&res, type)) {
+    switch (parseResult(&res, type, true)) {
     case DisplayResult::NOOP: {
       *_aidl_return = false;
       writeDisplay(false, type);
