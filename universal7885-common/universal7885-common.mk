@@ -121,7 +121,7 @@ PRODUCT_PACKAGES += \
     libquietlog
 endif
 
-ifneq ($(TARGET_DEVICE), a10dd)
+ifneq ($(TARGET_LOCAL_ARCH),arm)
 # Samsung FMRadio impl
 PRODUCT_PACKAGES += \
     FMRadio
