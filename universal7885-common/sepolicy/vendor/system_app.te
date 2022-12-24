@@ -10,5 +10,4 @@ allow system_app sysfs_battery_info:dir { search };
 allow system_app sysfs_battery_info:file { read open getattr };
 
 r_dir_file(system_app, sysfs_battery_info)
-
-
+r_dir_file(system_app, sysfs_zram)
