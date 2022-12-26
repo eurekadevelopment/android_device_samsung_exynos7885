@@ -41,13 +41,13 @@ prebuilt_etc {
 
 prebuilt_etc {
     name: "fstab.exynos7884B",
-    src: "etc/fstab.exynos7884B",
+    src: "etc/fstab.exynos7885",
     vendor: true,
 }
 
 prebuilt_etc {
     name: "fstab.exynos7904",
-    src: "etc/fstab.exynos7904",
+    src: "etc/fstab.exynos7885",
     vendor: true,
 }
 
