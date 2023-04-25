@@ -6,7 +6,6 @@
 		android:title="@string/dolby_enable_title"/>
 
 	<com.android.settingslib.widget.RadioButtonPreference
-		android:defaultValue="true"
 		android:key="dolby_profile_auto"
 		android:title="@string/dolby_profile_auto"/>
 
@@ -35,6 +34,7 @@
 		android:title="@string/dolby_profile_off"/>
 
 	<com.android.settingslib.widget.RadioButtonPreference
+		android:defaultValue="true"
 		android:key="dolby_profile_spacial_audio"
 		android:title="@string/dolby_profile_spacial_audio"/>
 

@@ -86,7 +86,8 @@
 				android:targetClass="com.eurekateam.samsungextras.swap.SwapActivity"
 				android:targetPackage="com.eurekateam.samsungextras"/>
 		</Preference>
-		<SwitchPreference 
+		<SwitchPreference
+			android:defaultValue="true"
 			android:key="dt2w_settings"
 			android:title="@string/dt2w_mode"
 			android:persistent="true"/>

@@ -31,11 +31,11 @@ class BootReceiver : BroadcastReceiver() {
                 // Dolby
                 DolbyCore.setEnabled(
                     mSharedPreferences
-                        .getBoolean(DolbyFragment.PREF_DOLBY_ENABLE, false)
+                        .getBoolean(DolbyFragment.PREF_DOLBY_ENABLE, true)
                 )
                 DolbyCore.setProfile(
                     mSharedPreferences
-                        .getInt(DolbyFragment.PREF_DOLBY_PROFILE, 0)
+                        .getInt(DolbyFragment.PREF_DOLBY_PROFILE, 8)
                 )
 
                 // FlashLight
