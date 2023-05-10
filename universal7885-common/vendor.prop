@@ -45,6 +45,8 @@ debug.sf.disable_client_composition_cache=1
 # Display
 vendor.display.disable_rotator_downscale=1
 vendor.display.disable_scaler=0
+persist.sys.sf.color_mode=0
+persist.sys.sf.color_saturation=1.25
 
 ## SoC
 ro.soc.manufacturer=samsung
