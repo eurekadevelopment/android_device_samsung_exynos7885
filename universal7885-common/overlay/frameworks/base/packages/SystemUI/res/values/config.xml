@@ -29,6 +29,17 @@
         Possible values: 3, 3.1, 3.2, 4, 4.1, 4.2 -->
    <string name="config_screenRecorderAVCProfileLevel" translatable="false">3.1</string>
 
+    <!-- Override value to use for proximity sensor.  -->
+    <string name="proximity_sensor_type" translatable="false">android.sensor.proximity</string>
+    <!-- If using proximity_sensor_type, specifies a threshold value to distinguish near and
+         far break points. A sensor value less than this is considered "near". -->
+    <item name="proximity_sensor_threshold" translatable="false" format="float" type="dimen">1.0</item>
+    <!-- If using proximity_sensor_type, specifies a threshold value to distinguish near and
+         far break points. A sensor value more than this is considered "far". If not set,
+         proximity_sensor_threshold is used. This allows one to implement a latching mechanism for
+         noisy sensors. -->
+    <item name="proximity_sensor_threshold_latch" translatable="false" format="float" type="dimen">5.0</item>
+
     <!-- Should we vibrate on an icon animation of the shelf. This should only be active if the
      vibrator is capable of subtle vibrations -->
     <bool name="config_vibrateOnIconAnimation">true</bool>
