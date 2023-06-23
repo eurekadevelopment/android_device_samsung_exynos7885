@@ -138,3 +138,5 @@ WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 CONFIG_ACS := true
 CONFIG_IEEE80211AC := true
 
+# Vibrator
+$(call soong_config_set,samsungVibratorVars,duration_amplitude,true)
