@@ -1,0 +1,28 @@
+{
+  "Profiles": [
+    {
+      "Name": "HighPerformance",
+      "Actions": [
+        {
+          "Name": "JoinCgroup",
+          "Params": {
+            "Controller": "cpuset",
+            "Path": "foreground"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "MaxPerformance",
+      "Actions": [
+        {
+          "Name": "JoinCgroup",
+          "Params": {
+            "Controller": "cpuset",
+            "Path": "top-app"
+          }
+        }
+      ]
+    }
+  ]
+}
