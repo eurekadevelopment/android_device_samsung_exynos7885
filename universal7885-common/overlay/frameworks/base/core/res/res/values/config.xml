@@ -109,14 +109,12 @@
    <!-- Vibrator pattern for feedback about a long screen/key press -->
    <integer-array name="config_longPressVibePattern">
       <item>0</item>
-      <item>12</item>
-      <item>7</item>
+      <item>60</item>
    </integer-array>
    <!-- Vibrator pattern for feedback about touching a virtual key -->
    <integer-array name="config_virtualKeyVibePattern">
       <item>0</item>
-      <item>12</item>
-      <item>7</item>
+      <item>40</item>
    </integer-array>
    <!-- Allow the gesture to double tap the power button twice to start the camera while the device
          is non-interactive. -->
@@ -767,4 +765,9 @@
       <item>419</item>
       <item>420</item>
    </integer-array>
+
+    <!-- Enables or disables haptic effect when the text insertion/selection handle is moved
+         manually by the user. Off by default, since the expected haptic feedback may not be
+         available on some devices. -->
+    <bool name="config_enableHapticTextHandle">true</bool>
 </resources>
