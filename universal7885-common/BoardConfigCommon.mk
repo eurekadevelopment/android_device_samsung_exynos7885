@@ -119,10 +119,12 @@ SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += \
     $(COMMON_PATH)/sepolicy/public
 
 BOARD_VENDOR_SEPOLICY_DIRS += \
-    $(COMMON_PATH)/sepolicy/vendor
+    $(COMMON_PATH)/sepolicy/vendor \
+    hardware/samsung-ext/interfaces/sepolicy/vendor
 
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
-    $(COMMON_PATH)/sepolicy/private
+    $(COMMON_PATH)/sepolicy/private \
+    hardware/samsung-ext/interfaces/sepolicy/private
     
 # Vendor
 TARGET_COPY_OUT_VENDOR := vendor

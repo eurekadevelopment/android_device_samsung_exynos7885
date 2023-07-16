@@ -319,6 +319,19 @@ PRODUCT_COPY_FILES += \
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
+# DAP
+PRODUCT_PACKAGES += \
+    SamsungDAP
+
+# Samsung Ext Flash
+PRODUCT_PACKAGES += \
+    FlashControl \
+    SmartCharge
+
+PRODUCT_PACKAGES += \
+    vendor.lineage.touch@1.0-service.samsung \
+    vendor.lineage.fastcharge@1.0-service.samsung
+
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl.samsung \

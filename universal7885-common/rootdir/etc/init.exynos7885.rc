@@ -39,6 +39,8 @@ on init
     write /dev/cpuset/foreground/selective_boost 1
     write /dev/cpuset/cameraserver/selective_boost 1
 
+    # Charger
+    chown system system /sys/class/power_supply/battery/batt_slate_mode
 
     ## SCSC BT
     chown bluetooth bluetooth /sys/module/scsc_bt/parameters/bluetooth_address
