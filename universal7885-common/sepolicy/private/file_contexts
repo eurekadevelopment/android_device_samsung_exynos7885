@@ -2,14 +2,10 @@
 
 ### DATA
 /data/zram(/.*)?                             u:object_r:zram_data_file:s0
-/data/swap(/.*)?			     u:object_r:parts_data_file:s0
 
 # Eureka Bootlogger
 /system/bin/eklogger				u:object_r:eklogger_exec:s0
 /data/debug(/.*)?   					u:object_r:eklogger_data_file:s0
-
-# SamsungParts
-/system/bin/vendor\.eureka\.hardware\.parts-service       		   u:object_r:hal_parts_default_exec:s0
 
 # FMRadio
 /system/bin/vendor\.eureka\.hardware\.fmradio-service    		      u:object_r:hal_fmradio_default_exec:s0

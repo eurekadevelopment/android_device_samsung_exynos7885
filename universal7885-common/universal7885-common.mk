@@ -384,10 +384,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_CFI_INCLUDE_PATHS += hardware/samsung_slsi/scsc_wifibt/wpa_supplicant_lib
 
-# SamsungParts
-PRODUCT_PACKAGES += \
-    SamsungParts
-
 # Extra Command-Line Tools
 PRODUCT_PACKAGES += \
     sgdisk \

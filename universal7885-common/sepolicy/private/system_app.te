@@ -1,10 +1,3 @@
-# SamsungParts
-allow system_app hal_parts_service:service_manager find;
-
-binder_call(system_app, hal_parts_default)
-
-r_dir_file(system_app, parts_data_file)
-
 # FMRadio
 allow system_app hal_fmradio_service:service_manager find;
 

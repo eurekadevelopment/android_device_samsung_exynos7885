@@ -1,3 +1,2 @@
-type hal_parts_service, service_manager_type;
 type hal_fmradio_service, service_manager_type;
 type hal_audio_route_service, service_manager_type;

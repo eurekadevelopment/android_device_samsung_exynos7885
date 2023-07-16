@@ -1,7 +1,0 @@
-service parts-hal-aidl /system/bin/vendor.eureka.hardware.parts-service
-    class hal
-    user root
-    group root
-
-on post-fs-data
-    mkdir /data/swap 0755 root root encryption=None
