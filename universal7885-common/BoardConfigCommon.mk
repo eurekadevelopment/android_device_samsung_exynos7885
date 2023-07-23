@@ -76,6 +76,8 @@ BOARD_USES_METADATA_PARTITION := true
 
 # Keymaster
 TARGET_KEYMASTER_VARIANT := samsung
+TARGET_KEYMASTER_ADDITIONAL_SHARED_LIBS := \
+    libcrypto-compat
 
 # HIDL
 include device/samsung/universal7885-common/configs/vintf/manifest.mk

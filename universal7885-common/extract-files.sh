@@ -28,6 +28,8 @@ function blob_fixup {
         vendor/lib*/libexynosdisplay.so)
             "${PATCHELF}" --replace-needed "libutils.so" "libutils-v32.so" "${2}"
             ;;
+	vendor/lib*/libcrypto-compat.so)
+	    "${PATCHELF}" --set-soname libcrypto-compat.so "${2}"
 	esac
 }
 
