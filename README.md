@@ -1,5 +1,5 @@
 # Device Trees for universal7885 unified
-The Samsung Galaxy A10, A20, A20e, A30, A40 are budget smartphones made by Samsung. They were announced and released in the year 2019.
+The Samsung Galaxy A10, A20, A20e, A30, A40 are budget smartphones. They were announced and released by Samsung in the year 2019.
 
 # Device List
 - Samsung Galaxy A10 (exynos7884)
