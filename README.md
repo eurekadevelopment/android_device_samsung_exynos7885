@@ -1,5 +1,5 @@
 # Device Trees for universal7885 unified
-The Samsung Galaxy A10,A20,A20e,A30,A40 are budget smartphones from Samsung. These are announced and released in the year 2019.
+The Samsung Galaxy A10, A20, A20e, A30, A40 are budget smartphones made by Samsung. They were announced and released in the year 2019.
 
 # Device List
 - Samsung Galaxy A10 (exynos7884)
@@ -9,7 +9,7 @@ The Samsung Galaxy A10,A20,A20e,A30,A40 are budget smartphones from Samsung. The
 - Samsung Galaxy A40 (exynos7904)
 
 # Why universal7885? isn't that another SoC made by Samsung?
-- yes it does, exynos7884 and exynos7904 are 2nd and 3rd revisions of exynos7885 with lower CPU and GPU clockspeed and have newer Mali GPU drivers
+- Yes it is, exynos7884 and exynos7904 are 2nd and 3rd revisions of exynos7885 with lower CPU and GPU clockspeed and have newer Mali GPU drivers.
 
 ## Device specifications (Galaxy A10)
 | Feature                 | Specification                                                   |
