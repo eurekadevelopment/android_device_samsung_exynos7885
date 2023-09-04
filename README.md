@@ -9,7 +9,7 @@ The Samsung Galaxy A10, A20, A20e, A30, A40 are budget smartphones made by Samsu
 - Samsung Galaxy A40 (exynos7904)
 
 # Why universal7885? isn't that another SoC made by Samsung?
-- Yes it is, exynos7884 and exynos7904 are 2nd and 3rd revisions of exynos7885 with lower CPU and GPU clockspeed and have newer Mali GPU drivers.
+- Yes. Exynos 7884 and Exynos 7904 are 2nd and 3rd revisions of Exynos 7885, with lower CPU/GPU clockspeed and newer Mali GPU drivers.
 
 ## Device specifications (Galaxy A10)
 | Feature                 | Specification                                                   |
