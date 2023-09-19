@@ -1,0 +1,9 @@
+service logdump /system/system_ext/bin/logger
+    user root
+    group system
+    oneshot
+    disabled
+
+on post-fs-data
+      mkdir /data/debug 0755 root system encryption=None
+      start logdump

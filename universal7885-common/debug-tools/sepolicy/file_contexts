@@ -1,0 +1,2 @@
+/system/system_ext/bin/logger                u:object_r:logger_exec:s0
+/data/debug(/.*)?                               u:object_r:logger_data_file:s0

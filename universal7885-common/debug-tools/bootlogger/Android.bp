@@ -15,9 +15,12 @@
 //
 
 cc_binary {
-    name: "eklogger",
+    name: "logger",
     srcs: [
         "Logger.cpp",
     ],
-    init_rc: ["eklogger.rc"],
+    init_rc: ["logger.rc"],
+    whole_static_libs: ["libbase"],
+    shared_libs: ["liblog"],
+    system_ext_specific: true,
 }

@@ -107,7 +107,7 @@ PRODUCT_PACKAGES += \
     libsuspend
 
 # Debug
-PRODUCT_PACKAGES += eklogger dlopener dlopener.vendor
+$(call inherit-product, $(LOCAL_PATH)/debug-tools/debug.mk)
 
 # DRM
 PRODUCT_PACKAGES += \

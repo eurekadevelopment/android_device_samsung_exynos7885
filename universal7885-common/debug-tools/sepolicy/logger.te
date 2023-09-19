@@ -1,0 +1,18 @@
+type logger, domain, coredomain;
+type logger_exec, exec_type, file_type, system_file_type;
+init_daemon_domain(logger)
+type logger_data_file, file_type, data_file_type, core_data_file_type;
+
+allow logger logger_data_file:dir rw_dir_perms;
+allow logger logger_data_file:file rw_file_perms;
+allow logger proc_kmsg:file r_file_perms;
+allow logger logcat_exec:file rx_file_perms;
+allow logger self:capability2 syslog;
+allow logger kernel:system syslog_mod;
+allow logger logger_data_file:file create_file_perms;
+allow logger shell_exec:file rx_file_perms;
+allow logger self:capability sys_nice;
+allow logger logdr_socket:sock_file write;
+allow logger logd:unix_stream_socket connectto;
+
+get_prop(logger, boot_status_prop)
