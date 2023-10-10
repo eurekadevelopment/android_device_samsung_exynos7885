@@ -3,6 +3,9 @@ ifeq ($(TARGET_LOCAL_ARCH),arm64)
 $(call inherit-product, vendor/samsung/universal7885-common/universal7885-common-vendor.mk)
 endif
 
+# .apex packages
+$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
+
 # Client Id base
 PRODUCT_GMS_CLIENTID_BASE := android-samsung
 
