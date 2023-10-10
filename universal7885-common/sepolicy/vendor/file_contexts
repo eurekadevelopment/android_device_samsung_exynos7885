@@ -217,7 +217,6 @@
 /(vendor|system/vendor)/bin/hw/vendor\.samsung\.hardware\.gnss@[0-9]\.[0-9]-service           u:object_r:hal_gnss_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.sensors@[0-9]\.[0-9]-service\.a10	              u:object_r:hal_sensors_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.power\.stats-service\.exynos7			u:object_r:hal_power_stats_default_exec:s0
-/(vendor|system/vendor)/bin/hw/android\.hardware\.radio@1\.4-service\.samsung                 u:object_r:hal_radio_default_exec:s0
 /(vendor|system/vendor)/firmware(/.*)?       u:object_r:vendor_firmware_file:s0
 
 /factory(/.*)?									u:object_r:sec_efs_file:s0
