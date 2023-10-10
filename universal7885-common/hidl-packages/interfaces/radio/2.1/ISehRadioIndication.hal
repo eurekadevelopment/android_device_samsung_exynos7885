@@ -1,5 +1,5 @@
 package vendor.samsung.hardware.radio@2.1;
 
-import android.hardware.radio@1.4::IRadioIndication;
+import @2.0::ISehRadioIndication;
 
-interface ISehRadioIndication extends IRadioIndication {};
+interface ISehRadioIndication extends @2.0::ISehRadioIndication {};
