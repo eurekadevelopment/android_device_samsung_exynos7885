@@ -23,7 +23,6 @@ type radio_block_device, dev_type;
 type sec_efs_block_device, dev_type;
 
 type bbd_device, dev_type;
-type bt_device, dev_type;
 type cpu_dma_device, dev_type;
 type drb_device, dev_type;
 type epic_device, dev_type;
