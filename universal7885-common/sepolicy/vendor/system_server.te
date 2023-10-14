@@ -22,3 +22,4 @@ get_prop(system_server, userspace_reboot_config_prop)
 get_prop(system_server, userspace_reboot_exported_prop)
 allow system_server self:capability sys_module;
 allow system_server shell:unix_stream_socket getopt;
+allow system_server cgroup:dir { create setattr };
