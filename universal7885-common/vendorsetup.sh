@@ -9,6 +9,10 @@ mv hardware/samsung/nfc .
 git clone https://github.com/eurekadevelopment/android_hardware_samsung hardware/samsung -b AOSP-14
 mv nfc hardware/samsung
 git clone --depth=1 https://github.com/eurekadevelopment/android_vendor_samsung_exynos7885.git -b android-14 vendor/samsung
+git clone https://github.com/K9100ii/android_hardware_samsung_slsi-linaro_graphics hardware/samsung_slsi-linaro/graphics
+git clone https://github.com/K9100ii/android_hardware_samsung_slsi-linaro_exynos hardware/samsung_slsi-linaro/exynos
+git clone https://github.com/K9100ii/android_hardware_samsung_slsi-linaro_config hardware/samsung_slsi-linaro/config
+git clone https://github.com/LineageOS/android_hardware_samsung_slsi-linaro_openmax hardware/samsung_slsi-linaro/openmax
 if test -f ${UNIVERSAL}/vendor_name; then
 	rm ${UNIVERSAL}/vendor_name
 fi
