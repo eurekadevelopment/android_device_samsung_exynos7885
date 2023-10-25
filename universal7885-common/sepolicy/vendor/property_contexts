@@ -46,6 +46,10 @@ ro.build.PDA                   u:object_r:exported_default_prop:s0
 # GPS
 ro.spid.gps.                u:object_r:vendor_gps_prop:s0
 
+# HWC
+persist.vendor.display.		u:object_r:vendor_hwc_prop:s0
+vendor.display.			u:object_r:vendor_hwc_prop:s0
+
 # NFC
 vendor.nfc.fw.              u:object_r:vendor_nfc_prop:s0
 
@@ -54,7 +58,10 @@ persist.ril.                u:object_r:radio_prop:s0
 vendor.gsm.                 u:object_r:vendor_radio_prop:s0
 persist.radio.         	 u:object_r:radio_prop:s0
 ril.clatd.               u:object_r:vendor_radio_prop:s0
+
+# Power
 vendor.powerhal.             u:object_r:vendor_powerhal_prop:s0
+
 # FACTORY
 ro.factory.factory_binary   u:object_r:vendor_factory_prop:s0
 
