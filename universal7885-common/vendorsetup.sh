@@ -1,14 +1,10 @@
 UNIVERSAL="device/samsung/universal7885-common"
 FM_PATH="packages/apps/FMRadio"
 
-git clone --depth=1 https://github.com/eurekadevelopment/Eureka-Kernel-Exynos7885-Q-R-S -b R15_rom kernel/samsung/exynos7885
-git clone https://github.com/eurekadevelopment/android_hardware_samsung_slsi_libbt hardware/samsung_slsi/libbt
-git clone https://github.com/eurekadevelopment/android_hardware_samsung_slsi_scsc_wifibt_wifi_hal.git hardware/samsung_slsi/scsc_wifibt/wifi_hal
-git clone https://github.com/lineageos/android_hardware_samsung_slsi_scsc_wifibt_wpa_supplicant_lib hardware/samsung_slsi/scsc_wifibt/wpa_supplicant_lib
-mv hardware/samsung/nfc .
-git clone https://github.com/eurekadevelopment/android_hardware_samsung hardware/samsung -b AOSP-13
-mv nfc hardware/samsung
-git clone --depth=1 https://github.com/eurekadevelopment/android_vendor_samsung_exynos7885.git -b android-13 vendor/samsung
+if [ ! -e .repo/local_manifests/eureka_deps.xml ]; then
+	git clone https://github.com/eurekadevelopment/local_manifests .repo/local_manifests
+	echo "Run repo sync again"
+fi
 if test -f ${UNIVERSAL}/vendor_name; then
 	rm ${UNIVERSAL}/vendor_name
 fi
