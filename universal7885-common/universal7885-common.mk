@@ -99,7 +99,8 @@ PRODUCT_PACKAGES += \
 endif
 
 PRODUCT_PACKAGES += \
-    libhwjpeg
+    libhwjpeg \
+    libGrallocWrapper
 
 # Camera app
 PRODUCT_PACKAGES += \
