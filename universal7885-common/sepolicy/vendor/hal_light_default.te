@@ -1,0 +1,9 @@
+# hal_light_default.te
+
+# /sys/devices/platform/panel@0/backlight/panel/brightness
+# /sys/devices/platform/panel@0/backlight/panel/max_brightness
+allow hal_light_default sysfs_backlight_writable:file rw_file_perms;
+allow hal_light_default sysfs_graphics:dir search;
+allow hal_light_default sysfs_graphics:file rw_file_perms;
+allow hal_light_default sysfs_virtual:dir search;
+allow hal_light_default sysfs_virtual:file rw_file_perms;

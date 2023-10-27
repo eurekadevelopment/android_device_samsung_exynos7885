@@ -180,6 +180,10 @@ PRODUCT_PACKAGES += \
     init.target.rc \
     init.baseband.rc
 
+# Lights
+PRODUCT_PACKAGES += \
+    android.hardware.light-service.samsung
+
 # Keylayout
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/keylayout/Codec3035_Headset_Events.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/Codec3035_Headset_Events.kl \
