@@ -28,10 +28,10 @@ cc_binary {
     init_rc: ["android.hardware.camera.provider@2.5-service.exynos7885.rc"],
     shared_libs: [
         "android.hardware.camera.provider@2.4",
-        "android.hardware.camera.provider@2.4-legacy",
+        "android.hardware.camera.provider@2.4-legacy.exynos7885",
         "android.hardware.camera.provider@2.5",
-        "android.hardware.camera.provider@2.5-legacy",
-	"camera.device@3.2-impl.universal7885",
+        "android.hardware.camera.provider@2.5-legacy.exynos7885",
+        "camera.device@3.2-impl.universal7885",
         "camera.device@3.3-impl.universal7885",
         "camera.device@3.4-impl.universal7885",
         "camera.device@3.5-impl.universal7885",
