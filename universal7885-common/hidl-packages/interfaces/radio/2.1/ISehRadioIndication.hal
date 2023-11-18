@@ -1,5 +1,0 @@
-package vendor.samsung.hardware.radio@2.1;
-
-import @2.0::ISehRadioIndication;
-
-interface ISehRadioIndication extends @2.0::ISehRadioIndication {};
