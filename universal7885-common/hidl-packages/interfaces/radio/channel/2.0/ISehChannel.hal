@@ -1,8 +1,0 @@
-package vendor.samsung.hardware.radio.channel@2.0;
-
-import @2.0::ISehChannelCallback;
-
-interface ISehChannel {
-   oneway send(vec<uint8_t> data);
-   oneway setCallback(ISehChannelCallback callback);
-};
