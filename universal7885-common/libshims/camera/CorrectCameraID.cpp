@@ -36,9 +36,7 @@ static void applyRemap(std::pair<int, int> config, int *intversion, std::string 
 	if (intversion != nullptr)
 		*intversion = selectedFromConfig;
 	if (stringversion != nullptr) {
-		std::vector<char> buf(2 /* single digit and null char */);
-		std::snprintf(buf.data(), buf.size(), "%d", selectedFromConfig);
-		*stringversion = std::string(buf.begin(), buf.end());
+		*stringversion = std::to_string(selectedFromConfig);
 	}
 }
 
