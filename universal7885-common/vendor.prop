@@ -77,6 +77,6 @@ ro.hardware.chipname=exynos7884B
 ro.config.vc_call_vol_steps=8
 
 ## Vibrator HAL
-ro.vendor.vibrator_hal.click_duration=50
-ro.vendor.vibrator_hal.tick_duration=45
-ro.vendor.vibrator_hal.texture_tick_duration=30
+ro.vendor.vibrator_hal.click_duration=75
+ro.vendor.vibrator_hal.tick_duration=65
+ro.vendor.vibrator_hal.texture_tick_duration=60
