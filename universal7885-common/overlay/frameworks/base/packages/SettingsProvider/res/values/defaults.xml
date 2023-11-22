@@ -31,4 +31,8 @@
    <bool name="def_vibrate_when_ringing">true</bool>
    <!-- Enable UI touch haptic feedback by default -->
    <bool name="def_haptic_feedback">true</bool>
+   <!-- Set Window animation scale to 50% by default -->
+   <fraction name="def_window_animation_scale">50%</fraction>
+   <!-- Set Window transition scale to 50% by default -->
+   <fraction name="def_window_transition_scale">50%</fraction>
 </resources>
