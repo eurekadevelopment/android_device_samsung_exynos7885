@@ -770,4 +770,7 @@
          manually by the user. Off by default, since the expected haptic feedback may not be
          available on some devices. -->
     <bool name="config_enableHapticTextHandle">true</bool>
+
+    <!-- Whether we use large screen shade header which takes only one row compared to QS header -->
+    <bool name="config_use_large_screen_shade_header">true</bool>
 </resources>
