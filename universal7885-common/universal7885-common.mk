@@ -104,7 +104,7 @@ PRODUCT_PACKAGES += \
 
 # Camera app
 PRODUCT_PACKAGES += \
-    AperturePrebuilt
+    Aperture
 
 # Charger
 PRODUCT_PACKAGES += \
