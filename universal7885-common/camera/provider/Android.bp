@@ -38,7 +38,6 @@ cc_binary {
         "libhidlbase",
         "liblog",
         "libutils",
-        "libcorrectcamera",
     ],
     static_libs: [
         "android.hardware.camera.common@1.0-helper",
