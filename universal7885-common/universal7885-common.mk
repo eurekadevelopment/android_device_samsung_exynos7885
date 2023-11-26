@@ -111,7 +111,7 @@ PRODUCT_PACKAGES += \
     libsuspend
 
 # Debug
-PRODUCT_PACKAGES += eklogger dlopener dlopener.vendor
+$(call inherit-product, hardware/samsung-ext/interfaces/debug-tools/debug.mk)
 
 # DRM
 PRODUCT_PACKAGES += \

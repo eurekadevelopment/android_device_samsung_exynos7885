@@ -3,10 +3,6 @@
 ### DATA
 /data/zram(/.*)?                             u:object_r:zram_data_file:s0
 
-# Eureka Bootlogger
-/system/bin/eklogger				u:object_r:eklogger_exec:s0
-/data/debug(/.*)?   					u:object_r:eklogger_data_file:s0
-
 # FMRadio
 /system/bin/vendor\.eureka\.hardware\.fmradio-service    		      u:object_r:hal_fmradio_default_exec:s0
 /system/bin/vendor\.eureka\.hardware\.audio_route-service                         u:object_r:hal_audio_route_default_exec:s0
