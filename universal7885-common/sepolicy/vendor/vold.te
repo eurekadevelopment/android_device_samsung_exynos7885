@@ -1,6 +1,1 @@
-# /efs
-allow vold efs_file:dir r_dir_perms;
-
-allow vold sysfs_virtual:file write;
-
-allow vold sysfs_mmc_uevent:file write;
+allow vold sysfs_mmc:file w_file_perms;

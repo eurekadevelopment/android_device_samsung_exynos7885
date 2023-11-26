@@ -1,6 +1,0 @@
-# hal_wifi_hostapd_default.te
-
-# /data/vendor/wifi/hostapd/hostapd_wlan0.conf
-r_dir_file(hal_wifi_hostapd_default, wifi_vendor_data_file)
-allow hal_wifi_hostapd_default sysfs_virtual:dir search;
-allow hal_wifi_hostapd_default sysfs_virtual:lnk_file r_file_perms;

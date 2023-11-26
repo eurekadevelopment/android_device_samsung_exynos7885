@@ -1,25 +1,11 @@
-vndbinder_use(hal_camera_default)
-
-allow hal_camera_default vndbinder_device:chr_file r_file_perms;
 allow hal_camera_default hal_graphics_mapper_hwservice:hwservice_manager find;
 allow hal_camera_default hal_graphics_composer_default:fd use;
-allow hal_camera_default sysfs_virtual:dir search;
-allow hal_camera_default sysfs_virtual:file rw_file_perms;
-allow hal_camera_default sysfs_camera:dir search;
-allow hal_camera_default sysfs_camera:file rw_file_perms;
-allow hal_camera_default sysfs_battery:dir search;
-allow hal_camera_default sysfs_battery_writable:dir search;
-allow hal_camera_default sysfs_battery_writable:file r_file_perms;
+
+rw_file_recursive(hal_camera_default, sysfs_camera)
+r_file_recursive(hal_camera_default, sysfs_battery)
 
 get_prop(hal_camera_default, exported_camera_prop)
 set_prop(hal_camera_default, vendor_camera_prop)
-get_prop(hal_camera_default, exported_default_prop)
 get_prop(hal_camera_default, vendor_factory_prop)
-get_prop(hal_camera_default, exported_config_prop)
-get_prop(hal_camera_default, exported_system_prop)
 
 binder_call(hal_camera_default, system_server)
-binder_call(system_server, hal_camera_default)
-
-r_dir_file(hal_camera_default, sysfs_decon)
-set_prop(hal_camera_default, camera_prop)

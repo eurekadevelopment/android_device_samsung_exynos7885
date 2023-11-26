@@ -1,13 +1,5 @@
-r_dir_file(hal_health_default, sysfs_charger)
+rw_file_recursive(hal_health_default, sysfs_charger)
 
-allow hal_health_default sysfs_charger:file rw_file_perms;
+allow hal_health_default sysfs_fuelgauge:file r_file_perms;
 allow hal_health_default sysfs_battery:dir r_dir_perms;
 allow hal_health_default sysfs_battery:file r_file_perms;
-allow hal_health_default sysfs_battery_writable:dir search;
-allow hal_health_default sysfs_battery_writable:file r_file_perms;
-allow hal_health_default sysfs_fuelgauge:file r_file_perms;
-allow hal_health_default app_efs_file:file r_file_perms;
-allow hal_health_default app_efs_file:dir search;
-allow hal_health_default efs_file:lnk_file read;
-allow hal_health_default efs_file:dir search;
-

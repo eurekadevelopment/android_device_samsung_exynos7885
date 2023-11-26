@@ -1,8 +1,5 @@
-set_prop(hal_wifi_default, vendor_wlan_prop)
-get_prop(hal_wifi_default, vendor_wifi_prop)
-
-allow hal_wifi_default conn_vendor_data_file:dir search;
-allow hal_wifi_default conn_vendor_data_file:file rw_file_perms;
+allow hal_wifi_default conn_vendor_data_file:dir rw_dir_perms;
+allow hal_wifi_default conn_vendor_data_file:file create_file_perms;
 allow hal_wifi_default wifi_vendor_data_file:dir search;
 
 get_prop(hal_wifi_default, persist_vendor_debug_wifi_prop)
@@ -11,5 +8,7 @@ allow hal_wifi_default efs_file:dir search;
 allow hal_wifi_default wifi_efs_file:dir search;
 allow hal_wifi_default wifi_efs_file:file r_file_perms;
 
-allow hal_wifi_default conn_vendor_data_file:dir write;
 allow hal_wifi_default mnt_vendor_file:dir search;
+
+# vendor.wlan.firmware.
+set_prop(hal_wifi_default, vendor_wifi_prop)

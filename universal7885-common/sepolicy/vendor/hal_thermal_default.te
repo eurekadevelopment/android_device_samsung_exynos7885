@@ -1,8 +1,0 @@
-
-# /acct/tasks
-allow hal_thermal_default cgroup:file getattr;
-
-# /sys/devices/virtual/thermal/
-allow hal_thermal_default sysfs_thermal:dir r_dir_perms;
-allow hal_thermal_default sysfs_thermal:file r_file_perms;
-r_dir_file(hal_thermal_default, sysfs_virtual)

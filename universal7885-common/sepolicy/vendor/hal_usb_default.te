@@ -1,3 +1,0 @@
-allow hal_usb_default sysfs_virtual:dir search;
-allow hal_usb_default sysfs_sec_ccic:dir search;
-allow hal_usb_default sysfs_sec_ccic:file r_file_perms;

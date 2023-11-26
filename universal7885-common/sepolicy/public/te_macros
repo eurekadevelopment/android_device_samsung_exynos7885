@@ -1,8 +1,0 @@
-# teegris_use(domain)
-#
-# Allow domain to use teegris
-define(`teegris_use', `
-get_prop($1, vendor_tztsdaemon_prop)
-# /dev/tzdev
-allow $1 tz_user_device:chr_file rw_file_perms;
-')

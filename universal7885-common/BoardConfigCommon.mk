@@ -116,18 +116,20 @@ ENABLE_VENDOR_RIL_SERVICE := true
 BOARD_ROOT_EXTRA_FOLDERS := factory
 BOARD_ROOT_EXTRA_SYMLINKS := /factory:/efs
 
-# Sepolicy
-SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += \
-    $(COMMON_PATH)/sepolicy/public
+BOARD_SEPOLICY_TEE_FLAVOR := teegris
+include device/samsung_slsi/sepolicy/sepolicy.mk
 
+# Sepolicy
 BOARD_VENDOR_SEPOLICY_DIRS += \
     $(COMMON_PATH)/sepolicy/vendor \
     hardware/samsung-ext/interfaces/sepolicy/vendor
-
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += \
+    $(COMMON_PATH)/sepolicy/public \
+    hardware/samsung-ext/interfaces/sepolicy/public
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
     $(COMMON_PATH)/sepolicy/private \
     hardware/samsung-ext/interfaces/sepolicy/private
-    
+
 # Vendor
 TARGET_COPY_OUT_VENDOR := vendor
 VENDOR_SECURITY_PATCH := 2023-02-05

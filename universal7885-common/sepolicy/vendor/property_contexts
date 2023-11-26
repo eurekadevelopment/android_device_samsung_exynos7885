@@ -1,36 +1,15 @@
-### cbd
-vendor.cbd.                    u:object_r:vendor_cbd_prop:s0
-persist.vendor.cbd.            u:object_r:vendor_radio_prop:s0
-
-### radio
-ro.multisim.                   u:object_r:radio_prop:s0
-ro.vendor.multisim.            u:object_r:vendor_radio_prop:s0
-ro.vendor.radio.               u:object_r:vendor_radio_prop:s0
-
-### wifi
-vendor.wifi.                   u:object_r:vendor_wifi_prop:s0
-ro.vendor.wifi.                u:object_r:vendor_wifi_prop:s0
-
 # fastbootd
 ro.fastbootd.available         u:object_r:exported_default_prop:s0
 
 # bluetooth
 persist.bluetooth_fw_ver    u:object_r:bluetooth_prop:s0
 ro.bluetooth.tty            u:object_r:bluetooth_prop:s0
-wc_transport.               u:object_r:bluetooth_prop:s0
 
-# modemloader
-hw.revision                 u:object_r:modemloader_prop:s0
-ro.cbd.dt_revision          u:object_r:modemloader_prop:s0
-ril.cbd.dt_revision         u:object_r:modemloader_prop:s0
-ro.modemloader.done         u:object_r:modemloader_prop:s0
-
+# Data
 persist.rmnet.              u:object_r:persist_rmnet_prop:s0
-persist.data.df.            u:object_r:persist_data_df_prop:s0
-persist.data.wda.           u:object_r:persist_data_wda_prop:s0
+persist.data.               u:object_r:persist_rmnet_prop:s0
 
 # CAMERA
-persist.sys.camera.         u:object_r:camera_prop:s0
 persist.vendor.sys.camera.  u:object_r:vendor_camera_prop:s0
 persist.vendor.camera.      u:object_r:vendor_camera_prop:s0
 
@@ -43,28 +22,21 @@ ro.debug_level                 u:object_r:exported_default_prop:s0
 ro.hardware.chipname           u:object_r:exported_default_prop:s0
 ro.build.PDA                   u:object_r:exported_default_prop:s0
 
-# GPS
-ro.spid.gps.                u:object_r:vendor_gps_prop:s0
-
 # NFC
 vendor.nfc.fw.              u:object_r:vendor_nfc_prop:s0
 
 # RADIO
 persist.ril.                u:object_r:radio_prop:s0
 vendor.gsm.                 u:object_r:vendor_radio_prop:s0
-persist.radio.         	 u:object_r:radio_prop:s0
-ril.clatd.               u:object_r:vendor_radio_prop:s0
-vendor.powerhal.             u:object_r:vendor_powerhal_prop:s0
-# FACTORY
-ro.factory.factory_binary   u:object_r:vendor_factory_prop:s0
+persist.radio.         	    u:object_r:radio_prop:s0
+ril.clatd.                  u:object_r:vendor_radio_prop:s0
+ro.multisim.                u:object_r:vendor_radio_prop:s0
 
-# wlbtd
-vendor.wlbtd.              u:object_r:vendor_wlbtd_prop:s0
+# Power
+vendor.powerhal.             u:object_r:vendor_powerhal_prop:s0
+
+# FACTORY
+ro.factory.factory_binary    u:object_r:vendor_factory_prop:s0
 
 # Wlan
-vendor.wlan.               u:object_r:vendor_wlan_prop:s0
-
-# TEEGRIS
-vendor.secureos.               u:object_r:vendor_secureos_prop:s0
-vendor.tzdaemon                u:object_r:vendor_tzdaemon_prop:s0
-vendor.tzts_daemon             u:object_r:vendor_tztsdaemon_prop:s0
+vendor.wlan.                 u:object_r:vendor_wifi_prop:s0

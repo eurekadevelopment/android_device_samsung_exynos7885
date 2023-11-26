@@ -1,7 +1,3 @@
-# file_contexts
-
-### DATA
-/data/zram(/.*)?                             u:object_r:zram_data_file:s0
 
 # FMRadio
 /system/bin/vendor\.eureka\.hardware\.fmradio-service    		      u:object_r:hal_fmradio_default_exec:s0

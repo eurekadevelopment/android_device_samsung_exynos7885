@@ -1,3 +1,2 @@
-allow hal_samsung_battery_default { sysfs_battery sysfs_battery_writable }:dir search;
-allow hal_samsung_battery_default sysfs_battery_writable:file rw_file_perms;
-allow hal_samsung_battery_default sysfs_battery:file r_file_perms;
+r_file_recursive(hal_samsung_battery_default, sysfs_battery)
+rw_file_recursive(hal_samsung_battery_default, sysfs_battery_writable)

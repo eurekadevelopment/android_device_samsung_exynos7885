@@ -1,5 +1,0 @@
-get_prop(zygote, exported_camera_prop)
-
-allow zygote proc_cmdline:file r_file_perms;
-dontaudit zygote unlabeled:file write;
-
