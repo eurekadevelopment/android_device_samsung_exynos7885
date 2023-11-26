@@ -1,7 +1,0 @@
-cc_library_shared {
-    name: "libquietlog",
-    srcs: ["LogShim.cpp"],
-    shared_libs: ["liblog"],
-    compile_multilib: "64",
-    vendor: true
-}

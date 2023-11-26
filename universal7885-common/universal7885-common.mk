@@ -123,9 +123,6 @@ TARGET_BOARD_HAS_FP ?= true
 ifeq ($(TARGET_BOARD_HAS_FP), true)
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.3-service.samsung
-
-PRODUCT_PACKAGES += \
-    libquietlog
 endif
 
 ifneq ($(TARGET_LOCAL_ARCH),arm)
