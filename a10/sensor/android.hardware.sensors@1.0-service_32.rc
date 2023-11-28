@@ -1,4 +1,4 @@
-service vendor.sensors-hal-1-0 /vendor/bin/hw/android.hardware.sensors@1.0-service.a10
+service vendor.sensors-hal-1-0 /vendor/bin/hw/android.hardware.sensors@1.0-service_32
     interface android.hardware.sensors@1.0::ISensors default
     class hal
     user system

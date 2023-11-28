@@ -1,8 +1,8 @@
 cc_binary {
-    name: "android.hardware.sensors@1.0-service.a10",
+    name: "android.hardware.sensors@1.0-service_32",
     relative_install_path: "hw",
     vendor: true,
-    init_rc: ["android.hardware.sensors@1.0-service.a10.rc"],
+    init_rc: ["android.hardware.sensors@1.0-service_32.rc"],
     srcs: ["service.cpp"],
     compile_multilib: "32",
 
