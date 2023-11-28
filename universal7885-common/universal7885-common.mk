@@ -3,14 +3,11 @@ ifeq ($(TARGET_LOCAL_ARCH),arm64)
 $(call inherit-product, vendor/samsung/universal7885-common/universal7885-common-vendor.mk)
 endif
 
-# Build Fingerprints
-$(call inherit-product, $(LOCAL_PATH)/fingerprint.mk)
+# Client Id base
+PRODUCT_GMS_CLIENTID_BASE := android-samsung
 
 # Allow Copying of apks.
 PRODUCT_BROKEN_VERIFY_USES_LIBRARIES := true
-
-# Derp
-USE_LEGACY_BOOTANIMATION := true
 
 # Disable Postrender Cleanup
 TARGET_DISABLE_POSTRENDER_CLEANUP := true

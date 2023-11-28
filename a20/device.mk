@@ -9,9 +9,6 @@ $(call inherit-product, vendor/samsung/a20/a20-vendor.mk)
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
-# Derp
-DERP_BUILDTYPE := Official
-
 # USB
 PRODUCT_PACKAGES += \
     android.hardware.usb-service.samsung
@@ -27,3 +24,8 @@ PRODUCT_PACKAGES += \
    
 PRODUCT_PACKAGES += \
    android.hardware.sensors@1.0-service
+
+BUILD_FINGERPRINT := "samsung/a20ub/a20:11/RP1A.200720.012/A205GUBU9CUF4:user/release-keys"
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+   PRIVATE_BUILD_DESC="a20ub-user 11 RP1A.200720.012 A205GUBU9CUF4 release-keys"
