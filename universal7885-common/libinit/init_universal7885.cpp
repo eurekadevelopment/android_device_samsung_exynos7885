@@ -37,9 +37,8 @@
 #include "vendor_init.h"
 
 using android::base::GetProperty;
-using std::string;
 
-std::vector<std::string> ro_props_default_source_order = {
+const static std::vector<std::string> ro_props_default_source_order = {
     "", "odm.", "product.", "system.", "system_ext.", "vendor.", "vendor_dlkm.",
 };
 
@@ -55,7 +54,7 @@ void property_override(char const prop[], char const value[], bool add = true) {
 
 void set_ro_build_prop(const std::string &prop, const std::string &value,
                        bool product = true) {
-  string prop_name;
+  std::string prop_name;
 
   for (const auto &source : ro_props_default_source_order) {
     if (product)
@@ -67,28 +66,36 @@ void set_ro_build_prop(const std::string &prop, const std::string &value,
   }
 }
 
-bool hasEnding(std::string const &fullString, std::string const &ending) {
-  if (fullString.length() >= ending.length()) {
-    return (0 == fullString.compare(fullString.length() - ending.length(),
-                                    ending.length(), ending));
-  } else {
-    return false;
-  }
+static inline bool hasEnding(const std::string& str, char suffix)
+{
+  return !str.empty() && str.back() == suffix;
 }
 
 void vendor_load_properties() {
-  string model;
+  std::string model;
+  bool isNFC = false;
 
   model = GetProperty("ro.boot.product.model", "");
   if (model.empty()) {
     model = GetProperty("ro.boot.em.model", "");
   }
 
-  if (hasEnding(model, "N") || hasEnding(model, "S") || hasEnding(model, "K") ||
-      model == "SM-A202F" || model == "SM-A405FM" || model == "SM-A405F") {
+  // Korean models all have NFC
+  isNFC |= hasEnding(model, 'N');
+  isNFC |= hasEnding(model, 'S');
+  isNFC |= hasEnding(model, 'K');
+
+  // Exceptions
+  isNFC |= model == "SM-A202F";
+  isNFC |= model == "SM-A405FM";
+  isNFC |= model == "SM-A405F";
+
+  // Set the NFC property, if NFC is present via modelname.
+  if (isNFC) {
     property_override("ro.boot.product.hardware.sku", "NFC");
   }
 
+  // Set model based on bootloader supplied model
   set_ro_build_prop("model", model);
   set_ro_build_prop("product", model, false);
 }
