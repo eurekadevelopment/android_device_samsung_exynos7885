@@ -1,4 +1,0 @@
-# FMRadio
-allow system_app hal_fmradio_service:service_manager find;
-
-binder_call(system_app, hal_fmradio_default)

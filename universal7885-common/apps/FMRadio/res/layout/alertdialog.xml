@@ -1,6 +1,0 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:theme="@style/Theme.Material3.DayNight.Dialog.Alert">
-   <com.google.android.material.textview.MaterialTextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/warning" android:textSize="50sp" android:textAllCaps="true" android:textStyle="bold" android:gravity="center" android:paddingBottom="15dp"/>
-   <com.google.android.material.textview.MaterialTextView android:id="@+id/alert_title" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="25sp" android:textStyle="bold" android:gravity="center" android:paddingBottom="15dp"/>
-   <androidx.appcompat.widget.AppCompatImageView android:layout_width="200dp" android:layout_height="200dp" android:id="@+id/alert_image" android:background="@android:color/system_accent1_400"/>
-   <com.google.android.material.textview.MaterialTextView android:id="@+id/alert_desc" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="25sp" android:gravity="center" android:paddingTop="20dp" android:paddingBottom="10dp"/>
-</LinearLayout>

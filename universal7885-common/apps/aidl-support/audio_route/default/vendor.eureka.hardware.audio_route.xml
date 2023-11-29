@@ -1,6 +1,0 @@
-<manifest version="1.0" type="framework">
-   <hal format="aidl">
-       <name>vendor.eureka.hardware.audio_route</name>
-       <fqname>IAudioRoute/default</fqname>
-   </hal>
-</manifest>

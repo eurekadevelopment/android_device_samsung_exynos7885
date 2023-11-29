@@ -1,4 +1,0 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginBottom="50dp" android:background="@android:color/system_accent1_100" android:id="@+id/channel_list_layout">
-   <ListView android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/listview"/>
-   <com.google.android.material.floatingactionbutton.FloatingActionButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="bottom|end" android:id="@+id/refresh_channel_list" android:src="@drawable/ic_refresh" android:layout_marginEnd="25dp" android:layout_marginBottom="25dp"/>
-</FrameLayout>

@@ -1,4 +1,0 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
-   <androidx.appcompat.widget.AppCompatImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="10dp" android:layout_gravity="start|center_vertical" android:id="@+id/star_button_list" android:src="@drawable/ic_star"/>
-   <com.google.android.material.textview.MaterialTextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:paddingStart="25dp" android:id="@+id/channel_list_title" android:paddingEnd="25dp" android:textColor="@android:color/system_accent2_700" android:textStyle="bold" android:letterSpacing="0.15" android:paddingTop="15dp" android:paddingBottom="15dp" android:textSize="25sp" android:text="@string/fm_radio_freq"/>
-</FrameLayout>

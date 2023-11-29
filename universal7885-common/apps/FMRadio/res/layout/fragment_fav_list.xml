@@ -1,2 +1,0 @@
-<GridView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="horizontal" android:id="@+id/fav_list_grid">
-</GridView>

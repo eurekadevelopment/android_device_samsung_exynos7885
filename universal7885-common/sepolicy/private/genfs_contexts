@@ -1,2 +1,0 @@
-## FMRadio
-genfscon sysfs /devices/virtual/s610_radio/s610_radio/				u:object_r:sysfs_fmradio_tune:s0

@@ -122,12 +122,6 @@ PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.3-service.samsung
 endif
 
-ifneq ($(TARGET_LOCAL_ARCH),arm)
-# Samsung FMRadio impl
-PRODUCT_PACKAGES += \
-    FMRadio
-endif
-
 # Gatekeeper
 PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0-impl \

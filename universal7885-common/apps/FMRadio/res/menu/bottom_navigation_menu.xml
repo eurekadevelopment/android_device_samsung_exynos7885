@@ -1,5 +1,0 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-   <item android:id="@+id/radio_main" android:enabled="true" android:icon="@drawable/ic_radio" android:title="@string/app_name"/>
-   <item android:id="@+id/channel_list" android:enabled="true" android:icon="@drawable/ic_list" android:title="@string/channel_list"/>
-   <item android:id="@+id/fav_list" android:enabled="true" android:icon="@drawable/ic_star_filled" android:title="@string/favorites"/>
-</menu>
