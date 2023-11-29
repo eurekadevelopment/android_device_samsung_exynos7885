@@ -1,7 +1,6 @@
 # All blobs below are extracted from samsung/a20ektt/a20e:11/RP1A.200720.012/A202KKKU8CUL3:user/release-keys, unless otherwise stated.
-# Widevine DRM blobs from exynos9820 common
 
-vendor/bin/hw/android.hardware.drm@1.4-service.widevine
+vendor/bin/hw/android.hardware.drm@1.3-service.widevine
 vendor/bin/hw/macloader
 vendor/bin/hw/rild
 vendor/bin/hw/vendor.samsung.hardware.gnss@2.0-service
@@ -14,7 +13,7 @@ vendor/etc/dolby/dax-default.xml
 vendor/etc/gnss/ca.pem
 vendor/etc/gnss/gps.cfg
 vendor/etc/gnss/gps.debug.cfg
-vendor/etc/init/android.hardware.drm@1.4-service.widevine.rc
+vendor/etc/init/android.hardware.drm@1.3-service.widevine.rc
 vendor/etc/init/init.gps.rc
 vendor/etc/init/init.vendor.rilchip.rc
 vendor/etc/init/init.vendor.rilcommon.rc
@@ -35,7 +34,7 @@ vendor/firmware/Tfa9896.cnt
 vendor/firmware/calliope_dram.bin
 vendor/firmware/calliope_sram.bin
 vendor/lib/egl/libGLES_mali.so
-vendor/lib/libdrmresource.so
+vendor/lib/mediadrm/libwvdrmengine.so
 vendor/lib/omx/libOMX.Exynos.AVC.Decoder.so
 vendor/lib/omx/libOMX.Exynos.AVC.Encoder.so
 vendor/lib/omx/libOMX.Exynos.HEVC.Decoder.so

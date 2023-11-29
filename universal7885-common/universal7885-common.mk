@@ -113,7 +113,7 @@ $(call inherit-product, hardware/samsung-ext/interfaces/debug-tools/debug.mk)
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey \
-    android.hardware.drm@1.4.vendor
+    android.hardware.drm@1.3.vendor
 
 # Fingerprint
 TARGET_BOARD_HAS_FP ?= true
