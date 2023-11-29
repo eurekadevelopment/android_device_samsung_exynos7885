@@ -45,15 +45,6 @@ persist.sys.sf.color_saturation=1.20
 ro.soc.manufacturer=samsung
 ro.soc.model=exynos7885
 
-### CSC
-ro.csc.sales_code=KTC
-ro.csc.country_code=Korea
-ro.csc.countryiso_code=KR
-ro.csc.omcmw_code=KTC
-
-## PDA
-ro.build.PDA=A202KKKU7CUF1
-
 # Wifi direct
 wifi.direct.interface=p2p0
 
