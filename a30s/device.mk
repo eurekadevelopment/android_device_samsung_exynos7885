@@ -1,7 +1,7 @@
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 TARGET_LOCAL_ARCH := arm64
-# UDFPS
+TARGET_SOC := exynos7904
 TARGET_HAS_UDFPS := true
 
 # Inherit common device configuration
@@ -23,9 +23,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.light.xml
     
-PRODUCT_PACKAGES += \
-   fstab.exynos7904
-
 PRODUCT_PACKAGES += \
    android.hardware.sensors@1.0-service
 

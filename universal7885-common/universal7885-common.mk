@@ -140,8 +140,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     android.hardware.composer.hwc3-service.slsi \
-    gralloc.exynos7904 \
-    gralloc.exynos7884B \
+    gralloc.$(TARGET_SOC) \
     libion_exynos
 
 # Health
@@ -160,6 +159,7 @@ PRODUCT_PACKAGES += \
 
 # Init
 PRODUCT_PACKAGES += \
+    fstab.$(TARGET_SOC) \
     fstab.enableswap \
     init.exynos7885.rc \
     init.exynos7885.usb.rc \

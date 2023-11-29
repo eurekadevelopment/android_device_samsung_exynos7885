@@ -3,15 +3,8 @@ COMMON_PATH := device/samsung/universal7885-common
 BOARD_VENDOR := samsung
 
 # Platform
-ifeq ($(TARGET_DEVICE), $(filter $(TARGET_DEVICE),a10dd a10 a20 a20e))
-TARGET_SOC := exynos7884B
-TARGET_BOARD_PLATFORM := universal7884B
-TARGET_BOOTLOADER_BOARD_NAME := exynos7884B
-else ifeq ($(TARGET_DEVICE), $(filter $(TARGET_DEVICE),a30 a30s a40))
-TARGET_SOC := exynos7904
-TARGET_BOARD_PLATFORM := universal7904
-TARGET_BOOTLOADER_BOARD_NAME := exynos7904
-endif
+TARGET_BOARD_PLATFORM := $(subst exynos,universal,$(TARGET_SOC))
+TARGET_BOOTLOADER_BOARD_NAME := $(TARGET_SOC)
 
 include hardware/samsung_slsi-linaro/config/BoardConfig7885.mk
 
