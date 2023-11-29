@@ -364,10 +364,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.vibrator-service.samsung
 
-# VNDK
-PRODUCT_COPY_FILES += \
-    prebuilts/vndk/v32/arm64/arch-arm-armv8-a/shared/vndk-core/libcrypto.so:$(TARGET_COPY_OUT_VENDOR)/lib/libcrypto-v32.so
-
 # Workaround for vintf issues...
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/vintf/compatibility_matrix.3.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/vintf/compatibility_matrix.3.xml
