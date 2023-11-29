@@ -2,4 +2,4 @@
 allow hal_gnss_default gpsd:unix_stream_socket connectto;
 
 add_hwservice(hal_gnss_default, hal_gnss_hwservice)
-allow hal_gnss_default fwk_sensor_hwservice:hwservice_manager find;
+allow hal_gnss_default fwk_sensor_service:service_manager find;
