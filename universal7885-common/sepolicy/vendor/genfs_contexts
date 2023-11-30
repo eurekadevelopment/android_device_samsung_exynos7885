@@ -48,9 +48,12 @@ genfscon sysfs /devices/platform/11ce0000.speedy/i2c-7/7-0000/s2mpu08-rtc/rtc   
 # A20e Display
 genfscon sysfs /devices/platform/13870000.i2c/i2c-11/11-0048/input/               u:object_r:sysfs_touchscreen_writable:s0
 genfscon sysfs /devices/platform/11ce0000.speedy/i2c-5/5-0003/input/input11       u:object_r:sysfs_touchscreen_writable:s0
-# A20 Display
+# A20 & A30 Display
 genfscon sysfs /devices/platform/13870000.i2c/i2c-11/11-0020/input/               u:object_r:sysfs_touchscreen_writable:s0
 genfscon sysfs /devices/platform/11ce0000.speedy/i2c-6/6-0003/input/input12       u:object_r:sysfs_touchscreen_writable:s0
+# A30s Display
+genfscon sysfs /devices/platform/13870000.i2c/i2c-11/11-0050/input/               u:object_r:sysfs_touchscreen_writable:s0
+genfscon sysfs /devices/platform/11ce0000.speedy/i2c-6/6-0003/input/input13       u:object_r:sysfs_touchscreen_writable:s0
 # A40 Display
 genfscon sysfs /devices/platform/11ce0000.speedy/i2c-7/7-0003/input/input11       u:object_r:sysfs_touchscreen_writable:s0
 genfscon sysfs /devices/platform/13930000.hsi2c/i2c-5/5-0048/input/               u:object_r:sysfs_touchscreen_writable:s0
