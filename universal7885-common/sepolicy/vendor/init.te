@@ -3,3 +3,7 @@ allow init sysfs_battery_writable:file setattr;
 allow init { sec_efs_file efs_file }:dir mounton;
 allow init sysfs_mmc:file w_file_perms;
 allow init socket_device:sock_file create_file_perms;
+
+# dirty_background_bytes, dirty_bytes
+# Better than sperately labeling it?
+allow init proc:file write;
