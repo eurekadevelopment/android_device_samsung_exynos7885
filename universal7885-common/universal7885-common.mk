@@ -181,7 +181,8 @@ endif
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.light-service.samsung
+    vendor.samsung_ext.hardware.light-service \
+    test_lights
 
 # Keylayout
 PRODUCT_COPY_FILES += \
