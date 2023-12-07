@@ -33,3 +33,8 @@ if echo $HD_DEV | grep $DEVICE 2>&1 >/dev/null; then
 else
 	echo "TARGET_BOOT_ANIMATION_RES := 1080" >>${DEV}/"$VENDOR"_${DEVICE}.mk
 fi
+
+A10_DEV="a10dd a10"
+if echo $A10_DEV | grep $DEVICE 2>&1 >/dev/null; then
+	echo "TARGET_USES_MINI_GAPPS := true" >>${DEV}/"$VENDOR"_${DEVICE}.mk
+fi
