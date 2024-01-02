@@ -9,6 +9,15 @@
             ],
             "ResetOnInit": true
         },
+	{
+            "Name": "KernelBatterySaver",
+            "Path": "/sys/module/battery_saver/parameters/enabled",
+            "Values": [
+                "1",
+                "0"
+            ],
+            "ResetOnInit": true
+        },
         {
             "Name": "DoubleTapToWakeEnable",
             "Path": "/sys/class/sec/tsp/cmd",
@@ -30,6 +39,12 @@
         {
             "PowerHint": "INTERACTIVE",
             "Node": "TouchscreenEnable",
+            "Duration": 0,
+            "Value": "1"
+        },
+	{
+            "PowerHint": "LOW_POWER",
+            "Node": "KernelBatterySaver",
             "Duration": 0,
             "Value": "1"
         }

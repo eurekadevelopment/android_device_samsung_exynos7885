@@ -112,3 +112,5 @@ genfscon sysfs /kernel/gpu/gpu_min_clock                                        
 genfscon sysfs /devices/platform/11500000.mali/dma_buf_gpu_mem                    u:object_r:sysfs_gpu:s0
 genfscon sysfs /devices/platform/11500000.mali/kprcs                              u:object_r:sysfs_gpu:s0
 genfscon sysfs /devices/platform/11500000.mali/total_gpu_mem                      u:object_r:sysfs_gpu:s0
+
+genfscon sysfs /module/battery_saver/parameters/enabled                           u:object_r:sysfs_battery_saver:s0
