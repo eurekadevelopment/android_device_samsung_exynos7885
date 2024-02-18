@@ -42,7 +42,7 @@ def write_one_dev_makefile(device, vendor):
             writeln(mk, 'TARGET_BOOT_ANIMATION_RES := 720')
         else:
             writeln(mk, 'TARGET_BOOT_ANIMATION_RES := 1080')
-        writeln(mk, 'TARGET_USES_MINI_GAPPS := true')
+    
         log(f'Write entry <= {device_path}')
 
 def check_makefile(mk, vendor):
