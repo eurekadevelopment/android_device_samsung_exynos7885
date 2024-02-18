@@ -5,6 +5,7 @@ allow hal_power_default sysfs_touchscreen_writable:dir r_dir_perms;
 allow hal_power_default sysfs_sec_touchscreen:dir r_dir_perms;
 allow hal_power_default sysfs_sec_touchscreen:file r_file_perms;
 allow hal_power_default sysfs_decon:dir search;
+w_file_recursive(hal_power_default, sysfs_battery_saver)
 
 set_prop(hal_power_default, vendor_powerhal_prop)
 

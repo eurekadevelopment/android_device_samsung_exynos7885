@@ -9,6 +9,15 @@
             ],
             "ResetOnInit": true
         },
+	{
+            "Name": "KernelBatterySaver",
+            "Path": "/sys/module/battery_saver/parameters/enabled",
+            "Values": [
+                "1",
+                "0"
+            ],
+            "ResetOnInit": true
+        },
         {
             "Name": "DoubleTapToWakeEnable",
             "Path": "/sys/class/sec/tsp/cmd",
@@ -18,46 +27,6 @@
             ],
             "DefaultIndex": 0,
             "ResetOnInit": false
-        },
-        {
-            "Name": "PowerHALMainState",
-            "Path": "vendor.powerhal.state",
-            "Values": [
-                "SUSTAINED_PERFORMANCE",
-                "VR_MODE",
-                "VR_SUSTAINED_PERFORMANCE",
-                ""
-            ],
-            "Type": "Property"
-        },
-        {
-            "Name": "PowerHALAudioState",
-            "Path": "vendor.powerhal.audio",
-            "Values": [
-                "AUDIO_STREAMING_LOW_LATENCY",
-                ""
-            ],
-            "Type": "Property"
-        },
-        {
-            "Name": "PowerHALRenderingState",
-            "Path": "vendor.powerhal.rendering",
-            "Values": [
-                "EXPENSIVE_RENDERING",
-                ""
-            ],
-            "Type": "Property"
-        },
-        {
-            "Name": "PowerHALPerfProfileState",
-            "Path": "vendor.powerhal.perf_profile",
-            "Values": [
-                "POWER_SAVE",
-                "BIAS_POWER_SAVE",
-                "BIAS_PERFORMANCE",
-                "HIGH_PERFORMANCE"
-            ],
-            "Type": "Property"
         }
     ],
     "Actions": [
@@ -68,64 +37,16 @@
             "Value": "aot_enable,1"
         },
         {
-            "PowerHint": "AUDIO_STREAMING_LOW_LATENCY",
-            "Node": "PowerHALAudioState",
-            "Duration": 0,
-            "Value": "AUDIO_STREAMING_LOW_LATENCY"
-        },
-        {
-            "PowerHint": "SUSTAINED_PERFORMANCE",
-            "Node": "PowerHALMainState",
-            "Duration": 0,
-            "Value": "SUSTAINED_PERFORMANCE"
-        },
-        {
-            "PowerHint": "VR_MODE",
-            "Node": "PowerHALMainState",
-            "Duration": 0,
-            "Value": "VR_MODE"
-        },
-        {
-            "PowerHint": "VR_SUSTAINED_PERFORMANCE",
-            "Node": "PowerHALMainState",
-            "Duration": 0,
-            "Value": "VR_SUSTAINED_PERFORMANCE"
-        },
-        {
-            "PowerHint": "EXPENSIVE_RENDERING",
-            "Node": "PowerHALRenderingState",
-            "Duration": 0,
-            "Value": "EXPENSIVE_RENDERING"
-        },
-        {
             "PowerHint": "INTERACTIVE",
             "Node": "TouchscreenEnable",
             "Duration": 0,
             "Value": "1"
         },
-        {
-            "PowerHint": "PROFILE_POWER_SAVE",
-            "Node": "PowerHALPerfProfileState",
+	{
+            "PowerHint": "LOW_POWER",
+            "Node": "KernelBatterySaver",
             "Duration": 0,
-            "Value": "POWER_SAVE"
-        },
-        {
-            "PowerHint": "PROFILE_BIAS_POWER_SAVE",
-            "Node": "PowerHALPerfProfileState",
-            "Duration": 0,
-            "Value": "BIAS_POWER_SAVE"
-        },
-        {
-            "PowerHint": "PROFILE_BIAS_PERFORMANCE",
-            "Node": "PowerHALPerfProfileState",
-            "Duration": 0,
-            "Value": "BIAS_PERFORMANCE"
-        },
-        {
-            "PowerHint": "PROFILE_HIGH_PERFORMANCE",
-            "Node": "PowerHALPerfProfileState",
-            "Duration": 0,
-            "Value": "HIGH_PERFORMANCE"
+            "Value": "1"
         }
     ]
 }

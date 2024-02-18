@@ -44,7 +44,6 @@ BUILD_BROKEN_ENFORCE_SYSPROP_OWNER := true
 TARGET_USES_UNIVERSAL_LIBHWJPEG :=
 
 # Display
-TARGET_USES_VULKAN := true
 BOARD_MINIMUM_DISPLAY_BRIGHTNESS := 1
 
 # Filesystem
@@ -111,17 +110,15 @@ BOARD_ROOT_EXTRA_SYMLINKS := /factory:/efs
 
 BOARD_SEPOLICY_TEE_FLAVOR := teegris
 include device/samsung_slsi/sepolicy/sepolicy.mk
+include hardware/samsung-ext/interfaces/sepolicy/SEPolicy.mk
 
 # Sepolicy
 BOARD_VENDOR_SEPOLICY_DIRS += \
-    $(COMMON_PATH)/sepolicy/vendor \
-    hardware/samsung-ext/interfaces/sepolicy/vendor
+    $(COMMON_PATH)/sepolicy/vendor
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += \
-    $(COMMON_PATH)/sepolicy/public \
-    hardware/samsung-ext/interfaces/sepolicy/public
+    $(COMMON_PATH)/sepolicy/public
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
-    $(COMMON_PATH)/sepolicy/private \
-    hardware/samsung-ext/interfaces/sepolicy/private
+    $(COMMON_PATH)/sepolicy/private
 
 # Vendor
 TARGET_COPY_OUT_VENDOR := vendor
