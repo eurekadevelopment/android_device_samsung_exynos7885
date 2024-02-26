@@ -6,6 +6,9 @@ endif
 # .apex packages
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
+# Soong namespaces
+$(call inherit-product, hardware/samsung_slsi-linaro/config/config.mk)
+
 # Client Id base
 PRODUCT_GMS_CLIENTID_BASE := android-samsung
 
