@@ -5,3 +5,60 @@ soong_namespace {
         "hardware/google/interfaces",
     ],
 }
+
+
+install_symlink {
+    name: "libOpenCL_symlink32",
+    vendor: true,
+    installed_location: "lib/libOpenCL.so",
+    symlink_target: "egl/libGLES_mali.so",
+}
+
+install_symlink {
+    name: "libOpenCL_symlink64",
+    vendor: true,
+    installed_location: "lib64/libOpenCL.so",
+    symlink_target: "egl/libGLES_mali.so",
+}
+
+install_symlink {
+    name: "libOpenCL.1_symlink32",
+    vendor: true,
+    installed_location: "lib/libOpenCL.so.1",
+    symlink_target: "egl/libGLES_mali.so",
+}
+
+install_symlink {
+    name: "libOpenCL.1_symlink64",
+    vendor: true,
+    installed_location: "lib64/libOpenCL.so.1",
+    symlink_target: "egl/libGLES_mali.so",
+}
+
+install_symlink {
+    name: "libOpenCL.1.1_symlink32",
+    vendor: true,
+    installed_location: "lib/libOpenCL.so.1.1",
+    symlink_target: "egl/libGLES_mali.so",
+}
+
+install_symlink {
+    name: "libOpenCL.1.1_symlink64",
+    vendor: true,
+    installed_location: "lib64/libOpenCL.so.1.1",
+    symlink_target: "egl/libGLES_mali.so",
+}
+
+install_symlink {
+    name: "vulkan_mali_symlink32",
+    vendor: true,
+    installed_location: "lib/hw/vulkan.mali.so",
+    symlink_target: "../egl/libGLES_mali.so",
+}
+
+install_symlink {
+    name: "vulkan_mali_symlink64",
+    vendor: true,
+    installed_location: "lib64/hw/vulkan.mali.so",
+    symlink_target: "../egl/libGLES_mali.so",
+}

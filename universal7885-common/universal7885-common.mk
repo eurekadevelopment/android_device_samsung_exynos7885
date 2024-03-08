@@ -219,6 +219,17 @@ PRODUCT_COPY_FILES += \
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 # DEVICE_PACAKGE_OVERLAYS += $(LOCAL_PATH)/overlay-rom
 
+ifeq ($(TARGET_LOCAL_ARCH),arm64)
+SYMLINK_SUFFIXES := _symlink32 _symlink64
+else
+SYMLINK_SUFFIXES := _symlink32
+endif
+SYMLINK_LIST := libOpenCL libOpenCL.1 libOpenCL.1.1 vulkan_mali
+
+# Symlink targets
+$(foreach suf, $(SYMLINK_SUFFIXES), $(foreach lib, $(SYMLINK_LIST), \
+	$(eval PRODUCT_PACKAGES += $(lib)$(suf))))
+
 # OMX
 PRODUCT_PACKAGES += \
     libstagefrighthw \
