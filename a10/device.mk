@@ -6,4 +6,9 @@ $(call inherit-product, vendor/samsung/a10/a10-vendor.mk)
 PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-service_32
 
+# ART lowmem config
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.config.art_lowmem=true
+
 include device/samsung/a10/common.mk
+
