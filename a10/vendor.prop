@@ -1,2 +1,5 @@
 ## Bluetooth
 bluetooth.device.default_name=Galaxy A10
+
+# RAM
+ro.config.low_ram=true
