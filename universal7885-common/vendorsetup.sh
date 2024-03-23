@@ -1,5 +1,5 @@
 if [ ! -e .repo/local_manifests/eureka_deps.xml ]; then
-	git clone https://github.com/eurekadevelopment/local_manifests .repo/local_manifests
+	git https://github.com/EliasTheGrandMasterOfMistakes/local_manifests -b lineageos .repo/local_manifests
 	echo "Run repo sync again"
 fi
 
