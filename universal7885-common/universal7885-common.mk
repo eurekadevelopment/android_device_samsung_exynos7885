@@ -331,11 +331,6 @@ PRODUCT_PACKAGES += \
     FlashControl \
     SmartCharge
 
-PRODUCT_PACKAGES += \
-    vendor.lineage.touch@1.0-service.samsung \
-    vendor.lineage.touch@1.0-service.ss \
-    vendor.lineage.fastcharge@1.0-service.samsung
-
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl.samsung \
