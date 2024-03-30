@@ -8,8 +8,5 @@ allow gpsd bt_device:chr_file rw_file_perms;
 allow gpsd gps_device:chr_file rw_file_perms;
 allow gpsd gpsd_exec:file execute_no_trans;
 
-allow gpsd servicemanager:binder call;
-allow gpsd hal_system_suspend_service:service_manager find;
-
 get_prop(gpsd, exported_config_prop)
 get_prop(gpsd, bootanim_system_prop)

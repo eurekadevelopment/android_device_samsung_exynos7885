@@ -30,5 +30,4 @@ allow hal_graphics_composer_default sysfs_graphics:file rw_file_perms;
 allow hal_graphics_composer_default ion_device:chr_file rw_file_perms;
 
 get_prop(hal_graphics_composer_default, vendor_camera_prop)
-set_prop(hal_graphics_composer_default, vendor_hwc_prop)
 get_prop(hal_graphics_composer_default, boot_status_prop)

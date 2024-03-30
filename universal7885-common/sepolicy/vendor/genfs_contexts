@@ -1,8 +1,6 @@
 # PROCFS
 genfscon proc /sys/vm/swappiness                  u:object_r:proc_swappiness:s0
 
-genfscon sysfs /devices/platform/battery/power_supply/battery/batt_slate_mode     u:object_r:sysfs_battery_writable:s0
-
 # device
 genfscon sysfs /devices/virtual/misc/multipdp                                     u:object_r:sysfs_multipdp:s0
 genfscon sysfs /devices/virtual/camera                                            u:object_r:sysfs_camera:s0

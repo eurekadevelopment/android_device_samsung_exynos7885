@@ -10,6 +10,11 @@
       <fqname>@7.0::IEffectsFactory/default</fqname>
    </hal>
    <hal format="hidl">
+      <name>android.hardware.bluetooth.audio</name>
+      <transport>hwbinder</transport>
+      <fqname>@2.1::IBluetoothAudioProvidersFactory/default</fqname>
+   </hal>
+   <hal format="hidl">
       <name>android.hardware.bluetooth</name>
       <transport>hwbinder</transport>
       <fqname>@1.1::IBluetoothHci/default</fqname>
