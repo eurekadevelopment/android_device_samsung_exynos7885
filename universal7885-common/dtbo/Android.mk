@@ -7,7 +7,7 @@ DTBO_CFG := $(COMMON_PATH)/dtbo/$(TARGET_DEVICE).cfg
 
 INSTALLED_DTBIMAGE_TARGET := $(PRODUCT_OUT)/eureka_dtbo.img
 	
-$(INSTALLED_DTBIMAGE_TARGET): $(PRODUCT_OUT)/kernel $(MKDTBOIMG)
+$(INSTALLED_DTBIMAGE_TARGET): $(PRODUCT_OUT)/kernel $(MKDTIMG)
 	$(call pretty,"Target dtbo image: $(INSTALLED_DTBIMAGE_TARGET)")
 	$(hide) echo "Building eureka_dtbo.img"
 	$(MKDTIMG) cfg_create $@ $(DTBO_CFG) -d $(DTBO_DIR)
