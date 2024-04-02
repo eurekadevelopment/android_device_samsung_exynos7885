@@ -1,2 +1,9 @@
 ## Bluetooth
 bluetooth.device.default_name=Galaxy A30s
+
+# Fingerprint
+ro.vendor.fingerprint.force_calibrate=true
+ro.vendor.fingerprint.supports_gestures=false
+ro.vendor.fingerprint.type=udfps
+ro.vendor.fingerprint.sensor_location=540|2145|114
+ro.vendor.fingerprint.request_touch_event=true

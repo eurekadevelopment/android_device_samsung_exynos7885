@@ -35,11 +35,7 @@
          -->
    <string translatable="false" name="config_mainBuiltInDisplayCutout">M 0,0 H -67.42857142857143 V 30.85714285714286 H 67.42857142857143 V 0 H 0 Z @dp</string>
    <string translatable="false" name="config_mainBuiltInDisplayCutoutRectApproximation">@*android:string/config_mainBuiltInDisplayCutout</string>
-   <!-- If supported, are dreams enabled? (by default) -->
-   <bool name="config_dreamsEnabledByDefault">false</bool>
    <bool name="config_dozeAlwaysOnDisplayAvailable">true</bool>
-   <bool name="config_displayBlanksAfterDoze">false</bool>
-   <bool name="config_dozePulsePickup">false</bool>
    <bool name="config_supportDoubleTapWake">true</bool>
    <bool name="config_enableBurnInProtection">true</bool>
    <!-- Amount of time it takes for the light sensor to warm up in milliseconds.
@@ -49,21 +45,5 @@
    <!-- The type of the light sensor to be used by the display framework for things like
          auto-brightness. If unset, then it just gets the default sensor of type TYPE_LIGHT. -->
    <string name="config_displayLightSensorType">com.samsung.sensor.physical_light</string>
-   <!-- List of biometric sensors on the device, in decreasing strength. Consumed by AuthService
-         when registering authenticators with BiometricService. Format must be ID:Modality:Strength,
-         where: IDs are unique per device, Modality as defined in BiometricAuthenticator.java,
-         and Strength as defined in Authenticators.java -->
-   <string-array name="config_biometric_sensors" translatable="false">
-      <item>0:2:15</item>
-      <!-- ID0:Fingerprint:Strong -->
-   </string-array>
-   <!-- For performance and storage reasons, limit the number of fingerprints per user -->
-   <integer name="config_fingerprintMaxTemplatesPerUser">4</integer>
-   <!-- Specify if the fingerprint hardware support gestures-->
-   <bool name="config_fingerprintSupportsGestures">true</bool>
-   <!-- True if the device supports system navigation keys. -->
-   <bool name="config_supportSystemNavigationKeys">true</bool>
-   <!-- Limit for the number of face templates per user -->
-   <integer name="config_faceMaxTemplatesPerUser">2</integer>
    <bool name="config_automatic_brightness_available">true</bool>
 </resources>

@@ -59,3 +59,7 @@ ro.config.vc_call_vol_steps=8
 ro.vendor.vibrator_hal.click_duration=75
 ro.vendor.vibrator_hal.tick_duration=65
 ro.vendor.vibrator_hal.texture_tick_duration=60
+
+# Fingerprint
+ro.vendor.fingerprint.type?=rear
+ro.vendor.fingerprint.supports_gestures?=true

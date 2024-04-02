@@ -128,7 +128,7 @@ PRODUCT_PACKAGES += \
 TARGET_BOARD_HAS_FP ?= true
 ifeq ($(TARGET_BOARD_HAS_FP), true)
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.3-service.samsung
+    android.hardware.biometrics.fingerprint-service.samsung
 endif
 
 # Gatekeeper
