@@ -13,6 +13,7 @@ ro.vendor.cscsupported=1
 ## OpenGLES
 ro.opengles.version=196610
 ro.hardware.egl=mali
+ro.hardware.vulkan=mali
 
 ## HW Graphics
 debug.egl.hw=0
