@@ -1,15 +1,17 @@
 # Device Trees for universal7885 unified
-The Samsung Galaxy A10,A20,A20e,A30,A40 are budget smartphones from Samsung. These are announced and released in the year 2019.
+The Samsung Galaxy A10,A20,A20e,A30,A30s,A40 are budget smartphones from Samsung. These are announced and released in the year 2019.
 
 # Device List
-- Samsung Galaxy A10 (exynos7884)
-- Samsung Galaxy A20 (exynos7884)
-- Samsung Galaxy A20e (exynos7884)
-- Samsung Galaxy A30 (exynos7904)
-- Samsung Galaxy A40 (exynos7904)
+- Galaxy A10 (exynos7884B)
+- Galaxy A20 (exynos7884B)
+- Galaxy A20e (exynos7884B)
+- Galaxy A30 (exynos7904)
+- Galaxy A30s (exynos7904)
+- Galaxy A40 (exynos7904)
 
 # Why universal7885? isn't that another SoC made by Samsung?
-- yes it does, exynos7884 and exynos7904 are 2nd and 3rd revisions of exynos7885 with lower CPU and GPU clockspeed and have newer Mali GPU drivers
+- Yes it is, exynos7884B and exynos7904 are 2nd and 3rd revisions of exynos7885 with lower CPU and GPU clockspeed and have newer Mali GPU drivers
+- We restored the original clock and voltage tables of exynos7885 to these phones.
 
 ## Device specifications (Galaxy A10)
 | Feature                 | Specification                                                   |
@@ -60,6 +62,23 @@ The Samsung Galaxy A10,A20,A20e,A30,A40 are budget smartphones from Samsung. The
 | Front Camera            | 16 MP, f/2.0, 26mm (wide), 1/3.06", 1.0µm                       |
 | Fingerprint             | Rear-mounted                                                    |
 
+
+## Device specifications (Galaxy A30)
+| Feature                 | Specification                                                   |
+| :---------------------- | :---------------------------------------------------------------|
+| Chipset                 | Samsung Exynos 7904 (14 nm)                                     |
+| CPU                     | Octa-core (2x1.8 GHz Cortex-A73 & 6x1.7 GHz Cortex-A53)         |
+| GPU                     | Mali G71 MP2                                                    |
+| Memory                  | 3/4 GB                                                          |
+| Shipped Android Version | 9.0                                                             |
+| Storage                 | 32/64 GB                                                        |
+| Battery                 | Li-Po 4000 mAh, non-removable                                   |
+| Display                 | 6.4 inches, 100.5 cm2 (~84.2% screen-to-body ratio)             |
+| Rear Camera 1           | 25 MP, f/1.7, 27mm (wide), PDAF                                 |
+| Rear Camera 2           | 8 MP, f/2.2, 13mm (ultrawide)                                   |
+| Rear Camera 3           | 5 MP, f/2.2, (depth)
+| Front Camera            | 16 MP, f/2.0, 26mm (wide), 1/3.06", 1.0µm                       |
+| Fingerprint             | Under display, optical                                          |
 
 ## Device specifications (Galaxy A40)
 | Feature                 | Specification                                                   |
