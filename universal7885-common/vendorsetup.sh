@@ -6,7 +6,6 @@ echo 'Cloning Kernel tree [1/7]'
 rm -rf kernel/samsung/exynos7885
 git clone https://github.com/eurekadevelopment/Eureka-Kernel-Exynos7885-Q-R-S.git -b R15_rom kernel/samsung/exynos7885
 
-
 echo 'Cloning Device Tree [2/7]'
 # Device tree for exynos7885
 rm -rf device/samsung
@@ -45,9 +44,11 @@ rm -rf hardware/samsung_slsi-linaro/exynos
 rm -rf hardware/samsung_slsi-linaro/exynos5
 rm -rf hardware/samsung_slsi-linaro/graphics
 rm -rf hardware/samsung_slsi-linaro/openmax
+rm -rf hardware/samsung_slsi-linaro/interfaces
 git clone https://github.com/eurekadevelopment/android_hardware_samsung_slsi-linaro_graphics.git -b lineage-21 hardware/samsung_slsi-linaro/graphics
 git clone https://github.com/eurekadevelopment/android_hardware_samsung_slsi-linaro_config.git -b lineage-21 hardware/samsung_slsi-linaro/config
 git clone https://github.com/eurekadevelopment/android_hardware_samsung_slsi-linaro_exynos.git -b lineage-21 hardware/samsung_slsi-linaro/exynos
+git clone https://github.com/K9100ii/android_hardware_samsung_slsi-linaro_exynos5.git -b lineage-21 hardware/samsung_slsi-linaro/exynos5
 git clone https://github.com/eurekadevelopment/android_hardware_samsung_slsi-linaro_openmax.git -b lineage-21 hardware/samsung_slsi-linaro/openmax
 git clone https://github.com/eurekadevelopment/android_hardware_samsung_slsi-linaro_interfaces.git -b lineage-21 hardware/samsung_slsi-linaro/interfaces
 
