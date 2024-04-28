@@ -41,3 +41,4 @@ git clone https://github.com/eurekadevelopment/android_hardware_samsung_slsi-lin
 git clone https://github.com/eurekadevelopment/android_hardware_samsung_slsi-linaro_openmax.git -b lineage-21 hardware/samsung_slsi-linaro/openmax
 git clone https://github.com/eurekadevelopment/android_hardware_samsung_slsi-linaro_interfaces.git -b lineage-21 hardware/samsung_slsi-linaro/interfaces
 
+echo 'Completed, Now proceeding to lunch'
