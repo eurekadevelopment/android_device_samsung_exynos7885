@@ -10,9 +10,22 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit device configuration
 $(call inherit-product, device/samsung/a30s/device.mk)
 
+# Inherit some common rom stuff
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+
+# Rom Specific Flags
+TARGET_FACE_UNLOCK_SUPPORTED := true
+TARGET_SUPPORTS_QUICK_TAP := true
+TARGET_BOOT_ANIMATION_RES := 1080
+TARGET_HAS_FOD := true
+
+# Maintainer
+RISING_MAINATAINER := Ʀᴀ㉿ɪƁ
+
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := a30s
-PRODUCT_NAME := full_a30s
+PRODUCT_NAME := lineage_a30s
 PRODUCT_MODEL := SM-A307F
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
+PRODUCT_GMS_CLIENTID_BASE := android-samsung
