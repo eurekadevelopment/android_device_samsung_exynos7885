@@ -15,9 +15,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_a10.mk
+    $(LOCAL_DIR)/blaze_a10.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_a10-eng \
-    lineage_a10-user \
-    lineage_a10-userdebug
+    blaze_a10-eng \
+    blaze_a10-user \
+    blaze_a10-userdebug
