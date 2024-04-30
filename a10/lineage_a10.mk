@@ -20,6 +20,9 @@ TARGET_BOOT_ANIMATION_RES := 1080
 
 # Maintainer
 RISING_MAINATAINER := Ʀᴀ㉿ɪƁ
+PRODUCT_BUILD_PROP_OVERRIDES += \
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    RISING_MAINTAINER="Niv"
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := a10
