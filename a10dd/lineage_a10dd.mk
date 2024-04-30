@@ -16,6 +16,7 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 TARGET_FACE_UNLOCK_SUPPORTED := true
 TARGET_SUPPORTS_QUICK_TAP := true
 TARGET_BOOT_ANIMATION_RES := 1080
+BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
 
 # Maintainer
 RISING_MAINATAINER := Ʀᴀ㉿ɪƁ
