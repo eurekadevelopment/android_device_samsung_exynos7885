@@ -21,7 +21,7 @@ BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
 # Maintainer
 RISING_MAINATAINER := Ʀᴀ㉿ɪƁ
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    RISING_MAINTAINER="Niv"
+    RISING_MAINTAINER="Ʀᴀ㉿ɪƁ"
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := a10dd
