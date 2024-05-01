@@ -17,6 +17,8 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 TARGET_FACE_UNLOCK_SUPPORTED := true
 TARGET_SUPPORTS_QUICK_TAP := true
 TARGET_BOOT_ANIMATION_RES := 1080
+TARGET_HAS_UDFPS := true
+EXTRA_UDFPS_ANIMATIONS := true
 TARGET_HAS_FOD := true
 
 # Maintainer
