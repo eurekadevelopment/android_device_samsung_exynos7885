@@ -51,12 +51,7 @@ echo 'Cloning Samsung_Slsi and Linaro BSP repos [7/8]'
 rm -rf device/samsung_slsi/sepolicy
 git clone https://github.com/Roynas-Android-Playground/android_device_samsung_slsi_sepolicy.git -b lineage-21 device/samsung_slsi/sepolicy
 # Linaro BSP
-rm -rf hardware/samsung_slsi-linaro/graphics
-rm -rf hardware/samsung_slsi-linaro/config
-rm -rf hardware/samsung_slsi-linaro/exynos
-rm -rf hardware/samsung_slsi-linaro/exynos5
-rm -rf hardware/samsung_slsi-linaro/openmax
-rm -rf hardware/samsung_slsi-linaro/interfaces
+rm -rf hardware/samsung_slsi-linaro
 
 git clone https://github.com/linux4-bringup-priv/android_hardware_samsung_slsi-linaro_graphics.git -b lineage-21.0 hardware/samsung_slsi-linaro/graphics
 git clone https://github.com/linux4-bringup-priv/android_hardware_samsung_slsi-linaro_config.git -b lineage-21.0 hardware/samsung_slsi-linaro/config
@@ -68,6 +63,8 @@ git clone https://github.com/linux4-bringup-priv/android_hardware_samsung_slsi-l
 
 echo 'Cloning Sepolicy Dependency repo [8/8]'
 # Sepolicy
+rm -rf device/aosp/sepolicy
+
 git clone https://github.com/crdroidandroid/android_device_crdroid_sepolicy device/aosp/sepolicy
 
 echo 'Completed, Now proceeding to lunch'
