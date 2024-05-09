@@ -65,3 +65,6 @@ ro.vendor.vibrator_hal.texture_tick_duration=60
 # Fingerprint
 ro.vendor.fingerprint.type?=rear
 ro.vendor.fingerprint.supports_gestures?=true
+
+## Power HAL
+vendor.powerhal.disp.idle_support=false
