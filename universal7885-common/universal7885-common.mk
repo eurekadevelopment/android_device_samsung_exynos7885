@@ -18,6 +18,8 @@ PRODUCT_BROKEN_VERIFY_USES_LIBRARIES := true
 # Disable Postrender Cleanup
 TARGET_DISABLE_POSTRENDER_CLEANUP := true
 
+AB_OTA_UPDATER := false
+
 # For *_auto_generated_rro_vendor.apk
 PRODUCT_ENFORCE_RRO_TARGETS := framework-res SystemUI Bluetooth
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS := # leave it empty
