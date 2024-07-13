@@ -1,4 +1,4 @@
-<manifest version="1.0" type="device" target-level="4">
+<manifest version="1.0" type="device" target-level="5">
    <hal format="hidl">
       <name>android.hardware.audio</name>
       <transport>hwbinder</transport>
@@ -13,16 +13,6 @@
       <name>android.hardware.bluetooth</name>
       <transport>hwbinder</transport>
       <fqname>@1.1::IBluetoothHci/default</fqname>
-   </hal>
-   <hal format="hidl">
-      <name>android.hardware.camera.provider</name>
-      <transport>hwbinder</transport>
-      <fqname>@2.5::ICameraProvider/legacy/0</fqname>
-   </hal>
-   <hal format="hidl">
-      <name>android.hardware.configstore</name>
-      <transport>hwbinder</transport>
-      <fqname>@1.1::ISurfaceFlingerConfigs/default</fqname>
    </hal>
    <hal format="hidl">
       <name>android.hardware.drm</name>
