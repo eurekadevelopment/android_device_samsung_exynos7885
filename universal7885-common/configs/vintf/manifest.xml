@@ -15,11 +15,6 @@
       <fqname>@1.1::IBluetoothHci/default</fqname>
    </hal>
    <hal format="hidl">
-      <name>android.hardware.camera.provider</name>
-      <transport>hwbinder</transport>
-      <fqname>@2.5::ICameraProvider/legacy/0</fqname>
-   </hal>
-   <hal format="hidl">
       <name>android.hardware.drm</name>
       <transport>hwbinder</transport>
       <fqname>@1.3::ICryptoFactory/widevine</fqname>

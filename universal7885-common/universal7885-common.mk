@@ -93,14 +93,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
     bluetooth.profile.vc.server.enabled=true
 
 # Camera
-TARGET_BOARD_CAMERA_COUNT ?= 3
-ifeq ($(TARGET_BOARD_CAMERA_COUNT), 3)
 PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.5-service.exynos7885
-else
-PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.5-service
-endif
+    android.hardware.camera.provider-service.samsung
 
 PRODUCT_PACKAGES += \
     libGrallocWrapper \
