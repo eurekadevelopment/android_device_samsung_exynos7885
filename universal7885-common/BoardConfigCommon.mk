@@ -83,6 +83,8 @@ SOONG_CONFIG_NAMESPACES += samsungCameraVars
 SOONG_CONFIG_samsungCameraVars += extra_ids
 SOONG_CONFIG_samsungCameraVars_extra_ids := 50
 endif
+SOONG_CONFIG_samsungCameraVars += camera_32bit
+SOONG_CONFIG_samsungCameraVars_camera_32bit := true
 $(call soong_config_set,samsungCameraVars,usage_64bit,true)
 
 # HIDL
