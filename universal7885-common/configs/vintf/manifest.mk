@@ -3,7 +3,7 @@ MANIFEST_PATH := device/samsung/universal7885-common/configs/vintf
 DEVICE_MANIFEST_FILE := $(MANIFEST_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := $(MANIFEST_PATH)/compatibility_matrix.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
-    $(MANIFEST_PATH)/device_framework_matrix.xml
+    hardware/samsung/vintf/samsung_framework_compatibility_matrix.xml
 
 LINEAGE_MANIFEST := $(wildcard vendor/*/config/device_framework_matrix.xml)
 ifneq ($(LINEAGE_MANIFEST),)
