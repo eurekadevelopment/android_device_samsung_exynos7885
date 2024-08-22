@@ -2,7 +2,7 @@ import os
 from os.path import isfile as exists
 from os.path import dirname, basename
 
-debug = True
+debug = False
 DEVICE_BASE = 'device/samsung'
 HD_DEVICES=['a10dd', 'a10', 'a20', 'a20e']
 EX_RUNTIME_STR = 'Vendor config makefile was not found'
@@ -85,7 +85,6 @@ class VendorFixer():
             return True
         return False
 
-RisingVF = VendorFixer('config/rising.mk', 'rising')
 MikuVF = VendorFixer('build/product/miku_product.mk', 'miku')
 TestVF = VendorFixer('config/my_ss.mk', 'ss')
 
@@ -93,7 +92,7 @@ def main():
     vendors = os.listdir('vendor')
     ok = False
 
-    for vf in [RisingVF, MikuVF, TestVF]:
+    for vf in [MikuVF, TestVF]:
         if vf.check():
             return
 
