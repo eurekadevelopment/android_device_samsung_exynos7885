@@ -15,7 +15,3 @@ debug.renderengine.backend=skiaglthreaded
 renderthread.skia.reduceopstasksplitting=true
 debug.hwui.skia_atrace_enabled=false
 
-# Blur
-ro.sf.blurs_are_expensive=1
-ro.surface_flinger.supports_background_blur=1
-debug.sf.disable_backpressure=1
