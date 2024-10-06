@@ -185,6 +185,9 @@ PRODUCT_PACKAGES += \
     init.target.rc \
     init.baseband.rc
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/fstab.exynos7885:$(TARGET_COPY_OUT_RAMDISK)/fstab.$(TARGET_SOC)
+
 ifeq ($(TARGET_HAS_UDFPS),true)
 PRODUCT_PACKAGES += \
     init.udfps.rc
