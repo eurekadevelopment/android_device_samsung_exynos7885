@@ -82,7 +82,8 @@ include device/samsung/universal7885-common/configs/vintf/manifest.mk
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 37748736
-BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := erofs
+BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := erofs
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # Properties
