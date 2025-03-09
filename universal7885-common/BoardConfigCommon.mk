@@ -76,7 +76,7 @@ TARGET_KERNEL_CLANG_VERSION := vortex
 BOARD_USES_METADATA_PARTITION := true
 
 # Keymaster
-TARGET_KEYMASTER_VARIANT := samsung
+$(call soong_config_set,samsungVars,target_keymaster4_library,//vendor/samsung/universal7885-common:libskeymaster4device)
 
 # HIDL
 include device/samsung/universal7885-common/configs/vintf/manifest.mk
