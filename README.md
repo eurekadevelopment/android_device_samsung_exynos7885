@@ -1,6 +1,9 @@
 # Device Trees for universal7885 unified
 The Samsung Galaxy A10,A20,A20e,A30,A30s,A40 are budget smartphones from Samsung. These are announced and released in the year 2019.
 
+# Status: Died
+- Android 15 requires proprietary-files.txt which isn't proper in this tree, I would rather abandon the tree instead of fixing.
+
 # Device List
 - Galaxy A10 (exynos7884B)
 - Galaxy A20 (exynos7884B)
